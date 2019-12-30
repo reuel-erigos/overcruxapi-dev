@@ -10,9 +10,9 @@
 		<relativePath />
 	</parent>
 	<groupId>br.com.crux</groupId>
-	<artifactId>crux_api_dev</artifactId>
+	<artifactId>overcruxapi</artifactId>
 	<version>1.0</version>
-	<name>crux_api_dev</name>
+	<name>overcruxapi</name>
 	<description>Sistema feito com Spring Boot</description>
 	<packaging>war</packaging>
 
