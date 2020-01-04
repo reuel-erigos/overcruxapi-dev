@@ -25,7 +25,7 @@ public class ColaboradoresPrograma implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sq_id_colaborador_prgrama")
 	@SequenceGenerator(name = "sq_id_colaborador_prgrama", sequenceName = "sq_id_colaborador_prgrama", schema = Constantes.SCHEMA_PUBLIC, initialValue = 1, allocationSize = 1)
-	@Column(name="id_colaborador_prgrama")
+	@Column(name="id_colaborador_programa")
 	private Long id;
 
 	@Column(name="dt_entrada_programa")
