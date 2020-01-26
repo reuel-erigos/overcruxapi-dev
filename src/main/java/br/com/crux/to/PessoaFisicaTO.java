@@ -95,7 +95,9 @@ public class PessoaFisicaTO {
 	private LocalDateTime dataEmissaoCI;
 	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
 	private LocalDateTime vencimentoCNH;
-	
+
+	private Long idInstituicao;
+	private String emailProfissional;
 
 	public PessoaFisicaTO() {
 	}
@@ -716,5 +718,22 @@ public class PessoaFisicaTO {
 		this.vencimentoCNH = vencimentoCNH;
 	}
 
+	public Long getIdInstituicao() {
+		return idInstituicao;
+	}
+
+	public void setIdInstituicao(Long idInstituicao) {
+		this.idInstituicao = idInstituicao;
+	}
+
+	public String getEmailProfissional() {
+		return emailProfissional;
+	}
+
+	public void setEmailProfissional(String emailProfissional) {
+		this.emailProfissional = emailProfissional;
+	}
+
+	
 	
 }

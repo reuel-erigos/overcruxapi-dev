@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import br.com.crux.cmd.GetCondicoesMoradiaCmd;
 import br.com.crux.cmd.GetGrausInstrucaoCmd;
+import br.com.crux.cmd.GetUnidadeLogadaCmd;
 import br.com.crux.entity.CondicoesMoradia;
 import br.com.crux.entity.GrausInstrucao;
 import br.com.crux.entity.PessoaFisica;
@@ -22,7 +23,9 @@ public class PessoaFisicaTOBuilder {
 	@Autowired private CondicoesMoradiaTOBuilder condicoesMoradiaTOBuilder;
 	@Autowired private GetGrausInstrucaoCmd getGrausInstrucaoCmd;
 	@Autowired private GetCondicoesMoradiaCmd getCondicoesMoradiaCmd;
-
+	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
+	
+	
 	public PessoaFisica build(PessoaFisicaTO p) {
 		PessoaFisica retorno = new PessoaFisica();
 
@@ -129,6 +132,9 @@ public class PessoaFisicaTOBuilder {
 		retorno.setUfCTS(p.getUfCTS());
 		retorno.setDataEmissaoCI(p.getDataEmissaoCI());
 		retorno.setVencimentoCNH(p.getVencimentoCNH());
+		
+		retorno.setIdInstituicao(getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId());
+		retorno.setEmailProfissional(p.getEmailProfissional());
 
 		return retorno;
 	}
@@ -219,6 +225,10 @@ public class PessoaFisicaTOBuilder {
 		retorno.setUfCTS(p.getUfCTS());
 		retorno.setDataEmissaoCI(p.getDataEmissaoCI());
 		retorno.setVencimentoCNH(p.getVencimentoCNH());
+		
+		retorno.setIdInstituicao(p.getIdInstituicao());
+		retorno.setEmailProfissional(p.getEmailProfissional());
+
 
 		return retorno;
 	}

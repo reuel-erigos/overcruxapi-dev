@@ -23,7 +23,7 @@ import br.com.crux.infra.dao.SimNaoConverter;
  */
 @Entity
 @Table(name = "pessoas_fisicas")
-public class PessoaFisica  {
+public class PessoaFisica {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sq_id_pessoa_fisica")
@@ -228,49 +228,53 @@ public class PessoaFisica  {
 	@Convert(converter = SimNaoConverter.class)
 	@Column(name = "st_deficiente")
 	private Boolean ehDeficiente;
-	
+
 	@Column(name = "ds_deficiente")
-	private String descricaoDeficiencia;	
-	
+	private String descricaoDeficiencia;
+
 	@Column(name = "ds_tipo_sangue")
-	private String tipoSangue;	
-	
+	private String tipoSangue;
+
 	@Column(name = "ds_raca")
-	private String raca;	
-	
-	@Column(name="dt_emissao_ci")
+	private String raca;
+
+	@Column(name = "dt_emissao_ci")
 	private LocalDateTime dataEmissaoCI;
-	
+
 	@Column(name = "nr_certificado_reservista")
-	private String numeroReservista;	
-	
+	private String numeroReservista;
+
 	@Column(name = "nr_regiao_militar_reservista")
-	private String regiaoMilitarReservista;	
-	
+	private String regiaoMilitarReservista;
+
 	@Column(name = "uf_regiao_militar")
-	private String ufRegiaoMilitar;	
-	
+	private String ufRegiaoMilitar;
+
 	@Column(name = "nr_cnh")
-	private String numeroCNH;	
-	
+	private String numeroCNH;
+
 	@Column(name = "categoria_cnh")
-	private String categoriaCNH;	
-	
-	@Column(name="dt_vencimento_cnh")
+	private String categoriaCNH;
+
+	@Column(name = "dt_vencimento_cnh")
 	private LocalDateTime vencimentoCNH;
 
 	@Column(name = "nr_pis_pasep")
-	private String numeroPisPasep;	
-	
+	private String numeroPisPasep;
+
 	@Column(name = "uf_cts")
-	private String ufCTS;	
-	
+	private String ufCTS;
+
 	@Convert(converter = SimNaoConverter.class)
 	@Column(name = "st_cursando_nivel_superior")
 	private Boolean cursandoNivelSuperior;
 
-	
-	
+	@Column(name = "id_instituicao")
+	private Long idInstituicao;
+
+	@Column(name = "ds_email_profissional")
+	private String emailProfissional;
+
 	public PessoaFisica() {
 	}
 
@@ -889,7 +893,21 @@ public class PessoaFisica  {
 	public void setCursandoNivelSuperior(Boolean cursandoNivelSuperior) {
 		this.cursandoNivelSuperior = cursandoNivelSuperior;
 	}
-	
-	
+
+	public Long getIdInstituicao() {
+		return idInstituicao;
+	}
+
+	public void setIdInstituicao(Long idInstituicao) {
+		this.idInstituicao = idInstituicao;
+	}
+
+	public String getEmailProfissional() {
+		return emailProfissional;
+	}
+
+	public void setEmailProfissional(String emailProfissional) {
+		this.emailProfissional = emailProfissional;
+	}
 
 }
