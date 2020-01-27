@@ -26,20 +26,20 @@ public class ModuloService {
 		return getModulosCmd.getAll();
 	}
 	
-	@GetMapping(path = "/unidade", produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<ModuloTO> getModulosPorUnidadeLogada() {
-		return getModulosCmd.getModulosPorUnidadeLogada();
+	@GetMapping(path = "/instituicao", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<ModuloTO> getModulosPorInstituicaoLogada() {
+		return getModulosCmd.getModulosPorInstituicaoLogada();
 	}
 	
-	@GetMapping(path = "/unidade/{idUnidade}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<ModuloTO> getModulosPorUnidade(@PathVariable(name = "idUnidade") Long idUnidade) {
-		return getModulosCmd.getModulosPorUnidade(idUnidade);
+	@GetMapping(path = "/instituicao/{idInstituicao}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<ModuloTO> getModulosPorUnidade(@PathVariable(name = "idInstituicao") Long idInstituicao) {
+		return getModulosCmd.getModulosPorInstituicao(idInstituicao);
 	}	
 
-	@GetMapping(path = "/{idModulo}/unidade/{idUnidade}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<GrupoModuloTO> getGrupoModulo(@PathVariable(name = "idUnidade") Long idUnidade, 
+	@GetMapping(path = "/{idModulo}/instituicao/{idInstituicao}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<GrupoModuloTO> getGrupoModulo(@PathVariable(name = "idInstituicao") Long idInstituicao, 
 			                                  @PathVariable(name = "idModulo") Long idModulo) {
-		return getGruposModulosCmd.getGrupoModulo(idUnidade, idModulo);
+		return getGruposModulosCmd.getGrupoModulo(idInstituicao, idModulo);
 	}
 	
 }

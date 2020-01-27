@@ -23,22 +23,22 @@ public class GetGruposModulosCmd {
 	@Autowired private GrupoModuloTOBuilder grupoModuloTOBuilder;
 	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 	
-	public List<GrupoModuloTO> getGrupoModulo(Long idUnidade, Long idModulo) {
-		if(Objects.isNull(idUnidade)) {
-			throw new ParametroNaoInformadoException("A unidade não foi informada.");
+	public List<GrupoModuloTO> getGrupoModulo(Long idInstituicao, Long idModulo) {
+		if(Objects.isNull(idInstituicao)) {
+			throw new ParametroNaoInformadoException("A instituição não foi informada.");
 		}
 		if(Objects.isNull(idModulo)) {
 			throw new ParametroNaoInformadoException("O módulo não foi informado.");
 		}
 		
-		Optional<List<GruposModulo>> grupos = grupoModuloRepository.findByUnidadeAndModulo(idUnidade, idModulo);
+		Optional<List<GruposModulo>> grupos = grupoModuloRepository.findByInstituicaoAndModulo(idInstituicao, idModulo);
 		return grupoModuloTOBuilder.buildAll(grupos.get());
 	}
 	
 	
-	public List<GrupoModuloTO> getAllUnidadeLogada() {
-		Long idUnidade = getUnidadeLogadaCmd.get().getId();
-		return getAllByUnidade(idUnidade);
+	public List<GrupoModuloTO> getAllInstituicaoLogada() {
+		Long id = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+		return getAllByInstituicao(id);
 	}
 
 	public List<GrupoModuloTO> getAllByInstituicao(Long id) {
@@ -48,23 +48,16 @@ public class GetGruposModulosCmd {
 		}
 		return new ArrayList<GrupoModuloTO>();
 	}
+
 	
-	public List<GrupoModuloTO> getAllByUnidade(Long idUnidade) {
-		Optional<List<GruposModulo>> entitys = grupoModuloRepository.findByIdUnidade(idUnidade);
-		if(entitys.isPresent()) {
-			return grupoModuloTOBuilder.buildAll(entitys.get());
-		}
-		return new ArrayList<GrupoModuloTO>();
-	}
-	
-	public List<GrupoModuloTO> getAllByUnidadeAndModulo(Long idUnidade, Long idModulo) {
+	public List<GrupoModuloTO> getAllByInstituicaoAndModulo(Long idInstituicao, Long idModulo) {
 		Optional<List<GruposModulo>> entitys = Optional.empty();
 		
-		if( Objects.nonNull(idUnidade) && Objects.nonNull(idModulo)) {
-			entitys = grupoModuloRepository.findByUnidadeAndModulo(idUnidade, idModulo);
-		} else if ( Objects.nonNull(idUnidade) && Objects.isNull(idModulo) ) {
-			entitys = grupoModuloRepository.findByIdUnidade(idUnidade);
-		} else if ( Objects.isNull(idUnidade) && Objects.nonNull(idModulo) ) {
+		if( Objects.nonNull(idInstituicao) && Objects.nonNull(idModulo)) {
+			entitys = grupoModuloRepository.findByInstituicaoAndModulo(idInstituicao, idModulo);
+		} else if ( Objects.nonNull(idInstituicao) && Objects.isNull(idModulo) ) {
+			entitys = grupoModuloRepository.findByIdInstituicao(idInstituicao);
+		} else if ( Objects.isNull(idInstituicao) && Objects.nonNull(idModulo) ) {
 			entitys = grupoModuloRepository.findByModulo(idModulo);
 		}
 

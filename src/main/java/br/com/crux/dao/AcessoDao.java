@@ -48,7 +48,7 @@ public class AcessoDao extends BaseDao{
 		sql.append("   and ug.id_usuario       = us.id_usuario                        ");
 		sql.append("   and us.id_usuario       = uu.id_usuario                        ");
 		sql.append("   and uu.id_unidade       = u.id_unidade                         ");
-		sql.append("   and gm.id_unidade       = u.id_unidade                         ");
+		sql.append("   and gm.id_instituicao   = u.id_instituicao                     ");
 		sql.append("   and u.id_unidade        = :idUnidade                           ");
 		sql.append("   and m.nm_modulo         not like 'TB_REFERENCIA%'              ");
 		sql.append("   and m.modulo_pai is not null                                   ");
@@ -81,7 +81,7 @@ public class AcessoDao extends BaseDao{
 	
 	
 	
-	public List<AcessoDTO> getPerfilAcesso(Long idUnidade,Long idUsuario,Long idModulo) {
+	public List<AcessoDTO> getPerfilAcesso(Long idInstituicao,Long idUsuario,Long idModulo) {
 		StringBuilder sql = new StringBuilder();
 
 	  	sql.append(" select m.id_modulo,                                              ");
@@ -100,13 +100,13 @@ public class AcessoDao extends BaseDao{
 	    sql.append("    and ug.id_usuario       = us.id_usuario                       ");   
 	    sql.append("    and us.st_ativo         = 'S'                                 ");
 	    sql.append("    and pa.id_perfil_acesso = gm.id_perfil_acesso                 ");                
-	    sql.append("    and gm.id_unidade       = :idUnidade                          ");                    
+	    sql.append("    and gm.id_instituicao   = :idInstituicao                      ");                    
 	    sql.append("    and us.id_usuario       = :idUsuario                          ");
 	    sql.append("    and m.id_modulo         = :idModulo                           ");
 		
 	    
 		Query query = em.createNativeQuery(sql.toString());
-		query.setParameter("idUnidade", idUnidade);
+		query.setParameter("idInstituicao", idInstituicao);
 		query.setParameter("idModulo",  idModulo);
 		query.setParameter("idUsuario", idUsuario);
 		

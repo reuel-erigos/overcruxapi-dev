@@ -40,21 +40,21 @@ public interface UsuariosGrupoRepository extends JpaRepository<UsuariosGrupo, Lo
 	@Query(value = "SELECT ug FROM UsuariosGrupo ug "
 			+ " inner join UsuariosSistema us on us = ug.usuariosSistema"
 			+ " inner join GruposModulo gm on gm = ug.gruposModulo"
-			+ " inner join Unidade uni on uni = gm.unidade"
+            + " inner join Instituicao instituicao on instituicao.id = gm.instituicao.id"
 			+ " inner join Modulo m on m = gm.modulo"
 			+ "   where us.idUsuario   = ?1"
 			+ "     and m.id           = ?2"
-			+ "     and uni.idUnidade  = ?3")
-	public Optional<List<UsuariosGrupo>> getPermissoes(Long idUsuario, Long idModulo, Long idUnidade);
+			+ "     and instituicao.id = ?3")
+	public Optional<List<UsuariosGrupo>> getPermissoes(Long idUsuario, Long idModulo, Long idInstituicao);
 	
 	
 	@Query(value = "SELECT ug FROM UsuariosGrupo ug "
 			+ " inner join UsuariosSistema us on us = ug.usuariosSistema"
 			+ " inner join GruposModulo gm on gm = ug.gruposModulo"
-			+ " inner join Unidade uni on uni = gm.unidade"
+			+ " inner join Instituicao instituicao on instituicao.id = gm.instituicao.id"
 			+ "   where us.idUsuario   = ?1"
-			+ "     and uni.idUnidade  = ?2")
-	public Optional<List<UsuariosGrupo>> getPermissoesNaUnidade(Long idUsuario, Long idUnidade);	
+			+ "     and instituicao.id = ?2")
+	public Optional<List<UsuariosGrupo>> getPermissoesNaInstituicao(Long idUsuario, Long idInstituicao);	
 	
 	
 	@Query(value = "SELECT ug FROM UsuariosGrupo ug "

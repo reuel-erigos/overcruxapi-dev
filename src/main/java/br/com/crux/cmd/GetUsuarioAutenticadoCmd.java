@@ -44,7 +44,7 @@ public class GetUsuarioAutenticadoCmd implements UserDetailsService{
 		
 		List<GrantedAuthority> roles = new ArrayList<GrantedAuthority>();
 		user.getUsuariosUnidades().stream()
-		                          .filter(p -> usuariosGrupoRepository.getPermissoesNaUnidade(user.getIdUsuario(), p.getUnidade().getIdUnidade()).isPresent())
+		                          .filter(p -> usuariosGrupoRepository.getPermissoesNaInstituicao(user.getIdUsuario(), p.getUnidade().getInstituicao().getId()).isPresent())
 		                          .forEach(unidades -> roles.add(new SimpleGrantedAuthority("ROLE_" + unidades.getUnidade().getSiglaUnidade().toUpperCase())));
 		
 		List<GrantedAuthority> authorities = roles;

@@ -18,7 +18,6 @@ import br.com.crux.entity.PerfilAcesso;
 import br.com.crux.exception.ModuloNaoEncontradoException;
 import br.com.crux.exception.ParametroNaoInformadoException;
 import br.com.crux.to.AcessoTO;
-import br.com.crux.to.AcessoUnidadeTO;
 import br.com.crux.to.PerfilAcessoUsuarioTO;
 import br.com.crux.to.UsuarioLogadoTO;
 
@@ -59,9 +58,7 @@ public class GetAcessoCmd {
 		
 		UsuarioLogadoTO usuarioLogado = getUsuarioLogadoCmd.getUsuarioLogado();
 
-		AcessoUnidadeTO acessoUnidadeTO = getUnidadeLogadaCmd.get();
-
-		return acessoTOBuilder.buildAll(acessoDao.getPerfilAcesso(acessoUnidadeTO.getId(), usuarioLogado.getIdUsuario(), modulo.getId()));
+		return acessoTOBuilder.buildAll(acessoDao.getPerfilAcesso(getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId(), usuarioLogado.getIdUsuario(), modulo.getId()));
 	}
 
 

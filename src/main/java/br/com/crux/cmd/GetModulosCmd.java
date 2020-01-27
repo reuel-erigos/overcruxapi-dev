@@ -27,11 +27,11 @@ public class GetModulosCmd {
 		return moduloTOBuilder.buildAll(modulos);
 	}
 
-	public List<ModuloTO> getModulosPorUnidadeLogada() {
-		return getModulosPorUnidade(getUnidadeLogadaCmd.get().getId());
+	public List<ModuloTO> getModulosPorInstituicaoLogada() {
+		return getModulosPorInstituicao(getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId());
 	}
 
-	public List<ModuloTO> getModulosPorUnidade(Long idUnidade) {
-		return moduloTOBuilder.buildAllDTO(moduloDao.getModuloPorUnidade(idUnidade));
+	public List<ModuloTO> getModulosPorInstituicao(Long idInstituicao) {
+		return moduloTOBuilder.buildAllDTO(moduloDao.getModuloPorInstituicao(idInstituicao));
 	}
 }

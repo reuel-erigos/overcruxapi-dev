@@ -14,7 +14,7 @@ import br.com.crux.dao.dto.MenuDTO;
 public class MenuDao extends BaseDao{
 	
 	@SuppressWarnings("unchecked")
-	public List<MenuDTO> getMenuPrincipal(Long idUsuario, Long idUnidade) {
+	public List<MenuDTO> getMenuPrincipal(Long idUsuario, Long idInstituicao) {
 		StringBuilder sql = new StringBuilder();
 		
 		/*
@@ -59,14 +59,14 @@ public class MenuDao extends BaseDao{
 		sql.append("             on ug.id_grupo_modulo = gm.id_grupo_modulo ");
 		sql.append("        inner join modulos m                            ");
 		sql.append("             on gm.id_modulo  = m.id_modulo             ");
-		sql.append("  where gm.id_unidade      = :idUnidade                 ");
+		sql.append("  where gm.id_instituicao  = :idInstituicao             ");
 		sql.append("    and us.st_ativo        = 'S'                        ");
 		sql.append("    and us.id_usuario      = :idUsuario                 ");
 		
 		
 		Query query = em.createNativeQuery(sql.toString());
 		query.setParameter("idUsuario", idUsuario);
-		query.setParameter("idUnidade", idUnidade);
+		query.setParameter("idInstituicao", idInstituicao);
 		
 		List<Object[]> values = query.getResultList();
 		

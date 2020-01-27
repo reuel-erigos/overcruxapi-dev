@@ -10,12 +10,12 @@ import br.com.crux.exception.ParametroNaoInformadoException;
 @Component
 public class VerificaParametrosAcessoRule {
 
-	public void verificar(String username, Long idUnidade) {
+	public void verificar(String username, Long idInstituicao) {
 		if (StringUtils.isEmpty(username)) {
 			throw new ParametroNaoInformadoException("Parâmetro username não informado");
 		}
-		if (Objects.isNull(idUnidade)) {
-			throw new ParametroNaoInformadoException("Parâmetro unidade não informado");
+		if (Objects.isNull(idInstituicao)) {
+			throw new ParametroNaoInformadoException("Parâmetro instituicao não informado");
 		}
 		
 	}

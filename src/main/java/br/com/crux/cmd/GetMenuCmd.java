@@ -25,13 +25,13 @@ public class GetMenuCmd {
 	
 	
 	public List<MenuTO> getMenuPrincipal() {
-		Long idUnidade = getUnidadeLogadaCmd.get().getId();
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
 		
 		UsuarioLogadoTO usuarioLogado = getUsuarioLogadoCmd.getUsuarioLogado();
 		String username = usuarioLogado.getUsername();
 		
-		verificaParametrosAcessoRule.verificar(username, idUnidade);
-		List<MenuDTO> menu = menuDao.getMenuPrincipal(usuarioLogado.getIdUsuario(), idUnidade);
+		verificaParametrosAcessoRule.verificar(username, idInstituicao);
+		List<MenuDTO> menu = menuDao.getMenuPrincipal(usuarioLogado.getIdUsuario(), idInstituicao);
 		
 		verificaPermissaoMenuRule.verificar(menu);
 		

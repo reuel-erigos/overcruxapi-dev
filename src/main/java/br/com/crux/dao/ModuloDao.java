@@ -15,7 +15,7 @@ public class ModuloDao extends BaseDao{
 	
 	
 	@SuppressWarnings("unchecked")
-	public List<ModuloDTO> getModuloPorUnidade(Long idUnidade) {
+	public List<ModuloDTO> getModuloPorInstituicao(Long idInstituicao) {
 		StringBuilder sql = new StringBuilder();
 		
 		sql.append("select m.id_modulo,                                       ");
@@ -28,13 +28,13 @@ public class ModuloDao extends BaseDao{
 		sql.append("   and exists (                                           ");
 		sql.append("                select 1                                  ");
 		sql.append("                  from grupos_modulos gm                  ");
-		sql.append("                 where gm.id_modulo  = m.id_modulo        ");
-		sql.append("                   and gm.id_unidade = :idUnidade         ");
+		sql.append("                 where gm.id_modulo      = m.id_modulo    ");
+		sql.append("                   and gm.id_instituicao = :idInstituicao ");
 		sql.append("              )	                                          ");	
 		sql.append("  order by m.ds_modulo                                    ");
 		
 		Query query = em.createNativeQuery(sql.toString());
-		query.setParameter("idUnidade", idUnidade);
+		query.setParameter("idInstituicao", idInstituicao);
 		
 		List<Object[]> values = query.getResultList();
 		
