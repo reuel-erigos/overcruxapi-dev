@@ -12,6 +12,7 @@ public class PerfilAcessoUsuarioTO {
 	private String nomeGrupoModulo;
 	private String descricaoGrupoModulo;
 	private Long   idUsuarioGrupo;
+	private Long   idInstituicao;
 
 	public PerfilAcessoUsuarioTO() {
 	}
@@ -96,5 +97,14 @@ public class PerfilAcessoUsuarioTO {
 		this.idUsuarioGrupo = idUsuarioGrupo;
 	}
 
+	public Long getIdInstituicao() {
+		return idInstituicao;
+	}
+
+	public void setIdInstituicao(Long idInstituicao) {
+		this.idInstituicao = idInstituicao;
+	}
+
+	
 	
 }
