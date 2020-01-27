@@ -44,6 +44,11 @@ public class GrupoModuloService {
 		return getCmd.getAllByUnidade(idUnidade);
 	}
 	
+	@GetMapping(path = "/instituicao/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<GrupoModuloTO> getAllByInstituicao(@PathVariable(name = "id") Long id) {
+		return getCmd.getAllByInstituicao(id);
+	}
+	
 	@GetMapping(path = "/unidade", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<GrupoModuloTO> getAllByUnidadeAndModulo(@RequestParam(name = "idunidade", required = false) Long idUnidade, 
 			                                            @RequestParam(name = "idmodulo", required = false) Long idModulo) {

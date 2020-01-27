@@ -13,7 +13,7 @@ import br.com.crux.to.GrupoModuloTO;
 @Component
 public class GrupoModuloTOBuilder {
 	
-	@Autowired private UnidadeTOBuilder unidadeTOBuilder;
+	@Autowired private InstituicaoTOBuilder instituicaoTOBuilder;
 	@Autowired private PerfilAcessoTOBuilder perfilAcessoTOBuilder;
 	@Autowired private ModuloTOBuilder moduloTOBuilder;
 	
@@ -24,7 +24,7 @@ public class GrupoModuloTOBuilder {
 		to.setNome(p.getNome());
 		to.setDescricao(p.getDescricao());
 		to.setModulo(moduloTOBuilder.buildTO(p.getModulo()));
-		to.setUnidade(unidadeTOBuilder.buildTO(p.getUnidade()));
+		to.setInstituicao(instituicaoTOBuilder.buildTO(p.getInstituicao()));
 		to.setPerfilAcesso(perfilAcessoTOBuilder.buildTO(p.getPerfilAcesso()));
 		to.setUsuarioAlteracao(p.getUsuarioAlteracao());
 		
@@ -38,7 +38,7 @@ public class GrupoModuloTOBuilder {
 		to.setNome(p.getNome());
 		to.setDescricao(p.getDescricao());
 		to.setModulo(moduloTOBuilder.build(p.getModulo()));
-		to.setUnidade(unidadeTOBuilder.build(p.getUnidade()));
+		to.setInstituicao(instituicaoTOBuilder.build(p.getInstituicao()));
 		to.setPerfilAcesso(perfilAcessoTOBuilder.build(p.getPerfilAcesso()));
 		to.setUsuarioAlteracao(p.getUsuarioAlteracao());
 		

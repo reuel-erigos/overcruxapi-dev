@@ -9,13 +9,13 @@ import org.springframework.stereotype.Component;
 
 import br.com.crux.builder.GrupoModuloTOBuilder;
 import br.com.crux.dao.repository.GrupoModuloRepository;
+import br.com.crux.dao.repository.InstituicaoRepository;
 import br.com.crux.dao.repository.ModuloRepository;
 import br.com.crux.dao.repository.PerfilAcessoRepository;
-import br.com.crux.dao.repository.UnidadeRepository;
 import br.com.crux.entity.GruposModulo;
+import br.com.crux.entity.Instituicao;
 import br.com.crux.entity.Modulo;
 import br.com.crux.entity.PerfilAcesso;
-import br.com.crux.entity.Unidade;
 import br.com.crux.exception.NotFoundException;
 import br.com.crux.exception.PerfilAcessoException;
 import br.com.crux.rule.CamposObrigatoriosGrupoModuloRule;
@@ -32,7 +32,7 @@ public class CadastrarGrupoModuloCmd {
 	@Autowired private GrupoModuloRepository grupoModuloRepository;
 	@Autowired private PerfilAcessoRepository perfilAcessoRepository;
 	@Autowired private ModuloRepository moduloRepository;
-	@Autowired private UnidadeRepository unidadeRepository;
+	@Autowired private InstituicaoRepository instituicaoRepository;
 	
 	
 	public void cadastrarAll(List<GrupoModuloTO> listaTO) {
@@ -49,12 +49,12 @@ public class CadastrarGrupoModuloCmd {
 		GruposModulo entity = toBuilder.buildTO(to);
 
 		// Cadastrar o grupo do modulo pai, caso não exista.
-		addGrupoModuloPai(to.getUnidade().getIdUnidade(), to.getModulo().getId());
+		addGrupoModuloPai(to.getInstituicao().getId(), to.getModulo().getId());
 		
 		repository.save(entity);
 	}
 	
-	private void addGrupoModuloPai(Long idUnidade, Long idModulo) {
+	private void addGrupoModuloPai(Long idInstituicao, Long idModulo) {
 		Optional<Modulo> moduloPai = moduloRepository.findById(idModulo);
 		
 		if(Objects.isNull(moduloPai.get().getModuloPai())) {
@@ -62,22 +62,22 @@ public class CadastrarGrupoModuloCmd {
 		}
 		
 		// Cadastrar o grupo do modulo pai, caso não exista.
-		cadastrarGrupoModuloPai(idUnidade, moduloPai.get().getModuloPai().getId());
+		cadastrarGrupoModuloPai(idInstituicao, moduloPai.get().getModuloPai().getId());
 		
-		addGrupoModuloPai(idUnidade, moduloPai.get().getModuloPai().getId());
+		addGrupoModuloPai(idInstituicao, moduloPai.get().getModuloPai().getId());
 		
 	}
 	
-	public GruposModulo cadastrarGrupoModuloPai(Long idUnidade, Long idModulo) {
+	public GruposModulo cadastrarGrupoModuloPai(Long idInstituicao, Long idModulo) {
 		
 		Optional<Modulo> modulo = moduloRepository.findById(idModulo);
 		if(!modulo.isPresent()) {
 			throw new NotFoundException("Modulo informado não existe.");
 		}
 		
-		Optional<Unidade> unidade = unidadeRepository.findById(idUnidade);
-		if(!unidade.isPresent()) {
-			throw new NotFoundException("Unidade informada não existe.");
+		Optional<Instituicao> instituicao= instituicaoRepository.findById(idInstituicao);
+		if(!instituicao.isPresent()) {
+			throw new NotFoundException("Instituicao informada não existe.");
 		}
 		
 		Optional<PerfilAcesso> perfilApenasConsulta = perfilAcessoRepository.getPerfilApenasConsulta();
@@ -85,9 +85,9 @@ public class CadastrarGrupoModuloCmd {
 			throw new PerfilAcessoException("Não foi possível atribuir permissão ao modulo pai.");
 		}
 		
-		Optional<GruposModulo> grupoModuloPaiOptional = grupoModuloRepository.findByIdModuloAndIdPerfilAcessoAndIdUnidade(modulo.get().getId(), 
-																									                      perfilApenasConsulta.get().getId(), 
-																									                      unidade.get().getIdUnidade());
+		Optional<GruposModulo> grupoModuloPaiOptional = grupoModuloRepository.findByIdModuloAndIdPerfilAcessoAndIdInstituicao(modulo.get().getId(), 
+																									                          perfilApenasConsulta.get().getId(), 
+																									                          instituicao.get().getId());
 		
 		GruposModulo grupoModuloPai = null;
 		if(!grupoModuloPaiOptional.isPresent()) {
@@ -96,7 +96,7 @@ public class CadastrarGrupoModuloCmd {
 			grupoModuloPai.setNome("C");
 			grupoModuloPai.setPerfilAcesso(perfilApenasConsulta.get());
 			grupoModuloPai.setDescricao("Grupo de perfil de consultar");
-			grupoModuloPai.setUnidade(unidade.get());
+			grupoModuloPai.setInstituicao(instituicao.get());
 			
 			grupoModuloPai = grupoModuloRepository.save(grupoModuloPai);
 		} else {

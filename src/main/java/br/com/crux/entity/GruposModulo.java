@@ -43,8 +43,8 @@ public class GruposModulo {
 	private PerfilAcesso perfilAcesso;
 
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="id_unidade")
-	private Unidade unidade;
+	@JoinColumn(name="id_instituicao")
+	private Instituicao instituicao;
 	
 	@Column(name="id_usuario_apl")
 	private Long usuarioAlteracao;
@@ -93,14 +93,6 @@ public class GruposModulo {
 		this.perfilAcesso = perfisAcesso;
 	}
 
-	public Unidade getUnidade() {
-		return unidade;
-	}
-
-	public void setUnidade(Unidade unidade) {
-		this.unidade = unidade;
-	}
-
 	public Long getUsuarioAlteracao() {
 		return usuarioAlteracao;
 	}
@@ -109,6 +101,15 @@ public class GruposModulo {
 		this.usuarioAlteracao = usuarioAlteracao;
 	}
 
+	public Instituicao getInstituicao() {
+		return instituicao;
+	}
+
+	public void setInstituicao(Instituicao instituicao) {
+		this.instituicao = instituicao;
+	}
+
+	
 	
 
 }

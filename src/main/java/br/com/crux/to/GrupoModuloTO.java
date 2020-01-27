@@ -11,7 +11,7 @@ public class GrupoModuloTO {
 	
 	private ModuloTO modulo;
 	private PerfilAcessoTO perfilAcesso;
-	private UnidadeTO unidade;
+	private InstituicaoTO instituicao;
 	
 	private Long usuarioAlteracao;
 	
@@ -59,12 +59,13 @@ public class GrupoModuloTO {
 		this.perfilAcesso = perfilAcesso;
 	}
 
-	public UnidadeTO getUnidade() {
-		return unidade;
+
+	public InstituicaoTO getInstituicao() {
+		return instituicao;
 	}
 
-	public void setUnidade(UnidadeTO unidade) {
-		this.unidade = unidade;
+	public void setInstituicao(InstituicaoTO instituicao) {
+		this.instituicao = instituicao;
 	}
 
 	public Long getUsuarioAlteracao() {

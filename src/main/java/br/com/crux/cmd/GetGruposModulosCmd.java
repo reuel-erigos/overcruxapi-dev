@@ -41,6 +41,13 @@ public class GetGruposModulosCmd {
 		return getAllByUnidade(idUnidade);
 	}
 
+	public List<GrupoModuloTO> getAllByInstituicao(Long id) {
+		Optional<List<GruposModulo>> entitys = grupoModuloRepository.findByIdInstituicao(id);
+		if(entitys.isPresent()) {
+			return grupoModuloTOBuilder.buildAll(entitys.get());
+		}
+		return new ArrayList<GrupoModuloTO>();
+	}
 	
 	public List<GrupoModuloTO> getAllByUnidade(Long idUnidade) {
 		Optional<List<GruposModulo>> entitys = grupoModuloRepository.findByIdUnidade(idUnidade);

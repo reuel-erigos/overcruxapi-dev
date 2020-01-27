@@ -25,8 +25,8 @@ public class CamposObrigatoriosGrupoModuloRule {
 			throw new CamposObrigatoriosException("Módulo deve ser informado.");
 		}
 
-		if (Objects.isNull(to.getUnidade())) {
-			throw new CamposObrigatoriosException("Unidade deve ser informada.");
+		if (Objects.isNull(to.getInstituicao())) {
+			throw new CamposObrigatoriosException("Instituicao deve ser informada.");
 		}
 
 	}
