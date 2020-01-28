@@ -36,4 +36,13 @@ public class GetUsuariosPorUnidadeCmd {
 		}
 		return usuarioUnidadeTOBuilder.buildAll(getUsuarioSistemaDao.getUsuariosPorUnidade(idUnidade));
 	}
+	
+	
+	public List<DadosUsuarioUnidadeTO> getUsuariosPorInstituicao(Long idInstituicao) {
+		if (Objects.isNull(idInstituicao)) {
+			throw new ParametroNaoInformadoException("A instituicao não foi informada para buscar os usuários.");
+		}
+		return usuarioUnidadeTOBuilder.buildAll(getUsuarioSistemaDao.getUsuariosPorInstituicao(idInstituicao));
+	}
+	
 }

@@ -27,5 +27,9 @@ public class UsuarioService {
 	public List<DadosUsuarioUnidadeTO> getUsuariosPorUnidade(@PathVariable(name = "id") Long idUnidade) {
 		return getUsuariosPorUnidadeCmd.getUsuariosPorUnidade(idUnidade);
 	}
-	
+
+	@GetMapping(path = "/instituicao/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<DadosUsuarioUnidadeTO> getUsuariosPorInstituicao(@PathVariable(name = "id") Long idInstituicao) {
+		return getUsuariosPorUnidadeCmd.getUsuariosPorInstituicao(idInstituicao);
+	}
 }
