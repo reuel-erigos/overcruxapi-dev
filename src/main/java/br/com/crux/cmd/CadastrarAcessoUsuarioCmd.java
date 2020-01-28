@@ -8,12 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.dao.repository.GrupoModuloRepository;
-import br.com.crux.dao.repository.UnidadeRepository;
+import br.com.crux.dao.repository.InstituicaoRepository;
 import br.com.crux.dao.repository.UsuarioSistemaRepository;
 import br.com.crux.dao.repository.UsuariosGrupoRepository;
 import br.com.crux.entity.GruposModulo;
+import br.com.crux.entity.Instituicao;
 import br.com.crux.entity.Modulo;
-import br.com.crux.entity.Unidade;
 import br.com.crux.entity.UsuariosGrupo;
 import br.com.crux.entity.UsuariosSistema;
 import br.com.crux.exception.NotFoundException;
@@ -23,7 +23,7 @@ import br.com.crux.to.CadastroAcessoTO;
 @Component
 public class CadastrarAcessoUsuarioCmd {
 
-	@Autowired private UnidadeRepository unidadeRepository;
+	@Autowired private InstituicaoRepository instituicaoRepository;
 	@Autowired private UsuariosGrupoRepository usuariosGrupoRepository;
 	@Autowired private UsuarioSistemaRepository usuarioSistemaRepository;
 	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
@@ -35,24 +35,24 @@ public class CadastrarAcessoUsuarioCmd {
 		Optional.ofNullable(listaAcesso).ifPresent(lista -> {
 			CadastroAcessoTO to = lista.get(0);
 			
-			Optional<Unidade> unidade = unidadeRepository.findById(to.getIdUnidade());
-			if(!unidade.isPresent()) {
-				throw new NotFoundException("Unidade informada não existe.");
+			Optional<Instituicao> instituicao = instituicaoRepository.findById(to.getIdInstituicao());
+			if(!instituicao.isPresent()) {
+				throw new NotFoundException("Instituicao informada não existe.");
 			}
 			
-			Optional<UsuariosSistema> usuario = usuarioSistemaRepository.findById(to.getIdUsuario());
+			Optional<UsuariosSistema> usuario = usuarioSistemaRepository.findById(to.getIdInstituicao());
 			if(!usuario.isPresent()) {
 				throw new NotFoundException("Usuario informado não existe.");
 			}			
 			
 			lista.forEach(acessoTO -> {
-				cadastrar(acessoTO, unidade, usuario);
+				cadastrar(acessoTO, instituicao, usuario);
 			});
 		});
 		
 	}
 	
-	private void cadastrar(CadastroAcessoTO acessoTO, Optional<Unidade> unidade, Optional<UsuariosSistema> usuario) {
+	private void cadastrar(CadastroAcessoTO acessoTO, Optional<Instituicao> instituicao, Optional<UsuariosSistema> usuario) {
 
 		Optional<GruposModulo> gruposModulo = grupoModuloRepository.findById(acessoTO.getIdGrupoModulo());
 		if(!gruposModulo.isPresent()) {
@@ -64,7 +64,7 @@ public class CadastrarAcessoUsuarioCmd {
 			throw new PerfilAcessoException("Usuário já possui esse perfil cadastrado no módulo: " + gruposModulo.get().getModulo().getDescricao());
 		}
 		
-		cadastrarAcessoModuloPai(unidade, gruposModulo.get().getModulo(), usuario);
+		cadastrarAcessoModuloPai(instituicao, gruposModulo.get().getModulo(), usuario);
 		
 		UsuariosGrupo usuariosGrupo = new UsuariosGrupo();
 		usuariosGrupo.setGruposModulo(gruposModulo.get());
@@ -75,14 +75,14 @@ public class CadastrarAcessoUsuarioCmd {
 	}
 
 	
-	private void cadastrarAcessoModuloPai(Optional<Unidade> unidade, Modulo modulo, Optional<UsuariosSistema> usuario) {
+	private void cadastrarAcessoModuloPai(Optional<Instituicao> instituicao, Modulo modulo, Optional<UsuariosSistema> usuario) {
 		if(Objects.isNull(modulo.getModuloPai())) return;
 		
-		Optional<List<UsuariosGrupo>> permissaoModuloPai = usuariosGrupoRepository.getPermissoes(usuario.get().getIdUsuario(), modulo.getModuloPai().getId(), unidade.get().getInstituicao().getId());
+		Optional<List<UsuariosGrupo>> permissaoModuloPai = usuariosGrupoRepository.getPermissoes(usuario.get().getIdUsuario(), modulo.getModuloPai().getId(), instituicao.get().getId());
 		if (!permissaoModuloPai.isPresent()) {
 			
 			//Valido se já existe permissão no módulo pai.
-			GruposModulo gruposModuloPai = cadastrarGrupoModuloCmd.cadastrarGrupoModuloPai(unidade.get().getIdUnidade(), modulo.getModuloPai().getId());
+			GruposModulo gruposModuloPai = cadastrarGrupoModuloCmd.cadastrarGrupoModuloPai(instituicao.get().getId(), modulo.getModuloPai().getId());
 						
 			UsuariosGrupo usuariosGrupoPai = new UsuariosGrupo();
 			usuariosGrupoPai.setGruposModulo(gruposModuloPai);
@@ -91,7 +91,7 @@ public class CadastrarAcessoUsuarioCmd {
 			usuariosGrupoRepository.save(usuariosGrupoPai);
 			
 			
-			cadastrarAcessoModuloPai(unidade, modulo.getModuloPai() , usuario);
+			cadastrarAcessoModuloPai(instituicao, modulo.getModuloPai() , usuario);
 		}
 	}
 	
