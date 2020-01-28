@@ -34,7 +34,7 @@ public class AlterarAcessoUsuarioCmd {
 
 		usuarioSistemaRepository.findById(acessoTO.getIdInstituicao()).orElseThrow(() -> new NotFoundException("Usuario informado não existe."));
 
-		GruposModulo gruposModulo = grupoModuloRepository.findById(acessoTO.getIdGrupoModulo())
+		GruposModulo gruposModulo = grupoModuloRepository.findByIdModuloAndIdPerfilAcessoAndIdInstituicao(acessoTO.getIdModulo(), acessoTO.getIdPerfilAcesso(), acessoTO.getIdInstituicao())
 				                                         .orElseThrow(() -> new NotFoundException("Não existe o tipo de perfil cadastrado para essa unidade."));
 
 		UsuariosSistema usuarioLogado = usuarioSistemaRepository.findById(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario())
