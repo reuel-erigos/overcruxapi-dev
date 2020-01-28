@@ -40,7 +40,7 @@ public class CadastrarAcessoUsuarioCmd {
 				throw new NotFoundException("Instituicao informada não existe.");
 			}
 			
-			Optional<UsuariosSistema> usuario = usuarioSistemaRepository.findById(to.getIdInstituicao());
+			Optional<UsuariosSistema> usuario = usuarioSistemaRepository.findById(to.getIdUsuario());
 			if(!usuario.isPresent()) {
 				throw new NotFoundException("Usuario informado não existe.");
 			}			
