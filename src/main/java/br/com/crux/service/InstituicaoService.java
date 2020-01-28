@@ -33,6 +33,11 @@ public class InstituicaoService {
 		return getCmd.getAll();
 	}
 
+	@GetMapping(path = "/usuariologado", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<InstituicaoTO> getInstituicoesComAcesso() {
+		return getCmd.getInstituicoesComAcesso();
+	}
+	
 	@GetMapping(path = "/{idUnidade}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public InstituicaoTO getById(@PathVariable(name = "idUnidade") Long idUnidade) {
 		return getCmd.getTOById(idUnidade);
