@@ -12,7 +12,7 @@ import br.com.crux.entity.Instituicao;
 @Repository
 public interface InstituicaoRepository extends JpaRepository<Instituicao, Long>{
 	
-	@Query(value = "SELECT instituicao FROM Instituicao instituicao "
+	@Query(value = "SELECT DISTINCT instituicao FROM Instituicao instituicao "
 			+ " inner join Unidade unidade on unidade.instituicao = instituicao "
 			+ " inner join UsuariosUnidade uu on uu.unidade = unidade "
 			+ " inner join UsuariosSistema us on us = uu.usuarioSistema "
