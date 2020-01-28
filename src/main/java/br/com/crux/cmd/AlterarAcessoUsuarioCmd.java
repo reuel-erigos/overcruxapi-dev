@@ -40,8 +40,8 @@ public class AlterarAcessoUsuarioCmd {
 		UsuariosSistema usuarioLogado = usuarioSistemaRepository.findById(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario())
 				                                                .orElseThrow(() -> new NotFoundException("Usuario logado não existe."));
 
-		UsuariosGrupo usuarioGrupo = usuariosGrupoRepository.getPorModuloAndGrupoModuloAndUsuario(gruposModulo.getModulo().getId(), gruposModulo.getId(), acessoTO.getIdUsuario())
-				                                            .orElseThrow(() -> new PerfilAcessoException("Usuário grupo não encontrado."));
+		UsuariosGrupo usuarioGrupo = usuariosGrupoRepository.getPermissao(acessoTO.getIdUsuario(), gruposModulo.getModulo().getId(), acessoTO.getIdInstituicao())
+				                                            .orElseThrow(() -> new PerfilAcessoException("Permissão no módulo não encontrada."));
 		
 
 		usuarioGrupo.setGruposModulo(gruposModulo);
