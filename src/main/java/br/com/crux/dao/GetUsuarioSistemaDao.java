@@ -56,7 +56,7 @@ public class GetUsuarioSistemaDao extends BaseDao {
 	public List<UsuarioUnidadeDTO> getUsuariosPorInstituicao(Long idInstituicao) {
 		StringBuilder sql = new StringBuilder();
 		
-	    sql.append(" 	select pf.id_pessoa_fisica,                      ");
+	    sql.append(" 	select distinct pf.id_pessoa_fisica,             ");
 	    sql.append("        us.id_usuario,                               ");
 	    sql.append("        pf.nm_pessoa_fisica,                         ");
 	    sql.append("        COALESCE(pf.ds_email, '')                    ");
@@ -69,8 +69,8 @@ public class GetUsuarioSistemaDao extends BaseDao {
 	    sql.append("   and us.st_ativo         = 'S'                     ");
 	    sql.append("   and uu.id_usuario       = us.id_usuario           ");
 	    sql.append("   and uu.id_unidade       = uni.id_unidade          ");
-	    sql.append("   and i.id_instituicao    = us.id_instituicao       ");
-	    sql.append("   and i.id_instituicao    = :idInstituicao              ");
+	    sql.append("   and i.id_instituicao    = uni.id_instituicao      ");
+	    sql.append("   and i.id_instituicao    = :idInstituicao          ");
 	    sql.append("   order by pf.nm_pessoa_fisica                      ");
 	    
 		Query query = em.createNativeQuery(sql.toString());
