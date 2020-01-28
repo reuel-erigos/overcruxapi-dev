@@ -5,8 +5,7 @@ public class CadastroAcessoTO {
 	private Long   idUsuario;
 	private Long   idInstituicao;
 	private Long   idModulo;
-	private Long   idGrupoModulo;
-	
+	private Long   idPerfilAcesso;
 	
 	public Long getIdUsuario() {
 		return idUsuario;
@@ -26,13 +25,15 @@ public class CadastroAcessoTO {
 	public void setIdModulo(Long nomeUnidade) {
 		this.idModulo = nomeUnidade;
 	}
-	public Long getIdGrupoModulo() {
-		return idGrupoModulo;
+
+	public Long getIdPerfilAcesso() {
+		return idPerfilAcesso;
 	}
-	public void setIdGrupoModulo(Long idGrupoModulo) {
-		this.idGrupoModulo = idGrupoModulo;
+	public void setIdPerfilAcesso(Long idPerfilAcesso) {
+		this.idPerfilAcesso = idPerfilAcesso;
 	}
 
+	
 	
 
 }

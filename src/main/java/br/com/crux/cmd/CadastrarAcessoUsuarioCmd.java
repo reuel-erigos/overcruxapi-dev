@@ -46,15 +46,18 @@ public class CadastrarAcessoUsuarioCmd {
 			}			
 			
 			lista.forEach(acessoTO -> {
-				cadastrar(acessoTO, instituicao, usuario);
+				cadastrar(acessoTO, usuario);
 			});
 		});
 		
 	}
 	
-	private void cadastrar(CadastroAcessoTO acessoTO, Optional<Instituicao> instituicao, Optional<UsuariosSistema> usuario) {
+	private void cadastrar(CadastroAcessoTO acessoTO, Optional<UsuariosSistema> usuario) {
 
-		Optional<GruposModulo> gruposModulo = grupoModuloRepository.findById(acessoTO.getIdGrupoModulo());
+		//Optional<GruposModulo> gruposModulo = grupoModuloRepository.findById(acessoTO.getIdGrupoModulo());
+		Optional<GruposModulo> gruposModulo = grupoModuloRepository.findByIdModuloAndIdPerfilAcessoAndIdInstituicao(acessoTO.getIdModulo(), 
+				                                                                                                    acessoTO.getIdPerfilAcesso(), 
+				                                                                                                    acessoTO.getIdInstituicao());
 		if(!gruposModulo.isPresent()) {
 			throw new NotFoundException("Não existe o tipo de perfil cadastrado para essa unidade.");
 		}
@@ -64,7 +67,7 @@ public class CadastrarAcessoUsuarioCmd {
 			throw new PerfilAcessoException("Usuário já possui esse perfil cadastrado no módulo: " + gruposModulo.get().getModulo().getDescricao());
 		}
 		
-		cadastrarAcessoModuloPai(instituicao, gruposModulo.get().getModulo(), usuario);
+		cadastrarAcessoModuloPai(acessoTO.getIdInstituicao(), gruposModulo.get().getModulo(), usuario);
 		
 		UsuariosGrupo usuariosGrupo = new UsuariosGrupo();
 		usuariosGrupo.setGruposModulo(gruposModulo.get());
@@ -75,14 +78,14 @@ public class CadastrarAcessoUsuarioCmd {
 	}
 
 	
-	private void cadastrarAcessoModuloPai(Optional<Instituicao> instituicao, Modulo modulo, Optional<UsuariosSistema> usuario) {
+	private void cadastrarAcessoModuloPai(Long idInstituicao, Modulo modulo, Optional<UsuariosSistema> usuario) {
 		if(Objects.isNull(modulo.getModuloPai())) return;
 		
-		Optional<List<UsuariosGrupo>> permissaoModuloPai = usuariosGrupoRepository.getPermissoes(usuario.get().getIdUsuario(), modulo.getModuloPai().getId(), instituicao.get().getId());
+		Optional<List<UsuariosGrupo>> permissaoModuloPai = usuariosGrupoRepository.getPermissoes(usuario.get().getIdUsuario(), modulo.getModuloPai().getId(), idInstituicao);
 		if (!permissaoModuloPai.isPresent()) {
 			
 			//Valido se já existe permissão no módulo pai.
-			GruposModulo gruposModuloPai = cadastrarGrupoModuloCmd.cadastrarGrupoModuloPai(instituicao.get().getId(), modulo.getModuloPai().getId());
+			GruposModulo gruposModuloPai = cadastrarGrupoModuloCmd.cadastrarGrupoModuloPai(idInstituicao, modulo.getModuloPai().getId());
 						
 			UsuariosGrupo usuariosGrupoPai = new UsuariosGrupo();
 			usuariosGrupoPai.setGruposModulo(gruposModuloPai);
@@ -91,7 +94,7 @@ public class CadastrarAcessoUsuarioCmd {
 			usuariosGrupoRepository.save(usuariosGrupoPai);
 			
 			
-			cadastrarAcessoModuloPai(instituicao, modulo.getModuloPai() , usuario);
+			cadastrarAcessoModuloPai(idInstituicao, modulo.getModuloPai() , usuario);
 		}
 	}
 	
