@@ -2,6 +2,7 @@ package br.com.crux.cmd;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,6 +18,7 @@ public class GetInstituicaoCmd {
 
 	@Autowired private InstituicaoRepository instituicaoRepository;
 	@Autowired private InstituicaoTOBuilder instituicaoBuilder;
+	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
 	
 	public List<InstituicaoTO> getAll() {
 		List<Instituicao> instituicoes = instituicaoRepository.findAll();
@@ -26,6 +28,14 @@ public class GetInstituicaoCmd {
 		return instituicaoBuilder.buildAllTO(instituicoes);
 	}
 	
+
+	public List<InstituicaoTO> getInstituicoesComAcesso() {
+		Optional<List<Instituicao>> instituicoes = instituicaoRepository.getInstituicoesComAcesso(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
+		if(!instituicoes.isPresent()) {
+			return new ArrayList<InstituicaoTO>();
+		}
+		return instituicaoBuilder.buildAllTO(instituicoes.get());
+	}	
 
 	public Instituicao getById(Long id) {
 		return instituicaoRepository.findById(id).orElse(null);

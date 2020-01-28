@@ -3,7 +3,7 @@ package br.com.crux.to;
 public class CadastroAcessoTO {
 	
 	private Long   idUsuario;
-	private Long   idUnidade;
+	private Long   idInstituicao;
 	private Long   idModulo;
 	private Long   idGrupoModulo;
 	
@@ -14,11 +14,11 @@ public class CadastroAcessoTO {
 	public void setIdUsuario(Long idUsuario) {
 		this.idUsuario = idUsuario;
 	}
-	public Long getIdUnidade() {
-		return idUnidade;
+	public Long getIdInstituicao() {
+		return idInstituicao;
 	}
-	public void setIdUnidade(Long codigoUnidade) {
-		this.idUnidade = codigoUnidade;
+	public void setIdInstituicao(Long codigoUnidade) {
+		this.idInstituicao = codigoUnidade;
 	}
 	public Long getIdModulo() {
 		return idModulo;
