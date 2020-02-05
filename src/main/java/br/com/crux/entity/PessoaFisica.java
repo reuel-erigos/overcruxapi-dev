@@ -277,6 +277,10 @@ public class PessoaFisica {
 
 	@Column(name = "ds_email_profissional")
 	private String emailProfissional;
+	
+	@Column(name = "ds_valor_renda")
+	private String origemRendaFamiliar;
+	
 
 	public PessoaFisica() {
 	}
@@ -919,6 +923,14 @@ public class PessoaFisica {
 
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
+	}
+
+	public String getOrigemRendaFamiliar() {
+		return origemRendaFamiliar;
+	}
+
+	public void setOrigemRendaFamiliar(String origemRendaFamiliar) {
+		this.origemRendaFamiliar = origemRendaFamiliar;
 	}
 	
 	

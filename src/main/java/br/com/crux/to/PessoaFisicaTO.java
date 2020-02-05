@@ -99,7 +99,10 @@ public class PessoaFisicaTO {
 
 	private Long idInstituicao;
 	private String emailProfissional;
-
+	private String origemRendaFamiliar;
+	
+	
+	
 	public PessoaFisicaTO() {
 	}
 
@@ -742,5 +745,11 @@ public class PessoaFisicaTO {
 	public void setCidadeNaturalidade(String cidadeNaturalidade) {
 		this.cidadeNaturalidade = cidadeNaturalidade;
 	}
-	
+	public String getOrigemRendaFamiliar() {
+		return origemRendaFamiliar;
+	}
+
+	public void setOrigemRendaFamiliar(String origemRendaFamiliar) {
+		this.origemRendaFamiliar = origemRendaFamiliar;
+	}	
 }
