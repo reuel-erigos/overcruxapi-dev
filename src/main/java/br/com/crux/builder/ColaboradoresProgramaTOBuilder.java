@@ -46,6 +46,7 @@ public class ColaboradoresProgramaTOBuilder {
 		});
 
 		retorno.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
+		retorno.setPercentual(p.getPercentual());
 
 		return retorno;
 	}
@@ -65,6 +66,8 @@ public class ColaboradoresProgramaTOBuilder {
 		retorno.setFuncionario(funcionarioTOBuilder.buildTO(p.getFuncionario()));
 
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
+		retorno.setPercentual(p.getPercentual());
+
 
 		return retorno;
 	}
@@ -88,6 +91,8 @@ public class ColaboradoresProgramaTOBuilder {
 		retorno.setFuncionario(funcionarioTOBuilder.buildTO(p.getFuncionario()));
 
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
+		retorno.setPercentual(p.getPercentual());
+
 
 		return retorno;
 	}

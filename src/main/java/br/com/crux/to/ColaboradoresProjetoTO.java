@@ -20,14 +20,13 @@ public class ColaboradoresProjetoTO {
 	private ProjetoTO projeto;
 
 	private TiposContratacoesTO tiposContratacoes;
-	
-	private Long usuarioAlteracao;
 
-	
+	private Long usuarioAlteracao;
+	private Long percentual;
+
 	public ColaboradoresProjetoTO() {
 	}
 
-	
 	public Long getId() {
 		return id;
 	}
@@ -84,15 +83,19 @@ public class ColaboradoresProjetoTO {
 		this.usuarioAlteracao = usuarioAlteracao;
 	}
 
-
 	public TiposContratacoesTO getTiposContratacoes() {
 		return tiposContratacoes;
 	}
-
 
 	public void setTiposContratacoes(TiposContratacoesTO tiposContratacoes) {
 		this.tiposContratacoes = tiposContratacoes;
 	}
 
+	public Long getPercentual() {
+		return percentual;
+	}
 
+	public void setPercentual(Long percentual) {
+		this.percentual = percentual;
+	}
 }

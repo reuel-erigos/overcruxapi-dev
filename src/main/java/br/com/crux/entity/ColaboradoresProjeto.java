@@ -56,6 +56,10 @@ public class ColaboradoresProjeto implements Serializable {
 
 	@Column(name="id_usuario_apl")
 	private Long usuarioAlteracao;
+	
+	@Column(name="perc_funcionario")
+	private Long percentual;
+
 
 	public ColaboradoresProjeto() {
 	}
@@ -124,4 +128,13 @@ public class ColaboradoresProjeto implements Serializable {
 		this.tiposContratacoes = tiposContratacoes;
 	}
 
+	public Long getPercentual() {
+		return percentual;
+	}
+
+	public void setPercentual(Long percentual) {
+		this.percentual = percentual;
+	}
+
+	
 }

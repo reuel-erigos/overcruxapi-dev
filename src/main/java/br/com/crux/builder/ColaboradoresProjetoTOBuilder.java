@@ -56,7 +56,8 @@ public class ColaboradoresProjetoTOBuilder {
 		
 		
 		retorno.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
-
+		retorno.setPercentual(p.getPercentual());
+		
 		return retorno;
 	}
 
@@ -70,14 +71,12 @@ public class ColaboradoresProjetoTOBuilder {
 		retorno.setId(p.getId());
 		retorno.setDataInicio(p.getDataInicio());
 		retorno.setDataFim(p.getDataFim());
-
 		retorno.setCargo(cargoTOBuilder.buildTO(p.getCargo()));
 		retorno.setFuncionario(funcionarioTOBuilder.buildTO(p.getFuncionario()));
-		
 		retorno.setTiposContratacoes(tiposContratacoesTOBuilder.buildTO(p.getTiposContratacoes()));
-
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
-
+		retorno.setPercentual(p.getPercentual());
+		
 		return retorno;
 	}
 
@@ -95,14 +94,12 @@ public class ColaboradoresProjetoTOBuilder {
 		retorno.setId(p.getId());
 		retorno.setDataInicio(p.getDataInicio());
 		retorno.setDataFim(p.getDataFim());
-
 		retorno.setCargo(cargoTOBuilder.buildTO(p.getCargo()));
 		retorno.setFuncionario(funcionarioTOBuilder.buildTO(p.getFuncionario()));
-		
 		retorno.setTiposContratacoes(tiposContratacoesTOBuilder.buildTO(p.getTiposContratacoes()));
-
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
-
+		retorno.setPercentual(p.getPercentual());
+		
 		return retorno;
 	}
 

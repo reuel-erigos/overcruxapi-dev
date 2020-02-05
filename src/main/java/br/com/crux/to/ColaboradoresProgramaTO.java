@@ -18,14 +18,13 @@ public class ColaboradoresProgramaTO {
 	private FuncionarioTO funcionario;
 	private ProgramaTO programa;
 	private CargoTO cargo;
-	
-	private Long usuarioAlteracao;
 
-	
+	private Long usuarioAlteracao;
+	private Long percentual;
+
 	public ColaboradoresProgramaTO() {
 	}
 
-	
 	public Long getId() {
 		return id;
 	}
@@ -82,5 +81,12 @@ public class ColaboradoresProgramaTO {
 		this.usuarioAlteracao = usuarioAlteracao;
 	}
 
+	public Long getPercentual() {
+		return percentual;
+	}
+
+	public void setPercentual(Long percentual) {
+		this.percentual = percentual;
+	}
 
 }
