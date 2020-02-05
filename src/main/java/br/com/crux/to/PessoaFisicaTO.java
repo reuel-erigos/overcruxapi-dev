@@ -15,6 +15,7 @@ public class PessoaFisicaTO {
 	private String descricaoPessoaFisicaAtendidoOrgaoRede;
 	private String bairro;
 	private String cidade;
+	private String cidadeNaturalidade;
 	private String condicaoMoradia;
 	private String cor;
 	private String cursoEscola;
@@ -734,6 +735,12 @@ public class PessoaFisicaTO {
 		this.emailProfissional = emailProfissional;
 	}
 
-	
+	public String getCidadeNaturalidade() {
+		return cidadeNaturalidade;
+	}
+
+	public void setCidadeNaturalidade(String cidadeNaturalidade) {
+		this.cidadeNaturalidade = cidadeNaturalidade;
+	}
 	
 }

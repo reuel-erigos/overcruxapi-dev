@@ -35,7 +35,8 @@ public class PessoaFisicaTOBuilder {
 		retorno.setClassificadorMotivoNaoTrab(p.getClassificadorMotivoNaoTrab());
 		retorno.setDescricaoPessoaFisicaAtendidoOrgaoRede(p.getDescricaoPessoaFisicaAtendidoOrgaoRede());
 		retorno.setBairro(p.getBairro());
-		retorno.setCidadeNaturalidade(p.getCidade());
+		retorno.setCidadeNaturalidade(p.getCidadeNaturalidade());
+		retorno.setCidade(p.getCidade());
 		retorno.setCondicaoMoradia(p.getCondicaoMoradia());
 		retorno.setCor(p.getCor());
 		retorno.setCursoEscola(p.getCursoEscola());
@@ -152,7 +153,8 @@ public class PessoaFisicaTOBuilder {
 		retorno.setClassificadorMotivoNaoTrab(p.getClassificadorMotivoNaoTrab());
 		retorno.setDescricaoPessoaFisicaAtendidoOrgaoRede(p.getDescricaoPessoaFisicaAtendidoOrgaoRede());
 		retorno.setBairro(p.getBairro());
-		retorno.setCidade(p.getCidadeNaturalidade());
+		retorno.setCidadeNaturalidade(p.getCidadeNaturalidade());
+		retorno.setCidade(p.getCidade());
 		retorno.setCondicaoMoradia(p.getCondicaoMoradia());
 		retorno.setCor(p.getCor());
 		retorno.setCursoEscola(p.getCursoEscola());

@@ -53,6 +53,9 @@ public class PessoaFisica {
 	@Column(name = "ds_cidade_naturalidade")
 	private String cidadeNaturalidade;
 
+	@Column(name = "ds_cidade")
+	private String cidade;
+	
 	@Column(name = "ds_condicao_moradia")
 	private String condicaoMoradia;
 
@@ -909,5 +912,15 @@ public class PessoaFisica {
 	public void setEmailProfissional(String emailProfissional) {
 		this.emailProfissional = emailProfissional;
 	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+	
+	
 
 }
