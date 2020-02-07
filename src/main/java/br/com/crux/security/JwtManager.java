@@ -30,9 +30,7 @@ public class JwtManager {
 				 
 		Integer minutes = getTimeTokenExpiredCmd.getTimeExpieredToken();
 		if( Objects.nonNull(minutes)  && minutes > 0 ) {
-			LocalDateTime expired = LocalDateTime.now()
-					                             .plusMinutes(minutes)
-					                             .plusMinutes(1); // Tentativa de garantir que o token não fique inválido no browser antes do tempo determinado.
+			LocalDateTime expired = LocalDateTime.now().plusMinutes(minutes);
 			token.setExpiration(Java8DateUtil.getDate(expired));
 		}
 		
