@@ -37,6 +37,9 @@ public class SituacoesVulnerabilidade {
 	@Column(name = "st_sigilo")
 	private Boolean sigiloso;
 	
+	@Column(name="id_instituicao")
+	private Long idInstituicao;
+	
 	
 	public SituacoesVulnerabilidade() {
 	}
@@ -71,6 +74,14 @@ public class SituacoesVulnerabilidade {
 
 	public void setSigiloso(Boolean sigiloso) {
 		this.sigiloso = sigiloso;
+	}
+
+	public Long getIdInstituicao() {
+		return idInstituicao;
+	}
+
+	public void setIdInstituicao(Long idInstituicao) {
+		this.idInstituicao = idInstituicao;
 	}
 
 	

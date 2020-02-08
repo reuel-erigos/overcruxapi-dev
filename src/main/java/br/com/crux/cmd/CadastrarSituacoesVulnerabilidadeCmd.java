@@ -13,6 +13,7 @@ import br.com.crux.to.SituacoesVulnerabilidadeTO;
 public class CadastrarSituacoesVulnerabilidadeCmd {
 
 	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
+	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 	
 	@Autowired private SituacoesVulnerabilidadeRepository repository;
 	@Autowired private CamposObrigatoriosSituacoesVulnerabilidadeRule camposObrigatoriosRule;
@@ -24,6 +25,10 @@ public class CadastrarSituacoesVulnerabilidadeCmd {
 		
 		SituacoesVulnerabilidade entity = new SituacoesVulnerabilidade();
 		entity = toBuilder.build(to);
+		
+		if(getUnidadeLogadaCmd.getUnidadeTO().getInstituicao() != null) {
+			entity.setIdInstituicao(getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId());
+		}
 		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 		
 		repository.save(entity);

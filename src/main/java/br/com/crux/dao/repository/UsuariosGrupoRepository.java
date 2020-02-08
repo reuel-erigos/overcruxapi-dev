@@ -45,7 +45,7 @@ public interface UsuariosGrupoRepository extends JpaRepository<UsuariosGrupo, Lo
 			+ "   where us.idUsuario   = ?1"
 			+ "     and m.id           = ?2"
 			+ "     and instituicao.id = ?3")
-	public Optional<List<UsuariosGrupo>> getPermissoes(Long idUsuario, Long idModulo, Long idInstituicao);
+	public Optional<UsuariosGrupo> getPermissao(Long idUsuario, Long idModulo, Long idInstituicao);
 	
 	
 	@Query(value = "SELECT ug FROM UsuariosGrupo ug "

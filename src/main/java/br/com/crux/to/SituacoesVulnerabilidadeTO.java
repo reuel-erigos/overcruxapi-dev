@@ -6,7 +6,7 @@ public class SituacoesVulnerabilidadeTO {
 	private String descricao;
 	private Long usuarioAlteracao;
 	private Boolean sigiloso;
-	
+	private Long idInstituicao;
 	
 	public SituacoesVulnerabilidadeTO() {
 	}
@@ -43,7 +43,13 @@ public class SituacoesVulnerabilidadeTO {
 		this.sigiloso = sigiloso;
 	}
 	
-	
+	public Long getIdInstituicao() {
+		return idInstituicao;
+	}
+
+	public void setIdInstituicao(Long idInstituicao) {
+		this.idInstituicao = idInstituicao;
+	}
 
 
 }

@@ -35,7 +35,8 @@ public class PessoaFisicaTOBuilder {
 		retorno.setClassificadorMotivoNaoTrab(p.getClassificadorMotivoNaoTrab());
 		retorno.setDescricaoPessoaFisicaAtendidoOrgaoRede(p.getDescricaoPessoaFisicaAtendidoOrgaoRede());
 		retorno.setBairro(p.getBairro());
-		retorno.setCidadeNaturalidade(p.getCidade());
+		retorno.setCidadeNaturalidade(p.getCidadeNaturalidade());
+		retorno.setCidade(p.getCidade());
 		retorno.setCondicaoMoradia(p.getCondicaoMoradia());
 		retorno.setCor(p.getCor());
 		retorno.setCursoEscola(p.getCursoEscola());
@@ -81,6 +82,7 @@ public class PessoaFisicaTOBuilder {
 		retorno.setUfEndereco(p.getUf());
 		retorno.setUfNascimento(p.getUfNascimento());
 		retorno.setStatusAtendidoOrgaoRede(p.getStatusAtendidoOrgaoRede());
+		retorno.setOrigemRendaFamiliar(p.getOrigemRendaFamiliar());
 
 		Optional.ofNullable(p.getAutorizaEmail()).ifPresent(autoriza -> {
 			retorno.setAutorizaEmail(autoriza.equals("true") ? "S" : "N");
@@ -152,7 +154,8 @@ public class PessoaFisicaTOBuilder {
 		retorno.setClassificadorMotivoNaoTrab(p.getClassificadorMotivoNaoTrab());
 		retorno.setDescricaoPessoaFisicaAtendidoOrgaoRede(p.getDescricaoPessoaFisicaAtendidoOrgaoRede());
 		retorno.setBairro(p.getBairro());
-		retorno.setCidade(p.getCidadeNaturalidade());
+		retorno.setCidadeNaturalidade(p.getCidadeNaturalidade());
+		retorno.setCidade(p.getCidade());
 		retorno.setCondicaoMoradia(p.getCondicaoMoradia());
 		retorno.setCor(p.getCor());
 		retorno.setCursoEscola(p.getCursoEscola());
@@ -209,7 +212,7 @@ public class PessoaFisicaTOBuilder {
 		retorno.setCondicoesMoradia(condicoesMoradiaTOBuilder.buildTO(p.getCondicoesMoradia()));
 		retorno.setGrausInstrucao(grausInstrucaoTOBuilder.buildTO(p.getGrausInstrucao()));
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
-		
+		retorno.setOrigemRendaFamiliar(p.getOrigemRendaFamiliar());
 		
 		retorno.setEhDeficiente(Objects.nonNull(p.getEhDeficiente()) ? (p.getEhDeficiente() ? "S" : "N") : "N");
 		retorno.setCursandoNivelSuperior(Objects.nonNull(p.getCursandoNivelSuperior()) ? (p.getCursandoNivelSuperior() ? "S" : "N") : "N");

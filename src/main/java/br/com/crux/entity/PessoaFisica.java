@@ -53,6 +53,9 @@ public class PessoaFisica {
 	@Column(name = "ds_cidade_naturalidade")
 	private String cidadeNaturalidade;
 
+	@Column(name = "ds_cidade")
+	private String cidade;
+	
 	@Column(name = "ds_condicao_moradia")
 	private String condicaoMoradia;
 
@@ -274,6 +277,10 @@ public class PessoaFisica {
 
 	@Column(name = "ds_email_profissional")
 	private String emailProfissional;
+	
+	@Column(name = "ds_valor_renda")
+	private String origemRendaFamiliar;
+	
 
 	public PessoaFisica() {
 	}
@@ -909,5 +916,23 @@ public class PessoaFisica {
 	public void setEmailProfissional(String emailProfissional) {
 		this.emailProfissional = emailProfissional;
 	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public String getOrigemRendaFamiliar() {
+		return origemRendaFamiliar;
+	}
+
+	public void setOrigemRendaFamiliar(String origemRendaFamiliar) {
+		this.origemRendaFamiliar = origemRendaFamiliar;
+	}
+	
+	
 
 }

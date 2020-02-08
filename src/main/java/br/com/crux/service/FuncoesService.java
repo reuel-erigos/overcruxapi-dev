@@ -28,6 +28,7 @@ public class FuncoesService {
 	@Autowired private AlterarFuncoesCmd alterarCmd;
 	@Autowired private ExcluirFuncoesCmd excluirCmd;
 
+	
 	@GetMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<FuncoesTO> getAll() {
 		return getCmd.getAll();

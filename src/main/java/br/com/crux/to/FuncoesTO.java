@@ -1,3 +1,4 @@
+
 package br.com.crux.to;
 
 public class FuncoesTO {
@@ -7,6 +8,7 @@ public class FuncoesTO {
 	private Double valorSalario;
 	private UnidadeTO unidade;
 	private InstituicaoTO instituicao;
+	
 
 	public Long getId() {
 		return id;
