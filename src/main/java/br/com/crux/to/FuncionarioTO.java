@@ -15,10 +15,8 @@ public class FuncionarioTO {
 	private Long id;
 	private String matricula;
 
-	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
-	private LocalDateTime dataAdmissao;
-	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
-	private LocalDateTime dataDemissao;
+	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class) private LocalDateTime dataAdmissao;
+	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class) private LocalDateTime dataDemissao;
 
 	private String tipoFuncionario;
 	private Double salarioPretendido;
@@ -27,9 +25,8 @@ public class FuncionarioTO {
 	private PessoaFisicaTO pessoasFisica;
 
 	private UnidadeTO unidade;
-	
-	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
-	private LocalDateTime dtHrEntrevista;
+
+	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class) private LocalDateTime dtHrEntrevista;
 
 	private String parecerEntrevistador;
 	private String descricaoParecerEntrevistador;
@@ -39,12 +36,16 @@ public class FuncionarioTO {
 	private EmpresaTO empresaFuncionario;
 
 	private Long usuarioAlteracao;
-	
+
 	private String descontaValeTransporte;
 	private DepartamentoTO departamento;
-	
-	private List<DependentesTO> dependentes;	
+
+	private List<DependentesTO> dependentes;
 	private List<AlocacoesFuncionarioTO> alocacoesFuncionario;
+
+	private LocalDateTime horaInicioJornada;
+
+	private LocalDateTime horaFimJornada;
 
 	public FuncionarioTO() {
 	}
@@ -209,6 +210,20 @@ public class FuncionarioTO {
 		this.alocacoesFuncionario = alocacoesFuncionario;
 	}
 
-	
+	public LocalDateTime getHoraInicioJornada() {
+		return horaInicioJornada;
+	}
+
+	public void setHoraInicioJornada(LocalDateTime horaInicioJornada) {
+		this.horaInicioJornada = horaInicioJornada;
+	}
+
+	public LocalDateTime getHoraFimJornada() {
+		return horaFimJornada;
+	}
+
+	public void setHoraFimJornada(LocalDateTime horaFimJornada) {
+		this.horaFimJornada = horaFimJornada;
+	}
 
 }

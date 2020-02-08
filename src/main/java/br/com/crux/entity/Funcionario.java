@@ -114,6 +114,12 @@ public class Funcionario implements Serializable {
 	@OneToMany(mappedBy="funcionario")
 	private List<AlocacoesFuncionario> alocacoesFuncionario;
 	
+	@Column(name="hr_inicio_horario")
+	private LocalDateTime horaInicioJornada;
+	
+	@Column(name="hr_fim_horario")
+	private LocalDateTime horaFimJornada;
+	
 
 	public Funcionario() {
 	}
@@ -315,6 +321,26 @@ public class Funcionario implements Serializable {
 
 	public void setAlocacoesFuncionario(List<AlocacoesFuncionario> alocacoesFuncionario) {
 		this.alocacoesFuncionario = alocacoesFuncionario;
+	}
+
+
+	public LocalDateTime getHoraInicioJornada() {
+		return horaInicioJornada;
+	}
+
+
+	public void setHoraInicioJornada(LocalDateTime horaInicioJornada) {
+		this.horaInicioJornada = horaInicioJornada;
+	}
+
+
+	public LocalDateTime getHoraFimJornada() {
+		return horaFimJornada;
+	}
+
+
+	public void setHoraFimJornada(LocalDateTime horaFimJornada) {
+		this.horaFimJornada = horaFimJornada;
 	}
 	
 	
