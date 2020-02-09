@@ -1,11 +1,14 @@
 package br.com.crux.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -52,6 +55,9 @@ public class Instituicao {
 	
 	@Column(name = "ds_finalidades_estatutarias")
 	private String finalidadesEstatutarias;
+	
+	@OneToMany(mappedBy="instituicao")
+	private List<Funcoes> funcoes;
 
 	public Instituicao() {
 	}
