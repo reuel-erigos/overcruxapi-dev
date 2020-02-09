@@ -37,9 +37,16 @@ public class Material  {
 	@Column(name="ds_unidade_medida")
 	private String descricaoUnidadeMedida;	
 	
-	@Column(name="nr_tombamento")
-	private String numeroTombamento;	
+	@Column(name="qtd_limite_pedido")
+	private Integer quantidadeLimitePedido;	
 
+	@Column(name="nr_vida_util")
+	private Integer numeroVidaUtil;	
+	
+	@Column(name="vl_depreciacao")
+	private Integer valorDepreciacao;	
+
+	
 	@Column(name="id_usuario_apl")
 	private Long usuarioAlteracao;
 
@@ -108,16 +115,6 @@ public class Material  {
 	}
 
 
-	public String getNumeroTombamento() {
-		return numeroTombamento;
-	}
-
-
-	public void setNumeroTombamento(String numeroTombamento) {
-		this.numeroTombamento = numeroTombamento;
-	}
-
-
 	public Long getUsuarioAlteracao() {
 		return usuarioAlteracao;
 	}
@@ -127,5 +124,36 @@ public class Material  {
 		this.usuarioAlteracao = usuarioAlteracao;
 	}
 
+
+	public Integer getQuantidadeLimitePedido() {
+		return quantidadeLimitePedido;
+	}
+
+
+	public void setQuantidadeLimitePedido(Integer quantidadeLimitePedido) {
+		this.quantidadeLimitePedido = quantidadeLimitePedido;
+	}
+
+
+	public Integer getNumeroVidaUtil() {
+		return numeroVidaUtil;
+	}
+
+
+	public void setNumeroVidaUtil(Integer numeroVidaUtil) {
+		this.numeroVidaUtil = numeroVidaUtil;
+	}
+
+
+	public Integer getValorDepreciacao() {
+		return valorDepreciacao;
+	}
+
+
+	public void setValorDepreciacao(Integer valorDepreciacao) {
+		this.valorDepreciacao = valorDepreciacao;
+	}
+
+	
 	
 }
