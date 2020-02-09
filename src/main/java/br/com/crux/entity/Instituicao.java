@@ -55,9 +55,6 @@ public class Instituicao {
 	
 	@Column(name = "ds_finalidades_estatutarias")
 	private String finalidadesEstatutarias;
-	
-	@OneToMany(mappedBy="instituicao")
-	private List<Funcoes> funcoes;
 
 	public Instituicao() {
 	}
