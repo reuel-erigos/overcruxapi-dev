@@ -43,9 +43,9 @@ public class FuncionarioTO {
 	private List<DependentesTO> dependentes;
 	private List<AlocacoesFuncionarioTO> alocacoesFuncionario;
 
-	private LocalDateTime horaInicioJornada;
+	private String horaInicioJornada;
 
-	private LocalDateTime horaFimJornada;
+	private String horaFimJornada;
 
 	public FuncionarioTO() {
 	}
@@ -210,19 +210,19 @@ public class FuncionarioTO {
 		this.alocacoesFuncionario = alocacoesFuncionario;
 	}
 
-	public LocalDateTime getHoraInicioJornada() {
+	public String getHoraInicioJornada() {
 		return horaInicioJornada;
 	}
 
-	public void setHoraInicioJornada(LocalDateTime horaInicioJornada) {
+	public void setHoraInicioJornada(String horaInicioJornada) {
 		this.horaInicioJornada = horaInicioJornada;
 	}
 
-	public LocalDateTime getHoraFimJornada() {
+	public String getHoraFimJornada() {
 		return horaFimJornada;
 	}
 
-	public void setHoraFimJornada(LocalDateTime horaFimJornada) {
+	public void setHoraFimJornada(String horaFimJornada) {
 		this.horaFimJornada = horaFimJornada;
 	}
 

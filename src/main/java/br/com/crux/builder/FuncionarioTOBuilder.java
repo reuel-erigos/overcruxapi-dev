@@ -1,10 +1,12 @@
 package br.com.crux.builder;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -20,6 +22,7 @@ import br.com.crux.entity.Unidade;
 import br.com.crux.enums.ConclusaoParecer;
 import br.com.crux.enums.ParecerEntrevistador;
 import br.com.crux.enums.TipoFuncionario;
+import br.com.crux.infra.util.StringUtil;
 import br.com.crux.to.FuncionarioTO;
 
 @Component
@@ -45,6 +48,22 @@ public class FuncionarioTOBuilder {
 		retorno.setMatricula(to.getMatricula());
 		retorno.setDataAdmissao(to.getDataAdmissao());
 		retorno.setDataDemissao(to.getDataDemissao());
+		
+		
+		if(StringUtils.isEmpty(to.getHoraInicioJornada()) || to.getHoraInicioJornada().length() < 5) {
+			retorno.setHoraInicioJornada(null);
+		}else {
+			retorno.setHoraInicioJornada(getData(to.getHoraInicioJornada()));
+			
+		}
+		
+		if(StringUtils.isEmpty(to.getHoraFimJornada()) || to.getHoraFimJornada().length() < 5) {
+			retorno.setHoraFimJornada(null);
+		}else {
+			retorno.setHoraFimJornada(getData(to.getHoraFimJornada()));
+			
+		}
+
 
 		Optional.ofNullable(to.getTipoFuncionario()).ifPresent(tp -> {
 			retorno.setTipoFuncionario(TipoFuncionario.getPorTipo(to.getTipoFuncionario()));
@@ -112,54 +131,70 @@ public class FuncionarioTOBuilder {
 		return retorno;
 	}
 		
-	public FuncionarioTO buildTOSemRelacionamentosCircular(Funcionario p) {
+	private LocalDateTime getData(String horaInicioJornada) {
+		LocalDateTime data = LocalDateTime.parse("2001-01-01T"+horaInicioJornada+":00");
+		return data;
+	}
+
+	public FuncionarioTO buildTOSemRelacionamentosCircular(Funcionario entity) {
 		FuncionarioTO retorno = new FuncionarioTO();
 
-		if (Objects.isNull(p)) {
+		if (Objects.isNull(entity)) {
 			return retorno;
 		}
 
-		retorno.setId(p.getId());
-		retorno.setMatricula(p.getMatricula());
-		retorno.setDataAdmissao(p.getDataAdmissao());
-		retorno.setDataDemissao(p.getDataDemissao());
+		retorno.setId(entity.getId());
+		retorno.setMatricula(entity.getMatricula());
+		retorno.setDataAdmissao(entity.getDataAdmissao());
+		retorno.setDataDemissao(entity.getDataDemissao());
 
-		Optional.ofNullable(p.getTipoFuncionario()).ifPresent(tf -> {
+		Optional.ofNullable(entity.getTipoFuncionario()).ifPresent(tf -> {
 			retorno.setTipoFuncionario(tf.getTipo());
 		});
 
-		retorno.setSalarioPretendido(p.getSalarioPretendido());
+		retorno.setSalarioPretendido(entity.getSalarioPretendido());
 
-		Optional.ofNullable(p.getCargo()).ifPresent(cargo -> {
+		Optional.ofNullable(entity.getCargo()).ifPresent(cargo -> {
 			retorno.setCargo(cargoTOBuilder.buildTO(cargo));
 		});
 
-		Optional.ofNullable(p.getPessoasFisica()).ifPresent(pf -> {
+		Optional.ofNullable(entity.getPessoasFisica()).ifPresent(pf -> {
 			retorno.setPessoasFisica(pessoaFisicaTOBuilder.buildTO(pf));
 		});
 
-		Optional.ofNullable(p.getUnidade()).ifPresent(u -> {
+		Optional.ofNullable(entity.getUnidade()).ifPresent(u -> {
 			retorno.setUnidade(unidadeBuilder.buildTO(u));
 		});
 
-		retorno.setDtHrEntrevista(p.getDtHrEntrevista());
+		retorno.setDtHrEntrevista(entity.getDtHrEntrevista());
 
-		Optional.ofNullable(p.getParecerEntrevistador()).ifPresent(pe -> {
+		Optional.ofNullable(entity.getParecerEntrevistador()).ifPresent(pe -> {
 			retorno.setParecerEntrevistador(pe.getTipo());
 		});
 
-		Optional.ofNullable(p.getConclusaoParecer()).ifPresent(cp -> {
+		Optional.ofNullable(entity.getConclusaoParecer()).ifPresent(cp -> {
 			retorno.setConclusaoParecer(cp.getTipo());
 		});
 
-		retorno.setDescricaoParecerEntrevistador(p.getDescricaoParecerEntrevistador());
-		retorno.setEmpresaFuncionario(empresaTOBuilder.buildTO(p.getEmpresaFuncionario()));
-		retorno.setFuncionarioEntrevistador(getFuncionarioEntrevistador(p.getFuncionarioEntrevistador()));
+		retorno.setDescricaoParecerEntrevistador(entity.getDescricaoParecerEntrevistador());
+		retorno.setEmpresaFuncionario(empresaTOBuilder.buildTO(entity.getEmpresaFuncionario()));
+		retorno.setFuncionarioEntrevistador(getFuncionarioEntrevistador(entity.getFuncionarioEntrevistador()));
 
-		retorno.setDescontaValeTransporte(p.getDescontaValeTransporte() ? "S" : "N");
-		retorno.setDepartamento(departamentoTOBuilder.buildTO(p.getDepartamento()));
+		retorno.setDescontaValeTransporte(entity.getDescontaValeTransporte() ? "S" : "N");
+		retorno.setDepartamento(departamentoTOBuilder.buildTO(entity.getDepartamento()));
 		
-		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
+		retorno.setUsuarioAlteracao(entity.getUsuarioAlteracao());
+		
+		Optional.ofNullable(entity.getHoraInicioJornada()).ifPresent(hora -> {
+			String substring = hora.toString().substring(11);
+			retorno.setHoraInicioJornada(substring);
+		});
+		
+		Optional.ofNullable(entity.getHoraFimJornada()).ifPresent(hora -> {
+			String substring = hora.toString().substring(11);
+			retorno.setHoraFimJornada(substring);
+		});
+		
 
 		return retorno;
 	}
