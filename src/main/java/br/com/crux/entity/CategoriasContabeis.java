@@ -19,8 +19,8 @@ import br.com.crux.infra.constantes.Constantes;
 public class CategoriasContabeis  {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sq_id_material")
-	@SequenceGenerator(name = "sq_id_material", sequenceName = "sq_id_material", schema = Constantes.SCHEMA_PUBLIC, initialValue = 1, allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sq_id_categoria")
+	@SequenceGenerator(name = "sq_id_categoria", sequenceName = "sq_id_categoria", schema = Constantes.SCHEMA_PUBLIC, initialValue = 1, allocationSize = 1)
 	@Column(name="id_categoria")
 	private Long id;
 

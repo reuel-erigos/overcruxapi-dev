@@ -105,5 +105,7 @@
 		<class>br.com.crux.entity.TiposContratacoes</class>
 		<class>br.com.crux.entity.Material</class>
 		<class>br.com.crux.entity.MateriaisAtividade</class>
+		<class>br.com.crux.entity.CategoriasContabeis</class>
+		<class>br.com.crux.entity.Funcoes</class>
 	</persistence-unit>
 </persistence>
