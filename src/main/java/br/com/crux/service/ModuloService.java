@@ -22,8 +22,8 @@ public class ModuloService {
 	@Autowired private GetGruposModulosCmd getGruposModulosCmd; 
 	
 	@GetMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<ModuloTO> getAll() {
-		return getModulosCmd.getAll();
+	public List<ModuloTO> getAllModulo() {
+		return getModulosCmd.getAllModulo();
 	}
 	
 	@GetMapping(path = "/instituicao", produces = MediaType.APPLICATION_JSON_VALUE)
