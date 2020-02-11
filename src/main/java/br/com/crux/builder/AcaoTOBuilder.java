@@ -94,9 +94,16 @@ public class AcaoTOBuilder {
 		retorno.setDescricaoOcorrenciaAcao(p.getDescricaoOcorrenciaAcao());
 		
 		retorno.setAtividade(atividadeBuilder.buildTO(p.getAtividade()));
-		retorno.setFuncionarioAprovaAcao(funcionarioTOBuilder.buildTO(p.getFuncionarioAprovaAcao()));
-		retorno.setFuncionarioExecutaAcao(funcionarioTOBuilder.buildTO(p.getFuncionarioExecutaAcao()));
-		retorno.setFuncionarioPlanejamentoAcao(funcionarioTOBuilder.buildTO(p.getFuncionarioPlanejamentoAcao()));
+		
+		if(Objects.nonNull(p.getFuncionarioAprovaAcao()) && Objects.nonNull(p.getFuncionarioAprovaAcao().getId())) {
+			retorno.setFuncionarioAprovaAcao(funcionarioTOBuilder.buildTO(p.getFuncionarioAprovaAcao()));
+		}
+		if(Objects.nonNull(p.getFuncionarioExecutaAcao()) && Objects.nonNull(p.getFuncionarioExecutaAcao().getId())) {
+			retorno.setFuncionarioExecutaAcao(funcionarioTOBuilder.buildTO(p.getFuncionarioExecutaAcao()));
+		}
+		if(Objects.nonNull(p.getFuncionarioPlanejamentoAcao()) && Objects.nonNull(p.getFuncionarioPlanejamentoAcao().getId())) {
+			retorno.setFuncionarioPlanejamentoAcao(funcionarioTOBuilder.buildTO(p.getFuncionarioPlanejamentoAcao()));
+		}
 
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
 
