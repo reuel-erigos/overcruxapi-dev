@@ -41,18 +41,24 @@ public class AcaoTOBuilder {
 		retorno.setDescricaoOcorrenciaAcao(p.getDescricaoOcorrenciaAcao());
 		
 		Optional.ofNullable(p.getFuncionarioAprovaAcao()).ifPresent(func -> {
-			Funcionario funcionario = getFuncionarioCmd.getById(func.getId());
-			retorno.setFuncionarioAprovaAcao(funcionario);
+			if(Objects.nonNull(func.getId())) {
+				Funcionario funcionario = getFuncionarioCmd.getById(func.getId());
+				retorno.setFuncionarioAprovaAcao(funcionario);
+			}
 		});
 		
 		Optional.ofNullable(p.getFuncionarioExecutaAcao()).ifPresent(func -> {
-			Funcionario funcionario = getFuncionarioCmd.getById(func.getId());
-			retorno.setFuncionarioExecutaAcao(funcionario);
+			if(Objects.nonNull(func.getId())) {
+				Funcionario funcionario = getFuncionarioCmd.getById(func.getId());
+				retorno.setFuncionarioExecutaAcao(funcionario);
+			}
 		});
 		
 		Optional.ofNullable(p.getFuncionarioPlanejamentoAcao()).ifPresent(func -> {
-			Funcionario funcionario = getFuncionarioCmd.getById(func.getId());
-			retorno.setFuncionarioPlanejamentoAcao(funcionario);
+			if(Objects.nonNull(func.getId())) {
+				Funcionario funcionario = getFuncionarioCmd.getById(func.getId());
+				retorno.setFuncionarioPlanejamentoAcao(funcionario);
+			}
 		});
 
 
