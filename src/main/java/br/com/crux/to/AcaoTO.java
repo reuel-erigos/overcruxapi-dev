@@ -22,10 +22,23 @@ public class AcaoTO {
 	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class) 
 	private LocalDateTime dataPrevisaoInicio;
 	
-	private String nome;
+	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class) 
+	private LocalDateTime dataAprovaAcao;	
+	
+	private String descricao;	
+	private String descricaoObjetivoAcao;
+	private String descricaoMetodologiaAcao;
+	private String descricaoAvaliacaoAcao;
+	private String descricaoOcorrenciaAcao;
+	
 	private AtividadesTO atividade;
+	private FuncionarioTO funcionarioPlanejamentoAcao;	
+	private FuncionarioTO funcionarioAprovaAcao;
+	private FuncionarioTO funcionarioExecutaAcao;	
+	
+	
 	private Long usuarioAlteracao;
-
+	
 	public AcaoTO() {
 	}
 
@@ -69,14 +82,6 @@ public class AcaoTO {
 		this.dataPrevisaoInicio = dataPrevisaoInicio;
 	}
 
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
 	public AtividadesTO getAtividade() {
 		return atividade;
 	}
@@ -92,5 +97,79 @@ public class AcaoTO {
 	public void setUsuarioAlteracao(Long usuarioAlteracao) {
 		this.usuarioAlteracao = usuarioAlteracao;
 	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public String getDescricaoObjetivoAcao() {
+		return descricaoObjetivoAcao;
+	}
+
+	public void setDescricaoObjetivoAcao(String descricaoObjetivoAcao) {
+		this.descricaoObjetivoAcao = descricaoObjetivoAcao;
+	}
+
+	public String getDescricaoMetodologiaAcao() {
+		return descricaoMetodologiaAcao;
+	}
+
+	public void setDescricaoMetodologiaAcao(String descricaoMetodologiaAcao) {
+		this.descricaoMetodologiaAcao = descricaoMetodologiaAcao;
+	}
+
+	public String getDescricaoAvaliacaoAcao() {
+		return descricaoAvaliacaoAcao;
+	}
+
+	public void setDescricaoAvaliacaoAcao(String descricaoAvaliacaoAcao) {
+		this.descricaoAvaliacaoAcao = descricaoAvaliacaoAcao;
+	}
+
+	public String getDescricaoOcorrenciaAcao() {
+		return descricaoOcorrenciaAcao;
+	}
+
+	public void setDescricaoOcorrenciaAcao(String descricaoOcorrenciaAcao) {
+		this.descricaoOcorrenciaAcao = descricaoOcorrenciaAcao;
+	}
+
+	public FuncionarioTO getFuncionarioPlanejamentoAcao() {
+		return funcionarioPlanejamentoAcao;
+	}
+
+	public void setFuncionarioPlanejamentoAcao(FuncionarioTO funcionarioPlanejamentoAcao) {
+		this.funcionarioPlanejamentoAcao = funcionarioPlanejamentoAcao;
+	}
+
+	public FuncionarioTO getFuncionarioAprovaAcao() {
+		return funcionarioAprovaAcao;
+	}
+
+	public void setFuncionarioAprovaAcao(FuncionarioTO funcionarioAprovaAcao) {
+		this.funcionarioAprovaAcao = funcionarioAprovaAcao;
+	}
+
+	public FuncionarioTO getFuncionarioExecutaAcao() {
+		return funcionarioExecutaAcao;
+	}
+
+	public void setFuncionarioExecutaAcao(FuncionarioTO funcionarioExecutaAcao) {
+		this.funcionarioExecutaAcao = funcionarioExecutaAcao;
+	}
+
+	public LocalDateTime getDataAprovaAcao() {
+		return dataAprovaAcao;
+	}
+
+	public void setDataAprovaAcao(LocalDateTime dataAprovaAcao) {
+		this.dataAprovaAcao = dataAprovaAcao;
+	}
+	
+	
 
 }

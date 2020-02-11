@@ -38,10 +38,10 @@ public class Instituicao {
 	@Convert(converter = SimNaoConverter.class)
 	private Boolean mostraLista;
 	
-	@Column(name = "ds_area_autacao	")
+	@Column(name = "ds_area_autacao")
 	private String areaAtuacao;
 
-	@Column(name = "ds_apresentacao	")
+	@Column(name = "ds_apresentacao")
 	private String apresentacao;
 	
 	@Column(name = "ds_visao")
@@ -56,6 +56,13 @@ public class Instituicao {
 	@Column(name = "ds_finalidades_estatutarias")
 	private String finalidadesEstatutarias;
 
+	
+	@OneToMany(mappedBy="instituicao")
+	private List<Funcoes> funcoes;
+
+	@OneToMany(mappedBy="instituicao")
+	private List<FuncoesInstituicao> funcoesInstituicaos;	
+	
 	public Instituicao() {
 	}
 
@@ -146,8 +153,22 @@ public class Instituicao {
 	public void setFinalidadesEstatutarias(String finalidadesEstatutarias) {
 		this.finalidadesEstatutarias = finalidadesEstatutarias;
 	}
-	
-	
+
+	public List<Funcoes> getFuncoes() {
+		return funcoes;
+	}
+
+	public void setFuncoes(List<Funcoes> funcoes) {
+		this.funcoes = funcoes;
+	}
+
+	public List<FuncoesInstituicao> getFuncoesInstituicaos() {
+		return funcoesInstituicaos;
+	}
+
+	public void setFuncoesInstituicaos(List<FuncoesInstituicao> funcoesInstituicaos) {
+		this.funcoesInstituicaos = funcoesInstituicaos;
+	}
 	
 
 }

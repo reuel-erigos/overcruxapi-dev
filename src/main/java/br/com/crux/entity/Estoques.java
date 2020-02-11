@@ -1,7 +1,6 @@
 package br.com.crux.entity;
 
-import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,9 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
+import br.com.crux.infra.constantes.Constantes;
 
 
 /**
@@ -25,119 +25,85 @@ import javax.persistence.TemporalType;
 public class Estoques {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sq_id_estoque")
+	@SequenceGenerator(name = "sq_id_estoque", sequenceName = "sq_id_estoque", schema = Constantes.SCHEMA_PUBLIC, initialValue = 1, allocationSize = 1)
 	@Column(name="id_estoque")
-	private Long idEstoque;
-
-	@Column(name="cs_tipo_mov_estoque")
-	private String csTipoMovEstoque;
-
-	@Column(name="ds_mov_estoque")
-	private String dsMovEstoque;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="dt_atz_estoque")
-	private Date dtAtzEstoque;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="dt_mov_estoque")
-	private Date dtMovEstoque;
-
-	@Column(name="qt_estoque")
-	private BigDecimal qtEstoque;
-
-	@Column(name="qt_mov_estoque")
-	private BigDecimal qtMovEstoque;
-
-	//bi-directional many-to-one association to Funcionario
+	private Long id;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_material")
+	private Material material;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_unidade")
+	private Unidade unidade;	
+	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_funcionario")
 	private Funcionario funcionario;
+	
+	//Classificador do tipo de movimentação do estoque (E = ENTRADA; S = SAÍDA; A = ACERTO; O = OUTRO)
+	@Column(name="cs_tipo_mov_estoque")
+	private String csTipoMovEstoque;
 
-	//bi-directional many-to-one association to Produto
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="id_produto")
-	private Material material;
+	@Column(name="qt_estoque")
+	private Double quantidadeEstoque;
 
-	//bi-directional many-to-one association to Unidade
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="id_unidade")
-	private Unidade unidade;
+	@Column(name="dt_estoque")
+	private LocalDateTime dataEstoque;
+	
+	@Column(name="dt_atz_estoque")
+	private LocalDateTime dtAtzEstoque;
+	
+	@Column(name="vl_medio_material")
+	private Double valorMedioMaterial;
 
-	//bi-directional many-to-one association to UsuariosSistema
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="id_usuario_apl")
-	private UsuariosSistema usuariosSistema;
+	@Column(name="vl_ultimo_material")
+	private Double valorUltimoMaterial;
+	
+	@Column(name="qt_minimo_estoque")
+	private Double quantidadeMinimoEstoque;
+	
+	@Column(name="ds_mov_estoque")
+	private String descricaoMovimentacaoEstoque;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_departamento")
+	private Departamentos departamento;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_pedido")
+	private Pedido pedito;
+	
+	@Column(name="qt_maximo_estoque")
+	private Double quantidadeMaximoEstoque;
+
+	@Column(name="vl_entrada_material")
+	private Double valorEntradaMaterial;
+
+	@Column(name="ds_vl_entrada_material")
+	private String descricaoFormaValorEntrada;
+
+	//Classificador do tipo de entrada do material no estoque (C = COMPRA; D = DOAÇÃO; P = PAGAMENTO DE PENA; O = OUTRO)
+	@Column(name="cs_tipo_entrada_estoque")
+	private String tipoEntradaMaterial;
+
+	@Column(name = "id_usuario_apl")
+	private Long usuarioAlteracao;
 
 	public Estoques() {
 	}
 
-	public Long getIdEstoque() {
-		return this.idEstoque;
+	public Long getId() {
+		return id;
 	}
 
-	public void setIdEstoque(Long idEstoque) {
-		this.idEstoque = idEstoque;
-	}
-
-	public String getCsTipoMovEstoque() {
-		return this.csTipoMovEstoque;
-	}
-
-	public void setCsTipoMovEstoque(String csTipoMovEstoque) {
-		this.csTipoMovEstoque = csTipoMovEstoque;
-	}
-
-	public String getDsMovEstoque() {
-		return this.dsMovEstoque;
-	}
-
-	public void setDsMovEstoque(String dsMovEstoque) {
-		this.dsMovEstoque = dsMovEstoque;
-	}
-
-	public Date getDtAtzEstoque() {
-		return this.dtAtzEstoque;
-	}
-
-	public void setDtAtzEstoque(Date dtAtzEstoque) {
-		this.dtAtzEstoque = dtAtzEstoque;
-	}
-
-	public Date getDtMovEstoque() {
-		return this.dtMovEstoque;
-	}
-
-	public void setDtMovEstoque(Date dtMovEstoque) {
-		this.dtMovEstoque = dtMovEstoque;
-	}
-
-	public BigDecimal getQtEstoque() {
-		return this.qtEstoque;
-	}
-
-	public void setQtEstoque(BigDecimal qtEstoque) {
-		this.qtEstoque = qtEstoque;
-	}
-
-	public BigDecimal getQtMovEstoque() {
-		return this.qtMovEstoque;
-	}
-
-	public void setQtMovEstoque(BigDecimal qtMovEstoque) {
-		this.qtMovEstoque = qtMovEstoque;
-	}
-
-	public Funcionario getFuncionario() {
-		return this.funcionario;
-	}
-
-	public void setFuncionario(Funcionario funcionario) {
-		this.funcionario = funcionario;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public Material getMaterial() {
-		return this.material;
+		return material;
 	}
 
 	public void setMaterial(Material material) {
@@ -145,19 +111,141 @@ public class Estoques {
 	}
 
 	public Unidade getUnidade() {
-		return this.unidade;
+		return unidade;
 	}
 
 	public void setUnidade(Unidade unidade) {
 		this.unidade = unidade;
 	}
 
-	public UsuariosSistema getUsuariosSistema() {
-		return this.usuariosSistema;
+	public Funcionario getFuncionario() {
+		return funcionario;
 	}
 
-	public void setUsuariosSistema(UsuariosSistema usuariosSistema) {
-		this.usuariosSistema = usuariosSistema;
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
 	}
+
+	public String getCsTipoMovEstoque() {
+		return csTipoMovEstoque;
+	}
+
+	public void setCsTipoMovEstoque(String csTipoMovEstoque) {
+		this.csTipoMovEstoque = csTipoMovEstoque;
+	}
+
+	public Double getQuantidadeEstoque() {
+		return quantidadeEstoque;
+	}
+
+	public void setQuantidadeEstoque(Double quantidadeEstoque) {
+		this.quantidadeEstoque = quantidadeEstoque;
+	}
+
+	public LocalDateTime getDataEstoque() {
+		return dataEstoque;
+	}
+
+	public void setDataEstoque(LocalDateTime dataEstoque) {
+		this.dataEstoque = dataEstoque;
+	}
+
+	public LocalDateTime getDtAtzEstoque() {
+		return dtAtzEstoque;
+	}
+
+	public void setDtAtzEstoque(LocalDateTime dtAtzEstoque) {
+		this.dtAtzEstoque = dtAtzEstoque;
+	}
+
+	public Double getValorMedioMaterial() {
+		return valorMedioMaterial;
+	}
+
+	public void setValorMedioMaterial(Double valorMedioMaterial) {
+		this.valorMedioMaterial = valorMedioMaterial;
+	}
+
+	public Double getValorUltimoMaterial() {
+		return valorUltimoMaterial;
+	}
+
+	public void setValorUltimoMaterial(Double valorUltimoMaterial) {
+		this.valorUltimoMaterial = valorUltimoMaterial;
+	}
+
+	public Double getQuantidadeMinimoEstoque() {
+		return quantidadeMinimoEstoque;
+	}
+
+	public void setQuantidadeMinimoEstoque(Double quantidadeMinimoEstoque) {
+		this.quantidadeMinimoEstoque = quantidadeMinimoEstoque;
+	}
+
+	public String getDescricaoMovimentacaoEstoque() {
+		return descricaoMovimentacaoEstoque;
+	}
+
+	public void setDescricaoMovimentacaoEstoque(String descricaoMovimentacaoEstoque) {
+		this.descricaoMovimentacaoEstoque = descricaoMovimentacaoEstoque;
+	}
+
+	public Departamentos getDepartamento() {
+		return departamento;
+	}
+
+	public void setDepartamento(Departamentos departamento) {
+		this.departamento = departamento;
+	}
+
+	public Pedido getPedito() {
+		return pedito;
+	}
+
+	public void setPedito(Pedido pedito) {
+		this.pedito = pedito;
+	}
+
+	public Double getQuantidadeMaximoEstoque() {
+		return quantidadeMaximoEstoque;
+	}
+
+	public void setQuantidadeMaximoEstoque(Double quantidadeMaximoEstoque) {
+		this.quantidadeMaximoEstoque = quantidadeMaximoEstoque;
+	}
+
+	public Double getValorEntradaMaterial() {
+		return valorEntradaMaterial;
+	}
+
+	public void setValorEntradaMaterial(Double valorEntradaMaterial) {
+		this.valorEntradaMaterial = valorEntradaMaterial;
+	}
+
+	public String getDescricaoFormaValorEntrada() {
+		return descricaoFormaValorEntrada;
+	}
+
+	public void setDescricaoFormaValorEntrada(String descricaoFormaValorEntrada) {
+		this.descricaoFormaValorEntrada = descricaoFormaValorEntrada;
+	}
+
+	public String getTipoEntradaMaterial() {
+		return tipoEntradaMaterial;
+	}
+
+	public void setTipoEntradaMaterial(String tipoEntradaMaterial) {
+		this.tipoEntradaMaterial = tipoEntradaMaterial;
+	}
+
+	public Long getUsuarioAlteracao() {
+		return usuarioAlteracao;
+	}
+
+	public void setUsuarioAlteracao(Long usuarioAlteracao) {
+		this.usuarioAlteracao = usuarioAlteracao;
+	}
+
+	
 
 }

@@ -32,25 +32,53 @@ public class Acoes implements Serializable {
 	@Column(name="id_acao", unique=true, nullable=false, precision=10)
 	private Long id;
 
+	@Column(name="ds_acao")
+	private String descricao;	
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_atividade")
+	private Atividades atividade;
+	
+	@Column(name="ds_objetivo_acao")
+	private String descricaoObjetivoAcao;
+	
+	@Column(name="ds_metodologia_acao")
+	private String descricaoMetodologiaAcao;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_funcionario_planeja_acao")
+	private Funcionario funcionarioPlanejamentoAcao;	
+	
+	@Column(name="dt_prev_fim_acao")
+	private LocalDateTime dataPrevisaoFim;
+	
+	@Column(name="dt_prev_inicio_acao")
+	private LocalDateTime dataPrevisaoInicio;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_funcionario_aprova_acao")
+	private Funcionario funcionarioAprovaAcao;	
+	
+	@Column(name="dt_aprova_acao")
+	private LocalDateTime dataAprovaAcao;	
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_funcionario_executa_acao")
+	private Funcionario funcionarioExecutaAcao;	
+	
 	@Column(name="dt_fim_acao")
 	private LocalDateTime dataFim;
 
 	@Column(name="dt_inicio_acao")
 	private LocalDateTime dataInicio;
+	
+	@Column(name="ds_avaliacao_acao")
+	private String descricaoAvaliacaoAcao;
 
-	@Column(name="dt_prev_fim_acao")
-	private LocalDateTime dataPrevisaoFim;
+	@Column(name="ds_ocorrencia_acao")
+	private String descricaoOcorrenciaAcao;
 
-	@Column(name="dt_prev_inicio_acao")
-	private LocalDateTime dataPrevisaoInicio;
-
-	@Column(name="nm_plano_acao")
-	private String nome;
-
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="atividades_id_atividade")
-	private Atividades atividade;
-
+	
 	@Column(name="id_usuario_apl")
 	private Long usuarioAlteracao;
 
@@ -65,20 +93,44 @@ public class Acoes implements Serializable {
 		this.id = id;
 	}
 
-	public LocalDateTime getDataFim() {
-		return dataFim;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setDataFim(LocalDateTime dataFim) {
-		this.dataFim = dataFim;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
-	public LocalDateTime getDataInicio() {
-		return dataInicio;
+	public Atividades getAtividade() {
+		return atividade;
 	}
 
-	public void setDataInicio(LocalDateTime dataInicio) {
-		this.dataInicio = dataInicio;
+	public void setAtividade(Atividades atividade) {
+		this.atividade = atividade;
+	}
+
+	public String getDescricaoObjetivoAcao() {
+		return descricaoObjetivoAcao;
+	}
+
+	public void setDescricaoObjetivoAcao(String descricaoObjetivoAcao) {
+		this.descricaoObjetivoAcao = descricaoObjetivoAcao;
+	}
+
+	public String getDescricaoMetodologiaAcao() {
+		return descricaoMetodologiaAcao;
+	}
+
+	public void setDescricaoMetodologiaAcao(String descricaoMetodologiaAcao) {
+		this.descricaoMetodologiaAcao = descricaoMetodologiaAcao;
+	}
+
+	public Funcionario getFuncionarioPlanejamentoAcao() {
+		return funcionarioPlanejamentoAcao;
+	}
+
+	public void setFuncionarioPlanejamentoAcao(Funcionario funcionarioPlanejamentoAcao) {
+		this.funcionarioPlanejamentoAcao = funcionarioPlanejamentoAcao;
 	}
 
 	public LocalDateTime getDataPrevisaoFim() {
@@ -97,20 +149,60 @@ public class Acoes implements Serializable {
 		this.dataPrevisaoInicio = dataPrevisaoInicio;
 	}
 
-	public String getNome() {
-		return nome;
+	public Funcionario getFuncionarioAprovaAcao() {
+		return funcionarioAprovaAcao;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setFuncionarioAprovaAcao(Funcionario funcionarioAprovaAcao) {
+		this.funcionarioAprovaAcao = funcionarioAprovaAcao;
 	}
 
-	public Atividades getAtividade() {
-		return atividade;
+	public LocalDateTime getDataAprovaAcao() {
+		return dataAprovaAcao;
 	}
 
-	public void setAtividade(Atividades atividade) {
-		this.atividade = atividade;
+	public void setDataAprovaAcao(LocalDateTime dataAprovaAcao) {
+		this.dataAprovaAcao = dataAprovaAcao;
+	}
+
+	public Funcionario getFuncionarioExecutaAcao() {
+		return funcionarioExecutaAcao;
+	}
+
+	public void setFuncionarioExecutaAcao(Funcionario funcionarioExecutaAcao) {
+		this.funcionarioExecutaAcao = funcionarioExecutaAcao;
+	}
+
+	public LocalDateTime getDataFim() {
+		return dataFim;
+	}
+
+	public void setDataFim(LocalDateTime dataFim) {
+		this.dataFim = dataFim;
+	}
+
+	public LocalDateTime getDataInicio() {
+		return dataInicio;
+	}
+
+	public void setDataInicio(LocalDateTime dataInicio) {
+		this.dataInicio = dataInicio;
+	}
+
+	public String getDescricaoAvaliacaoAcao() {
+		return descricaoAvaliacaoAcao;
+	}
+
+	public void setDescricaoAvaliacaoAcao(String descricaoAvaliacaoAcao) {
+		this.descricaoAvaliacaoAcao = descricaoAvaliacaoAcao;
+	}
+
+	public String getDescricaoOcorrenciaAcao() {
+		return descricaoOcorrenciaAcao;
+	}
+
+	public void setDescricaoOcorrenciaAcao(String descricaoOcorrenciaAcao) {
+		this.descricaoOcorrenciaAcao = descricaoOcorrenciaAcao;
 	}
 
 	public Long getUsuarioAlteracao() {
@@ -120,6 +212,7 @@ public class Acoes implements Serializable {
 	public void setUsuarioAlteracao(Long usuarioAlteracao) {
 		this.usuarioAlteracao = usuarioAlteracao;
 	}
+
 
 	
 }

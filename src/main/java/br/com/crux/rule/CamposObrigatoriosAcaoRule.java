@@ -16,8 +16,8 @@ public class CamposObrigatoriosAcaoRule {
 			throw new CamposObrigatoriosException("Data de Início deve ser informada.");
 		}
 
-		if (StringUtils.isEmpty(to.getNome())) {
-			throw new CamposObrigatoriosException("Nome deve ser informado.");
+		if (StringUtils.isEmpty(to.getDescricao())) {
+			throw new CamposObrigatoriosException("Descrição deve ser informada.");
 		}
 
 		if (Objects.isNull(to.getAtividade()) && Objects.isNull(to.getAtividade().getId())) {
