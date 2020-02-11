@@ -22,7 +22,6 @@ import br.com.crux.entity.Unidade;
 import br.com.crux.enums.ConclusaoParecer;
 import br.com.crux.enums.ParecerEntrevistador;
 import br.com.crux.enums.TipoFuncionario;
-import br.com.crux.infra.util.StringUtil;
 import br.com.crux.to.FuncionarioTO;
 
 @Component
@@ -218,6 +217,10 @@ public class FuncionarioTOBuilder {
 	
 	public FuncionarioTO buildTO(Funcionario p) {
 		FuncionarioTO retorno = new FuncionarioTO();
+
+		if (Objects.isNull(p)) {
+			return retorno;
+		}
 		
 		retorno = buildTOSemRelacionamentosCircular(p);
 		
