@@ -40,13 +40,13 @@ public class FuncoesService {
 	}
 
 	@PostMapping(path = "", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public void cadastrar(@RequestBody FuncoesTO funcoes) {
-		cadastrarCmd.cadastrar(funcoes);
+	public void cadastrar(@RequestBody FuncoesTO to) {
+		cadastrarCmd.cadastrar(to);
 	}
 
 	@PutMapping(path = "", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public void alterar(@RequestBody FuncoesTO funcoes) {
-		alterarCmd.alterar(funcoes);
+	public void alterar(@RequestBody FuncoesTO to) {
+		alterarCmd.alterar(to);
 	}
 
 	@DeleteMapping(path = "/{id}")

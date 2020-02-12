@@ -2,7 +2,6 @@ package br.com.crux.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,37 +25,37 @@ import br.com.crux.infra.constantes.Constantes;
 public class ContasBancaria implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sq_id_conta_bancaria")
+	@Id 
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sq_id_conta_bancaria") 
 	@SequenceGenerator(name = "sq_id_conta_bancaria", sequenceName = "sq_id_conta_bancaria", schema = Constantes.SCHEMA_PUBLIC, initialValue = 1, allocationSize = 1)
 	@Column(name = "id_conta_bancaria")
 	private Long id;
 
-	@Column(name = "cs_tipo_conta_bancaria")
+	@Column(name = "cs_tipo_conta_bancaria") 
 	private String tipoContaBancaria;
 
-	@Column(name = "nm_banco")
+	@Column(name = "nm_banco") 
 	private String nomeBanco;
 
-	@Column(name = "nr_agencia")
+	@Column(name = "nr_agencia") 
 	private String numeroAgencia;
 
-	@Column(name = "nr_banco")
+	@Column(name = "nr_banco") 
 	private BigDecimal numeroBanco;
 
-	@Column(name = "nr_conta_bancaria")
-	private Timestamp numeroContaBancaria;
+	@Column(name = "nr_conta_bancaria") 
+	private String numeroContaBancaria;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_unidade")
+	@ManyToOne(fetch = FetchType.LAZY) 
+	@JoinColumn(name = "id_unidade") 
 	private Unidade unidade;
 
-	@Column(name = "id_usuario_apl")
+	@Column(name = "id_usuario_apl") 
 	private Long usuarioAlteracao;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_saldo_conta_bancaria")
-	private SaldosContasBancaria saldoContaBancaria;
+	@ManyToOne(fetch = FetchType.LAZY) 
+	@JoinColumn(name = "id_saldo_conta_bancaria") 
+	private SaldosContasBancaria saldosContasBancaria;
 
 	public ContasBancaria() {
 	}
@@ -101,11 +100,11 @@ public class ContasBancaria implements Serializable {
 		this.numeroBanco = numeroBanco;
 	}
 
-	public Timestamp getNumeroContaBancaria() {
+	public String getNumeroContaBancaria() {
 		return numeroContaBancaria;
 	}
 
-	public void setNumeroContaBancaria(Timestamp numeroContaBancaria) {
+	public void setNumeroContaBancaria(String numeroContaBancaria) {
 		this.numeroContaBancaria = numeroContaBancaria;
 	}
 
@@ -125,12 +124,12 @@ public class ContasBancaria implements Serializable {
 		this.usuarioAlteracao = usuarioAlteracao;
 	}
 
-	public SaldosContasBancaria getSaldoContaBancaria() {
-		return saldoContaBancaria;
+	public SaldosContasBancaria getSaldosContasBancaria() {
+		return saldosContasBancaria;
 	}
 
-	public void setSaldoContaBancaria(SaldosContasBancaria saldoContaBancaria) {
-		this.saldoContaBancaria = saldoContaBancaria;
+	public void setSaldosContasBancaria(SaldosContasBancaria saldoContaBancaria) {
+		this.saldosContasBancaria = saldoContaBancaria;
 	}
 
 }
