@@ -107,5 +107,10 @@
 		<class>br.com.crux.entity.MateriaisAtividade</class>
 		<class>br.com.crux.entity.CategoriasContabeis</class>
 		<class>br.com.crux.entity.Funcoes</class>
+		<class>br.com.crux.entity.ContasCentrosCusto</class>
+		<class>br.com.crux.entity.CotacoesMaterial</class>
+		<class>br.com.crux.entity.FuncoesInstituicao</class>
+		<class>br.com.crux.entity.Movimentacoes</class>
+		<class>br.com.crux.entity.SaldosContasBancaria</class>
 	</persistence-unit>
 </persistence>
