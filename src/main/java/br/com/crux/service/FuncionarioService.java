@@ -46,9 +46,14 @@ public class FuncionarioService {
 		return getCmd.getTOById(id);
 	}
 
-	@GetMapping(path = "/porinstituicao", produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<FuncionarioTO> getPorIntituicao(@RequestParam(value="ids") List<Long> ids) {
-		return getCmd.getFuncionarioPorInstituicao(ids);
+	@GetMapping(path = "/porunidades", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<FuncionarioTO> getPorUnidades(@RequestParam(value="ids") List<Long> ids) {
+		return getCmd.getFuncionarioPorUnidades(ids);
+	}
+
+	@GetMapping(path = "/instituicao/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<FuncionarioTO> getPor(@PathVariable Long id) {
+		return getCmd.getFuncionarioPorInstituicao(id);
 	}
 
 	@PostMapping(path = "", consumes = MediaType.APPLICATION_JSON_VALUE)
