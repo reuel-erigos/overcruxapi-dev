@@ -9,6 +9,11 @@ public class ContasBancariaTO {
 	private String numeroAgencia;
 	private String numeroContaBancaria;
 	private UnidadeTO unidade;
+	private String nomeTitular;
+	private String nomeContato;
+	private String cpfCnpjTitular;
+	private String telefoneTitular;
+	private String emailTitular;
 	private SaldosContasBancariaTO saldosContasBancaria;
 
 	public Long getId() {
@@ -65,6 +70,46 @@ public class ContasBancariaTO {
 
 	public void setSaldosContasBancaria(SaldosContasBancariaTO saldoContaBancaria) {
 		this.saldosContasBancaria = saldoContaBancaria;
+	}
+
+	public String getNomeTitular() {
+		return nomeTitular;
+	}
+
+	public void setNomeTitular(String nomeTitular) {
+		this.nomeTitular = nomeTitular;
+	}
+
+	public String getNomeContato() {
+		return nomeContato;
+	}
+
+	public void setNomeContato(String nomeContato) {
+		this.nomeContato = nomeContato;
+	}
+
+	public String getCpfCnpjTitular() {
+		return cpfCnpjTitular;
+	}
+
+	public void setCpfCnpjTitular(String cpfCnpjTitular) {
+		this.cpfCnpjTitular = cpfCnpjTitular;
+	}
+
+	public String getTelefoneTitular() {
+		return telefoneTitular;
+	}
+
+	public void setTelefoneTitular(String telefoneTitular) {
+		this.telefoneTitular = telefoneTitular;
+	}
+
+	public String getEmailTitular() {
+		return emailTitular;
+	}
+
+	public void setEmailTitular(String emailTitular) {
+		this.emailTitular = emailTitular;
 	}
 
 }

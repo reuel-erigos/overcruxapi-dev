@@ -53,6 +53,21 @@ public class ContasBancaria implements Serializable {
 	@Column(name = "id_usuario_apl") 
 	private Long usuarioAlteracao;
 
+	@Column(name = "nm_titular") 
+	private String nomeTitular;
+
+	@Column(name = "nm_contato") 
+	private String nomeContato;
+
+	@Column(name = "nr_cpf_cnpj_titular") 
+	private String cpfCnpjTitular;
+
+	@Column(name = "nr_telefone_titular") 
+	private String telefoneTitular;
+
+	@Column(name = "ds_email_titular") 
+	private String emailTitular;
+
 	@ManyToOne(fetch = FetchType.LAZY) 
 	@JoinColumn(name = "id_saldo_conta_bancaria") 
 	private SaldosContasBancaria saldosContasBancaria;
@@ -132,4 +147,46 @@ public class ContasBancaria implements Serializable {
 		this.saldosContasBancaria = saldoContaBancaria;
 	}
 
+	public String getNomeTitular() {
+		return nomeTitular;
+	}
+
+	public void setNomeTitular(String nomeTitular) {
+		this.nomeTitular = nomeTitular;
+	}
+
+	public String getNomeContato() {
+		return nomeContato;
+	}
+
+	public void setNomeContato(String nomeContato) {
+		this.nomeContato = nomeContato;
+	}
+
+	public String getCpfCnpjTitular() {
+		return cpfCnpjTitular;
+	}
+
+	public void setCpfCnpjTitular(String cpfCnpjTitular) {
+		this.cpfCnpjTitular = cpfCnpjTitular;
+	}
+
+	public String getTelefoneTitular() {
+		return telefoneTitular;
+	}
+
+	public void setTelefoneTitular(String telefoneTitular) {
+		this.telefoneTitular = telefoneTitular;
+	}
+
+	public String getEmailTitular() {
+		return emailTitular;
+	}
+
+	public void setEmailTitular(String emailTitular) {
+		this.emailTitular = emailTitular;
+	}
+
+	
+	
 }
