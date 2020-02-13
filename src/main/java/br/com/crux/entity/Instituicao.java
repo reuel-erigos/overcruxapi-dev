@@ -61,7 +61,7 @@ public class Instituicao {
 	private List<Funcoes> funcoes;
 
 	@OneToMany(mappedBy="instituicao")
-	private List<FuncoesInstituicao> funcoesInstituicaos;	
+	private List<FuncoesInstituicao> funcoesInstituicao;	
 	
 	public Instituicao() {
 	}
@@ -162,12 +162,12 @@ public class Instituicao {
 		this.funcoes = funcoes;
 	}
 
-	public List<FuncoesInstituicao> getFuncoesInstituicaos() {
-		return funcoesInstituicaos;
+	public List<FuncoesInstituicao> getFuncoesInstituicao() {
+		return funcoesInstituicao;
 	}
 
-	public void setFuncoesInstituicaos(List<FuncoesInstituicao> funcoesInstituicaos) {
-		this.funcoesInstituicaos = funcoesInstituicaos;
+	public void setFuncoesInstituicao(List<FuncoesInstituicao> funcoesInstituicaos) {
+		this.funcoesInstituicao = funcoesInstituicaos;
 	}
 	
 

@@ -20,7 +20,6 @@ public class CadastrarProjetoCmd {
 	@Autowired private CadastrarListaColaboradoresProjetoCmd cadastrarListaColaboradoresProjetoCmd;
 	@Autowired private CadastrarParceriaProjetoCmd cadastrarParceriaProjetoCmd;
 	@Autowired private CadastrarComposicaoRhProjetoCmd cadastrarComposicaoRhProjetoCmd;
-//	@Autowired private CadastrarMateriaisProjetoCmd cadastrarMateriaisProjetoCmd;
 
 	public void cadastrar(ProjetoTO to) {
 

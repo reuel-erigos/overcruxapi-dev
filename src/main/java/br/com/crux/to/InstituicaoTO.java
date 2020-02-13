@@ -1,5 +1,7 @@
 package br.com.crux.to;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -16,8 +18,8 @@ public class InstituicaoTO {
 	private String missao;
 	private String valores;
 	private String finalidadesEstatutarias;
-	
-	
+	private List<FuncoesInstituicaoTO> funcoesInstituicao;
+
 	public InstituicaoTO() {
 	}
 
@@ -109,6 +111,12 @@ public class InstituicaoTO {
 		this.finalidadesEstatutarias = finalidadesEstatutarias;
 	}
 
-	
+	public List<FuncoesInstituicaoTO> getFuncoesInstituicao() {
+		return funcoesInstituicao;
+	}
+
+	public void setFuncoesInstituicao(List<FuncoesInstituicaoTO> funcoesInstituicao) {
+		this.funcoesInstituicao = funcoesInstituicao;
+	}
 
 }

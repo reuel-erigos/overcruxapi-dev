@@ -3,7 +3,7 @@ package br.com.crux.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,34 +28,36 @@ public class InstituicaoService {
 	@Autowired private ExcluirInstituicaoCmd excluirCmd;
 	@Autowired private AlterarInstituicaoCmd alterarCmd;
 
-	@GetMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping
 	public List<InstituicaoTO> getAll() {
 		return getCmd.getAll();
 	}
 
-	@GetMapping(path = "/usuariologado", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping("/usuariologado")
 	public List<InstituicaoTO> getInstituicoesComAcesso() {
 		return getCmd.getInstituicoesComAcesso();
 	}
-	
-	@GetMapping(path = "/{idUnidade}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public InstituicaoTO getById(@PathVariable(name = "idUnidade") Long idUnidade) {
-		return getCmd.getTOById(idUnidade);
+
+	@GetMapping("/{id}")
+	public InstituicaoTO getById(@PathVariable Long id) {
+		return getCmd.getTOById(id);
 	}
 
-	@PostMapping(path = "", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping
+	@Transactional
 	public InstituicaoTO cadastrar(@RequestBody InstituicaoTO to) {
 		return cadastrarCmd.cadastrar(to);
 	}
 
-	@PutMapping(path = "", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping
+	@Transactional
 	public InstituicaoTO alterar(@RequestBody InstituicaoTO to) {
 		return alterarCmd.alterar(to);
 	}
 
-	@DeleteMapping(path = "/{unidade}")
-	public void excluir(@PathVariable(name = "unidade") Long idUnidade) {
-		excluirCmd.excluir(idUnidade);
+	@DeleteMapping(path = "/{id}")
+	public void excluir(@PathVariable Long id) {
+		excluirCmd.excluir(id);
 	}
 
 }

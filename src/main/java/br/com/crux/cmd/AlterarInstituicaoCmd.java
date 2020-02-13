@@ -19,18 +19,19 @@ public class AlterarInstituicaoCmd {
 	@Autowired private GetInstituicaoCmd getInstituicaoCmd;
 	@Autowired private InstituicaoTOBuilder toBuilder;
 	@Autowired private InstituicaoRepository repository;
-	
-	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
+	@Autowired private AlterarListaFuncoesInstituicaoCmd alterarListaFuncoesInstituicaoCmd;
 
 	public InstituicaoTO alterar(InstituicaoTO to) {
 		validarCadastroRule.validar(to);
 
 		Instituicao instituicao = Optional.ofNullable(getInstituicaoCmd.getById(to.getId())).orElseThrow(() -> new NotFoundException("Instituição não encontrada."));
-		to.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 
 		instituicao = toBuilder.build(to);
 		
 		Instituicao retorno = repository.save(instituicao);
+		
+		alterarListaFuncoesInstituicaoCmd.alterarAll(to.getFuncoesInstituicao(),retorno);
+		
 		return toBuilder.buildTO(retorno);
 
 	}

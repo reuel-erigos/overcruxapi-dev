@@ -12,17 +12,19 @@ import br.com.crux.to.InstituicaoTO;
 @Component
 public class CadastrarInstituicaoCmd {
 
-	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
 	@Autowired private ValidarCadastroInstituicaoRule cadastroInstituicaoRule ;
 	@Autowired private InstituicaoTOBuilder toBuilder;
 	@Autowired private InstituicaoRepository instituicaoRepository;
+	@Autowired private CadastrarListaFuncoesInstituicaoCmd cadastrarListaFuncoesInstituicaoCmd;
 
 	public InstituicaoTO cadastrar(InstituicaoTO to) {
 		cadastroInstituicaoRule.validar(to);
-
-		to.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
-		Instituicao instituicao = toBuilder.build(to);
+		Instituicao entity = toBuilder.build(to);
 		
-		return toBuilder.buildTO(instituicaoRepository.save(instituicao));
+		Instituicao instituicao = instituicaoRepository.save(entity);
+		
+		cadastrarListaFuncoesInstituicaoCmd.cadastrarLista(instituicao, to.getFuncoesInstituicao());
+		
+		return toBuilder.buildTO(entity);
 	}
 }

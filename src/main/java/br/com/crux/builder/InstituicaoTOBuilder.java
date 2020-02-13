@@ -5,18 +5,24 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import br.com.crux.cmd.GetUsuarioLogadoCmd;
 import br.com.crux.entity.Instituicao;
 import br.com.crux.to.InstituicaoTO;
 
 @Component
 public class InstituicaoTOBuilder {
 
+	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
+	
 	public Instituicao build(InstituicaoTO to) {
 
 		Instituicao retorno = new Instituicao();
 		BeanUtils.copyProperties(to, retorno);
+		
+		retorno.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 		
 		return retorno;
 	}

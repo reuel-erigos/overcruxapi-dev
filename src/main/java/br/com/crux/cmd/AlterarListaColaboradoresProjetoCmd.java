@@ -32,7 +32,7 @@ public class AlterarListaColaboradoresProjetoCmd extends AbstractAlterarListaCmd
 
 	@Override
 	protected List<ColaboradoresProjeto> getListaBanco(Projeto pai) {
-		return getColaboradoresProjetoCmd.getPorProjeto(p);
+		return getColaboradoresProjetoCmd.getPorProjeto(pai);
 	}
 
 	@Override
