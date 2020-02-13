@@ -13,7 +13,7 @@ public class SaldosContasBancariaTOBuilder {
 	public SaldosContasBancariaTO build(SaldosContasBancaria saldosContasBancaria) {
 		SaldosContasBancariaTO to = new SaldosContasBancariaTO();
 
-		if (Objects.nonNull(saldosContasBancaria)) {
+		if (Objects.isNull(saldosContasBancaria)) {
 			return to;
 		}
 

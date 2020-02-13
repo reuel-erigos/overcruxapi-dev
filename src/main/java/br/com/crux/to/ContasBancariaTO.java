@@ -14,7 +14,6 @@ public class ContasBancariaTO {
 	private String cpfCnpjTitular;
 	private String telefoneTitular;
 	private String emailTitular;
-	private SaldosContasBancariaTO saldosContasBancaria;
 
 	public Long getId() {
 		return id;
@@ -62,14 +61,6 @@ public class ContasBancariaTO {
 
 	public void setUnidade(UnidadeTO unidade) {
 		this.unidade = unidade;
-	}
-
-	public SaldosContasBancariaTO getSaldosContasBancaria() {
-		return saldosContasBancaria;
-	}
-
-	public void setSaldosContasBancaria(SaldosContasBancariaTO saldoContaBancaria) {
-		this.saldosContasBancaria = saldoContaBancaria;
 	}
 
 	public String getNomeTitular() {

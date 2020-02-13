@@ -8,11 +8,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.crux.cmd.GetSaldosContasBancariaCmd;
 import br.com.crux.cmd.GetUnidadeCmd;
 import br.com.crux.cmd.GetUsuarioLogadoCmd;
 import br.com.crux.entity.ContasBancaria;
-import br.com.crux.entity.SaldosContasBancaria;
 import br.com.crux.entity.Unidade;
 import br.com.crux.to.BancoTO;
 import br.com.crux.to.ContasBancariaTO;
@@ -22,8 +20,6 @@ public class ContasBancariaTOBuilder {
 
 	@Autowired private UnidadeTOBuilder unidadeBuilder;
 	@Autowired private GetUnidadeCmd getUnidadeCmd;
-	@Autowired private GetSaldosContasBancariaCmd getSaldosContasBancariaCmd;
-	@Autowired private SaldosContasBancariaTOBuilder saldosContasBancariaTOBuilder;
 	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
 
 	public ContasBancaria build(ContasBancariaTO to) {
@@ -45,13 +41,6 @@ public class ContasBancariaTOBuilder {
 			entity.setUnidade(unidade);
 		}
 
-		if (Objects.nonNull(to.getSaldosContasBancaria()) && Objects.nonNull(to.getSaldosContasBancaria()
-				.getId())) {
-			SaldosContasBancaria saldoContaBancaria = getSaldosContasBancariaCmd.getById(to.getSaldosContasBancaria()
-					.getId());
-			entity.setSaldosContasBancaria(saldoContaBancaria);
-		}
-
 		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado()
 				.getIdUsuario());
 
@@ -68,8 +57,6 @@ public class ContasBancariaTOBuilder {
 		BeanUtils.copyProperties(entity, to);
 
 		to.setUnidade(unidadeBuilder.buildTO(entity.getUnidade()));
-
-		to.setSaldosContasBancaria(saldosContasBancariaTOBuilder.build(entity.getSaldosContasBancaria()));
 
 		to.setBanco(new BancoTO(entity.getNomeBanco(), entity.getNumeroBanco()));
 

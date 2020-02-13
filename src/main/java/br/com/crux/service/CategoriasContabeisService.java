@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.crux.cmd.AlterarCategoriasContabeisCmd;
 import br.com.crux.cmd.CadastrarCategoriasContabeisCmd;
-import br.com.crux.cmd.ExcluirFuncoesCmd;
+import br.com.crux.cmd.ExcluirCategoriasContabeisCmd;
 import br.com.crux.cmd.GetCategoriasContabeisCmd;
 import br.com.crux.to.CategoriasContabeisTO;
 
@@ -26,7 +26,7 @@ public class CategoriasContabeisService {
 	@Autowired private GetCategoriasContabeisCmd getCmd;
 	@Autowired private CadastrarCategoriasContabeisCmd cadastrarCmd;
 	@Autowired private AlterarCategoriasContabeisCmd alterarCmd;
-	@Autowired private ExcluirFuncoesCmd excluirCmd;
+	@Autowired private ExcluirCategoriasContabeisCmd excluirCmd;
 
 	@GetMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<CategoriasContabeisTO> getAll() {

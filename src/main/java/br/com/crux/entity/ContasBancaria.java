@@ -1,7 +1,6 @@
 package br.com.crux.entity;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -41,7 +40,7 @@ public class ContasBancaria implements Serializable {
 	private String numeroAgencia;
 
 	@Column(name = "nr_banco") 
-	private BigDecimal numeroBanco;
+	private String numeroBanco;
 
 	@Column(name = "nr_conta_bancaria") 
 	private String numeroContaBancaria;
@@ -67,10 +66,6 @@ public class ContasBancaria implements Serializable {
 
 	@Column(name = "ds_email_titular") 
 	private String emailTitular;
-
-	@ManyToOne(fetch = FetchType.LAZY) 
-	@JoinColumn(name = "id_saldo_conta_bancaria") 
-	private SaldosContasBancaria saldosContasBancaria;
 
 	public ContasBancaria() {
 	}
@@ -107,11 +102,11 @@ public class ContasBancaria implements Serializable {
 		this.numeroAgencia = numeroAgencia;
 	}
 
-	public BigDecimal getNumeroBanco() {
+	public String getNumeroBanco() {
 		return numeroBanco;
 	}
 
-	public void setNumeroBanco(BigDecimal numeroBanco) {
+	public void setNumeroBanco(String numeroBanco) {
 		this.numeroBanco = numeroBanco;
 	}
 
@@ -139,13 +134,6 @@ public class ContasBancaria implements Serializable {
 		this.usuarioAlteracao = usuarioAlteracao;
 	}
 
-	public SaldosContasBancaria getSaldosContasBancaria() {
-		return saldosContasBancaria;
-	}
-
-	public void setSaldosContasBancaria(SaldosContasBancaria saldoContaBancaria) {
-		this.saldosContasBancaria = saldoContaBancaria;
-	}
 
 	public String getNomeTitular() {
 		return nomeTitular;
