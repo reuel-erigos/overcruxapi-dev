@@ -49,16 +49,22 @@ public class GetFuncionarioCmd {
 	}
 
 	public Funcionario getPorPessoa(Long idPessoa) {
-		return repository.getPorPessoa(idPessoa).orElseThrow(() -> new NotFoundException("Funciário não encontrado."));
+		return repository.getPorPessoa(idPessoa).orElseThrow(() -> new NotFoundException("Funcionário não encontrado."));
 	}
 
 	public FuncionarioTO getPorPessoaFisica(Long idPessoa) {
 		return toBuilder.buildTO(getPorPessoa(idPessoa));
 	}
 
-	public List<FuncionarioTO> getFuncionarioPorInstituicao(List<Long> ids) {
-		List<Funcionario> lista = repository.getPorInstituicao(ids).orElseThrow(() -> new NotFoundException("Funciários não encontrado."));
+	public List<FuncionarioTO> getFuncionarioPorUnidades(List<Long> ids) {
+		List<Funcionario> lista = repository.getPorUnidades(ids).orElseThrow(() -> new NotFoundException("Funcionários não encontrado."));
 
+		return toBuilder.buildAll(lista);
+
+	}
+
+	public List<FuncionarioTO> getFuncionarioPorInstituicao(Long id) {
+		List<Funcionario> lista = repository.getPorInstituicao(id).orElseThrow(() -> new NotFoundException("Funcionários não encontrado."));
 		return toBuilder.buildAll(lista);
 
 	}
