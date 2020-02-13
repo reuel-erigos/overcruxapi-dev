@@ -1,101 +1,46 @@
-package br.com.crux.entity;
+package br.com.crux.to;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-import br.com.crux.infra.constantes.Constantes;
+import br.com.crux.infra.adapter.LocalDateTimeAdapter;
 
+public class EstoquesTO {
 
-/**
- * The persistent class for the estoques database table.
- * 
- */
-@Entity
-@Table(name="estoques")
-public class Estoques {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sq_id_estoque")
-	@SequenceGenerator(name = "sq_id_estoque", sequenceName = "sq_id_estoque", schema = Constantes.SCHEMA_PUBLIC, initialValue = 1, allocationSize = 1)
-	@Column(name="id_estoque")
 	private Long id;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_material")
-	private Material material;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_unidade")
-	private Unidade unidade;	
-	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="id_funcionario")
-	private Funcionario funcionario;
-	
-	//Classificador do tipo de movimentação do estoque (E = ENTRADA; S = SAÍDA; A = ACERTO; O = OUTRO)
-	@Column(name="cs_tipo_mov_estoque")
-	private String tipoMovimentacaoEstoque;
+	private MaterialTO material;
+	private UnidadeTO unidade;
+	private FuncionarioTO funcionario;
+	private DepartamentoTO departamento;
+	private ProgramaTO programa;
+	private ProjetoTO projeto;
 
-	@Column(name="qt_estoque")
-	private Double quantidadeEstoque;
-
-	@Column(name="dt_estoque")
+	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
 	private LocalDateTime dataEstoque;
-	
-	@Column(name="dt_atz_estoque")
+	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
 	private LocalDateTime dtAtzEstoque;
-	
-	@Column(name="vl_medio_material")
+
+	private Double quantidadeEstoque;
 	private Double valorMedioMaterial;
-
-	@Column(name="vl_ultimo_material")
 	private Double valorUltimoMaterial;
-	
-	@Column(name="qt_minimo_estoque")
 	private Double quantidadeMinimoEstoque;
-	
-	@Column(name="ds_mov_estoque")
-	private String descricaoMovimentacaoEstoque;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_departamento")
-	private Departamentos departamento;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_programa")
-	private Programa programa;
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_projeto")
-	private Projeto projeto;
-
-	@Column(name="qt_maximo_estoque")
 	private Double quantidadeMaximoEstoque;
-
-	@Column(name="vl_entrada_material")
 	private Double valorEntradaMaterial;
-
-	@Column(name="ds_vl_entrada_material")
+	
+	private String descricaoMovimentacaoEstoque;
 	private String descricaoFormaValorEntrada;
 
-	//Classificador do tipo de entrada do material no estoque (C = COMPRA; D = DOAÇÃO; P = PAGAMENTO DE PENA; O = OUTRO)
-	@Column(name="cs_tipo_entrada_estoque")
+	// Classificador do tipo de entrada do material no estoque (C = COMPRA; D = DOAÇÃO; P = PAGAMENTO DE PENA; O = OUTRO)
 	private String tipoEntradaMaterial;
 
-	@Column(name = "id_usuario_apl")
+	// Classificador do tipo de movimentação do estoque (E = ENTRADA; S = SAÍDA; A = ACERTO; O = OUTRO)
+	private String tipoMovimentacaoEstoque;
+	
 	private Long usuarioAlteracao;
 
-	public Estoques() {
+	public EstoquesTO() {
 	}
 
 	public Long getId() {
@@ -106,27 +51,27 @@ public class Estoques {
 		this.id = id;
 	}
 
-	public Material getMaterial() {
+	public MaterialTO getMaterial() {
 		return material;
 	}
 
-	public void setMaterial(Material material) {
+	public void setMaterial(MaterialTO material) {
 		this.material = material;
 	}
 
-	public Unidade getUnidade() {
+	public UnidadeTO getUnidade() {
 		return unidade;
 	}
 
-	public void setUnidade(Unidade unidade) {
+	public void setUnidade(UnidadeTO unidade) {
 		this.unidade = unidade;
 	}
 
-	public Funcionario getFuncionario() {
+	public FuncionarioTO getFuncionario() {
 		return funcionario;
 	}
 
-	public void setFuncionario(Funcionario funcionario) {
+	public void setFuncionario(FuncionarioTO funcionario) {
 		this.funcionario = funcionario;
 	}
 
@@ -134,8 +79,8 @@ public class Estoques {
 		return tipoMovimentacaoEstoque;
 	}
 
-	public void setTipoMovimentacaoEstoque(String csTipoMovEstoque) {
-		this.tipoMovimentacaoEstoque = csTipoMovEstoque;
+	public void setTipoMovimentacaoEstoque(String tipoMovimentacaoEstoque) {
+		this.tipoMovimentacaoEstoque = tipoMovimentacaoEstoque;
 	}
 
 	public Double getQuantidadeEstoque() {
@@ -194,12 +139,28 @@ public class Estoques {
 		this.descricaoMovimentacaoEstoque = descricaoMovimentacaoEstoque;
 	}
 
-	public Departamentos getDepartamento() {
+	public DepartamentoTO getDepartamento() {
 		return departamento;
 	}
 
-	public void setDepartamento(Departamentos departamento) {
+	public void setDepartamento(DepartamentoTO departamento) {
 		this.departamento = departamento;
+	}
+
+	public ProgramaTO getPrograma() {
+		return programa;
+	}
+
+	public void setPrograma(ProgramaTO programa) {
+		this.programa = programa;
+	}
+
+	public ProjetoTO getProjeto() {
+		return projeto;
+	}
+
+	public void setProjeto(ProjetoTO projeto) {
+		this.projeto = projeto;
 	}
 
 	public Double getQuantidadeMaximoEstoque() {
@@ -241,24 +202,5 @@ public class Estoques {
 	public void setUsuarioAlteracao(Long usuarioAlteracao) {
 		this.usuarioAlteracao = usuarioAlteracao;
 	}
-
-	public Programa getPrograma() {
-		return programa;
-	}
-
-	public void setPrograma(Programa programa) {
-		this.programa = programa;
-	}
-
-	public Projeto getProjeto() {
-		return projeto;
-	}
-
-	public void setProjeto(Projeto projeto) {
-		this.projeto = projeto;
-	}
-
-	
-	
 
 }
