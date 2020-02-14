@@ -7,7 +7,6 @@ public class FuncoesTO {
 	private String nome;
 	private Double valorSalario;
 	private UnidadeTO unidade;
-	private InstituicaoTO instituicao;
 	
 
 	public Long getId() {
@@ -34,13 +33,6 @@ public class FuncoesTO {
 		this.unidade = unidade;
 	}
 
-	public InstituicaoTO getInstituicao() {
-		return instituicao;
-	}
-
-	public void setInstituicao(InstituicaoTO instituicao) {
-		this.instituicao = instituicao;
-	}
 
 	public Double getValorSalario() {
 		return valorSalario;

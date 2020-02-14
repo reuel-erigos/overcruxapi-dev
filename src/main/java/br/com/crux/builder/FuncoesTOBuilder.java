@@ -2,7 +2,6 @@ package br.com.crux.builder;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
@@ -21,7 +20,6 @@ import br.com.crux.to.FuncoesTO;
 public class FuncoesTOBuilder {
 
 	@Autowired private UnidadeTOBuilder unidadeBuilder;
-	@Autowired private InstituicaoTOBuilder instituicaoBuilder;
 	@Autowired private GetUnidadeCmd getUnidadeCmd;
 	@Autowired private GetInstituicaoCmd getInstituicaoCmd;
 	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
@@ -31,17 +29,14 @@ public class FuncoesTOBuilder {
 
 		BeanUtils.copyProperties(to, entity);
 
-		Optional.ofNullable(to.getUnidade())
-				.ifPresent(u -> {
-					Unidade unidade = getUnidadeCmd.getById(u.getIdUnidade());
-					entity.setUnidade(unidade);
-				});
-
-		Optional.ofNullable(to.getInstituicao())
-				.ifPresent(u -> {
-					Instituicao instituicao = getInstituicaoCmd.getById(u.getId());
-					entity.setInstituicao(instituicao);
-				});
+		if (Objects.nonNull(to.getUnidade()) && Objects.nonNull(to.getUnidade()
+				.getIdUnidade())) {
+			Unidade unidade = getUnidadeCmd.getById(to.getUnidade()
+					.getIdUnidade());
+			entity.setUnidade(unidade);
+			Instituicao instituicao = getInstituicaoCmd.getPorUnidade(unidade);
+			entity.setInstituicao(instituicao);
+		}
 
 		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado()
 				.getIdUsuario());
@@ -58,8 +53,7 @@ public class FuncoesTOBuilder {
 
 		BeanUtils.copyProperties(entity, to);
 
-		to.setUnidade(unidadeBuilder.buildTO(entity.getUnidade()));
-		to.setInstituicao(instituicaoBuilder.buildTO(entity.getInstituicao()));
+		to.setUnidade(unidadeBuilder.buildTOPraCombo(entity.getUnidade()));
 
 		return to;
 	}

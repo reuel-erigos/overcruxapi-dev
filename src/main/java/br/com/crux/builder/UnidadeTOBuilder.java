@@ -117,11 +117,25 @@ public class UnidadeTOBuilder {
 		return dtos.stream().map(dto -> buildTO(dto)).collect(Collectors.toList());
 	}
 	
+	public List<UnidadeTO> buildAllTOParaCombo(List<Unidade> dtos) {
+		return dtos.stream().map(dto -> buildTOPraCombo(dto)).collect(Collectors.toList());
+	}
+	
 	public UnidadeTO buildTOComUnidadeLogada(Unidade unidade) {
 		UnidadeTO unidadeTO = buildTO(unidade);
 		unidadeTO.setUnidadeLogada(Boolean.TRUE);
 		return unidadeTO;
 		
+	}
+	
+	public UnidadeTO buildTOPraCombo(Unidade unidade) {
+		UnidadeTO to = new UnidadeTO();
+		
+		to.setIdUnidade(unidade.getIdUnidade());
+		to.setNomeFantasia(unidade.getNomeFantasia());
+		to.setNomeUnidade(unidade.getNomeUnidade());
+		
+		return to;
 	}
 
 }

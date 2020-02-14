@@ -1,14 +1,11 @@
 package br.com.crux.entity;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -19,50 +16,42 @@ import br.com.crux.infra.dao.SimNaoConverter;
 @Table(name = "instituicoes")
 public class Instituicao {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sq_instituicao")
-	@SequenceGenerator(name = "sq_instituicao", sequenceName = "sq_instituicao", schema = Constantes.SCHEMA_PUBLIC, initialValue = 1, allocationSize = 1)
-	@Column(name = "id_instituicao")
+	@Id 
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sq_instituicao") 
+	@SequenceGenerator(name = "sq_instituicao", sequenceName = "sq_instituicao", schema = Constantes.SCHEMA_PUBLIC, initialValue = 1, allocationSize = 1) @Column(name = "id_instituicao") 
 	private Long id;
 
-	@Column(name = "nm_instituicao")
+	@Column(name = "nm_instituicao") 
 	private String nome;
 
-	@Column(name = "id_arquivo_logomarca")
+	@Column(name = "id_arquivo_logomarca") 
 	private Long idArquivo;
 
-	@Column(name = "id_usuario_apl")
+	@Column(name = "id_usuario_apl") 
 	private Long usuarioAlteracao;
-	
-	@Column(name = "st_mostra_lista")
-	@Convert(converter = SimNaoConverter.class)
+
+	@Column(name = "st_mostra_lista") 
+	@Convert(converter = SimNaoConverter.class) 
 	private Boolean mostraLista;
-	
-	@Column(name = "ds_area_autacao")
+
+	@Column(name = "ds_area_autacao") 
 	private String areaAtuacao;
 
-	@Column(name = "ds_apresentacao")
+	@Column(name = "ds_apresentacao") 
 	private String apresentacao;
-	
-	@Column(name = "ds_visao")
+
+	@Column(name = "ds_visao") 
 	private String visao;
-	
-	@Column(name = "ds_missao")
+
+	@Column(name = "ds_missao") 
 	private String missao;
-	
-	@Column(name = "ds_valores")
+
+	@Column(name = "ds_valores") 
 	private String valores;
-	
-	@Column(name = "ds_finalidades_estatutarias")
+
+	@Column(name = "ds_finalidades_estatutarias") 
 	private String finalidadesEstatutarias;
 
-	
-	@OneToMany(mappedBy="instituicao")
-	private List<Funcoes> funcoes;
-
-	@OneToMany(mappedBy="instituicao")
-	private List<FuncoesInstituicao> funcoesInstituicao;	
-	
 	public Instituicao() {
 	}
 
@@ -154,21 +143,5 @@ public class Instituicao {
 		this.finalidadesEstatutarias = finalidadesEstatutarias;
 	}
 
-	public List<Funcoes> getFuncoes() {
-		return funcoes;
-	}
-
-	public void setFuncoes(List<Funcoes> funcoes) {
-		this.funcoes = funcoes;
-	}
-
-	public List<FuncoesInstituicao> getFuncoesInstituicao() {
-		return funcoesInstituicao;
-	}
-
-	public void setFuncoesInstituicao(List<FuncoesInstituicao> funcoesInstituicaos) {
-		this.funcoesInstituicao = funcoesInstituicaos;
-	}
 	
-
 }

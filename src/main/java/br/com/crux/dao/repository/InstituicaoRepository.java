@@ -19,5 +19,12 @@ public interface InstituicaoRepository extends JpaRepository<Instituicao, Long>{
 			+ " where us.idUsuario = ?1")
 	public Optional<List<Instituicao>> getInstituicoesComAcesso(Long idUsuario) ;
 	
+	@Query(value = "SELECT DISTINCT instituicao FROM Instituicao instituicao "
+			+ " inner join Unidade unidade on unidade.instituicao = instituicao "
+			+ " where unidade.idUnidade = ?1")
+	public Optional<Instituicao> getPorUnidade(Long idUnidade) ;
+	
 
+	
+	
 }

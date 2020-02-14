@@ -21,11 +21,7 @@ public class CamposObrigatoriosFuncoesRule {
 			throw new CamposObrigatoriosException("A unidade deve ser informada.");
 		}
 
-		if (Objects.isNull(to.getInstituicao()) || Objects.isNull(to.getInstituicao()
-				.getId())) {
-			throw new CamposObrigatoriosException("A instituição deve ser informada.");
-		}
-
+		
 		if (Objects.isNull(to.getValorSalario())) {
 			throw new CamposObrigatoriosException("O valor deve ser informado.");
 		}

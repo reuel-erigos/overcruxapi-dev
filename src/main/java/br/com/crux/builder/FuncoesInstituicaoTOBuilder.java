@@ -60,9 +60,9 @@ public class FuncoesInstituicaoTOBuilder {
 		}
 
 		BeanUtils.copyProperties(entity, to);
-
-		to.setFuncionario(funcionarioTOBuilder.buildTO(entity.getFuncionario()));
-		to.setFuncoes(funcoesTOBuilder.buildTO(entity.getFuncao()));
+//
+//		to.setFuncionario(funcionarioTOBuilder.buildTO(entity.getFuncionario()));
+//		to.setFuncoes(funcoesTOBuilder.buildTO(entity.getFuncao()));
 
 		return to;
 	}

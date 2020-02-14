@@ -113,5 +113,17 @@ public class GetUnidadeCmd {
 		UnidadeTO unidadeLogada = getUnidadeLogadaCmd.getUnidadeTO();
 		return getAllUnidadesByInstituicao(unidadeLogada.getInstituicao().getId());
 	}
+
+	public List<UnidadeTO> getAllParaCombo() {
+	UsuarioLogadoTO user = getUsuarioLogadoCmd.getUsuarioLogado();
+		
+		Optional<List<Unidade>> unidadesOptional = unidadeRepository.findAllUnidadesDoUsuarioLogado(user.getIdUsuario());
+		if(!unidadesOptional.isPresent()) {
+			return null;
+		}
+		
+		return unidadeBuilder.buildAllTO(unidadesOptional.get());
+	
+	}
 	
 }

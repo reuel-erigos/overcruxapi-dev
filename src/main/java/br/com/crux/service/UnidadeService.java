@@ -27,34 +27,32 @@ import br.com.crux.to.UnidadeTO;
 @RequestMapping(value = "unidade")
 public class UnidadeService {
 
-	@Autowired
-	private GetUnidadeCmd getUnidadeCmd;
-	@Autowired
-	private CadastrarUnidadeCmd cadastrarUnidadeCmd;
-	@Autowired
-	private ExcluirUnidadeCmd excluirUnidadeCmd;
-	@Autowired
-	private AlterarUnidadeCmd alterarUnidadeCmd;
-	@Autowired
-	private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
-	
+	@Autowired private GetUnidadeCmd getUnidadeCmd;
+	@Autowired private CadastrarUnidadeCmd cadastrarUnidadeCmd;
+	@Autowired private ExcluirUnidadeCmd excluirUnidadeCmd;
+	@Autowired private AlterarUnidadeCmd alterarUnidadeCmd;
+	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
+
 	@GetMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<UnidadeTO> getAllUnidade() {
 		return getUnidadeCmd.getAllUnidadesUsuarioLogadoTemAcesso();
 	}
-	
-	
+
+	@GetMapping(path = "/combo", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<UnidadeTO> getAllUnidadeParaCombo() {
+		return getUnidadeCmd.getAllParaCombo();
+	}
+
 	@GetMapping(path = "/instituicao", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<UnidadeTO> getAllPorInstiuicao() {
 		return getUnidadeCmd.getAllUnidadesByInstituicaoLogada();
 	}
-	
-	
+
 	@GetMapping(path = "/unidadelogada", produces = MediaType.APPLICATION_JSON_VALUE)
 	public UnidadeTO getUnidadeLogada() {
 		return getUnidadeLogadaCmd.getUnidadeTO();
 	}
-	
+
 	@PostMapping(path = "", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public UnidadeTO cadastrar(@RequestBody UnidadeTO unidade) {
 		return cadastrarUnidadeCmd.cadastrar(unidade);
@@ -64,7 +62,7 @@ public class UnidadeService {
 	public UnidadeTO alterar(@RequestBody UnidadeTO unidade) {
 		return alterarUnidadeCmd.alterar(unidade);
 	}
-	
+
 	@DeleteMapping(path = "/{unidade}")
 	public void excluir(@PathVariable(name = "unidade") Long idUnidade) {
 		excluirUnidadeCmd.excluir(idUnidade);
@@ -84,17 +82,17 @@ public class UnidadeService {
 	public List<AcessoUnidadeTO> getUnidadesComAcesso() {
 		return getUnidadeCmd.getUnidadesComAcesso();
 	}
-	
+
 	@GetMapping(path = "/logada/{idUnidade}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public UnidadeTO getUnidadeSetandoLogada(@PathVariable(name = "idUnidade") Long idUnidade) {
-		return getUnidadeCmd.getUnidadeUsuarioLogadoComAcesso(idUnidade).get();
+		return getUnidadeCmd.getUnidadeUsuarioLogadoComAcesso(idUnidade)
+				.get();
 	}
 
 	@GetMapping(path = "/{idUnidade}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public UnidadeTO getById(@PathVariable(name = "idUnidade") Long idUnidade) {
 		return getUnidadeCmd.getTOById(idUnidade);
 	}
-
 
 
 }

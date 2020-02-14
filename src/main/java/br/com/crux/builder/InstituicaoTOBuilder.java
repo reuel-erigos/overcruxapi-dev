@@ -8,6 +8,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import br.com.crux.cmd.GetFuncoesInstituicaoCmd;
 import br.com.crux.cmd.GetUsuarioLogadoCmd;
 import br.com.crux.entity.Instituicao;
 import br.com.crux.to.InstituicaoTO;
@@ -16,14 +17,15 @@ import br.com.crux.to.InstituicaoTO;
 public class InstituicaoTOBuilder {
 
 	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
-	
+	@Autowired private GetFuncoesInstituicaoCmd getFuncoesInstituicaoCmd;
+
 	public Instituicao build(InstituicaoTO to) {
 
 		Instituicao retorno = new Instituicao();
 		BeanUtils.copyProperties(to, retorno);
-		
-		retorno.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
-		
+
+		retorno.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado()
+				.getIdUsuario());
 		return retorno;
 	}
 
@@ -35,14 +37,15 @@ public class InstituicaoTOBuilder {
 		}
 
 		BeanUtils.copyProperties(instituicao, to);
-		
+		to.setFuncoesInstituicao(getFuncoesInstituicaoCmd.getFuncoesInstituicaoTOByInstituicao(instituicao));
+
 		return to;
 	}
 
 	public List<InstituicaoTO> buildAllTO(List<Instituicao> dtos) {
-		return dtos.stream().map(dto -> buildTO(dto)).collect(Collectors.toList());
+		return dtos.stream()
+				.map(dto -> buildTO(dto))
+				.collect(Collectors.toList());
 	}
-	
-	
 
 }

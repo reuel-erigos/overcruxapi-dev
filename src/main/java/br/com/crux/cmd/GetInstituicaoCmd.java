@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import br.com.crux.builder.InstituicaoTOBuilder;
 import br.com.crux.dao.repository.InstituicaoRepository;
 import br.com.crux.entity.Instituicao;
+import br.com.crux.entity.Unidade;
 import br.com.crux.exception.NotFoundException;
 import br.com.crux.to.InstituicaoTO;
 
@@ -44,6 +45,11 @@ public class GetInstituicaoCmd {
 	public InstituicaoTO getTOById(Long id) {
 		Instituicao instituicao = instituicaoRepository.findById(id).orElseThrow(() -> new NotFoundException("Instituicao não encontrada"));
 		return instituicaoBuilder.buildTO(instituicao);
+	}
+
+
+	public Instituicao getPorUnidade(Unidade unidade) {
+		return instituicaoRepository.getPorUnidade(unidade.getIdUnidade()).orElseThrow(() -> new NotFoundException("Nenhuma entidade encotrada para Unidade"));
 	}
 	
 	
