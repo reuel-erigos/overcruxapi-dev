@@ -69,4 +69,18 @@ public class ContasBancariaTOBuilder {
 				.collect(Collectors.toList());
 	}
 
+	public ContasBancariaTO buildTOEnxuto(ContasBancaria entity) {
+		ContasBancariaTO to = new ContasBancariaTO();
+
+		if (Objects.isNull(entity)) {
+			return to;
+		}
+
+		BeanUtils.copyProperties(entity, to);
+		to.setBanco(new BancoTO(entity.getNomeBanco(), entity.getNumeroBanco()));
+
+		return to;
+
+	}
+
 }

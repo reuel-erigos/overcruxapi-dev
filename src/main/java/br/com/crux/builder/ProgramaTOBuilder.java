@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import br.com.crux.cmd.GetColaboradoresProgramaCmd;
 import br.com.crux.cmd.GetComposicaoRhProgramaCmd;
+import br.com.crux.cmd.GetContasCentrosCustoCmd;
 import br.com.crux.cmd.GetMateriaisProgramaCmd;
 import br.com.crux.cmd.GetObjetivoCmd;
 import br.com.crux.cmd.GetParceriasProgramaCmd;
@@ -28,6 +29,7 @@ public class ProgramaTOBuilder {
 	@Autowired private GetParceriasProgramaCmd getParceriasProgramaCmd;
 	@Autowired private GetComposicaoRhProgramaCmd getComposicaoRhProgramaCmd;
 	@Autowired private GetMateriaisProgramaCmd getMateriaisProgramaCmd;
+	@Autowired private GetContasCentrosCustoCmd getContasCentrosCustoCmd;
 
 	public Programa build(ProgramaTO param) {
 		Programa retorno = new Programa();
@@ -108,6 +110,7 @@ public class ProgramaTOBuilder {
 		retorno.setParceriasPrograma(getParceriasProgramaCmd.getColaboradoresProgramaTOByPrograma(param));
 		retorno.setComposicaoRhPrograma(getComposicaoRhProgramaCmd.getComposicaoRhProgramaByPrograma(param));
 		retorno.setMateriaisPrograma(getMateriaisProgramaCmd.getMateriaisProgramaByPrograma(param));
+		retorno.setContasCentrosCusto(getContasCentrosCustoCmd.getTOPorPrograma(param));
 
 		return retorno;
 	}
@@ -115,6 +118,17 @@ public class ProgramaTOBuilder {
 
 	public List<ProgramaTO> buildAll(List<Programa> dtos) {
 		return dtos.stream().map(this::buildTO).collect(Collectors.toList());
+	}
+
+	public ProgramaTO buildTOEnxuto(Programa programa) {
+		if(Objects.isNull(programa)) {
+			return null;
+		}
+		
+		ProgramaTO to = new ProgramaTO();
+		to.setId(programa.getId());
+		
+		return to;
 	}
 
 }
