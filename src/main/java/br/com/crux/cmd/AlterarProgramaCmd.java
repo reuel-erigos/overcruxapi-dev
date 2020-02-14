@@ -21,6 +21,7 @@ public class AlterarProgramaCmd {
 	@Autowired private AlterarListaColaboradoresProgramaCmd alterarListaColaboradoresProgramaCmd;
 	@Autowired private AlterarParceriasProgramaCmd alterarParceriasProgramaCmd;
 	@Autowired private AlterarListaComposicaoRhProgramaCmd alterarListaComposicaoRhProgramaCmd;
+	@Autowired private AlterarListaContasCentrosCustoProgramaCmd alterarListaContasCentrosCustoProgramaCmd;
 
 	public void alterar(ProgramaTO to) {
 		Programa entity = repository.findById(to.getId()).orElseThrow(() -> new NotFoundException("Programa informado não existe."));
@@ -40,6 +41,9 @@ public class AlterarProgramaCmd {
 		alterarParceriasProgramaCmd.alterarAll(to.getParceriasPrograma(), programa);
 		
 		alterarListaComposicaoRhProgramaCmd.alterarAll(to.getComposicaoRhPrograma(), programa);
+		
+		alterarListaContasCentrosCustoProgramaCmd.alterarAll(to.getContasCentrosCusto(), programa);
+
 		
 
 	}

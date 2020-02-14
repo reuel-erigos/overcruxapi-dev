@@ -20,6 +20,7 @@ public class CadastrarProjetoCmd {
 	@Autowired private CadastrarListaColaboradoresProjetoCmd cadastrarListaColaboradoresProjetoCmd;
 	@Autowired private CadastrarParceriaProjetoCmd cadastrarParceriaProjetoCmd;
 	@Autowired private CadastrarComposicaoRhProjetoCmd cadastrarComposicaoRhProjetoCmd;
+	@Autowired private CadastrarContasCentrosCustoCmd cadastrarContasCentrosCustoCmd;
 
 	public void cadastrar(ProjetoTO to) {
 
@@ -38,6 +39,8 @@ public class CadastrarProjetoCmd {
 		cadastrarListaColaboradoresProjetoCmd.cadastrarLista(projeto, to.getColaboradoresProjeto());
 		
 		cadastrarParceriaProjetoCmd.cadastrarLista(projeto, to.getParceriasProjeto());
+		
+		cadastrarContasCentrosCustoCmd.cadastrarLista(null,projeto,to.getContasCentrosCusto());
 
 	}
 }

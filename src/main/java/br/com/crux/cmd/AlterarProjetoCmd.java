@@ -21,6 +21,7 @@ public class AlterarProjetoCmd {
 	@Autowired private AlterarListaColaboradoresProjetoCmd alterarListaColaboradoresProjetoCmd;
 	@Autowired private AlterarListaComposicaoRhProjetoCmd alterarListaComposicaoRhProjetoCmd;
 	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
+	@Autowired private AlterarListaContasCentrosCustoProjetoCmd alterarListaContasCentrosCustoProjetoCmd;
 
 	public void alterar(ProjetoTO to) {
 
@@ -41,6 +42,8 @@ public class AlterarProjetoCmd {
 		alterarParceriasProjetoCmd.alterarAll(to.getParceriasProjeto(), projeto);
 
 		alterarListaComposicaoRhProjetoCmd.alterarAll(to.getComposicaoRhProjeto(), projeto);
+		
+		alterarListaContasCentrosCustoProjetoCmd.alterarAll(to.getContasCentrosCusto(), projeto);
 
 		
 		

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import br.com.crux.cmd.GetColaboradoresProjetoCmd;
 import br.com.crux.cmd.GetComposicaoRhProjetoCmd;
+import br.com.crux.cmd.GetContasCentrosCustoCmd;
 import br.com.crux.cmd.GetParceriasProjetoCmd;
 import br.com.crux.cmd.GetProjetosUnidadeCmd;
 import br.com.crux.entity.Projeto;
@@ -21,6 +22,7 @@ public class ProjetoTOBuilder {
 	@Autowired private GetColaboradoresProjetoCmd getColaboradoresProjetoCmd;
 	@Autowired private GetParceriasProjetoCmd getParceriasProjetoCmd;
 	@Autowired private GetComposicaoRhProjetoCmd getComposicaoRhProjetoCmd;
+	@Autowired private GetContasCentrosCustoCmd getContasCentrosCustoCmd;
 
 	public Projeto build(ProjetoTO p) {
 		Projeto retorno = new Projeto();
@@ -67,12 +69,15 @@ public class ProjetoTOBuilder {
 		retorno.setColaboradoresProjeto((getColaboradoresProjetoCmd.getColaboradoresProjetoTOByProjeto(p)));
 		retorno.setParceriasProjeto(getParceriasProjetoCmd.getParceriasProjetoTOByProjeto(p));
 		retorno.setComposicaoRhProjeto(getComposicaoRhProjetoCmd.getComposicaoRhProjetoByProjeto(p));
+		retorno.setContasCentrosCusto(getContasCentrosCustoCmd.getTOPorProjeto(p));
 
 		return retorno;
 	}
 
 	public List<ProjetoTO> buildAll(List<Projeto> dtos) {
-		return dtos.stream().map(dto -> buildTO(dto)).collect(Collectors.toList());
+		return dtos.stream()
+				.map(dto -> buildTO(dto))
+				.collect(Collectors.toList());
 	}
 
 }
