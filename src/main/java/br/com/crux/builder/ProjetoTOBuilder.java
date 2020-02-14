@@ -80,4 +80,25 @@ public class ProjetoTOBuilder {
 				.collect(Collectors.toList());
 	}
 
+	public List<ProjetoTO> buildAllCombo(List<Projeto> dtos) {
+		return dtos.stream()
+				.map(dto -> buildTOCombo(dto))
+				.collect(Collectors.toList());
+	}
+
+	private ProjetoTO buildTOCombo(Projeto p) {
+		ProjetoTO retorno = new ProjetoTO();
+
+		if (Objects.isNull(p)) {
+			return retorno;
+		}
+
+		retorno.setId(p.getId());
+		retorno.setNome(p.getNome());
+		retorno.setDescricao(p.getDescricao());
+		
+		return retorno;
+
+	}
+
 }

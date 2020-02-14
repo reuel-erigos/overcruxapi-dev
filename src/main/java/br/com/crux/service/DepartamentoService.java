@@ -33,6 +33,11 @@ public class DepartamentoService {
 		return getDepartamentoCmd.getAll();
 	}
 
+	@GetMapping(path = "/combo", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<DepartamentoTO> getAllCombo() {
+		return getDepartamentoCmd.getAllCombo();
+	}
+
 	@GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public DepartamentoTO getById(@PathVariable(name = "id") Long idDepartamento) {
 		return getDepartamentoCmd.getTOById(idDepartamento);

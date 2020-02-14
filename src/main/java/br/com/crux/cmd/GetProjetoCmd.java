@@ -56,5 +56,14 @@ public class GetProjetoCmd {
 	public Projeto getById(Long id) {
 		return repository.findById(id).orElseGet(null);
 	}
+
+	public List<ProjetoTO> getAllIntituicaoLogadaCombo() {
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+		Optional<List<Projeto>> listaRetorno = repository.findByIdInstituicao(idInstituicao);
+		if(listaRetorno.isPresent()) {
+			return toBuilder.buildAllCombo(listaRetorno.get());
+		}
+		return new ArrayList<ProjetoTO>();
+	}
 			
 }

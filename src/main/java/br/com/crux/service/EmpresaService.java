@@ -33,6 +33,11 @@ public class EmpresaService {
 		return getCmd.getAll();
 	}
 
+	@GetMapping(path = "/combo", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<EmpresaTO> getAllCombo() {
+		return getCmd.getAllCombo();
+	}
+
 	@GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public EmpresaTO getById(@PathVariable(name = "id") Long id) {
 		return getCmd.getTOById(id);

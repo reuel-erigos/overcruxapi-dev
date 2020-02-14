@@ -34,6 +34,11 @@ public class ProjetoService {
 	public List<ProjetoTO> getAllIntituicaoLogada() {
 		return getCmd.getAllIntituicaoLogada();
 	}
+
+	@GetMapping(path = "/instituicao/logada/combo", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<ProjetoTO> getAllIntituicaoLogadaCombo() {
+		return getCmd.getAllIntituicaoLogadaCombo();
+	}
 	
 	@GetMapping(path = "/programa/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<ProjetoTO> getAllPorPrograma(@PathVariable(name = "id") Long id) {

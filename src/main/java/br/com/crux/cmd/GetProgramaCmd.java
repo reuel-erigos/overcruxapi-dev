@@ -18,37 +18,52 @@ public class GetProgramaCmd {
 
 	@Autowired private ProgramaRepository repository;
 	@Autowired private ProgramaTOBuilder toBuilder;
-	
+
 	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
-	
-	
+
 	public List<ProgramaTO> getAllProgramasIntituicaoLogada() {
-		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
-		
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO()
+				.getInstituicao()
+				.getId();
+
 		Optional<List<Programa>> listaRetorno = repository.findByIdInstituicao(idInstituicao);
-		if(listaRetorno.isPresent()) {
+		if (listaRetorno.isPresent()) {
 			return toBuilder.buildAll(listaRetorno.get());
 		}
 		return new ArrayList<ProgramaTO>();
 	}
 
-	
 	public List<ProgramaTO> getAll() {
-		Long idUnidade = getUnidadeLogadaCmd.get().getId();
+		Long idUnidade = getUnidadeLogadaCmd.get()
+				.getId();
 		Optional<List<Programa>> listaRetorno = repository.findByIdUnidade(idUnidade);
-		if(listaRetorno.isPresent()) {
+		if (listaRetorno.isPresent()) {
 			return toBuilder.buildAll(listaRetorno.get());
 		}
 		return new ArrayList<ProgramaTO>();
 	}
-	
+
 	public ProgramaTO getTOById(Long id) {
-		Programa entity = repository.findById(id).orElseThrow(() -> new NotFoundException("Programa não encontrado."));
+		Programa entity = repository.findById(id)
+				.orElseThrow(() -> new NotFoundException("Programa não encontrado."));
 		return toBuilder.buildTOComDependencias(entity);
 	}
-	
+
 	public Programa getById(Long id) {
-		return repository.findById(id).orElseGet(null);
+		return repository.findById(id)
+				.orElseGet(null);
 	}
-			
+
+	public List<ProgramaTO> getAllProgramasIntituicaoLogadaCombo() {
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO()
+				.getInstituicao()
+				.getId();
+
+		Optional<List<Programa>> listaRetorno = repository.findByIdInstituicao(idInstituicao);
+		if (listaRetorno.isPresent()) {
+			return toBuilder.buildAllCombo(listaRetorno.get());
+		}
+		return new ArrayList<ProgramaTO>();
+	}
+
 }

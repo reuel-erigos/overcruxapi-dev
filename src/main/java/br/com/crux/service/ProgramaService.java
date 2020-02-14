@@ -34,6 +34,11 @@ public class ProgramaService {
 		return getCmd.getAll();
 	}
 	
+	@GetMapping(path = "/instituicao/logada/combo", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<ProgramaTO> getAllProgramasIntituicaoLogadaCombo() {
+		return getCmd.getAllProgramasIntituicaoLogadaCombo();
+	}
+	
 	@GetMapping(path = "/instituicao/logada", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<ProgramaTO> getAllProgramasIntituicaoLogada() {
 		return getCmd.getAllProgramasIntituicaoLogada();

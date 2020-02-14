@@ -85,4 +85,24 @@ public class DepartamentoTOBuilder {
 		return dtos.stream().map(dto -> buildTO(dto)).collect(Collectors.toList());
 	}
 
+	public List<DepartamentoTO> buildAllCombo(List<Departamentos> dtos) {
+		return dtos.stream().map(dto -> buildTOCombo(dto)).collect(Collectors.toList());
+	}
+
+	private DepartamentoTO buildTOCombo(Departamentos d) {
+		DepartamentoTO to = new DepartamentoTO();
+
+		if (Objects.isNull(d)) {
+			return to;
+		}
+
+		to.setIdDepartamento(d.getIdDepartamento());
+		to.setCdUnidadeDepartamento(d.getCdUnidadeDepartamento());
+		to.setDsEnderecoDepartamento(d.getDsEnderecoDepartamento());
+		to.setNmDepartamento(d.getNmDepartamento());
+		
+		return to;
+
+	}
+
 }

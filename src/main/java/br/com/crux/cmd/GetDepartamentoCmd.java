@@ -40,5 +40,14 @@ public class GetDepartamentoCmd {
 	public Departamentos getById(Long idDepartamento) {
 		return repository.findById(idDepartamento).orElseGet(null);
 	}
+
+	public List<DepartamentoTO> getAllCombo() {
+		Long idUnidade = getUnidadeLogadaCmd.get().getId();
+		Optional<List<Departamentos>> entitys = repository.findByIdUnidade(idUnidade);
+		if(entitys.isPresent()) {
+			return toBuilder.buildAllCombo(entitys.get());
+		}
+		return new ArrayList<DepartamentoTO>();
+	}
 			
 }

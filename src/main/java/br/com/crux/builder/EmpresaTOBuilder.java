@@ -93,4 +93,24 @@ public class EmpresaTOBuilder {
 		return dtos.stream().map(dto -> buildTO(dto)).collect(Collectors.toList());
 	}
 
+	public List<EmpresaTO> buildAllCombo(List<Empresa> dtos) {
+		return dtos.stream().map(dto -> buildTOCombo(dto)).collect(Collectors.toList());
+	}
+
+	private EmpresaTO buildTOCombo(Empresa p) {
+		EmpresaTO retorno = new EmpresaTO();
+
+		if (Objects.isNull(p)) {
+			return retorno;
+		}
+
+		retorno.setId(p.getId());
+		retorno.setCodigo(p.getCodigo());
+		retorno.setNomeFantasia(p.getNomeFantasia());
+		retorno.setNomeRazaoSocial(p.getNomeRazaoSocial());
+		retorno.setCnpj(p.getCnpj());
+		
+		return retorno;
+	}
+
 }

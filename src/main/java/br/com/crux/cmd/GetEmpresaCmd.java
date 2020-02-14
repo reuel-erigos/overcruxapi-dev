@@ -39,4 +39,12 @@ public class GetEmpresaCmd {
 		return repository.findById(id).orElse(null);
 	}
 
+	public List<EmpresaTO> getAllCombo() {
+		List<EmpresaTO> entitys = toBuilder.buildAllCombo(repository.findAll());
+		if (entitys == null || entitys.isEmpty()) {
+			return new ArrayList<EmpresaTO>();
+		}
+		return entitys;
+	}
+
 }

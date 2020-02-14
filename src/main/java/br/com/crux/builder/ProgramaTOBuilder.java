@@ -131,4 +131,20 @@ public class ProgramaTOBuilder {
 		return to;
 	}
 
+	public List<ProgramaTO> buildAllCombo(List<Programa> dtos) {
+		return dtos.stream().map(this::buildTOCombo).collect(Collectors.toList());
+	}
+	
+	private ProgramaTO buildTOCombo(Programa programa) {
+		if(Objects.isNull(programa)) {
+			return null;
+		}
+		
+		ProgramaTO to = new ProgramaTO();
+		to.setId(programa.getId());
+		to.setNome(programa.getNome());
+		
+		return to;
+	}
+
 }
