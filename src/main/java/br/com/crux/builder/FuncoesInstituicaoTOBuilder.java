@@ -60,9 +60,21 @@ public class FuncoesInstituicaoTOBuilder {
 		}
 
 		BeanUtils.copyProperties(entity, to);
-//
-//		to.setFuncionario(funcionarioTOBuilder.buildTO(entity.getFuncionario()));
-//		to.setFuncoes(funcoesTOBuilder.buildTO(entity.getFuncao()));
+
+		return to;
+	}
+
+	public FuncoesInstituicaoTO buildTOEnxuto(FuncoesInstituicao entity) {
+		FuncoesInstituicaoTO to = new FuncoesInstituicaoTO();
+
+		if (Objects.isNull(entity)) {
+			return to;
+		}
+
+		BeanUtils.copyProperties(entity, to);
+
+		to.setFuncionario(funcionarioTOBuilder.buildTOCombo(entity.getFuncionario()));
+		to.setFuncoes(funcoesTOBuilder.buildTOEnxuto(entity.getFuncao()));
 
 		return to;
 	}
@@ -70,6 +82,12 @@ public class FuncoesInstituicaoTOBuilder {
 	public List<FuncoesInstituicaoTO> buildAll(List<FuncoesInstituicao> dtos) {
 		return dtos.stream()
 				.map(dto -> buildTO(dto))
+				.collect(Collectors.toList());
+	}
+
+	public List<FuncoesInstituicaoTO> buildAllEnxuto(List<FuncoesInstituicao> list) {
+		return list.stream()
+				.map(dto -> buildTOEnxuto(dto))
 				.collect(Collectors.toList());
 	}
 

@@ -50,6 +50,10 @@ public class FuncionarioTO {
 	public FuncionarioTO() {
 	}
 
+	public FuncionarioTO(Long id) {
+	this.id = id;
+	}
+
 	public Long getId() {
 		return id;
 	}

@@ -47,91 +47,100 @@ public class FuncionarioTOBuilder {
 		retorno.setMatricula(to.getMatricula());
 		retorno.setDataAdmissao(to.getDataAdmissao());
 		retorno.setDataDemissao(to.getDataDemissao());
-		
-		
-		if(StringUtils.isEmpty(to.getHoraInicioJornada()) || to.getHoraInicioJornada().length() < 5) {
+
+		if (StringUtils.isEmpty(to.getHoraInicioJornada()) || to.getHoraInicioJornada()
+				.length() < 5) {
 			retorno.setHoraInicioJornada(null);
-		}else {
+		} else {
 			retorno.setHoraInicioJornada(getData(to.getHoraInicioJornada()));
-			
+
 		}
-		
-		if(StringUtils.isEmpty(to.getHoraFimJornada()) || to.getHoraFimJornada().length() < 5) {
+
+		if (StringUtils.isEmpty(to.getHoraFimJornada()) || to.getHoraFimJornada()
+				.length() < 5) {
 			retorno.setHoraFimJornada(null);
-		}else {
+		} else {
 			retorno.setHoraFimJornada(getData(to.getHoraFimJornada()));
-			
+
 		}
 
-
-		Optional.ofNullable(to.getTipoFuncionario()).ifPresent(tp -> {
-			retorno.setTipoFuncionario(TipoFuncionario.getPorTipo(to.getTipoFuncionario()));
-		});
+		Optional.ofNullable(to.getTipoFuncionario())
+				.ifPresent(tp -> {
+					retorno.setTipoFuncionario(TipoFuncionario.getPorTipo(to.getTipoFuncionario()));
+				});
 
 		retorno.setSalarioPretendido(to.getSalarioPretendido());
 
-		Optional.ofNullable(to.getCargo()).ifPresent(c -> {
-			Cargo cargo = getCargosCmd.getById(c.getId());
-			retorno.setCargo(cargo);
-		});
+		Optional.ofNullable(to.getCargo())
+				.ifPresent(c -> {
+					Cargo cargo = getCargosCmd.getById(c.getId());
+					retorno.setCargo(cargo);
+				});
 
-		Optional.ofNullable(to.getPessoasFisica()).ifPresent(pf -> {
-			retorno.setPessoasFisica(pessoaFisicaTOBuilder.build(to.getPessoasFisica()));
-		});
+		Optional.ofNullable(to.getPessoasFisica())
+				.ifPresent(pf -> {
+					retorno.setPessoasFisica(pessoaFisicaTOBuilder.build(to.getPessoasFisica()));
+				});
 
-		Optional.ofNullable(to.getUnidade()).ifPresent(u -> {
-			if (Objects.nonNull(u.getIdUnidade())) {
-				Unidade unidade = getUnidadeCmd.getById(u.getIdUnidade());
-				retorno.setUnidade(unidade);
-			}
-		});
+		Optional.ofNullable(to.getUnidade())
+				.ifPresent(u -> {
+					if (Objects.nonNull(u.getIdUnidade())) {
+						Unidade unidade = getUnidadeCmd.getById(u.getIdUnidade());
+						retorno.setUnidade(unidade);
+					}
+				});
 
 		retorno.setDtHrEntrevista(to.getDtHrEntrevista());
 
-		Optional.ofNullable(to.getParecerEntrevistador()).ifPresent(u -> {
-			retorno.setParecerEntrevistador(ParecerEntrevistador.getPorTipo(to.getParecerEntrevistador()));
-		});
+		Optional.ofNullable(to.getParecerEntrevistador())
+				.ifPresent(u -> {
+					retorno.setParecerEntrevistador(ParecerEntrevistador.getPorTipo(to.getParecerEntrevistador()));
+				});
 
 		retorno.setDescricaoParecerEntrevistador(to.getDescricaoParecerEntrevistador());
 
-		Optional.ofNullable(to.getConclusaoParecer()).ifPresent(u -> {
-			retorno.setConclusaoParecer(ConclusaoParecer.getPorTipo(to.getConclusaoParecer()));
-		});
+		Optional.ofNullable(to.getConclusaoParecer())
+				.ifPresent(u -> {
+					retorno.setConclusaoParecer(ConclusaoParecer.getPorTipo(to.getConclusaoParecer()));
+				});
 
-		Optional.ofNullable(to.getEmpresaFuncionario()).ifPresent(ef -> {
-			if(Objects.nonNull(ef.getId())) {
-				Empresa empresa = getEmpresaCmd.getById(ef.getId());
-				retorno.setEmpresaFuncionario(empresa);
-			}
-		});
+		Optional.ofNullable(to.getEmpresaFuncionario())
+				.ifPresent(ef -> {
+					if (Objects.nonNull(ef.getId())) {
+						Empresa empresa = getEmpresaCmd.getById(ef.getId());
+						retorno.setEmpresaFuncionario(empresa);
+					}
+				});
 
-		Optional.ofNullable(to.getFuncionarioEntrevistador()).ifPresent(fe -> {
-			if(Objects.nonNull(fe.getId())) {
-				retorno.setFuncionarioEntrevistador(getFuncionarioEntrevistador(to.getFuncionarioEntrevistador()));	
-			}
-		});
+		Optional.ofNullable(to.getFuncionarioEntrevistador())
+				.ifPresent(fe -> {
+					if (Objects.nonNull(fe.getId())) {
+						retorno.setFuncionarioEntrevistador(getFuncionarioEntrevistador(to.getFuncionarioEntrevistador()));
+					}
+				});
 
-		if(Objects.nonNull(to.getDescontaValeTransporte())) {
-			retorno.setDescontaValeTransporte(to.getDescontaValeTransporte().equalsIgnoreCase("S") ? true : false);
-		}else {
+		if (Objects.nonNull(to.getDescontaValeTransporte())) {
+			retorno.setDescontaValeTransporte(to.getDescontaValeTransporte()
+					.equalsIgnoreCase("S") ? true : false);
+		} else {
 			retorno.setDescontaValeTransporte(false);
 		}
-		
-		Optional.ofNullable(to.getDepartamento()).ifPresent( d -> {
-			if(Objects.nonNull(d.getIdDepartamento())) {
-				Departamentos departamento = getDepartamentoCmd.getById(d.getIdDepartamento());
-				retorno.setDepartamento(departamento);
-			}
-		});
 
-		
+		Optional.ofNullable(to.getDepartamento())
+				.ifPresent(d -> {
+					if (Objects.nonNull(d.getIdDepartamento())) {
+						Departamentos departamento = getDepartamentoCmd.getById(d.getIdDepartamento());
+						retorno.setDepartamento(departamento);
+					}
+				});
+
 		retorno.setUsuarioAlteracao(to.getUsuarioAlteracao());
 
 		return retorno;
 	}
-		
+
 	private LocalDateTime getData(String horaInicioJornada) {
-		LocalDateTime data = LocalDateTime.parse("2001-01-01T"+horaInicioJornada+":00");
+		LocalDateTime data = LocalDateTime.parse("2001-01-01T" + horaInicioJornada + ":00");
 		return data;
 	}
 
@@ -147,33 +156,39 @@ public class FuncionarioTOBuilder {
 		retorno.setDataAdmissao(entity.getDataAdmissao());
 		retorno.setDataDemissao(entity.getDataDemissao());
 
-		Optional.ofNullable(entity.getTipoFuncionario()).ifPresent(tf -> {
-			retorno.setTipoFuncionario(tf.getTipo());
-		});
+		Optional.ofNullable(entity.getTipoFuncionario())
+				.ifPresent(tf -> {
+					retorno.setTipoFuncionario(tf.getTipo());
+				});
 
 		retorno.setSalarioPretendido(entity.getSalarioPretendido());
 
-		Optional.ofNullable(entity.getCargo()).ifPresent(cargo -> {
-			retorno.setCargo(cargoTOBuilder.buildTO(cargo));
-		});
+		Optional.ofNullable(entity.getCargo())
+				.ifPresent(cargo -> {
+					retorno.setCargo(cargoTOBuilder.buildTO(cargo));
+				});
 
-		Optional.ofNullable(entity.getPessoasFisica()).ifPresent(pf -> {
-			retorno.setPessoasFisica(pessoaFisicaTOBuilder.buildTO(pf));
-		});
+		Optional.ofNullable(entity.getPessoasFisica())
+				.ifPresent(pf -> {
+					retorno.setPessoasFisica(pessoaFisicaTOBuilder.buildTO(pf));
+				});
 
-		Optional.ofNullable(entity.getUnidade()).ifPresent(u -> {
-			retorno.setUnidade(unidadeBuilder.buildTO(u));
-		});
+		Optional.ofNullable(entity.getUnidade())
+				.ifPresent(u -> {
+					retorno.setUnidade(unidadeBuilder.buildTO(u));
+				});
 
 		retorno.setDtHrEntrevista(entity.getDtHrEntrevista());
 
-		Optional.ofNullable(entity.getParecerEntrevistador()).ifPresent(pe -> {
-			retorno.setParecerEntrevistador(pe.getTipo());
-		});
+		Optional.ofNullable(entity.getParecerEntrevistador())
+				.ifPresent(pe -> {
+					retorno.setParecerEntrevistador(pe.getTipo());
+				});
 
-		Optional.ofNullable(entity.getConclusaoParecer()).ifPresent(cp -> {
-			retorno.setConclusaoParecer(cp.getTipo());
-		});
+		Optional.ofNullable(entity.getConclusaoParecer())
+				.ifPresent(cp -> {
+					retorno.setConclusaoParecer(cp.getTipo());
+				});
 
 		retorno.setDescricaoParecerEntrevistador(entity.getDescricaoParecerEntrevistador());
 		retorno.setEmpresaFuncionario(empresaTOBuilder.buildTO(entity.getEmpresaFuncionario()));
@@ -181,58 +196,74 @@ public class FuncionarioTOBuilder {
 
 		retorno.setDescontaValeTransporte(entity.getDescontaValeTransporte() ? "S" : "N");
 		retorno.setDepartamento(departamentoTOBuilder.buildTO(entity.getDepartamento()));
-		
+
 		retorno.setUsuarioAlteracao(entity.getUsuarioAlteracao());
-		
-		Optional.ofNullable(entity.getHoraInicioJornada()).ifPresent(hora -> {
-			String substring = hora.toString().substring(11);
-			retorno.setHoraInicioJornada(substring);
-		});
-		
-		Optional.ofNullable(entity.getHoraFimJornada()).ifPresent(hora -> {
-			String substring = hora.toString().substring(11);
-			retorno.setHoraFimJornada(substring);
-		});
-		
+
+		Optional.ofNullable(entity.getHoraInicioJornada())
+				.ifPresent(hora -> {
+					String substring = hora.toString()
+							.substring(11);
+					retorno.setHoraInicioJornada(substring);
+				});
+
+		Optional.ofNullable(entity.getHoraFimJornada())
+				.ifPresent(hora -> {
+					String substring = hora.toString()
+							.substring(11);
+					retorno.setHoraFimJornada(substring);
+				});
 
 		return retorno;
 	}
-	
-	
+
 	public Funcionario build(FuncionarioTO to) {
 		Funcionario retorno = new Funcionario();
-		
+
 		retorno = buildSemRelacionamentosCircular(to);
-		
+
 		if (Objects.nonNull(to.getDependentes())) {
 			retorno.setDependentes(dependentesTOBuilder.buildTOAll(to.getDependentes()));
 		}
-		
+
 		if (Objects.nonNull(to.getAlocacoesFuncionario())) {
 			retorno.setAlocacoesFuncionario(alocacoesFuncionarioTOBuilder.buildTOAll(to.getAlocacoesFuncionario()));
 		}
-		
+
 		return retorno;
 	}
-	
+
 	public FuncionarioTO buildTO(Funcionario p) {
 		FuncionarioTO retorno = new FuncionarioTO();
 
 		if (Objects.isNull(p)) {
 			return retorno;
 		}
-		
+
 		retorno = buildTOSemRelacionamentosCircular(p);
-		
+
 		if (Objects.nonNull(p.getDependentes())) {
 			retorno.setDependentes(dependentesTOBuilder.buildAll(p.getDependentes()));
 		}
-		
+
 		if (Objects.nonNull(p.getAlocacoesFuncionario())) {
 			retorno.setAlocacoesFuncionario(alocacoesFuncionarioTOBuilder.buildAll(p.getAlocacoesFuncionario()));
-		}		
-		
+		}
+
 		return retorno;
+	}
+
+	public FuncionarioTO buildTOCombo(Funcionario p) {
+		FuncionarioTO to = new FuncionarioTO();
+
+		if (Objects.isNull(p)) {
+			return to;
+		}
+
+		to.setId(p.getId());
+
+		to.setPessoasFisica(pessoaFisicaTOBuilder.buildParaCombo(p.getPessoasFisica()));
+
+		return to;
 	}
 
 	private FuncionarioTO getFuncionarioEntrevistador(Funcionario p) {
@@ -247,13 +278,15 @@ public class FuncionarioTOBuilder {
 		retorno.setDataAdmissao(p.getDataAdmissao());
 		retorno.setDataDemissao(p.getDataDemissao());
 
-		Optional.ofNullable(p.getTipoFuncionario()).ifPresent(tf -> {
-			retorno.setTipoFuncionario(tf.getTipo());
-		});
+		Optional.ofNullable(p.getTipoFuncionario())
+				.ifPresent(tf -> {
+					retorno.setTipoFuncionario(tf.getTipo());
+				});
 
-		Optional.ofNullable(p.getTipoFuncionario()).ifPresent(tf -> {
-			retorno.setTipoFuncionario(tf.getTipo());
-		});
+		Optional.ofNullable(p.getTipoFuncionario())
+				.ifPresent(tf -> {
+					retorno.setTipoFuncionario(tf.getTipo());
+				});
 		retorno.setSalarioPretendido(p.getSalarioPretendido());
 
 		retorno.setCargo(cargoTOBuilder.buildTO(p.getCargo()));
@@ -264,21 +297,23 @@ public class FuncionarioTOBuilder {
 
 		retorno.setDtHrEntrevista(p.getDtHrEntrevista());
 
-		Optional.ofNullable(p.getParecerEntrevistador()).ifPresent(pe -> {
-			retorno.setParecerEntrevistador(pe.getTipo());
-		});
+		Optional.ofNullable(p.getParecerEntrevistador())
+				.ifPresent(pe -> {
+					retorno.setParecerEntrevistador(pe.getTipo());
+				});
 
 		retorno.setDescricaoParecerEntrevistador(p.getDescricaoParecerEntrevistador());
 
-		Optional.ofNullable(p.getConclusaoParecer()).ifPresent(cp -> {
-			retorno.setConclusaoParecer(cp.getTipo());
-		});
+		Optional.ofNullable(p.getConclusaoParecer())
+				.ifPresent(cp -> {
+					retorno.setConclusaoParecer(cp.getTipo());
+				});
 
 		retorno.setEmpresaFuncionario(empresaTOBuilder.buildTO(p.getEmpresaFuncionario()));
-		
+
 		retorno.setDescontaValeTransporte(p.getDescontaValeTransporte() ? "S" : "N");
 		retorno.setDepartamento(departamentoTOBuilder.buildTO(p.getDepartamento()));
-		
+
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
 
 		return retorno;
@@ -294,47 +329,55 @@ public class FuncionarioTOBuilder {
 		retorno.setTipoFuncionario(TipoFuncionario.getPorTipo(p.getTipoFuncionario()));
 		retorno.setSalarioPretendido(p.getSalarioPretendido());
 
-		Optional.ofNullable(p.getCargo()).ifPresent(cargo -> {
-			retorno.setCargo(cargoTOBuilder.build(cargo));
-		});
+		Optional.ofNullable(p.getCargo())
+				.ifPresent(cargo -> {
+					retorno.setCargo(cargoTOBuilder.build(cargo));
+				});
 
-		Optional.ofNullable(p.getPessoasFisica()).ifPresent(pessoa -> {
-			retorno.setPessoasFisica(pessoaFisicaTOBuilder.build(pessoa));
-		});
+		Optional.ofNullable(p.getPessoasFisica())
+				.ifPresent(pessoa -> {
+					retorno.setPessoasFisica(pessoaFisicaTOBuilder.build(pessoa));
+				});
 
-		Optional.ofNullable(p.getPessoasFisica()).ifPresent(pessoa -> {
-			retorno.setPessoasFisica(pessoaFisicaTOBuilder.build(pessoa));
-		});
+		Optional.ofNullable(p.getPessoasFisica())
+				.ifPresent(pessoa -> {
+					retorno.setPessoasFisica(pessoaFisicaTOBuilder.build(pessoa));
+				});
 
-		Optional.ofNullable(p.getUnidade()).ifPresent(unidade -> {
-			retorno.setUnidade(unidadeBuilder.build(unidade));
-		});
+		Optional.ofNullable(p.getUnidade())
+				.ifPresent(unidade -> {
+					retorno.setUnidade(unidadeBuilder.build(unidade));
+				});
 
-		Optional.ofNullable(p.getEmpresaFuncionario()).ifPresent(empresa -> {
-			retorno.setEmpresaFuncionario(empresaTOBuilder.build(empresa));
-		});
+		Optional.ofNullable(p.getEmpresaFuncionario())
+				.ifPresent(empresa -> {
+					retorno.setEmpresaFuncionario(empresaTOBuilder.build(empresa));
+				});
 
 		retorno.setDtHrEntrevista(p.getDtHrEntrevista());
 
-		Optional.ofNullable(p.getParecerEntrevistador()).ifPresent(pe -> {
-			retorno.setParecerEntrevistador(ParecerEntrevistador.getPorTipo(pe));
-		});
+		Optional.ofNullable(p.getParecerEntrevistador())
+				.ifPresent(pe -> {
+					retorno.setParecerEntrevistador(ParecerEntrevistador.getPorTipo(pe));
+				});
 
 		retorno.setDescricaoParecerEntrevistador(p.getDescricaoParecerEntrevistador());
 
-		Optional.ofNullable(p.getConclusaoParecer()).ifPresent(cp -> {
-			retorno.setConclusaoParecer(ConclusaoParecer.getPorTipo(cp));
-		});
-		
-		retorno.setDescontaValeTransporte(p.getDescontaValeTransporte().equalsIgnoreCase("S") ? true : false);
-		
-		Optional.ofNullable(p.getDepartamento()).ifPresent( d -> {
-			if(Objects.nonNull(d.getIdDepartamento())) {
-				Departamentos departamento = getDepartamentoCmd.getById(d.getIdDepartamento());
-				retorno.setDepartamento(departamento);
-			}
-		});
-	
+		Optional.ofNullable(p.getConclusaoParecer())
+				.ifPresent(cp -> {
+					retorno.setConclusaoParecer(ConclusaoParecer.getPorTipo(cp));
+				});
+
+		retorno.setDescontaValeTransporte(p.getDescontaValeTransporte()
+				.equalsIgnoreCase("S") ? true : false);
+
+		Optional.ofNullable(p.getDepartamento())
+				.ifPresent(d -> {
+					if (Objects.nonNull(d.getIdDepartamento())) {
+						Departamentos departamento = getDepartamentoCmd.getById(d.getIdDepartamento());
+						retorno.setDepartamento(departamento);
+					}
+				});
 
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
 
@@ -342,7 +385,19 @@ public class FuncionarioTOBuilder {
 	}
 
 	public List<FuncionarioTO> buildAll(List<Funcionario> dtos) {
-		return dtos.stream().map(dto -> buildTO(dto)).collect(Collectors.toList());
+		return dtos.stream()
+				.map(dto -> buildTO(dto))
+				.collect(Collectors.toList());
+	}
+
+	public List<FuncionarioTO> buildAllTOCombo(List<Funcionario> dtos) {
+		return dtos.stream()
+				.map(dto -> buildTOCombo(dto))
+				.collect(Collectors.toList());
+	}
+
+	public FuncionarioTO buildTOEnxuto(Funcionario funcionario) {
+		return new FuncionarioTO(funcionario.getId());
 	}
 
 }

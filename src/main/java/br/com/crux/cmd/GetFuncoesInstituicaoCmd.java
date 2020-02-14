@@ -33,7 +33,7 @@ public class GetFuncoesInstituicaoCmd {
 		Optional<List<FuncoesInstituicao>> lista = repository.findByInstituicao(instituicao);
 
 		if (lista.isPresent()) {
-			return toBuilder.buildAll(lista.get());
+			return toBuilder.buildAllEnxuto(lista.get());
 		}
 
 		return Collections.emptyList();

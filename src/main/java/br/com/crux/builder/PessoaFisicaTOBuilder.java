@@ -236,6 +236,21 @@ public class PessoaFisicaTOBuilder {
 		return retorno;
 	}
 
+	public PessoaFisicaTO buildParaCombo(PessoaFisica p) {
+		PessoaFisicaTO to = new PessoaFisicaTO();
+		
+		if(Objects.isNull(p)) {
+			return to;
+		}
+		
+		to.setId(p.getId());
+		to.setNome(p.getNome());
+		to.setCpf(p.getCpf());
+		
+		return to;
+		
+	}
+	
 	public List<PessoaFisicaTO> buildAll(List<PessoaFisica> dtos) {
 		return dtos.stream().map(dto -> buildTO(dto)).collect(Collectors.toList());
 	}

@@ -51,7 +51,7 @@ public class FuncionarioService {
 		return getCmd.getFuncionarioPorUnidades(ids);
 	}
 
-	@GetMapping(path = "/instituicao/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(path = "/combo/instituicao/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<FuncionarioTO> getPor(@PathVariable Long id) {
 		return getCmd.getFuncionarioPorInstituicao(id);
 	}

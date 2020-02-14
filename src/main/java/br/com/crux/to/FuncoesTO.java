@@ -9,6 +9,12 @@ public class FuncoesTO {
 	private UnidadeTO unidade;
 	
 
+	public FuncoesTO() {}
+
+	public FuncoesTO(Long id) {
+		this.id = id;
+	}
+	
 	public Long getId() {
 		return id;
 	}

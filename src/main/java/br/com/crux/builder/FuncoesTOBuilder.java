@@ -63,5 +63,20 @@ public class FuncoesTOBuilder {
 				.map(dto -> buildTO(dto))
 				.collect(Collectors.toList());
 	}
+	
+	public FuncoesTO buildTOEnxuto(Funcoes entity) {
+		FuncoesTO to = new FuncoesTO();
+
+		if (Objects.isNull(entity)) {
+			return to;
+		}
+
+
+		to.setId(entity.getId());
+		to.setNome(entity.getNome());
+		
+		return to;
+	}
+
 
 }

@@ -37,6 +37,7 @@ public class InstituicaoTOBuilder {
 		}
 
 		BeanUtils.copyProperties(instituicao, to);
+		
 		to.setFuncoesInstituicao(getFuncoesInstituicaoCmd.getFuncoesInstituicaoTOByInstituicao(instituicao));
 
 		return to;

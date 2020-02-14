@@ -65,7 +65,7 @@ public class GetFuncionarioCmd {
 
 	public List<FuncionarioTO> getFuncionarioPorInstituicao(Long id) {
 		List<Funcionario> lista = repository.getPorInstituicao(id).orElseThrow(() -> new NotFoundException("Funcionários não encontrado."));
-		return toBuilder.buildAll(lista);
+		return toBuilder.buildAllTOCombo(lista);
 
 	}
 
