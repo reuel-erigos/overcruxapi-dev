@@ -13,7 +13,7 @@ import br.com.crux.to.UniformesAlunoTO;
 public class UniformesAlunoTOBuilder {
 
 	@Autowired
-	private UnidadeTOBuilder unidadeTOBuilder;
+	private AtividadesAlunoTOBuilder atividadesAlunoBuilder;
 
 	public UniformesAluno build(UniformesAlunoTO p) {
 		UniformesAluno retorno = new UniformesAluno();
@@ -22,7 +22,7 @@ public class UniformesAlunoTOBuilder {
 		retorno.setNomeUniforme(p.getNomeUniforme());
 		retorno.setDataUniformeEntregue(p.getDataUniformeEntregue());
 		retorno.setQtdUniformeEntregue(p.getQtdUniformeEntregue());
-		retorno.setUnidade(unidadeTOBuilder.build(p.getUnidade()));
+		retorno.setAtividadesAluno(atividadesAlunoBuilder.build(p.getAtividadesAluno()));
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
 
 		return retorno;
@@ -35,7 +35,7 @@ public class UniformesAlunoTOBuilder {
 		retorno.setNomeUniforme(p.getNomeUniforme());
 		retorno.setDataUniformeEntregue(p.getDataUniformeEntregue());
 		retorno.setQtdUniformeEntregue(p.getQtdUniformeEntregue());
-		retorno.setUnidade(unidadeTOBuilder.buildTO(p.getUnidade()));
+		retorno.setAtividadesAluno(atividadesAlunoBuilder.buildTO(p.getAtividadesAluno()));
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
 

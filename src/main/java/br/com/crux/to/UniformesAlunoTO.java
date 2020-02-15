@@ -15,7 +15,7 @@ public class UniformesAlunoTO {
 	
 	private String nomeUniforme;
 	private Long qtdUniformeEntregue;
-	private UnidadeTO unidade;
+	private AtividadesAlunoTO atividadesAluno;
 	private Long usuarioAlteracao;
 
 	public UniformesAlunoTO() {
@@ -53,12 +53,12 @@ public class UniformesAlunoTO {
 		this.qtdUniformeEntregue = qtdUniformeEntregue;
 	}
 
-	public UnidadeTO getUnidade() {
-		return unidade;
+	public AtividadesAlunoTO getAtividadesAluno() {
+		return atividadesAluno;
 	}
 
-	public void setUnidade(UnidadeTO unidade) {
-		this.unidade = unidade;
+	public void setAtividadesAluno(AtividadesAlunoTO atividadesAluno) {
+		this.atividadesAluno = atividadesAluno;
 	}
 
 	public Long getUsuarioAlteracao() {
