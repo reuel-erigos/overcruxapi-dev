@@ -41,16 +41,13 @@
 		<class>br.com.crux.entity.GruposModulo</class>
 		<class>br.com.crux.entity.Indicadores</class>
 		<class>br.com.crux.entity.Iniciativa</class>
-		<class>br.com.crux.entity.ItensFatura</class>
 		<class>br.com.crux.entity.ItensObjetosModulo</class>
 		<class>br.com.crux.entity.Metas</class>
 		<class>br.com.crux.entity.Modulo</class>
-		<class>br.com.crux.entity.MovimentacoesConta</class>
 		<class>br.com.crux.entity.Objetivo</class>
 		<class>br.com.crux.entity.ObjetosModulo</class>
 		<class>br.com.crux.entity.PagamentosFatura</class>
 		<class>br.com.crux.entity.Parametros</class>
-		<class>br.com.crux.entity.Pedido</class>
 		<class>br.com.crux.entity.PerfilAcesso</class>
 		<class>br.com.crux.entity.Perspectiva</class>
 		<class>br.com.crux.entity.PessoaFisica</class>

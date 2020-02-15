@@ -11,7 +11,7 @@ import br.com.crux.to.UniformesAlunoTO;
 public class CamposObrigatoriosUniformesAlunoRule {
 
 	public void verificar(UniformesAlunoTO to) {
-		if(Objects.isNull(to.getAtividadesAluno())) {
+		if(Objects.isNull(to.getUnidade())) {
 			throw new CamposObrigatoriosException("Atividade do aluno deve ser informada.");
 		}
 		

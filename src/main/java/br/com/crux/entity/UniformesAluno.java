@@ -36,8 +36,8 @@ public class UniformesAluno {
 	private Long qtdUniformeEntregue;
 
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="id_atividade_aluno")
-	private AtividadesAluno atividadesAluno;
+	@JoinColumn(name="id_unidade")
+	private Unidade unidade;
 
 	@Column(name="id_usuario_apl")
 	private Long usuarioAlteracao;
@@ -77,12 +77,12 @@ public class UniformesAluno {
 		this.qtdUniformeEntregue = qtdUniformeEntregue;
 	}
 
-	public AtividadesAluno getAtividadesAluno() {
-		return atividadesAluno;
+	public Unidade getUnidade() {
+		return unidade;
 	}
 
-	public void setAtividadesAluno(AtividadesAluno atividadesAluno) {
-		this.atividadesAluno = atividadesAluno;
+	public void setUnidade(Unidade unidade) {
+		this.unidade = unidade;
 	}
 
 	public Long getUsuarioAlteracao() {

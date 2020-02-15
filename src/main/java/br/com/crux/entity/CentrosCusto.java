@@ -1,8 +1,17 @@
 package br.com.crux.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 
 /**
@@ -26,18 +35,9 @@ public class CentrosCusto implements Serializable {
 	@Column(name="nr_centro_custo")
 	private String nrCentroCusto;
 
-	//bi-directional many-to-one association to UsuariosSistema
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_usuario_apl")
 	private UsuariosSistema usuariosSistema;
-
-	//bi-directional many-to-one association to ItensFatura
-	@OneToMany(mappedBy="centrosCusto")
-	private List<ItensFatura> itensFaturas;
-
-	//bi-directional many-to-one association to Pedido
-	@OneToMany(mappedBy="centrosCusto")
-	private List<Pedido> pedidos;
 
 	public CentrosCusto() {
 	}
@@ -72,50 +72,6 @@ public class CentrosCusto implements Serializable {
 
 	public void setUsuariosSistema(UsuariosSistema usuariosSistema) {
 		this.usuariosSistema = usuariosSistema;
-	}
-
-	public List<ItensFatura> getItensFaturas() {
-		return this.itensFaturas;
-	}
-
-	public void setItensFaturas(List<ItensFatura> itensFaturas) {
-		this.itensFaturas = itensFaturas;
-	}
-
-	public ItensFatura addItensFatura(ItensFatura itensFatura) {
-		getItensFaturas().add(itensFatura);
-		itensFatura.setCentrosCusto(this);
-
-		return itensFatura;
-	}
-
-	public ItensFatura removeItensFatura(ItensFatura itensFatura) {
-		getItensFaturas().remove(itensFatura);
-		itensFatura.setCentrosCusto(null);
-
-		return itensFatura;
-	}
-
-	public List<Pedido> getPedidos() {
-		return this.pedidos;
-	}
-
-	public void setPedidos(List<Pedido> pedidos) {
-		this.pedidos = pedidos;
-	}
-
-	public Pedido addPedido(Pedido pedido) {
-		getPedidos().add(pedido);
-		pedido.setCentrosCusto(this);
-
-		return pedido;
-	}
-
-	public Pedido removePedido(Pedido pedido) {
-		getPedidos().remove(pedido);
-		pedido.setCentrosCusto(null);
-
-		return pedido;
 	}
 
 }

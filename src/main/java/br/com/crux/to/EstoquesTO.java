@@ -23,10 +23,11 @@ public class EstoquesTO {
 	private LocalDateTime dtAtzEstoque;
 
 	private Double quantidadeEstoque;
-	private Double valorMedioMaterial;
-	private Double valorUltimoMaterial;
 	private Double quantidadeMinimoEstoque;
 	private Double quantidadeMaximoEstoque;
+	
+	private Double valorMedioMaterial;
+	private Double valorUltimoMaterial;
 	private Double valorEntradaMaterial;
 	
 	private String descricaoMovimentacaoEstoque;

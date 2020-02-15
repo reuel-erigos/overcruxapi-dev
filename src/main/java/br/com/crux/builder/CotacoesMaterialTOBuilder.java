@@ -15,7 +15,7 @@ import br.com.crux.cmd.GetUsuarioLogadoCmd;
 import br.com.crux.entity.CotacoesMaterial;
 import br.com.crux.entity.Empresa;
 import br.com.crux.entity.Material;
-import br.com.crux.entity.Pedido;
+import br.com.crux.entity.PedidosMateriais;
 import br.com.crux.to.CotacoesMaterialTO;
 
 @Component
@@ -50,11 +50,11 @@ public class CotacoesMaterialTOBuilder {
 			entity.setMaterial(material);
 		}
 
-		if (Objects.nonNull(to.getPedido()) && Objects.nonNull(to.getPedido()
+		if (Objects.nonNull(to.getPedidosMaterial()) && Objects.nonNull(to.getPedidosMaterial()
 				.getId())) {
-			Pedido pedido = getPedidoCmd.getById(to.getPedido()
+			PedidosMateriais pedido = getPedidoCmd.getById(to.getPedidosMaterial()
 					.getId());
-			entity.setPedido(pedido);
+			entity.setPedidosMateriais(pedido);
 		}
 
 		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado()
@@ -74,7 +74,7 @@ public class CotacoesMaterialTOBuilder {
 
 		to.setEmpresa(empresaBuilder.buildTO(entity.getEmpresa()));
 		to.setMaterial(materialBuilder.buildTO(entity.getMaterial()));
-		to.setPedido(pedidoBuilder.buildTO(entity.getPedido()));
+		to.setPedidosMaterial(pedidoBuilder.buildTO(entity.getPedidosMaterial()));
 
 		return to;
 	}

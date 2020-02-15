@@ -14,9 +14,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import br.com.crux.entity.Empresa;
-import br.com.crux.entity.Material;
-import br.com.crux.entity.Pedido;
 import br.com.crux.infra.constantes.Constantes;
 
 
@@ -51,7 +48,7 @@ public class CotacoesMaterial implements Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="id_pedido")
-	private Pedido pedido;
+	private PedidosMateriais pedidosMaterial;
 
 	@Column(name = "id_usuario_apl")
 	private Long usuarioAlteracao;
@@ -108,12 +105,12 @@ public class CotacoesMaterial implements Serializable {
 		this.material = material;
 	}
 
-	public Pedido getPedido() {
-		return pedido;
+	public PedidosMateriais getPedidosMaterial() {
+		return pedidosMaterial;
 	}
 
-	public void setPedido(Pedido pedido) {
-		this.pedido = pedido;
+	public void setPedidosMateriais(PedidosMateriais pedido) {
+		this.pedidosMaterial = pedido;
 	}
 
 	public Long getUsuarioAlteracao() {

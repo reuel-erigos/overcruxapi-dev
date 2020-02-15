@@ -1,7 +1,7 @@
 
 package br.com.crux.to;
 
-public class PedidoTO {
+public class PedidosMateriaisTO {
  //TODO
 	
 	private Long id;

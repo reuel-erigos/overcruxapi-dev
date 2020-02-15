@@ -10,7 +10,7 @@ public class CotacoesMaterialTO {
 	private LocalDateTime dataValidadeCotacao;
 	private EmpresaTO empresa;
 	private MaterialTO material;
-	private PedidoTO pedido;
+	private PedidosMateriaisTO pedidosMaterial;
 	private Double quantidadeMaterial;
 	private Double valorTotalCotacao;
 	private Double valorUnitarioCotacao;
@@ -55,12 +55,12 @@ public class CotacoesMaterialTO {
 		this.material = material;
 	}
 
-	public PedidoTO getPedido() {
-		return pedido;
+	public PedidosMateriaisTO getPedidosMaterial() {
+		return pedidosMaterial;
 	}
 
-	public void setPedido(PedidoTO pedido) {
-		this.pedido = pedido;
+	public void setPedidosMaterial(PedidosMateriaisTO pedido) {
+		this.pedidosMaterial = pedido;
 	}
 
 	public Double getQuantidadeMaterial() {
