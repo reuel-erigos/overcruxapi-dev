@@ -20,6 +20,11 @@ import br.com.crux.to.MovimentacoesTO;
 @Component
 public class MovimentacoesTOBuilder {
 
+	@Autowired private EmpresaTOBuilder empresaTOBuilder;
+	@Autowired private ProjetoTOBuilder projetoTOBuilder;
+	@Autowired private ProgramaTOBuilder programaTOBuilder;
+	@Autowired private UnidadeTOBuilder unidadeTOBuilder;
+	@Autowired private DepartamentoTOBuilder departamentoTOBuilder;
 	@Autowired private GetEmpresaCmd getEmpresaCmd;
 	@Autowired private GetProjetoCmd getProjetoCmd;
 	@Autowired private GetProgramaCmd getProgramaCmd;
@@ -34,11 +39,13 @@ public class MovimentacoesTOBuilder {
 			return to;
 		}
 
-		to.setId(m.getId());
-		to.setStTipoMovimentacao(m.getStTipoMovimentacao());
-		to.setQtdParcelas(m.getQtdParcelas());
-		to.setValorMovimentacao(m.getValorMovimentacao());
-		to.setDataMovimentacao(m.getDataMovimentacao());
+		BeanUtils.copyProperties(m, to);
+		to.setEmpresa(empresaTOBuilder.buildTOCombo(m.getEmpresa()));
+		to.setProjeto(projetoTOBuilder.buildTOCombo(m.getProjeto()));
+		to.setPrograma(programaTOBuilder.buildTOCombo(m.getPrograma()));
+		to.setPrograma(programaTOBuilder.buildTOCombo(m.getPrograma()));
+		to.setUnidade(unidadeTOBuilder.buildTOCombo(m.getUnidade()));
+		to.setDepartamento(departamentoTOBuilder.buildTOCombo(m.getDepartamento()));
 
 		return to;
 	}
@@ -87,8 +94,7 @@ public class MovimentacoesTOBuilder {
 
 		p.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado()
 				.getIdUsuario());
-		
-		
+
 		return p;
 	}
 

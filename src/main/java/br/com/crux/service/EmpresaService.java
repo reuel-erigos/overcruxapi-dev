@@ -20,7 +20,7 @@ import br.com.crux.cmd.GetEmpresaCmd;
 import br.com.crux.to.EmpresaTO;
 
 @RestController
-@RequestMapping(value = "empresa")
+@RequestMapping(value = "empresas")
 public class EmpresaService {
 
 	@Autowired private GetEmpresaCmd getCmd;

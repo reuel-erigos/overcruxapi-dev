@@ -21,7 +21,7 @@ import br.com.crux.cmd.GetProjetoCmd;
 import br.com.crux.to.ProjetoTO;
 
 @RestController
-@RequestMapping(value = "projeto")
+@RequestMapping(value = "projetos")
 public class ProjetoService {
 
 	@Autowired private GetProjetoCmd getCmd;
@@ -48,6 +48,11 @@ public class ProjetoService {
 	@GetMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<ProjetoTO> getAll() {
 		return getCmd.getAll();
+	}
+
+	@GetMapping(path = "/combo", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<ProjetoTO> getAllCombo() {
+		return getCmd.getAllCombo();
 	}
 
 	@GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

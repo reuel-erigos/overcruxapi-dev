@@ -53,7 +53,7 @@ public class FuncoesTOBuilder {
 
 		BeanUtils.copyProperties(entity, to);
 
-		to.setUnidade(unidadeBuilder.buildTOPraCombo(entity.getUnidade()));
+		to.setUnidade(unidadeBuilder.buildTOCombo(entity.getUnidade()));
 
 		return to;
 	}

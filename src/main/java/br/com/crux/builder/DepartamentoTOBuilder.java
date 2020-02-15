@@ -89,7 +89,7 @@ public class DepartamentoTOBuilder {
 		return dtos.stream().map(dto -> buildTOCombo(dto)).collect(Collectors.toList());
 	}
 
-	private DepartamentoTO buildTOCombo(Departamentos d) {
+	public DepartamentoTO buildTOCombo(Departamentos d) {
 		DepartamentoTO to = new DepartamentoTO();
 
 		if (Objects.isNull(d)) {

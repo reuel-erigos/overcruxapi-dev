@@ -97,7 +97,7 @@ public class EmpresaTOBuilder {
 		return dtos.stream().map(dto -> buildTOCombo(dto)).collect(Collectors.toList());
 	}
 
-	private EmpresaTO buildTOCombo(Empresa p) {
+	public EmpresaTO buildTOCombo(Empresa p) {
 		EmpresaTO retorno = new EmpresaTO();
 
 		if (Objects.isNull(p)) {

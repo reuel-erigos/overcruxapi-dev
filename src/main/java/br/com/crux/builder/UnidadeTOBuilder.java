@@ -118,7 +118,7 @@ public class UnidadeTOBuilder {
 	}
 	
 	public List<UnidadeTO> buildAllTOParaCombo(List<Unidade> dtos) {
-		return dtos.stream().map(dto -> buildTOPraCombo(dto)).collect(Collectors.toList());
+		return dtos.stream().map(dto -> buildTOCombo(dto)).collect(Collectors.toList());
 	}
 	
 	public UnidadeTO buildTOComUnidadeLogada(Unidade unidade) {
@@ -128,7 +128,7 @@ public class UnidadeTOBuilder {
 		
 	}
 	
-	public UnidadeTO buildTOPraCombo(Unidade unidade) {
+	public UnidadeTO buildTOCombo(Unidade unidade) {
 		UnidadeTO to = new UnidadeTO();
 		
 		to.setIdUnidade(unidade.getIdUnidade());

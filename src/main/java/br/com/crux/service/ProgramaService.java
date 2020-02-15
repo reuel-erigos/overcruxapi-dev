@@ -21,7 +21,7 @@ import br.com.crux.cmd.GetProgramaCmd;
 import br.com.crux.to.ProgramaTO;
 
 @RestController
-@RequestMapping(value = "programa")
+@RequestMapping(value = "programas")
 public class ProgramaService {
 
 	@Autowired private GetProgramaCmd getCmd;
@@ -32,6 +32,11 @@ public class ProgramaService {
 	@GetMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<ProgramaTO> getAll() {
 		return getCmd.getAll();
+	}
+	
+	@GetMapping(path = "/combo", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<ProgramaTO> getAllCombo() {
+		return getCmd.getAllCombo();
 	}
 	
 	@GetMapping(path = "/instituicao/logada/combo", produces = MediaType.APPLICATION_JSON_VALUE)

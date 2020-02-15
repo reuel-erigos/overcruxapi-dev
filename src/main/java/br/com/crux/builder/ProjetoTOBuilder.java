@@ -86,7 +86,7 @@ public class ProjetoTOBuilder {
 				.collect(Collectors.toList());
 	}
 
-	private ProjetoTO buildTOCombo(Projeto p) {
+	public ProjetoTO buildTOCombo(Projeto p) {
 		ProjetoTO retorno = new ProjetoTO();
 
 		if (Objects.isNull(p)) {

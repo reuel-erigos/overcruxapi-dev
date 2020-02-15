@@ -66,4 +66,14 @@ public class GetProgramaCmd {
 		return new ArrayList<ProgramaTO>();
 	}
 
+	public List<ProgramaTO> getAllCombo() {
+		Long idUnidade = getUnidadeLogadaCmd.get()
+				.getId();
+		Optional<List<Programa>> listaRetorno = repository.findByIdUnidade(idUnidade);
+		if (listaRetorno.isPresent()) {
+			return toBuilder.buildAllCombo(listaRetorno.get());
+		}
+		return new ArrayList<ProgramaTO>();
+	}
+
 }
