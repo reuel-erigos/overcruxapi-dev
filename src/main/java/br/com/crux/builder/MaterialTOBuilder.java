@@ -7,6 +7,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import br.com.crux.cmd.GetUnidadeLogadaCmd;
 import br.com.crux.cmd.GetUsuarioLogadoCmd;
 import br.com.crux.entity.Material;
 import br.com.crux.to.MaterialTO;
@@ -16,12 +17,16 @@ public class MaterialTOBuilder {
 
 	@Autowired
 	private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
+	@Autowired
+	private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 
+	
 	public Material build(MaterialTO param) {
 		Material retorno = new Material();
 
 		BeanUtils.copyProperties(param, retorno);
 
+		retorno.setIdInstituicao(getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId());
 		retorno.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 
 		return retorno;
