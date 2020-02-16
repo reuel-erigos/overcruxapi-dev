@@ -1,6 +1,7 @@
 package br.com.crux.to;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class MovimentacoesTO {
 
@@ -18,6 +19,7 @@ public class MovimentacoesTO {
 	private DepartamentoTO departamento;
 	private Long qtdParcelas;
 	
+	private List<ItensMovimentacoesTO> itensMovimentacoes; 
 	
 	public Long getId() {
 		return id;
@@ -96,6 +98,12 @@ public class MovimentacoesTO {
 	}
 	public void setQtdParcelas(Long qtdParcelas) {
 		this.qtdParcelas = qtdParcelas;
+	}
+	public List<ItensMovimentacoesTO> getItensMovimentacoes() {
+		return itensMovimentacoes;
+	}
+	public void setItensMovimentacoes(List<ItensMovimentacoesTO> itensMovimentacoes) {
+		this.itensMovimentacoes = itensMovimentacoes;
 	}
 
 }

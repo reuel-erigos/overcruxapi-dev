@@ -15,19 +15,19 @@ import br.com.crux.to.MaterialTO;
 @Component
 public class MaterialTOBuilder {
 
-	@Autowired
-	private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
-	@Autowired
-	private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
+	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
+	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 
-	
 	public Material build(MaterialTO param) {
 		Material retorno = new Material();
 
 		BeanUtils.copyProperties(param, retorno);
 
-		retorno.setIdInstituicao(getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId());
-		retorno.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
+		retorno.setIdInstituicao(getUnidadeLogadaCmd.getUnidadeTO()
+				.getInstituicao()
+				.getId());
+		retorno.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado()
+				.getIdUsuario());
 
 		return retorno;
 	}
@@ -41,7 +41,26 @@ public class MaterialTOBuilder {
 	}
 
 	public List<MaterialTO> buildAll(List<Material> list) {
-		return list.stream().map(dto -> buildTO(dto)).collect(Collectors.toList());
+		return list.stream()
+				.map(dto -> buildTO(dto))
+				.collect(Collectors.toList());
 	}
+
+	public MaterialTO buildTOCombo(Material material) {
+
+		MaterialTO to = new MaterialTO();
+
+		to.setId(material.getId());
+		to.setNome(material.getNome());
+
+		return to;
+	}
+	
+	public List<MaterialTO> buildAllCombo(List<Material> list) {
+		return list.stream()
+				.map(dto -> buildTOCombo(dto))
+				.collect(Collectors.toList());
+	}
+
 
 }

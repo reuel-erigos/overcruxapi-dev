@@ -39,4 +39,12 @@ public class GetCategoriasContabeisCmd {
 				.orElseGet(null);
 	}
 
+	public List<CategoriasContabeisTO> getAllCombo() {
+		List<CategoriasContabeis> entitys = repository.findAll();
+		if (!entitys.isEmpty()) {
+			return toBuilder.buildAllCombo(entitys);
+		}
+		return new ArrayList<CategoriasContabeisTO>();
+	}
+
 }

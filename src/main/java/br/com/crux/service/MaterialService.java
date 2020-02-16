@@ -22,18 +22,19 @@ import br.com.crux.to.MaterialTO;
 @RequestMapping("materiais")
 public class MaterialService {
 
-	@Autowired
-	private GetMaterialCmd getCmd;
-	@Autowired
-	private ExcluirMaterialCmd excluirCmd;
-	@Autowired
-	private AlterarMaterialCmd alterarCmd;
-	@Autowired
-	private CadastrarMaterialCmd cadastrarCmd;
+	@Autowired private GetMaterialCmd getCmd;
+	@Autowired private ExcluirMaterialCmd excluirCmd;
+	@Autowired private AlterarMaterialCmd alterarCmd;
+	@Autowired private CadastrarMaterialCmd cadastrarCmd;
 
 	@GetMapping
 	public List<MaterialTO> getAll() {
 		return getCmd.getAll();
+	}
+
+	@GetMapping("/combo")
+	public List<MaterialTO> getAllCombo() {
+		return getCmd.getAllCombo();
 	}
 
 	@GetMapping("/{id}")
