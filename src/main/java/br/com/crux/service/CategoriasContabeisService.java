@@ -3,7 +3,6 @@ package br.com.crux.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,22 +27,27 @@ public class CategoriasContabeisService {
 	@Autowired private AlterarCategoriasContabeisCmd alterarCmd;
 	@Autowired private ExcluirCategoriasContabeisCmd excluirCmd;
 
-	@GetMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping
 	public List<CategoriasContabeisTO> getAll() {
 		return getCmd.getAll();
 	}
 
-	@GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping("/combo")
+	public List<CategoriasContabeisTO> getAllCombo() {
+		return getCmd.getAllCombo();
+	}
+
+	@GetMapping("/{id}")
 	public CategoriasContabeisTO getById(@PathVariable(name = "id") Long id) {
 		return getCmd.getTOById(id);
 	}
 
-	@PostMapping(path = "", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping
 	public void cadastrar(@RequestBody CategoriasContabeisTO to) {
 		cadastrarCmd.cadastrar(to);
 	}
 
-	@PutMapping(path = "", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping
 	public void alterar(@RequestBody CategoriasContabeisTO to) {
 		alterarCmd.alterar(to);
 	}

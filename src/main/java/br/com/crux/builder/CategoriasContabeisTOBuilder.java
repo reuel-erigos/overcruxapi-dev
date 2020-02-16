@@ -70,4 +70,23 @@ public class CategoriasContabeisTOBuilder {
 				.collect(Collectors.toList());
 	}
 
+	public CategoriasContabeisTO buildTOCombo(CategoriasContabeis categoria) {
+		CategoriasContabeisTO to = new CategoriasContabeisTO();
+		
+		if(Objects.isNull(categoria)) {
+			return to;
+		}
+		
+		BeanUtils.copyProperties(categoria, to);
+		
+		return to;
+	}
+	
+	public List<CategoriasContabeisTO> buildAllCombo(List<CategoriasContabeis> dtos) {
+		return dtos.stream()
+				.map(dto -> buildTOCombo(dto))
+				.collect(Collectors.toList());
+	}
+
+
 }
