@@ -16,6 +16,7 @@ public class CadastrarMovimentacoesCmd {
 	@Autowired private MovimentacoesTOBuilder toBuilder;
 	@Autowired private CamposObrigatoriosMovimentacoesRule camposObrigatoriosRule;
 	@Autowired private CadastrarItensMovimentacoesCmd cadastrarItensMovimentacoesCmd;
+	@Autowired private CadastrarFaturasCmd cadastrarFaturasCmd;
 
 	public void cadastrar(MovimentacoesTO to) {
 
@@ -26,6 +27,8 @@ public class CadastrarMovimentacoesCmd {
 		Movimentacoes movimentacoes = repository.save(entity);
 		
 		cadastrarItensMovimentacoesCmd.cadastrarLista(movimentacoes, to.getItensMovimentacoes());
+		
+		cadastrarFaturasCmd.cadastrarLista(movimentacoes, to.getFaturas());
 
 	}
 }

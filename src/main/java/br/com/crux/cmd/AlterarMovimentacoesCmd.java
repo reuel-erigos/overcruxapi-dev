@@ -17,6 +17,7 @@ public class AlterarMovimentacoesCmd {
 	@Autowired private MovimentacoesTOBuilder toBuilder;
 	@Autowired private CamposObrigatoriosMovimentacoesRule camposObrigatoriosRule;
 	@Autowired private AlterarListaItensManifestacoesCmd alterarListaItensManifestacoesCmd;
+	@Autowired private AlterarListaFaturasCmd alterarListaFaturasCmd;
 	
 
 	public void alterar(MovimentacoesTO to) {
@@ -30,6 +31,7 @@ public class AlterarMovimentacoesCmd {
 		Movimentacoes movimentacoes = repository.save(entity);
 		
 		alterarListaItensManifestacoesCmd.alterarAll(to.getItensMovimentacoes(), movimentacoes);
+		alterarListaFaturasCmd.alterarAll(to.getFaturas(), movimentacoes);
 
 	}
 
