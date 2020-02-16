@@ -47,6 +47,7 @@ public class FaturaTOBuilder {
 
 		BeanUtils.copyProperties(faturaTO, entity);
 		entity.setMovimentacao(movimentacoes);
+		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 
 		return entity;
 	}
