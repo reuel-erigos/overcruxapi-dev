@@ -32,6 +32,11 @@ public class ContasBancariasService {
 		return getCmd.getAll();
 	}
 
+	@GetMapping("/combo")
+	public List<ContasBancariaTO> getAllCombo() {
+		return getCmd.getAllCombo();
+	}
+
 	@GetMapping("/{id}")
 	public ContasBancariaTO getById(@PathVariable Long id) {
 		return getCmd.getTOById(id);

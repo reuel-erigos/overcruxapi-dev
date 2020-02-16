@@ -50,7 +50,7 @@ public class ContasCentrosCustoTOBuilder {
 		ContasCentrosCustoTO to = new ContasCentrosCustoTO();
 
 		to.setId(entity.getId());
-		to.setContasBancaria(contasBancariaTOBuilder.buildTOEnxuto(entity.getContasBancaria()));
+		to.setContasBancaria(contasBancariaTOBuilder.buildTOCombo(entity.getContasBancaria()));
 
 		return to;
 	}

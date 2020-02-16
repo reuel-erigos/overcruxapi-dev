@@ -21,7 +21,13 @@ public class GetFaturaCmd {
 	@Autowired private FaturaTOBuilder toBuilder;
 	@Autowired private FaturaRepository repository;
 
-	public FaturaTO getById(Long id) {
+	public Fatura getById(Long id) {
+		return repository.findById(id)
+				.orElse(null);
+
+	}
+
+	public FaturaTO getTOById(Long id) {
 		Optional<Fatura> entityOptional = repository.findById(id);
 		if (!entityOptional.isPresent()) {
 			throw new NotFoundException("Fatura não encontrada.");
@@ -43,6 +49,17 @@ public class GetFaturaCmd {
 	public List<Fatura> getPorMovimentacoes(Movimentacoes p) {
 		return repository.findByMovimentacao(p)
 				.orElse(new ArrayList<Fatura>());
+	}
+
+	public List<FaturaTO> getAllPorMovimentacoes(Long id) {
+		Optional<List<Fatura>> lista = repository.findByIdMovimentacao(id);
+
+		if (lista.isPresent()) {
+			return toBuilder.buildAll(lista.get());
+		}
+
+		return Collections.emptyList();
+
 	}
 
 }

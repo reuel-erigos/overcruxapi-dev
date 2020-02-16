@@ -21,6 +21,7 @@ public class MovimentacoesTO {
 	
 	private List<ItensMovimentacoesTO> itensMovimentacoes; 
 	private List<FaturaTO> faturas; 
+	private List<PagamentosFaturaTO> pagamentosFatura; 
 	
 	public Long getId() {
 		return id;
@@ -111,6 +112,12 @@ public class MovimentacoesTO {
 	}
 	public void setFaturas(List<FaturaTO> faturas) {
 		this.faturas = faturas;
+	}
+	public List<PagamentosFaturaTO> getPagamentosFatura() {
+		return pagamentosFatura;
+	}
+	public void setPagamentosFatura(List<PagamentosFaturaTO> pagamentosFaturaTO) {
+		this.pagamentosFatura = pagamentosFaturaTO;
 	}
 
 }

@@ -69,7 +69,7 @@ public class ContasBancariaTOBuilder {
 				.collect(Collectors.toList());
 	}
 
-	public ContasBancariaTO buildTOEnxuto(ContasBancaria entity) {
+	public ContasBancariaTO buildTOCombo(ContasBancaria entity) {
 		ContasBancariaTO to = new ContasBancariaTO();
 
 		if (Objects.isNull(entity)) {
@@ -81,6 +81,12 @@ public class ContasBancariaTOBuilder {
 
 		return to;
 
+	}
+
+	public List<ContasBancariaTO> buildAllCombo(List<ContasBancaria> list) {
+		return list.stream()
+				.map(dto -> buildTOCombo(dto))
+				.collect(Collectors.toList());
 	}
 
 }

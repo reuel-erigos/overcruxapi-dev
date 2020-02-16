@@ -17,6 +17,7 @@ public class CadastrarMovimentacoesCmd {
 	@Autowired private CamposObrigatoriosMovimentacoesRule camposObrigatoriosRule;
 	@Autowired private CadastrarItensMovimentacoesCmd cadastrarItensMovimentacoesCmd;
 	@Autowired private CadastrarFaturasCmd cadastrarFaturasCmd;
+	@Autowired private CadastrarPagamentosFaturaCmd cadastrarPagamentosFaturaCmd;
 
 	public void cadastrar(MovimentacoesTO to) {
 
@@ -29,6 +30,8 @@ public class CadastrarMovimentacoesCmd {
 		cadastrarItensMovimentacoesCmd.cadastrarLista(movimentacoes, to.getItensMovimentacoes());
 		
 		cadastrarFaturasCmd.cadastrarLista(movimentacoes, to.getFaturas());
+		
+		cadastrarPagamentosFaturaCmd.cadastrarLista(movimentacoes, to.getPagamentosFatura());
 
 	}
 }

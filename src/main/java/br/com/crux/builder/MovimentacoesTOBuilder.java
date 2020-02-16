@@ -12,6 +12,7 @@ import br.com.crux.cmd.GetDepartamentoCmd;
 import br.com.crux.cmd.GetEmpresaCmd;
 import br.com.crux.cmd.GetFaturaCmd;
 import br.com.crux.cmd.GetItensMovimentacoesCmd;
+import br.com.crux.cmd.GetPagamentosFaturaCmd;
 import br.com.crux.cmd.GetProgramaCmd;
 import br.com.crux.cmd.GetProjetoCmd;
 import br.com.crux.cmd.GetUnidadeCmd;
@@ -35,6 +36,7 @@ public class MovimentacoesTOBuilder {
 	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
 	@Autowired private GetItensMovimentacoesCmd getItensMovimentacoesCmd;
 	@Autowired private GetFaturaCmd getFaturaCmd;
+	@Autowired private GetPagamentosFaturaCmd getPagamentosFaturaCmd;
 
 	public MovimentacoesTO buildTO(Movimentacoes m) {
 		MovimentacoesTO to = new MovimentacoesTO();
@@ -53,6 +55,7 @@ public class MovimentacoesTOBuilder {
 		
 		to.setItensMovimentacoes(getItensMovimentacoesCmd.getItensMovimentacoesTOByMovimentacao(m));
 		to.setFaturas(getFaturaCmd.getFaturaTOByMovimentacao(m));
+		to.setPagamentosFatura(getPagamentosFaturaCmd.getPagamentoFaturaTOByMovimentacao(m));
 
 		return to;
 	}
@@ -107,8 +110,3 @@ public class MovimentacoesTOBuilder {
 
 }
 
-//		retorno.setUnidades(getProjetosUnidadeCmd.getUnidadesTOByIdProjeto(p.getId()));
-//		retorno.setColaboradoresProjeto((getColaboradoresProjetoCmd.getColaboradoresProjetoTOByProjeto(p)));
-//		retorno.setParceriasProjeto(getParceriasProjetoCmd.getParceriasProjetoTOByProjeto(p));
-//		retorno.setComposicaoRhProjeto(getComposicaoRhProjetoCmd.getComposicaoRhProjetoByProjeto(p));
-//		retorno.setContasCentrosCusto(getContasCentrosCustoCmd.getTOPorProjeto(p));

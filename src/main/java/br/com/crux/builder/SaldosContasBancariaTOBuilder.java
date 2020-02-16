@@ -10,7 +10,7 @@ import br.com.crux.to.SaldosContasBancariaTO;
 @Component
 public class SaldosContasBancariaTOBuilder {
 
-	public SaldosContasBancariaTO build(SaldosContasBancaria saldosContasBancaria) {
+	public SaldosContasBancariaTO buildTO(SaldosContasBancaria saldosContasBancaria) {
 		SaldosContasBancariaTO to = new SaldosContasBancariaTO();
 
 		if (Objects.isNull(saldosContasBancaria)) {
@@ -25,5 +25,6 @@ public class SaldosContasBancariaTOBuilder {
 
 		return to;
 	}
+
 
 }

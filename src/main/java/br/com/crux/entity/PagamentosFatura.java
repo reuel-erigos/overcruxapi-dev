@@ -29,7 +29,7 @@ public class PagamentosFatura implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sq_id_pagamento_fatura")
 	@SequenceGenerator(name = "sq_id_pagamento_fatura", sequenceName = "sq_id_pagamento_fatura", schema = Constantes.SCHEMA_PUBLIC, initialValue = 1, allocationSize = 1)
 	@Column(name = "id_pagamento")
-	private Long idPagamentoFatura;
+	private Long id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_fatura")
@@ -63,12 +63,12 @@ public class PagamentosFatura implements Serializable {
 	public PagamentosFatura() {
 	}
 
-	public Long getIdPagamentoFatura() {
-		return idPagamentoFatura;
+	public Long getId() {
+		return id;
 	}
 
-	public void setIdPagamentoFatura(Long idPagamentoFatura) {
-		this.idPagamentoFatura = idPagamentoFatura;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public Fatura getFatura() {
