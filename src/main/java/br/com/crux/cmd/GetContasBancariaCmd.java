@@ -22,9 +22,8 @@ public class GetContasBancariaCmd {
 
 	public List<ContasBancariaTO> getAll() {
 
-		Long idUnidade = getUnidadeLogadaCmd.get()
-				.getId();
-		Optional<List<ContasBancaria>> entitys = repository.findByIdUnidade(idUnidade);
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+		Optional<List<ContasBancaria>> entitys = repository.findByIdInstituicao(idInstituicao);
 		if (entitys.isPresent()) {
 			return toBuilder.buildAll(entitys.get());
 		}
