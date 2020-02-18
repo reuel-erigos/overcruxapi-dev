@@ -10,6 +10,7 @@ public class SaldosContasBancariaTO {
 	private LocalDateTime dataAtualizacaoSaldo;
 	private LocalDateTime dataSaldo;
 	private Double valorSaldo;
+	private ContasBancariaTO contaBancaria;
 
 	public Long getId() {
 		return id;
@@ -50,5 +51,15 @@ public class SaldosContasBancariaTO {
 	public void setValorSaldo(Double valorSaldo) {
 		this.valorSaldo = valorSaldo;
 	}
+
+	public ContasBancariaTO getContaBancaria() {
+		return contaBancaria;
+	}
+
+	public void setContaBancaria(ContasBancariaTO contaBancaria) {
+		this.contaBancaria = contaBancaria;
+	}
+	
+	
 
 }

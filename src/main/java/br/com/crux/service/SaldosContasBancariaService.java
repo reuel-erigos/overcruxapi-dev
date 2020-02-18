@@ -1,0 +1,37 @@
+package br.com.crux.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import br.com.crux.cmd.GetSaldosContasBancariaCmd;
+import br.com.crux.to.SaldosContasBancariaTO;
+
+@RestController
+@RequestMapping(value = "saldoscontasbancaria")
+public class SaldosContasBancariaService {
+
+	@Autowired private GetSaldosContasBancariaCmd getCmd;
+
+	
+	@GetMapping(path = "/filter", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<SaldosContasBancariaTO> getAllFilter(@RequestParam(name = "tipoContaBancaria", required = false) String tipoContaBancaria,
+                                                     @RequestParam(name = "nomeBanco", required = false) String nomeBanco,
+                                                     @RequestParam(name = "numeroAgencia", required = false) String numeroAgencia,
+                                                     @RequestParam(name = "numeroContaBancaria", required = false) String numeroContaBancaria) {
+		return getCmd.getAllFilter(tipoContaBancaria, nomeBanco, numeroAgencia, numeroContaBancaria);
+	}
+	
+	
+	@GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public SaldosContasBancariaTO getById(@PathVariable(name = "id") Long id) {
+		return getCmd.getTOById(id);
+	}
+
+}
