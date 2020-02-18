@@ -64,7 +64,7 @@ public class FuncoesTOBuilder {
 				.collect(Collectors.toList());
 	}
 	
-	public FuncoesTO buildTOEnxuto(Funcoes entity) {
+	public FuncoesTO buildTOCombo(Funcoes entity) {
 		FuncoesTO to = new FuncoesTO();
 
 		if (Objects.isNull(entity)) {
