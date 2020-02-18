@@ -19,7 +19,7 @@ import br.com.crux.cmd.GetMovimentacoesMateriaisCmd;
 import br.com.crux.to.MovimentacoesMateriaisTO;
 
 @RestController
-@RequestMapping(value = "funcoes")
+@RequestMapping(value = "movimentacoesmateriais")
 public class MovimentacoesMateriaisService {
 
 	@Autowired private GetMovimentacoesMateriaisCmd getCmd;
