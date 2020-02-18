@@ -34,4 +34,9 @@ public class SaldosContasBancariaService {
 		return getCmd.getTOById(id);
 	}
 
+	@GetMapping("/contabancaria/{id}")
+	public SaldosContasBancariaTO getPorConta(@PathVariable Long id) {
+		return getCmd.getPorConta(id);
+	}
+
 }

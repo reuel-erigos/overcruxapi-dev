@@ -56,6 +56,11 @@ public class GetSaldosContasBancariaCmd {
 
 	public SaldosContasBancaria getById(Long id) {
 		return repository.findById(id).orElseGet(null);
+	}
+
+	public SaldosContasBancariaTO getPorConta(Long id) {
+		SaldosContasBancaria entity = repository.getPorConta(id).orElseThrow(() -> new NotFoundException("Saldo da conta bancaria não encontrado."));
+		return toBuilder.buildTO(entity);
 	}	
 
 }

@@ -27,5 +27,10 @@ public interface SaldosContasBancariaRepository extends JpaRepository<SaldosCont
 			                                                 String nomeBanco, 
 			                                                 String numeroAgencia, 
 			                                                 String numeroContaBancaria);
+
+	@Query(value = "SELECT saldo FROM SaldosContasBancaria saldo "
+			+ " inner join ContasBancaria conta on conta = saldo.contaBancaria "
+			+ " where conta.id = :id ")
+	public Optional<SaldosContasBancaria> getPorConta(Long id);
 		
 }
