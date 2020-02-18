@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -25,9 +26,20 @@ public class GetSaldosContasBancariaCmd {
 												          String nomeBanco, 
 												          String numeroAgencia, 
 												          String numeroContaBancaria) {
-		Long idUnidade = getUnidadeLogadaCmd.get().getId();
+		Long idUnidade = null;
 		
 		Optional<List<SaldosContasBancaria>> entitys = Optional.empty();
+		
+		tipoContaBancaria   = StringUtils.isEmpty(tipoContaBancaria.trim())? null : tipoContaBancaria;
+		nomeBanco           = StringUtils.isEmpty(nomeBanco.trim())? null : nomeBanco;
+		numeroAgencia       = StringUtils.isEmpty(numeroAgencia.trim())? null : numeroAgencia;
+		numeroContaBancaria = StringUtils.isEmpty(numeroContaBancaria.trim())? null : numeroContaBancaria;
+		
+		if (StringUtils.isAllBlank(tipoContaBancaria, nomeBanco, numeroAgencia, numeroContaBancaria)) {
+			idUnidade = getUnidadeLogadaCmd.get().getId();
+		}
+		
+		
 		entitys = repository.findByFilter(idUnidade, tipoContaBancaria, nomeBanco, numeroAgencia, numeroContaBancaria);
 		
 		if(entitys.isPresent()) {
