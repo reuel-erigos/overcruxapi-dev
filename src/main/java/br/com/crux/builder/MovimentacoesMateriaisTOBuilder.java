@@ -43,35 +43,35 @@ public class MovimentacoesMateriaisTOBuilder {
 
 		BeanUtils.copyProperties(to, entity);
 
-		if (Objects.isNull(to.getDepartamento()) && Objects.isNull(to.getDepartamento()
+		if (Objects.nonNull(to.getDepartamento()) && Objects.nonNull(to.getDepartamento()
 				.getIdDepartamento())) {
 			Departamentos departamentos = getDepartamentoCmd.getById(to.getDepartamento()
 					.getIdDepartamento());
 			entity.setDepartamento(departamentos);
 		}
 
-		if (Objects.isNull(to.getEmpresa()) && Objects.isNull(to.getEmpresa()
+		if (Objects.nonNull(to.getEmpresa()) && Objects.nonNull(to.getEmpresa()
 				.getId())) {
 			Empresa empresa = getEmpresaCmd.getById(to.getEmpresa()
 					.getId());
 			entity.setEmpresa(empresa);
 		}
 
-		if (Objects.isNull(to.getPrograma()) && Objects.isNull(to.getPrograma()
+		if (Objects.nonNull(to.getPrograma()) && Objects.nonNull(to.getPrograma()
 				.getId())) {
 			Programa programa = getProgramaCmd.getById(to.getPrograma()
 					.getId());
 			entity.setPrograma(programa);
 		}
 
-		if (Objects.isNull(to.getProjeto()) && Objects.isNull(to.getProjeto()
+		if (Objects.nonNull(to.getProjeto()) && Objects.nonNull(to.getProjeto()
 				.getId())) {
 			Projeto projeto = getProjetoCmd.getById(to.getProjeto()
 					.getId());
 			entity.setProjeto(projeto);
 		}
 
-		if (Objects.isNull(to.getUnidade()) && Objects.isNull(to.getUnidade()
+		if (Objects.nonNull(to.getUnidade()) && Objects.nonNull(to.getUnidade()
 				.getIdUnidade())) {
 			Unidade unidade = getUnidadeCmd.getById(to.getUnidade()
 					.getIdUnidade());

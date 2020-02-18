@@ -1,6 +1,7 @@
 package br.com.crux.builder;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
@@ -49,6 +50,10 @@ public class MaterialTOBuilder {
 	public MaterialTO buildTOCombo(Material material) {
 
 		MaterialTO to = new MaterialTO();
+		
+		if(Objects.isNull(material)) {
+			return to;
+		}
 
 		to.setId(material.getId());
 		to.setNome(material.getNome());

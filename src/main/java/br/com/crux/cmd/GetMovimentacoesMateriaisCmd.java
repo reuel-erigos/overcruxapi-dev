@@ -2,7 +2,6 @@ package br.com.crux.cmd;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,15 +17,12 @@ public class GetMovimentacoesMateriaisCmd {
 
 	@Autowired private MovimentacoesMateriaisRepository repository;
 	@Autowired private MovimentacoesMateriaisTOBuilder toBuilder;
-	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
-	
 	
 	public List<MovimentacoesMateriaisTO> getAll() {
 	
-		Long idUnidade = getUnidadeLogadaCmd.get().getId();
-		Optional<List<MovimentacoesMateriais>> entitys = repository.findByIdUnidade(idUnidade);
-		if(entitys.isPresent()) {
-			return toBuilder.buildAll(entitys.get());
+		List<MovimentacoesMateriais> entitys = repository.findAll();
+		if(!entitys.isEmpty()) {
+			return toBuilder.buildAll(entitys);
 		}
 		return new ArrayList<MovimentacoesMateriaisTO>();
 		

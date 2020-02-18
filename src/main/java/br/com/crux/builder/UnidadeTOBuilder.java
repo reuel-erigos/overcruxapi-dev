@@ -130,6 +130,11 @@ public class UnidadeTOBuilder {
 	
 	public UnidadeTO buildTOCombo(Unidade unidade) {
 		UnidadeTO to = new UnidadeTO();
+
+		if (Objects.isNull(unidade)) {
+			return to;
+		}
+
 		
 		to.setIdUnidade(unidade.getIdUnidade());
 		to.setNomeFantasia(unidade.getNomeFantasia());
