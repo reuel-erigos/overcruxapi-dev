@@ -18,9 +18,9 @@ public interface SaldosContasBancariaRepository extends JpaRepository<SaldosCont
 			+ " inner join Unidade uni on conta.unidade = uni"
 			+ " where 1 =1 "
 			+ "   and (?1 is null or uni.idUnidade = ?1) "
-			+ "   and (?2 is null or conta.tipoContaBancaria = ?2)"
+			+ "   and (?2 is null or conta.tipoContaBancaria = ?2) "
 			+ "   and (?3 is null or conta.nomeBanco like ?3) "
-			+ "   and (?4 is null or conta.numeroAgencia = ?4"
+			+ "   and (?4 is null or conta.numeroAgencia = ?4) "
 			+ "   and (?5 is null or conta.numeroContaBancaria = ?5)")
 	public Optional<List<SaldosContasBancaria>> findByFilter(Long idUnidade, 
 			                                                 String tipoContaBancaria, 
