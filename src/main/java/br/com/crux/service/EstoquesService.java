@@ -33,4 +33,9 @@ public class EstoquesService {
 		return getCmd.getTOById(id);
 	}
 
+	@GetMapping(path = "/combo", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<EstoquesTO> getAllCombo() {
+		return getCmd.getAllCombo();
+	}
+
 }

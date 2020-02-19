@@ -36,6 +36,11 @@ public class FuncionarioService {
 		return getCmd.getAllPorUnidadeLogada();
 	}
 
+	@GetMapping(path = "/combo", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<FuncionarioTO> getAllPorUnidadeLogadaCombo() {
+		return getCmd.getAllPorUnidadeLogadaCombo();
+	}
+
 	@GetMapping(path = "/pessoafisica/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public FuncionarioTO getByPessoaFisica(@PathVariable(name = "id") Long id) {
 		return getCmd.getPorPessoaFisica(id);

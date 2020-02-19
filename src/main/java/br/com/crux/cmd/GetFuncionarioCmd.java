@@ -69,4 +69,16 @@ public class GetFuncionarioCmd {
 
 	}
 
+	public List<FuncionarioTO> getAllPorUnidadeLogadaCombo() {
+		AcessoUnidadeTO acessoUnidadeTO = getUnidadeLogadaCmd.get();
+
+		Optional<List<Funcionario>> funcionariosOptional = repository.findAllByIdUnidade(acessoUnidadeTO.getId());
+		if (!funcionariosOptional.isPresent()) {
+			return new ArrayList<FuncionarioTO>();
+		}
+
+		return toBuilder.buildAllTOCombo(funcionariosOptional.get());
+
+	}
+
 }

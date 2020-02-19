@@ -1,6 +1,7 @@
 package br.com.crux.cmd;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -66,6 +67,12 @@ public class GetEstoquesCmd {
 
 	public Estoques getById(Long id) {
 		return repository.findById(id).orElseGet(null);
+	}
+
+	public List<EstoquesTO> getAllCombo() {
+		Long idUnidade = getUnidadeLogadaCmd.get().getId();
+		List<Estoques> lista = repository.findByUnidade(idUnidade).orElse(Collections.emptyList());
+		return toBuilder.buildAllCombo(lista);
 	}
 
 }

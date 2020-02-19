@@ -131,4 +131,8 @@ public class EstoquesTOBuilder {
 	
 	}
 
+	public List<EstoquesTO> buildAllCombo(List<Estoques> lista) {
+		return lista.stream().map(this::buildTOCombo).collect(Collectors.toList());
+	}
+
 }
