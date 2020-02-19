@@ -43,7 +43,7 @@ public class ItensPedidosMateriais implements Serializable {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_pedido")
-	private PedidosMateriais pedidosMateriai;
+	private PedidosMateriais pedidosMateriais;
 
 	public ItensPedidosMateriais() {
 	}
@@ -81,11 +81,11 @@ public class ItensPedidosMateriais implements Serializable {
 	}
 
 	public PedidosMateriais getPedidosMateriai() {
-		return this.pedidosMateriai;
+		return this.pedidosMateriais;
 	}
 
-	public void setPedidosMateriai(PedidosMateriais pedidosMateriai) {
-		this.pedidosMateriai = pedidosMateriai;
+	public void setPedidosMateriai(PedidosMateriais pedidosMateriais) {
+		this.pedidosMateriais = pedidosMateriais;
 	}
 
 }

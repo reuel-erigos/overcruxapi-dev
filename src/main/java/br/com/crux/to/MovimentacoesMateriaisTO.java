@@ -1,5 +1,7 @@
 package br.com.crux.to;
 
+import java.util.List;
+
 public class MovimentacoesMateriaisTO {
 
 	private Long id;
@@ -11,6 +13,8 @@ public class MovimentacoesMateriaisTO {
 	private UnidadeTO unidade;
 	private String numeroDocumento;
 	private String tipoMovimentacao;
+	
+	private List<ItensMovimentacoesMateriaisTO> itensMovimentacoesMateriais;
 	
 	
 	public Long getId() {
@@ -67,5 +71,12 @@ public class MovimentacoesMateriaisTO {
 	public void setTipoMovimentacao(String tipoMovimentacao) {
 		this.tipoMovimentacao = tipoMovimentacao;
 	}
+
+	public List<ItensMovimentacoesMateriaisTO> getItensMovimentacoesMateriais() {
+		return itensMovimentacoesMateriais;
+	}
 	
+	public void setItensMovimentacoesMateriais(List<ItensMovimentacoesMateriaisTO> itensMovimentacoesMateriais) {
+		this.itensMovimentacoesMateriais = itensMovimentacoesMateriais;
+	}
 }

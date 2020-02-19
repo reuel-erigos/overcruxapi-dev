@@ -12,7 +12,7 @@ import br.com.crux.entity.Movimentacoes;
 import br.com.crux.to.ItensMovimentacoesTO;
 
 @Component
-public class AlterarListaItensManifestacoesCmd extends AbstractAlterarListaCmd<ItensMovimentacoes, ItensMovimentacoesTO, Movimentacoes> {
+public class AlterarListaItensMovimentacoesCmd extends AbstractAlterarListaCmd<ItensMovimentacoes, ItensMovimentacoesTO, Movimentacoes> {
 
 	@Autowired private ItensMovimentacoesTOBuilder toBuilder;
 	@Autowired private GetItensMovimentacoesCmd getCmd;

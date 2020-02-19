@@ -16,7 +16,7 @@ public class AlterarMovimentacoesCmd {
 	@Autowired private MovimentacoesRepository repository;
 	@Autowired private MovimentacoesTOBuilder toBuilder;
 	@Autowired private CamposObrigatoriosMovimentacoesRule camposObrigatoriosRule;
-	@Autowired private AlterarListaItensManifestacoesCmd alterarListaItensManifestacoesCmd;
+	@Autowired private AlterarListaItensMovimentacoesCmd alterarListaItensMovimentacoesCmd;
 	@Autowired private AlterarListaFaturasCmd alterarListaFaturasCmd;
 	@Autowired private AlterarListaPagamentosFaturaCmd alterarListaPagamentosFaturaCmd;
 	
@@ -31,7 +31,7 @@ public class AlterarMovimentacoesCmd {
 
 		Movimentacoes movimentacoes = repository.save(entity);
 		
-		alterarListaItensManifestacoesCmd.alterarAll(to.getItensMovimentacoes(), movimentacoes);
+		alterarListaItensMovimentacoesCmd.alterarAll(to.getItensMovimentacoes(), movimentacoes);
 	
 		alterarListaPagamentosFaturaCmd.alterarAll(to.getPagamentosFatura(), movimentacoes);
 		

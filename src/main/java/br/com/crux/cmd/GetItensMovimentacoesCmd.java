@@ -20,8 +20,9 @@ public class GetItensMovimentacoesCmd {
 
 	@Autowired private ItensMovimentacoesTOBuilder toBuilder;
 	@Autowired private ItensMovimentacoesRepository repository;
+	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 
-	public ItensMovimentacoesTO getById(Long id) {
+	public ItensMovimentacoesTO getTOById(Long id) {
 		Optional<ItensMovimentacoes> entityOptional = repository.findById(id);
 		if (!entityOptional.isPresent()) {
 			throw new NotFoundException("Item movimentação não encontrado.");
@@ -44,5 +45,16 @@ public class GetItensMovimentacoesCmd {
 		return repository.findByMovimentacao(p)
 				.orElse(new ArrayList<ItensMovimentacoes>());
 	}
+	
+	public ItensMovimentacoes getById(Long id) {
+		return repository.findById(id).orElse(null);
+	}
+
+	public List<ItensMovimentacoesTO> getAllCombo() {
+		Long idUnidade = getUnidadeLogadaCmd.get().getId();
+		List<ItensMovimentacoes> lista = repository.findByUnidade(idUnidade).orElse(Collections.emptyList());
+		return toBuilder.buildAllCombo(lista);
+	}
+
 
 }

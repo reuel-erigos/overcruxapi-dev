@@ -1,16 +1,20 @@
 package br.com.crux.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
-
-import br.com.crux.entity.Estoques;
-import br.com.crux.entity.Funcionario;
-import br.com.crux.entity.Material;
-import br.com.crux.infra.constantes.Constantes;
-
-import java.math.BigDecimal;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import br.com.crux.infra.constantes.Constantes;
 
 /**
  * The persistent class for the itens_movimentacoes_materiais database table.
@@ -157,24 +161,24 @@ public class ItensMovimentacoesMateriais implements Serializable {
 		return this.itensMovimentacoes;
 	}
 
-	public void setItensMovimentacoes(ItensMovimentacoes itensMovimentacoe) {
-		this.itensMovimentacoes = itensMovimentacoe;
+	public void setItensMovimentacoes(ItensMovimentacoes itensMovimentacoes) {
+		this.itensMovimentacoes = itensMovimentacoes;
 	}
 
 	public ItensPedidosMateriais getItensPedidosMateriais() {
 		return this.itensPedidosMateriais;
 	}
 
-	public void setItensPedidosMateriais(ItensPedidosMateriais itensPedidosMateriai) {
-		this.itensPedidosMateriais = itensPedidosMateriai;
+	public void setItensPedidosMateriais(ItensPedidosMateriais itensPedidosMateriais) {
+		this.itensPedidosMateriais = itensPedidosMateriais;
 	}
 
 	public MovimentacoesMateriais getMovimentacoesMateriais() {
 		return this.movimentacoesMateriais;
 	}
 
-	public void setMovimentacoesMateriais(MovimentacoesMateriais movimentacoesMateriai) {
-		this.movimentacoesMateriais = movimentacoesMateriai;
+	public void setMovimentacoesMateriais(MovimentacoesMateriais movimentacoesMateriais) {
+		this.movimentacoesMateriais = movimentacoesMateriais;
 	}
 
 }

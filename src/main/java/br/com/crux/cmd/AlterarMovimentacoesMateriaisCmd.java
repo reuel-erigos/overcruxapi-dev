@@ -16,6 +16,7 @@ public class AlterarMovimentacoesMateriaisCmd {
 	@Autowired private MovimentacoesMateriaisRepository repository;
 	@Autowired private MovimentacoesMateriaisTOBuilder toBuilder;
 	@Autowired private CamposObrigatoriosMovimentacoesMateriaisRule rule;
+	@Autowired private AlterarListaItensMovimentacoesMateriaisCmd alterarListaItensMovimentacoesMateriaisCmd;
 
 	public void alterar(MovimentacoesMateriaisTO to) {
 		MovimentacoesMateriais entity = repository.findById(to.getId())
@@ -25,7 +26,9 @@ public class AlterarMovimentacoesMateriaisCmd {
 
 		entity = toBuilder.build(to);
 
-		repository.save(entity);
+		MovimentacoesMateriais movimentacoesMateriais = repository.save(entity);
+		
+		alterarListaItensMovimentacoesMateriaisCmd.alterarAll(to.getItensMovimentacoesMateriais(), movimentacoesMateriais);
 
 	}
 

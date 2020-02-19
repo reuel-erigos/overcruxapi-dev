@@ -81,5 +81,22 @@ public class ItensMovimentacoesTOBuilder {
 				.getIdUsuario());
 		return entity;
 	}
+	
+	public ItensMovimentacoesTO buildTOCombo(ItensMovimentacoes entity) {
+		ItensMovimentacoesTO to = new ItensMovimentacoesTO();
+
+		BeanUtils.copyProperties(entity, to);
+
+		to.setId(entity.getId());
+
+		return to;
+	}
+
+	public List<ItensMovimentacoesTO> buildAllCombo(List<ItensMovimentacoes> lista) {
+		return lista.stream()
+				.map(this::buildTOCombo)
+				.collect(Collectors.toList());
+	}
+
 
 }

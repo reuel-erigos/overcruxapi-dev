@@ -396,8 +396,4 @@ public class FuncionarioTOBuilder {
 				.collect(Collectors.toList());
 	}
 
-	public FuncionarioTO buildTOEnxuto(Funcionario funcionario) {
-		return new FuncionarioTO(funcionario.getId());
-	}
-
 }
