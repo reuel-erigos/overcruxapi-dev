@@ -2,6 +2,7 @@
 package br.com.crux.to;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class PedidosMateriaisTO {
 
@@ -17,7 +18,15 @@ public class PedidosMateriaisTO {
 	private ProjetoTO projeto;
 	private UnidadeTO unidade;
 	
+	private List<ItensPedidosMateriaisTO> itensPedidosMateriais;
 	
+	
+	public List<ItensPedidosMateriaisTO> getItensPedidosMateriais() {
+		return itensPedidosMateriais;
+	}
+	public void setItensPedidosMateriais(List<ItensPedidosMateriaisTO> itensPedidosMateriais) {
+		this.itensPedidosMateriais = itensPedidosMateriais;
+	}
 	public Long getId() {
 		return id;
 	}

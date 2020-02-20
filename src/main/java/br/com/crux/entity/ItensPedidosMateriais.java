@@ -80,11 +80,11 @@ public class ItensPedidosMateriais implements Serializable {
 		this.qtdPedido = qtdPedido;
 	}
 
-	public PedidosMateriais getPedidosMateriai() {
+	public PedidosMateriais getPedidosMateriais() {
 		return this.pedidosMateriais;
 	}
 
-	public void setPedidosMateriai(PedidosMateriais pedidosMateriais) {
+	public void setPedidosMateriais(PedidosMateriais pedidosMateriais) {
 		this.pedidosMateriais = pedidosMateriais;
 	}
 

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import br.com.crux.builder.PedidosMateriaisTOBuilder;
 import br.com.crux.dao.repository.PedidosMateriaisRepository;
 import br.com.crux.entity.PedidosMateriais;
+import br.com.crux.exception.NotFoundException;
 import br.com.crux.to.PedidosMateriaisTO;
 
 @Component
@@ -25,6 +26,20 @@ public class GetPedidosMateriaisCmd {
 		}
 		return new ArrayList<PedidosMateriaisTO>();
 
+	}
+
+	public List<PedidosMateriaisTO> getAll() {
+		List<PedidosMateriais> entitys = repository.findAll();
+		if (!entitys.isEmpty()) {
+			return toBuilder.buildAll(entitys);
+		}
+		return new ArrayList<PedidosMateriaisTO>();
+	}
+
+	public PedidosMateriaisTO getTOById(Long id) {
+		PedidosMateriais entity = repository.findById(id)
+				.orElseThrow(() -> new NotFoundException("Pedido Material não encontrado."));
+		return toBuilder.buildTO(entity);
 	}
 
 }

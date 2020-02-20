@@ -1,5 +1,6 @@
 package br.com.crux.cmd;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Component;
 import br.com.crux.builder.ItensPedidosMateriaisTOBuilder;
 import br.com.crux.dao.repository.ItensPedidosMateriaisRepository;
 import br.com.crux.entity.ItensPedidosMateriais;
+import br.com.crux.entity.PedidosMateriais;
 import br.com.crux.exception.NotFoundException;
 import br.com.crux.to.ItensPedidosMateriaisTO;
 
@@ -18,8 +20,6 @@ public class GetItensPedidosMateriaisCmd {
 
 	@Autowired private ItensPedidosMateriaisTOBuilder toBuilder;
 	@Autowired private ItensPedidosMateriaisRepository repository;
-
-	//TODO TERMINAR QUEM PEGAR O CARTAO!!! CRIEI SO ESSES
 
 	public ItensPedidosMateriaisTO getTOById(Long id) {
 		Optional<ItensPedidosMateriais> entityOptional = repository.findById(id);
@@ -43,6 +43,24 @@ public class GetItensPedidosMateriaisCmd {
 		}
 
 		return Collections.emptyList();
+	}
+
+	public List<ItensPedidosMateriais> getPorPedidosMateriais(PedidosMateriais p) {
+
+		return repository.findByPedidosMateriais(p)
+				.orElse(new ArrayList<ItensPedidosMateriais>());
+
+	}
+
+	public List<ItensPedidosMateriaisTO> getItensPedidosMateriaisTOByPedidosMateriais(PedidosMateriais pedidosMateriais) {
+		Optional<List<ItensPedidosMateriais>> lista = repository.findByPedidosMateriais(pedidosMateriais);
+
+		if (lista.isPresent()) {
+			return toBuilder.buildAll(lista.get());
+		}
+
+		return Collections.emptyList();
+
 	}
 
 }
