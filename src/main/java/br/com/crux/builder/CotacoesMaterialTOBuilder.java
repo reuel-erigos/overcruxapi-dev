@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 import br.com.crux.cmd.GetEmpresaCmd;
 import br.com.crux.cmd.GetMaterialCmd;
-import br.com.crux.cmd.GetPedidoCmd;
+import br.com.crux.cmd.GetPedidosMateriaisCmd;
 import br.com.crux.cmd.GetUsuarioLogadoCmd;
 import br.com.crux.entity.CotacoesMaterial;
 import br.com.crux.entity.Empresa;
@@ -27,7 +27,7 @@ public class CotacoesMaterialTOBuilder {
 
 	@Autowired private GetEmpresaCmd getEmpresaCmd;
 	@Autowired private GetMaterialCmd getMaterialCmd;
-	@Autowired private GetPedidoCmd getPedidoCmd;
+	@Autowired private GetPedidosMateriaisCmd getPedidosMateriaisCmd;
 
 	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
 
@@ -52,7 +52,7 @@ public class CotacoesMaterialTOBuilder {
 
 		if (Objects.nonNull(to.getPedidosMaterial()) && Objects.nonNull(to.getPedidosMaterial()
 				.getId())) {
-			PedidosMateriais pedido = getPedidoCmd.getById(to.getPedidosMaterial()
+			PedidosMateriais pedido = getPedidosMateriaisCmd.getById(to.getPedidosMaterial()
 					.getId());
 			entity.setPedidosMateriais(pedido);
 		}

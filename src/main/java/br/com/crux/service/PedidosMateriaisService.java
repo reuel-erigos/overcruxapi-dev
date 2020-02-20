@@ -3,6 +3,7 @@ package br.com.crux.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,11 +44,13 @@ public class PedidosMateriaisService {
 	}
 
 	@PostMapping
+	@Transactional
 	public void cadastrar(@RequestBody PedidosMateriaisTO to) {
 		cadastrarCmd.cadastrar(to);
 	}
 
 	@PutMapping
+	@Transactional
 	public void alterar(@RequestBody PedidosMateriaisTO to) {
 		alterarCmd.alterar(to);
 	}

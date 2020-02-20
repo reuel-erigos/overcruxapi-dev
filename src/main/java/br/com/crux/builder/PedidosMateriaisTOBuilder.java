@@ -102,8 +102,7 @@ public class PedidosMateriaisTOBuilder {
 			return to;
 		}
 
-		to.setId(e.getId());
-		to.setDescricaoPedido(e.getDescricaoPedido());
+		BeanUtils.copyProperties(e, to);
 
 		to.setDepartamento(departamentoTOBuilder.buildTOCombo(e.getDepartamento()));
 		to.setFuncionarioPedido(funcionarioTOBuilder.buildTOCombo(e.getFuncionarioPedido()));

@@ -42,4 +42,10 @@ public class GetPedidosMateriaisCmd {
 		return toBuilder.buildTO(entity);
 	}
 
+	public PedidosMateriais getById(Long id) {
+		return repository.findById(id)
+				.orElse(null);
+		
+	}
+
 }
