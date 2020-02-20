@@ -1,6 +1,7 @@
 package br.com.crux.builder;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
@@ -17,6 +18,10 @@ public class ItensPedidosMateriaisTOBuilder {
 
 	public ItensPedidosMateriaisTO buildTOCombo(ItensPedidosMateriais itensPedidosMateriais) {
 		ItensPedidosMateriaisTO to = new ItensPedidosMateriaisTO();
+		
+		if(Objects.isNull(itensPedidosMateriais)) {
+			return to;
+		}
 
 		BeanUtils.copyProperties(itensPedidosMateriais, to);
 

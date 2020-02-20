@@ -12,12 +12,14 @@ import br.com.crux.cmd.GetEstoquesCmd;
 import br.com.crux.cmd.GetFuncionarioCmd;
 import br.com.crux.cmd.GetItensMovimentacoesCmd;
 import br.com.crux.cmd.GetItensPedidosMateriaisCmd;
+import br.com.crux.cmd.GetMaterialCmd;
 import br.com.crux.cmd.GetUsuarioLogadoCmd;
 import br.com.crux.entity.Estoques;
 import br.com.crux.entity.Funcionario;
 import br.com.crux.entity.ItensMovimentacoes;
 import br.com.crux.entity.ItensMovimentacoesMateriais;
 import br.com.crux.entity.ItensPedidosMateriais;
+import br.com.crux.entity.Material;
 import br.com.crux.entity.MovimentacoesMateriais;
 import br.com.crux.to.ItensMovimentacoesMateriaisTO;
 
@@ -28,11 +30,13 @@ public class ItensMovimentacoesMateriaisTOBuilder {
 	@Autowired FuncionarioTOBuilder funcionarioTOBuilder;
 	@Autowired ItensMovimentacoesTOBuilder itensMovimentacoesTOBuilder;
 	@Autowired ItensPedidosMateriaisTOBuilder itensPedidosMateriaisTOBuilder;
+	@Autowired MaterialTOBuilder materialTOBuilder;
 
 	@Autowired GetEstoquesCmd getEstoquesCmd;
 	@Autowired GetFuncionarioCmd getFuncionarioCmd;
 	@Autowired GetItensMovimentacoesCmd getItensMovimentacoesCmd;
 	@Autowired GetItensPedidosMateriaisCmd getItensPedidosMateriaisCmd;
+	@Autowired GetMaterialCmd getMaterialCmd;
 	@Autowired GetUsuarioLogadoCmd getUsuarioLogadoCmd;
 
 	public ItensMovimentacoesMateriaisTO buildTO(ItensMovimentacoesMateriais e) {
@@ -42,6 +46,7 @@ public class ItensMovimentacoesMateriaisTOBuilder {
 
 		to.setId(e.getId());
 
+		to.setMaterial(materialTOBuilder.buildTOCombo(e.getMaterial()));
 		to.setEstoque(estoqueTOBuilder.buildTOCombo(e.getEstoque()));
 		to.setFuncionarioEnvio(funcionarioTOBuilder.buildTOCombo(e.getFuncionarioEnvio()));
 		to.setFuncionarioRecebe(funcionarioTOBuilder.buildTOCombo(e.getFuncionarioRecebe()));
@@ -100,6 +105,14 @@ public class ItensMovimentacoesMateriaisTOBuilder {
 					.getId());
 			e.setItensPedidosMateriais(entity);
 
+		}
+
+		if (Objects.nonNull(to.getMaterial()) && Objects.nonNull(to.getMaterial()
+				.getId())) {
+			Material entity = getMaterialCmd.getById(to.getMaterial()
+					.getId());
+			e.setMaterial(entity);
+			
 		}
 
 		e.setMovimentacoesMateriais(movimentacoesMateriais);

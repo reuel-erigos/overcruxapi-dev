@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import br.com.crux.cmd.GetDepartamentoCmd;
 import br.com.crux.cmd.GetEmpresaCmd;
+import br.com.crux.cmd.GetItensMovimentacoesMateriaisCmd;
 import br.com.crux.cmd.GetProgramaCmd;
 import br.com.crux.cmd.GetProjetoCmd;
 import br.com.crux.cmd.GetUnidadeCmd;
@@ -35,6 +36,7 @@ public class MovimentacoesMateriaisTOBuilder {
 	@Autowired private GetProjetoCmd getProjetoCmd;
 	@Autowired private GetProgramaCmd getProgramaCmd;
 	@Autowired private GetDepartamentoCmd getDepartamentoCmd;
+	@Autowired private GetItensMovimentacoesMateriaisCmd getItensMovimentacoesMateriaisCmd;
 
 	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
 
@@ -98,6 +100,8 @@ public class MovimentacoesMateriaisTOBuilder {
 		to.setPrograma(programaTOBuilder.buildTOCombo(e.getPrograma()));
 		to.setProjeto(projetoTOBuilder.buildTOCombo(e.getProjeto()));
 		to.setDepartamento(departamentoTOBuilder.buildTOCombo(e.getDepartamento()));
+		
+		to.setItensMovimentacoesMateriais(getItensMovimentacoesMateriaisCmd.getItensMovimentacoesMateriaisTOByMovimentacaoMateriais(e));
 
 		return to;
 	}

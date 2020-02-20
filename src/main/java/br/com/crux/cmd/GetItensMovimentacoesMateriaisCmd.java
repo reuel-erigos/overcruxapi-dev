@@ -29,7 +29,7 @@ public class GetItensMovimentacoesMateriaisCmd {
 		return toBuilder.buildTO(entityOptional.get());
 	}
 
-	public List<ItensMovimentacoesMateriaisTO> getItensMovimentacoesTOByMovimentacao(MovimentacoesMateriais movimentacoesMateriais) {
+	public List<ItensMovimentacoesMateriaisTO> getItensMovimentacoesMateriaisTOByMovimentacaoMateriais(MovimentacoesMateriais movimentacoesMateriais) {
 		Optional<List<ItensMovimentacoesMateriais>> lista = repository.findByMovimentacoesMateriais(movimentacoesMateriais);
 
 		if (lista.isPresent()) {
