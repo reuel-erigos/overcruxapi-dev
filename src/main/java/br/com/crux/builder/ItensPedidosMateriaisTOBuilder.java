@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.cmd.GetMaterialCmd;
+import br.com.crux.cmd.GetUsuarioLogadoCmd;
 import br.com.crux.entity.ItensPedidosMateriais;
 import br.com.crux.entity.Material;
 import br.com.crux.entity.PedidosMateriais;
@@ -18,6 +19,7 @@ import br.com.crux.to.ItensPedidosMateriaisTO;
 public class ItensPedidosMateriaisTOBuilder {
 
 	@Autowired private GetMaterialCmd getMaterialCmd;
+	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
 	@Autowired private MaterialTOBuilder materialTOBuilder;
 
 	public ItensPedidosMateriais build(PedidosMateriais pedidosMateriais, ItensPedidosMateriaisTO to) {
@@ -34,6 +36,8 @@ public class ItensPedidosMateriaisTOBuilder {
 		}
 
 		e.setPedidosMateriais(pedidosMateriais);
+		
+		e.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 
 		return e;
 	}
