@@ -35,12 +35,15 @@ public class ParceriasProjetoTOBuilder {
 
 		parceriasProjeto.setProjeto(projeto);
 
-		if (Objects.nonNull(parceriaProjetoTO.getEmpresa()) && Objects.nonNull(parceriaProjetoTO.getEmpresa().getId())) {
-			Empresa e = empresaCmd.getById(parceriaProjetoTO.getEmpresa().getId());
+		if (Objects.nonNull(parceriaProjetoTO.getEmpresa()) && Objects.nonNull(parceriaProjetoTO.getEmpresa()
+				.getId())) {
+			Empresa e = empresaCmd.getById(parceriaProjetoTO.getEmpresa()
+					.getId());
 			parceriasProjeto.setEmpresa(e);
 		}
 
-		parceriasProjeto.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
+		parceriasProjeto.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado()
+				.getIdUsuario());
 
 		return parceriasProjeto;
 	}
@@ -48,6 +51,10 @@ public class ParceriasProjetoTOBuilder {
 	public ParceriasProjetoTO buildTO(ParceriasProjeto parceriaProjeto) {
 
 		ParceriasProjetoTO to = new ParceriasProjetoTO();
+
+		if (Objects.isNull(parceriaProjeto)) {
+			return to;
+		}
 
 		BeanUtils.copyProperties(parceriaProjeto, to, "projeto", "empresa");
 
@@ -62,7 +69,22 @@ public class ParceriasProjetoTOBuilder {
 
 	public List<ParceriasProjetoTO> buildAll(List<ParceriasProjeto> lista) {
 
-		return lista.stream().map(this::buildTO).collect(Collectors.toList());
+		return lista.stream()
+				.map(this::buildTO)
+				.collect(Collectors.toList());
+	}
+
+	public ParceriasProjetoTO buildTOCombo(ParceriasProjeto e) {
+		ParceriasProjetoTO to = new ParceriasProjetoTO();
+
+		if (Objects.isNull(e)) {
+			return to;
+		}
+
+		BeanUtils.copyProperties(e, to);
+
+		return to;
+
 	}
 
 }

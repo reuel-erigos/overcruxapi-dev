@@ -34,12 +34,15 @@ public class ParceriasProgramaTOBuilder {
 
 		parceriasPrograma.setPrograma(programa);
 
-		if (Objects.nonNull(parceriaProgramaTO.getEmpresa()) && Objects.nonNull(parceriaProgramaTO.getEmpresa().getId())) {
-			Empresa e = empresaCmd.getById(parceriaProgramaTO.getEmpresa().getId());
+		if (Objects.nonNull(parceriaProgramaTO.getEmpresa()) && Objects.nonNull(parceriaProgramaTO.getEmpresa()
+				.getId())) {
+			Empresa e = empresaCmd.getById(parceriaProgramaTO.getEmpresa()
+					.getId());
 			parceriasPrograma.setEmpresa(e);
 		}
 
-		parceriasPrograma.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
+		parceriasPrograma.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado()
+				.getIdUsuario());
 
 		return parceriasPrograma;
 	}
@@ -47,6 +50,10 @@ public class ParceriasProgramaTOBuilder {
 	public ParceriasProgramaTO buildTO(ParceriasPrograma parceriasPrograma) {
 
 		ParceriasProgramaTO to = new ParceriasProgramaTO();
+
+		if (Objects.isNull(parceriasPrograma)) {
+			return to;
+		}
 
 		BeanUtils.copyProperties(parceriasPrograma, to, "projeto", "empresa");
 
@@ -61,7 +68,22 @@ public class ParceriasProgramaTOBuilder {
 
 	public List<ParceriasProgramaTO> buildAll(List<ParceriasPrograma> lista) {
 
-		return lista.stream().map(this::buildTO).collect(Collectors.toList());
+		return lista.stream()
+				.map(this::buildTO)
+				.collect(Collectors.toList());
+	}
+
+	public ParceriasProgramaTO buildTOCombo(ParceriasPrograma e) {
+		ParceriasProgramaTO to = new ParceriasProgramaTO();
+
+		if (Objects.isNull(e)) {
+			return to;
+		}
+		
+		BeanUtils.copyProperties(e, to);
+
+		return to;
+
 	}
 
 }

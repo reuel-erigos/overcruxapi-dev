@@ -13,7 +13,7 @@ public class ParceriasProgramaTO {
 	private ProgramaTO programa;
 	private Double valorParceria;
 	private List<MateriaisProgramaTO> materiaisPrograma;
-	
+	private List<ParceriasCategoriasTO> parceriasCategorias;
 	
 	public Long getId() {
 		return id;
@@ -62,6 +62,12 @@ public class ParceriasProgramaTO {
 	}
 	public void setMateriaisPrograma(List<MateriaisProgramaTO> materiaisPrograma) {
 		this.materiaisPrograma = materiaisPrograma;
+	}
+	public List<ParceriasCategoriasTO> getParceriasCategorias() {
+		return parceriasCategorias;
+	}
+	public void setParceriasCategorias(List<ParceriasCategoriasTO> parceriasCategorias) {
+		this.parceriasCategorias = parceriasCategorias;
 	}
 	
 	
