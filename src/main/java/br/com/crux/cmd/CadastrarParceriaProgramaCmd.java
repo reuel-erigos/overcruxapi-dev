@@ -18,7 +18,7 @@ public class CadastrarParceriaProgramaCmd {
 	@Autowired ParceriasProgramaRepository programasUnidadeRepository;
 	@Autowired ParceriasProgramaTOBuilder parceriasProgramaTOBuilder;
 	@Autowired AlterarMateriaisParceriaProgramaCmd alterarMateriaisParceriaProgramaCmd;
-	@Autowired AlterarListaParceriasCategoriasCmd alterarListaParceriasCategoriasCmd;
+	@Autowired AlterarListaParceriasCategoriasProgramaCmd alterarListaParceriasCategoriasProgramaCmd;
 
 	public ParceriasPrograma cadastrar(Programa programa, ParceriasProgramaTO parceriaPrograma) {
 		
@@ -28,7 +28,7 @@ public class CadastrarParceriaProgramaCmd {
 		
 		alterarMateriaisParceriaProgramaCmd.alterarAll(programa, parceriasPrograma, parceriaPrograma.getMateriaisPrograma());
 		
-		
+		alterarListaParceriasCategoriasProgramaCmd.alterarAll(parceriaPrograma.getParceriasCategorias(), parceriasPrograma);
 		
 		return entity;
 	}

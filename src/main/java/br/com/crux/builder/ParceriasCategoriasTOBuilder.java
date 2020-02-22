@@ -31,8 +31,6 @@ public class ParceriasCategoriasTOBuilder {
 
 		BeanUtils.copyProperties(to, e);
 
-		to.setCategoriasContabeis(categoriasContabeisTOBuilder.buildTOCombo(e.getCategoriasContabeis()));
-
 		if (Objects.nonNull(to.getCategoriasContabeis()) && Objects.nonNull(to.getCategoriasContabeis()
 				.getId())) {
 			CategoriasContabeis entity = getCategoriasContabeisCmd.getById(to.getCategoriasContabeis()

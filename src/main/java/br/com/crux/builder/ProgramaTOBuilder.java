@@ -49,10 +49,11 @@ public class ProgramaTOBuilder {
 		retorno.setFaixaEtariaInicio(param.getFaixaEtariaInicio());
 		retorno.setFaixaEtariaFim(param.getFaixaEtariaFim());
 
-		Optional.ofNullable(param.getObjetivo()).ifPresent(o -> {
-			Objetivo obj = getObjetivoCmd.getById(o.getIdObjetivo());
-			retorno.setObjetivo(obj);
-		});
+		Optional.ofNullable(param.getObjetivo())
+				.ifPresent(o -> {
+					Objetivo obj = getObjetivoCmd.getById(o.getIdObjetivo());
+					retorno.setObjetivo(obj);
+				});
 
 		return retorno;
 	}
@@ -79,10 +80,9 @@ public class ProgramaTOBuilder {
 		retorno.setJustificativa(param.getJustificativa());
 		retorno.setObjetivoGeral(param.getObjetivoGeral());
 
-
 		return retorno;
 	}
-	
+
 	public ProgramaTO buildTOComDependencias(Programa param) {
 		ProgramaTO retorno = new ProgramaTO();
 
@@ -107,7 +107,7 @@ public class ProgramaTOBuilder {
 
 		retorno.setUnidades(getProgramaUnidadeCmd.getUnidadesTOByIdPrograma(param.getId()));
 		retorno.setColaboradoresPrograma((getColaboradoresProjetoCmd.getColaboradoresProgramaTOByPrograma(param)));
-		retorno.setParceriasPrograma(getParceriasProgramaCmd.getColaboradoresProgramaTOByPrograma(param));
+		retorno.setParceriasPrograma(getParceriasProgramaCmd.getParceriasProgramaTOByPrograma(param));
 		retorno.setComposicaoRhPrograma(getComposicaoRhProgramaCmd.getComposicaoRhProgramaByPrograma(param));
 		retorno.setMateriaisPrograma(getMateriaisProgramaCmd.getMateriaisProgramaByPrograma(param));
 		retorno.setContasCentrosCusto(getContasCentrosCustoCmd.getTOPorPrograma(param));
@@ -115,36 +115,39 @@ public class ProgramaTOBuilder {
 		return retorno;
 	}
 
-
 	public List<ProgramaTO> buildAll(List<Programa> dtos) {
-		return dtos.stream().map(this::buildTO).collect(Collectors.toList());
+		return dtos.stream()
+				.map(this::buildTO)
+				.collect(Collectors.toList());
 	}
 
 	public ProgramaTO buildTOEnxuto(Programa programa) {
-		if(Objects.isNull(programa)) {
+		if (Objects.isNull(programa)) {
 			return null;
 		}
-		
+
 		ProgramaTO to = new ProgramaTO();
 		to.setId(programa.getId());
-		
+
 		return to;
 	}
 
 	public List<ProgramaTO> buildAllCombo(List<Programa> dtos) {
-		return dtos.stream().map(this::buildTOCombo).collect(Collectors.toList());
+		return dtos.stream()
+				.map(this::buildTOCombo)
+				.collect(Collectors.toList());
 	}
-	
+
 	public ProgramaTO buildTOCombo(Programa programa) {
 		ProgramaTO to = new ProgramaTO();
 
-		if(Objects.isNull(programa)) {
+		if (Objects.isNull(programa)) {
 			return to;
 		}
-		
+
 		to.setId(programa.getId());
 		to.setNome(programa.getNome());
-		
+
 		return to;
 	}
 

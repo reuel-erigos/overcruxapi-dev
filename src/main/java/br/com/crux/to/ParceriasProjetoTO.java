@@ -20,6 +20,16 @@ public class ParceriasProjetoTO {
 	private Double valorParceria;
 	
 	private List<MateriaisProjetoTO> materiaisProjeto;
+	
+	private List<ParceriasCategoriasTO> parceriasCategorias;
+
+	public List<ParceriasCategoriasTO> getParceriasCategorias() {
+		return parceriasCategorias;
+	}
+
+	public void setParceriasCategorias(List<ParceriasCategoriasTO> parceriasCategorias) {
+		this.parceriasCategorias = parceriasCategorias;
+	}
 
 	public Long getId() {
 		return id;

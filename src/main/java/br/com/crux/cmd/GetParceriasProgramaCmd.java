@@ -19,7 +19,7 @@ public class GetParceriasProgramaCmd {
 	@Autowired private ParceriasProgramaRepository repository;
 	@Autowired private ParceriasProgramaTOBuilder toBuilder;
 
-	public List<ParceriasProgramaTO> getColaboradoresProgramaTOByPrograma(Programa programa) {
+	public List<ParceriasProgramaTO> getParceriasProgramaTOByPrograma(Programa programa) {
 		Optional<List<ParceriasPrograma>> lista = repository.findByPrograma(programa);
 
 		if (lista.isPresent()) {
@@ -28,6 +28,12 @@ public class GetParceriasProgramaCmd {
 
 		return Collections.emptyList();
 
+	}
+
+	public List<ParceriasPrograma> getParceriasProgramaByPrograma(Programa programa) {
+		return repository.findByPrograma(programa).orElse(Collections.emptyList());
+		
+		
 	}
 
 	public ParceriasPrograma get(Long id) {

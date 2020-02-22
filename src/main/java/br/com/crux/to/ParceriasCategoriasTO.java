@@ -6,7 +6,7 @@ public class ParceriasCategoriasTO {
 	private ParceriasProgramaTO parceriasPrograma;
 	private ParceriasProjetoTO parceriasProjeto;
 	private CategoriasContabeisTO categoriasContabeis;
-	private Long valorParceriaCategoria;
+	private Double valorParceriaCategoria;
 	
 	
 	public Long getId() {
@@ -33,10 +33,10 @@ public class ParceriasCategoriasTO {
 	public void setCategoriasContabeis(CategoriasContabeisTO categoriasContabeis) {
 		this.categoriasContabeis = categoriasContabeis;
 	}
-	public Long getValorParceriaCategoria() {
+	public Double getValorParceriaCategoria() {
 		return valorParceriaCategoria;
 	}
-	public void setValorParceriaCategoria(Long valorParceriaCategoria) {
+	public void setValorParceriaCategoria(Double valorParceriaCategoria) {
 		this.valorParceriaCategoria = valorParceriaCategoria;
 	}
 	

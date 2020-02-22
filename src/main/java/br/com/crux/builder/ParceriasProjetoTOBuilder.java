@@ -10,11 +10,13 @@ import org.springframework.stereotype.Component;
 
 import br.com.crux.cmd.GetEmpresaCmd;
 import br.com.crux.cmd.GetMateriaisParceirosProjetoCmd;
+import br.com.crux.cmd.GetParceriasCategoriasCmd;
 import br.com.crux.cmd.GetUsuarioLogadoCmd;
 import br.com.crux.entity.Empresa;
 import br.com.crux.entity.ParceriasProjeto;
 import br.com.crux.entity.Projeto;
 import br.com.crux.to.MateriaisProjetoTO;
+import br.com.crux.to.ParceriasCategoriasTO;
 import br.com.crux.to.ParceriasProjetoTO;
 
 @Component
@@ -26,6 +28,7 @@ public class ParceriasProjetoTOBuilder {
 	@Autowired ProjetoTOBuilder projetoTOBuilder;
 	@Autowired GetMateriaisParceirosProjetoCmd getMateriaisParceirosProjetoCmd;
 	@Autowired MateriaisProjetoTOBuilder materiaisProjetoTOBuilder;
+	@Autowired GetParceriasCategoriasCmd getParceriasCategoriasCmd;
 
 	public ParceriasProjeto build(Projeto projeto, ParceriasProjetoTO parceriaProjetoTO) {
 
@@ -63,6 +66,10 @@ public class ParceriasProjetoTOBuilder {
 		List<MateriaisProjetoTO> materiaisProjetoByProjeto = getMateriaisParceirosProjetoCmd.getMateriaisProjetoTOByParceriasProjeto(parceriaProjeto);
 
 		to.setMateriaisProjeto(materiaisProjetoByProjeto);
+		
+		List<ParceriasCategoriasTO> listaParceriasCategarias = getParceriasCategoriasCmd.getParceriasCategoriasTOByParceriasProjeto(parceriaProjeto);
+        to.setParceriasCategorias(listaParceriasCategarias);		
+	
 
 		return to;
 	}

@@ -13,7 +13,7 @@ import br.com.crux.entity.ParceriasPrograma;
 import br.com.crux.to.ParceriasCategoriasTO;
 
 @Component
-public class AlterarListaParceriasCategoriasCmd extends AbstractAlterarListaCmd<ParceriasCategorias, ParceriasCategoriasTO, ParceriasPrograma> {
+public class AlterarListaParceriasCategoriasProgramaCmd extends AbstractAlterarListaCmd<ParceriasCategorias, ParceriasCategoriasTO, ParceriasPrograma> {
 
 	@Autowired private ParceriasCategoriasTOBuilder toBuilder;
 	@Autowired private ParceriasCategoriasRepository repository;

@@ -18,11 +18,14 @@ public class CadastrarParceriaProjetoCmd {
 	@Autowired ParceriasProjetoRepository projetosUnidadeRepository;
 	@Autowired ParceriasProjetoTOBuilder parceriasProjetoTOBuilder;
 	@Autowired AlterarMateriaisParceriaProjetoCmd alterarMateriaisParceriaProjetoCmd;
+	@Autowired AlterarListaParceriasCategoriasProjetoCmd alterarListaParceriasCategoriasProjetoCmd;
 
-	public ParceriasProjeto cadastrar(Projeto projeto, ParceriasProjetoTO parceriaProjeto) {
-		ParceriasProjeto entity = parceriasProjetoTOBuilder.build(projeto, parceriaProjeto);
+	public ParceriasProjeto cadastrar(Projeto projeto, ParceriasProjetoTO to) {
+		ParceriasProjeto entity = parceriasProjetoTOBuilder.build(projeto, to);
 		ParceriasProjeto parceriasProjeto = projetosUnidadeRepository.save(entity);
-		alterarMateriaisParceriaProjetoCmd.alterarAll(projeto, parceriasProjeto, parceriaProjeto.getMateriaisProjeto());
+		alterarMateriaisParceriaProjetoCmd.alterarAll(projeto, parceriasProjeto, to.getMateriaisProjeto());
+		
+		alterarListaParceriasCategoriasProjetoCmd.alterarAll(to.getParceriasCategorias(), parceriasProjeto);
 		return entity;
 	}
 

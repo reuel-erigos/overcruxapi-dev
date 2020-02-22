@@ -36,7 +36,7 @@ public class ParceriasCategorias implements Serializable {
 	private CategoriasContabeis categoriasContabeis;
 
 	@Column(name = "vl_parceria_categoria") 
-	private Long valorParceriaCategoria;
+	private Double valorParceriaCategoria;
 
 	@Column(name = "id_usuario_apl") 
 	private Long usuarioAlteracao;
@@ -84,11 +84,11 @@ public class ParceriasCategorias implements Serializable {
 		this.categoriasContabeis = categoriasContabeis;
 	}
 
-	public Long getValorParceriaCategoria() {
+	public Double getValorParceriaCategoria() {
 		return valorParceriaCategoria;
 	}
 
-	public void setValorParceriaCategoria(Long valorParceriaCategoria) {
+	public void setValorParceriaCategoria(Double valorParceriaCategoria) {
 		this.valorParceriaCategoria = valorParceriaCategoria;
 	}
 
