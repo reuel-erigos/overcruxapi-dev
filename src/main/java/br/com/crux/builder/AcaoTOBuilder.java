@@ -8,19 +8,19 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.crux.cmd.GetAtividadeCmd;
+import br.com.crux.cmd.GetOficinasCmd;
 import br.com.crux.cmd.GetFuncionarioCmd;
 import br.com.crux.entity.Acoes;
-import br.com.crux.entity.Atividades;
+import br.com.crux.entity.Oficinas;
 import br.com.crux.entity.Funcionario;
 import br.com.crux.to.AcaoTO;
 
 @Component
 public class AcaoTOBuilder {
 
-	@Autowired private AtividadesTOBuilder atividadeBuilder;
+	@Autowired private OficinasTOBuilder atividadeBuilder;
 	@Autowired private FuncionarioTOBuilder funcionarioTOBuilder;
-	@Autowired private GetAtividadeCmd getAtividadeCmd;
+	@Autowired private GetOficinasCmd getAtividadeCmd;
 	@Autowired private GetFuncionarioCmd getFuncionarioCmd;
 
 	public Acoes build(AcaoTO p) {
@@ -62,9 +62,9 @@ public class AcaoTOBuilder {
 		});
 
 
-		Optional.ofNullable(p.getAtividade()).ifPresent(atv -> {
-			Atividades atividade = getAtividadeCmd.getById(atv.getId());
-			retorno.setAtividade(atividade);
+		Optional.ofNullable(p.getOficina()).ifPresent(atv -> {
+			Oficinas atividade = getAtividadeCmd.getById(atv.getId());
+			retorno.setOficina(atividade);
 		});
 
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
@@ -93,7 +93,7 @@ public class AcaoTOBuilder {
 		retorno.setDescricaoObjetivoAcao(p.getDescricaoObjetivoAcao());
 		retorno.setDescricaoOcorrenciaAcao(p.getDescricaoOcorrenciaAcao());
 		
-		retorno.setAtividade(atividadeBuilder.buildTO(p.getAtividade()));
+		retorno.setOficina(atividadeBuilder.buildTO(p.getOficina()));
 		
 		retorno.setFuncionarioAprovaAcao(funcionarioTOBuilder.buildTO(p.getFuncionarioAprovaAcao()));
 		retorno.setFuncionarioExecutaAcao(funcionarioTOBuilder.buildTO(p.getFuncionarioExecutaAcao()));
@@ -108,4 +108,8 @@ public class AcaoTOBuilder {
 		return dtos.stream().map(dto -> buildTO(dto)).collect(Collectors.toList());
 	}
 
+	public List<Acoes> buildTOAll(List<AcaoTO> dtos) {
+		return dtos.stream().map(dto -> build(dto)).collect(Collectors.toList());
+	}
+	
 }

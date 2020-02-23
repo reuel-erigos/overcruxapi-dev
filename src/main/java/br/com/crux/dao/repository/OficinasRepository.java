@@ -7,25 +7,25 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import br.com.crux.entity.Atividades;
+import br.com.crux.entity.Oficinas;
 
 @Repository
-public interface AtividadeRepository extends JpaRepository<Atividades, Long>{
+public interface OficinasRepository extends JpaRepository<Oficinas, Long>{
 	
 	
-	@Query(value = "SELECT ati FROM Atividades ati"
+	@Query(value = "SELECT ati FROM Oficinas ati"
 			+ " inner join Unidade uni on ati.unidade = uni"
 			+ " where uni.idUnidade = ?1")
-	public Optional<List<Atividades>> findByIdUnidade(Long idUnidade);
+	public Optional<List<Oficinas>> findByIdUnidade(Long idUnidade);
 
-	@Query(value = "SELECT ati FROM Atividades ati"
+	@Query(value = "SELECT ati FROM Oficinas ati"
 			+ " inner join Unidade uni on ati.unidade = uni"
 			+ " where uni.idUnidade = ?1")
-	public Optional<List<Atividades>> findAllUnidadeDoPrograma(Long idUnidade);
+	public Optional<List<Oficinas>> findAllUnidadeDoPrograma(Long idUnidade);
 	
 
-	@Query(value = "SELECT ati FROM Atividades ati"
+	@Query(value = "SELECT ati FROM Oficinas ati"
 			     + " where ati.idTurma = ?1")	
-	public Optional<List<Atividades>> findByIdTurma(Long idTurma);
+	public Optional<List<Oficinas>> findByIdTurma(Long idTurma);
 	
 }

@@ -14,10 +14,15 @@ public interface AcaoRepository extends JpaRepository<Acoes, Long>{
 	
 	
 	@Query(value = "SELECT acao FROM Acoes acao "
-			+ " inner join Atividades ati on ati = acao.atividade"
-			+ " inner join Unidade uni on ati.unidade = uni"
+			+ " inner join Oficinas ofi on ofi = acao.oficina"
+			+ " inner join Unidade uni on ofi.unidade = uni"
 			+ " where uni.idUnidade = ?1")
 	public Optional<List<Acoes>> findByUnidade(Long idUnidade);
+	
+	@Query(value = "SELECT acao FROM Acoes acao "
+			+ " inner join Oficinas ofi on ofi = acao.oficina"
+			+ " where ofi.id = ?1")
+	public Optional<List<Acoes>> findAllByOficina(Long idOficina);	
 
 	
 }

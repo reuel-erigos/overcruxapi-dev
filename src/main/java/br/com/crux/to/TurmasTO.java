@@ -40,7 +40,7 @@ public class TurmasTO  {
 	
 	
 	private List<ColaboradoresTurmaTO> colaboradores;
-	private List<AtividadesTO> oficinas;
+	private List<OficinasTO> oficinas;
 	
 	
 	public TurmasTO() {
@@ -190,11 +190,11 @@ public class TurmasTO  {
 		this.colaboradores = colaboradoresTurma;
 	}
 
-	public List<AtividadesTO> getOficinas() {
+	public List<OficinasTO> getOficinas() {
 		return oficinas;
 	}
 
-	public void setOficinas(List<AtividadesTO> oficinas) {
+	public void setOficinas(List<OficinasTO> oficinas) {
 		this.oficinas = oficinas;
 	}
 	

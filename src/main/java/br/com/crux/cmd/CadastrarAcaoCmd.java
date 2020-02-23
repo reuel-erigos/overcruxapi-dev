@@ -1,5 +1,7 @@
 package br.com.crux.cmd;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,15 +20,17 @@ public class CadastrarAcaoCmd {
 
 	@Autowired private CamposObrigatoriosAcaoRule camposObrigatoriosRule;
 
-	public void cadastrar(AcaoTO to) {
-
+	private void cadastrar(AcaoTO to) {
 		camposObrigatoriosRule.verificar(to);
-
 		to.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
-
 		Acoes entity = acaoTOBuilder.build(to);
-
 		repository.save(entity);
-
 	}
+	
+	public void cadastrarAll(List<AcaoTO> acoes, Long idOficina) {
+		acoes.forEach(acao -> {
+			acao.setId(idOficina); 
+			cadastrar(acao); 
+		});
+	}	
 }

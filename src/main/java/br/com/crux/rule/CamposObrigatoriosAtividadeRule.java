@@ -6,12 +6,12 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.exception.CamposObrigatoriosException;
-import br.com.crux.to.AtividadesTO;
+import br.com.crux.to.OficinasTO;
 
 @Component
 public class CamposObrigatoriosAtividadeRule {
 
-	public void verificar(AtividadesTO to) {
+	public void verificar(OficinasTO to) {
 		if (Objects.isNull(to.getDataPrevisaoInicio())) {
 			throw new CamposObrigatoriosException("Data de previsão de início deve ser informada.");
 		}

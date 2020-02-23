@@ -9,9 +9,9 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.crux.cmd.GetAtividadeCmd;
+import br.com.crux.cmd.GetOficinasCmd;
 import br.com.crux.cmd.GetPessoaFisicaCmd;
-import br.com.crux.entity.Atividades;
+import br.com.crux.entity.Oficinas;
 import br.com.crux.entity.CadastroReservaAtividade;
 import br.com.crux.entity.PessoaFisica;
 import br.com.crux.to.CadastroReservaAtividadeTO;
@@ -19,9 +19,9 @@ import br.com.crux.to.CadastroReservaAtividadeTO;
 @Component
 public class CadastroReservaAtividadeTOBuilder {
 
-	@Autowired private AtividadesTOBuilder atividadeBuilder;
+	@Autowired private OficinasTOBuilder atividadeBuilder;
 	@Autowired private PessoaFisicaTOBuilder pessoaFisicaBuilder;
-	@Autowired private GetAtividadeCmd getAtividadeCmd;
+	@Autowired private GetOficinasCmd getAtividadeCmd;
 	@Autowired private GetPessoaFisicaCmd getPessoaFisicaCmd;
 
 	
@@ -36,7 +36,7 @@ public class CadastroReservaAtividadeTOBuilder {
 		retorno.setDtAlteracaoAtividade(LocalDateTime.now());
 		
 		Optional.ofNullable(p.getAtividade()).ifPresent(atividade -> {
-			Atividades atv = getAtividadeCmd.getById(atividade.getId());
+			Oficinas atv = getAtividadeCmd.getById(atividade.getId());
 			retorno.setDataCadastroAtividade(atv.getDataInicio());
 			retorno.setAtividade(atv);
 		});

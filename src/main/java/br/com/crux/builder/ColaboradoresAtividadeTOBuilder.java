@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.crux.cmd.GetAtividadeCmd;
+import br.com.crux.cmd.GetOficinasCmd;
 import br.com.crux.cmd.GetCargosCmd;
 import br.com.crux.cmd.GetFuncionarioCmd;
 import br.com.crux.entity.Cargo;
@@ -19,10 +19,10 @@ import br.com.crux.to.ColaboradoresAtividadeTO;
 @Component
 public class ColaboradoresAtividadeTOBuilder {
 
-	@Autowired GetAtividadeCmd getAtividadeCmd;
+	@Autowired GetOficinasCmd getAtividadeCmd;
 	@Autowired GetCargosCmd getCargosCmd;
 	@Autowired GetFuncionarioCmd getFuncionarioCmd;
-	@Autowired AtividadesTOBuilder atividadesTOBuilder;
+	@Autowired OficinasTOBuilder atividadesTOBuilder;
 	@Autowired CargosTOBuilder cargosTOBuilder;
 	@Autowired FuncionarioTOBuilder funcionarioTOBuilder;
 

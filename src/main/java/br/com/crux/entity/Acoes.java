@@ -37,7 +37,7 @@ public class Acoes implements Serializable {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_atividade")
-	private Atividades atividade;
+	private Oficinas oficina;
 	
 	@Column(name="ds_objetivo_acao")
 	private String descricaoObjetivoAcao;
@@ -101,12 +101,12 @@ public class Acoes implements Serializable {
 		this.descricao = descricao;
 	}
 
-	public Atividades getAtividade() {
-		return atividade;
+	public Oficinas getOficina() {
+		return oficina;
 	}
 
-	public void setAtividade(Atividades atividade) {
-		this.atividade = atividade;
+	public void setOficina(Oficinas atividade) {
+		this.oficina = atividade;
 	}
 
 	public String getDescricaoObjetivoAcao() {

@@ -35,7 +35,7 @@ public class DocumentosAtividade {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_atividade")
-	private Atividades atividade;
+	private Oficinas atividade;
 
 	@Column(name = "id_usuario_apl")
 	private Long usuarioAlteracao;
@@ -67,11 +67,11 @@ public class DocumentosAtividade {
 		this.observacao = observacao;
 	}
 
-	public Atividades getAtividade() {
+	public Oficinas getAtividade() {
 		return atividade;
 	}
 
-	public void setAtividade(Atividades atividade) {
+	public void setAtividade(Oficinas atividade) {
 		this.atividade = atividade;
 	}
 

@@ -33,7 +33,7 @@ public class CadastroReservaAtividade {
 
 	@Column(name = "dt_alteracao_atividade") private LocalDateTime dtAlteracaoAtividade;
 
-	@ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "id_atividade") private Atividades atividade;
+	@ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "id_atividade") private Oficinas atividade;
 
 	@ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "pf_id_pessoa_fisica") private PessoaFisica pessoasFisica;
 
@@ -98,11 +98,11 @@ public class CadastroReservaAtividade {
 		this.dtAlteracaoAtividade = dtAlteracaoAtividade;
 	}
 
-	public Atividades getAtividade() {
+	public Oficinas getAtividade() {
 		return atividade;
 	}
 
-	public void setAtividade(Atividades atividade) {
+	public void setAtividade(Oficinas atividade) {
 		this.atividade = atividade;
 	}
 

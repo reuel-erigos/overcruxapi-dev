@@ -27,8 +27,8 @@ public interface AlunosTurmaRepository extends JpaRepository<AlunosTurma, Long>{
 
 	@Query(value = "SELECT at FROM AlunosTurma at "
 			+ " right join AtividadesAluno ati on ati.aluno = at.aluno"
-			+ " inner join Atividades atividade on ati.atividade = atividade"
-			+ " where atividade.id = ?1")
+			+ " inner join Oficinas oficina on ati.atividade = oficina"
+			+ " where oficina.id = ?1")
 	public Optional<List<AlunosTurma>> findByAtividade(Long idAtividade);
 	
 	
@@ -48,31 +48,31 @@ public interface AlunosTurmaRepository extends JpaRepository<AlunosTurma, Long>{
 
 	@Query(value = "SELECT at FROM AlunosTurma at "
 			+ " inner join AtividadesAluno ati on ati.atividade = atividade"
-			+ " inner join Atividades atividade on ati.atividade = atividade"
-			+ " inner join Turmas t on t.id = atividade.idTurma "
+			+ " inner join Oficinas oficina on ati.atividade = oficina"
+			+ " inner join Turmas t on t.id = oficina.idTurma "
 			+ "       and at.turma = t"
-			+ " where atividade.id = ?2 "
+			+ " where oficina.id = ?2 "
 			+ "   and t.id = ?1")
 	public Optional<List<AlunosTurma>> findByTurmaAndAtividade(Long idTurma, Long idAtividade);
 
 
 	@Query(value = "SELECT at FROM AlunosTurma at "
 			+ " inner join AtividadesAluno ta on ta.atividade = atividade"
-			+ " inner join Atividades atividade on ta.atividade = atividade"
+			+ " inner join Oficinas oficina on ta.atividade = oficina"
 			+ " inner join Aluno aluno on ta.aluno = aluno "
 			+ "     and at.aluno = aluno "
 			+ " where aluno.id = ?1 "
-			+ "   and atividade.id = ?2 ")
+			+ "   and oficina.id = ?2 ")
 	public Optional<List<AlunosTurma>> findByAlunoAndAtividade(Long idAluno, Long idAtividade);
 	
 
 	@Query(value = "SELECT at FROM AlunosTurma at "
 			+ " inner join AtividadesAluno ta on ta.aluno = at.aluno"
-			+ " inner join Atividades atividade on ta.atividade = atividade"
+			+ " inner join Oficinas oficina on ta.atividade = oficina"
 			+ " inner join Aluno aluno on at.aluno = aluno"
 			+ " inner join Turmas t on t = at.turma"
 			+ " where aluno.id = ?2 "
-			+ " and atividade.id = ?3 "
+			+ " and oficina.id = ?3 "
 			+ " and t.id = ?1")
 	public Optional<List<AlunosTurma>> findByTurmaAndAlunoAndAtividade(Long idTurma, Long idAluno, Long idAtividade);
 

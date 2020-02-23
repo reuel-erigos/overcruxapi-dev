@@ -10,7 +10,7 @@
 		<class>br.com.crux.entity.AlunosTrabalhando</class>
 		<class>br.com.crux.entity.Arquivo</class>
 		<class>br.com.crux.entity.Atendimentos</class>
-		<class>br.com.crux.entity.Atividades</class>
+		<class>br.com.crux.entity.Oficinas</class>
 		<class>br.com.crux.entity.AtividadesAluno</class>
 		<class>br.com.crux.entity.Avaliacoes</class>
 		<class>br.com.crux.entity.AvaliacoesAlunos</class>

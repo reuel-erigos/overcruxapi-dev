@@ -10,24 +10,24 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.crux.builder.AtividadesTOBuilder;
-import br.com.crux.dao.repository.AtividadeRepository;
-import br.com.crux.entity.Atividades;
+import br.com.crux.builder.OficinasTOBuilder;
+import br.com.crux.dao.repository.OficinasRepository;
+import br.com.crux.entity.Oficinas;
 import br.com.crux.exception.NotFoundException;
 import br.com.crux.exception.ParametroNaoInformadoException;
 import br.com.crux.infra.util.Java8DateUtil;
-import br.com.crux.to.AtividadesTO;
+import br.com.crux.to.OficinasTO;
 
 @Component
-public class GetAtividadeCmd {
+public class GetOficinasCmd {
 
-	@Autowired private AtividadeRepository repository;
-	@Autowired private AtividadesTOBuilder toBuilder;
+	@Autowired private OficinasRepository repository;
+	@Autowired private OficinasTOBuilder toBuilder;
 	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 	
-	public List<AtividadesTO> getAllVigentesAndPassadas() {
-		List<AtividadesTO> atividadesTO = getAllUnidadeLogada();
-		List<AtividadesTO> resultado = atividadesTO.stream()
+	public List<OficinasTO> getAllVigentesAndPassadas() {
+		List<OficinasTO> atividadesTO = getAllUnidadeLogada();
+		List<OficinasTO> resultado = atividadesTO.stream()
 				                                   .filter(r -> Objects.nonNull(r.getDataInicio()))
 				                                   .filter( r -> {
 											return Java8DateUtil.isVigente( r.getDataInicio().toLocalDate(), (Objects.nonNull(r.getDataFim()) ? r.getDataFim().toLocalDate() : null) )
@@ -37,9 +37,9 @@ public class GetAtividadeCmd {
 		return resultado;
 	}
 	
-	public List<AtividadesTO> getAllVigentesAndFuturas() {
-		List<AtividadesTO> atividadesTO = getAllUnidadeLogada();
-		List<AtividadesTO> resultado = atividadesTO.stream()
+	public List<OficinasTO> getAllVigentesAndFuturas() {
+		List<OficinasTO> atividadesTO = getAllUnidadeLogada();
+		List<OficinasTO> resultado = atividadesTO.stream()
 				                                   .filter(r -> Objects.nonNull(r.getDataInicio()))
 				                                   .filter( r -> {
 											return Java8DateUtil.isVigente( r.getDataInicio().toLocalDate(), (Objects.nonNull(r.getDataFim()) ? r.getDataFim().toLocalDate() : null) )
@@ -53,35 +53,35 @@ public class GetAtividadeCmd {
 
 	
 	
-	public List<AtividadesTO> getAllUnidadeLogada() {
+	public List<OficinasTO> getAllUnidadeLogada() {
 		Long idUnidade = getUnidadeLogadaCmd.get().getId();
-		Optional<List<Atividades>> entitys = repository.findByIdUnidade(idUnidade);
+		Optional<List<Oficinas>> entitys = repository.findByIdUnidade(idUnidade);
 		if(entitys.isPresent()) {
 			return toBuilder.buildAll(entitys.get());
 		}
-		return new ArrayList<AtividadesTO>();
+		return new ArrayList<OficinasTO>();
 	}
 	
 	
-	public List<AtividadesTO> getTOByIdTurma(Long idTurma) {
+	public List<OficinasTO> getTOByIdTurma(Long idTurma) {
 		Long idPresente = Optional.ofNullable(idTurma).orElseThrow(() -> new ParametroNaoInformadoException("Parâmetro ID ausente."));
 		
-		Optional<List<Atividades>> entitys = repository.findByIdTurma(idPresente);
+		Optional<List<Oficinas>> entitys = repository.findByIdTurma(idPresente);
 		if(entitys.isPresent()) {
 			return toBuilder.buildAll(entitys.get());
 		}
 		
-		return new ArrayList<AtividadesTO>();
+		return new ArrayList<OficinasTO>();
 	}
 	
 	
-	public AtividadesTO getTOById(Long id) {
+	public OficinasTO getTOById(Long id) {
 		Long idPresente = Optional.ofNullable(id).orElseThrow(() -> new ParametroNaoInformadoException("Parâmetro ID ausente."));
-		Atividades entity = repository.findById(idPresente).orElseThrow(()-> new NotFoundException("Atividade não encontrada."));
+		Oficinas entity = repository.findById(idPresente).orElseThrow(()-> new NotFoundException("Atividade não encontrada."));
 		return toBuilder.buildTO(entity);
 	}
 
-	public Atividades getById(Long id) {
+	public Oficinas getById(Long id) {
 		Long idPresente = Optional.ofNullable(id).orElseThrow(() -> new ParametroNaoInformadoException("Parâmetro ID ausente."));
 		return repository.findById(idPresente).orElseThrow(()-> new NotFoundException("Atividade não encontrada."));
 	}

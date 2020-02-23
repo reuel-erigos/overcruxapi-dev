@@ -8,16 +8,16 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.crux.cmd.GetAtividadeCmd;
-import br.com.crux.entity.Atividades;
+import br.com.crux.cmd.GetOficinasCmd;
+import br.com.crux.entity.Oficinas;
 import br.com.crux.entity.DocumentosAtividade;
 import br.com.crux.to.DocumentosAtividadeTO;
 
 @Component
 public class DocumentosAtividadeTOBuilder {
 
-	@Autowired private AtividadesTOBuilder atividadeTOBuilder;
-	@Autowired private GetAtividadeCmd getAtividadeCmd;
+	@Autowired private OficinasTOBuilder atividadeTOBuilder;
+	@Autowired private GetOficinasCmd getAtividadeCmd;
 
 	public DocumentosAtividade build(DocumentosAtividadeTO param) {
 		DocumentosAtividade retorno = new DocumentosAtividade();
@@ -27,7 +27,7 @@ public class DocumentosAtividadeTOBuilder {
 		retorno.setObservacao(param.getObservacao());
 		
 		Optional.ofNullable(param.getAtividade()).ifPresent(atv -> {
-			Atividades atividade = getAtividadeCmd.getById(atv.getId());
+			Oficinas atividade = getAtividadeCmd.getById(atv.getId());
 			retorno.setAtividade(atividade);
 		});
 		retorno.setUsuarioAlteracao(param.getUsuarioAlteracao());

@@ -14,13 +14,13 @@ public interface DocumentosAtividadeRepository extends JpaRepository<DocumentosA
 	
 	
 	@Query(value = "SELECT d FROM DocumentosAtividade d "
-			+ " inner join Atividades ati on ati = d.atividade"
+			+ " inner join Oficinas ati on ati = d.atividade"
 			+ " inner join Unidade uni on ati.unidade = uni"
 			+ " where uni.idUnidade = ?1")
 	public Optional<List<DocumentosAtividade>> findByUnidade(Long idUnidade);
 
 	@Query(value = "SELECT d FROM DocumentosAtividade d "
-			+ " inner join Atividades ati on ati = d.atividade"
+			+ " inner join Oficinas ati on ati = d.atividade"
 			+ " where ati.id = ?1")
 	public Optional<List<DocumentosAtividade>> getPorAtividade(Long idAtividade);
 

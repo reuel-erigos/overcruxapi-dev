@@ -18,7 +18,7 @@ public class CadastrarTurmasCmd {
 	
 	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
 	@Autowired private CadastrarColaboradoresTurmaCmd cadastrarColaboradoresTurmaCmd;
-	@Autowired private CadastrarAtividadesCmd cadastrarAtividadesCmd;
+	@Autowired private CadastrarOficinasCmd cadastrarOficinasCmd;
 
 	public void cadastrar(TurmasTO to) {
 
@@ -29,7 +29,7 @@ public class CadastrarTurmasCmd {
 		TurmasTO turmaTO = toBuilder.buildTO(turma);
 		
 		cadastrarColaboradoresTurmaCmd.cadastrarAll(to.getColaboradores(), turmaTO);
-		cadastrarAtividadesCmd.cadastrarAll(to.getOficinas(), turmaTO);
+		cadastrarOficinasCmd.cadastrarAll(to.getOficinas(), turmaTO);
 
 	}
 }

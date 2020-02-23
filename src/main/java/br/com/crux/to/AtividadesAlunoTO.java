@@ -24,7 +24,7 @@ public class AtividadesAlunoTO {
 	private LocalDateTime dataCadastroAtividade;
 	
 	private AlunoTO aluno;
-	private AtividadesTO atividade;
+	private OficinasTO atividade;
 	private Long usuarioAlteracao;
 
 	public AtividadesAlunoTO() {
@@ -86,11 +86,11 @@ public class AtividadesAlunoTO {
 		this.aluno = aluno;
 	}
 
-	public AtividadesTO getAtividade() {
+	public OficinasTO getAtividade() {
 		return atividade;
 	}
 
-	public void setAtividade(AtividadesTO atividade) {
+	public void setAtividade(OficinasTO atividade) {
 		this.atividade = atividade;
 	}
 

@@ -27,50 +27,50 @@ public interface AtividadesAlunoRepository extends JpaRepository<AtividadesAluno
 	public Optional<List<AtividadesAluno>> findByAluno(Long idAluno);
 
 	@Query(value = "SELECT ati FROM AtividadesAluno ati "
-			+ " inner join Atividades atividade on ati.atividade = atividade"
-			+ " inner join Unidade uni on atividade.unidade = uni"
-			+ " where atividade.id = ?1")
+			+ " inner join Oficinas oficina on ati.atividade = oficina"
+			+ " inner join Unidade uni on oficina.unidade = uni"
+			+ " where oficina.id = ?1")
 	public Optional<List<AtividadesAluno>> findByAtividade(Long idAtividade);
 	
 	
 	@Query(value = "SELECT ati FROM AtividadesAluno ati "
-			+ " inner join Atividades atividade on ati.atividade = atividade"
-			+ " inner join Turmas t on t.id = atividade.idTurma"
+			+ " inner join Oficinas oficina on ati.atividade = oficina"
+			+ " inner join Turmas t on t.id = oficina.idTurma"
 			+ " where t.id = ?1 ")
 	public Optional<List<AtividadesAluno>> findByTurma(Long idTurma);
 	
 	
 	@Query(value = "SELECT ati FROM AtividadesAluno ati "
-			+ " inner join Atividades atividade on ati.atividade = atividade"
+			+ " inner join Oficinas oficina on ati.atividade = oficina"
 			+ " inner join Aluno aluno on ati.aluno = aluno"
-			+ " inner join Turmas t on t.id = atividade.idTurma"
+			+ " inner join Turmas t on t.id = oficina.idTurma"
 			+ " where aluno.id = ?2 "
 			+ " and t.id = ?1")
 	public Optional<List<AtividadesAluno>> findByTurmaAndAluno(Long idTurma, Long idAluno);
 	
 
 	@Query(value = "SELECT ati FROM AtividadesAluno ati "
-			+ " inner join Atividades atividade on ati.atividade = atividade"
-			+ " inner join Turmas t on t.id = atividade.idTurma"
-			+ " where atividade.id = ?2 "
+			+ " inner join Oficinas oficina on ati.atividade = oficina"
+			+ " inner join Turmas t on t.id = oficina.idTurma"
+			+ " where oficina.id = ?2 "
 			+ " and t.id = ?1")
 	public Optional<List<AtividadesAluno>> findByTurmaAndAtividade(Long idTurma, Long idAtividade);
 
 
 	@Query(value = "SELECT ati FROM AtividadesAluno ati "
-			+ " inner join Atividades atividade on ati.atividade = atividade"
+			+ " inner join Oficinas oficina on ati.atividade = oficina"
 			+ " inner join Aluno aluno on ati.aluno = aluno"
 			+ " where aluno.id = ?1 "
-			+ " and atividade.id = ?2 ")
+			+ " and oficina.id = ?2 ")
 	public Optional<List<AtividadesAluno>> findByAlunoAndAtividade(Long idAluno, Long idAtividade);
 	
 
 	@Query(value = "SELECT ati FROM AtividadesAluno ati "
-			+ " inner join Atividades atividade on ati.atividade = atividade"
+			+ " inner join Oficinas oficina on ati.atividade = oficina"
 			+ " inner join Aluno aluno on ati.aluno = aluno"
-			+ " inner join Turmas t on t.id = atividade.idTurma"
+			+ " inner join Turmas t on t.id = oficina.idTurma"
 			+ " where aluno.id = ?2 "
-			+ " and atividade.id = ?3 "
+			+ " and oficina.id = ?3 "
 			+ " and t.id = ?1")
 	public Optional<List<AtividadesAluno>> findByTurmaAndAlunoAndAtividade(Long idTurma, Long idAluno, Long idAtividade);
 

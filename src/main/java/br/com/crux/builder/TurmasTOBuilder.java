@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.crux.cmd.GetAtividadeCmd;
+import br.com.crux.cmd.GetOficinasCmd;
 import br.com.crux.cmd.GetColaboradoresTurmaCmd;
 import br.com.crux.cmd.GetNiveisTurmasCmd;
 import br.com.crux.cmd.GetProgramaCmd;
@@ -35,7 +35,7 @@ public class TurmasTOBuilder {
 	@Autowired private GetUnidadeCmd getUnidadeCmd;
 	
 	@Autowired private GetColaboradoresTurmaCmd colaboradoresTurmaCmd;
-	@Autowired private GetAtividadeCmd getAtividadeCmd;
+	@Autowired private GetOficinasCmd getAtividadeCmd;
 	
 
 	public Turmas build(TurmasTO param) {
@@ -130,7 +130,7 @@ public class TurmasTOBuilder {
 		
 		retorno.setColaboradores(colaboradoresTurmaCmd.getColaboradoresProjetoTOByTurma(param.getId()));
 		retorno.setOficinas(getAtividadeCmd.getTOByIdTurma(param.getId()));
-
+		
 		return retorno;
 	}
 

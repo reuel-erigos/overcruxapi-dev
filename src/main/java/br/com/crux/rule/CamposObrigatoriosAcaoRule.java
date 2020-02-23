@@ -20,7 +20,7 @@ public class CamposObrigatoriosAcaoRule {
 			throw new CamposObrigatoriosException("Descrição deve ser informada.");
 		}
 
-		if (Objects.isNull(to.getAtividade()) && Objects.isNull(to.getAtividade().getId())) {
+		if (Objects.isNull(to.getOficina()) && Objects.isNull(to.getOficina().getId())) {
 			throw new CamposObrigatoriosException("Atividade deve ser informada.");
 		}
 

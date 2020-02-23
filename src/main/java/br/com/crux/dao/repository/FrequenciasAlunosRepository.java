@@ -30,7 +30,7 @@ public interface FrequenciasAlunosRepository extends JpaRepository<FrequenciasAl
 	
 	@Query(value = "SELECT f FROM FrequenciasAlunos f "
 			+ " inner join AtividadesAluno ati on ati = f.atividadesAluno"
-			+ " inner join Atividades a on a = ati.atividade"
+			+ " inner join Oficinas a on a = ati.atividade"
 			+ " inner join Aluno aluno on aluno = ati.aluno"
 			+ " inner join Unidade uni on aluno.unidade = uni"
 			+ " where a.id = ?1")
@@ -38,7 +38,7 @@ public interface FrequenciasAlunosRepository extends JpaRepository<FrequenciasAl
 	
 	@Query(value = "SELECT f FROM FrequenciasAlunos f "
 			+ " inner join AtividadesAluno ati on ati = f.atividadesAluno"
-			+ " inner join Atividades a on a = ati.atividade"
+			+ " inner join Oficinas a on a = ati.atividade"
 			+ " inner join Aluno aluno on aluno = ati.aluno"
 			+ " inner join Unidade uni on aluno.unidade = uni"
 			+ " where a.id = ?1            "

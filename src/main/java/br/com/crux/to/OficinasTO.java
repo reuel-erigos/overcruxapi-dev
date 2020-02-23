@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import br.com.crux.infra.adapter.LocalDateTimeAdapter;
 
-public class AtividadesTO {
+public class OficinasTO {
 
 	private Long id;
 	private String descricao;
@@ -56,10 +56,11 @@ public class AtividadesTO {
 	
 	private List<ColaboradoresAtividadeTO> colaboradoresAtividade;
 	private List<MateriaisAtividadeTO> materiaisAtividade;
+	private List<AcaoTO> acoes;
 
 	private Long usuarioAlteracao;
 
-	public AtividadesTO() {
+	public OficinasTO() {
 	}
 
 	public Long getId() {
@@ -319,6 +320,14 @@ public class AtividadesTO {
 
 	public void setMateriaisAtividade(List<MateriaisAtividadeTO> materiaisAtividade) {
 		this.materiaisAtividade = materiaisAtividade;
+	}
+
+	public List<AcaoTO> getAcoes() {
+		return acoes;
+	}
+
+	public void setAcoes(List<AcaoTO> acoes) {
+		this.acoes = acoes;
 	}
 	
 

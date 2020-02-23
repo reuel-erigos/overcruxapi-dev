@@ -6,14 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 
-import br.com.crux.dao.repository.AtividadeRepository;
+import br.com.crux.dao.repository.OficinasRepository;
 import br.com.crux.exception.ParametroNaoInformadoException;
 import br.com.crux.exception.TabaleReferenciaEncontradaException;
 
 @Component
-public class ExcluirAtividadeCmd {
+public class ExcluirOficinasCmd {
 
-	@Autowired private AtividadeRepository repository;
+	@Autowired private OficinasRepository repository;
 
 	public void excluir(Long idAtividade) {
 

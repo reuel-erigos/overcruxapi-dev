@@ -1,6 +1,7 @@
 package br.com.crux.to;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
@@ -31,11 +32,12 @@ public class AcaoTO {
 	private String descricaoAvaliacaoAcao;
 	private String descricaoOcorrenciaAcao;
 	
-	private AtividadesTO atividade;
+	private OficinasTO oficina;
 	private FuncionarioTO funcionarioPlanejamentoAcao;	
 	private FuncionarioTO funcionarioAprovaAcao;
 	private FuncionarioTO funcionarioExecutaAcao;	
 	
+	private List<MateriaisAcoesTO> materiaisAcao;
 	
 	private Long usuarioAlteracao;
 	
@@ -82,12 +84,12 @@ public class AcaoTO {
 		this.dataPrevisaoInicio = dataPrevisaoInicio;
 	}
 
-	public AtividadesTO getAtividade() {
-		return atividade;
+	public OficinasTO getOficina() {
+		return oficina;
 	}
 
-	public void setAtividade(AtividadesTO atividade) {
-		this.atividade = atividade;
+	public void setOficina(OficinasTO atividade) {
+		this.oficina = atividade;
 	}
 
 	public Long getUsuarioAlteracao() {
@@ -168,6 +170,14 @@ public class AcaoTO {
 
 	public void setDataAprovaAcao(LocalDateTime dataAprovaAcao) {
 		this.dataAprovaAcao = dataAprovaAcao;
+	}
+
+	public List<MateriaisAcoesTO> getMateriaisAcao() {
+		return materiaisAcao;
+	}
+
+	public void setMateriaisAcao(List<MateriaisAcoesTO> materiaisAcao) {
+		this.materiaisAcao = materiaisAcao;
 	}
 	
 	

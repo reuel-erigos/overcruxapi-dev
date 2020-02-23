@@ -14,18 +14,18 @@ import br.com.crux.cmd.GetPlanosAcaoCmd;
 import br.com.crux.cmd.GetProgramaCmd;
 import br.com.crux.cmd.GetProjetoCmd;
 import br.com.crux.cmd.GetUnidadeCmd;
-import br.com.crux.entity.Atividades;
+import br.com.crux.entity.Oficinas;
 import br.com.crux.entity.PlanosAcao;
 import br.com.crux.entity.Programa;
 import br.com.crux.entity.Projeto;
 import br.com.crux.entity.Unidade;
 import br.com.crux.infra.util.Java8DateUtil;
-import br.com.crux.to.AtividadesTO;
+import br.com.crux.to.OficinasTO;
 import br.com.crux.to.ColaboradoresAtividadeTO;
 import br.com.crux.to.MateriaisAtividadeTO;
 
 @Component
-public class AtividadesTOBuilder {
+public class OficinasTOBuilder {
 
 	@Autowired private UnidadeTOBuilder unidadeBuilder;
 	@Autowired private ProjetoTOBuilder projetoBuilder;
@@ -37,9 +37,10 @@ public class AtividadesTOBuilder {
 	@Autowired private GetPlanosAcaoCmd getPlanosAcaoCmd;
 	@Autowired private GetColaboradoresAtividadeCmd getColaboradoresAtividadeCmd;
 	@Autowired private GetMateriaisAtividadeCmd getMateriaisAtividadeCmd;
+	@Autowired private AcaoTOBuilder acaoTOBuilder;
 
-	public Atividades build(AtividadesTO p) {
-		Atividades retorno = new Atividades();
+	public Oficinas build(OficinasTO p) {
+		Oficinas retorno = new Oficinas();
 
 		retorno.setId(p.getId());
 		retorno.setDescricao(p.getDescricao());
@@ -106,14 +107,16 @@ public class AtividadesTOBuilder {
 			}
 
 		});
+		
+		retorno.setAcoes(acaoTOBuilder.buildTOAll(p.getAcoes()));
 
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
 
 		return retorno;
 	}
 
-	public AtividadesTO buildTO(Atividades p) {
-		AtividadesTO retorno = new AtividadesTO();
+	public OficinasTO buildTO(Oficinas p) {
+		OficinasTO retorno = new OficinasTO();
 
 		if (Objects.isNull(p)) {
 			return retorno;
@@ -170,6 +173,8 @@ public class AtividadesTOBuilder {
 			retorno.setMateriaisAtividade(materiaisAtividade);
 		}
 
+		retorno.setAcoes(acaoTOBuilder.buildAll(p.getAcoes()));
+		
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
 
 		return retorno;
@@ -183,7 +188,7 @@ public class AtividadesTOBuilder {
 		return horaString.substring(0, 2) + ":" + horaString.substring(2, 4);
 	}
 
-	public List<AtividadesTO> buildAll(List<Atividades> dtos) {
+	public List<OficinasTO> buildAll(List<Oficinas> dtos) {
 		return dtos.stream().map(dto -> buildTO(dto)).collect(Collectors.toList());
 	}
 	

@@ -17,7 +17,7 @@ public class AlterarTurmasCmd {
 	@Autowired private TurmasTOBuilder programaTOBuilder;
 	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
 	@Autowired private AlterarColaboradoresTurmaCmd alterarColaboradoresTurmaCmd;
-	@Autowired private AlterarAtividadeCmd alterarAtividadeCmd;
+	@Autowired private AlterarOficinasCmd alterarOficinasCmd;
 
 	public void alterar(TurmasTO to) {
 		camposObrigatoriosRule.verificar(to);
@@ -26,7 +26,7 @@ public class AlterarTurmasCmd {
 
 		TurmasTO turmaTO = programaTOBuilder.buildTO(turma);
 		alterarColaboradoresTurmaCmd.alterarAll(to.getColaboradores(), turmaTO);
-		alterarAtividadeCmd.alterarAll(to.getOficinas(), turmaTO);
+		alterarOficinasCmd.alterarAll(to.getOficinas(), turmaTO);
 
 	}
 }

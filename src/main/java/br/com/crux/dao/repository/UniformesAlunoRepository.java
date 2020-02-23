@@ -30,7 +30,7 @@ public interface UniformesAlunoRepository extends JpaRepository<UniformesAluno, 
 
 	@Query(value = "SELECT u FROM UniformesAluno u "
 			+ " inner join AtividadesAluno ati on ati = u.atividadesAluno"
-			+ " inner join Atividades atividade on atividade = ati.atividade"
+			+ " inner join Oficinas atividade on atividade = ati.atividade"
 			+ " inner join Aluno aluno on aluno = ati.aluno"
 			+ " inner join Unidade uni on aluno.unidade = uni"
 			+ " where atividade.id = ?1")
