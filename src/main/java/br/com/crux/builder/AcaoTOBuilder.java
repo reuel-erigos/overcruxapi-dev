@@ -22,6 +22,7 @@ public class AcaoTOBuilder {
 	@Autowired private FuncionarioTOBuilder funcionarioTOBuilder;
 	@Autowired private GetOficinasCmd getAtividadeCmd;
 	@Autowired private GetFuncionarioCmd getFuncionarioCmd;
+	@Autowired private MateriaisAcoesTOBuilder materiaisAcoesTOBuilder;
 
 	public Acoes build(AcaoTO p) {
 		Acoes retorno = new Acoes();
@@ -67,6 +68,9 @@ public class AcaoTOBuilder {
 			retorno.setOficina(atividade);
 		});
 
+		retorno.setMateriaisAcao(materiaisAcoesTOBuilder.buildTOAll(p.getMateriaisAcao()));
+		
+		
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
 
 		return retorno;
@@ -98,6 +102,7 @@ public class AcaoTOBuilder {
 		retorno.setFuncionarioAprovaAcao(funcionarioTOBuilder.buildTO(p.getFuncionarioAprovaAcao()));
 		retorno.setFuncionarioExecutaAcao(funcionarioTOBuilder.buildTO(p.getFuncionarioExecutaAcao()));
 		retorno.setFuncionarioPlanejamentoAcao(funcionarioTOBuilder.buildTO(p.getFuncionarioPlanejamentoAcao()));
+		retorno.setMateriaisAcao(materiaisAcoesTOBuilder.buildAll(p.getMateriaisAcao()));
 
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
 

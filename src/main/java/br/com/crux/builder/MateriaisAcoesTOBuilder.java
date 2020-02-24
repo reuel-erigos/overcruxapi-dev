@@ -41,6 +41,10 @@ public class MateriaisAcoesTOBuilder {
 	public MateriaisAcoesTO buildTO(MateriaisAcoes p) {
 		MateriaisAcoesTO retorno = new MateriaisAcoesTO();
 
+		if (Objects.isNull(p)) {
+			return retorno;
+		}
+		
 		BeanUtils.copyProperties(p, retorno);
 
 		retorno.setMaterial(materialBuilder.buildTO(p.getMaterial()));
