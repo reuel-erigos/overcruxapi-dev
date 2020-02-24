@@ -36,12 +36,12 @@ public class GetAcaoCmd {
 		if (Objects.isNull(idUnidade) && Objects.isNull(idTurma) && Objects.isNull(idOficina) && Objects.isNull(idAcao)) {
 			entitys = repository.findByUnidade(getUnidadeLogadaCmd.get().getId());
 			
-		} else if(Objects.nonNull(idTurma) && Objects.isNull(idOficina)) {
-			entitys = repository.findByFilterComTurma(idUnidade, idTurma, idOficina, idAcao);
-			
 		} else if(Objects.isNull(idTurma) && Objects.nonNull(idOficina)) {
 			entitys = repository.findByFilterSemTurma(idUnidade, idOficina, idAcao);
-		} 
+			
+		} else {
+			entitys = repository.findByFilterComTurma(idUnidade, idTurma, idOficina, idAcao);
+		}
 		
 		if (entitys.isPresent()) {
 			return toBuilder.buildAll(entitys.get());
