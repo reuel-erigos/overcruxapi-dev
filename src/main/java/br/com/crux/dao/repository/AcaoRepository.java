@@ -35,7 +35,7 @@ public interface AcaoRepository extends JpaRepository<Acoes, Long>{
 			+ "   and (?1 is null or uni.idUnidade = ?1) "
 			+ "   and (?2 is null or turma.id = ?2) "
 			+ "   and (?3 is null or oficina.id = ?3) "
-			+ "   and (?4 is null or acao.id =  ?34) ")
+			+ "   and (?4 is null or acao.id =  ?4) ")
 	public Optional<List<Acoes>> findByFilterComTurma(Long idUnidade,
 			                                          Long idTurma,
 					                                  Long idOficina, 
