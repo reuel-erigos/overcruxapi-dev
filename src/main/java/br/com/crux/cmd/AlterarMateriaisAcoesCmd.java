@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 import br.com.crux.builder.MateriaisAcoesTOBuilder;
 import br.com.crux.dao.repository.MateriaisAcoesRepository;
 import br.com.crux.entity.MateriaisAcoes;
-import br.com.crux.exception.NotFoundException;
 import br.com.crux.rule.CamposObrigatoriosMateriaisAcoesRule;
 import br.com.crux.to.MateriaisAcoesTO;
 
@@ -28,9 +27,8 @@ public class AlterarMateriaisAcoesCmd {
 
 	private void alterar(MateriaisAcoesTO to) {
 		camposObrigatoriosRule.verificar(to);
-		MateriaisAcoes entity = repository.findById(to.getId()).orElseThrow(() -> new NotFoundException("Material da ação informada não existe."));
 		to.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
-		entity = toBuilder.build(to);
+		MateriaisAcoes entity = toBuilder.build(to);
 		repository.save(entity);
 	}
 	
@@ -74,8 +72,8 @@ public class AlterarMateriaisAcoesCmd {
 
 		//Atualiza os registros 
 		materiaisAcoesTO.stream()
-		                  .filter(registro -> Objects.nonNull(registro.getId()))
-		                  .forEach( registro -> {
+		                .filter(registro -> Objects.nonNull(registro.getId()))
+		                .forEach( registro -> {
 			if(contemNaLista.test(registro, toBuilder.buildAll(acoes))){
 				registro.setIdAcao(idAcao);
 				alterar(registro);
