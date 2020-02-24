@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.crux.cmd.AlterarAcaoCmd;
@@ -32,6 +33,15 @@ public class AcaoService {
 	public List<AcaoTO> getAll() {
 		return getCmd.getAll();
 	}
+	
+	@GetMapping(path = "/filter", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<AcaoTO> getAllFilter(@RequestParam(name = "unidade", required = false) Long idUnidade,
+                                     @RequestParam(name = "turma", required = false) Long idTurma,
+                                     @RequestParam(name = "oficina", required = false) Long idOficina,
+                                     @RequestParam(name = "acao", required = false) Long idAcao) {
+		return getCmd.getAllFilter(idUnidade, idTurma, idOficina, idAcao);
+	}
+	
 
 	@GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public AcaoTO getById(@PathVariable(name = "id") Long id) {

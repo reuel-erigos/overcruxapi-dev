@@ -22,7 +22,7 @@ public class GetSaldosContasBancariaCmd {
 	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 
 	
-		public List<SaldosContasBancariaTO> getAllFilter( String tipoContaBancaria, 
+	public List<SaldosContasBancariaTO> getAllFilter( String tipoContaBancaria, 
 												          String nomeBanco, 
 												          String numeroAgencia, 
 												          String numeroContaBancaria) {
