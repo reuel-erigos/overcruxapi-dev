@@ -74,8 +74,9 @@ public class AlterarMateriaisAcoesCmd {
 		materiaisAcoesTO.stream()
 		                .filter(registro -> Objects.nonNull(registro.getId()))
 		                .forEach( registro -> {
+		                	
+        	registro.setIdAcao(idAcao);
 			if(contemNaLista.test(registro, toBuilder.buildAll(acoes))){
-				registro.setIdAcao(idAcao);
 				alterar(registro);
 			}
 		});

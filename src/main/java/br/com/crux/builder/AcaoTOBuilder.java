@@ -9,10 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.cmd.GetOficinasCmd;
+import br.com.crux.dao.repository.MateriaisAcoesRepository;
 import br.com.crux.cmd.GetFuncionarioCmd;
 import br.com.crux.entity.Acoes;
 import br.com.crux.entity.Oficinas;
 import br.com.crux.entity.Funcionario;
+import br.com.crux.entity.MateriaisAcoes;
 import br.com.crux.to.AcaoTO;
 
 @Component
@@ -23,6 +25,7 @@ public class AcaoTOBuilder {
 	@Autowired private GetOficinasCmd getAtividadeCmd;
 	@Autowired private GetFuncionarioCmd getFuncionarioCmd;
 	@Autowired private MateriaisAcoesTOBuilder materiaisAcoesTOBuilder;
+	@Autowired private MateriaisAcoesRepository materiaisAcoesRepository;
 
 	public Acoes build(AcaoTO p) {
 		Acoes retorno = new Acoes();
@@ -68,9 +71,6 @@ public class AcaoTOBuilder {
 			retorno.setOficina(atividade);
 		});
 
-		retorno.setMateriaisAcao(materiaisAcoesTOBuilder.buildTOAll(p.getMateriaisAcao()));
-		
-		
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
 
 		return retorno;
@@ -102,7 +102,13 @@ public class AcaoTOBuilder {
 		retorno.setFuncionarioAprovaAcao(funcionarioTOBuilder.buildTO(p.getFuncionarioAprovaAcao()));
 		retorno.setFuncionarioExecutaAcao(funcionarioTOBuilder.buildTO(p.getFuncionarioExecutaAcao()));
 		retorno.setFuncionarioPlanejamentoAcao(funcionarioTOBuilder.buildTO(p.getFuncionarioPlanejamentoAcao()));
-		retorno.setMateriaisAcao(materiaisAcoesTOBuilder.buildAll(p.getMateriaisAcao()));
+		
+		if(Objects.nonNull(p.getId())) {
+			Optional<List<MateriaisAcoes>> materiais = materiaisAcoesRepository.findAllByIdAcao(p.getId());
+			if(materiais.isPresent()) {
+				retorno.setMateriaisAcao(materiaisAcoesTOBuilder.buildAll(materiais.get()));
+			}
+		}
 
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
 
