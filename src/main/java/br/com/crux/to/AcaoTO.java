@@ -1,6 +1,7 @@
 package br.com.crux.to;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -37,7 +38,7 @@ public class AcaoTO {
 	private FuncionarioTO funcionarioAprovaAcao;
 	private FuncionarioTO funcionarioExecutaAcao;	
 	
-	private List<MateriaisAcoesTO> materiaisAcao;
+	private List<MateriaisAcoesTO> materiaisAcao = new ArrayList<MateriaisAcoesTO>();
 	
 	private Long usuarioAlteracao;
 	
