@@ -47,7 +47,7 @@ public class ItensPedidosMateriaisTO {
 		return pedidosMateriais;
 	}
 
-	public void setPedidosMateriai(PedidosMateriaisTO pedidosMateriais) {
+	public void setPedidosMateriais(PedidosMateriaisTO pedidosMateriais) {
 		this.pedidosMateriais = pedidosMateriais;
 	}
 
