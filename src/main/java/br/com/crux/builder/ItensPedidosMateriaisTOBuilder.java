@@ -21,6 +21,7 @@ public class ItensPedidosMateriaisTOBuilder {
 	@Autowired private GetMaterialCmd getMaterialCmd;
 	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
 	@Autowired private MaterialTOBuilder materialTOBuilder;
+	@Autowired private PedidosMateriaisTOBuilder pedidosMateriaisTOBuilder;
 
 	public ItensPedidosMateriais build(PedidosMateriais pedidosMateriais, ItensPedidosMateriaisTO to) {
 
@@ -53,14 +54,17 @@ public class ItensPedidosMateriaisTOBuilder {
 
 	}
 
-	public ItensPedidosMateriaisTO buildTOCombo(ItensPedidosMateriais itensPedidosMateriais) {
+	public ItensPedidosMateriaisTO buildTOCombo(ItensPedidosMateriais e) {
 		ItensPedidosMateriaisTO to = new ItensPedidosMateriaisTO();
 
-		if (Objects.isNull(itensPedidosMateriais)) {
+		if (Objects.isNull(e)) {
 			return to;
 		}
 
-		BeanUtils.copyProperties(itensPedidosMateriais, to);
+		BeanUtils.copyProperties(e, to);
+		
+		to.setPedidosMateriais(pedidosMateriaisTOBuilder.buildTOCombo(e.getPedidosMateriais()));
+		
 
 		return to;
 	}
