@@ -50,7 +50,14 @@ public class GetOficinasCmd {
 	}
 	
 	
-
+	
+	public List<OficinasTO> getByTurma(Long idTurma) {
+		Optional<List<Oficinas>> entitys = repository.findByIdTurma(idTurma);
+		if(entitys.isPresent()) {
+			return toBuilder.buildAll(entitys.get());
+		}
+		return new ArrayList<OficinasTO>();
+	}
 	
 	
 	public List<OficinasTO> getAllUnidadeLogada() {

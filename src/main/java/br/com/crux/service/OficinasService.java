@@ -35,6 +35,12 @@ public class OficinasService {
 		return getCmd.getAllUnidadeLogada();
 	}
 
+	@GetMapping(path = "/turma/{turma}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<OficinasTO> getByTurma(@PathVariable(name = "turma") Long idTurma) {
+		return getCmd.getByTurma(idTurma);	
+	}
+	
+	
 	@GetMapping(path = "/vigente-e-passadas", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<OficinasTO> getAllVigentesAndPassadas() {
 		return getCmd.getAllVigentesAndPassadas();	
