@@ -26,9 +26,8 @@ public class MateriaisAcoes implements Serializable {
 	@Column(name = "id_material_acao")
 	private Long id;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_acao")
-	private Acoes acoes;
+	@Column(name = "id_acao")
+	private Long idAcao;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_material")
@@ -48,12 +47,12 @@ public class MateriaisAcoes implements Serializable {
 		this.id = id;
 	}
 
-	public Acoes getAcoes() {
-		return acoes;
+	public Long getIdAcao() {
+		return idAcao;
 	}
 
-	public void setAcoes(Acoes acoes) {
-		this.acoes = acoes;
+	public void setIdAcao(Long idAcao) {
+		this.idAcao = idAcao;
 	}
 
 	public Material getMaterial() {

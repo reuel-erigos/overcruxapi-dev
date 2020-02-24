@@ -2,7 +2,6 @@ package br.com.crux.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -119,9 +117,6 @@ public class Oficinas implements Serializable {
 
 	@Column(name = "id_usuario_apl")
 	private Long usuarioAlteracao;
-
-	@OneToMany(mappedBy = "oficina", fetch = FetchType.LAZY)
-	private List<Acoes> acoes;
 
 	public Oficinas() {
 	}
@@ -366,14 +361,5 @@ public class Oficinas implements Serializable {
 		this.idTurma = idTurma;
 	}
 
-	public List<Acoes> getAcoes() {
-		return acoes;
-	}
-
-	public void setAcoes(List<Acoes> acoes) {
-		this.acoes = acoes;
-	}
-
-	
 	
 }

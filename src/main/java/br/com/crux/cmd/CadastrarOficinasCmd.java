@@ -22,8 +22,6 @@ public class CadastrarOficinasCmd {
 	@Autowired private CadastrarColaboradoresAtividadeCmd cadastrarColaboradoresAtividadeCmd;
 	@Autowired private CadastrarMateriaisAtividadeCmd cadastrarMateriaisAtividadeCmd;
 	
-	@Autowired private CadastrarAcaoCmd cadastrarAcaoCmd;
-
 	public void cadastrar(OficinasTO oficinaTO) {
 		camposObrigatoriosRule.verificar(oficinaTO);
 		oficinaTO.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
@@ -33,7 +31,6 @@ public class CadastrarOficinasCmd {
 		
 		cadastrarColaboradoresAtividadeCmd.cadastrarAll(oficinaTO.getColaboradoresAtividade(), oficina.getId());
 		cadastrarMateriaisAtividadeCmd.cadastrarAll(oficinaTO.getMateriaisAtividade(), oficina.getId());
-		cadastrarAcaoCmd.cadastrarAll(oficinaTO.getAcoes(), oficina.getId());
 		
 	}
 	

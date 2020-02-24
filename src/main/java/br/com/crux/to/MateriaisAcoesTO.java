@@ -3,7 +3,7 @@ package br.com.crux.to;
 public class MateriaisAcoesTO {
 
 	private Long id;
-	private AcaoTO acao;
+	private Long idAcao;
 	private MaterialTO material;
 	private Long quantidadeMaterial;
 	private Long usuarioAlteracao;
@@ -17,14 +17,6 @@ public class MateriaisAcoesTO {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public AcaoTO getAcao() {
-		return acao;
-	}
-
-	public void setAcao(AcaoTO acao) {
-		this.acao = acao;
 	}
 
 	public MaterialTO getMaterial() {
@@ -50,5 +42,16 @@ public class MateriaisAcoesTO {
 	public void setUsuarioAlteracao(Long usuarioAlteracao) {
 		this.usuarioAlteracao = usuarioAlteracao;
 	}
+
+	public Long getIdAcao() {
+		return idAcao;
+	}
+
+	public void setIdAcao(Long idAcao) {
+		this.idAcao = idAcao;
+	}
+
+
+	
 
 }

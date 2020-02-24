@@ -56,8 +56,7 @@ public class OficinasTO {
 	
 	private List<ColaboradoresAtividadeTO> colaboradoresAtividade;
 	private List<MateriaisAtividadeTO> materiaisAtividade;
-	private List<AcaoTO> acoes;
-
+	
 	private Long usuarioAlteracao;
 
 	public OficinasTO() {
@@ -321,14 +320,5 @@ public class OficinasTO {
 	public void setMateriaisAtividade(List<MateriaisAtividadeTO> materiaisAtividade) {
 		this.materiaisAtividade = materiaisAtividade;
 	}
-
-	public List<AcaoTO> getAcoes() {
-		return acoes;
-	}
-
-	public void setAcoes(List<AcaoTO> acoes) {
-		this.acoes = acoes;
-	}
-	
 
 }

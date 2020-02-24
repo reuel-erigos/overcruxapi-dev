@@ -2,6 +2,7 @@ package br.com.crux.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -77,6 +79,10 @@ public class Acoes implements Serializable {
 
 	@Column(name="ds_ocorrencia_acao")
 	private String descricaoOcorrenciaAcao;
+		
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_acao")
+	private List<MateriaisAcoes> materiaisAcao;
 
 	
 	@Column(name="id_usuario_apl")
@@ -213,6 +219,13 @@ public class Acoes implements Serializable {
 		this.usuarioAlteracao = usuarioAlteracao;
 	}
 
+	public List<MateriaisAcoes> getMateriaisAcao() {
+		return materiaisAcao;
+	}
+
+	public void setMateriaisAcao(List<MateriaisAcoes> materiaisAcao) {
+		this.materiaisAcao = materiaisAcao;
+	}
 
 	
 }

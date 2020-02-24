@@ -25,7 +25,6 @@ public class AlterarOficinasCmd {
 
 	@Autowired private CamposObrigatoriosAtividadeRule camposObrigatoriosRule;
 	@Autowired private CadastrarOficinasCmd cadastrarAtividadesCmd;
-	@Autowired private AlterarAcaoCmd alterarAcaoCmd;
 	
 	
 	public void alterar(OficinasTO to) {
@@ -42,7 +41,6 @@ public class AlterarOficinasCmd {
 			
 			alterarColaboradesAtividadeCmd.alterarAll(to.getColaboradoresAtividade(),entity.getId());
 			alterarMateriaisAtividadeCmd.alterarAll(to.getMateriaisAtividade(), entity.getId());
-			alterarAcaoCmd.alterarAll(to.getAcoes(), entity.getId());
 		}
 
 	}

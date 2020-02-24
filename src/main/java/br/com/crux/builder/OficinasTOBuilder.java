@@ -20,9 +20,9 @@ import br.com.crux.entity.Programa;
 import br.com.crux.entity.Projeto;
 import br.com.crux.entity.Unidade;
 import br.com.crux.infra.util.Java8DateUtil;
-import br.com.crux.to.OficinasTO;
 import br.com.crux.to.ColaboradoresAtividadeTO;
 import br.com.crux.to.MateriaisAtividadeTO;
+import br.com.crux.to.OficinasTO;
 
 @Component
 public class OficinasTOBuilder {
@@ -37,7 +37,6 @@ public class OficinasTOBuilder {
 	@Autowired private GetPlanosAcaoCmd getPlanosAcaoCmd;
 	@Autowired private GetColaboradoresAtividadeCmd getColaboradoresAtividadeCmd;
 	@Autowired private GetMateriaisAtividadeCmd getMateriaisAtividadeCmd;
-	@Autowired private AcaoTOBuilder acaoTOBuilder;
 
 	public Oficinas build(OficinasTO p) {
 		Oficinas retorno = new Oficinas();
@@ -108,8 +107,6 @@ public class OficinasTOBuilder {
 
 		});
 		
-		retorno.setAcoes(acaoTOBuilder.buildTOAll(p.getAcoes()));
-
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
 
 		return retorno;
@@ -173,8 +170,6 @@ public class OficinasTOBuilder {
 			retorno.setMateriaisAtividade(materiaisAtividade);
 		}
 
-		retorno.setAcoes(acaoTOBuilder.buildAll(p.getAcoes()));
-		
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
 
 		return retorno;
