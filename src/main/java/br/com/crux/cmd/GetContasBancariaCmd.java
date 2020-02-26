@@ -42,9 +42,8 @@ public class GetContasBancariaCmd {
 				.orElseGet(null);
 	}
 
-	public List<ContasBancariaTO> getAllCombo() {
-		Long idUnidade = getUnidadeLogadaCmd.get()
-				.getId();
+	public List<ContasBancariaTO> getAllComboByUnidadeLogada() {
+		Long idUnidade = getUnidadeLogadaCmd.get().getId();
 		Optional<List<ContasBancaria>> entitys = repository.findByIdUnidade(idUnidade);
 		if (entitys.isPresent()) {
 			return toBuilder.buildAllCombo(entitys.get());
@@ -52,4 +51,13 @@ public class GetContasBancariaCmd {
 		return new ArrayList<ContasBancariaTO>();
 	}
 
+	public List<ContasBancariaTO> getAllComboByInstituicaoLogada() {
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+		Optional<List<ContasBancaria>> entitys = repository.findByIdInstituicao(idInstituicao);
+		if (entitys.isPresent()) {
+			return toBuilder.buildAllCombo(entitys.get());
+		}
+		return new ArrayList<ContasBancariaTO>();
+	}
+	
 }
