@@ -13,6 +13,8 @@ public class ProjetoTO {
 	private String nome;
 	private String descricao;
 
+	private Long idCoordenador;
+	
 	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
 	private LocalDateTime dataFim;
 	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
@@ -179,6 +181,14 @@ public class ProjetoTO {
 
 	public void setContasCentrosCusto(List<ContasCentrosCustoTO> contasCentrosCusto) {
 		this.contasCentrosCusto = contasCentrosCusto;
+	}
+	
+	public Long getIdCoordenador() {
+		return idCoordenador;
+	}
+
+	public void setIdCoordenador(Long idCoordenador) {
+		this.idCoordenador = idCoordenador;
 	}
 
 

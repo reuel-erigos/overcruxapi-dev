@@ -72,7 +72,8 @@ public class Projeto implements Serializable {
 	@Column(name="id_usuario_apl")
 	private Long usuarioAlteracao;
 	
-	
+	@Column(name="id_coordenador")
+	private Long idCoordenador;
 
 	public Projeto() {
 	}
@@ -179,6 +180,14 @@ public class Projeto implements Serializable {
 
 	public void setObjetivoGeral(String objetivoGeral) {
 		this.objetivoGeral = objetivoGeral;
+	}
+
+	public Long getIdCoordenador() {
+		return idCoordenador;
+	}
+
+	public void setIdCoordenador(Long idCoordenador) {
+		this.idCoordenador = idCoordenador;
 	}
 
 	

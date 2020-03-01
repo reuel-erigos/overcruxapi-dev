@@ -37,7 +37,8 @@ public class ProjetoTOBuilder {
 		retorno.setPublicoAlvo(p.getPublicoAlvo());
 		retorno.setJustificativa(p.getJustificativa());
 		retorno.setObjetivoGeral(p.getObjetivoGeral());
-
+		retorno.setIdCoordenador(p.getIdCoordenador());
+		
 		retorno.setDataPrevisaoInicio(p.getDataPrevisaoInicio());
 		retorno.setDataPrevisaoTermino(p.getDataPrevisaoTermino());
 
@@ -61,7 +62,8 @@ public class ProjetoTOBuilder {
 		retorno.setPublicoAlvo(p.getPublicoAlvo());
 		retorno.setJustificativa(p.getJustificativa());
 		retorno.setObjetivoGeral(p.getObjetivoGeral());
-
+		retorno.setIdCoordenador(p.getIdCoordenador());
+		
 		retorno.setDataPrevisaoInicio(p.getDataPrevisaoInicio());
 		retorno.setDataPrevisaoTermino(p.getDataPrevisaoTermino());
 
