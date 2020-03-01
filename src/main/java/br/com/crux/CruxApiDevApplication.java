@@ -1,5 +1,9 @@
 package br.com.crux;
 
+import java.util.TimeZone;
+
+import javax.annotation.PostConstruct;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -17,4 +21,8 @@ public class CruxApiDevApplication extends SpringBootServletInitializer{
 		SpringApplication.run(CruxApiDevApplication.class, args);
 	}
 
+	@PostConstruct
+	public void started() {
+	    TimeZone.setDefault(TimeZone.getTimeZone("GMT-3"));
+	}
 }
