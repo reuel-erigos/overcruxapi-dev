@@ -23,6 +23,6 @@ public class CruxApiDevApplication extends SpringBootServletInitializer{
 
 	@PostConstruct
 	public void started() {
-	    TimeZone.setDefault(TimeZone.getTimeZone("America/Sao_Paulo"));
+	    TimeZone.setDefault(TimeZone.getTimeZone("UTC-3"));
 	}
 }
