@@ -1,7 +1,5 @@
 package br.com.crux.rule;
 
-import java.util.Objects;
-
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
@@ -15,9 +13,5 @@ public class CamposObrigatoriosProjetoRule {
 		if (StringUtils.isEmpty(to.getNome())) {
 			throw new CamposObrigatoriosException("Nome deve ser informado.");
 		}
-		if (Objects.isNull(to.getDataPrevisaoInicio())) {
-			throw new CamposObrigatoriosException("Data de Início da Previsão deve ser informada.");
-		}
-
 	}
 }
