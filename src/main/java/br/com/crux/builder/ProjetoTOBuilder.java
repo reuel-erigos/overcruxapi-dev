@@ -2,6 +2,7 @@ package br.com.crux.builder;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,9 @@ import br.com.crux.cmd.GetColaboradoresProjetoCmd;
 import br.com.crux.cmd.GetComposicaoRhProjetoCmd;
 import br.com.crux.cmd.GetContasCentrosCustoCmd;
 import br.com.crux.cmd.GetParceriasProjetoCmd;
+import br.com.crux.cmd.GetProgramaCmd;
 import br.com.crux.cmd.GetProjetosUnidadeCmd;
+import br.com.crux.entity.Programa;
 import br.com.crux.entity.Projeto;
 import br.com.crux.to.ProjetoTO;
 
@@ -23,6 +26,8 @@ public class ProjetoTOBuilder {
 	@Autowired private GetParceriasProjetoCmd getParceriasProjetoCmd;
 	@Autowired private GetComposicaoRhProjetoCmd getComposicaoRhProjetoCmd;
 	@Autowired private GetContasCentrosCustoCmd getContasCentrosCustoCmd;
+	@Autowired private GetProgramaCmd getProgramaCmd;
+	@Autowired private ProgramaTOBuilder programaTOBuilder;
 
 	public Projeto build(ProjetoTO p) {
 		Projeto retorno = new Projeto();
@@ -41,6 +46,13 @@ public class ProjetoTOBuilder {
 		
 		retorno.setDataPrevisaoInicio(p.getDataPrevisaoInicio());
 		retorno.setDataPrevisaoTermino(p.getDataPrevisaoTermino());
+		
+		Optional.ofNullable(p.getPrograma()).ifPresent(programa -> {
+			if (Objects.nonNull(programa.getId())) {
+				Programa entity = getProgramaCmd.getById(programa.getId());
+				retorno.setPrograma(entity);
+			}
+		});
 
 		return retorno;
 	}
@@ -73,6 +85,10 @@ public class ProjetoTOBuilder {
 		retorno.setComposicaoRhProjeto(getComposicaoRhProjetoCmd.getComposicaoRhProjetoByProjeto(p));
 		retorno.setContasCentrosCusto(getContasCentrosCustoCmd.getTOPorProjeto(p));
 
+		Optional.ofNullable(p.getPrograma()).ifPresent(programa -> {
+			retorno.setPrograma(programaTOBuilder.buildTO(programa));
+		});
+		
 		return retorno;
 	}
 
