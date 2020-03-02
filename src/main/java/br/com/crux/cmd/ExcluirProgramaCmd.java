@@ -19,7 +19,6 @@ import br.com.crux.exception.TabaleReferenciaEncontradaException;
 public class ExcluirProgramaCmd {
 
 	@Autowired private ProgramaRepository repository;
-	
 	@Autowired private IniciativaRepository iniciativaRepository;
 	
 	
@@ -36,10 +35,13 @@ public class ExcluirProgramaCmd {
 				throw new NotFoundException("Programa informado não existe.");
 			}
 			
-			Optional<Iniciativa> iniciativa = iniciativaRepository.findById(entity.get().getIniciativa().getId());
-			if(iniciativa.isPresent()) {
-				throw new TabaleReferenciaEncontradaException("Por favor, excluir a Iniciativa primeiro!");
+			if(Objects.nonNull(entity.get().getIniciativa())) {
+				Optional<Iniciativa> iniciativa = iniciativaRepository.findById(entity.get().getIniciativa().getId());
+				if(iniciativa.isPresent()) {
+					throw new TabaleReferenciaEncontradaException("Por favor, excluir a Iniciativa primeiro!");
+				}
 			}
+			
 			
 			repository.deleteById(id);
 		} catch (DataIntegrityViolationException e) {

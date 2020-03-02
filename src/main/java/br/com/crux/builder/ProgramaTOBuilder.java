@@ -2,7 +2,6 @@ package br.com.crux.builder;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,11 +48,12 @@ public class ProgramaTOBuilder {
 		retorno.setFaixaEtariaInicio(param.getFaixaEtariaInicio());
 		retorno.setFaixaEtariaFim(param.getFaixaEtariaFim());
 
-		Optional.ofNullable(param.getObjetivo())
-				.ifPresent(o -> {
-					Objetivo obj = getObjetivoCmd.getById(o.getIdObjetivo());
-					retorno.setObjetivo(obj);
-				});
+		if (Objects.nonNull(param.getObjetivo()) && Objects.nonNull(param.getObjetivo()
+				.getIdObjetivo())) {
+			Objetivo obj = getObjetivoCmd.getById(param.getObjetivo()
+					.getIdObjetivo());
+			retorno.setObjetivo(obj);
+		}
 
 		return retorno;
 	}
