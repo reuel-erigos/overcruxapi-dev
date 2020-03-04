@@ -12,7 +12,8 @@ public class PagamentosFaturaTO {
 	private LocalDateTime dataPagamento;
 	private String formaPagamento;
 	private String numeroDocPagamento;
-	
+	private Double valorMulta;
+	private Double valorJuros;
 	
 	public Long getId() {
 		return id;
@@ -62,5 +63,18 @@ public class PagamentosFaturaTO {
 	public void setNumeroDocPagamento(String numeroDocPagamento) {
 		this.numeroDocPagamento = numeroDocPagamento;
 	}
+	public Double getValorMulta() {
+		return valorMulta;
+	}
+	public void setValorMulta(Double valorMulta) {
+		this.valorMulta = valorMulta;
+	}
+	public Double getValorJuros() {
+		return valorJuros;
+	}
+	public void setValorJuros(Double valorJuros) {
+		this.valorJuros = valorJuros;
+	}
+	
 	
 }

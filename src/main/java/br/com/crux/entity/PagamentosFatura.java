@@ -59,7 +59,14 @@ public class PagamentosFatura implements Serializable {
 
 	@Column(name = "id_usuario_apl")
 	private Long usuarioAlteracao;
+	
+	@Column(name = "vl_multa")
+	private Double valorMulta;
+	
+	@Column(name = "vl_juros")
+	private Double valorJuros;
 
+	
 	public PagamentosFatura() {
 	}
 
@@ -135,4 +142,21 @@ public class PagamentosFatura implements Serializable {
 		this.usuarioAlteracao = usuarioAlteracao;
 	}
 
+	public Double getValorMulta() {
+		return valorMulta;
+	}
+
+	public void setValorMulta(Double valorMulta) {
+		this.valorMulta = valorMulta;
+	}
+
+	public Double getValorJuros() {
+		return valorJuros;
+	}
+
+	public void setValorJuros(Double valorJuros) {
+		this.valorJuros = valorJuros;
+	}
+
+	
 }

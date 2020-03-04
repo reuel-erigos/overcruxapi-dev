@@ -46,12 +46,6 @@ public class ItensMovimentacoesTOBuilder {
 		to.setPedidosMateriais(pedidosMateriaisTOBuilder.buildTOCombo(entity.getPedidosMateriais()));
 		to.setUnidade(unidadeTOBuilder.buildTOCombo(entity.getUnidade()));
 		
-		to.setValorICMS(entity.getValorICMS());
-		to.setValorInss(entity.getValorInss());
-		to.setValorIPI(entity.getValorIPI());
-		to.setValorISS(entity.getValorISS());
-		to.setValorPisConfinsCsll(entity.getValorPisConfinsCsll());
-
 		return to;
 	}
 
@@ -84,12 +78,6 @@ public class ItensMovimentacoesTOBuilder {
 		entity.setDepartamento(movimentacoes.getDepartamento());
 		entity.setMovimentacao(movimentacoes);
 		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
-		
-		entity.setValorICMS(movimentacoes.getValorICMS());
-		entity.setValorInss(movimentacoes.getValorInss());
-		entity.setValorIPI(movimentacoes.getValorIPI());
-		entity.setValorISS(movimentacoes.getValorISS());
-		entity.setValorPisConfinsCsll(movimentacoes.getValorPisConfinsCsll());
 		
 		return entity;
 	}

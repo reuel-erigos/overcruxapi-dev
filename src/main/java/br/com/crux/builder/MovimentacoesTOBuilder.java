@@ -49,6 +49,7 @@ public class MovimentacoesTOBuilder {
 		}
 
 		BeanUtils.copyProperties(m, to);
+		
 		to.setEmpresa(empresaTOBuilder.buildTOCombo(m.getEmpresa()));
 		to.setProjeto(projetoTOBuilder.buildTOCombo(m.getProjeto()));
 		to.setPrograma(programaTOBuilder.buildTOCombo(m.getPrograma()));
@@ -59,13 +60,6 @@ public class MovimentacoesTOBuilder {
 		to.setItensMovimentacoes(getItensMovimentacoesCmd.getItensMovimentacoesTOByMovimentacao(m));
 		to.setFaturas(getFaturaCmd.getFaturaTOByMovimentacao(m));
 		to.setPagamentosFatura(getPagamentosFaturaCmd.getPagamentoFaturaTOByMovimentacao(m));
-		
-		
-		to.setValorICMS(m.getValorICMS());
-		to.setValorInss(m.getValorInss());
-		to.setValorIPI(m.getValorIPI());
-		to.setValorISS(m.getValorISS());
-		to.setValorPisConfinsCsll(m.getValorPisConfinsCsll());
 		to.setSaldoContaBancaria(saldosContasBancariaTOBuilder.buildTO(m.getSaldoContaBancaria()));
 
 		return to;
@@ -114,12 +108,6 @@ public class MovimentacoesTOBuilder {
 		}
 
 		p.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
-		
-		p.setValorICMS(to.getValorICMS());
-		p.setValorInss(to.getValorInss());
-		p.setValorIPI(to.getValorIPI());
-		p.setValorISS(to.getValorISS());
-		p.setValorPisConfinsCsll(to.getValorPisConfinsCsll());
 		
 		if (Objects.nonNull(to.getSaldoContaBancaria()) && Objects.nonNull(to.getSaldoContaBancaria().getId())) {
 			p.setSaldoContaBancaria(getSaldosContasBancariaCmd.getById(to.getSaldoContaBancaria().getId()));
