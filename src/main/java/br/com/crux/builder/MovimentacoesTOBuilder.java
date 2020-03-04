@@ -65,7 +65,6 @@ public class MovimentacoesTOBuilder {
 		to.setValorInss(m.getValorInss());
 		to.setValorIPI(m.getValorIPI());
 		to.setValorISS(m.getValorISS());
-		to.setValorMovimentacao(m.getValorMovimentacao());
 		to.setValorPisConfinsCsll(m.getValorPisConfinsCsll());
 		to.setSaldoContaBancaria(saldosContasBancariaTOBuilder.buildTO(m.getSaldoContaBancaria()));
 
@@ -120,7 +119,6 @@ public class MovimentacoesTOBuilder {
 		p.setValorInss(to.getValorInss());
 		p.setValorIPI(to.getValorIPI());
 		p.setValorISS(to.getValorISS());
-		p.setValorMovimentacao(to.getValorMovimentacao());
 		p.setValorPisConfinsCsll(to.getValorPisConfinsCsll());
 		
 		if (Objects.nonNull(to.getSaldoContaBancaria()) && Objects.nonNull(to.getSaldoContaBancaria().getId())) {
