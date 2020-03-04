@@ -21,10 +21,5 @@ public class CamposObrigatoriosMovimentacoesRule {
 			throw new CamposObrigatoriosException("A unidade deve ser informada.");
 		}
 
-		if (Objects.isNull(to.getDepartamento()) || Objects.isNull(to.getDepartamento()
-				.getIdDepartamento())) {
-			throw new CamposObrigatoriosException("O Departamento deve ser informado.");
-		}
-
 	}
 }

@@ -81,6 +81,27 @@ public class Movimentacoes implements Serializable {
 	@Column(name = "id_usuario_apl")
 	private Long usuarioAlteracao;
 
+	
+	@Column(name = "vl_iss")
+	private Double valorISS;
+	
+	@Column(name = "vl_icms")
+	private Double valorICMS;
+	
+	@Column(name = "vl_ipi")
+	private Double valorIPI;
+	
+	@Column(name = "vl_pis_cofins_csll")
+	private Double valorPisConfinsCsll;
+	
+	@Column(name = "vl_inss")
+	private Double valorInss;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_saldo_conta_bancaria")
+	private SaldosContasBancaria saldoContaBancaria;
+	
+	
 	public Movimentacoes() {
 	}
 
@@ -196,4 +217,53 @@ public class Movimentacoes implements Serializable {
 		this.usuarioAlteracao = usuarioAlteracao;
 	}
 
+	public Double getValorISS() {
+		return valorISS;
+	}
+
+	public void setValorISS(Double valorISS) {
+		this.valorISS = valorISS;
+	}
+
+	public Double getValorICMS() {
+		return valorICMS;
+	}
+
+	public void setValorICMS(Double valorICMS) {
+		this.valorICMS = valorICMS;
+	}
+
+	public Double getValorIPI() {
+		return valorIPI;
+	}
+
+	public void setValorIPI(Double valorIPI) {
+		this.valorIPI = valorIPI;
+	}
+
+	public Double getValorPisConfinsCsll() {
+		return valorPisConfinsCsll;
+	}
+
+	public void setValorPisConfinsCsll(Double valorPisConfinsCsll) {
+		this.valorPisConfinsCsll = valorPisConfinsCsll;
+	}
+
+	public Double getValorInss() {
+		return valorInss;
+	}
+
+	public void setValorInss(Double valorInss) {
+		this.valorInss = valorInss;
+	}
+
+	public SaldosContasBancaria getSaldoContaBancaria() {
+		return saldoContaBancaria;
+	}
+
+	public void setSaldoContaBancaria(SaldosContasBancaria saldoContaBancaria) {
+		this.saldoContaBancaria = saldoContaBancaria;
+	}
+
+	
 }

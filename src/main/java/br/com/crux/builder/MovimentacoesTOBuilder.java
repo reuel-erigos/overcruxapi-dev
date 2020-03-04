@@ -15,6 +15,7 @@ import br.com.crux.cmd.GetItensMovimentacoesCmd;
 import br.com.crux.cmd.GetPagamentosFaturaCmd;
 import br.com.crux.cmd.GetProgramaCmd;
 import br.com.crux.cmd.GetProjetoCmd;
+import br.com.crux.cmd.GetSaldosContasBancariaCmd;
 import br.com.crux.cmd.GetUnidadeCmd;
 import br.com.crux.cmd.GetUsuarioLogadoCmd;
 import br.com.crux.entity.Movimentacoes;
@@ -37,6 +38,8 @@ public class MovimentacoesTOBuilder {
 	@Autowired private GetItensMovimentacoesCmd getItensMovimentacoesCmd;
 	@Autowired private GetFaturaCmd getFaturaCmd;
 	@Autowired private GetPagamentosFaturaCmd getPagamentosFaturaCmd;
+	@Autowired private SaldosContasBancariaTOBuilder saldosContasBancariaTOBuilder;
+	@Autowired private GetSaldosContasBancariaCmd getSaldosContasBancariaCmd;
 
 	public MovimentacoesTO buildTO(Movimentacoes m) {
 		MovimentacoesTO to = new MovimentacoesTO();
@@ -56,6 +59,15 @@ public class MovimentacoesTOBuilder {
 		to.setItensMovimentacoes(getItensMovimentacoesCmd.getItensMovimentacoesTOByMovimentacao(m));
 		to.setFaturas(getFaturaCmd.getFaturaTOByMovimentacao(m));
 		to.setPagamentosFatura(getPagamentosFaturaCmd.getPagamentoFaturaTOByMovimentacao(m));
+		
+		
+		to.setValorICMS(m.getValorICMS());
+		to.setValorInss(m.getValorInss());
+		to.setValorIPI(m.getValorIPI());
+		to.setValorISS(m.getValorISS());
+		to.setValorMovimentacao(m.getValorMovimentacao());
+		to.setValorPisConfinsCsll(m.getValorPisConfinsCsll());
+		to.setSaldoContaBancaria(saldosContasBancariaTOBuilder.buildTO(m.getSaldoContaBancaria()));
 
 		return to;
 	}
@@ -102,8 +114,18 @@ public class MovimentacoesTOBuilder {
 
 		}
 
-		p.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado()
-				.getIdUsuario());
+		p.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
+		
+		p.setValorICMS(to.getValorICMS());
+		p.setValorInss(to.getValorInss());
+		p.setValorIPI(to.getValorIPI());
+		p.setValorISS(to.getValorISS());
+		p.setValorMovimentacao(to.getValorMovimentacao());
+		p.setValorPisConfinsCsll(to.getValorPisConfinsCsll());
+		
+		if (Objects.nonNull(to.getSaldoContaBancaria()) && Objects.nonNull(to.getSaldoContaBancaria().getId())) {
+			p.setSaldoContaBancaria(getSaldosContasBancariaCmd.getById(to.getSaldoContaBancaria().getId()));
+		}
 
 		return p;
 	}

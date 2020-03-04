@@ -23,6 +23,15 @@ public class MovimentacoesTO {
 	private List<FaturaTO> faturas; 
 	private List<PagamentosFaturaTO> pagamentosFatura; 
 	
+	
+	private Double valorISS;
+	private Double valorICMS;
+	private Double valorIPI;
+	private Double valorPisConfinsCsll;
+	private Double valorInss;
+	private SaldosContasBancariaTO saldoContaBancaria;
+
+	
 	public Long getId() {
 		return id;
 	}
@@ -119,5 +128,43 @@ public class MovimentacoesTO {
 	public void setPagamentosFatura(List<PagamentosFaturaTO> pagamentosFaturaTO) {
 		this.pagamentosFatura = pagamentosFaturaTO;
 	}
+	public Double getValorISS() {
+		return valorISS;
+	}
+	public void setValorISS(Double valorISS) {
+		this.valorISS = valorISS;
+	}
+	public Double getValorICMS() {
+		return valorICMS;
+	}
+	public void setValorICMS(Double valorICMS) {
+		this.valorICMS = valorICMS;
+	}
+	public Double getValorIPI() {
+		return valorIPI;
+	}
+	public void setValorIPI(Double valorIPI) {
+		this.valorIPI = valorIPI;
+	}
+	public Double getValorPisConfinsCsll() {
+		return valorPisConfinsCsll;
+	}
+	public void setValorPisConfinsCsll(Double valorPisConfinsCsll) {
+		this.valorPisConfinsCsll = valorPisConfinsCsll;
+	}
+	public Double getValorInss() {
+		return valorInss;
+	}
+	public void setValorInss(Double valorInss) {
+		this.valorInss = valorInss;
+	}
+	public SaldosContasBancariaTO getSaldoContaBancaria() {
+		return saldoContaBancaria;
+	}
+	public void setSaldoContaBancaria(SaldosContasBancariaTO saldoContaBancaria) {
+		this.saldoContaBancaria = saldoContaBancaria;
+	}
+	
+	
 
 }
