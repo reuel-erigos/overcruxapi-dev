@@ -17,20 +17,20 @@ public interface UnidadeRepository extends JpaRepository<Unidade, Long>{
 	@Query(value = "SELECT u "
 		     + "  FROM Unidade u"
 		     + " where upper(u.siglaUnidade) = upper(?1)"
-		     + "  order by ordemExibicao ")
+		     + "  order by u.ordemExibicao ")
 	public Optional<Unidade> findBySiglaUnidadeIgnoreCase(String cdUnidade);
 
 	@Query(value = "SELECT u "
 			     + "  FROM Unidade u inner join UsuariosUnidade uu on uu.unidade = u "
 			     + " where uu.usuarioSistema.idUsuario = ?1 "
-			     + " order by ordemExibicao ")
+			     + " order by u.ordemExibicao ")
 	public Optional<List<Unidade>> findAllUnidadesDoUsuarioLogado(Long idUsuarioLogado);
 
 	@Query(value = "SELECT u "
 		     + "  FROM Unidade u inner join Instituicao i "
 		     + "    on u.instituicao = i "
 		     + " where i.id = ?1 "
-		     + " order by ordemExibicao ")
+		     + " order by u.ordemExibicao ")
 	public Optional<List<Unidade>> findAllInstituicao(Long idInstituicao);
 	
 
@@ -38,7 +38,7 @@ public interface UnidadeRepository extends JpaRepository<Unidade, Long>{
 		     + "  FROM Unidade u inner join UsuariosUnidade uu on uu.unidade = u "
 		     + " where uu.usuarioSistema.idUsuario = ?1 "
 		     + "   and u.idUnidade = ?2 "
-		     + " order by ordemExibicao ")
+		     + " order by u.ordemExibicao ")
     public Optional<Unidade> findUnidadeDoUsuarioLogado(Long idUsuarioLogado, Long idUnidade);
 
 	
@@ -46,14 +46,14 @@ public interface UnidadeRepository extends JpaRepository<Unidade, Long>{
 			+ "   inner join ProjetosUnidade pu on pu.unidade = u "
 			+ "   inner join Projeto p on pu.projeto = p "
 			+ " where p.id = :idProjeto "
-			+ "  order by ordemExibicao ")
+			+ "  order by u.ordemExibicao ")
 	public Optional<List<Unidade>> getUnidadeByProjeto(Long idProjeto);
 
 	@Query("Select u from Unidade u "
 			+ "  inner join ProgramasUnidade pu on pu.unidade = u "
 			+ "   inner join Programa p on pu.programa = p "
 			+ " where p.id = :idPrograma "
-			+ " order by ordemExibicao ")
+			+ " order by u.ordemExibicao ")
 	public Optional<List<Unidade>> getUnidadeByPrograma(Long idPrograma);
 
 }
