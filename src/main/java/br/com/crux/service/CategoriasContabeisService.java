@@ -19,7 +19,7 @@ import br.com.crux.cmd.GetCategoriasContabeisCmd;
 import br.com.crux.to.CategoriasContabeisTO;
 
 @RestController
-@RequestMapping(value = "categoriascontabeis")
+@RequestMapping(value = "planoscontascontabeis")
 public class CategoriasContabeisService {
 
 	@Autowired private GetCategoriasContabeisCmd getCmd;
