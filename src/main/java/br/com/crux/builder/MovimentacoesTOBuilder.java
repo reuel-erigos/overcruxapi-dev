@@ -8,6 +8,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import br.com.crux.cmd.GetContasBancariaCmd;
 import br.com.crux.cmd.GetDepartamentoCmd;
 import br.com.crux.cmd.GetEmpresaCmd;
 import br.com.crux.cmd.GetFaturaCmd;
@@ -15,7 +16,6 @@ import br.com.crux.cmd.GetItensMovimentacoesCmd;
 import br.com.crux.cmd.GetPagamentosFaturaCmd;
 import br.com.crux.cmd.GetProgramaCmd;
 import br.com.crux.cmd.GetProjetoCmd;
-import br.com.crux.cmd.GetSaldosContasBancariaCmd;
 import br.com.crux.cmd.GetUnidadeCmd;
 import br.com.crux.cmd.GetUsuarioLogadoCmd;
 import br.com.crux.entity.Movimentacoes;
@@ -38,8 +38,8 @@ public class MovimentacoesTOBuilder {
 	@Autowired private GetItensMovimentacoesCmd getItensMovimentacoesCmd;
 	@Autowired private GetFaturaCmd getFaturaCmd;
 	@Autowired private GetPagamentosFaturaCmd getPagamentosFaturaCmd;
-	@Autowired private SaldosContasBancariaTOBuilder saldosContasBancariaTOBuilder;
-	@Autowired private GetSaldosContasBancariaCmd getSaldosContasBancariaCmd;
+	@Autowired private ContasBancariaTOBuilder contasBancariaTOBuilder;
+	@Autowired private GetContasBancariaCmd getContasBancariaCmd;
 
 	public MovimentacoesTO buildTO(Movimentacoes m) {
 		MovimentacoesTO to = new MovimentacoesTO();
@@ -60,7 +60,7 @@ public class MovimentacoesTOBuilder {
 		to.setItensMovimentacoes(getItensMovimentacoesCmd.getItensMovimentacoesTOByMovimentacao(m));
 		to.setFaturas(getFaturaCmd.getFaturaTOByMovimentacao(m));
 		to.setPagamentosFatura(getPagamentosFaturaCmd.getPagamentoFaturaTOByMovimentacao(m));
-		to.setSaldoContaBancaria(saldosContasBancariaTOBuilder.buildTO(m.getSaldoContaBancaria()));
+		to.setContaBancaria(contasBancariaTOBuilder.buildTO(m.getContaBancaria()));
 
 		return to;
 	}
@@ -76,41 +76,31 @@ public class MovimentacoesTOBuilder {
 
 		BeanUtils.copyProperties(to, p);
 
-		if (Objects.nonNull(to.getEmpresa()) && Objects.nonNull(to.getEmpresa()
-				.getId())) {
-			p.setEmpresa(getEmpresaCmd.getById(to.getEmpresa()
-					.getId()));
+		if (Objects.nonNull(to.getEmpresa()) && Objects.nonNull(to.getEmpresa().getId())) {
+			p.setEmpresa(getEmpresaCmd.getById(to.getEmpresa().getId()));
 		}
 
-		if (Objects.nonNull(to.getPrograma()) && Objects.nonNull(to.getPrograma()
-				.getId())) {
-			p.setPrograma(getProgramaCmd.getById(to.getPrograma()
-					.getId()));
+		if (Objects.nonNull(to.getPrograma()) && Objects.nonNull(to.getPrograma().getId())) {
+			p.setPrograma(getProgramaCmd.getById(to.getPrograma().getId()));
 		}
 
-		if (Objects.nonNull(to.getProjeto()) && Objects.nonNull(to.getProjeto()
-				.getId())) {
-			p.setProjeto(getProjetoCmd.getById(to.getProjeto()
-					.getId()));
+		if (Objects.nonNull(to.getProjeto()) && Objects.nonNull(to.getProjeto().getId())) {
+			p.setProjeto(getProjetoCmd.getById(to.getProjeto().getId()));
 		}
 
-		if (Objects.nonNull(to.getUnidade()) && Objects.nonNull(to.getUnidade()
-				.getIdUnidade())) {
-			p.setUnidade(getUnidadeCmd.getById(to.getUnidade()
-					.getIdUnidade()));
+		if (Objects.nonNull(to.getUnidade()) && Objects.nonNull(to.getUnidade().getIdUnidade())) {
+			p.setUnidade(getUnidadeCmd.getById(to.getUnidade().getIdUnidade()));
 		}
 
-		if (Objects.nonNull(to.getDepartamento()) && Objects.nonNull(to.getDepartamento()
-				.getIdDepartamento())) {
-			p.setDepartamento(getDepartamentoCmd.getById(to.getDepartamento()
-					.getIdDepartamento()));
+		if (Objects.nonNull(to.getDepartamento()) && Objects.nonNull(to.getDepartamento().getIdDepartamento())) {
+			p.setDepartamento(getDepartamentoCmd.getById(to.getDepartamento().getIdDepartamento()));
 
 		}
 
 		p.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 		
-		if (Objects.nonNull(to.getSaldoContaBancaria()) && Objects.nonNull(to.getSaldoContaBancaria().getId())) {
-			p.setSaldoContaBancaria(getSaldosContasBancariaCmd.getById(to.getSaldoContaBancaria().getId()));
+		if (Objects.nonNull(to.getContaBancaria()) && Objects.nonNull(to.getContaBancaria().getId())) {
+			p.setContaBancaria(getContasBancariaCmd.getById(to.getContaBancaria().getId()));
 		}
 
 		return p;

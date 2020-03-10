@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -20,6 +21,7 @@ import br.com.crux.entity.Programa;
 import br.com.crux.entity.Projeto;
 import br.com.crux.entity.Unidade;
 import br.com.crux.infra.constantes.Constantes;
+import br.com.crux.infra.dao.SimNaoConverter;
 
 /**
  * The persistent class for the movimentacoes database table.
@@ -98,8 +100,12 @@ public class Movimentacoes implements Serializable {
 	private Double valorInss;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_saldo_conta_bancaria")
-	private SaldosContasBancaria saldoContaBancaria;
+	@JoinColumn(name = "id_conta_bancaria")
+	private ContasBancaria contaBancaria;
+	
+	@Convert(converter = SimNaoConverter.class)
+	@Column(name = "st_registro_saldo")
+	private Boolean statusRegistroSaldo;
 	
 	
 	public Movimentacoes() {
@@ -257,12 +263,20 @@ public class Movimentacoes implements Serializable {
 		this.valorInss = valorInss;
 	}
 
-	public SaldosContasBancaria getSaldoContaBancaria() {
-		return saldoContaBancaria;
+	public ContasBancaria getContaBancaria() {
+		return contaBancaria;
 	}
 
-	public void setSaldoContaBancaria(SaldosContasBancaria saldoContaBancaria) {
-		this.saldoContaBancaria = saldoContaBancaria;
+	public void setContaBancaria(ContasBancaria contaBancaria) {
+		this.contaBancaria = contaBancaria;
+	}
+
+	public Boolean getStatusRegistroSaldo() {
+		return statusRegistroSaldo;
+	}
+
+	public void setStatusRegistroSaldo(Boolean statusRegistroSaldo) {
+		this.statusRegistroSaldo = statusRegistroSaldo;
 	}
 
 	

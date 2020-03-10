@@ -18,6 +18,7 @@ public class MovimentacoesTO {
 	private UnidadeTO unidade;
 	private DepartamentoTO departamento;
 	private Long qtdParcelas;
+	private Boolean statusRegistroSaldo;
 	
 	private List<ItensMovimentacoesTO> itensMovimentacoes; 
 	private List<FaturaTO> faturas; 
@@ -29,7 +30,7 @@ public class MovimentacoesTO {
 	private Double valorIPI;
 	private Double valorPisConfinsCsll;
 	private Double valorInss;
-	private SaldosContasBancariaTO saldoContaBancaria;
+	private ContasBancariaTO contaBancaria;
 
 	
 	public Long getId() {
@@ -158,11 +159,17 @@ public class MovimentacoesTO {
 	public void setValorInss(Double valorInss) {
 		this.valorInss = valorInss;
 	}
-	public SaldosContasBancariaTO getSaldoContaBancaria() {
-		return saldoContaBancaria;
+	public ContasBancariaTO getContaBancaria() {
+		return contaBancaria;
 	}
-	public void setSaldoContaBancaria(SaldosContasBancariaTO saldoContaBancaria) {
-		this.saldoContaBancaria = saldoContaBancaria;
+	public void setContaBancaria(ContasBancariaTO contaBancaria) {
+		this.contaBancaria = contaBancaria;
+	}
+	public Boolean getStatusRegistroSaldo() {
+		return statusRegistroSaldo;
+	}
+	public void setStatusRegistroSaldo(Boolean statusRegistroSaldo) {
+		this.statusRegistroSaldo = statusRegistroSaldo;
 	}
 	
 	

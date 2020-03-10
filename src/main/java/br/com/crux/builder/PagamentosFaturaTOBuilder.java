@@ -34,7 +34,6 @@ public class PagamentosFaturaTOBuilder {
 
 		to.setContaBancaria(contasBancariaTOBuilder.buildTOCombo(entity.getContaBancaria()));
 		to.setFatura(faturaTOBuilder.buildTO(entity.getFatura()));
-		to.setSaldoContaBancaria(saldosContasBancariaTOBuilder.buildTO(entity.getSaldoContaBancaria()));
 
 		return to;
 	}
@@ -50,22 +49,17 @@ public class PagamentosFaturaTOBuilder {
 
 		BeanUtils.copyProperties(to, entity);
 
-		if (Objects.nonNull(to.getFatura()) && Objects.nonNull(to.getFatura()
-				.getId())) {
-			Fatura fatura = getFaturaCmd.getById(to.getFatura()
-					.getId());
+		if (Objects.nonNull(to.getFatura()) && Objects.nonNull(to.getFatura().getId())) {
+			Fatura fatura = getFaturaCmd.getById(to.getFatura().getId());
 			entity.setFatura(fatura);
 		}
 
-		if (Objects.nonNull(to.getContaBancaria()) && Objects.nonNull(to.getContaBancaria()
-				.getId())) {
-			ContasBancaria conta = getContasBancariaCmd.getById(to.getContaBancaria()
-					.getId());
+		if (Objects.nonNull(to.getContaBancaria()) && Objects.nonNull(to.getContaBancaria().getId())) {
+			ContasBancaria conta = getContasBancariaCmd.getById(to.getContaBancaria().getId());
 			entity.setContaBancaria(conta);
 		}
 
-		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado()
-				.getIdUsuario());
+		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 
 		return entity;
 	}

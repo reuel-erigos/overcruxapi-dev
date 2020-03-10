@@ -81,7 +81,18 @@ public class Java8DateUtil {
 		if (dataRefencia.equals(fim)) {return true;}
 		if (dataRefencia.isBefore(inicio)) {return false;}
 		if (Objects.isNull(fim)) {return true;}     
-		if (dataRefencia.isAfter(dataRefencia) && dataRefencia.isBefore(fim)) {return true;}
+		if (dataRefencia.isAfter(inicio) && dataRefencia.isBefore(fim)) {return true;}
+		
+		return false;
+	}
+	
+	
+	public static boolean between(LocalDate dataRefencia, LocalDate inicio, LocalDate fim) {
+		if (dataRefencia.equals(inicio)) {return true;}
+		if (dataRefencia.equals(fim)) {return true;}
+		if (dataRefencia.isBefore(inicio)) {return false;}
+		if (Objects.isNull(fim)) {return true;}
+		if (dataRefencia.isAfter(inicio) && dataRefencia.isBefore(fim)) {return true;}
 		
 		return false;
 	}

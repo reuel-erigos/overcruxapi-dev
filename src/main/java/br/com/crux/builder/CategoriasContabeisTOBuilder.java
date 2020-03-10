@@ -23,16 +23,10 @@ public class CategoriasContabeisTOBuilder {
 		CategoriasContabeis entity = new CategoriasContabeis();
 
 		BeanUtils.copyProperties(to, entity);
+		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 
-		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado()
-				.getIdUsuario());
-
-		if (Objects.nonNull(to.getCategoriaSuperior()) && Objects.nonNull(to.getCategoriaSuperior()
-				.getId())) {
-
-			entity.setCategoriaSuperior(getCategoriasContabeisCmd.getById(to.getCategoriaSuperior()
-					.getId()));
-
+		if (Objects.nonNull(to.getCategoriaSuperior()) && Objects.nonNull(to.getCategoriaSuperior().getId())) {
+			entity.setCategoriaSuperior(getCategoriasContabeisCmd.getById(to.getCategoriaSuperior().getId()));
 		}
 
 		return entity;
@@ -46,7 +40,6 @@ public class CategoriasContabeisTOBuilder {
 		}
 
 		BeanUtils.copyProperties(entity, to);
-
 		to.setCategoriaSuperior(buildTOCategoriaSuperior(entity.getCategoriaSuperior()));
 
 		return to;
@@ -60,7 +53,6 @@ public class CategoriasContabeisTOBuilder {
 		}
 
 		BeanUtils.copyProperties(superior, to);
-
 		return to;
 	}
 

@@ -19,7 +19,7 @@ import br.com.crux.cmd.GetContasBancariaCmd;
 import br.com.crux.to.ContasBancariaTO;
 
 @RestController
-@RequestMapping(value = "contasbancarias")
+@RequestMapping(value = "planoscontascontabeis")
 public class ContasBancariasService {
 
 	@Autowired private GetContasBancariaCmd getCmd;

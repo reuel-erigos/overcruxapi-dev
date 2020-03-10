@@ -66,7 +66,11 @@ public class ContasBancaria implements Serializable {
 
 	@Column(name = "ds_email_titular") 
 	private String emailTitular;
+	
+	@Column(name = "id_conta_associada") 
+	private Long contaAssociada;
 
+	
 	public ContasBancaria() {
 	}
 
@@ -175,6 +179,15 @@ public class ContasBancaria implements Serializable {
 		this.emailTitular = emailTitular;
 	}
 
+	public Long getContaAssociada() {
+		return contaAssociada;
+	}
+
+	public void setContaAssociada(Long contaAssociada) {
+		this.contaAssociada = contaAssociada;
+	}
+
+	
 	
 	
 }

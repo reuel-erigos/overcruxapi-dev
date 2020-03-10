@@ -34,9 +34,6 @@ public class SaldosContasBancaria implements Serializable {
 	@Column(name="ds_saldo")
 	private String descricaoSaldo;
 
-	@Column(name="dt_atz_saldo")
-	private LocalDateTime dataAtualizacaoSaldo;
-
 	@Column(name="dt_saldo")
 	private LocalDateTime dataSaldo;
 
@@ -67,14 +64,6 @@ public class SaldosContasBancaria implements Serializable {
 
 	public void setDescricaoSaldo(String descricaoSaldo) {
 		this.descricaoSaldo = descricaoSaldo;
-	}
-
-	public LocalDateTime getDataAtualizacaoSaldo() {
-		return dataAtualizacaoSaldo;
-	}
-
-	public void setDataAtualizacaoSaldo(LocalDateTime dataAtualizacaoSaldo) {
-		this.dataAtualizacaoSaldo = dataAtualizacaoSaldo;
 	}
 
 	public LocalDateTime getDataSaldo() {

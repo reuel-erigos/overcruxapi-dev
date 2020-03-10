@@ -14,6 +14,7 @@ public class PagamentosFaturaTO {
 	private String numeroDocPagamento;
 	private Double valorMulta;
 	private Double valorJuros;
+	private Boolean statusRegistroSaldo;
 	
 	public Long getId() {
 		return id;
@@ -74,6 +75,12 @@ public class PagamentosFaturaTO {
 	}
 	public void setValorJuros(Double valorJuros) {
 		this.valorJuros = valorJuros;
+	}
+	public Boolean getStatusRegistroSaldo() {
+		return statusRegistroSaldo;
+	}
+	public void setStatusRegistroSaldo(Boolean statusRegistroSaldo) {
+		this.statusRegistroSaldo = statusRegistroSaldo;
 	}
 	
 	

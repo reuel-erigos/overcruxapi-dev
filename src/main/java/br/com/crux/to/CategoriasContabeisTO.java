@@ -7,6 +7,7 @@ public class CategoriasContabeisTO {
 	private String tipo;
 	private String nome;
 	private String descricaoCategoria;
+	private String codigoCategoriaContabil;
 
 	public Long getId() {
 		return id;
@@ -48,4 +49,13 @@ public class CategoriasContabeisTO {
 		this.descricaoCategoria = descricaoCategoria;
 	}
 
+	public String getCodigoCategoriaContabil() {
+		return codigoCategoriaContabil;
+	}
+
+	public void setCodigoCategoriaContabil(String codigoCategoriaContabil) {
+		this.codigoCategoriaContabil = codigoCategoriaContabil;
+	}
+
+	
 }
