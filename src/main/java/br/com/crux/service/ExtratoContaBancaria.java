@@ -17,7 +17,7 @@ public class ExtratoContaBancaria {
 	private ExtratoDao extratoDao;
 
 	//@RequestMapping("/titulos/novo" )
-	@GetMapping(path = "/conta-bancaria", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(path = "/conta-bancaria")
 	public ModelAndView novo() {
 		
 		ModelAndView mv = new ModelAndView("ExtatoContaBancaria");
