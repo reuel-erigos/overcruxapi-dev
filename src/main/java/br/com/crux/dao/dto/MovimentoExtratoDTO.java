@@ -1,37 +1,27 @@
-package br.com.crux.to;
+package br.com.crux.dao.dto;
 
-import java.time.LocalDate;
+import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.NumberFormat;
-
-public class Movimentacoes {
-
-	
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private LocalDate data;
+public class MovimentoExtratoDTO {
 	
 	private String numero;
 	private String descricao;
-	
-	@NumberFormat(pattern = "#,##0.00")
+	private LocalDateTime data;
 	private Double valorEntrada;
-	
-	@NumberFormat(pattern = "#,##0.00")
 	private Double valorSaida;
-	
-	@NumberFormat(pattern = "#,##0.00")
 	private Double saldo;
 	
-	public Movimentacoes() {
+	public MovimentoExtratoDTO() {
 	}
-
-	public LocalDate getData() {
-		return data;
-	}
-
-	public void setData(LocalDate data) {
-		this.data = data;
+	
+	public MovimentoExtratoDTO(Object[] colunas) {
+		this.numero          = (String) colunas[0];
+		this.descricao       = (String) colunas[1];
+		this.data            = (colunas[2] != null)? ((Timestamp)colunas[2]).toLocalDateTime() : null;
+		this.valorEntrada    = (colunas[3] != null)? ((BigDecimal)colunas[3]).doubleValue() : null;
+		this.valorSaida      = (colunas[4] != null)? ((BigDecimal)colunas[4]).doubleValue() : null;
 	}
 
 	public String getNumero() {
@@ -48,6 +38,14 @@ public class Movimentacoes {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public LocalDateTime getData() {
+		return data;
+	}
+
+	public void setData(LocalDateTime data) {
+		this.data = data;
 	}
 
 	public Double getValorEntrada() {
@@ -67,13 +65,12 @@ public class Movimentacoes {
 	}
 
 	public Double getSaldo() {
-		return saldo != null ? saldo : 0;
+		return saldo;
 	}
 
 	public void setSaldo(Double saldo) {
 		this.saldo = saldo;
 	}
-	
-	
+
 	
 }
