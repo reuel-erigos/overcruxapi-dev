@@ -8,7 +8,8 @@ public class FaturaTO {
 	private LocalDateTime dataVencimento;
 	private Double valor;
 	private Long numeroParcela;
-
+	private String codigoBarra;
+	
 	public Long getId() {
 		return id;
 	}
@@ -39,6 +40,15 @@ public class FaturaTO {
 
 	public void setNumeroParcela(Long numeroParcela) {
 		this.numeroParcela = numeroParcela;
+	}
+	
+	
+	public String getCodigoBarra() {
+		return codigoBarra;
+	}
+
+	public void setCodigoBarra(String codigoBarra) {
+		this.codigoBarra = codigoBarra;
 	}
 
 }
