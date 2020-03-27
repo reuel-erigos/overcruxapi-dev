@@ -5,6 +5,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -32,20 +33,7 @@ public class ProjetoTOBuilder {
 	public Projeto build(ProjetoTO p) {
 		Projeto retorno = new Projeto();
 
-		retorno.setId(p.getId());
-		retorno.setNome(p.getNome());
-		retorno.setDescricao(p.getDescricao());
-
-		retorno.setDataInicio(p.getDataInicio());
-		retorno.setDataFim(p.getDataFim());
-		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
-		retorno.setPublicoAlvo(p.getPublicoAlvo());
-		retorno.setJustificativa(p.getJustificativa());
-		retorno.setObjetivoGeral(p.getObjetivoGeral());
-		retorno.setIdCoordenador(p.getIdCoordenador());
-		
-		retorno.setDataPrevisaoInicio(p.getDataPrevisaoInicio());
-		retorno.setDataPrevisaoTermino(p.getDataPrevisaoTermino());
+		BeanUtils.copyProperties(p, retorno);
 		
 		Optional.ofNullable(p.getPrograma()).ifPresent(programa -> {
 			if (Objects.nonNull(programa.getId())) {
@@ -64,20 +52,7 @@ public class ProjetoTOBuilder {
 			return retorno;
 		}
 
-		retorno.setId(p.getId());
-		retorno.setNome(p.getNome());
-		retorno.setDescricao(p.getDescricao());
-
-		retorno.setDataInicio(p.getDataInicio());
-		retorno.setDataFim(p.getDataFim());
-		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
-		retorno.setPublicoAlvo(p.getPublicoAlvo());
-		retorno.setJustificativa(p.getJustificativa());
-		retorno.setObjetivoGeral(p.getObjetivoGeral());
-		retorno.setIdCoordenador(p.getIdCoordenador());
-		
-		retorno.setDataPrevisaoInicio(p.getDataPrevisaoInicio());
-		retorno.setDataPrevisaoTermino(p.getDataPrevisaoTermino());
+		BeanUtils.copyProperties(p, retorno);
 
 		retorno.setUnidades(getProjetosUnidadeCmd.getUnidadesTOByIdProjeto(p.getId()));
 		retorno.setColaboradoresProjeto((getColaboradoresProjetoCmd.getColaboradoresProjetoTOByProjeto(p)));

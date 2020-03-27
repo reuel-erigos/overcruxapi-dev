@@ -74,6 +74,15 @@ public class Projeto implements Serializable {
 	
 	@Column(name="id_coordenador")
 	private Long idCoordenador;
+	
+	@Column(name="nr_faixa_etaria_ini")
+	private Long faixaEtariaInicial;
+	
+	@Column(name="nr_faixa_etaria_fim")
+	private Long faixaEtariaFinal;
+	
+	@Column(name="ds_objetivo_especifico")
+	private String objetivoEspecifico;
 
 	public Projeto() {
 	}
@@ -190,6 +199,31 @@ public class Projeto implements Serializable {
 		this.idCoordenador = idCoordenador;
 	}
 
+	public Long getFaixaEtariaInicial() {
+		return faixaEtariaInicial;
+	}
+
+	public void setFaixaEtariaInicial(Long faixaEtariaInicial) {
+		this.faixaEtariaInicial = faixaEtariaInicial;
+	}
+
+	public Long getFaixaEtariaFinal() {
+		return faixaEtariaFinal;
+	}
+
+	public void setFaixaEtariaFinal(Long faixaEtariaFinal) {
+		this.faixaEtariaFinal = faixaEtariaFinal;
+	}
+
+	public String getObjetivoEspecifico() {
+		return objetivoEspecifico;
+	}
+
+	public void setObjetivoEspecifico(String objetivoEspecifico) {
+		this.objetivoEspecifico = objetivoEspecifico;
+	}
+
+	
 	
 	
 }
