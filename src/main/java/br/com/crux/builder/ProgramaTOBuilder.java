@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -32,21 +33,8 @@ public class ProgramaTOBuilder {
 
 	public Programa build(ProgramaTO param) {
 		Programa retorno = new Programa();
-
-		retorno.setId(param.getId());
-		retorno.setNome(param.getNome());
-		retorno.setDescricao(param.getDescricao());
-
-		retorno.setDataInicio(param.getDataInicio());
-		retorno.setDataFim(param.getDataFim());
-		retorno.setUsuarioAlteracao(param.getUsuarioAlteracao());
-		retorno.setPublicoAlvo(param.getPublicoAlvo());
-		retorno.setJustificativa(param.getJustificativa());
-		retorno.setObjetivoGeral(param.getObjetivoGeral());
-
-		retorno.setIdCoordenador(param.getIdCoordenador());
-		retorno.setFaixaEtariaInicio(param.getFaixaEtariaInicio());
-		retorno.setFaixaEtariaFim(param.getFaixaEtariaFim());
+		
+		BeanUtils.copyProperties(param, retorno);
 
 		if (Objects.nonNull(param.getObjetivo()) && Objects.nonNull(param.getObjetivo()
 				.getIdObjetivo())) {
@@ -64,22 +52,9 @@ public class ProgramaTOBuilder {
 		if (Objects.isNull(param)) {
 			return retorno;
 		}
-
-		retorno.setId(param.getId());
-		retorno.setNome(param.getNome());
-		retorno.setIdCoordenador(param.getIdCoordenador());
-		retorno.setDescricao(param.getDescricao());
-		retorno.setFaixaEtariaInicio(param.getFaixaEtariaInicio());
-		retorno.setFaixaEtariaFim(param.getFaixaEtariaFim());
-		retorno.setDataInicio(param.getDataInicio());
-		retorno.setDataFim(param.getDataFim());
-		retorno.setUsuarioAlteracao(param.getUsuarioAlteracao());
+		
+		BeanUtils.copyProperties(param, retorno);
 		retorno.setObjetivo(objetivoTOBuilder.buildTO(param.getObjetivo()));
-
-		retorno.setPublicoAlvo(param.getPublicoAlvo());
-		retorno.setJustificativa(param.getJustificativa());
-		retorno.setObjetivoGeral(param.getObjetivoGeral());
-
 		return retorno;
 	}
 
@@ -89,21 +64,11 @@ public class ProgramaTOBuilder {
 		if (Objects.isNull(param)) {
 			return retorno;
 		}
+		
+		
+		BeanUtils.copyProperties(param, retorno);
 
-		retorno.setId(param.getId());
-		retorno.setNome(param.getNome());
-		retorno.setIdCoordenador(param.getIdCoordenador());
-		retorno.setDescricao(param.getDescricao());
-		retorno.setFaixaEtariaInicio(param.getFaixaEtariaInicio());
-		retorno.setFaixaEtariaFim(param.getFaixaEtariaFim());
-		retorno.setDataInicio(param.getDataInicio());
-		retorno.setDataFim(param.getDataFim());
-		retorno.setUsuarioAlteracao(param.getUsuarioAlteracao());
 		retorno.setObjetivo(objetivoTOBuilder.buildTO(param.getObjetivo()));
-
-		retorno.setPublicoAlvo(param.getPublicoAlvo());
-		retorno.setJustificativa(param.getJustificativa());
-		retorno.setObjetivoGeral(param.getObjetivoGeral());
 
 		retorno.setUnidades(getProgramaUnidadeCmd.getUnidadesTOByIdPrograma(param.getId()));
 		retorno.setColaboradoresPrograma((getColaboradoresProjetoCmd.getColaboradoresProgramaTOByPrograma(param)));

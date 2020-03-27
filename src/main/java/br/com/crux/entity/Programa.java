@@ -66,10 +66,12 @@ public class Programa implements Serializable {
 	
 	@Column(name="ds_objetivo_geral")
 	private String objetivoGeral;
+	
+	@Column(name="ds_objetivo_especifico")
+	private String objetivoEspecifico;
 
 	@Column(name="id_usuario_apl")
 	private Long usuarioAlteracao;
-
 	
 	
 	public Programa() {
@@ -187,7 +189,16 @@ public class Programa implements Serializable {
 		this.objetivoGeral = objetivoGeral;
 	}
 
+	public String getObjetivoEspecifico() {
+		return objetivoEspecifico;
+	}
 
+	public void setObjetivoEspecifico(String objetivoEspecifico) {
+		this.objetivoEspecifico = objetivoEspecifico;
+	}
+
+
+	
 	
 
 
