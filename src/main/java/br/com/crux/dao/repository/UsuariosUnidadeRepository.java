@@ -23,5 +23,16 @@ public interface UsuariosUnidadeRepository extends JpaRepository<UsuariosUnidade
 	public Optional<List<UsuariosUnidade>> findByUnidade(Unidade unidade);
 	
 	public void deleteByUsuarioSistema(UsuariosSistema usuariosSistema);
+	
+	
+	@Query(value = "select uu from UsuariosUnidade uu "
+			+ " inner join UsuariosSistema us on us.idUsuario =  uu.usuarioSistema.idUsuario "
+			+ " inner join Unidade unidade on unidade =  uu.unidade "
+			+ " inner join Instituicao instituicao on instituicao =  unidade.instituicao "
+			+ " where us.idUsuario   = ?1 "
+			+ "   and instituicao.id = ?2 ")
+	public Optional<List<UsuariosUnidade>> findAllByIdUsuarioAndIdInstituicao(Long idUsuario, Long idInstituicao);
+	
+	
 
 }
