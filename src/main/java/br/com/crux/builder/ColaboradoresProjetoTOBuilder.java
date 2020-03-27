@@ -45,13 +45,17 @@ public class ColaboradoresProjetoTOBuilder {
 		});
 
 		Optional.ofNullable(p.getFuncionario()).ifPresent(pro -> {
-			Funcionario funcionario = getFuncionarioCmd.getById(pro.getId());
-			retorno.setFuncionario(funcionario);
+			if(Objects.nonNull(pro.getId())) {
+				Funcionario funcionario = getFuncionarioCmd.getById(pro.getId());
+				retorno.setFuncionario(funcionario);
+			}
 		});
 
 		Optional.ofNullable(p.getTiposContratacoes()).ifPresent(tp -> {
-			TiposContratacoes tiposContratacoes = getTiposContratacoesCmd.getById(tp.getId());
-			retorno.setTiposContratacoes(tiposContratacoes);
+			if(Objects.nonNull(tp.getId())) {
+				TiposContratacoes tiposContratacoes = getTiposContratacoesCmd.getById(tp.getId());
+				retorno.setTiposContratacoes(tiposContratacoes);
+			}
 		});
 		
 		
