@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -20,6 +21,7 @@ import br.com.crux.entity.Programa;
 import br.com.crux.entity.Projeto;
 import br.com.crux.entity.Unidade;
 import br.com.crux.infra.constantes.Constantes;
+import br.com.crux.infra.dao.SimNaoConverter;
 
 /**
  * The persistent class for the movimentacoes database table.
@@ -81,6 +83,31 @@ public class Movimentacoes implements Serializable {
 	@Column(name = "id_usuario_apl")
 	private Long usuarioAlteracao;
 
+	
+	@Column(name = "vl_iss")
+	private Double valorISS;
+	
+	@Column(name = "vl_icms")
+	private Double valorICMS;
+	
+	@Column(name = "vl_ipi")
+	private Double valorIPI;
+	
+	@Column(name = "vl_pis_cofins_csll")
+	private Double valorPisConfinsCsll;
+	
+	@Column(name = "vl_inss")
+	private Double valorInss;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_conta_bancaria")
+	private ContasBancaria contaBancaria;
+	
+	@Convert(converter = SimNaoConverter.class)
+	@Column(name = "st_registro_saldo")
+	private Boolean statusRegistroSaldo;
+	
+	
 	public Movimentacoes() {
 	}
 
@@ -196,4 +223,61 @@ public class Movimentacoes implements Serializable {
 		this.usuarioAlteracao = usuarioAlteracao;
 	}
 
+	public Double getValorISS() {
+		return valorISS;
+	}
+
+	public void setValorISS(Double valorISS) {
+		this.valorISS = valorISS;
+	}
+
+	public Double getValorICMS() {
+		return valorICMS;
+	}
+
+	public void setValorICMS(Double valorICMS) {
+		this.valorICMS = valorICMS;
+	}
+
+	public Double getValorIPI() {
+		return valorIPI;
+	}
+
+	public void setValorIPI(Double valorIPI) {
+		this.valorIPI = valorIPI;
+	}
+
+	public Double getValorPisConfinsCsll() {
+		return valorPisConfinsCsll;
+	}
+
+	public void setValorPisConfinsCsll(Double valorPisConfinsCsll) {
+		this.valorPisConfinsCsll = valorPisConfinsCsll;
+	}
+
+	public Double getValorInss() {
+		return valorInss;
+	}
+
+	public void setValorInss(Double valorInss) {
+		this.valorInss = valorInss;
+	}
+
+	public ContasBancaria getContaBancaria() {
+		return contaBancaria;
+	}
+
+	public void setContaBancaria(ContasBancaria contaBancaria) {
+		this.contaBancaria = contaBancaria;
+	}
+
+	public Boolean getStatusRegistroSaldo() {
+		return statusRegistroSaldo;
+	}
+
+	public void setStatusRegistroSaldo(Boolean statusRegistroSaldo) {
+		this.statusRegistroSaldo = statusRegistroSaldo;
+	}
+
+	
 }

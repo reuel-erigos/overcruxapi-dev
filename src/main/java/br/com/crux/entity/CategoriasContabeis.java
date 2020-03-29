@@ -40,6 +40,10 @@ public class CategoriasContabeis  {
 		
 	@Column(name="id_usuario_apl")
 	private Long usuarioAlteracao;
+	
+	@Column(name="cd_categoria_contabil")
+	private String codigoCategoriaContabil;
+	
 
 	public Long getId() {
 		return id;
@@ -88,6 +92,15 @@ public class CategoriasContabeis  {
 	public void setUsuarioAlteracao(Long usuarioAlteracao) {
 		this.usuarioAlteracao = usuarioAlteracao;
 	}
+
+	public String getCodigoCategoriaContabil() {
+		return codigoCategoriaContabil;
+	}
+
+	public void setCodigoCategoriaContabil(String codigoCategoriaContabil) {
+		this.codigoCategoriaContabil = codigoCategoriaContabil;
+	}
+	
 	
 	
 }

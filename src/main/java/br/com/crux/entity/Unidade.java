@@ -125,6 +125,9 @@ public class Unidade{
 	@Column(name = "dt_vigencia_cas")
 	private LocalDateTime dataVigenciaCas;
 	
+	@Column(name = "nr_ordem_exibicao")
+	private Long ordemExibicao;
+	
 	
 	public Unidade() {
 	}
@@ -367,6 +370,16 @@ public class Unidade{
 
 	public void setDataVigenciaCas(LocalDateTime dataVigenciaCas) {
 		this.dataVigenciaCas = dataVigenciaCas;
+	}
+	
+	
+
+	public Long getOrdemExibicao() {
+		return ordemExibicao;
+	}
+
+	public void setOrdemExibicao(Long ordemExibicao) {
+		this.ordemExibicao = ordemExibicao;
 	}
 
 	@Override

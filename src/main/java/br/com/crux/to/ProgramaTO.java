@@ -19,28 +19,17 @@ public class ProgramaTO {
 	private Long idCoordenador;
 	private Long faixaEtariaFim;
 	private Long faixaEtariaInicio;
-
 	private ObjetivoTO objetivo;
-
 	private List<UnidadeTO> unidades;
-
 	private List<ColaboradoresProgramaTO> colaboradoresPrograma;
-
 	private List<ParceriasProgramaTO> parceriasPrograma;
-
 	private List<ComposicaoRhProgramaTO> composicaoRhPrograma;
-
 	private List<MateriaisProgramaTO> materiaisPrograma;
-
 	private List<ContasCentrosCustoTO> contasCentrosCusto;
-	
 	private String publicoAlvo;
-
 	private String justificativa;
-
 	private String objetivoGeral;
-	
-
+	private String objetivoEspecifico;
 	private Long usuarioAlteracao;
 
 	public ProgramaTO() {
@@ -198,6 +187,13 @@ public class ProgramaTO {
 		this.contasCentrosCusto = contasCentrosCusto;
 	}
 	
-	
+	public String getObjetivoEspecifico() {
+		return objetivoEspecifico;
+	}
+
+	public void setObjetivoEspecifico(String objetivoEspecifico) {
+		this.objetivoEspecifico = objetivoEspecifico;
+	}
+
 
 }

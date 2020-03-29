@@ -8,6 +8,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import br.com.crux.cmd.GetContasBancariaCmd;
 import br.com.crux.cmd.GetDepartamentoCmd;
 import br.com.crux.cmd.GetEmpresaCmd;
 import br.com.crux.cmd.GetFaturaCmd;
@@ -37,6 +38,8 @@ public class MovimentacoesTOBuilder {
 	@Autowired private GetItensMovimentacoesCmd getItensMovimentacoesCmd;
 	@Autowired private GetFaturaCmd getFaturaCmd;
 	@Autowired private GetPagamentosFaturaCmd getPagamentosFaturaCmd;
+	@Autowired private ContasBancariaTOBuilder contasBancariaTOBuilder;
+	@Autowired private GetContasBancariaCmd getContasBancariaCmd;
 
 	public MovimentacoesTO buildTO(Movimentacoes m) {
 		MovimentacoesTO to = new MovimentacoesTO();
@@ -46,6 +49,7 @@ public class MovimentacoesTOBuilder {
 		}
 
 		BeanUtils.copyProperties(m, to);
+		
 		to.setEmpresa(empresaTOBuilder.buildTOCombo(m.getEmpresa()));
 		to.setProjeto(projetoTOBuilder.buildTOCombo(m.getProjeto()));
 		to.setPrograma(programaTOBuilder.buildTOCombo(m.getPrograma()));
@@ -56,6 +60,7 @@ public class MovimentacoesTOBuilder {
 		to.setItensMovimentacoes(getItensMovimentacoesCmd.getItensMovimentacoesTOByMovimentacao(m));
 		to.setFaturas(getFaturaCmd.getFaturaTOByMovimentacao(m));
 		to.setPagamentosFatura(getPagamentosFaturaCmd.getPagamentoFaturaTOByMovimentacao(m));
+		to.setContaBancaria(contasBancariaTOBuilder.buildTO(m.getContaBancaria()));
 
 		return to;
 	}
@@ -71,39 +76,32 @@ public class MovimentacoesTOBuilder {
 
 		BeanUtils.copyProperties(to, p);
 
-		if (Objects.nonNull(to.getEmpresa()) && Objects.nonNull(to.getEmpresa()
-				.getId())) {
-			p.setEmpresa(getEmpresaCmd.getById(to.getEmpresa()
-					.getId()));
+		if (Objects.nonNull(to.getEmpresa()) && Objects.nonNull(to.getEmpresa().getId())) {
+			p.setEmpresa(getEmpresaCmd.getById(to.getEmpresa().getId()));
 		}
 
-		if (Objects.nonNull(to.getPrograma()) && Objects.nonNull(to.getPrograma()
-				.getId())) {
-			p.setPrograma(getProgramaCmd.getById(to.getPrograma()
-					.getId()));
+		if (Objects.nonNull(to.getPrograma()) && Objects.nonNull(to.getPrograma().getId())) {
+			p.setPrograma(getProgramaCmd.getById(to.getPrograma().getId()));
 		}
 
-		if (Objects.nonNull(to.getProjeto()) && Objects.nonNull(to.getProjeto()
-				.getId())) {
-			p.setProjeto(getProjetoCmd.getById(to.getProjeto()
-					.getId()));
+		if (Objects.nonNull(to.getProjeto()) && Objects.nonNull(to.getProjeto().getId())) {
+			p.setProjeto(getProjetoCmd.getById(to.getProjeto().getId()));
 		}
 
-		if (Objects.nonNull(to.getUnidade()) && Objects.nonNull(to.getUnidade()
-				.getIdUnidade())) {
-			p.setUnidade(getUnidadeCmd.getById(to.getUnidade()
-					.getIdUnidade()));
+		if (Objects.nonNull(to.getUnidade()) && Objects.nonNull(to.getUnidade().getIdUnidade())) {
+			p.setUnidade(getUnidadeCmd.getById(to.getUnidade().getIdUnidade()));
 		}
 
-		if (Objects.nonNull(to.getDepartamento()) && Objects.nonNull(to.getDepartamento()
-				.getIdDepartamento())) {
-			p.setDepartamento(getDepartamentoCmd.getById(to.getDepartamento()
-					.getIdDepartamento()));
+		if (Objects.nonNull(to.getDepartamento()) && Objects.nonNull(to.getDepartamento().getIdDepartamento())) {
+			p.setDepartamento(getDepartamentoCmd.getById(to.getDepartamento().getIdDepartamento()));
 
 		}
 
-		p.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado()
-				.getIdUsuario());
+		p.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
+		
+		if (Objects.nonNull(to.getContaBancaria()) && Objects.nonNull(to.getContaBancaria().getId())) {
+			p.setContaBancaria(getContasBancariaCmd.getById(to.getContaBancaria().getId()));
+		}
 
 		return p;
 	}

@@ -51,6 +51,11 @@ public class AlunoTOBuilder {
 		}else {
 			retorno.setMatriculaAluno(p.getMatriculaAluno());
 		}
+
+		if(Objects.isNull(p.getPessoaFisica().getCpf())) {
+			retorno.getPessoasFisica().setCpf(p.getId());
+		}
+		
 		
 		if(Objects.nonNull(p.getNivelTurma()) && Objects.nonNull(p.getNivelTurma().getId())) {
 			NiveisTurmas niveisTurmas = getNiveisTurmasCmd.getById(p.getNivelTurma().getId());

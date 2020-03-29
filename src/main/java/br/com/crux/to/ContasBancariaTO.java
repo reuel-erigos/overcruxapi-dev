@@ -14,7 +14,9 @@ public class ContasBancariaTO {
 	private String cpfCnpjTitular;
 	private String telefoneTitular;
 	private String emailTitular;
+	private Long contaAssociada;
 
+	
 	public Long getId() {
 		return id;
 	}
@@ -103,4 +105,13 @@ public class ContasBancariaTO {
 		this.emailTitular = emailTitular;
 	}
 
+	public Long getContaAssociada() {
+		return contaAssociada;
+	}
+
+	public void setContaAssociada(Long contaAssociada) {
+		this.contaAssociada = contaAssociada;
+	}
+
+	
 }

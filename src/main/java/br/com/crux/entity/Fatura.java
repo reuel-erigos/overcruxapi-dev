@@ -44,6 +44,9 @@ public class Fatura implements Serializable {
 	@Column(name = "nr_parcela")
 	private Long numeroParcela;
 
+	@Column(name = "nr_codigo_barras")
+	private String codigoBarra;
+	
 	@Column(name = "id_usuario_apl")
 	private Long usuarioAlteracao;
 
@@ -96,6 +99,14 @@ public class Fatura implements Serializable {
 
 	public void setMovimentacao(Movimentacoes movimentacao) {
 		this.movimentacao = movimentacao;
+	}
+
+	public String getCodigoBarra() {
+		return codigoBarra;
+	}
+
+	public void setCodigoBarra(String codigoBarra) {
+		this.codigoBarra = codigoBarra;
 	}
 
 }

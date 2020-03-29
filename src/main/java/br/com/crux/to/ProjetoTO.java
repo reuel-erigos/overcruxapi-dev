@@ -25,25 +25,20 @@ public class ProjetoTO {
 	private LocalDateTime dataPrevisaoTermino;
 
 	private ProgramaTO programa;
-
 	private List<UnidadeTO> unidades;
-
 	private List<ColaboradoresProjetoTO> colaboradoresProjeto;
-
 	private List<ParceriasProjetoTO> parceriasProjeto;
-
 	private List<ComposicaoRhProjetoTO> composicaoRhProjeto;
-
 	private List<ContasCentrosCustoTO> contasCentrosCusto;
-
 	private String publicoAlvo;
-
 	private String justificativa;
-
 	private String objetivoGeral;
-
 	private Long usuarioAlteracao;
-
+	private Long faixaEtariaInicial;
+	private Long faixaEtariaFinal;
+	private String objetivoEspecifico;
+	
+	
 	public ProjetoTO() {
 	}
 
@@ -191,5 +186,31 @@ public class ProjetoTO {
 		this.idCoordenador = idCoordenador;
 	}
 
+
+	public Long getFaixaEtariaInicial() {
+		return faixaEtariaInicial;
+	}
+
+	public void setFaixaEtariaInicial(Long faixaEtariaInicial) {
+		this.faixaEtariaInicial = faixaEtariaInicial;
+	}
+
+	public Long getFaixaEtariaFinal() {
+		return faixaEtariaFinal;
+	}
+
+	public void setFaixaEtariaFinal(Long faixaEtariaFinal) {
+		this.faixaEtariaFinal = faixaEtariaFinal;
+	}
+
+	public String getObjetivoEspecifico() {
+		return objetivoEspecifico;
+	}
+
+	public void setObjetivoEspecifico(String objetivoEspecifico) {
+		this.objetivoEspecifico = objetivoEspecifico;
+	}
+
+	
 
 }

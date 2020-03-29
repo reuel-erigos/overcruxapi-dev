@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,6 +16,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import br.com.crux.infra.constantes.Constantes;
+import br.com.crux.infra.dao.SimNaoConverter;
 
 /**
  * The persistent class for the pagamentos_faturas database table.
@@ -39,10 +41,6 @@ public class PagamentosFatura implements Serializable {
 	@JoinColumn(name = "id_conta_bancaria")
 	private ContasBancaria contaBancaria;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_saldo_conta_bancaria")
-	private SaldosContasBancaria saldoContaBancaria;
-
 	@Column(name = "vl_pagamento")
 	private Double valorPagamento;
 
@@ -59,7 +57,18 @@ public class PagamentosFatura implements Serializable {
 
 	@Column(name = "id_usuario_apl")
 	private Long usuarioAlteracao;
+	
+	@Column(name = "vl_multa")
+	private Double valorMulta;
+	
+	@Column(name = "vl_juros")
+	private Double valorJuros;
 
+	@Convert(converter = SimNaoConverter.class)
+	@Column(name = "st_registro_saldo")
+	private Boolean statusRegistroSaldo;
+
+	
 	public PagamentosFatura() {
 	}
 
@@ -85,14 +94,6 @@ public class PagamentosFatura implements Serializable {
 
 	public void setContaBancaria(ContasBancaria contaBancaria) {
 		this.contaBancaria = contaBancaria;
-	}
-
-	public SaldosContasBancaria getSaldoContaBancaria() {
-		return saldoContaBancaria;
-	}
-
-	public void setSaldoContaBancaria(SaldosContasBancaria saldoContaBancaria) {
-		this.saldoContaBancaria = saldoContaBancaria;
 	}
 
 	public Double getValorPagamento() {
@@ -135,4 +136,29 @@ public class PagamentosFatura implements Serializable {
 		this.usuarioAlteracao = usuarioAlteracao;
 	}
 
+	public Double getValorMulta() {
+		return valorMulta;
+	}
+
+	public void setValorMulta(Double valorMulta) {
+		this.valorMulta = valorMulta;
+	}
+
+	public Double getValorJuros() {
+		return valorJuros;
+	}
+
+	public void setValorJuros(Double valorJuros) {
+		this.valorJuros = valorJuros;
+	}
+
+	public Boolean getStatusRegistroSaldo() {
+		return statusRegistroSaldo;
+	}
+
+	public void setStatusRegistroSaldo(Boolean statusRegistroSaldo) {
+		this.statusRegistroSaldo = statusRegistroSaldo;
+	}
+
+	
 }

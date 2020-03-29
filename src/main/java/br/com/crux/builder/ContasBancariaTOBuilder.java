@@ -28,21 +28,16 @@ public class ContasBancariaTOBuilder {
 		BeanUtils.copyProperties(to, entity);
 
 		if (Objects.nonNull(to.getBanco())) {
-			entity.setNumeroBanco(to.getBanco()
-					.getNumero());
-			entity.setNomeBanco(to.getBanco()
-					.getNome());
+			entity.setNumeroBanco(to.getBanco().getNumero());
+			entity.setNomeBanco(to.getBanco().getNome());
 		}
 
-		if (Objects.nonNull(to.getUnidade()) && Objects.nonNull(to.getUnidade()
-				.getIdUnidade())) {
-			Unidade unidade = getUnidadeCmd.getById(to.getUnidade()
-					.getIdUnidade());
+		if (Objects.nonNull(to.getUnidade()) && Objects.nonNull(to.getUnidade().getIdUnidade())) {
+			Unidade unidade = getUnidadeCmd.getById(to.getUnidade().getIdUnidade());
 			entity.setUnidade(unidade);
 		}
 
-		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado()
-				.getIdUsuario());
+		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 
 		return entity;
 	}
@@ -55,9 +50,7 @@ public class ContasBancariaTOBuilder {
 		}
 
 		BeanUtils.copyProperties(entity, to);
-
 		to.setUnidade(unidadeBuilder.buildTO(entity.getUnidade()));
-
 		to.setBanco(new BancoTO(entity.getNomeBanco(), entity.getNumeroBanco()));
 
 		return to;

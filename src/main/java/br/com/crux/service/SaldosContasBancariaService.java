@@ -1,5 +1,6 @@
 package br.com.crux.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,11 @@ public class SaldosContasBancariaService {
 	public List<SaldosContasBancariaTO> getAllFilter(@RequestParam(name = "tipoContaBancaria", required = false) String tipoContaBancaria,
                                                      @RequestParam(name = "nomeBanco", required = false) String nomeBanco,
                                                      @RequestParam(name = "numeroAgencia", required = false) String numeroAgencia,
-                                                     @RequestParam(name = "numeroContaBancaria", required = false) String numeroContaBancaria) {
-		return getCmd.getAllFilter(tipoContaBancaria, nomeBanco, numeroAgencia, numeroContaBancaria);
+                                                     @RequestParam(name = "numeroContaBancaria", required = false) String numeroContaBancaria,
+                                                     @RequestParam(name = "dataInicio", required = false) LocalDateTime dataInicio,
+                                                     @RequestParam(name = "dataFim", required = false) LocalDateTime dataFim
+                                                     ) {
+		return getCmd.getAllFilter(tipoContaBancaria, nomeBanco, numeroAgencia, numeroContaBancaria, dataInicio, dataFim);
 	}
 	
 	

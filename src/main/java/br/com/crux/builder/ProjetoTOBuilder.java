@@ -2,8 +2,10 @@ package br.com.crux.builder;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +13,9 @@ import br.com.crux.cmd.GetColaboradoresProjetoCmd;
 import br.com.crux.cmd.GetComposicaoRhProjetoCmd;
 import br.com.crux.cmd.GetContasCentrosCustoCmd;
 import br.com.crux.cmd.GetParceriasProjetoCmd;
+import br.com.crux.cmd.GetProgramaCmd;
 import br.com.crux.cmd.GetProjetosUnidadeCmd;
+import br.com.crux.entity.Programa;
 import br.com.crux.entity.Projeto;
 import br.com.crux.to.ProjetoTO;
 
@@ -23,24 +27,20 @@ public class ProjetoTOBuilder {
 	@Autowired private GetParceriasProjetoCmd getParceriasProjetoCmd;
 	@Autowired private GetComposicaoRhProjetoCmd getComposicaoRhProjetoCmd;
 	@Autowired private GetContasCentrosCustoCmd getContasCentrosCustoCmd;
+	@Autowired private GetProgramaCmd getProgramaCmd;
+	@Autowired private ProgramaTOBuilder programaTOBuilder;
 
 	public Projeto build(ProjetoTO p) {
 		Projeto retorno = new Projeto();
 
-		retorno.setId(p.getId());
-		retorno.setNome(p.getNome());
-		retorno.setDescricao(p.getDescricao());
-
-		retorno.setDataInicio(p.getDataInicio());
-		retorno.setDataFim(p.getDataFim());
-		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
-		retorno.setPublicoAlvo(p.getPublicoAlvo());
-		retorno.setJustificativa(p.getJustificativa());
-		retorno.setObjetivoGeral(p.getObjetivoGeral());
-		retorno.setIdCoordenador(p.getIdCoordenador());
+		BeanUtils.copyProperties(p, retorno);
 		
-		retorno.setDataPrevisaoInicio(p.getDataPrevisaoInicio());
-		retorno.setDataPrevisaoTermino(p.getDataPrevisaoTermino());
+		Optional.ofNullable(p.getPrograma()).ifPresent(programa -> {
+			if (Objects.nonNull(programa.getId())) {
+				Programa entity = getProgramaCmd.getById(programa.getId());
+				retorno.setPrograma(entity);
+			}
+		});
 
 		return retorno;
 	}
@@ -52,20 +52,7 @@ public class ProjetoTOBuilder {
 			return retorno;
 		}
 
-		retorno.setId(p.getId());
-		retorno.setNome(p.getNome());
-		retorno.setDescricao(p.getDescricao());
-
-		retorno.setDataInicio(p.getDataInicio());
-		retorno.setDataFim(p.getDataFim());
-		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
-		retorno.setPublicoAlvo(p.getPublicoAlvo());
-		retorno.setJustificativa(p.getJustificativa());
-		retorno.setObjetivoGeral(p.getObjetivoGeral());
-		retorno.setIdCoordenador(p.getIdCoordenador());
-		
-		retorno.setDataPrevisaoInicio(p.getDataPrevisaoInicio());
-		retorno.setDataPrevisaoTermino(p.getDataPrevisaoTermino());
+		BeanUtils.copyProperties(p, retorno);
 
 		retorno.setUnidades(getProjetosUnidadeCmd.getUnidadesTOByIdProjeto(p.getId()));
 		retorno.setColaboradoresProjeto((getColaboradoresProjetoCmd.getColaboradoresProjetoTOByProjeto(p)));
@@ -73,6 +60,10 @@ public class ProjetoTOBuilder {
 		retorno.setComposicaoRhProjeto(getComposicaoRhProjetoCmd.getComposicaoRhProjetoByProjeto(p));
 		retorno.setContasCentrosCusto(getContasCentrosCustoCmd.getTOPorProjeto(p));
 
+		Optional.ofNullable(p.getPrograma()).ifPresent(programa -> {
+			retorno.setPrograma(programaTOBuilder.buildTO(programa));
+		});
+		
 		return retorno;
 	}
 

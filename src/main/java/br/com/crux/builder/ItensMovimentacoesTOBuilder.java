@@ -45,7 +45,7 @@ public class ItensMovimentacoesTOBuilder {
 		to.setMaterial(materialTOBuilder.buildTOCombo(entity.getMaterial()));
 		to.setPedidosMateriais(pedidosMateriaisTOBuilder.buildTOCombo(entity.getPedidosMateriais()));
 		to.setUnidade(unidadeTOBuilder.buildTOCombo(entity.getUnidade()));
-
+		
 		return to;
 	}
 
@@ -77,8 +77,8 @@ public class ItensMovimentacoesTOBuilder {
 		entity.setUnidade(movimentacoes.getUnidade());
 		entity.setDepartamento(movimentacoes.getDepartamento());
 		entity.setMovimentacao(movimentacoes);
-		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado()
-				.getIdUsuario());
+		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
+		
 		return entity;
 	}
 	

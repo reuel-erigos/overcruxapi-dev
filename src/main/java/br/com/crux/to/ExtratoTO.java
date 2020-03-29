@@ -3,27 +3,33 @@ package br.com.crux.to;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
 import org.springframework.format.annotation.NumberFormat;
+
+import br.com.crux.infra.adapter.LocalDateTimeAdapter;
 
 public class ExtratoTO {
 
+	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
 	private LocalDateTime dataAtual;
+	
 	private String numeroBanco;
 	private String nomeBanco;
 	private String numeroAgencia;
 	private String numeroConta;
-
 	private String periodoExtrato;
+	private String identificacaoConta;
+	private boolean isSaldoAtualDivergente;
 	
 	@NumberFormat(pattern = "#,##0.00")
 	private Double saldoAnterior;
 	@NumberFormat(pattern = "#,##0.00")
 	private Double saldoAtual;
 	
-	private String identificacaoConta;
+	private List<MovimentosExtratoTO> movimentacoes;
 
-	private List<Movimentacoes> movimentacoes;
-
+	
 	public LocalDateTime getDataAtual() {
 		return dataAtual;
 	}
@@ -88,17 +94,25 @@ public class ExtratoTO {
 		this.saldoAtual = saldoAtual;
 	}
 
-	public List<Movimentacoes> getMovimentacoes() {
+	public List<MovimentosExtratoTO> getMovimentacoes() {
 		return movimentacoes;
 	}
 
-	public void setMovimentacoes(List<Movimentacoes> movimentacoes) {
+	public void setMovimentacoes(List<MovimentosExtratoTO> movimentacoes) {
 		this.movimentacoes = movimentacoes;
 	}
 
 	public String getIdentificacaoConta() {
 		identificacaoConta = "Banco: " + getNumeroBanco() + " - " + getNomeBanco() + " - Agência: " + getNumeroAgencia() + " - Conta: " + getNumeroConta();
 		return identificacaoConta;
+	}
+
+	public boolean getIsSaldoAtualDivergente() {
+		return isSaldoAtualDivergente;
+	}
+
+	public void setIsSaldoAtualDivergente(boolean isSaldoAtualDivergente) {
+		this.isSaldoAtualDivergente = isSaldoAtualDivergente;
 	}
 	
 	
