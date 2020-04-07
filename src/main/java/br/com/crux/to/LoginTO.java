@@ -5,6 +5,7 @@ public class LoginTO {
 	
 	private String userName;
 	private String senha;
+	private String idsession;
 	
 	public LoginTO() {
 	}
@@ -30,6 +31,14 @@ public class LoginTO {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public String getIdsession() {
+		return idsession;
+	}
+
+	public void setIdsession(String idsession) {
+		this.idsession = idsession;
 	}
 
 	

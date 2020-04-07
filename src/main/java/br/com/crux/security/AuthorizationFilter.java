@@ -29,14 +29,15 @@ import br.com.crux.infra.constantes.SecurityContantes;
 import br.com.crux.service.exception.ApiError;
 import io.jsonwebtoken.Claims;
 
-@Order(Ordered.HIGHEST_PRECEDENCE)
+@Order(Ordered.LOWEST_PRECEDENCE)
 public class AuthorizationFilter extends OncePerRequestFilter {
 	
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 		
-		String jwt = request.getHeader(HttpHeaders.AUTHORIZATION);
+		String jwt              = request.getHeader(HttpHeaders.AUTHORIZATION);
+		String idsessionusuario = request.getHeader(SecurityContantes.IDSESSIONUSUARIO);
 		
 		try {
 			if(jwt == null || !jwt.startsWith(SecurityContantes.JWT_PROVIDER)) {
@@ -63,7 +64,7 @@ public class AuthorizationFilter extends OncePerRequestFilter {
 					grantedAuthorities.add(new SimpleGrantedAuthority(role));
 				});
 				
-				Authentication authentication = new UsernamePasswordAuthenticationToken(username, null, grantedAuthorities);
+				Authentication authentication = new UsernamePasswordAuthenticationToken(username +"@"+idsessionusuario, null, grantedAuthorities);
 				SecurityContextHolder.getContext().setAuthentication(authentication);
 			}
 			
@@ -85,5 +86,6 @@ public class AuthorizationFilter extends OncePerRequestFilter {
 		filterChain.doFilter(request, response);
 		
 	}
+
 
 }

@@ -21,13 +21,14 @@ public class AutenticadorCmd {
 	@Autowired private TrocarSenhaCmd trocarSenhaCmd;
 	@Autowired private SaveUsuarioLogadoCmd saveUsuarioLogadoCmd;
 	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd;    
-	@Autowired private TokenJwtCmd createTokenJwtCmd;
-	
+	@Autowired private TokenJwtCmd createTokenJwtCmd;	
 	
 	public UsuarioLogadoTO autenticar(LoginTO user) {
 		UsuarioLogadoTO usuarioLogadoTO;
 		try {
-			UsernamePasswordAuthenticationToken userAuth = new UsernamePasswordAuthenticationToken(user.getUserName(),user.getSenha());
+			UsuarioLocals.removerSessoesInvalidas(user.getUserName());
+			
+			UsernamePasswordAuthenticationToken userAuth = new UsernamePasswordAuthenticationToken(user.getUserName().toLowerCase()+"@"+user.getIdsession() ,user.getSenha());
 			Authentication auth = authManager.authenticate(userAuth);
 			SecurityContextHolder.getContext().setAuthentication(auth);
 			

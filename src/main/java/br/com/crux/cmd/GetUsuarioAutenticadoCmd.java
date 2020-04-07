@@ -29,7 +29,9 @@ public class GetUsuarioAutenticadoCmd implements UserDetailsService{
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Optional<UsuariosSistema> result = usuarioSistemaRepository.findByUsername(username);
+		String usernameSemIDSESSION = username.substring(0, username.indexOf("@"));
+		
+		Optional<UsuariosSistema> result = usuarioSistemaRepository.findByUsername(usernameSemIDSESSION);
 		
 		if(!result.isPresent()) throw new UsernameNotFoundException("Usuário não existe.");
 		
@@ -50,7 +52,7 @@ public class GetUsuarioAutenticadoCmd implements UserDetailsService{
 		List<GrantedAuthority> authorities = roles;
 
 		
-		User userSpring = new User(user.getUsername(), user.getSenha(), authorities);
+		User userSpring = new User(username, user.getSenha(), authorities);
 		
 		return userSpring;
 	}

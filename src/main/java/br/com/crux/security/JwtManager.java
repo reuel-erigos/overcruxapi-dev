@@ -18,14 +18,19 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 @Component
 public class JwtManager {
-	
+
 	@Autowired
 	private GetTimeTokenExpiredCmd getTimeTokenExpiredCmd;
 
 	public String createToken(String username, List<String> roles) {
+		if(username.contains("@")) {
+			username = username.substring(0, username.indexOf("@"));
+		}
+		
 		JwtBuilder token = Jwts.builder()
   							   .setSubject(username)
 							   .claim(SecurityContantes.JWT_ROLE_KEY, roles)
+							   //.setIssuedAt(new Date())
 							   .signWith(SignatureAlgorithm.HS512, SecurityContantes.API_KEY.getBytes());
 				 
 		Integer minutes = getTimeTokenExpiredCmd.getTimeExpieredToken();

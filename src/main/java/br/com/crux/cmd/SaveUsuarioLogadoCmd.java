@@ -42,19 +42,20 @@ public class SaveUsuarioLogadoCmd {
 	
 	
 	private UsuarioLogadoTO montarUsuarioLogado(String username, Collection<? extends GrantedAuthority> authorities) {
-		String jwt = createTokenJwtCmd.createToken(username, authorities);
+		String usernameSemIDSESSION = username.substring(0, username.indexOf("@"));
+		String jwt = createTokenJwtCmd.createToken(usernameSemIDSESSION, authorities);
 		
 		UsuarioLogadoTO usuarioLogadoTO = UsuarioLocals.get(username);
 		if(usuarioLogadoTO == null) {
 			usuarioLogadoTO = new UsuarioLogadoTO();
 		}
 		
-		UsuariosSistema usuariosSistema = getUsuarioSistemaCmd.get(username);
+		UsuariosSistema usuariosSistema = getUsuarioSistemaCmd.get(usernameSemIDSESSION);
 		usuarioLogadoTO.setIdUsuario(usuariosSistema.getIdUsuario());
 		
 		usuarioLogadoTO.setToken(jwt);
 		usuarioLogadoTO.setNomeUsuario(usuariosSistema.getPessoaFisica().getNome());
-		usuarioLogadoTO.setUsername(username);
+		usuarioLogadoTO.setUsername(usernameSemIDSESSION);
 		usuarioLogadoTO.setTrocarSenha(usuariosSistema.getStTrocaSenha());
 		usuarioLogadoTO.setIdPessoaFisica(usuariosSistema.getPessoaFisica().getId());
 		
@@ -83,6 +84,6 @@ public class SaveUsuarioLogadoCmd {
 		}
 		
 		return usuarioLogadoTO;
-	}	
+	}
 	
 }

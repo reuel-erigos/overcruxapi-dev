@@ -1,9 +1,11 @@
 package br.com.crux.security;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import br.com.crux.to.UsuarioLogadoTO;
+import io.jsonwebtoken.Claims;
 
 public class UsuarioLocals {
 
@@ -46,6 +48,13 @@ public class UsuarioLocals {
 		HashMap<String, UsuarioLogadoTO> vals = getVals();
 		return (T) vals.get(key);
 	}
+	
+	
+	@SuppressWarnings("unchecked")
+	public static <T> T getAllByUsername(String username) {
+		HashMap<String, UsuarioLogadoTO> vals = getVals();
+		return (T) vals.values().stream().filter(v -> v.getUsername().equals(username));
+	}
 
 	/**
 	 * Destroi todos os atributos armazenados no contexto de Thread. Este método deve ser chamado principalmente ao final de cada request. Isto é importante porque, em um servidor
@@ -54,6 +63,20 @@ public class UsuarioLocals {
 	 */
 	public static void reset() {
 		usuarios.clear();
+	}
+	
+	
+	public static void removerSessoesInvalidas(String username) {
+		ArrayList<String> sessoesInvalidas = new ArrayList<>();
+		HashMap<String, UsuarioLogadoTO> sessoes = getAllByUsername(username.toLowerCase());
+        for (String key : sessoes.keySet()) {
+        	UsuarioLogadoTO value = sessoes.get(key);
+			Claims claims = new JwtManager().validaToken(value.getToken());
+			if( claims == null ) {
+				sessoesInvalidas.add(key);
+			}
+        }
+        sessoesInvalidas.forEach(key -> sessoes.remove(key));		
 	}
 	
 }
