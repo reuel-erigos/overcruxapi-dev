@@ -3,6 +3,9 @@ package br.com.crux.security;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
+
+import org.apache.commons.lang3.StringUtils;
 
 import br.com.crux.to.UsuarioLogadoTO;
 import io.jsonwebtoken.Claims;
@@ -50,12 +53,6 @@ public class UsuarioLocals {
 	}
 	
 	
-	@SuppressWarnings("unchecked")
-	public static <T> T getAllByUsername(String username) {
-		HashMap<String, UsuarioLogadoTO> vals = getVals();
-		return (T) vals.values().stream().filter(v -> v.getUsername().equals(username));
-	}
-
 	/**
 	 * Destroi todos os atributos armazenados no contexto de Thread. Este método deve ser chamado principalmente ao final de cada request. Isto é importante porque, em um servidor
 	 * de aplicações, é normal acontecer de o mesmo thread ser usado no processamento de requests de usuários diferentes. Se o método 'reset' não for invocado, pode acontecer de
@@ -66,15 +63,19 @@ public class UsuarioLocals {
 	}
 	
 	
-	public static void removerSessoesInvalidas(String username) {
+	public static void removerSessoesInvalidas() {
 		ArrayList<String> sessoesInvalidas = new ArrayList<>();
-		HashMap<String, UsuarioLogadoTO> sessoes = getAllByUsername(username.toLowerCase());
+		HashMap<String, UsuarioLogadoTO> sessoes = getVals();
         for (String key : sessoes.keySet()) {
         	UsuarioLogadoTO value = sessoes.get(key);
-			Claims claims = new JwtManager().validaToken(value.getToken());
-			if( claims == null ) {
-				sessoesInvalidas.add(key);
-			}
+        	if(Objects.nonNull(value) && StringUtils.isNotEmpty(value.getToken())) {
+        		Claims claims = new JwtManager().validaToken(value.getToken());
+        		if( claims == null ) {
+        			sessoesInvalidas.add(key);
+        		}
+        	} else {
+        		sessoesInvalidas.add(key);
+        	}
         }
         sessoesInvalidas.forEach(key -> sessoes.remove(key));		
 	}

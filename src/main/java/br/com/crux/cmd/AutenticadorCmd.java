@@ -26,7 +26,7 @@ public class AutenticadorCmd {
 	public UsuarioLogadoTO autenticar(LoginTO user) {
 		UsuarioLogadoTO usuarioLogadoTO;
 		try {
-			UsuarioLocals.removerSessoesInvalidas(user.getUserName());
+			UsuarioLocals.removerSessoesInvalidas();
 			
 			UsernamePasswordAuthenticationToken userAuth = new UsernamePasswordAuthenticationToken(user.getUserName().toLowerCase()+"@"+user.getIdsession() ,user.getSenha());
 			Authentication auth = authManager.authenticate(userAuth);
