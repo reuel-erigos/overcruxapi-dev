@@ -73,8 +73,6 @@ public class UsuarioLocals {
         		if( claims == null ) {
         			sessoesInvalidas.add(key);
         		}
-        	} else {
-        		sessoesInvalidas.add(key);
         	}
         }
         sessoesInvalidas.forEach(key -> sessoes.remove(key));		
