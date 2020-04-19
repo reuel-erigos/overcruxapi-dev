@@ -28,14 +28,17 @@ public class TrocarSenhaCmd {
 		if(Objects.isNull(authentication)) {
 			throw new NotFoundException("Problema ao recuperar o usuário logado.");
 		}
-		UsuariosSistema usuariosSistema = getUsuarioSistemaCmd.get(authentication.getName());
+		
+		String usernameSemIDSESSION = authentication.getName().substring(0, authentication.getName().indexOf("@"));
+		UsuariosSistema usuariosSistema = getUsuarioSistemaCmd.get(usernameSemIDSESSION);
 		
 		validarTrocaSenhaRule.validar(usuariosSistema.getSenha(), trocaSenhaTO.getSenhaAtual(), trocaSenhaTO.getSenhaNova());
 		
 		String senhaEncode = customPasswordEncoder.encode(trocaSenhaTO.getSenhaNova());
-		acessoDao.trocarSenha(authentication.getName(), senhaEncode);
+		acessoDao.trocarSenha(usuariosSistema.getUsername(), senhaEncode);
 		
 		SecurityContextHolder.getContext().setAuthentication(null);
 	}
+
 
 }
