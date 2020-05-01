@@ -84,7 +84,7 @@ public class Aluno {
 	@Column(name="ds_busca_escola")
 	private String descBuscaEscola;
 
-	@Column(name="st_publico_prioritario")
+	@Column(name="ds_publico_prioritario")
 	private String publicoPrioritario;
 
 	@Column(name="nr_matricula_aluno")
