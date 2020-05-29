@@ -37,15 +37,12 @@ public class ParceriasProgramaTOBuilder {
 
 		parceriasPrograma.setPrograma(programa);
 
-		if (Objects.nonNull(parceriaProgramaTO.getEmpresa()) && Objects.nonNull(parceriaProgramaTO.getEmpresa()
-				.getId())) {
-			Empresa e = empresaCmd.getById(parceriaProgramaTO.getEmpresa()
-					.getId());
+		if (Objects.nonNull(parceriaProgramaTO.getEmpresa()) && Objects.nonNull(parceriaProgramaTO.getEmpresa().getId())) {
+			Empresa e = empresaCmd.getById(parceriaProgramaTO.getEmpresa().getId());
 			parceriasPrograma.setEmpresa(e);
 		}
 
-		parceriasPrograma.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado()
-				.getIdUsuario());
+		parceriasPrograma.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 
 		return parceriasPrograma;
 	}

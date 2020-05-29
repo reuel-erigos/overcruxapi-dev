@@ -35,18 +35,14 @@ public class ParceriasProjetoTOBuilder {
 		ParceriasProjeto parceriasProjeto = new ParceriasProjeto();
 
 		BeanUtils.copyProperties(parceriaProjetoTO, parceriasProjeto, "projeto", "empresa");
-
 		parceriasProjeto.setProjeto(projeto);
 
-		if (Objects.nonNull(parceriaProjetoTO.getEmpresa()) && Objects.nonNull(parceriaProjetoTO.getEmpresa()
-				.getId())) {
-			Empresa e = empresaCmd.getById(parceriaProjetoTO.getEmpresa()
-					.getId());
+		if (Objects.nonNull(parceriaProjetoTO.getEmpresa()) && Objects.nonNull(parceriaProjetoTO.getEmpresa().getId())) {
+			Empresa e = empresaCmd.getById(parceriaProjetoTO.getEmpresa().getId());
 			parceriasProjeto.setEmpresa(e);
 		}
 
-		parceriasProjeto.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado()
-				.getIdUsuario());
+		parceriasProjeto.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 
 		return parceriasProjeto;
 	}
@@ -64,18 +60,15 @@ public class ParceriasProjetoTOBuilder {
 		to.setEmpresa(empresaTOBuilder.buildTO(parceriaProjeto.getEmpresa()));
 
 		List<MateriaisProjetoTO> materiaisProjetoByProjeto = getMateriaisParceirosProjetoCmd.getMateriaisProjetoTOByParceriasProjeto(parceriaProjeto);
-
 		to.setMateriaisProjeto(materiaisProjetoByProjeto);
 		
 		List<ParceriasCategoriasTO> listaParceriasCategarias = getParceriasCategoriasCmd.getParceriasCategoriasTOByParceriasProjeto(parceriaProjeto);
         to.setParceriasCategorias(listaParceriasCategarias);		
-	
 
 		return to;
 	}
 
 	public List<ParceriasProjetoTO> buildAll(List<ParceriasProjeto> lista) {
-
 		return lista.stream()
 				.map(this::buildTO)
 				.collect(Collectors.toList());

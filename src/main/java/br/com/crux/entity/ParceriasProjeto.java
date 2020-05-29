@@ -53,6 +53,10 @@ public class ParceriasProjeto  {
 
 	@OneToMany(mappedBy="parceriasProjeto")
 	private List<MateriaisProjeto> materiaisProjetos;
+	
+	@OneToMany(mappedBy="parceriasProjeto")
+	private List<ParceriasCategorias> parceriasCategorias;
+	
 
 	public ParceriasProjeto() {
 	}
@@ -128,7 +132,13 @@ public class ParceriasProjeto  {
 	public void setMateriaisProjetos(List<MateriaisProjeto> materiaisProjetos) {
 		this.materiaisProjetos = materiaisProjetos;
 	}
-	
-	
 
+	public List<ParceriasCategorias> getParceriasCategorias() {
+		return parceriasCategorias;
+	}
+
+	public void setParceriasCategorias(List<ParceriasCategorias> parceriasCategorias) {
+		this.parceriasCategorias = parceriasCategorias;
+	}
+	
 }
