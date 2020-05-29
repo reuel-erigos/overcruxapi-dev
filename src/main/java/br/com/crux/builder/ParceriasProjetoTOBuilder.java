@@ -65,16 +65,25 @@ public class ParceriasProjetoTOBuilder {
 		BeanUtils.copyProperties(parceriaProjeto, to, "projeto", "empresa");
 
 		to.setEmpresa(empresaTOBuilder.buildTO(parceriaProjeto.getEmpresa()));
-
-		List<MateriaisProjetoTO> materiaisProjetoByProjeto = getMateriaisParceirosProjetoCmd.getMateriaisProjetoTOByParceriasProjeto(parceriaProjeto);
-		to.setMateriaisProjeto(materiaisProjetoByProjeto);
-		
-		List<ParceriasCategoriasTO> listaParceriasCategarias = getParceriasCategoriasCmd.getParceriasCategoriasTOByParceriasProjeto(parceriaProjeto);
-        to.setParceriasCategorias(listaParceriasCategarias);		
+		to.setMateriaisProjeto(materiaisProjetoTOBuilder.buildAllTO(parceriaProjeto.getMateriaisProjetos()));
+        to.setParceriasCategorias(parceriasCategoriasTOBuilder.buildAllTO(parceriaProjeto.getParceriasCategorias()));		
 
 		return to;
 	}
 
+	public ParceriasProjetoTO buildTOSemDependencia(ParceriasProjeto parceriaProjeto) {
+		ParceriasProjetoTO to = new ParceriasProjetoTO();
+
+		if (Objects.isNull(parceriaProjeto)) {
+			return to;
+		}
+
+		BeanUtils.copyProperties(parceriaProjeto, to, "projeto", "empresa");
+		to.setEmpresa(empresaTOBuilder.buildTO(parceriaProjeto.getEmpresa()));
+
+		return to;
+	}
+	
 	public ParceriasProjeto buildTO(ParceriasProjetoTO parceriaProjeto) {
 		ParceriasProjeto to = new ParceriasProjeto();
 

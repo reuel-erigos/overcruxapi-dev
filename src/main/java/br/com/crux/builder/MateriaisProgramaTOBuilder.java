@@ -42,11 +42,9 @@ public class MateriaisProgramaTOBuilder {
 	public MateriaisProgramaTO buildTO(MateriaisPrograma entity) {
 		MateriaisProgramaTO to = new MateriaisProgramaTO();
 		BeanUtils.copyProperties(entity, to);
-		materialTOBuilder.buildTO(entity.getMaterial());
 		
 		to.setPrograma(programaTOBuilder.buildTO(entity.getPrograma()));
 		to.setMaterial(materialTOBuilder.buildTO(entity.getMaterial()));
-		to.setParceriasPrograma(parceriasProgramaTOBuilder.buildTO(entity.getParceriasPrograma()));
 		
 		return to;
 	}
@@ -55,7 +53,7 @@ public class MateriaisProgramaTOBuilder {
 	public MateriaisPrograma build(MateriaisProgramaTO entity) {
 		MateriaisPrograma to = new MateriaisPrograma();
 		BeanUtils.copyProperties(entity, to);
-		materialTOBuilder.build(entity.getMaterial());
+		
 		to.setMaterial(materialTOBuilder.build(entity.getMaterial()));
 		to.setParceriasPrograma(parceriasProgramaTOBuilder.buildEntity(entity.getParceriasPrograma()));
 		return to;

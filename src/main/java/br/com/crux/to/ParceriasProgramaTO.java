@@ -3,6 +3,8 @@ package br.com.crux.to;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 public class ParceriasProgramaTO {
 
 	private Long id;
@@ -12,6 +14,8 @@ public class ParceriasProgramaTO {
 	private EmpresaTO empresa;
 	private ProgramaTO programa;
 	private Double valorParceria;
+	
+	
 	private List<MateriaisProgramaTO> materiaisPrograma;
 	private List<ParceriasCategoriasTO> parceriasCategorias;
 	

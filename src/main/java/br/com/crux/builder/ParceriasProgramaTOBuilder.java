@@ -15,8 +15,6 @@ import br.com.crux.cmd.GetUsuarioLogadoCmd;
 import br.com.crux.entity.Empresa;
 import br.com.crux.entity.ParceriasPrograma;
 import br.com.crux.entity.Programa;
-import br.com.crux.to.MateriaisProgramaTO;
-import br.com.crux.to.ParceriasCategoriasTO;
 import br.com.crux.to.ParceriasProgramaTO;
 
 @Component
@@ -43,7 +41,9 @@ public class ParceriasProgramaTOBuilder {
 			Empresa e = empresaCmd.getById(parceriaProgramaTO.getEmpresa().getId());
 			parceriasPrograma.setEmpresa(e);
 		}
-
+		parceriasPrograma.setMateriaisProgramas(materiaisProgramaTOBuilder.buildAllTO(parceriaProgramaTO.getMateriaisPrograma()));
+		parceriasPrograma.setParceriasCategorias(parceriasCategoriasTOBuilder.buildAll(parceriaProgramaTO.getParceriasCategorias()));	
+        
 		parceriasPrograma.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 
 		return parceriasPrograma;
@@ -61,15 +61,30 @@ public class ParceriasProgramaTOBuilder {
 
 		to.setEmpresa(empresaTOBuilder.buildTO(parceriasPrograma.getEmpresa()));
 
-		List<MateriaisProgramaTO> materiaisProjetoByPrograma = getMateriaisParceirosProgramaCmd.getMateriaisProgramaTOByParceriasPrograma(parceriasPrograma);
-		to.setMateriaisPrograma(materiaisProjetoByPrograma);
-
-		List<ParceriasCategoriasTO> listaParceriasCategarias = getParceriasCategoriasCmd.getParceriasCategoriasTOByParceriasPrograma(parceriasPrograma);
-        to.setParceriasCategorias(listaParceriasCategarias);		
+		to.setMateriaisPrograma(materiaisProgramaTOBuilder.buildAll(parceriasPrograma.getMateriaisProgramas()));
+        to.setParceriasCategorias(parceriasCategoriasTOBuilder.buildAllTO(parceriasPrograma.getParceriasCategorias()));		
 		
 		return to;
 	}
 
+
+	public ParceriasProgramaTO buildSemDependencia(ParceriasPrograma p) {
+
+		ParceriasProgramaTO to = new ParceriasProgramaTO();
+
+		if (Objects.isNull(p)) {
+			return to;
+		}
+
+		to.setDsTipoParceria(p.getDsTipoParceria());
+		to.setDtFimParceria(p.getDtFimParceria());
+		to.setDtInicioParceria(p.getDtInicioParceria());
+		to.setId(p.getId());
+		to.setValorParceria(p.getValorParceria());
+		to.setEmpresa(empresaTOBuilder.buildTO(p.getEmpresa()));
+		
+		return to;
+	}
 	
 	public ParceriasPrograma buildEntity(ParceriasProgramaTO parceriasPrograma) {
 		ParceriasPrograma to = new ParceriasPrograma();

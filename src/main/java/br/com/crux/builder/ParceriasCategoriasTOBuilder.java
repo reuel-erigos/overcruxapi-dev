@@ -59,11 +59,11 @@ public class ParceriasCategoriasTOBuilder {
 		to.setCategoriasContabeis(categoriasContabeisTOBuilder.buildTOCombo(e.getCategoriasContabeis()));
 
 		if (Objects.nonNull(e.getParceriasPrograma())) {
-			to.setParceriasPrograma(parceriasProgramaTOBuilder.buildTOCombo(e.getParceriasPrograma()));
+			to.setParceriasPrograma(parceriasProgramaTOBuilder.buildSemDependencia(e.getParceriasPrograma()));
 		}
 
 		if (Objects.nonNull(e.getParceriasPrograma())) {
-			to.setParceriasProjeto(parceriasProjetoTOBuilder.buildTOCombo(e.getParceriasProjeto()));
+			to.setParceriasProjeto(parceriasProjetoTOBuilder.buildTOSemDependencia(e.getParceriasProjeto()));
 		}
 
 		return to;

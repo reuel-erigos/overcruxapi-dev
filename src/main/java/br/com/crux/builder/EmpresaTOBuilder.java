@@ -18,6 +18,10 @@ public class EmpresaTOBuilder {
 	public Empresa build(EmpresaTO p) {
 		Empresa retorno = new Empresa();
 
+		if (Objects.isNull(p)) {
+			return retorno;
+		}
+		
 		retorno.setId(p.getId());
 		retorno.setCodigo(p.getCodigo());
 		retorno.setNomeFantasia(p.getNomeFantasia());
