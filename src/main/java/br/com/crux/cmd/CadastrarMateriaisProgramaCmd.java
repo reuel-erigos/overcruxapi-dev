@@ -23,7 +23,7 @@ public class CadastrarMateriaisProgramaCmd {
 
 	public MateriaisPrograma cadastrar(Programa programa, ParceriasPrograma parceriasPrograma, MateriaisProgramaTO materiaisProgramaTO) {
 		camposObrigatoriosMateriaisProgramaRule.verificar(materiaisProgramaTO);
-		MateriaisPrograma materiaisPrograma = materiaisProgramaTOBuilder.build(programa, parceriasPrograma, materiaisProgramaTO);
+		MateriaisPrograma materiaisPrograma = materiaisProgramaTOBuilder.buildEntity(programa, parceriasPrograma, materiaisProgramaTO);
 		return materiaisProgramaRepository.save(materiaisPrograma);
 	}
 

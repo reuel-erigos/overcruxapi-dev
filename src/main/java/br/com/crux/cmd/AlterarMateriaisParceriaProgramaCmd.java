@@ -27,7 +27,7 @@ public class AlterarMateriaisParceriaProgramaCmd {
 
 	private void alterar(Programa programa, ParceriasPrograma parceriasPrograma, MateriaisProgramaTO materiaisProgramaTO) {
 		camposObrigatoriosRule.verificar(materiaisProgramaTO);
-		MateriaisPrograma entity = materiaisProgramaTOBuilder.build(programa, parceriasPrograma, materiaisProgramaTO);
+		MateriaisPrograma entity = materiaisProgramaTOBuilder.buildEntity(programa, parceriasPrograma, materiaisProgramaTO);
 		repository.save(entity);
 	}
 

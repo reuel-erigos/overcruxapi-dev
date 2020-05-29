@@ -24,7 +24,7 @@ public class GetMateriaisParceirosProjetoCmd {
 		Optional<List<MateriaisProjeto>> lista = repository.findByParceriasProjeto(parceriasProjeto);
 
 		if (lista.isPresent()) {
-			return toBuilder.buildAll(lista.get());
+			return toBuilder.buildAllTO(lista.get());
 		}
 
 		return Collections.emptyList();

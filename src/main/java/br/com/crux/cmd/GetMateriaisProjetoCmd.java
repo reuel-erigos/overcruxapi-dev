@@ -26,7 +26,7 @@ public class GetMateriaisProjetoCmd {
 		Optional<List<MateriaisProjeto>> lista = repository.findByProjeto(projeto);
 		
 		if (lista.isPresent()) {
-			return toBuilder.buildAll(lista.get());
+			return toBuilder.buildAllTO(lista.get());
 		}
 		
 		return Collections.emptyList();

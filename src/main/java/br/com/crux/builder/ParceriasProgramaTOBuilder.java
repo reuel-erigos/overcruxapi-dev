@@ -28,9 +28,11 @@ public class ParceriasProgramaTOBuilder {
 	@Autowired ProjetoTOBuilder projetoTOBuilder;
 	@Autowired GetMateriaisParceirosProgramaCmd getMateriaisParceirosProgramaCmd;
 	@Autowired GetParceriasCategoriasCmd getParceriasCategoriasCmd;
+	@Autowired MateriaisProgramaTOBuilder materiaisProgramaTOBuilder;
+	@Autowired ParceriasCategoriasTOBuilder parceriasCategoriasTOBuilder;
+	
 
 	public ParceriasPrograma build(Programa programa, ParceriasProgramaTO parceriaProgramaTO) {
-
 		ParceriasPrograma parceriasPrograma = new ParceriasPrograma();
 
 		BeanUtils.copyProperties(parceriaProgramaTO, parceriasPrograma, "programa", "empresa");
@@ -68,6 +70,29 @@ public class ParceriasProgramaTOBuilder {
 		return to;
 	}
 
+	
+	public ParceriasPrograma buildEntity(ParceriasProgramaTO parceriasPrograma) {
+		ParceriasPrograma to = new ParceriasPrograma();
+
+		if (Objects.isNull(parceriasPrograma)) {
+			return to;
+		}
+
+		BeanUtils.copyProperties(parceriasPrograma, to, "projeto", "empresa");
+
+		to.setEmpresa(empresaTOBuilder.build(parceriasPrograma.getEmpresa()));
+
+		if(Objects.nonNull(parceriasPrograma.getMateriaisPrograma())) {
+			to.setMateriaisProgramas(materiaisProgramaTOBuilder.buildAllTO(parceriasPrograma.getMateriaisPrograma()));
+		}
+		
+		if(Objects.nonNull(parceriasPrograma.getParceriasCategorias())) {
+			to.setParceriasCategorias(parceriasCategoriasTOBuilder.buildAll(parceriasPrograma.getParceriasCategorias()));		
+		}
+		
+		return to;
+	}
+	
 	public List<ParceriasProgramaTO> buildAll(List<ParceriasPrograma> lista) {
 
 		return lista.stream()

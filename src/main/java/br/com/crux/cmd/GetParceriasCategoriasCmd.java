@@ -30,7 +30,7 @@ public class GetParceriasCategoriasCmd {
 		List<ParceriasCategorias> lista = repository.findByParceriasPrograma(pp)
 				.orElse(Collections.emptyList());
 
-		return toBuilder.buildAll(lista);
+		return toBuilder.buildAllTO(lista);
 
 	}
 
@@ -47,7 +47,7 @@ public class GetParceriasCategoriasCmd {
 		List<ParceriasCategorias> lista = repository.findByParceriasProjeto(parceriaProjeto)
 				.orElse(Collections.emptyList());
 
-		return toBuilder.buildAll(lista);
+		return toBuilder.buildAllTO(lista);
 
 	}
 

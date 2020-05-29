@@ -25,7 +25,7 @@ public class MateriaisProjetoTOBuilder {
 	@Autowired MaterialTOBuilder materialTOBuilder;
 	@Autowired ParceriasProjetoTOBuilder parceriasProjetoTOBuilder;
 
-	public MateriaisProjeto build(Projeto projeto, ParceriasProjeto parceriasProjeto, MateriaisProjetoTO to) {
+	public MateriaisProjeto buildEntity(Projeto projeto, ParceriasProjeto parceriasProjeto, MateriaisProjetoTO to) {
 
 		MateriaisProjeto retorno = new MateriaisProjeto();
 
@@ -45,22 +45,28 @@ public class MateriaisProjetoTOBuilder {
 	}
 
 	public MateriaisProjetoTO buildTO(MateriaisProjeto entity) {
-
 		MateriaisProjetoTO to = new MateriaisProjetoTO();
-
 		BeanUtils.copyProperties(entity, to);
-
 		materialTOBuilder.buildTO(entity.getMaterial());
-
 		to.setMaterial(materialTOBuilder.buildTO(entity.getMaterial()));
-		
-
 		return to;
 	}
 
-	public List<MateriaisProjetoTO> buildAll(List<MateriaisProjeto> lista) {
+	public MateriaisProjeto build(MateriaisProjetoTO entity) {
+		MateriaisProjeto to = new MateriaisProjeto();
+		BeanUtils.copyProperties(entity, to);
+		materialTOBuilder.build(entity.getMaterial());
+		to.setMaterial(materialTOBuilder.build(entity.getMaterial()));
+		
+		return to;
+	}
 
+	public List<MateriaisProjetoTO> buildAllTO(List<MateriaisProjeto> lista) {
 		return lista.stream().map(this::buildTO).collect(Collectors.toList());
+	}
+
+	public List<MateriaisProjeto> buildAll(List<MateriaisProjetoTO> lista) {
+		return lista.stream().map(this::build).collect(Collectors.toList());
 	}
 
 }

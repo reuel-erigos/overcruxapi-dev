@@ -29,8 +29,9 @@ public class ParceriasProjetoTOBuilder {
 	@Autowired GetMateriaisParceirosProjetoCmd getMateriaisParceirosProjetoCmd;
 	@Autowired MateriaisProjetoTOBuilder materiaisProjetoTOBuilder;
 	@Autowired GetParceriasCategoriasCmd getParceriasCategoriasCmd;
+	@Autowired ParceriasCategoriasTOBuilder parceriasCategoriasTOBuilder;
 
-	public ParceriasProjeto build(Projeto projeto, ParceriasProjetoTO parceriaProjetoTO) {
+	public ParceriasProjeto buildEntity(Projeto projeto, ParceriasProjetoTO parceriaProjetoTO) {
 
 		ParceriasProjeto parceriasProjeto = new ParceriasProjeto();
 
@@ -43,12 +44,18 @@ public class ParceriasProjetoTOBuilder {
 		}
 
 		parceriasProjeto.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
+		
+		if(Objects.nonNull(parceriaProjetoTO.getMateriaisProjeto())) {
+			parceriasProjeto.setMateriaisProjetos(materiaisProjetoTOBuilder.buildAll(parceriaProjetoTO.getMateriaisProjeto()));
+		}
+		if(Objects.nonNull(parceriaProjetoTO.getParceriasCategorias())) {
+			parceriasProjeto.setParceriasCategorias(parceriasCategoriasTOBuilder.buildAll(parceriaProjetoTO.getParceriasCategorias()));
+		}
 
 		return parceriasProjeto;
 	}
 
 	public ParceriasProjetoTO buildTO(ParceriasProjeto parceriaProjeto) {
-
 		ParceriasProjetoTO to = new ParceriasProjetoTO();
 
 		if (Objects.isNull(parceriaProjeto)) {
@@ -68,6 +75,28 @@ public class ParceriasProjetoTOBuilder {
 		return to;
 	}
 
+	public ParceriasProjeto buildTO(ParceriasProjetoTO parceriaProjeto) {
+		ParceriasProjeto to = new ParceriasProjeto();
+
+		if (Objects.isNull(parceriaProjeto)) {
+			return to;
+		}
+
+		BeanUtils.copyProperties(parceriaProjeto, to, "projeto", "empresa");
+
+		to.setEmpresa(empresaTOBuilder.build(parceriaProjeto.getEmpresa()));
+        
+		if(Objects.nonNull(parceriaProjeto.getMateriaisProjeto())) {
+			to.setMateriaisProjetos(materiaisProjetoTOBuilder.buildAll(parceriaProjeto.getMateriaisProjeto()));
+		}
+		if(Objects.nonNull(parceriaProjeto.getParceriasCategorias())) {
+			to.setParceriasCategorias(parceriasCategoriasTOBuilder.buildAll(parceriaProjeto.getParceriasCategorias()));
+		}
+		
+		return to;
+	}
+
+	
 	public List<ParceriasProjetoTO> buildAll(List<ParceriasProjeto> lista) {
 		return lista.stream()
 				.map(this::buildTO)

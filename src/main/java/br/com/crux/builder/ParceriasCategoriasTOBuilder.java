@@ -25,16 +25,15 @@ public class ParceriasCategoriasTOBuilder {
 	@Autowired private ParceriasProjetoTOBuilder parceriasProjetoTOBuilder;
 	@Autowired private GetCategoriasContabeisCmd getCategoriasContabeisCmd;
 
-	public ParceriasCategorias build(ParceriasPrograma parceriasPrograma, ParceriasProjeto parceriasProjeto, ParceriasCategoriasTO to) {
+	
+	public ParceriasCategorias buildEntity(ParceriasPrograma parceriasPrograma, ParceriasProjeto parceriasProjeto, ParceriasCategoriasTO to) {
 
 		ParceriasCategorias e = new ParceriasCategorias();
 
 		BeanUtils.copyProperties(to, e);
 
-		if (Objects.nonNull(to.getCategoriasContabeis()) && Objects.nonNull(to.getCategoriasContabeis()
-				.getId())) {
-			CategoriasContabeis entity = getCategoriasContabeisCmd.getById(to.getCategoriasContabeis()
-					.getId());
+		if (Objects.nonNull(to.getCategoriasContabeis()) && Objects.nonNull(to.getCategoriasContabeis().getId())) {
+			CategoriasContabeis entity = getCategoriasContabeisCmd.getById(to.getCategoriasContabeis().getId());
 			e.setCategoriasContabeis(entity);
 		}
 
@@ -46,8 +45,7 @@ public class ParceriasCategoriasTOBuilder {
 			e.setParceriasProjeto(parceriasProjeto);
 		}
 
-		e.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado()
-				.getIdUsuario());
+		e.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 
 		return e;
 	}
@@ -71,11 +69,34 @@ public class ParceriasCategoriasTOBuilder {
 		return to;
 	}
 
-	public List<ParceriasCategoriasTO> buildAll(List<ParceriasCategorias> lista) {
+	
+	public ParceriasCategorias build(ParceriasCategoriasTO e) {
+		ParceriasCategorias to = new ParceriasCategorias();
 
+		BeanUtils.copyProperties(e, to);
+
+		to.setCategoriasContabeis(categoriasContabeisTOBuilder.build(e.getCategoriasContabeis()));
+
+		if (Objects.nonNull(e.getParceriasPrograma())) {
+			to.setParceriasPrograma(parceriasProgramaTOBuilder.buildEntity(e.getParceriasPrograma()));
+		}
+
+		if (Objects.nonNull(e.getParceriasPrograma())) {
+			to.setParceriasProjeto(parceriasProjetoTOBuilder.buildTO(e.getParceriasProjeto()));
+		}
+
+		return to;
+	}
+	
+	public List<ParceriasCategoriasTO> buildAllTO(List<ParceriasCategorias> lista) {
 		return lista.stream()
 				.map(this::buildTO)
 				.collect(Collectors.toList());
 	}
 
+	public List<ParceriasCategorias> buildAll(List<ParceriasCategoriasTO> lista) {
+		return lista.stream()
+				.map(this::build)
+				.collect(Collectors.toList());
+	}
 }

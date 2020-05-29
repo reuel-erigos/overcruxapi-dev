@@ -27,7 +27,7 @@ public class AlterarMateriaisParceriaProjetoCmd {
 
 	private void alterar(Projeto projeto, ParceriasProjeto parceriasProjeto, MateriaisProjetoTO materiaisProjetoTO) {
 		camposObrigatoriosRule.verificar(materiaisProjetoTO);
-		MateriaisProjeto entity = materiaisProjetoTOBuilder.build(projeto, parceriasProjeto, materiaisProjetoTO);
+		MateriaisProjeto entity = materiaisProjetoTOBuilder.buildEntity(projeto, parceriasProjeto, materiaisProjetoTO);
 		repository.save(entity);
 	}
 
@@ -55,7 +55,7 @@ public class AlterarMateriaisParceriaProjetoCmd {
 
 		//Atualiza os registros 
 		listaTOTela.stream().filter(registro -> Objects.nonNull(registro.getId())).forEach(registro -> {
-			if (contemNaLista.test(registro, materiaisProjetoTOBuilder.buildAll(listaDoBanco))) {
+			if (contemNaLista.test(registro, materiaisProjetoTOBuilder.buildAllTO(listaDoBanco))) {
 				alterar(projeto, parceriasProjeto, registro);
 			}
 		});

@@ -20,7 +20,7 @@ public class CadastrarParceriasCategoriasCmd {
 	@Autowired ParceriasCategoriasTOBuilder toBuilder;
 
 	public ParceriasCategorias cadastrar(ParceriasPrograma parceriasPrograma, ParceriasProjeto parceriasProjeto, ParceriasCategoriasTO to) {
-		ParceriasCategorias entity = toBuilder.build(parceriasPrograma, null, to);
+		ParceriasCategorias entity = toBuilder.buildEntity(parceriasPrograma, null, to);
 		return repository.save(entity);
 	}
 

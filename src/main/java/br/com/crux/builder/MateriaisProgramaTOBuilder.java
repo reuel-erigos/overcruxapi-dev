@@ -25,41 +25,41 @@ public class MateriaisProgramaTOBuilder {
 	@Autowired MaterialTOBuilder materialTOBuilder;
 	@Autowired ParceriasProgramaTOBuilder parceriasProgramaTOBuilder;
 
-	public MateriaisPrograma build(Programa programa, ParceriasPrograma parceriasPrograma, MateriaisProgramaTO to) {
-
+	public MateriaisPrograma buildEntity(Programa programa, ParceriasPrograma parceriasPrograma, MateriaisProgramaTO to) {
 		MateriaisPrograma retorno = new MateriaisPrograma();
-
 		BeanUtils.copyProperties(to, retorno);
-
 		retorno.setPrograma(programa);
-
 		retorno.setParceriasPrograma(parceriasPrograma);
-
 		Optional.ofNullable(to.getMaterial()).ifPresent(m -> {
 			retorno.setMaterial(getMaterialCmd.getById(m.getId()));
 		});
-
 		retorno.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
-
 		return retorno;
 	}
 
 	public MateriaisProgramaTO buildTO(MateriaisPrograma entity) {
-
 		MateriaisProgramaTO to = new MateriaisProgramaTO();
-
 		BeanUtils.copyProperties(entity, to);
-
 		materialTOBuilder.buildTO(entity.getMaterial());
-
 		to.setMaterial(materialTOBuilder.buildTO(entity.getMaterial()));
+		return to;
+	}
+	
 
+	public MateriaisPrograma build(MateriaisProgramaTO entity) {
+		MateriaisPrograma to = new MateriaisPrograma();
+		BeanUtils.copyProperties(entity, to);
+		materialTOBuilder.build(entity.getMaterial());
+		to.setMaterial(materialTOBuilder.build(entity.getMaterial()));
+		to.setParceriasPrograma(parceriasProgramaTOBuilder.buildEntity(entity.getParceriasPrograma()));
 		return to;
 	}
 
 	public List<MateriaisProgramaTO> buildAll(List<MateriaisPrograma> lista) {
-
 		return lista.stream().map(this::buildTO).collect(Collectors.toList());
 	}
 
+	public List<MateriaisPrograma> buildAllTO(List<MateriaisProgramaTO> lista) {
+		return lista.stream().map(this::build).collect(Collectors.toList());
+	}
 }

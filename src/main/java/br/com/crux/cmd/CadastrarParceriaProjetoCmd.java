@@ -15,17 +15,16 @@ import br.com.crux.to.ParceriasProjetoTO;
 @Component
 public class CadastrarParceriaProjetoCmd {
 
-	@Autowired ParceriasProjetoRepository projetosUnidadeRepository;
+	@Autowired ParceriasProjetoRepository parceriasProjetoRepository;
 	@Autowired ParceriasProjetoTOBuilder parceriasProjetoTOBuilder;
 	@Autowired AlterarMateriaisParceriaProjetoCmd alterarMateriaisParceriaProjetoCmd;
-	@Autowired AlterarListaParceriasCategoriasProjetoCmd alterarListaParceriasCategoriasProjetoCmd;
+	@Autowired AlterarParceriasCategoriasProjetoCmd alterarParceriasCategoriasProjetoCmd;
 
 	public ParceriasProjeto cadastrar(Projeto projeto, ParceriasProjetoTO to) {
-		ParceriasProjeto entity = parceriasProjetoTOBuilder.build(projeto, to);
-		ParceriasProjeto parceriasProjeto = projetosUnidadeRepository.save(entity);
+		ParceriasProjeto entity = parceriasProjetoTOBuilder.buildEntity(projeto, to);
+		ParceriasProjeto parceriasProjeto = parceriasProjetoRepository.save(entity);
 		alterarMateriaisParceriaProjetoCmd.alterarAll(projeto, parceriasProjeto, to.getMateriaisProjeto());
-		
-		alterarListaParceriasCategoriasProjetoCmd.alterarAll(to.getParceriasCategorias(), parceriasProjeto);
+		alterarParceriasCategoriasProjetoCmd.alterarAll(projeto, parceriasProjeto, to.getParceriasCategorias() );
 		return entity;
 	}
 
