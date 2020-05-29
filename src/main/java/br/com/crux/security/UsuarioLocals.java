@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import br.com.crux.to.UsuarioLogadoTO;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 
 public class UsuarioLocals {
 
@@ -69,7 +70,11 @@ public class UsuarioLocals {
         for (String key : sessoes.keySet()) {
         	UsuarioLogadoTO value = sessoes.get(key);
         	if(Objects.nonNull(value) && StringUtils.isNotEmpty(value.getToken())) {
-        		Claims claims = new JwtManager().validaToken(value.getToken());
+        		Claims claims = null;
+        		try {
+        			claims = new JwtManager().validaToken(value.getToken());
+				} catch (ExpiredJwtException e) {}
+        		
         		if( claims == null ) {
         			sessoesInvalidas.add(key);
         		}
