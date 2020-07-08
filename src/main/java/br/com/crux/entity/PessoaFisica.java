@@ -150,7 +150,7 @@ public class PessoaFisica {
 	private String identidade;
 
 	@Column(name = "nr_cpf")
-	private Long cpf;
+	private String cpf;
 
 	@Column(name = "nr_cts")
 	private String cts;
@@ -589,11 +589,11 @@ public class PessoaFisica {
 		this.identidade = identidade;
 	}
 
-	public Long getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(Long cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 

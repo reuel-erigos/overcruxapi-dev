@@ -34,7 +34,7 @@ public class CadastrarAlunoCmd {
 		AlunoTO alunoTOSalvo = alunoTOBuilder.buildTO(repository.save(entity));
 		
 		if(Objects.isNull(alunoTOSalvo.getPessoaFisica().getCpf())) {
-			alunoTOSalvo.getPessoaFisica().setCpf(alunoTOSalvo.getId());
+			alunoTOSalvo.getPessoaFisica().setCpf(String.valueOf(alunoTOSalvo.getId()));
 		}
 		
 		entity.setMatriculaAluno(String.valueOf(alunoTOSalvo.getId()));

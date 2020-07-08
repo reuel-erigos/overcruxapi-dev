@@ -53,7 +53,7 @@ public class AlunoTOBuilder {
 		}
 
 		if(Objects.isNull(p.getPessoaFisica().getCpf())) {
-			retorno.getPessoasFisica().setCpf(p.getId());
+			retorno.getPessoasFisica().setCpf(String.valueOf(p.getId()));
 		}
 		
 		

@@ -47,7 +47,7 @@ public class PessoaFisicaTO {
 	private String nomePai;
 	private Long cep;
 	private String identidade;
-	private Long cpf;
+	private String cpf;
 	private String cts;
 	private String celular;
 	private String nis;
@@ -412,11 +412,11 @@ public class PessoaFisicaTO {
 		this.identidade = identidade;
 	}
 
-	public Long getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(Long cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 
