@@ -26,7 +26,7 @@ public class CargosTOBuilder {
 		retorno.setTipoCargo(TipoCargo.getPorTipo(param.getTipoCargo()));
 		retorno.setUsuarioAlteracao(param.getUsuarioAlteracao());
 		
-		if(Objects.nonNull(param.getCbo())) {
+		if(Objects.nonNull(param.getCbo()) && Objects.nonNull(param.getCbo().getId())) {
 			retorno.setCbo(cboTOBuilder.build(param.getCbo()));
 		}
 		retorno.setDescricaoPerfilProfissional(param.getDescricaoPerfilProfissional());
