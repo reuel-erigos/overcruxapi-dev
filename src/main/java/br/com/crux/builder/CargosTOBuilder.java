@@ -31,12 +31,9 @@ public class CargosTOBuilder {
 		retorno.setUsuarioAlteracao(param.getUsuarioAlteracao());
 		
 		if(Objects.nonNull(param.getCbo()) && Objects.nonNull(param.getCbo().getId())) {
-			retorno.setCbo(cboTOBuilder.build(param.getCbo()));
-		} else {
 			Optional<Cbo> cbo = repository.findById(param.getCbo().getId());
 			retorno.setCbo(cbo.get());
-		}
-		
+		} 
 		
 		retorno.setDescricaoPerfilProfissional(param.getDescricaoPerfilProfissional());
 		retorno.setDescricaoResumoAtividades(param.getDescricaoResumoAtividades());
