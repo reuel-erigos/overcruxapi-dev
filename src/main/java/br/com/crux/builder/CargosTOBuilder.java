@@ -2,12 +2,15 @@ package br.com.crux.builder;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import br.com.crux.dao.repository.CboRepository;
 import br.com.crux.entity.Cargo;
+import br.com.crux.entity.Cbo;
 import br.com.crux.enums.TipoCargo;
 import br.com.crux.to.CargoTO;
 
@@ -16,6 +19,7 @@ import br.com.crux.to.CargoTO;
 public class CargosTOBuilder {
 	
 	@Autowired private CboTOBuilder cboTOBuilder;
+	@Autowired private CboRepository repository;
 	
 	public Cargo build(CargoTO param) {
 		Cargo retorno = new Cargo();
@@ -28,7 +32,12 @@ public class CargosTOBuilder {
 		
 		if(Objects.nonNull(param.getCbo()) && Objects.nonNull(param.getCbo().getId())) {
 			retorno.setCbo(cboTOBuilder.build(param.getCbo()));
+		} else {
+			Optional<Cbo> cbo = repository.findById(param.getCbo().getId());
+			retorno.setCbo(cbo.get());
 		}
+		
+		
 		retorno.setDescricaoPerfilProfissional(param.getDescricaoPerfilProfissional());
 		retorno.setDescricaoResumoAtividades(param.getDescricaoResumoAtividades());
 		retorno.setQtdHoras(param.getQtdHoras());
