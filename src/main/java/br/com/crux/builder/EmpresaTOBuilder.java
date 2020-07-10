@@ -5,8 +5,10 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import br.com.crux.cmd.GetUnidadeLogadaCmd;
 import br.com.crux.entity.Empresa;
 import br.com.crux.enums.CategoriaEmpresa;
 import br.com.crux.enums.TipoEmpresa;
@@ -14,6 +16,8 @@ import br.com.crux.to.EmpresaTO;
 
 @Component
 public class EmpresaTOBuilder {
+	
+	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 
 	public Empresa build(EmpresaTO p) {
 		Empresa retorno = new Empresa();
@@ -56,6 +60,8 @@ public class EmpresaTOBuilder {
 		retorno.setUf(p.getUf());
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
 
+		retorno.setIdInstituicao(getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId());
+		
 		return retorno;
 	}
 
@@ -89,6 +95,7 @@ public class EmpresaTOBuilder {
 		retorno.setCep(p.getCep());
 		retorno.setUf(p.getUf());
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
+		retorno.setIdInstituicao(p.getIdInstituicao());
 
 		return retorno;
 	}

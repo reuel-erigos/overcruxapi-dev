@@ -108,6 +108,10 @@ public class Empresa implements Serializable {
 	@Column(name = "id_usuario_apl")
 	private Long usuarioAlteracao;
 
+	@Column(name = "id_instituicao")
+	private Long idInstituicao;
+
+	
 	public Empresa() {
 	}
 
@@ -295,4 +299,12 @@ public class Empresa implements Serializable {
 		this.usuarioAlteracao = usuarioAlteracao;
 	}
 
+	public Long getIdInstituicao() {
+		return idInstituicao;
+	}
+
+	public void setIdInstituicao(Long idInstituicao) {
+		this.idInstituicao = idInstituicao;
+	}
+	
 }

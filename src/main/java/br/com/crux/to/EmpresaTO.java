@@ -29,7 +29,9 @@ public class EmpresaTO {
 	private Long cep;
 	private String uf;
 	private Long usuarioAlteracao;
-
+	private Long idInstituicao;
+	
+	
 	public EmpresaTO() {
 	}
 
@@ -217,4 +219,11 @@ public class EmpresaTO {
 		this.usuarioAlteracao = usuarioAlteracao;
 	}
 
+	public Long getIdInstituicao() {
+		return idInstituicao;
+	}
+
+	public void setIdInstituicao(Long idInstituicao) {
+		this.idInstituicao = idInstituicao;
+	}
 }
