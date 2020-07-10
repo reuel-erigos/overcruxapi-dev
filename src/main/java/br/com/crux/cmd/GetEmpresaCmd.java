@@ -20,11 +20,11 @@ public class GetEmpresaCmd {
 	@Autowired private EmpresaTOBuilder toBuilder;
 
 	public List<EmpresaTO> getAll() {
-		List<EmpresaTO> entitys = toBuilder.buildAll(repository.findAll());
-		if (entitys == null || entitys.isEmpty()) {
-			return new ArrayList<EmpresaTO>();
+		Optional<List<Empresa>> lista = repository.getAll();
+		if(lista.isPresent()) {
+			return toBuilder.buildAll(lista.get());
 		}
-		return entitys;
+		return new ArrayList<EmpresaTO>();
 	}
 
 	public EmpresaTO getTOById(Long id) {
