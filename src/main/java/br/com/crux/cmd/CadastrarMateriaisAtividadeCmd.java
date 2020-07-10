@@ -1,6 +1,8 @@
 package br.com.crux.cmd;
 
 import java.util.List;
+import java.util.Objects;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -27,9 +29,9 @@ public class CadastrarMateriaisAtividadeCmd {
 
 	}
 	
-	
-
 	public void cadastrarAll(List<MateriaisAtividadeTO> materiaisAtividade, Long idAtividade) {
-		materiaisAtividade.forEach(ca -> {ca.setIdAtividade(idAtividade); cadastrar(ca); });
+		if(Objects.nonNull(materiaisAtividade)) {
+			materiaisAtividade.forEach(ca -> {ca.setIdAtividade(idAtividade); cadastrar(ca); });
+		}
 	}
 }
