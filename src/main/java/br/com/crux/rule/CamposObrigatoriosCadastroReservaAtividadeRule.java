@@ -11,10 +11,7 @@ import br.com.crux.to.CadastroReservaAtividadeTO;
 public class CamposObrigatoriosCadastroReservaAtividadeRule {
 
 	public void verificar(CadastroReservaAtividadeTO to) {
-
-		Optional.ofNullable(to.getPessoasFisica()).orElseThrow(() -> new CamposObrigatoriosException("Pessoa física deve ser informada."));
-
 		Optional.ofNullable(to.getAtividade()).orElseThrow(() -> new CamposObrigatoriosException("Atividade deve ser informada."));
-
+		Optional.ofNullable(to.getNomeInteressado()).orElseThrow(() -> new CamposObrigatoriosException("Nome do interessado deve ser informado."));
 	}
 }

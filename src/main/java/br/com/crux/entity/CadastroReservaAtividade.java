@@ -19,7 +19,11 @@ import br.com.crux.infra.constantes.Constantes;
 @Table(name = "cadastro_reserva_atividades")
 public class CadastroReservaAtividade {
 
-	@Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sq_id_cadastro_reserva") @SequenceGenerator(name = "sq_id_cadastro_reserva", sequenceName = "sq_id_cadastro_reserva", schema = Constantes.SCHEMA_PUBLIC, initialValue = 1, allocationSize = 1) @Column(name = "id_cadastro_reserva") private Long id;
+	@Id 
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sq_id_cadastro_reserva") 
+	@SequenceGenerator(name = "sq_id_cadastro_reserva", sequenceName = "sq_id_cadastro_reserva", schema = Constantes.SCHEMA_PUBLIC, initialValue = 1, allocationSize = 1) 
+	@Column(name = "id_cadastro_reserva") 
+	private Long id;
 
 	@Column(name = "dt_cadastro_reserva") 
 	private LocalDateTime dataCadastroReserva;
@@ -30,23 +34,19 @@ public class CadastroReservaAtividade {
 	@Column(name = "dt_cancelamento_cadastro") 
 	private LocalDateTime dataCancelamentoCadastro;
 
-	@Column(name = "dt_cadastro_atividade") 
-	private LocalDateTime dataCadastroAtividade;
-
 	@Column(name = "ds_cancelamento_cadastro") 
 	private String descricaoCancelamentoCadastro;
-
-	@Column(name = "dt_alteracao_atividade") 
-	private LocalDateTime dtAlteracaoAtividade;
-
+	
 	@ManyToOne(fetch = FetchType.LAZY) 
 	@JoinColumn(name = "id_atividade") 
 	private Oficinas atividade;
 
-	@ManyToOne(fetch = FetchType.LAZY) 
-	@JoinColumn(name = "pf_id_pessoa_fisica") 
-	private PessoaFisica pessoasFisica;
-
+	@Column(name = "nm_interessado") 
+	private String nomeInteressado;
+	
+	@Column(name = "ds_telefone") 
+	private String dadosTelefone;
+	
 	@Column(name = "id_usuario_apl") 
 	private Long usuarioAlteracao;
 
@@ -85,28 +85,12 @@ public class CadastroReservaAtividade {
 		this.dataCancelamentoCadastro = dataCancelamentoCadastro;
 	}
 
-	public LocalDateTime getDataCadastroAtividade() {
-		return dataCadastroAtividade;
-	}
-
-	public void setDataCadastroAtividade(LocalDateTime dataCadastroAtividade) {
-		this.dataCadastroAtividade = dataCadastroAtividade;
-	}
-
 	public String getDescricaoCancelamentoCadastro() {
 		return descricaoCancelamentoCadastro;
 	}
 
 	public void setDescricaoCancelamentoCadastro(String descricaoCancelamentoCadastro) {
 		this.descricaoCancelamentoCadastro = descricaoCancelamentoCadastro;
-	}
-
-	public LocalDateTime getDtAlteracaoAtividade() {
-		return dtAlteracaoAtividade;
-	}
-
-	public void setDtAlteracaoAtividade(LocalDateTime dtAlteracaoAtividade) {
-		this.dtAlteracaoAtividade = dtAlteracaoAtividade;
 	}
 
 	public Oficinas getAtividade() {
@@ -117,14 +101,6 @@ public class CadastroReservaAtividade {
 		this.atividade = atividade;
 	}
 
-	public PessoaFisica getPessoasFisica() {
-		return pessoasFisica;
-	}
-
-	public void setPessoasFisica(PessoaFisica pessoasFisica) {
-		this.pessoasFisica = pessoasFisica;
-	}
-
 	public Long getUsuarioAlteracao() {
 		return usuarioAlteracao;
 	}
@@ -133,4 +109,21 @@ public class CadastroReservaAtividade {
 		this.usuarioAlteracao = usuarioAlteracao;
 	}
 
+	public String getNomeInteressado() {
+		return nomeInteressado;
+	}
+
+	public void setNomeInteressado(String nomeInteressado) {
+		this.nomeInteressado = nomeInteressado;
+	}
+
+	public String getDadosTelefone() {
+		return dadosTelefone;
+	}
+
+	public void setDadosTelefone(String dadosTelefone) {
+		this.dadosTelefone = dadosTelefone;
+	}
+
+	
 }
