@@ -2,6 +2,7 @@ package br.com.crux.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Convert;
@@ -12,21 +13,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import br.com.crux.entity.Departamentos;
-import br.com.crux.entity.Empresa;
-import br.com.crux.entity.Programa;
-import br.com.crux.entity.Projeto;
-import br.com.crux.entity.Unidade;
 import br.com.crux.infra.constantes.Constantes;
 import br.com.crux.infra.dao.SimNaoConverter;
 
-/**
- * The persistent class for the movimentacoes database table.
- * 
- */
 @Entity
 @Table(name = "movimentacoes")
 public class Movimentacoes implements Serializable {
@@ -61,13 +54,6 @@ public class Movimentacoes implements Serializable {
 	@Column(name = "vl_movimentacao")
 	private Double valorMovimentacao;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_programa")
-	private Programa programa;
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_projeto")
-	private Projeto projeto;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_unidade")
@@ -107,6 +93,9 @@ public class Movimentacoes implements Serializable {
 	@Column(name = "st_registro_saldo")
 	private Boolean statusRegistroSaldo;
 	
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_movimentacao")
+	private List<RateiosMovimentacoes> rateios;
 	
 	public Movimentacoes() {
 	}
@@ -173,22 +162,6 @@ public class Movimentacoes implements Serializable {
 
 	public void setValorMovimentacao(Double valorMovimentacao) {
 		this.valorMovimentacao = valorMovimentacao;
-	}
-
-	public Programa getPrograma() {
-		return programa;
-	}
-
-	public void setPrograma(Programa programa) {
-		this.programa = programa;
-	}
-
-	public Projeto getProjeto() {
-		return projeto;
-	}
-
-	public void setProjeto(Projeto projeto) {
-		this.projeto = projeto;
 	}
 
 	public Unidade getUnidade() {
@@ -279,5 +252,12 @@ public class Movimentacoes implements Serializable {
 		this.statusRegistroSaldo = statusRegistroSaldo;
 	}
 
-	
+	public List<RateiosMovimentacoes> getRateios() {
+		return rateios;
+	}
+
+	public void setRateios(List<RateiosMovimentacoes> rateios) {
+		this.rateios = rateios;
+	}
+
 }

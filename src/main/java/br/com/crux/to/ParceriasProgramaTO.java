@@ -3,8 +3,6 @@ package br.com.crux.to;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 public class ParceriasProgramaTO {
 
 	private Long id;

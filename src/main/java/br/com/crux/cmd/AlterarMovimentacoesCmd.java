@@ -19,7 +19,7 @@ public class AlterarMovimentacoesCmd {
 	@Autowired private AlterarListaItensMovimentacoesCmd alterarListaItensMovimentacoesCmd;
 	@Autowired private AlterarListaFaturasCmd alterarListaFaturasCmd;
 	@Autowired private AlterarListaPagamentosFaturaCmd alterarListaPagamentosFaturaCmd;
-	
+	@Autowired private AlterarListaRateiosMovimentacoesCmd alterarListaRateiosMovimentacoesCmd;
 
 	public void alterar(MovimentacoesTO to) {
 		Movimentacoes entity = repository.findById(to.getId())
@@ -30,6 +30,8 @@ public class AlterarMovimentacoesCmd {
 		entity = toBuilder.build(to);
 
 		Movimentacoes movimentacoes = repository.save(entity);
+		
+		alterarListaRateiosMovimentacoesCmd.alterarAll(to.getRateios(), movimentacoes);
 		
 		alterarListaItensMovimentacoesCmd.alterarAll(to.getItensMovimentacoes(), movimentacoes);
 	
