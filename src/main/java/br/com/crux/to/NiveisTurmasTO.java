@@ -3,7 +3,7 @@ package br.com.crux.to;
 public class NiveisTurmasTO {
 
 	private Long id;
-	private Long codigo;
+	private String codigo;
 	private String descricao;
 	private Long usuarioAlteracao;
 
@@ -18,11 +18,11 @@ public class NiveisTurmasTO {
 		this.id = id;
 	}
 
-	public Long getCodigo() {
+	public String getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(Long codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 

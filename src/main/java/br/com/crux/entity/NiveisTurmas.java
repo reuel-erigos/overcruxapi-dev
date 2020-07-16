@@ -21,7 +21,7 @@ public class NiveisTurmas  {
 	private Long id;
 	
 	@Column(name = "cd_nivel_turma")
-	private Long codigo;
+	private String codigo;
 	
 	@Column(name="ds_nivel_turma")
 	private String descricao;
@@ -40,11 +40,11 @@ public class NiveisTurmas  {
 		this.id = id;
 	}
 
-	public Long getCodigo() {
+	public String getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(Long codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 
