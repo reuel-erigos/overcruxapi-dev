@@ -21,23 +21,34 @@ public class CadastroReservaAtividade {
 
 	@Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sq_id_cadastro_reserva") @SequenceGenerator(name = "sq_id_cadastro_reserva", sequenceName = "sq_id_cadastro_reserva", schema = Constantes.SCHEMA_PUBLIC, initialValue = 1, allocationSize = 1) @Column(name = "id_cadastro_reserva") private Long id;
 
-	@Column(name = "dt_cadastro_reserva") private LocalDateTime dataCadastroReserva;
+	@Column(name = "dt_cadastro_reserva") 
+	private LocalDateTime dataCadastroReserva;
 
-	@Column(name = "ds_cadastro_reserva") private String descricaoCadastroReserva;
+	@Column(name = "ds_cadastro_reserva") 
+	private String descricaoCadastroReserva;
 
-	@Column(name = "dt_cancelamento_cadastro") private LocalDateTime dataCancelamentoCadastro;
+	@Column(name = "dt_cancelamento_cadastro") 
+	private LocalDateTime dataCancelamentoCadastro;
 
-	@Column(name = "dt_cadastro_atividade") private LocalDateTime dataCadastroAtividade;
+	@Column(name = "dt_cadastro_atividade") 
+	private LocalDateTime dataCadastroAtividade;
 
-	@Column(name = "ds_cancelamento_cadastro") private String descricaoCancelamentoCadastro;
+	@Column(name = "ds_cancelamento_cadastro") 
+	private String descricaoCancelamentoCadastro;
 
-	@Column(name = "dt_alteracao_atividade") private LocalDateTime dtAlteracaoAtividade;
+	@Column(name = "dt_alteracao_atividade") 
+	private LocalDateTime dtAlteracaoAtividade;
 
-	@ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "id_atividade") private Oficinas atividade;
+	@ManyToOne(fetch = FetchType.LAZY) 
+	@JoinColumn(name = "id_atividade") 
+	private Oficinas atividade;
 
-	@ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "pf_id_pessoa_fisica") private PessoaFisica pessoasFisica;
+	@ManyToOne(fetch = FetchType.LAZY) 
+	@JoinColumn(name = "pf_id_pessoa_fisica") 
+	private PessoaFisica pessoasFisica;
 
-	@Column(name = "id_usuario_apl") private Long usuarioAlteracao;
+	@Column(name = "id_usuario_apl") 
+	private Long usuarioAlteracao;
 
 	public CadastroReservaAtividade() {
 	}

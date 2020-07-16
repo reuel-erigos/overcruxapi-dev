@@ -2,6 +2,7 @@ package br.com.crux.cmd;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -42,8 +43,11 @@ public class GetFaltasFuncionarioCmd {
 	}
 
 	public List<FaltasFuncionarioTO> getPorFuncionario(Long idFuncionario) {
-		List<FaltasFuncionario> lista = repository.getPorFuncionario(idFuncionario).orElseThrow(() ->new NotFoundException("Faltas do Funcionario não encontrada.") );
-		return toBuilder.buildAll(lista);
+		Optional<List<FaltasFuncionario>> lista = repository.getPorFuncionario(idFuncionario);
+		if(lista.isPresent()) {
+			return toBuilder.buildAll(lista.get());
+		}
+		return new ArrayList<FaltasFuncionarioTO>(); 
 	}
 			
 }
