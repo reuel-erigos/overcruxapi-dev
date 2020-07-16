@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.cmd.GetAlunoCmd;
+import br.com.crux.cmd.GetEmpresaCmd;
 import br.com.crux.entity.Aluno;
 import br.com.crux.entity.AlunosTrabalhando;
+import br.com.crux.entity.Empresa;
 import br.com.crux.to.AlunosTrabalhandoTO;
 
 @Component
@@ -19,6 +21,10 @@ public class AlunosTrabalhandoTOBuilder {
 	@Autowired private GetAlunoCmd getAlunoCmd;
 	@Autowired private AlunoTOBuilder alunoBuilder;
 
+	@Autowired private GetEmpresaCmd getEmpresaCmd;
+	@Autowired private EmpresaTOBuilder empresaBuilder;
+
+	
 	public AlunosTrabalhando build(AlunosTrabalhandoTO p) {
 		AlunosTrabalhando retorno = new AlunosTrabalhando();
 
@@ -33,6 +39,11 @@ public class AlunosTrabalhandoTOBuilder {
 			retorno.setAluno(aluno);
 		});
 
+		Optional.ofNullable(p.getEmpresa()).ifPresent((a) -> {
+			Empresa empresa = getEmpresaCmd.getById(a.getId());
+			retorno.setEmpresa(empresa);
+		});
+		
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
 		return retorno;
 	}
@@ -50,6 +61,7 @@ public class AlunosTrabalhandoTOBuilder {
 		retorno.setDataFimAlunoTrabalhando(p.getDataFimAlunoTrabalhando());
 		retorno.setDataInicioAlunoTrabalhando(p.getDataInicioAlunoTrabalhando());
 		retorno.setAluno(alunoBuilder.buildTO(p.getAluno()));
+		retorno.setEmpresa(empresaBuilder.buildTO(p.getEmpresa()));
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
 
 		return retorno;

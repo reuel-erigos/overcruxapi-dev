@@ -14,6 +14,10 @@ public class CamposObrigatoriosAlunosTrabalhandoRule {
 		if(Objects.isNull(to.getAluno()) || Objects.isNull(to.getAluno().getId())) {
 			throw new CamposObrigatoriosException("Aluno deve ser informado.");
 		}
-		
+
+		if(Objects.isNull(to.getEmpresa()) || Objects.isNull(to.getEmpresa().getId())) {
+			throw new CamposObrigatoriosException("Empresa deve ser informada.");
+		}
+
 	}
 }

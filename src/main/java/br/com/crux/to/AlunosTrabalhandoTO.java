@@ -19,6 +19,7 @@ public class AlunosTrabalhandoTO {
 
 	private String nomeEmpreendimento;
 	private AlunoTO aluno;
+	private EmpresaTO empresa;
 	private Long usuarioAlteracao;
 
 	public AlunosTrabalhandoTO() {
@@ -78,6 +79,14 @@ public class AlunosTrabalhandoTO {
 
 	public void setUsuarioAlteracao(Long usuarioAlteracao) {
 		this.usuarioAlteracao = usuarioAlteracao;
+	}
+
+	public EmpresaTO getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(EmpresaTO empresa) {
+		this.empresa = empresa;
 	}
 
 
