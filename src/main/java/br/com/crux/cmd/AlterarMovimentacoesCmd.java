@@ -23,7 +23,7 @@ public class AlterarMovimentacoesCmd {
 
 	public void alterar(MovimentacoesTO to) {
 		Movimentacoes entity = repository.findById(to.getId())
-				.orElseThrow(() -> new NotFoundException("Entidade informada não existe."));
+				.orElseThrow(() -> new NotFoundException("Movimento informado não existe."));
 
 		camposObrigatoriosRule.verificar(to);
 
@@ -31,9 +31,9 @@ public class AlterarMovimentacoesCmd {
 
 		Movimentacoes movimentacoes = repository.save(entity);
 		
-		alterarListaRateiosMovimentacoesCmd.alterarAll(to.getRateios(), movimentacoes);
-		
 		alterarListaItensMovimentacoesCmd.alterarAll(to.getItensMovimentacoes(), movimentacoes);
+		
+		alterarListaRateiosMovimentacoesCmd.alterarAll(to.getRateios(), movimentacoes);
 	
 		alterarListaPagamentosFaturaCmd.alterarAll(to.getPagamentosFatura(), movimentacoes);
 		

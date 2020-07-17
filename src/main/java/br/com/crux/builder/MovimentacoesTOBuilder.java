@@ -2,7 +2,6 @@ package br.com.crux.builder;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
@@ -15,6 +14,7 @@ import br.com.crux.cmd.GetEmpresaCmd;
 import br.com.crux.cmd.GetFaturaCmd;
 import br.com.crux.cmd.GetItensMovimentacoesCmd;
 import br.com.crux.cmd.GetPagamentosFaturaCmd;
+import br.com.crux.cmd.GetRateiosMovimentacoesCmd;
 import br.com.crux.cmd.GetUnidadeCmd;
 import br.com.crux.cmd.GetUsuarioLogadoCmd;
 import br.com.crux.entity.Movimentacoes;
@@ -36,6 +36,7 @@ public class MovimentacoesTOBuilder {
 	@Autowired private ContasBancariaTOBuilder contasBancariaTOBuilder;
 	@Autowired private GetContasBancariaCmd getContasBancariaCmd;
 	@Autowired private RateiosMovimentacoesTOBuilder rateiosMovimentacoesTOBuilder;
+	@Autowired private GetRateiosMovimentacoesCmd getRateiosMovimentacoesCmd;
 	
 	
 	public MovimentacoesTO buildTO(Movimentacoes m) {
@@ -55,8 +56,7 @@ public class MovimentacoesTOBuilder {
 		to.setFaturas(getFaturaCmd.getFaturaTOByMovimentacao(m));
 		to.setPagamentosFatura(getPagamentosFaturaCmd.getPagamentoFaturaTOByMovimentacao(m));
 		to.setContaBancaria(contasBancariaTOBuilder.buildTO(m.getContaBancaria()));
-		
-		to.setRateios(rateiosMovimentacoesTOBuilder.buildAllTO(m.getRateios()));
+		to.setRateios(rateiosMovimentacoesTOBuilder.buildAllTO(getRateiosMovimentacoesCmd.getPorMovimentacoes(m)));
 
 		return to;
 	}
@@ -88,11 +88,6 @@ public class MovimentacoesTOBuilder {
 			p.setContaBancaria(getContasBancariaCmd.getById(to.getContaBancaria().getId()));
 		}
 
-		Optional.ofNullable(to.getRateios()).ifPresent( rateios -> {
-			p.setRateios(rateiosMovimentacoesTOBuilder.buildAll(rateios));
-		});
-		
-		
 		p.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 		return p;
 	}
