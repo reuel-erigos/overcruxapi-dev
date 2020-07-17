@@ -31,8 +31,11 @@ public class ExcluirPessoaFisicaCmd {
 			repository.delete(pessoa);
 			
 			Optional.ofNullable(pessoa.getIdArquivo()).ifPresent(idArquivo -> excluirArquivoPessoaFisicaCmd.excluirPorId(idArquivo));
-		} catch (DataIntegrityViolationException e) {
-			throw new TabaleReferenciaEncontradaException("Erro ao excluir, verifique se há outro cadastro com referência a esta pessoa física.");
+		} catch (Exception e) {
+			if(e.getCause() instanceof DataIntegrityViolationException || e.getCause().toString().contains("ConstraintViolationException")) {
+				throw new TabaleReferenciaEncontradaException("Erro ao excluir, apague antes os cadastros com referência a esse registro.");
+			}
+			throw new RuntimeException(e.getMessage());
 		}	
 
 	}

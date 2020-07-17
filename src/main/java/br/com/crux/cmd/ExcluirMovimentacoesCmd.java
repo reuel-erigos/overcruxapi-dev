@@ -29,12 +29,16 @@ public class ExcluirMovimentacoesCmd {
 			
 			Optional<List<RateiosMovimentacoes>> rateios = rateiosMovimentacoesRepository.findByIdMovimento(id);
 			if(rateios.isPresent()) {
-				rateios.get().forEach(rateio -> rateiosMovimentacoesRepository.delete(rateio));
+				rateiosMovimentacoesRepository.deleteInBatch(rateios.get());
 			}
 			
 			repository.deleteById(id);
-		} catch (DataIntegrityViolationException e) {
-			throw new TabaleReferenciaEncontradaException("Erro ao excluir, verifique se há outro cadastro com referência a esta entidade.");
+		} catch (Exception e) {
+			if(e.getCause() instanceof DataIntegrityViolationException || e.getCause().toString().contains("ConstraintViolationException")) {
+				throw new TabaleReferenciaEncontradaException("Erro ao excluir, verifique se há outro cadastro com referência a esta entidade.");
+			}
+			
+			throw new RuntimeException(e.getMessage());
 		}
 
 	}

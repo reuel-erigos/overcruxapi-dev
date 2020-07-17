@@ -24,8 +24,11 @@ public class ExcluirDepartamentoCmd {
 				throw new ParametroNaoInformadoException("Erro ao excluir o departamento. Parâmetro 'departamento' ausente.");
 			}
 			departamentoRepository.deleteById(idDepartamento);
-		} catch (DataIntegrityViolationException e) {
-			throw new TabaleReferenciaEncontradaException("Erro ao excluir, verifique se há outro cadastro com referência a este departamento.");
+		} catch (Exception e) {
+			if(e.getCause() instanceof DataIntegrityViolationException || e.getCause().toString().contains("ConstraintViolationException")) {
+				throw new TabaleReferenciaEncontradaException("Erro ao excluir, apague antes os cadastros com referência a esse registro.");
+			}
+			throw new RuntimeException(e.getMessage());
 		}	
 
 	}
