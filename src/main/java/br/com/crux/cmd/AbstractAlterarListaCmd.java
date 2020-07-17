@@ -5,7 +5,9 @@ import java.util.Objects;
 import java.util.function.BiPredicate;
 import java.util.stream.Collectors;
 
-public abstract class AbstractAlterarListaCmd<E,TO, P> {
+import br.com.crux.dao.base.BaseDao;
+
+public abstract class AbstractAlterarListaCmd<E,TO, P> extends BaseDao{
 
 	P p;
 
@@ -36,6 +38,7 @@ public abstract class AbstractAlterarListaCmd<E,TO, P> {
 		listaDoBanco.removeIf(registro -> {
 			if (!contemNaLista.test(getTO(registro), listaTelaTO)) {
 				deletar(registro);
+				em.flush();
 				return true;
 			}
 			return false;
