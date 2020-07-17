@@ -14,14 +14,14 @@ public interface EncaminhaAlunosRepository extends JpaRepository<EncaminhaAlunos
 	
 	
 	@Query(value = "SELECT e FROM EncaminhaAlunos e "
-			+ " inner join Aluno a on a = e.aluno"
+			+ " inner join Aluno a on a.id = e.idAluno"
 			+ " inner join Unidade uni on a.unidade = uni"
 			+ " where uni.idUnidade = ?1")
 	public Optional<List<EncaminhaAlunos>> findByUnidade(Long idUnidade);
 
 	@Query(value = "SELECT e FROM EncaminhaAlunos e "
 			+ " inner join EntidadesSociais es on es = e.entidadesSocial"
-			+ " inner join Aluno a on a = e.aluno"
+			+ " inner join Aluno a on a.id = e.idAluno"
 			+ " inner join Unidade uni on a.unidade = uni"
 			+ " where uni.idUnidade = ?1"
 			+ "   and a.id          = ?2")
@@ -29,7 +29,7 @@ public interface EncaminhaAlunosRepository extends JpaRepository<EncaminhaAlunos
 
 	@Query(value = "SELECT e FROM EncaminhaAlunos e "
 			+ " inner join EntidadesSociais es on es = e.entidadesSocial"
-			+ " inner join Aluno a on a = e.aluno"
+			+ " inner join Aluno a on a.id = e.idAluno"
 			+ " inner join Unidade uni on a.unidade = uni"
 			+ " where es.id         = ?1")
 	public Optional<List<EncaminhaAlunos>> findByEntidadeSocial(Long idEntidadeSocial);
@@ -37,7 +37,7 @@ public interface EncaminhaAlunosRepository extends JpaRepository<EncaminhaAlunos
 	
 	@Query(value = "SELECT e FROM EncaminhaAlunos e "
 			+ " inner join EntidadesSociais es on es = e.entidadesSocial"
-			+ " inner join Aluno a on a = e.aluno"
+			+ " inner join Aluno a on a.id = e.idAluno"
 			+ " inner join Unidade uni on a.unidade = uni"
 			+ " where uni.idUnidade = ?1"
 			+ "   and a.id          = ?2"

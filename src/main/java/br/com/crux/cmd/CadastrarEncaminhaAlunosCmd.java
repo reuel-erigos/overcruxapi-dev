@@ -1,16 +1,16 @@
 package br.com.crux.cmd;
 
-import java.util.Objects;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.crux.builder.AlunoTOBuilder;
-import br.com.crux.builder.EntidadesSociaisTOBuilder;
+import br.com.crux.builder.EncaminhaAlunosTOBuilder;
 import br.com.crux.dao.repository.EncaminhaAlunosRepository;
 import br.com.crux.entity.EncaminhaAlunos;
-import br.com.crux.exception.NotFoundException;
 import br.com.crux.rule.CamposObrigatoriosEncaminhaAlunosRule;
+import br.com.crux.to.AlunoTO;
 import br.com.crux.to.EncaminhaAlunosTO;
 import br.com.crux.to.UsuarioLogadoTO;
 
@@ -21,33 +21,25 @@ public class CadastrarEncaminhaAlunosCmd {
 	
 	@Autowired private EncaminhaAlunosRepository repository;
 	@Autowired private CamposObrigatoriosEncaminhaAlunosRule camposObrigatoriosRule;
-	
-	@Autowired private AlunoTOBuilder alunoTOBuilder;
-	@Autowired private EntidadesSociaisTOBuilder entidadesSociaisTOBuilder;
+	@Autowired private EncaminhaAlunosTOBuilder encaminhaAlunosTOBuilder;
 	
 	
-	public void cadastrar(EncaminhaAlunosTO to) {
-		if(Objects.isNull(to.getAluno())) {
-			throw new NotFoundException("Aluno não informado.");
-		}
-		if(Objects.isNull(to.getEntidadeSocial())) {
-			throw new NotFoundException("Entidade social não informada.");
-		}
+	public EncaminhaAlunos cadastrar(Long idAluno, EncaminhaAlunosTO encaminhamentoTO) {
+		encaminhamentoTO.setIdAluno(idAluno);
+
+		camposObrigatoriosRule.verificar(encaminhamentoTO.getEntidadeSocial().getId(), encaminhamentoTO.getIdAluno());
 		
-		camposObrigatoriosRule.verificar(to.getEntidadeSocial().getId(), to.getAluno().getId());
-		
-		EncaminhaAlunos entity = new EncaminhaAlunos();
-		
-		entity.setDataEncaminhaAluno(to.getDataEncaminhaAluno());
-		entity.setDescricao(to.getDescricao());
-		entity.setEntidadesSocial(entidadesSociaisTOBuilder.build(to.getEntidadeSocial()));
-		entity.setAluno(alunoTOBuilder.build(to.getAluno()));
-		
+		EncaminhaAlunos entity = encaminhaAlunosTOBuilder.build(encaminhamentoTO);
 		UsuarioLogadoTO usuarioLogado = getUsuarioLogadoCmd.getUsuarioLogado();
 		entity.setUsuarioAlteracao(usuarioLogado.getIdUsuario());
 		
-		repository.save(entity);
-
-		
+		return repository.save(entity);
+	}
+	
+	
+	public List<EncaminhaAlunos> cadastrarLista(AlunoTO aluno, List<EncaminhaAlunosTO> lista) {
+		return lista.stream()
+					.map(item -> cadastrar(aluno.getId(), item))
+					.collect(Collectors.toList());
 	}
 }

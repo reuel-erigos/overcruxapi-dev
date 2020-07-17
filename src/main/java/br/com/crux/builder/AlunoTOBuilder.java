@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import br.com.crux.cmd.GetEncaminhaAlunosCmd;
 import br.com.crux.cmd.GetNiveisTurmasCmd;
 import br.com.crux.cmd.GetVulnerabilidadesAlunoCmd;
 import br.com.crux.entity.Aluno;
@@ -22,6 +23,7 @@ public class AlunoTOBuilder {
 	@Autowired private GetVulnerabilidadesAlunoCmd getVulnerabilidadesAlunoCmd;
 	@Autowired private NiveisTurmasTOBuilder niveisTurmasTOBuilder;
 	@Autowired private GetNiveisTurmasCmd getNiveisTurmasCmd;
+	@Autowired private GetEncaminhaAlunosCmd encaminhaAlunosCmd;
 
 	public Aluno build(AlunoTO p) {
 		Aluno retorno = new Aluno();
@@ -99,6 +101,10 @@ public class AlunoTOBuilder {
 
 		if(Objects.nonNull(p.getId())) {
 			retorno.setVulnerabilidades(getVulnerabilidadesAlunoCmd.getAllAlunoTO(p.getId()));
+		}
+		
+		if(Objects.nonNull(p.getId())) {
+			retorno.setEncaminhamentos(encaminhaAlunosCmd.getAll(p.getId(), null));
 		}
 
 		return retorno;

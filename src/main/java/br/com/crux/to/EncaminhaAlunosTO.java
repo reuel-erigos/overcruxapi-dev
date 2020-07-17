@@ -18,7 +18,7 @@ public class EncaminhaAlunosTO  {
 	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
 	private LocalDateTime dataEncaminhaAluno;
 	
-	private AlunoTO aluno;
+	private Long idAluno;
 	private EntidadesSociaisTO entidadeSocial;
 	private Long usuarioAlteracao;
 
@@ -49,12 +49,12 @@ public class EncaminhaAlunosTO  {
 		this.dataEncaminhaAluno = dataEncaminhaAluno;
 	}
 
-	public AlunoTO getAluno() {
-		return aluno;
+	public Long getIdAluno() {
+		return idAluno;
 	}
 
-	public void setAluno(AlunoTO aluno) {
-		this.aluno = aluno;
+	public void setIdAluno(Long idAluno) {
+		this.idAluno = idAluno;
 	}
 
 	public EntidadesSociaisTO getEntidadeSocial() {
