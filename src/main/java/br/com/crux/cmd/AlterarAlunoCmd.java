@@ -29,11 +29,10 @@ public class AlterarAlunoCmd {
 		aluno = alunoTOBuilder.build(alunoTO);
 		aluno.setPessoasFisica(alterarPessoaFisicaCmd.alterar(alunoTO.getPessoaFisica()));
 		
-		Aluno alunoSalvo = repository.save(aluno);
-		
 		alterarVulnerabilidadesAlunoCmd.alterarAll(alunoTO.getVulnerabilidades(), alunoTO);
+		alterarListaEncaminhamentoAlunosCmd.alterarAll(alunoTO.getEncaminhamentos(), aluno);
 		
-		alterarListaEncaminhamentoAlunosCmd.alterarAll(alunoTO.getEncaminhamentos(), alunoSalvo);
+		Aluno alunoSalvo = repository.save(aluno);
 		
 		return alunoTOBuilder.buildTO(alunoSalvo);
 	}

@@ -35,7 +35,7 @@ public class GetEncaminhaAlunosCmd {
 		if (Objects.isNull(idAluno)) {
 			idUnidade = getUnidadeLogadaCmd.get().getId();
 		} else {
-			idUnidade = getAlunoCmd.getTOById(idAluno).getUnidade().getIdUnidade();
+			idUnidade = getAlunoCmd.getById(idAluno).getUnidade().getIdUnidade();
 		}
 
 		Optional<List<EncaminhaAlunos>> entitys = null;
