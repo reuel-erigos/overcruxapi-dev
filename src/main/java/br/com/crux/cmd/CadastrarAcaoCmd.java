@@ -24,8 +24,9 @@ public class CadastrarAcaoCmd {
 		to.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 		Acoes entity = acaoTOBuilder.build(to);
 		
+		entity = repository.save(entity);
+		
 		cadastrarMateriaisAcoesCmd.cadastrarAll(to.getMateriaisAcao(), entity.getId());
-		repository.save(entity);
 	}
 	
 }
