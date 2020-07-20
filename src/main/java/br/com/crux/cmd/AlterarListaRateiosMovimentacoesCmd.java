@@ -48,7 +48,7 @@ public class AlterarListaRateiosMovimentacoesCmd extends AbstractAlterarListaCmd
 	@Override
 	protected void deletar(RateiosMovimentacoes registro) {
 		repository.delete(registro);
-
+		repository.flush();
 	}
 
 }

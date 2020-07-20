@@ -38,7 +38,6 @@ public abstract class AbstractAlterarListaCmd<E,TO, P> extends BaseDao{
 		listaDoBanco.removeIf(registro -> {
 			if (!contemNaLista.test(getTO(registro), listaTelaTO)) {
 				deletar(registro);
-				em.flush();
 				return true;
 			}
 			return false;
