@@ -5,17 +5,13 @@ import java.time.LocalDateTime;
 public class CadastroReservaAtividadeTO {
 
 	private Long id;
-	private String descricaoCadastroReserva;
-	private String descricaoCancelamentoCadastro;
-
 	private LocalDateTime dataCadastroReserva;
+	private String descricaoCadastroReserva;
 	private LocalDateTime dataCancelamentoCadastro;
-	private LocalDateTime dataCadastroAtividade;
-	private LocalDateTime dtAlteracaoAtividade;
-
+	private String descricaoCancelamentoCadastro;
 	private OficinasTO atividade;
-	private PessoaFisicaTO pessoasFisica;
-
+	private String nomeInteressado;
+	private String dadosTelefone;
 	private Long usuarioAlteracao;
 
 	public CadastroReservaAtividadeTO() {
@@ -61,36 +57,12 @@ public class CadastroReservaAtividadeTO {
 		this.dataCancelamentoCadastro = dataCancelamentoCadastro;
 	}
 
-	public LocalDateTime getDataCadastroAtividade() {
-		return dataCadastroAtividade;
-	}
-
-	public void setDataCadastroAtividade(LocalDateTime dataCadastroAtividade) {
-		this.dataCadastroAtividade = dataCadastroAtividade;
-	}
-
-	public LocalDateTime getDtAlteracaoAtividade() {
-		return dtAlteracaoAtividade;
-	}
-
-	public void setDtAlteracaoAtividade(LocalDateTime dtAlteracaoAtividade) {
-		this.dtAlteracaoAtividade = dtAlteracaoAtividade;
-	}
-
 	public OficinasTO getAtividade() {
 		return atividade;
 	}
 
 	public void setAtividade(OficinasTO atividade) {
 		this.atividade = atividade;
-	}
-
-	public PessoaFisicaTO getPessoasFisica() {
-		return pessoasFisica;
-	}
-
-	public void setPessoasFisica(PessoaFisicaTO pessoasFisica) {
-		this.pessoasFisica = pessoasFisica;
 	}
 
 	public Long getUsuarioAlteracao() {
@@ -101,4 +73,21 @@ public class CadastroReservaAtividadeTO {
 		this.usuarioAlteracao = usuarioAlteracao;
 	}
 
+	public String getNomeInteressado() {
+		return nomeInteressado;
+	}
+
+	public void setNomeInteressado(String nomeInteressado) {
+		this.nomeInteressado = nomeInteressado;
+	}
+
+	public String getDadosTelefone() {
+		return dadosTelefone;
+	}
+
+	public void setDadosTelefone(String dadosTelefone) {
+		this.dadosTelefone = dadosTelefone;
+	}
+
+	
 }

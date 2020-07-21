@@ -11,7 +11,6 @@ import br.com.crux.dao.repository.ArquivoRepository;
 import br.com.crux.dao.repository.InstituicaoRepository;
 import br.com.crux.entity.Instituicao;
 import br.com.crux.exception.TabaleReferenciaEncontradaException;
-import br.com.crux.exception.base.NegocioException;
 import br.com.crux.to.UnidadeTO;
 
 @Component
@@ -37,8 +36,11 @@ public class ExcluirInstituicaoCmd {
 			}
 			
 			repository.delete(instituicaoApagar);
-		} catch (DataIntegrityViolationException e) {
-			throw new NegocioException("Erro ao excluir, existem dados vinculados a essa unidade.");
+		} catch (Exception e) {
+			if(e.getCause() instanceof DataIntegrityViolationException || e.getCause().toString().contains("ConstraintViolationException")) {
+				throw new TabaleReferenciaEncontradaException("Erro ao excluir, apague antes os cadastros com referência a esse registro.");
+			}
+			throw new RuntimeException(e.getMessage());
 		}
 	}
 }

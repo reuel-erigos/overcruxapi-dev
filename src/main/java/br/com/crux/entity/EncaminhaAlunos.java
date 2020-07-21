@@ -32,9 +32,8 @@ public class EncaminhaAlunos  {
 	@Column(name="dt_encaminha_aluno")
 	private LocalDateTime dataEncaminhaAluno;
 
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="id_aluno")
-	private Aluno aluno;
+	@Column(name="id_aluno")
+	private Long idAluno;
 
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_entidade_social")
@@ -70,12 +69,12 @@ public class EncaminhaAlunos  {
 		this.dataEncaminhaAluno = dataEncaminhaAluno;
 	}
 
-	public Aluno getAluno() {
-		return aluno;
+	public Long getIdAluno() {
+		return idAluno;
 	}
 
-	public void setAluno(Aluno aluno) {
-		this.aluno = aluno;
+	public void setIdAluno(Long idAluno) {
+		this.idAluno = idAluno;
 	}
 
 	public EntidadesSociais getEntidadesSocial() {

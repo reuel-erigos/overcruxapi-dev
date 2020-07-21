@@ -24,10 +24,12 @@ public class ExcluirOficinasCmd {
 			}
 		
 			repository.deleteById(idAtividade);
-		} catch (DataIntegrityViolationException e) {
-			throw new TabaleReferenciaEncontradaException("Erro ao excluir, verifique se há outro cadastro com referência a essa atividade.");
+		} catch (Exception e) {
+			if(e.getCause() instanceof DataIntegrityViolationException || e.getCause().toString().contains("ConstraintViolationException")) {
+				throw new TabaleReferenciaEncontradaException("Erro ao excluir, apague antes os cadastros com referência a esse registro.");
+			}
+			throw new RuntimeException(e.getMessage());
 		}	
-		
 
 	}
 }

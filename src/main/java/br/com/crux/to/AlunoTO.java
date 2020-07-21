@@ -41,6 +41,7 @@ public class AlunoTO {
 	private Long usuarioAlteracao;
 
 	private List<VulnerabilidadesAlunoTO> vulnerabilidades;
+	private List<EncaminhaAlunosTO> encaminhamentos;
 
 	public AlunoTO() {
 	}
@@ -227,6 +228,15 @@ public class AlunoTO {
 
 	public void setNivelTurma(NiveisTurmasTO nivelTurma) {
 		this.nivelTurma = nivelTurma;
+	}
+
+	public List<EncaminhaAlunosTO> getEncaminhamentos() {
+		return encaminhamentos;
+	}
+
+	public void setEncaminhamentos(List<EncaminhaAlunosTO> encaminhamentos) {
+		this.encaminhamentos = encaminhamentos;
 	}	
 
+	
 }

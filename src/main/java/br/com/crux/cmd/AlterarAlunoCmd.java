@@ -19,6 +19,7 @@ public class AlterarAlunoCmd {
 	@Autowired private AlunoTOBuilder alunoTOBuilder;
 	@Autowired private AlterarPessoaFisicaCmd alterarPessoaFisicaCmd;
 	@Autowired private AlterarVulnerabilidadesAlunoCmd alterarVulnerabilidadesAlunoCmd;
+	@Autowired private AlterarListaEncaminhamentoAlunosCmd alterarListaEncaminhamentoAlunosCmd;
 	
 	public AlunoTO alterar(AlunoTO alunoTO) {
 		camposObrigatoriosRule.verificar(alunoTO);
@@ -29,8 +30,10 @@ public class AlterarAlunoCmd {
 		aluno.setPessoasFisica(alterarPessoaFisicaCmd.alterar(alunoTO.getPessoaFisica()));
 		
 		alterarVulnerabilidadesAlunoCmd.alterarAll(alunoTO.getVulnerabilidades(), alunoTO);
+		alterarListaEncaminhamentoAlunosCmd.alterarAll(alunoTO.getEncaminhamentos(), aluno);
 		
-	    Aluno alunoSalvo = repository.save(aluno);
+		Aluno alunoSalvo = repository.save(aluno);
+		
 		return alunoTOBuilder.buildTO(alunoSalvo);
 	}
 }

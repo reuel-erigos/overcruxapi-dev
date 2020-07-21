@@ -13,8 +13,6 @@ public class MovimentacoesTO {
 	private String nrDocumento;
 	private LocalDateTime dataDocumento;
 	private Double valorMovimentacao;
-	private ProgramaTO programa;
-	private ProjetoTO projeto;
 	private UnidadeTO unidade;
 	private DepartamentoTO departamento;
 	private Long qtdParcelas;
@@ -32,6 +30,10 @@ public class MovimentacoesTO {
 	private Double valorInss;
 	private ContasBancariaTO contaBancaria;
 
+	private List<RateiosMovimentacoesTO> rateios;
+	
+	public MovimentacoesTO() {
+	}
 	
 	public Long getId() {
 		return id;
@@ -80,18 +82,6 @@ public class MovimentacoesTO {
 	}
 	public void setValorMovimentacao(Double valorMovimentacao) {
 		this.valorMovimentacao = valorMovimentacao;
-	}
-	public ProgramaTO getPrograma() {
-		return programa;
-	}
-	public void setPrograma(ProgramaTO programa) {
-		this.programa = programa;
-	}
-	public ProjetoTO getProjeto() {
-		return projeto;
-	}
-	public void setProjeto(ProjetoTO projeto) {
-		this.projeto = projeto;
 	}
 	public UnidadeTO getUnidade() {
 		return unidade;
@@ -171,7 +161,11 @@ public class MovimentacoesTO {
 	public void setStatusRegistroSaldo(Boolean statusRegistroSaldo) {
 		this.statusRegistroSaldo = statusRegistroSaldo;
 	}
-	
-	
+	public List<RateiosMovimentacoesTO> getRateios() {
+		return rateios;
+	}
+	public void setRateios(List<RateiosMovimentacoesTO> rateios) {
+		this.rateios = rateios;
+	}
 
 }

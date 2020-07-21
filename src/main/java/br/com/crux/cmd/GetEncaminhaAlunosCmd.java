@@ -23,11 +23,19 @@ public class GetEncaminhaAlunosCmd {
 	@Autowired private GetAlunoCmd getAlunoCmd;
 
 	public List<EncaminhaAlunosTO> getAll(Long idAluno, Long idEntidadeSocial) {
+		List<EncaminhaAlunos> entitys = getAllEntity(idAluno, idEntidadeSocial);
+		if (!entitys.isEmpty()) {
+			return toBuilder.buildAllTO(entitys);
+		}
+		return new ArrayList<EncaminhaAlunosTO>();
+	}
+
+	public List<EncaminhaAlunos> getAllEntity(Long idAluno, Long idEntidadeSocial) {
 		Long idUnidade = null;
 		if (Objects.isNull(idAluno)) {
 			idUnidade = getUnidadeLogadaCmd.get().getId();
 		} else {
-			idUnidade = getAlunoCmd.getTOById(idAluno).getUnidade().getIdUnidade();
+			idUnidade = getAlunoCmd.getById(idAluno).getUnidade().getIdUnidade();
 		}
 
 		Optional<List<EncaminhaAlunos>> entitys = null;
@@ -43,12 +51,12 @@ public class GetEncaminhaAlunosCmd {
 		}
 
 		if (entitys.isPresent()) {
-			return toBuilder.buildAll(entitys.get());
+			return entitys.get();
 		}
 
-		return new ArrayList<EncaminhaAlunosTO>();
+		return new ArrayList<EncaminhaAlunos>();
 	}
-
+	
 	public EncaminhaAlunosTO getById(Long id) {
 		Optional<EncaminhaAlunos> entityOptional = repository.findById(id);
 		if (!entityOptional.isPresent()) {

@@ -51,7 +51,6 @@ public class MovimentacoesService {
 	}
 
 	@DeleteMapping("/{id}")
-	@Transactional
 	public void excluir(@PathVariable Long id) {
 		excluirCmd.excluir(id);
 	}

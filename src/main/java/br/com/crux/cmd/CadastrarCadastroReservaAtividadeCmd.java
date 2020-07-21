@@ -1,5 +1,7 @@
 package br.com.crux.cmd;
 
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -24,6 +26,7 @@ public class CadastrarCadastroReservaAtividadeCmd {
 		to.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 
 		CadastroReservaAtividade entity = cadastroReservaAtividadeTOBuilder.build(to);
+		entity.setDataCadastroReserva(LocalDateTime.now());
 
 		repository.save(entity);
 

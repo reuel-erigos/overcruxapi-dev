@@ -41,6 +41,10 @@ public class ItensMovimentacoesMateriaisTOBuilder {
 
 	public ItensMovimentacoesMateriaisTO buildTO(ItensMovimentacoesMateriais e) {
 		ItensMovimentacoesMateriaisTO to = new ItensMovimentacoesMateriaisTO();
+		
+		if(Objects.isNull(e)) {
+			return new ItensMovimentacoesMateriaisTO();
+		}
 
 		BeanUtils.copyProperties(e, to);
 

@@ -1,8 +1,10 @@
 package br.com.crux.builder;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,15 +15,12 @@ import br.com.crux.to.EncaminhaAlunosTO;
 public class EncaminhaAlunosTOBuilder {
 
 	@Autowired private EntidadesSociaisTOBuilder entidadesSociaisBuilder;
-	@Autowired private AlunoTOBuilder alunoBuilder;
 
 	public EncaminhaAlunos build(EncaminhaAlunosTO p) {
 		EncaminhaAlunos retorno = new EncaminhaAlunos();
 
-		retorno.setId(p.getId());
-		retorno.setDescricao(p.getDescricao());
-		retorno.setDataEncaminhaAluno(p.getDataEncaminhaAluno());
-		retorno.setAluno(alunoBuilder.build(p.getAluno()));
+		BeanUtils.copyProperties(p, retorno);
+		
 		retorno.setEntidadesSocial(entidadesSociaisBuilder.build(p.getEntidadeSocial()));
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
 
@@ -31,10 +30,12 @@ public class EncaminhaAlunosTOBuilder {
 	public EncaminhaAlunosTO buildTO(EncaminhaAlunos p) {
 		EncaminhaAlunosTO retorno = new EncaminhaAlunosTO();
 		
-		retorno.setId(p.getId());
-		retorno.setDescricao(p.getDescricao());
-		retorno.setDataEncaminhaAluno(p.getDataEncaminhaAluno());
-		retorno.setAluno(alunoBuilder.buildTO(p.getAluno()));
+		if(Objects.isNull(p)) {
+			return retorno;
+		}
+		
+		BeanUtils.copyProperties(p, retorno);
+		
 		retorno.setEntidadeSocial(entidadesSociaisBuilder.buildTO(p.getEntidadesSocial()));
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
 
@@ -42,7 +43,7 @@ public class EncaminhaAlunosTOBuilder {
 		return retorno;
 	}
 
-	public List<EncaminhaAlunosTO> buildAll(List<EncaminhaAlunos> dtos) {
+	public List<EncaminhaAlunosTO> buildAllTO(List<EncaminhaAlunos> dtos) {
 		return dtos.stream().map(dto -> buildTO(dto)).collect(Collectors.toList());
 	}
 

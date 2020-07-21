@@ -36,6 +36,10 @@ public class ItensMovimentacoesTOBuilder {
 	public ItensMovimentacoesTO buildTO(ItensMovimentacoes entity) {
 		ItensMovimentacoesTO to = new ItensMovimentacoesTO();
 
+		if (Objects.isNull(entity)) {
+			return to;
+		}
+		
 		BeanUtils.copyProperties(entity, to);
 
 		to.setId(entity.getId());
