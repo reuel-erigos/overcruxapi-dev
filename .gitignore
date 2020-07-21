@@ -6,6 +6,16 @@ bin/
 !**/src/test/**
 
 ### Eclipse ###
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+.settings/
+.loadpath
+.recommenders
 .project
 .classpath
 .settings

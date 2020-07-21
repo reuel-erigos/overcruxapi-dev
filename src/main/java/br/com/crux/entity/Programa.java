@@ -73,6 +73,9 @@ public class Programa implements Serializable {
 	@Column(name="id_usuario_apl")
 	private Long usuarioAlteracao;
 	
+	// S - Sim; N - Não
+	@Column(name = "st_restricao")
+	private String restricao
 	
 	public Programa() {
 	}
