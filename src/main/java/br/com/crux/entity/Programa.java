@@ -75,7 +75,7 @@ public class Programa implements Serializable {
 	
 	// S - Sim; N - Não
 	@Column(name = "st_restricao")
-	private String restricao
+	private String restricao;
 	
 	public Programa() {
 	}
