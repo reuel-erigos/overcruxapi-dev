@@ -88,6 +88,14 @@ public class Programa implements Serializable {
 		this.id = idPrograma;
 	}
 
+	public String getRestricao() {
+		return this.restricao;
+	}
+
+	public void setRestricao(String stRestricao) {
+		this.restricao = stRestricao;
+	}
+
 	public String getDescricao() {
 		return this.descricao;
 	}
