@@ -84,6 +84,10 @@ public class Projeto implements Serializable {
 	@Column(name="ds_objetivo_especifico")
 	private String objetivoEspecifico;
 
+	// S - Sim; N - Não
+	@Column(name = "st_restricao")
+	private String restricao;
+	
 	public Projeto() {
 	}
 
@@ -101,6 +105,14 @@ public class Projeto implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getRestricao() {
+		return this.restricao;
+	}
+
+	public void setRestricao(String stRestricao) {
+		this.restricao = stRestricao;
 	}
 
 	public String getDescricao() {
