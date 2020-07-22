@@ -13,7 +13,7 @@ public class ProjetoTO {
 	private String nome;
 	private String descricao;
 
-	private String restricao;
+	private Boolean restricao;
 
 	private Long idCoordenador;
 	
@@ -60,11 +60,11 @@ public class ProjetoTO {
 		this.nome = nome;
 	}
 
-	public String getRestricao() {
+	public Boolean getRestricao() {
 		return restricao;
 	}
 
-	public void setRestricao(String restricao) {
+	public void setRestricao(Boolean restricao) {
 		this.restricao = restricao;
 	}
 

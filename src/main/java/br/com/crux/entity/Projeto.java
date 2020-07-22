@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,6 +16,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import br.com.crux.infra.constantes.Constantes;
+import br.com.crux.infra.dao.SimNaoConverter;
 
 
 /**
@@ -84,9 +86,9 @@ public class Projeto implements Serializable {
 	@Column(name="ds_objetivo_especifico")
 	private String objetivoEspecifico;
 
-	// S - Sim; N - Não
+	@Convert(converter = SimNaoConverter.class)
 	@Column(name = "st_restricao")
-	private String restricao;
+	private Boolean restricao;
 	
 	public Projeto() {
 	}
@@ -107,11 +109,11 @@ public class Projeto implements Serializable {
 		this.nome = nome;
 	}
 
-	public String getRestricao() {
+	public Boolean getRestricao() {
 		return this.restricao;
 	}
 
-	public void setRestricao(String stRestricao) {
+	public void setRestricao(Boolean stRestricao) {
 		this.restricao = stRestricao;
 	}
 

@@ -36,10 +36,8 @@ public class ProgramaTOBuilder {
 		
 		BeanUtils.copyProperties(param, retorno);
 
-		if (Objects.nonNull(param.getObjetivo()) && Objects.nonNull(param.getObjetivo()
-				.getIdObjetivo())) {
-			Objetivo obj = getObjetivoCmd.getById(param.getObjetivo()
-					.getIdObjetivo());
+		if (Objects.nonNull(param.getObjetivo()) && Objects.nonNull(param.getObjetivo().getIdObjetivo())) {
+			Objetivo obj = getObjetivoCmd.getById(param.getObjetivo().getIdObjetivo());
 			retorno.setObjetivo(obj);
 		}
 
@@ -69,7 +67,6 @@ public class ProgramaTOBuilder {
 		BeanUtils.copyProperties(param, retorno);
 
 		retorno.setObjetivo(objetivoTOBuilder.buildTO(param.getObjetivo()));
-
 		retorno.setUnidades(getProgramaUnidadeCmd.getUnidadesTOByIdPrograma(param.getId()));
 		retorno.setColaboradoresPrograma((getColaboradoresProjetoCmd.getColaboradoresProgramaTOByPrograma(param)));
 		retorno.setParceriasPrograma(getParceriasProgramaCmd.getParceriasProgramaTOByPrograma(param));

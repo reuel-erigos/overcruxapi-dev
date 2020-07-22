@@ -13,10 +13,10 @@ public class ProgramaTO {
 	private String nome;
 	private String descricao;
 
-	private String restricao;
-	
-	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class) private LocalDateTime dataInicio;
-	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class) private LocalDateTime dataFim;
+	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class) 
+	private LocalDateTime dataInicio;
+	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class) 
+	private LocalDateTime dataFim;
 
 	private Long idCoordenador;
 	private Long faixaEtariaFim;
@@ -34,6 +34,9 @@ public class ProgramaTO {
 	private String objetivoEspecifico;
 	private Long usuarioAlteracao;
 
+	private Boolean restricao;
+	
+	
 	public ProgramaTO() {
 	}
 
@@ -53,11 +56,11 @@ public class ProgramaTO {
 		this.nome = nome;
 	}
 
-	public String getRestricao() {
+	public Boolean getRestricao() {
 		return restricao;
 	}
 
-	public void setRestricao(String restricao) {
+	public void setRestricao(Boolean restricao) {
 		this.restricao = restricao;
 	}
 
