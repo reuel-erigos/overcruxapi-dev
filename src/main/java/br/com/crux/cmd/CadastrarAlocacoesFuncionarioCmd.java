@@ -1,6 +1,7 @@
 package br.com.crux.cmd;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,17 +22,17 @@ public class CadastrarAlocacoesFuncionarioCmd {
 	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
 
 	public void cadastrar(List<AlocacoesFuncionarioTO> alocacoesFuncionarioTO, FuncionarioTO funcionarioTO) {
-		
-		alocacoesFuncionarioTO.stream().forEach(alocacaoTO -> {
-			camposObrigatoriosRule.verificar(alocacaoTO);
-			
-			alocacaoTO.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
-			
-			alocacaoTO.getFuncionario().setId(funcionarioTO.getId());
-			AlocacoesFuncionario entity = toBuilder.build(alocacaoTO);
-			
-			repository.save(entity);
-		});
-	
+		if(Objects.nonNull(alocacoesFuncionarioTO)) {
+			alocacoesFuncionarioTO.stream().forEach(alocacaoTO -> {
+				camposObrigatoriosRule.verificar(alocacaoTO);
+				
+				alocacaoTO.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
+				
+				alocacaoTO.getFuncionario().setId(funcionarioTO.getId());
+				AlocacoesFuncionario entity = toBuilder.build(alocacaoTO);
+				
+				repository.save(entity);
+			});
+		}
 	}
 }

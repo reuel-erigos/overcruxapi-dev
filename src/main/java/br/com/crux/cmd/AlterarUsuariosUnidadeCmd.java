@@ -18,15 +18,15 @@ import br.com.crux.to.UsuariosUnidadesTO;
 @Component
 public class AlterarUsuariosUnidadeCmd {
 
-	@Autowired
-	private CamposObrigatoriosUsuariosUnidadeRule camposObrigatoriosUsuariosUnidadeRule;
-	@Autowired
-	private UsuariosUnidadeTOBuilder usuarioUnidadeTOBuilder;
-	@Autowired
-	private UsuariosUnidadeRepository usuariosUnidadeRepository;
+	@Autowired private CamposObrigatoriosUsuariosUnidadeRule camposObrigatoriosUsuariosUnidadeRule;
+	@Autowired private UsuariosUnidadeTOBuilder usuarioUnidadeTOBuilder;
+	@Autowired private UsuariosUnidadeRepository usuariosUnidadeRepository;
+	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
 
 	private void alterar(UsuariosUnidadesTO usuarioUnidade) {
 		camposObrigatoriosUsuariosUnidadeRule.verificar(usuarioUnidade);
+		usuarioUnidade.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
+		
 		UsuariosUnidade entity = usuarioUnidadeTOBuilder.build(usuarioUnidade);
 		usuariosUnidadeRepository.save(entity);
 	}
@@ -37,8 +37,7 @@ public class AlterarUsuariosUnidadeCmd {
 				.orElse(new ArrayList<UsuariosUnidade>());
 
 		BiPredicate<UsuariosUnidadesTO, List<UsuariosUnidadesTO>> contemNaLista = (parte, lista) -> lista.stream()
-				.anyMatch(parteNova -> Objects.nonNull(parteNova.getUnidade().getIdUnidade())
-						&& parteNova.getUnidade().getIdUnidade().equals(parte.getUnidade().getIdUnidade()));
+				.anyMatch(parteNova -> Objects.nonNull(parteNova.getId()) && parteNova.getId().equals(parte.getId()));
 
 		// Remove da lista todos os registros que não contém no Banco de Dados
 		usuariosUnidades.removeIf(registro -> {
