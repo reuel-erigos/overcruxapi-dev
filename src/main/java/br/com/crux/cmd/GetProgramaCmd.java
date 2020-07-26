@@ -12,6 +12,7 @@ import br.com.crux.dao.repository.ProgramaRepository;
 import br.com.crux.entity.Programa;
 import br.com.crux.exception.NotFoundException;
 import br.com.crux.to.ProgramaTO;
+import br.com.crux.to.UnidadeTO;
 
 @Component
 public class GetProgramaCmd {
@@ -22,11 +23,9 @@ public class GetProgramaCmd {
 	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 
 	public List<ProgramaTO> getAllProgramasIntituicaoLogada() {
-		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO()
-				.getInstituicao()
-				.getId();
+		UnidadeTO unidadeLogadaTO = getUnidadeLogadaCmd.getUnidadeTO();
 
-		Optional<List<Programa>> listaRetorno = repository.findByIdInstituicao(idInstituicao);
+		Optional<List<Programa>> listaRetorno = repository.findByIdInstituicaoAndIdUnidade(unidadeLogadaTO.getInstituicao().getId(), unidadeLogadaTO.getIdUnidade());
 		if (listaRetorno.isPresent()) {
 			return toBuilder.buildAll(listaRetorno.get());
 		}
@@ -55,11 +54,9 @@ public class GetProgramaCmd {
 	}
 
 	public List<ProgramaTO> getAllProgramasIntituicaoLogadaCombo() {
-		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO()
-				.getInstituicao()
-				.getId();
+		UnidadeTO unidadeLogadaTO = getUnidadeLogadaCmd.getUnidadeTO();
 
-		Optional<List<Programa>> listaRetorno = repository.findByIdInstituicao(idInstituicao);
+		Optional<List<Programa>> listaRetorno = repository.findByIdInstituicaoAndIdUnidade(unidadeLogadaTO.getInstituicao().getId(), unidadeLogadaTO.getIdUnidade());
 		if (listaRetorno.isPresent()) {
 			return toBuilder.buildAllCombo(listaRetorno.get());
 		}

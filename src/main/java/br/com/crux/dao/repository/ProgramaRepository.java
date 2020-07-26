@@ -19,12 +19,12 @@ public interface ProgramaRepository extends JpaRepository<Programa, Long>{
 	
 
 	@Query(value = "SELECT p FROM Programa p "
-			+ " inner join Objetivo ob on ob.idObjetivo = p.objetivo.idObjetivo "
-			+ " inner join Perspectiva pe on pe.idPerspectiva = ob.perspectiva.idPerspectiva"
-			+ " inner join Unidade uni on uni.idUnidade = pe.unidade.idUnidade "
-			+ " inner join Instituicao ins on ins.id = uni.instituicao.id"
-			+ " where ins.id = ?1")
-	public Optional<List<Programa>> findByIdInstituicao(Long idInstituicao);	
+			+ " inner join ProgramasUnidade pu on pu.programa = p "
+			+ " inner join Unidade uni on uni = pu.unidade "
+			+ " inner join Instituicao ins on ins = uni.instituicao "
+			+ " where ins.id = ?1 "
+			+ "   and uni.id = ?2 ")
+	public Optional<List<Programa>> findByIdInstituicaoAndIdUnidade(Long idInstituicao, Long idUnidade);	
 
 }
 
