@@ -27,7 +27,7 @@ public class AcessoDao extends BaseDao{
 	public List<PerfilAcessoUsuarioDTO> getPerfilAcessoDoUsuario(Long idUnidade,Long idUsuario,Long idModulo) {
 		StringBuilder sql = new StringBuilder();
 		
-		sql.append("	select us.id_usuario,                                         ");
+		sql.append("	select distinct us.id_usuario,                                ");
 		sql.append("       us.nm_username,                                            ");
 		sql.append("       u.id_unidade,                                              ");
 		sql.append("       u.nm_unidade,                                              ");

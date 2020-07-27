@@ -1,6 +1,7 @@
 package br.com.crux.cmd;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,13 +24,15 @@ public class CadastrarVulnerabilidadesAlunoCmd {
 	
 	
 	public void cadastrar(List<VulnerabilidadesAlunoTO> vulnerabilidadesTO, AlunoTO alunoTO) {
-		vulnerabilidadesTO.stream().forEach(vulnerabilidadeTO -> {
-			camposObrigatoriosRule.verificar(vulnerabilidadeTO);
-			
-			vulnerabilidadeTO.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
-			VulnerabilidadesAluno entity = vulnerabilidadesAlunoTOBuilder.build(vulnerabilidadeTO, alunoTO);
-			repository.save(entity);
-		});
+		if(Objects.nonNull(vulnerabilidadesTO)) {
+			vulnerabilidadesTO.stream().forEach(vulnerabilidadeTO -> {
+				camposObrigatoriosRule.verificar(vulnerabilidadeTO);
+				
+				vulnerabilidadeTO.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
+				VulnerabilidadesAluno entity = vulnerabilidadesAlunoTOBuilder.build(vulnerabilidadeTO, alunoTO);
+				repository.save(entity);
+			});
+		}
 	
 	}		
 	

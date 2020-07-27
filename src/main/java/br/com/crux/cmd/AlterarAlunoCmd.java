@@ -1,5 +1,8 @@
 package br.com.crux.cmd;
 
+import java.util.ArrayList;
+import java.util.Objects;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -9,6 +12,8 @@ import br.com.crux.entity.Aluno;
 import br.com.crux.exception.NotFoundException;
 import br.com.crux.rule.CamposObrigatoriosAlunoRule;
 import br.com.crux.to.AlunoTO;
+import br.com.crux.to.EncaminhaAlunosTO;
+import br.com.crux.to.VulnerabilidadesAlunoTO;
 
 @Component
 public class AlterarAlunoCmd {
@@ -28,6 +33,13 @@ public class AlterarAlunoCmd {
 		alunoTO.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 		aluno = alunoTOBuilder.build(alunoTO);
 		aluno.setPessoasFisica(alterarPessoaFisicaCmd.alterar(alunoTO.getPessoaFisica()));
+		
+		if(Objects.isNull(alunoTO.getVulnerabilidades())) {
+			alunoTO.setVulnerabilidades(new ArrayList<VulnerabilidadesAlunoTO>());
+		}
+		if(Objects.isNull(alunoTO.getEncaminhamentos())) {
+			alunoTO.setEncaminhamentos(new ArrayList<EncaminhaAlunosTO>());
+		}
 		
 		alterarVulnerabilidadesAlunoCmd.alterarAll(alunoTO.getVulnerabilidades(), alunoTO);
 		alterarListaEncaminhamentoAlunosCmd.alterarAll(alunoTO.getEncaminhamentos(), aluno);
