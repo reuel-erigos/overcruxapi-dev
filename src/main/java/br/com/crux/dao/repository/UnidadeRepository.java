@@ -26,6 +26,28 @@ public interface UnidadeRepository extends JpaRepository<Unidade, Long>{
 			     + " order by u.ordemExibicao ")
 	public Optional<List<Unidade>> findAllUnidadesDoUsuarioLogado(Long idUsuarioLogado);
 
+/*	
+	@Query(value = "SELECT u "
+				+ "  FROM Unidade  "
+				+ "    where id_instituicao in ( "
+				+ "              select distinct ii.id_instituicao from instituicoes ii, unidades ui, usuarios_unidades uui "
+				+ "               where ii.id_instituicao = ui.id_instituicao "                  
+				+ "                   and ui.id_unidade = uui.id_unidade "
+				+ "                   and uui.id_Usuario = ?1) "
+				+ "   order by u.ordemExibicao ")
+	public Optional<List<Unidade>> findAllUnidadesDaInsttuicaoDoUsuarioLogado(Long idUsuarioLogado);
+*/
+	
+	@Query(value = "SELECT distinct u "
+			     + "  FROM Unidade u "
+	 		     + "      inner join Instituicao i on i = u.instituicao "
+	 		     + "      inner join Unidade uns on uns.instituicao = i "
+	 		     + "      inner join UsuariosUnidade uu on uu.unidade = uns "
+	 		     + "      inner join UsuariosSistema usuario on usuario = uu.usuarioSistema "
+	 		     + " where usuario.idUsuario = ?1 "
+	 		     + " order by u.ordemExibicao ")
+	public Optional<List<Unidade>> findAllUnidadesDaInsttuicaoDoUsuarioLogado(Long idUsuarioLogado);
+	
 	@Query(value = "SELECT u "
 		     + "  FROM Unidade u inner join Instituicao i "
 		     + "    on u.instituicao = i "
