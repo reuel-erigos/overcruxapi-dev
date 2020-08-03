@@ -63,7 +63,7 @@ public class AlunosTurmaTOBuilder {
 			retorno.setAluno(alunoBuilder.buildTO(p.getAluno()));
 		}
 
-		retorno.setOficinas(getAtividadesAlunoCmd.getAllFilter(p.getTurma().getId(), null, null));
+		retorno.setOficinas(getAtividadesAlunoCmd.getAllFilter(p.getTurma().getId(), p.getAluno().getId(), null));
 		
 		
 		return retorno;
