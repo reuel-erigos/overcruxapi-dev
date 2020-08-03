@@ -14,7 +14,7 @@ public interface AlunosTurmaRepository extends JpaRepository<AlunosTurma, Long>{
 	
 	@Query(value = "SELECT at FROM AlunosTurma at "
 			+ " left join AtividadesAluno ta on ta.aluno = at.aluno"
-			+ " inner join Oficinas oficina on ta.atividade = oficina"
+			+ " left join Oficinas oficina on ta.atividade = oficina"
 			+ " inner join Aluno aluno on at.aluno = aluno"
 			+ " inner join Turmas t on t = at.turma"
 			+ " inner join Unidade uni on t.unidade = uni"
