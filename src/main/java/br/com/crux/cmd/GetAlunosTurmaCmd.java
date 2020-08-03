@@ -3,6 +3,7 @@ package br.com.crux.cmd;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -25,7 +26,8 @@ public class GetAlunosTurmaCmd {
 		
 		Optional<List<AlunosTurma>> entitys = repository.filter(idTurma, idAluno, idAtividade, idInstituicao);
 		if(entitys.isPresent()) {
-			return toBuilder.buildAll(entitys.get());
+			List<AlunosTurma> lista = entitys.get().stream().distinct().collect(Collectors.toList());
+			return toBuilder.buildAll(lista);
 		}
 		
 		return new ArrayList<AlunosTurmaTO>();

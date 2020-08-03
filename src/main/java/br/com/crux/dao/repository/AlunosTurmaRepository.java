@@ -12,7 +12,8 @@ import br.com.crux.entity.AlunosTurma;
 @Repository
 public interface AlunosTurmaRepository extends JpaRepository<AlunosTurma, Long>{
 	
-	@Query(value = "SELECT DISTINCT at FROM AlunosTurma at "
+	@Query(value = "SELECT at "
+			+ "  FROM AlunosTurma at "
 			+ " left join AtividadesAluno ta on ta.aluno = at.aluno"
 			+ " left join Oficinas oficina on ta.atividade = oficina"
 			+ " inner join Aluno aluno on at.aluno = aluno"
