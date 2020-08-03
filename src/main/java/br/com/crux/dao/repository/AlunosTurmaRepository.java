@@ -13,7 +13,7 @@ import br.com.crux.entity.AlunosTurma;
 public interface AlunosTurmaRepository extends JpaRepository<AlunosTurma, Long>{
 	
 	@Query(value = "SELECT at FROM AlunosTurma at "
-			+ " inner join AtividadesAluno ta on ta.aluno = at.aluno"
+			+ " left join AtividadesAluno ta on ta.aluno = at.aluno"
 			+ " inner join Oficinas oficina on ta.atividade = oficina"
 			+ " inner join Aluno aluno on at.aluno = aluno"
 			+ " inner join Turmas t on t = at.turma"
