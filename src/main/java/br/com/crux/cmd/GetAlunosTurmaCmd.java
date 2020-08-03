@@ -20,18 +20,6 @@ public class GetAlunosTurmaCmd {
 	@Autowired private AlunosTurmaTOBuilder toBuilder;
 	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 
-	public List<AlunosTurmaTO> getAllMatriculasTurma(Long idTurma, Long idAluno, Long idAtividade) {
-		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
-		
-		Optional<List<AlunosTurma>> entitys = repository.getAllMatriculasTurma(idTurma, idAluno, idAtividade, idInstituicao);
-		if(entitys.isPresent()) {
-			return toBuilder.buildAll(entitys.get());
-		}
-		
-		return new ArrayList<AlunosTurmaTO>();
-	}
-	
-	
 	public List<AlunosTurmaTO> getAllFilter(Long idTurma, Long idAluno, Long idAtividade) {
 		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
 		
