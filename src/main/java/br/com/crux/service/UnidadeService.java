@@ -38,6 +38,12 @@ public class UnidadeService {
 		return getUnidadeCmd.getAllUnidadesUsuarioLogadoTemAcesso();
 	}
 
+	@GetMapping(path = "/unidadesinstituicao", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<UnidadeTO> getAllUnidadeInstituicao() {
+		return getUnidadeCmd.getAllUnidadesInstituicaoUsuarioLogado();
+	}
+
+	
 	@GetMapping(path = "/combo", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<UnidadeTO> getAllUnidadeParaCombo() {
 		return getUnidadeCmd.getAllParaCombo();
