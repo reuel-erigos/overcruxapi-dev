@@ -2,7 +2,6 @@ package br.com.crux.cmd;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -28,35 +27,9 @@ public class GetAlunosTurmaCmd {
 	}
 	
 	public List<AlunosTurmaTO> getAllFilter(Long idTurma, Long idAluno, Long idAtividade) {
-		Long idUnidade = getUnidadeLogadaCmd.get().getId();
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
 		
-		Optional<List<AlunosTurma>> entitys = Optional.empty();
-		
-		if(Objects.isNull(idTurma) && Objects.isNull(idAluno) && Objects.isNull(idAtividade)) {
-			entitys = repository.findByUnidade(idUnidade);	
-
-		} else if(Objects.nonNull(idTurma) && Objects.isNull(idAluno) && Objects.isNull(idAtividade)) {
-			entitys = repository.findByTurma(idTurma);
-			
-		} else if(Objects.isNull(idTurma) && Objects.isNull(idAluno) && Objects.nonNull(idAtividade)) {
-			entitys = repository.findByAtividade(idAtividade);
-		
-		} else if(Objects.isNull(idTurma) && Objects.isNull(idAtividade)  && Objects.nonNull(idAluno)) {
-			entitys = repository.findByAluno(idAluno);
-
-		} else if(Objects.isNull(idTurma) && Objects.nonNull(idAluno)  && Objects.nonNull(idAtividade)) {
-			entitys = repository.findByAlunoAndAtividade(idAluno, idAtividade);
-
-		} else if(Objects.nonNull(idTurma) && Objects.isNull(idAluno) && Objects.nonNull(idAtividade)) {
-			entitys = repository.findByTurmaAndAtividade(idTurma, idAtividade);
-			
-		} else if(Objects.nonNull(idTurma) && Objects.nonNull(idAluno) && Objects.isNull(idAtividade)) {
-			entitys = repository.findByTurmaAndAluno(idTurma, idAluno);
-		
-		} else if(Objects.nonNull(idTurma) && Objects.nonNull(idAluno) && Objects.nonNull(idAtividade)) {
-			entitys = repository.findByTurmaAndAlunoAndAtividade(idAluno, idAtividade, idUnidade);
-		}
-		
+		Optional<List<AlunosTurma>> entitys = repository.filter(idTurma, idAluno, idAtividade, idInstituicao);
 		if(entitys.isPresent()) {
 			return toBuilder.buildAll(entitys.get());
 		}

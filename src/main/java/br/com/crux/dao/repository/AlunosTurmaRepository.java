@@ -12,69 +12,20 @@ import br.com.crux.entity.AlunosTurma;
 @Repository
 public interface AlunosTurmaRepository extends JpaRepository<AlunosTurma, Long>{
 	
-	
-	@Query(value = "SELECT at FROM AlunosTurma at "
-			+ " inner join Turmas turma on turma = at.turma"
-			+ " inner join Unidade uni on turma.unidade = uni"
-			+ " where uni.idUnidade = ?1")
-	public Optional<List<AlunosTurma>> findByUnidade(Long idUnidade);
-
-	
-	@Query(value = "SELECT at FROM AlunosTurma at "
-			+ " inner join Aluno aluno on at.aluno = aluno"
-			+ " where aluno.id = ?1")
-	public Optional<List<AlunosTurma>> findByAluno(Long idAluno);
-
-	@Query(value = "SELECT at FROM AlunosTurma at "
-			+ " right join AtividadesAluno ati on ati.aluno = at.aluno"
-			+ " inner join Oficinas oficina on ati.atividade = oficina"
-			+ " where oficina.id = ?1")
-	public Optional<List<AlunosTurma>> findByAtividade(Long idAtividade);
-	
-	
-	@Query(value = "SELECT at FROM AlunosTurma at "
-			+ " inner join Turmas t on t = at.turma"
-			+ " where t.id = ?1 ")
-	public Optional<List<AlunosTurma>> findByTurma(Long idTurma);
-	
-	
-	@Query(value = "SELECT at FROM AlunosTurma at "
-			+ " inner join Aluno aluno on at.aluno = aluno"
-			+ " inner join Turmas t on t = at.turma"
-			+ " where aluno.id = ?2 "
-			+ " and t.id = ?1")
-	public Optional<List<AlunosTurma>> findByTurmaAndAluno(Long idTurma, Long idAluno);
-	
-
-	@Query(value = "SELECT at FROM AlunosTurma at "
-			+ " inner join AtividadesAluno ati on ati.atividade = atividade"
-			+ " inner join Oficinas oficina on ati.atividade = oficina"
-			+ " inner join Turmas t on t.id = oficina.idTurma "
-			+ "       and at.turma = t"
-			+ " where oficina.id = ?2 "
-			+ "   and t.id = ?1")
-	public Optional<List<AlunosTurma>> findByTurmaAndAtividade(Long idTurma, Long idAtividade);
-
-
-	@Query(value = "SELECT at FROM AlunosTurma at "
-			+ " inner join AtividadesAluno ta on ta.atividade = atividade"
-			+ " inner join Oficinas oficina on ta.atividade = oficina"
-			+ " inner join Aluno aluno on ta.aluno = aluno "
-			+ "     and at.aluno = aluno "
-			+ " where aluno.id = ?1 "
-			+ "   and oficina.id = ?2 ")
-	public Optional<List<AlunosTurma>> findByAlunoAndAtividade(Long idAluno, Long idAtividade);
-	
-
 	@Query(value = "SELECT at FROM AlunosTurma at "
 			+ " inner join AtividadesAluno ta on ta.aluno = at.aluno"
 			+ " inner join Oficinas oficina on ta.atividade = oficina"
 			+ " inner join Aluno aluno on at.aluno = aluno"
 			+ " inner join Turmas t on t = at.turma"
-			+ " where aluno.id = ?2 "
-			+ " and oficina.id = ?3 "
-			+ " and t.id = ?1")
-	public Optional<List<AlunosTurma>> findByTurmaAndAlunoAndAtividade(Long idTurma, Long idAluno, Long idAtividade);
-
+			+ " inner join Unidade uni on t.unidade = uni"
+			+ " inner join Instituicao instituicao on instituicao = uni.instituicao "
+			+ " where 1 = 1 "
+			+ "   and (?2 is null or aluno.id = ?2) "
+			+ "   and (?3 is null or oficina.id = ?3) "
+			+ "   and (?1 is null or t.id = ?1) "
+			+ "   and (?4 is null or instituicao.id = ?4) "
+			+ " order by t.descricao, aluno.pessoasFisica.nome, t.dataInicioTurma ")
+	public Optional<List<AlunosTurma>> filter(Long idTurma, Long idAluno, Long idAtividade, Long idInstituicao);
+	
 
 }
