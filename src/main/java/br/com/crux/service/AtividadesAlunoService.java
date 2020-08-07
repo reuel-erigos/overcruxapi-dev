@@ -42,7 +42,11 @@ public class AtividadesAlunoService {
 		return getCmd.getAllFilter(null, idAluno, idAtividade);
 	}
 	
-	
+	@GetMapping(path = "/aluno/{id}/matriculado/insticuicao", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<AtividadesAlunoTO> getAllByAlunoAndInstituicao(@PathVariable(name = "id") Long idAluno) {
+		return getCmd.getByAlunoAndInstituicao(idAluno);
+	}
+		
 	@GetMapping(path = "/matriculado/atividade/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<AtividadesAlunoTO> getAllAlunosMatriculadosNaAtividade(@PathVariable(name = "id") Long idAtividade) {
 		return getCmd.getAllAlunosMatriculadosNaAtividade(idAtividade);

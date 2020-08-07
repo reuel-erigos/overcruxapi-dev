@@ -121,4 +121,14 @@ public class GetAtividadesAlunoCmd {
 		return toBuilder.buildAll(entitys.get());
 	}
 
+	
+	public List<AtividadesAlunoTO> getByAlunoAndInstituicao(Long idAluno) {
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+		Optional<List<AtividadesAluno>> entitys = repository.findByAlunoAndInstituicao(idAluno, idInstituicao);
+		if (!entitys.isPresent()) {
+			return Collections.emptyList();
+		}
+
+		return toBuilder.buildAll(entitys.get());
+	}
 }

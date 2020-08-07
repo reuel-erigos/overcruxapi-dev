@@ -74,5 +74,15 @@ public interface AtividadesAlunoRepository extends JpaRepository<AtividadesAluno
 			+ " and t.id = ?1")
 	public Optional<List<AtividadesAluno>> findByTurmaAndAlunoAndAtividade(Long idTurma, Long idAluno, Long idAtividade);
 
+	
+	
+	@Query(value = "SELECT ati FROM AtividadesAluno ati "
+			+ " inner join Oficinas oficina on ati.atividade = oficina"
+			+ " inner join Aluno aluno on ati.aluno = aluno"
+			+ " inner join Unidade uni on aluno.unidade = uni"
+			+ " inner join Instituicao instituicao on instituicao = uni.instituicao "
+			+ " where aluno.id = ?1 "
+			+ "   and instituicao.id = ?2 ")
+	public Optional<List<AtividadesAluno>> findByAlunoAndInstituicao(Long idAluno, Long idInstituicao);
 
 }
