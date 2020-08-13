@@ -80,7 +80,11 @@ public class EmpresaTOBuilder {
 		retorno.setInscricaoEstadual(p.getInscricaoEstadual());
 		retorno.setInscricaoMunicipal(p.getInscricaoMunicipal());
 		retorno.setAtiva(p.getAtiva());
-		retorno.setTipoEmpresa(p.getTipoEmpresa().getTipo());
+		
+		if(Objects.nonNull(p.getTipoEmpresa())) {
+			retorno.setTipoEmpresa(p.getTipoEmpresa().getTipo());
+		}
+
 		retorno.setValorIcms(p.getValorIcms());
 		retorno.setDescricaoCategoriaEmpresa(p.getDescricaoCategoriaEmpresa());
 		retorno.setDescricaoTipoEmpresa(p.getDescricaoTipoEmpresa());
