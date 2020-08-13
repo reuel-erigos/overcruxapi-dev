@@ -49,9 +49,9 @@ public class AlterarAtividadesAlunoCmd {
 	}
 
 	
-	public void alterarAll(List<AtividadesAlunoTO> atividadesAlunoTO, TurmasTO turmaTO) {
+	public void alterarAll(List<AtividadesAlunoTO> atividadesAlunoTO, TurmasTO turmaTO, Long idAluno) {
 		//Lista do BD.
-		List<AtividadesAluno> atividadesAlunosBD = repository.findByTurma(turmaTO.getId()).orElse(new ArrayList<AtividadesAluno>());
+		List<AtividadesAluno> atividadesAlunosBD = repository.findByTurmaAndAluno(turmaTO.getId(), idAluno).orElse(new ArrayList<AtividadesAluno>());
 		
 		BiPredicate<AtividadesAlunoTO, List<AtividadesAlunoTO>> contemNaLista  = (parte, lista) -> lista.stream()
 																											.anyMatch(registroTO -> Objects.nonNull(registroTO.getId()) 

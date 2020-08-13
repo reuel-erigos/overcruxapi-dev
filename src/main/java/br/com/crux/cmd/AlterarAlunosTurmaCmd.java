@@ -43,7 +43,7 @@ public class AlterarAlunosTurmaCmd {
 			});
 		}
 		
-		alterarAtividadesAlunoCmd.alterarAll(to.getOficinas(), to.getTurma());
+		alterarAtividadesAlunoCmd.alterarAll(to.getOficinas(), to.getTurma(), entity.getId());
 
 	}
 }
