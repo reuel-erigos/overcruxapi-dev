@@ -82,8 +82,8 @@ public class AtividadesAlunoService {
 	
 
 	@PostMapping(path = "", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public void cadastrar(@RequestBody AtividadesAlunoTO param) {
-		cadastrarCmd.cadastrar(param);
+	public AtividadesAlunoTO cadastrar(@RequestBody AtividadesAlunoTO param) {
+		return cadastrarCmd.cadastrar(param);
 	}
 
 	@PutMapping(path = "", consumes = MediaType.APPLICATION_JSON_VALUE)
