@@ -9,16 +9,17 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.dao.repository.AlunosTurmaRepository;
+import br.com.crux.dao.repository.AtividadesAlunoRepository;
 import br.com.crux.entity.AlunosTurma;
+import br.com.crux.entity.AtividadesAluno;
 import br.com.crux.exception.ParametroNaoInformadoException;
 import br.com.crux.exception.TabaleReferenciaEncontradaException;
-import br.com.crux.to.AtividadesAlunoTO;
 
 @Component
 public class ExcluirAlunosTurmaCmd {
 
 	@Autowired private AlunosTurmaRepository repository;
-	@Autowired private GetAtividadesAlunoCmd getAtividadesAlunoCmd;
+	@Autowired private AtividadesAlunoRepository atividadesAlunoRepository;
 	
 	public void excluir(Long id) {
 		try {
@@ -27,11 +28,10 @@ public class ExcluirAlunosTurmaCmd {
 			Optional<AlunosTurma> alunoTurma = repository.findById(id);
 			
 			if(alunoTurma.isPresent()) {
-				List<AtividadesAlunoTO> atividades = getAtividadesAlunoCmd.getAllFilter(alunoTurma.get().getTurma().getId(), alunoTurma.get().getAluno().getId(), null);
-				if(Objects.nonNull(atividades) && !atividades.isEmpty()) {
-					throw new TabaleReferenciaEncontradaException("Erro ao excluir, verifique se há oficinas matriculadas para esse aluno/turma.");
+				Optional<List<AtividadesAluno>> atividades = atividadesAlunoRepository.findByTurmaAndAluno(alunoTurma.get().getTurma().getId(), alunoTurma.get().getAluno().getId());
+				if(atividades.isPresent()){
+					atividadesAlunoRepository.deleteAll(atividades.get());
 				}
-				
 			}
 			
 			repository.deleteById(id);
