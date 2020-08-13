@@ -22,9 +22,10 @@ public class CamposObrigatoriosEmpresaRule {
 			throw new CamposObrigatoriosException("Endereco deve ser informado.");
 		}
 		
+/*
 		if(StringUtils.isEmpty(tipoEmpresa)) {
 			throw new CamposObrigatoriosException("Tipo da Empresa deve ser informado.");
 		}
-		
+*/		
 	}
 }
