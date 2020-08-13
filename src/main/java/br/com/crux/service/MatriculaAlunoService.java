@@ -50,8 +50,8 @@ public class MatriculaAlunoService {
 	
 
 	@PostMapping(path = "", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public void cadastrar(@RequestBody AlunosTurmaTO param) {
-		cadastrarCmd.cadastrar(param);
+	public AlunosTurmaTO cadastrar(@RequestBody AlunosTurmaTO param) {
+		return cadastrarCmd.cadastrar(param);
 	}
 
 	@PutMapping(path = "", consumes = MediaType.APPLICATION_JSON_VALUE)
