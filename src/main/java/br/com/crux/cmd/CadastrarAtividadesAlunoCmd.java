@@ -21,12 +21,12 @@ public class CadastrarAtividadesAlunoCmd {
 	@Autowired private CamposObrigatoriosAtividadesAlunoRule camposObrigatoriosRule;
 	@Autowired private AtividadesAlunoTOBuilder atividadesAlunoTOBuilder;
 
-	public void cadastrar(AtividadesAlunoTO to) {
+	public AtividadesAlunoTO cadastrar(AtividadesAlunoTO to) {
 		camposObrigatoriosRule.verificar(to);
 		to.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 		AtividadesAluno entity = atividadesAlunoTOBuilder.build(to);
 		entity.setDataCadastroAtividade(LocalDateTime.now());
-		repository.save(entity);
+		return atividadesAlunoTOBuilder.buildTO(repository.save(entity));
 	}
 	
 	public void cadastrarAll(List<AtividadesAlunoTO> atividadesAlunosTO) {
