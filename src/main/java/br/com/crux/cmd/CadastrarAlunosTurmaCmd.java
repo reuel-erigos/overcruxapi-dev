@@ -25,14 +25,14 @@ public class CadastrarAlunosTurmaCmd {
 	@Autowired private CadastrarAtividadesAlunoCmd cadastrarAtividadesAlunoCmd;
 	
 	
-	public void cadastrar(AlunosTurmaTO to) {
+	public AlunosTurmaTO cadastrar(AlunosTurmaTO to) {
 		camposObrigatoriosRule.verificar(to);
 
 		to.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 		AlunosTurma entity = alunoTurmaTOBuilder.build(to);
 		entity.setDataCadastro(LocalDateTime.now());
 
-		repository.save(entity);
+		entity = repository.save(entity);
 		
 		
 		List<AtividadesAlunoTO> atividadesTO = new ArrayList<AtividadesAlunoTO>();
@@ -56,5 +56,7 @@ public class CadastrarAlunosTurmaCmd {
 		}
 		
 		cadastrarAtividadesAlunoCmd.cadastrarAll(atividadesTO);
+		
+		return alunoTurmaTOBuilder.buildTO(entity);
 	}
 }
