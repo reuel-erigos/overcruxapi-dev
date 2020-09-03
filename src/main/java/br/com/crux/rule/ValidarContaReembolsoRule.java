@@ -17,6 +17,10 @@ public class ValidarContaReembolsoRule {
 				if(pag.getContaReembolso().getId().equals(idContaBancaria) ) {
 					throw new CamposObrigatoriosException("A conta de reembolso não pode ser a mesma do movimento.");
 				}
+				
+				if(pag.getDataReembolso().toLocalDate().isBefore(pag.getDataPagamento().toLocalDate())) {
+					throw new CamposObrigatoriosException("A data do reembolso dos pagamento não pode ser menor que a data do pagamento.");
+				}
 			});
 		}
 	}
