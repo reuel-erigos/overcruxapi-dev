@@ -49,9 +49,10 @@ public abstract class AbstractAlterarListaCmd<E,TO, P> extends BaseDao{
 
 		BiPredicate<TO, List<TO>> contemNaLista = (to, listaNova) -> listaNova.stream().anyMatch(novo -> Objects.nonNull(novo) && getIdentificadorTO(to).equals(getIdentificadorTO(novo)));
 
-		listaTelaTO.stream().filter(registro -> Objects.nonNull(getIdentificadorTO(registro))).forEach(registro -> {
+		listaTelaTO.stream()
+		           .filter(registro -> Objects.nonNull(getIdentificadorTO(registro)))
+		           .forEach(registro -> {
 			if (contemNaLista.test(registro, getTOListaBanco(listaDoBanco))) {
-
 				cadastrar(registro,pai);
 			}
 		});

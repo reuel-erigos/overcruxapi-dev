@@ -15,6 +15,8 @@ public class PagamentosFaturaTO {
 	private Double valorMulta;
 	private Double valorJuros;
 	private Boolean statusRegistroSaldo;
+	private ContasBancariaTO contaReembolso;
+	private LocalDateTime dataReembolso;
 	
 	public Long getId() {
 		return id;
@@ -82,6 +84,17 @@ public class PagamentosFaturaTO {
 	public void setStatusRegistroSaldo(Boolean statusRegistroSaldo) {
 		this.statusRegistroSaldo = statusRegistroSaldo;
 	}
-	
+	public ContasBancariaTO getContaReembolso() {
+		return contaReembolso;
+	}
+	public void setContaReembolso(ContasBancariaTO contaReembols) {
+		this.contaReembolso = contaReembols;
+	}
+	public LocalDateTime getDataReembolso() {
+		return dataReembolso;
+	}
+	public void setDataReembolso(LocalDateTime dataReembolso) {
+		this.dataReembolso = dataReembolso;
+	}
 	
 }

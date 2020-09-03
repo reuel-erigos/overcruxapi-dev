@@ -33,6 +33,8 @@ public class PagamentosFaturaTOBuilder {
 		BeanUtils.copyProperties(entity, to);
 
 		to.setContaBancaria(contasBancariaTOBuilder.buildTOCombo(entity.getContaBancaria()));
+		to.setContaReembolso(contasBancariaTOBuilder.buildTOCombo(entity.getContaReembolso()));
+		
 		to.setFatura(faturaTOBuilder.buildTO(entity.getFatura()));
 
 		return to;
@@ -58,7 +60,11 @@ public class PagamentosFaturaTOBuilder {
 			ContasBancaria conta = getContasBancariaCmd.getById(to.getContaBancaria().getId());
 			entity.setContaBancaria(conta);
 		}
-
+		if (Objects.nonNull(to.getContaReembolso()) && Objects.nonNull(to.getContaReembolso().getId())) {
+			ContasBancaria conta = getContasBancariaCmd.getById(to.getContaReembolso().getId());
+			entity.setContaReembolso(conta);
+		}
+		
 		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 
 		return entity;
