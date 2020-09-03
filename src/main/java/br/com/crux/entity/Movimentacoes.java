@@ -91,6 +91,10 @@ public class Movimentacoes implements Serializable {
 	@Column(name = "st_registro_saldo")
 	private Boolean statusRegistroSaldo;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_conta_bancaria_destino")
+	private ContasBancaria contaBancariaDestino;
+	
 	
 	public Movimentacoes() {
 	}
@@ -247,4 +251,13 @@ public class Movimentacoes implements Serializable {
 		this.statusRegistroSaldo = statusRegistroSaldo;
 	}
 
+	public ContasBancaria getContaBancariaDestino() {
+		return contaBancariaDestino;
+	}
+
+	public void setContaBancariaDestino(ContasBancaria contaBancariaDestino) {
+		this.contaBancariaDestino = contaBancariaDestino;
+	}
+
+	
 }

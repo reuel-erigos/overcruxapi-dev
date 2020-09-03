@@ -56,6 +56,7 @@ public class MovimentacoesTOBuilder {
 		to.setFaturas(getFaturaCmd.getFaturaTOByMovimentacao(m));
 		to.setPagamentosFatura(getPagamentosFaturaCmd.getPagamentoFaturaTOByMovimentacao(m));
 		to.setContaBancaria(contasBancariaTOBuilder.buildTO(m.getContaBancaria()));
+		to.setContaBancariaDestino(contasBancariaTOBuilder.buildTO(m.getContaBancariaDestino()));
 		to.setRateios(rateiosMovimentacoesTOBuilder.buildAllTO(getRateiosMovimentacoesCmd.getPorMovimentacoes(m)));
 
 		return to;
@@ -86,6 +87,10 @@ public class MovimentacoesTOBuilder {
 		
 		if (Objects.nonNull(to.getContaBancaria()) && Objects.nonNull(to.getContaBancaria().getId())) {
 			p.setContaBancaria(getContasBancariaCmd.getById(to.getContaBancaria().getId()));
+		}
+
+		if (Objects.nonNull(to.getContaBancariaDestino()) && Objects.nonNull(to.getContaBancariaDestino().getId())) {
+			p.setContaBancariaDestino(getContasBancariaCmd.getById(to.getContaBancariaDestino().getId()));
 		}
 
 		p.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());

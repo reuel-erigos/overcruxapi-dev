@@ -29,7 +29,8 @@ public class MovimentacoesTO {
 	private Double valorPisConfinsCsll;
 	private Double valorInss;
 	private ContasBancariaTO contaBancaria;
-
+	private ContasBancariaTO contaBancariaDestino;
+	
 	private List<RateiosMovimentacoesTO> rateios;
 	
 	public MovimentacoesTO() {
@@ -166,6 +167,14 @@ public class MovimentacoesTO {
 	}
 	public void setRateios(List<RateiosMovimentacoesTO> rateios) {
 		this.rateios = rateios;
+	}
+
+	public ContasBancariaTO getContaBancariaDestino() {
+		return contaBancariaDestino;
+	}
+
+	public void setContaBancariaDestino(ContasBancariaTO contaBancariaDestino) {
+		this.contaBancariaDestino = contaBancariaDestino;
 	}
 
 }

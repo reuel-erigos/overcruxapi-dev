@@ -23,21 +23,18 @@ public class CadastrarMovimentacoesCmd {
 	@Autowired private CadastrarRateiosMovimentacoesCmd cadastrarRateiosMovimentacoesCmd;
 
 	public void cadastrar(MovimentacoesTO to) {
-
 		camposObrigatoriosRule.verificar(to);
-
 		to.setDataMovimentacao(LocalDateTime.now());
 		Movimentacoes entity = toBuilder.build(to);
 
 		Movimentacoes movimentacoes = repository.save(entity);
 		
-		cadastrarRateiosMovimentacoesCmd.cadastrarLista(movimentacoes, to.getRateios());
-		
-		cadastrarItensMovimentacoesCmd.cadastrarLista(movimentacoes, to.getItensMovimentacoes());
-		
-		cadastrarFaturasCmd.cadastrarLista(movimentacoes, to.getFaturas());
-		
-		cadastrarPagamentosFaturaCmd.cadastrarLista(movimentacoes, to.getPagamentosFatura());
+		if(!to.getStTipoMovimentacao().toUpperCase().equals("T")) {
+			cadastrarRateiosMovimentacoesCmd.cadastrarLista(movimentacoes, to.getRateios());
+			cadastrarItensMovimentacoesCmd.cadastrarLista(movimentacoes, to.getItensMovimentacoes());
+			cadastrarFaturasCmd.cadastrarLista(movimentacoes, to.getFaturas());
+			cadastrarPagamentosFaturaCmd.cadastrarLista(movimentacoes, to.getPagamentosFatura());
+		}
 
 	}
 }

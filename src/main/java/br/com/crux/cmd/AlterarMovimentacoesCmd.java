@@ -29,22 +29,19 @@ public class AlterarMovimentacoesCmd {
 		Movimentacoes entity = repository.findById(to.getId()).orElseThrow(() -> new NotFoundException("Movimento informado não existe."));
 
 		camposObrigatoriosRule.verificar(to);
-		
-		if(Objects.nonNull(to.getContaBancaria())) {
-			validarContaReembolsoRule.verificar(to.getContaBancaria().getId(), to.getPagamentosFatura());
-		}
-
 		entity = toBuilder.build(to);
-
 		Movimentacoes movimentacoes = repository.save(entity);
-		
-		alterarListaItensMovimentacoesCmd.alterarAll(to.getItensMovimentacoes(), movimentacoes);
-		
-		alterarListaRateiosMovimentacoesCmd.alterarAll(to.getRateios(), movimentacoes);
-	
-		alterarListaPagamentosFaturaCmd.alterarAll(to.getPagamentosFatura(), movimentacoes);
-		
-		alterarListaFaturasCmd.alterarAll(to.getFaturas(), movimentacoes);
+
+		if(!to.getStTipoMovimentacao().toUpperCase().equals("T")) {
+			if(Objects.nonNull(to.getContaBancaria())) {
+				validarContaReembolsoRule.verificar(to.getContaBancaria().getId(), to.getPagamentosFatura());
+			}
+			
+			alterarListaItensMovimentacoesCmd.alterarAll(to.getItensMovimentacoes(), movimentacoes);
+			alterarListaRateiosMovimentacoesCmd.alterarAll(to.getRateios(), movimentacoes);
+			alterarListaPagamentosFaturaCmd.alterarAll(to.getPagamentosFatura(), movimentacoes);
+			alterarListaFaturasCmd.alterarAll(to.getFaturas(), movimentacoes);
+		}
 
 	}
 

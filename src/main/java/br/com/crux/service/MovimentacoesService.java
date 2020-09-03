@@ -28,9 +28,14 @@ public class MovimentacoesService {
 	@Autowired private AlterarMovimentacoesCmd alterarCmd;
 	@Autowired private ExcluirMovimentacoesCmd excluirCmd;
 
-	@GetMapping
-	public List<MovimentacoesTO> getAll() {
-		return getCmd.getAll();
+	@GetMapping("/destino")
+	public List<MovimentacoesTO> getAllDestino() {
+		return getCmd.getAllDestino();
+	}
+	
+	@GetMapping("/origem")
+	public List<MovimentacoesTO> getAllOrigem() {
+		return getCmd.getAllOrigem();
 	}
 
 	@GetMapping("/{id}")
