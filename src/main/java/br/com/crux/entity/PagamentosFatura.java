@@ -72,7 +72,7 @@ public class PagamentosFatura implements Serializable {
 	@JoinColumn(name = "id_conta_bancaria_reembolso")
 	private ContasBancaria contaReembolso;
 
-	@Column(name = "dt_pagamento")
+	@Column(name = "dt_reembolso")
 	private LocalDateTime dataReembolso;
 	
 	
