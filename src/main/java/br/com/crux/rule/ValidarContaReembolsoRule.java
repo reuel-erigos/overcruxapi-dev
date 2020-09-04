@@ -14,7 +14,7 @@ public class ValidarContaReembolsoRule {
 	public void verificar(Long idContaBancaria, List<PagamentosFaturaTO> pagamentosFaturaTO ) {
 		if(Objects.nonNull(pagamentosFaturaTO) && Objects.nonNull(idContaBancaria) ) {
 			pagamentosFaturaTO.stream()
-			                  .filter(pag -> Objects.nonNull(pag.getContaReembolso()))
+			                  .filter(pag -> Objects.nonNull(pag.getContaReembolso()) && Objects.nonNull(pag.getContaReembolso().getId()))
 			                  .forEach(pag -> {
 				if(pag.getContaReembolso().getId().equals(idContaBancaria) ) {
 					throw new CamposObrigatoriosException("A conta de reembolso não pode ser a mesma do movimento.");
