@@ -15,7 +15,7 @@ public interface DoadoresRepository extends JpaRepository<Doadores, Long>{
 	@Query(value = "SELECT d FROM Doadores d                           "
 			+ " inner join Instituicao ins on ins.id = d.idInstituicao "
 			+ " inner join Empresa emp on emp = d.empresa              "
-			+ " where ins.id = :idInstituicao                          "
+			+ " where ins.id = ?1                                      "
 			+ " order by emp.nomeRazaoSocial                           ")
 	public Optional<List<Doadores>> findByIdInstituicao(Long idInstituicao);
 	
