@@ -16,6 +16,7 @@ import br.com.crux.cmd.GetFaturaCmd;
 import br.com.crux.cmd.GetItensMovimentacoesCmd;
 import br.com.crux.cmd.GetPagamentosFaturaCmd;
 import br.com.crux.cmd.GetRateiosMovimentacoesCmd;
+import br.com.crux.cmd.GetRateiosMovimentacoesUnidadesCmd;
 import br.com.crux.cmd.GetUnidadeCmd;
 import br.com.crux.cmd.GetUsuarioLogadoCmd;
 import br.com.crux.entity.Doadores;
@@ -39,6 +40,8 @@ public class MovimentacoesTOBuilder {
 	@Autowired private GetContasBancariaCmd getContasBancariaCmd;
 	@Autowired private RateiosMovimentacoesTOBuilder rateiosMovimentacoesTOBuilder;
 	@Autowired private GetRateiosMovimentacoesCmd getRateiosMovimentacoesCmd;
+	@Autowired private RateiosMovimentacoesUnidadesTOBuilder rateiosMovimentacoesUnidadesTOBuilder;
+	@Autowired private GetRateiosMovimentacoesUnidadesCmd getRateiosMovimentacoesUnidadesCmd;
 	@Autowired private DoadoresTOBuilder doadoresTOBuilder;
 	@Autowired private GetDoadoresCmd getDoadoresCmd; 
 	
@@ -61,6 +64,7 @@ public class MovimentacoesTOBuilder {
 		to.setContaBancaria(contasBancariaTOBuilder.buildTO(m.getContaBancaria()));
 		to.setContaBancariaDestino(contasBancariaTOBuilder.buildTO(m.getContaBancariaDestino()));
 		to.setRateios(rateiosMovimentacoesTOBuilder.buildAllTO(getRateiosMovimentacoesCmd.getPorMovimentacoes(m)));
+		to.setRateiosUnidades(rateiosMovimentacoesUnidadesTOBuilder.buildAllTO(getRateiosMovimentacoesUnidadesCmd.getPorMovimentacoes(m)));
 		to.setDoador(doadoresTOBuilder.buildTO(m.getDoador()));
 
 		return to;
