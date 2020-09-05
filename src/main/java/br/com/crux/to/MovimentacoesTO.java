@@ -32,6 +32,7 @@ public class MovimentacoesTO {
 	private ContasBancariaTO contaBancariaDestino;
 	
 	private List<RateiosMovimentacoesTO> rateios;
+	private List<RateiosMovimentacoesUnidadesTO> rateiosUnidades;
 	
 	public MovimentacoesTO() {
 	}
@@ -175,6 +176,14 @@ public class MovimentacoesTO {
 
 	public void setContaBancariaDestino(ContasBancariaTO contaBancariaDestino) {
 		this.contaBancariaDestino = contaBancariaDestino;
+	}
+
+	public List<RateiosMovimentacoesUnidadesTO> getRateiosUnidades() {
+		return rateiosUnidades;
+	}
+
+	public void setRateiosUnidades(List<RateiosMovimentacoesUnidadesTO> rateiosUnidades) {
+		this.rateiosUnidades = rateiosUnidades;
 	}
 
 }

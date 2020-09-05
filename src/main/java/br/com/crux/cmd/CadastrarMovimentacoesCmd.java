@@ -22,6 +22,7 @@ public class CadastrarMovimentacoesCmd {
 	@Autowired private CadastrarFaturasCmd cadastrarFaturasCmd;
 	@Autowired private CadastrarPagamentosFaturaCmd cadastrarPagamentosFaturaCmd;
 	@Autowired private CadastrarRateiosMovimentacoesCmd cadastrarRateiosMovimentacoesCmd;
+	@Autowired private CadastrarRateiosMovimentacoesUnidadesCmd cadastrarRateiosMovimentacoesUnidadesCmd;
 
 	public MovimentacoesTO cadastrar(MovimentacoesTO to) {
 		camposObrigatoriosRule.verificar(to);
@@ -32,6 +33,7 @@ public class CadastrarMovimentacoesCmd {
 		
 		if(!to.getStTipoMovimentacao().toUpperCase().equals("T")) {
 			cadastrarRateiosMovimentacoesCmd.cadastrarLista(movimentacoes, to.getRateios());
+			cadastrarRateiosMovimentacoesUnidadesCmd.cadastrarLista(movimentacoes, to.getRateiosUnidades());
 			cadastrarItensMovimentacoesCmd.cadastrarLista(movimentacoes, to.getItensMovimentacoes());
 			cadastrarFaturasCmd.cadastrarLista(movimentacoes, to.getFaturas());
 			cadastrarPagamentosFaturaCmd.cadastrarLista(movimentacoes, to.getPagamentosFatura());

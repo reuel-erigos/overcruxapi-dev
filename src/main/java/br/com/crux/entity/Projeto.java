@@ -90,10 +90,6 @@ public class Projeto implements Serializable {
 	@Column(name = "st_restricao")
 	private Boolean restricao;
 	
-	@Column(name="id_instituicao")
-	private Long idInstituicao;
-	
-	
 	public Projeto() {
 	}
 
@@ -241,13 +237,4 @@ public class Projeto implements Serializable {
 		this.objetivoEspecifico = objetivoEspecifico;
 	}
 
-	public Long getIdInstituicao() {
-		return idInstituicao;
-	}
-
-	public void setIdInstituicao(Long idInstituicao) {
-		this.idInstituicao = idInstituicao;
-	}
-	
-	
 }

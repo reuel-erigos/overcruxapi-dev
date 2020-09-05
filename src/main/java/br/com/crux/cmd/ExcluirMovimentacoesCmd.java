@@ -10,7 +10,9 @@ import org.springframework.stereotype.Component;
 
 import br.com.crux.dao.repository.MovimentacoesRepository;
 import br.com.crux.dao.repository.RateiosMovimentacoesRepository;
+import br.com.crux.dao.repository.RateiosMovimentacoesUnidadesRepository;
 import br.com.crux.entity.RateiosMovimentacoes;
+import br.com.crux.entity.RateiosMovimentacoesUnidades;
 import br.com.crux.exception.ParametroNaoInformadoException;
 import br.com.crux.exception.TabaleReferenciaEncontradaException;
 
@@ -20,6 +22,7 @@ public class ExcluirMovimentacoesCmd {
 	
 	@Autowired private MovimentacoesRepository repository;
 	@Autowired private RateiosMovimentacoesRepository rateiosMovimentacoesRepository;
+	@Autowired private RateiosMovimentacoesUnidadesRepository rateiosMovimentacoesUnidadesRepository;
 
 	public void excluir(Long id) {
 		try {
@@ -30,6 +33,11 @@ public class ExcluirMovimentacoesCmd {
 			Optional<List<RateiosMovimentacoes>> rateios = rateiosMovimentacoesRepository.findByIdMovimento(id);
 			if(rateios.isPresent()) {
 				rateiosMovimentacoesRepository.deleteInBatch(rateios.get());
+			}
+			
+			Optional<List<RateiosMovimentacoesUnidades>> rateiosUnidades = rateiosMovimentacoesUnidadesRepository.findByIdMovimento(id);
+			if(rateiosUnidades.isPresent()) {
+				rateiosMovimentacoesUnidadesRepository.deleteInBatch(rateiosUnidades.get());
 			}
 			
 			repository.deleteById(id);

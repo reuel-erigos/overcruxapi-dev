@@ -24,6 +24,7 @@ public class AlterarMovimentacoesCmd {
 	@Autowired private AlterarListaFaturasCmd alterarListaFaturasCmd;
 	@Autowired private AlterarListaPagamentosFaturaCmd alterarListaPagamentosFaturaCmd;
 	@Autowired private AlterarListaRateiosMovimentacoesCmd alterarListaRateiosMovimentacoesCmd;
+	@Autowired private AlterarListaRateiosMovimentacoesUnidadesCmd alterarListaRateiosMovimentacoesUnidadesCmd;
 	@Autowired private ValidarContaReembolsoRule validarContaReembolsoRule;
 	
 	public MovimentacoesTO alterar(MovimentacoesTO to) {
@@ -40,6 +41,7 @@ public class AlterarMovimentacoesCmd {
 			
 			alterarListaItensMovimentacoesCmd.alterarAll(to.getItensMovimentacoes(), movimentacoes);
 			alterarListaRateiosMovimentacoesCmd.alterarAll(to.getRateios(), movimentacoes);
+			alterarListaRateiosMovimentacoesUnidadesCmd.alterarAll(to.getRateiosUnidades(), movimentacoes);
 			alterarListaPagamentosFaturaCmd.alterarAll(to.getPagamentosFatura(), movimentacoes);
 			alterarListaFaturasCmd.alterarAll(to.getFaturas(), movimentacoes);
 		}

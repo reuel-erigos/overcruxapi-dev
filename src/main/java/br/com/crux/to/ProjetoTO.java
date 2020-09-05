@@ -39,7 +39,6 @@ public class ProjetoTO {
 	private Long faixaEtariaInicial;
 	private Long faixaEtariaFinal;
 	private String objetivoEspecifico;
-	private Long idInstituicao;
 	
 	public ProjetoTO() {
 	}
@@ -220,14 +219,5 @@ public class ProjetoTO {
 	public void setObjetivoEspecifico(String objetivoEspecifico) {
 		this.objetivoEspecifico = objetivoEspecifico;
 	}
-
-	public Long getIdInstituicao() {
-		return idInstituicao;
-	}
-
-	public void setIdInstituicao(Long idInstituicao) {
-		this.idInstituicao = idInstituicao;
-	}
-	
 
 }
