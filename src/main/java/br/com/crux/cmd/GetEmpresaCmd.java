@@ -18,9 +18,12 @@ public class GetEmpresaCmd {
 
 	@Autowired private EmpresaRepository repository;
 	@Autowired private EmpresaTOBuilder toBuilder;
+	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 
 	public List<EmpresaTO> getAll() {
-		Optional<List<Empresa>> lista = repository.getAll();
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+		
+		Optional<List<Empresa>> lista = repository.getAllByInstituicao(idInstituicao);
 		if(lista.isPresent()) {
 			return toBuilder.buildAll(lista.get());
 		}
@@ -40,11 +43,13 @@ public class GetEmpresaCmd {
 	}
 
 	public List<EmpresaTO> getAllCombo() {
-		List<EmpresaTO> entitys = toBuilder.buildAllCombo(repository.findAll());
-		if (entitys == null || entitys.isEmpty()) {
-			return new ArrayList<EmpresaTO>();
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+		
+		Optional<List<Empresa>> entitys = repository.getAllByInstituicao(idInstituicao);
+		if(entitys.isPresent()) {
+			return toBuilder.buildAllCombo(entitys.get());
 		}
-		return entitys;
+		return new ArrayList<EmpresaTO>();
 	}
 
 }
