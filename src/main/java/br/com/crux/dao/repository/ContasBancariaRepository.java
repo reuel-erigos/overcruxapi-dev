@@ -19,7 +19,8 @@ public interface ContasBancariaRepository extends JpaRepository<ContasBancaria, 
 	@Query(value = "select f from ContasBancaria f " 
 	             + " inner join Unidade u on u = f.unidade "
 	             + " inner join Instituicao i on i = u.instituicao " 
-			      + " where i.id = ?1")
+			      + " where i.id = ?1"
+			      + " order by f.numeroBanco, f.nomeBanco, f.numeroAgencia, f.numeroContaBancaria ")
 	public Optional<List<ContasBancaria>> findByIdInstituicao(Long idInstituicao);
 	
 }

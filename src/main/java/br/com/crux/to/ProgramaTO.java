@@ -35,7 +35,7 @@ public class ProgramaTO {
 	private Long usuarioAlteracao;
 
 	private Boolean restricao;
-	
+	private Long idInstituicao;
 	
 	public ProgramaTO() {
 	}
@@ -206,6 +206,14 @@ public class ProgramaTO {
 
 	public void setObjetivoEspecifico(String objetivoEspecifico) {
 		this.objetivoEspecifico = objetivoEspecifico;
+	}
+
+	public Long getIdInstituicao() {
+		return idInstituicao;
+	}
+
+	public void setIdInstituicao(Long idInstituicao) {
+		this.idInstituicao = idInstituicao;
 	}
 
 

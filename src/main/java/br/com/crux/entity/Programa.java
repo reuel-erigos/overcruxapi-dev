@@ -49,7 +49,6 @@ public class Programa implements Serializable {
 	@JoinColumn(name="id_objetivo")
 	private Objetivo objetivo;
 
-
 	@Column(name="nr_faixa_etaria_fim")
 	private Long faixaEtariaFim;
 
@@ -78,6 +77,10 @@ public class Programa implements Serializable {
 	@Convert(converter = SimNaoConverter.class)
 	@Column(name = "st_restricao")
 	private Boolean restricao;
+	
+	@Column(name="id_instituicao")
+	private Long idInstituicao;
+	
 	
 	public Programa() {
 	}
@@ -210,9 +213,12 @@ public class Programa implements Serializable {
 		this.objetivoEspecifico = objetivoEspecifico;
 	}
 
+	public Long getIdInstituicao() {
+		return idInstituicao;
+	}
 
-	
-	
-
+	public void setIdInstituicao(Long idInstituicao) {
+		this.idInstituicao = idInstituicao;
+	}
 
 }

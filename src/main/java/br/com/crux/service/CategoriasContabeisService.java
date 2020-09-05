@@ -29,7 +29,7 @@ public class CategoriasContabeisService {
 
 	@GetMapping
 	public List<CategoriasContabeisTO> getAll() {
-		return getCmd.getAll();
+		return getCmd.getAllByInstituicaoLogada();
 	}
 
 	@GetMapping("/combo")

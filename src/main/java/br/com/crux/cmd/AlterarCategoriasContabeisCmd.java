@@ -16,6 +16,7 @@ public class AlterarCategoriasContabeisCmd {
 	@Autowired private CategoriasContabeisRepository repository;
 	@Autowired private CamposObrigatoriosCategoriasContabeisRule rule;
 	@Autowired private CategoriasContabeisTOBuilder toBuilder;
+	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 
 	public void alterar(CategoriasContabeisTO to) {
 		CategoriasContabeis entity = repository.findById(to.getId())
@@ -23,6 +24,7 @@ public class AlterarCategoriasContabeisCmd {
 
 		rule.verificar(to);
 
+		to.setIdInstituicao(getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId());
 		entity = toBuilder.build(to);
 
 		repository.save(entity);

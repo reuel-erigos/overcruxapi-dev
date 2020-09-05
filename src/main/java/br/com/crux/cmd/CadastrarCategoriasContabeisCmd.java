@@ -15,9 +15,12 @@ public class CadastrarCategoriasContabeisCmd {
 	@Autowired private CategoriasContabeisRepository repository;
 	@Autowired private CategoriasContabeisTOBuilder toBuilder;
 	@Autowired private CamposObrigatoriosCategoriasContabeisRule rule;
+	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 
 	public void cadastrar(CategoriasContabeisTO to) {
 		rule.verificar(to);
+		
+		to.setIdInstituicao(getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId());
 		CategoriasContabeis entity = toBuilder.build(to);
 		repository.save(entity);
 

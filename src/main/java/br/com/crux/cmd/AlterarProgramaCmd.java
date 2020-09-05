@@ -22,7 +22,9 @@ public class AlterarProgramaCmd {
 	@Autowired private AlterarParceriasProgramaCmd alterarParceriasProgramaCmd;
 	@Autowired private AlterarListaComposicaoRhProgramaCmd alterarListaComposicaoRhProgramaCmd;
 	@Autowired private AlterarListaContasCentrosCustoProgramaCmd alterarListaContasCentrosCustoProgramaCmd;
-
+	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
+	
+	
 	public void alterar(ProgramaTO to) {
 		Programa entity = repository.findById(to.getId()).orElseThrow(() -> new NotFoundException("Programa informado não existe."));
 
@@ -30,6 +32,7 @@ public class AlterarProgramaCmd {
 
 		to.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 
+		to.setIdInstituicao(getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId());
 		entity = programaTOBuilder.build(to);
 
 		Programa programa = repository.save(entity);
