@@ -21,7 +21,6 @@ public class CadastrarProgramaCmd {
 	@Autowired private CadastrarParceriaProgramaCmd cadastrarParceriaProgramaCmd;
 	@Autowired private CadastrarComposicaoRhProgramaCmd cadastrarComposicaoRhProgramaCmd;
 	@Autowired private CadastrarContasCentrosCustoCmd cadastrarContasCentrosCustoCmd;
-	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 
 	public void cadastrar(ProgramaTO to) {
 
@@ -29,7 +28,6 @@ public class CadastrarProgramaCmd {
 
 		to.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 
-		to.setIdInstituicao(getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId());
 		Programa entity = programaTOBuilder.build(to);
 
 		Programa programa = repository.save(entity);
