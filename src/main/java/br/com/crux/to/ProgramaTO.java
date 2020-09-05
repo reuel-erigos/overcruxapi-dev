@@ -34,6 +34,8 @@ public class ProgramaTO {
 	private String objetivoEspecifico;
 	private Long usuarioAlteracao;
 	private Boolean restricao;
+	private DoadoresTO doador;
+	
 	
 	public ProgramaTO() {
 	}
@@ -206,4 +208,11 @@ public class ProgramaTO {
 		this.objetivoEspecifico = objetivoEspecifico;
 	}
 
+	public DoadoresTO getDoador() {
+		return doador;
+	}
+
+	public void setDoador(DoadoresTO doador) {
+		this.doador = doador;
+	}
 }

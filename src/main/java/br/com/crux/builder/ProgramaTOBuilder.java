@@ -11,10 +11,12 @@ import org.springframework.stereotype.Component;
 import br.com.crux.cmd.GetColaboradoresProgramaCmd;
 import br.com.crux.cmd.GetComposicaoRhProgramaCmd;
 import br.com.crux.cmd.GetContasCentrosCustoCmd;
+import br.com.crux.cmd.GetDoadoresCmd;
 import br.com.crux.cmd.GetMateriaisProgramaCmd;
 import br.com.crux.cmd.GetObjetivoCmd;
 import br.com.crux.cmd.GetParceriasProgramaCmd;
 import br.com.crux.cmd.GetProgramaUnidadeCmd;
+import br.com.crux.entity.Doadores;
 import br.com.crux.entity.Objetivo;
 import br.com.crux.entity.Programa;
 import br.com.crux.to.ProgramaTO;
@@ -30,7 +32,9 @@ public class ProgramaTOBuilder {
 	@Autowired private GetComposicaoRhProgramaCmd getComposicaoRhProgramaCmd;
 	@Autowired private GetMateriaisProgramaCmd getMateriaisProgramaCmd;
 	@Autowired private GetContasCentrosCustoCmd getContasCentrosCustoCmd;
-
+	@Autowired private DoadoresTOBuilder doadoresTOBuilder;
+	@Autowired private GetDoadoresCmd getDoadoresCmd; 
+	
 	public Programa build(ProgramaTO param) {
 		Programa retorno = new Programa();
 		
@@ -41,6 +45,11 @@ public class ProgramaTOBuilder {
 			retorno.setObjetivo(obj);
 		}
 
+		if (Objects.nonNull(param.getDoador()) && Objects.nonNull(param.getDoador().getId())) {
+			Doadores obj = getDoadoresCmd.getById(param.getDoador().getId());
+			retorno.setDoador(obj);
+		}
+		
 		return retorno;
 	}
 
@@ -53,6 +62,7 @@ public class ProgramaTOBuilder {
 		
 		BeanUtils.copyProperties(param, retorno);
 		retorno.setObjetivo(objetivoTOBuilder.buildTO(param.getObjetivo()));
+		retorno.setDoador(doadoresTOBuilder.buildTO(param.getDoador()));
 		return retorno;
 	}
 
@@ -63,7 +73,6 @@ public class ProgramaTOBuilder {
 			return retorno;
 		}
 		
-		
 		BeanUtils.copyProperties(param, retorno);
 
 		retorno.setObjetivo(objetivoTOBuilder.buildTO(param.getObjetivo()));
@@ -73,7 +82,8 @@ public class ProgramaTOBuilder {
 		retorno.setComposicaoRhPrograma(getComposicaoRhProgramaCmd.getComposicaoRhProgramaByPrograma(param));
 		retorno.setMateriaisPrograma(getMateriaisProgramaCmd.getMateriaisProgramaByPrograma(param));
 		retorno.setContasCentrosCusto(getContasCentrosCustoCmd.getTOPorPrograma(param));
-
+		retorno.setDoador(doadoresTOBuilder.buildTO(param.getDoador()));
+		
 		return retorno;
 	}
 
