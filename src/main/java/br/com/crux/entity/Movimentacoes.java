@@ -95,6 +95,10 @@ public class Movimentacoes implements Serializable {
 	@JoinColumn(name = "id_conta_bancaria_destino")
 	private ContasBancaria contaBancariaDestino;
 	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="id_doador")
+	private Doadores doador;
+	
 	
 	public Movimentacoes() {
 	}
@@ -257,6 +261,14 @@ public class Movimentacoes implements Serializable {
 
 	public void setContaBancariaDestino(ContasBancaria contaBancariaDestino) {
 		this.contaBancariaDestino = contaBancariaDestino;
+	}
+
+	public Doadores getDoador() {
+		return doador;
+	}
+
+	public void setDoador(Doadores doador) {
+		this.doador = doador;
 	}
 
 	

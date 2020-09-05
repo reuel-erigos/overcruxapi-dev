@@ -34,6 +34,8 @@ public class MovimentacoesTO {
 	private List<RateiosMovimentacoesTO> rateios;
 	private List<RateiosMovimentacoesUnidadesTO> rateiosUnidades;
 	
+	private DoadoresTO doador;
+	
 	public MovimentacoesTO() {
 	}
 	
@@ -186,4 +188,11 @@ public class MovimentacoesTO {
 		this.rateiosUnidades = rateiosUnidades;
 	}
 
+	public DoadoresTO getDoador() {
+		return doador;
+	}
+
+	public void setDoador(DoadoresTO doador) {
+		this.doador = doador;
+	}
 }

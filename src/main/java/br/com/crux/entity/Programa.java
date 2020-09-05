@@ -78,10 +78,6 @@ public class Programa implements Serializable {
 	@Column(name = "st_restricao")
 	private Boolean restricao;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="id_doador")
-	private Doadores doador;
-	
 	
 	public Programa() {
 	}
@@ -214,13 +210,5 @@ public class Programa implements Serializable {
 		this.objetivoEspecifico = objetivoEspecifico;
 	}
 
-	public Doadores getDoador() {
-		return doador;
-	}
 
-	public void setDoador(Doadores doador) {
-		this.doador = doador;
-	}
-
-	
 }

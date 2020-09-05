@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import br.com.crux.cmd.GetContasBancariaCmd;
 import br.com.crux.cmd.GetDepartamentoCmd;
+import br.com.crux.cmd.GetDoadoresCmd;
 import br.com.crux.cmd.GetEmpresaCmd;
 import br.com.crux.cmd.GetFaturaCmd;
 import br.com.crux.cmd.GetItensMovimentacoesCmd;
@@ -17,6 +18,7 @@ import br.com.crux.cmd.GetPagamentosFaturaCmd;
 import br.com.crux.cmd.GetRateiosMovimentacoesCmd;
 import br.com.crux.cmd.GetUnidadeCmd;
 import br.com.crux.cmd.GetUsuarioLogadoCmd;
+import br.com.crux.entity.Doadores;
 import br.com.crux.entity.Movimentacoes;
 import br.com.crux.to.MovimentacoesTO;
 
@@ -37,7 +39,8 @@ public class MovimentacoesTOBuilder {
 	@Autowired private GetContasBancariaCmd getContasBancariaCmd;
 	@Autowired private RateiosMovimentacoesTOBuilder rateiosMovimentacoesTOBuilder;
 	@Autowired private GetRateiosMovimentacoesCmd getRateiosMovimentacoesCmd;
-	
+	@Autowired private DoadoresTOBuilder doadoresTOBuilder;
+	@Autowired private GetDoadoresCmd getDoadoresCmd; 
 	
 	public MovimentacoesTO buildTO(Movimentacoes m) {
 		MovimentacoesTO to = new MovimentacoesTO();
@@ -58,6 +61,7 @@ public class MovimentacoesTOBuilder {
 		to.setContaBancaria(contasBancariaTOBuilder.buildTO(m.getContaBancaria()));
 		to.setContaBancariaDestino(contasBancariaTOBuilder.buildTO(m.getContaBancariaDestino()));
 		to.setRateios(rateiosMovimentacoesTOBuilder.buildAllTO(getRateiosMovimentacoesCmd.getPorMovimentacoes(m)));
+		to.setDoador(doadoresTOBuilder.buildTO(m.getDoador()));
 
 		return to;
 	}
@@ -91,6 +95,11 @@ public class MovimentacoesTOBuilder {
 
 		if (Objects.nonNull(to.getContaBancariaDestino()) && Objects.nonNull(to.getContaBancariaDestino().getId())) {
 			p.setContaBancariaDestino(getContasBancariaCmd.getById(to.getContaBancariaDestino().getId()));
+		}
+		
+		if (Objects.nonNull(to.getDoador()) && Objects.nonNull(to.getDoador().getId())) {
+			Doadores obj = getDoadoresCmd.getById(to.getDoador().getId());
+			p.setDoador(obj);
 		}
 
 		p.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
