@@ -4,7 +4,7 @@ public class RateiosMovimentacoesUnidadesTO {
 
 	private Long id;
 	private Long idMovimentacao;
-	private UnidadeTO unidade;
+	private Long idUnidade;
 	private Boolean statusPercentual;
 	private Double valorRateio;
 	private Long usuarioAlteracao;
@@ -29,12 +29,12 @@ public class RateiosMovimentacoesUnidadesTO {
 		this.idMovimentacao = idMovimentacao;
 	}
 
-	public UnidadeTO getUnidade() {
-		return unidade;
+	public Long getIdUnidade() {
+		return idUnidade;
 	}
 
-	public void setUnidade(UnidadeTO unidade) {
-		this.unidade = unidade;
+	public void setIdUnidade(Long idUnidade) {
+		this.idUnidade = idUnidade;
 	}
 
 	public Boolean getStatusPercentual() {

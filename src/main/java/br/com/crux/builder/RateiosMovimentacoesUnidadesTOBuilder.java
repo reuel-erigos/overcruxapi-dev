@@ -8,7 +8,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.crux.cmd.GetUnidadeCmd;
 import br.com.crux.cmd.GetUsuarioLogadoCmd;
 import br.com.crux.entity.RateiosMovimentacoesUnidades;
 import br.com.crux.to.RateiosMovimentacoesUnidadesTO;
@@ -17,12 +16,8 @@ import br.com.crux.to.RateiosMovimentacoesUnidadesTO;
 public class RateiosMovimentacoesUnidadesTOBuilder {
 
 	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
-	@Autowired private GetUnidadeCmd getUnidadeCmd;
-	@Autowired private UnidadeTOBuilder unidadeTOBuilder;
-	
-	
-	
 
+	
 	public RateiosMovimentacoesUnidadesTO buildTO(RateiosMovimentacoesUnidades m) {
 		RateiosMovimentacoesUnidadesTO to = new RateiosMovimentacoesUnidadesTO();
 
@@ -32,8 +27,6 @@ public class RateiosMovimentacoesUnidadesTOBuilder {
 
 		BeanUtils.copyProperties(m, to);
 		
-		to.setUnidade(unidadeTOBuilder.buildTOCombo(m.getUnidade()));
-
 		return to;
 	}
 
@@ -53,10 +46,6 @@ public class RateiosMovimentacoesUnidadesTOBuilder {
 		RateiosMovimentacoesUnidades p = new RateiosMovimentacoesUnidades();
 
 		BeanUtils.copyProperties(to, p);
-
-		if (Objects.nonNull(to.getUnidade()) && Objects.nonNull(to.getUnidade().getIdUnidade())) {
-			p.setUnidade(getUnidadeCmd.getById(to.getUnidade().getIdUnidade()));
-		}
 
 		p.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 		return p;

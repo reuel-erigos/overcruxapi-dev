@@ -5,12 +5,9 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -32,9 +29,8 @@ public class RateiosMovimentacoesUnidades implements Serializable {
 	@Column(name = "id_movimentacao")
 	private Long idMovimentacao;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_unidade") 
-	private Unidade unidade;
+	@Column(name = "id_unidade") 
+	private Long idUnidade;
 	
 	@Convert(converter = SimNaoConverter.class)
 	@Column(name = "st_percentual")
@@ -66,12 +62,12 @@ public class RateiosMovimentacoesUnidades implements Serializable {
 		this.idMovimentacao = idMovimentacao;
 	}
 
-	public Unidade getUnidade() {
-		return unidade;
+	public Long getIdUnidade() {
+		return idUnidade;
 	}
 
-	public void setUnidade(Unidade unidade) {
-		this.unidade = unidade;
+	public void setIdUnidade(Long idUnidade) {
+		this.idUnidade = idUnidade;
 	}
 
 	public Boolean getStatusPercentual() {
