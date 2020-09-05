@@ -45,14 +45,14 @@ public class MovimentacoesService {
 
 	@PostMapping
 	@Transactional
-	public void cadastrar(@RequestBody MovimentacoesTO to) {
-		cadastrarCmd.cadastrar(to);
+	public MovimentacoesTO cadastrar(@RequestBody MovimentacoesTO to) {
+		return cadastrarCmd.cadastrar(to);
 	}
 
 	@PutMapping
 	@Transactional
-	public void alterar(@RequestBody MovimentacoesTO to) {
-		alterarCmd.alterar(to);
+	public MovimentacoesTO alterar(@RequestBody MovimentacoesTO to) {
+		return alterarCmd.alterar(to);
 	}
 
 	@DeleteMapping("/{id}")

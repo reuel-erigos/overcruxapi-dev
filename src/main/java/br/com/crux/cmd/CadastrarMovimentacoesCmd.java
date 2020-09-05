@@ -1,6 +1,7 @@
 package br.com.crux.cmd;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,7 +23,7 @@ public class CadastrarMovimentacoesCmd {
 	@Autowired private CadastrarPagamentosFaturaCmd cadastrarPagamentosFaturaCmd;
 	@Autowired private CadastrarRateiosMovimentacoesCmd cadastrarRateiosMovimentacoesCmd;
 
-	public void cadastrar(MovimentacoesTO to) {
+	public MovimentacoesTO cadastrar(MovimentacoesTO to) {
 		camposObrigatoriosRule.verificar(to);
 		to.setDataMovimentacao(LocalDateTime.now());
 		Movimentacoes entity = toBuilder.build(to);
@@ -36,5 +37,7 @@ public class CadastrarMovimentacoesCmd {
 			cadastrarPagamentosFaturaCmd.cadastrarLista(movimentacoes, to.getPagamentosFatura());
 		}
 
+		Optional<Movimentacoes> entitySalva = repository.findById(movimentacoes.getId());
+		return toBuilder.buildTO(entitySalva.get());
 	}
 }
