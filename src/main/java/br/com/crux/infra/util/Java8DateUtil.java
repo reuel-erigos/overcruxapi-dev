@@ -82,6 +82,7 @@ public class Java8DateUtil {
 		if (Objects.nonNull(inicio) && dataRefencia.isBefore(inicio)) {return false;}
 		if (Objects.isNull(fim)) {return true;}     
 		if (Objects.nonNull(inicio) && dataRefencia.isAfter(inicio) && dataRefencia.isBefore(fim)) {return true;}
+		if (Objects.isNull(inicio) && Objects.nonNull(fim) && dataRefencia.isBefore(fim)) {return true;}
 		
 		return false;
 	}
