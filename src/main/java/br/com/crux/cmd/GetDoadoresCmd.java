@@ -3,6 +3,7 @@ package br.com.crux.cmd;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,14 @@ public class GetDoadoresCmd {
 		return new ArrayList<DoadoresTO>();
 	}
 
+	public DoadoresTO getTOById(Long id) {
+		Doadores entity = getById(id);
+		if(Objects.nonNull(entity)) {
+			return toBuilder.buildTO(entity);
+		}
+		return null;
+	}
+	
 	public Doadores getById(Long id) {
 		return repository.findById(id).orElseGet(null);
 	}

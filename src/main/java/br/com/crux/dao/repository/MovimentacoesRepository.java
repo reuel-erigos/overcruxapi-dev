@@ -31,5 +31,16 @@ public interface MovimentacoesRepository extends JpaRepository<Movimentacoes, Lo
 			+ "     and f.stTipoMovimentacao != 'T'                          ")
 	public Optional<List<Movimentacoes>> getAllTipoMovimentoOrigem(Long idInstituicao);
 	
+	
+	@Query(value = "select f                                                "
+			+ "       from Movimentacoes f                                  "
+			+ "         inner join Doadores doador on doador = f.doador     "
+			+ "         inner join Unidade u on u = f.unidade               "
+			+ "         inner join Instituicao inst on inst = u.instituicao "
+			+ "   where 1=1                                                 "
+			+ "     and inst.id = ?1                                        "
+			+ "     and doador.id = ?2                                      ")
+	public Optional<List<Movimentacoes>> getAllByIdDoador(Long idInstituicao, Long idDoador);
+	
 
 }
