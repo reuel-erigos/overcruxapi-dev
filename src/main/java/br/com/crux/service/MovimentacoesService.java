@@ -1,6 +1,5 @@
 package br.com.crux.service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +36,8 @@ public class MovimentacoesService {
                                                      @RequestParam(name = "programa", required = false) Long idPrograma,
                                                      @RequestParam(name = "projeto", required = false) Long idProjeto,
                                                      @RequestParam(name = "valor", required = false) String valor,
-                                                     @RequestParam(name = "dataInicio", required = false) LocalDateTime dataInicio,
-                                                     @RequestParam(name = "dataFim", required = false) LocalDateTime dataFim
+                                                     @RequestParam(name = "dataInicio", required = false) Long dataInicio,
+                                                     @RequestParam(name = "dataFim", required = false) Long dataFim
                                                      ) {
 		return getCmd.getAllFilter(idEmpresa, idPrograma, idProjeto, valor, dataInicio, dataFim);
 	}
