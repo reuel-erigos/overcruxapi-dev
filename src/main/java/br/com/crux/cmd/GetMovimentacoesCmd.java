@@ -1,6 +1,6 @@
 package br.com.crux.cmd;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -29,8 +29,8 @@ public class GetMovimentacoesCmd {
 	public List<MovimentacoesTO> getAllFilter(Long idEmpresa, Long idPrograma, Long idProjeto, String valor, final Long dataInicio, final Long dataFim) {
 		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
 
-		LocalDateTime pDataInicio = Objects.nonNull(dataInicio) ? Java8DateUtil.getLocalDateTime(new Date(dataInicio)) : null;
-		LocalDateTime pDataFim    = Objects.nonNull(dataFim) ? Java8DateUtil.getLocalDateTime(new Date(dataFim)) : null;
+		LocalDate pDataInicio = Objects.nonNull(dataInicio) ? Java8DateUtil.getLocalDateTime(new Date(dataInicio)).toLocalDate() : null;
+		LocalDate pDataFim    = Objects.nonNull(dataFim) ? Java8DateUtil.getLocalDateTime(new Date(dataFim)).toLocalDate() : null;
 		
 		Optional<List<Movimentacoes>> entitys = Optional.empty();
 
@@ -46,7 +46,7 @@ public class GetMovimentacoesCmd {
 
 			if (Objects.nonNull(dataInicio) || Objects.nonNull(dataFim)) {
 				return saldos.stream().filter(saldo -> {
-					return Java8DateUtil.between(saldo.getDataDocumento().toLocalDate(), pDataInicio.toLocalDate(), pDataFim.toLocalDate());
+					return Java8DateUtil.between(saldo.getDataDocumento().toLocalDate(), pDataInicio, pDataFim);
 				}).collect(Collectors.toList());
 			}
 
