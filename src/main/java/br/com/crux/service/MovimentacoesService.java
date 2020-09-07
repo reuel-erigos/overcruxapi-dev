@@ -1,8 +1,10 @@
 package br.com.crux.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.crux.cmd.AlterarMovimentacoesCmd;
@@ -28,6 +31,19 @@ public class MovimentacoesService {
 	@Autowired private AlterarMovimentacoesCmd alterarCmd;
 	@Autowired private ExcluirMovimentacoesCmd excluirCmd;
 
+	
+	@GetMapping(path = "/filter/origem", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<MovimentacoesTO> getAllFilter(@RequestParam(name = "empresa", required = false) Long idEmpresa,
+                                                     @RequestParam(name = "programa", required = false) Long idPrograma,
+                                                     @RequestParam(name = "projeto", required = false) Long idProjeto,
+                                                     @RequestParam(name = "valor", required = false) String valor,
+                                                     @RequestParam(name = "dataInicio", required = false) LocalDateTime dataInicio,
+                                                     @RequestParam(name = "dataFim", required = false) LocalDateTime dataFim
+                                                     ) {
+		return getCmd.getAllFilter(idEmpresa, idPrograma, idProjeto, valor, dataInicio, dataFim);
+	}
+	
+	
 	@GetMapping("/destino")
 	public List<MovimentacoesTO> getAllDestino() {
 		return getCmd.getAllDestino();

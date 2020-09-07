@@ -12,6 +12,26 @@ import br.com.crux.entity.Movimentacoes;
 @Repository
 public interface MovimentacoesRepository extends JpaRepository<Movimentacoes, Long> {
 
+	@Query(value = "select distinct f                                                           "
+			+ "       from Movimentacoes f                                                      "
+			+ "         inner join Unidade u on u = f.unidade                                   "
+			+ "         inner join Instituicao inst on inst = u.instituicao                     "
+			+ "         inner join Empresa empresa on empresa = f.empresa                       "
+			+ "         inner join RateiosMovimentacoes rateio on rateio.idMovimentacao = f.id  "
+			+ "         inner join Programa programa on programa = rateio.programa              "
+			+ "         inner join Projeto projeto on projeto = rateio.projeto                  "
+			+ "   where 1=1                                                                     "
+			+ "     and f.stTipoMovimentacao != 'T'                                             "
+			+ "     and inst.id = ?1                                                            "
+			+ "     and (?2 is null or empresa.id = ?2)                                         "
+			+ "     and (?3 is null or programa.id = ?3)                                        "
+			+ "     and (?4 is null or projeto.id = ?4)                                         "
+			+ "     and (?5 is null or f.valorMovimentacao = ?5)                                ")
+	public Optional<List<Movimentacoes>> findByFilterOrigem(Long idInstituicao, 
+			                                                Long idEmpresa, 
+			                                                Long idPrograma, 
+			                                                Long idProjeto, 
+			                                                String valor);
 	
 	@Query(value = "select f                                                "
 			+ "       from Movimentacoes f                                  "
