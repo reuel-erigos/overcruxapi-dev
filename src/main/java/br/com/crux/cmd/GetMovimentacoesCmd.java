@@ -42,7 +42,7 @@ public class GetMovimentacoesCmd {
 
 			if (Objects.nonNull(dataInicio) || Objects.nonNull(dataFim)) {
 				return saldos.stream().filter(saldo -> {
-					return Java8DateUtil.between(saldo.getDataMovimentacao().toLocalDate(), dataInicio.toLocalDate(), dataFim.toLocalDate());
+					return Java8DateUtil.between(saldo.getDataDocumento().toLocalDate(), dataInicio.toLocalDate(), dataFim.toLocalDate());
 				}).collect(Collectors.toList());
 			}
 
