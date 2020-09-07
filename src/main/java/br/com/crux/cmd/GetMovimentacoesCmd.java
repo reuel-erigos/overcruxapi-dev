@@ -46,7 +46,7 @@ public class GetMovimentacoesCmd {
 
 			if (Objects.nonNull(dataInicio) || Objects.nonNull(dataFim)) {
 				return saldos.stream().filter(saldo -> {
-					return Java8DateUtil.between(saldo.getDataDocumento().toLocalDate(), pDataInicio, pDataFim);
+					return Java8DateUtil.isVigente(saldo.getDataDocumento().toLocalDate(), pDataInicio, pDataFim);
 				}).collect(Collectors.toList());
 			}
 

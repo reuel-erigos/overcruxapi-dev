@@ -52,9 +52,9 @@ public class GetSaldosContasBancariaCmd {
 			
 			if(Objects.nonNull(dataInicio) || Objects.nonNull(dataFim)) {
 				return saldos.stream().filter( saldo -> {
-					return Java8DateUtil.between(saldo.getDataSaldo().toLocalDate(),  
-							                     dataInicio.toLocalDate(), 
-							                     dataFim.toLocalDate());
+					return Java8DateUtil.isVigente(saldo.getDataSaldo().toLocalDate(),  
+							                       dataInicio.toLocalDate(), 
+							                       dataFim.toLocalDate());
 				}).collect(Collectors.toList());			
 			}
 			
