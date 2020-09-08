@@ -1,7 +1,7 @@
 package br.com.crux.entity;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,7 +32,7 @@ public class Fatura implements Serializable {
 	private Long idMovimentacao;
 
 	@Column(name = "dt_vencimento")
-	private LocalDate dataVencimento;
+	private LocalDateTime dataVencimento;
 
 	@Column(name = "vl_fatura")
 	private Double valor;
@@ -57,11 +57,11 @@ public class Fatura implements Serializable {
 		this.id = id;
 	}
 
-	public LocalDate getDataVencimento() {
+	public LocalDateTime getDataVencimento() {
 		return dataVencimento;
 	}
 
-	public void setDataVencimento(LocalDate dataVencimento) {
+	public void setDataVencimento(LocalDateTime dataVencimento) {
 		this.dataVencimento = dataVencimento;
 	}
 
