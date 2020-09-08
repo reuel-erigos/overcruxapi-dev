@@ -1,20 +1,16 @@
 package br.com.crux.entity;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
-import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
-import br.com.crux.infra.adapter.LocalDateTimeConverter;
 import br.com.crux.infra.constantes.Constantes;
 
 /**
@@ -35,13 +31,9 @@ public class Fatura implements Serializable {
 	@Column(name = "id_movimentacao")
 	private Long idMovimentacao;
 
-	@Convert(converter = LocalDateTimeConverter.class)
 	@Column(name = "dt_vencimento")
 	private LocalDateTime dataVencimento;
 	
-	@Transient
-	private LocalDate dataVencimentoTrunc;
-
 	@Column(name = "vl_fatura")
 	private Double valor;
 
@@ -112,16 +104,5 @@ public class Fatura implements Serializable {
 	public void setCodigoBarra(String codigoBarra) {
 		this.codigoBarra = codigoBarra;
 	}
-
-	public LocalDate getDataVencimentoTrunc() {
-		dataVencimentoTrunc = getDataVencimento().toLocalDate();
-		return dataVencimentoTrunc;
-	}
-
-	public void setDataVencimentoTrunc(LocalDate dataVencimentoTrunc) {
-		this.dataVencimentoTrunc = dataVencimentoTrunc;
-	}
-	
-	
 
 }
