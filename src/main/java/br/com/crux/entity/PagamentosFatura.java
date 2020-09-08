@@ -33,9 +33,8 @@ public class PagamentosFatura implements Serializable {
 	@Column(name = "id_pagamento")
 	private Long id;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_fatura")
-	private Fatura fatura;
+	@Column(name = "id_fatura")
+	private Long idFatura;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_conta_bancaria")
@@ -87,12 +86,12 @@ public class PagamentosFatura implements Serializable {
 		this.id = id;
 	}
 
-	public Fatura getFatura() {
-		return fatura;
+	public Long getIdFatura() {
+		return idFatura;
 	}
 
-	public void setFatura(Fatura fatura) {
-		this.fatura = fatura;
+	public void setIdFatura(Long idFatura) {
+		this.idFatura = idFatura;
 	}
 
 	public ContasBancaria getContaBancaria() {

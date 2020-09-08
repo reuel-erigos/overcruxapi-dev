@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 public class PagamentosFaturaTO {
 
 	private Long id;
-	private FaturaTO fatura;
+	private Long idFatura;
 	private ContasBancariaTO contaBancaria;
 	private SaldosContasBancariaTO saldoContaBancaria;
 	private Double valorPagamento;
@@ -24,11 +24,12 @@ public class PagamentosFaturaTO {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public FaturaTO getFatura() {
-		return fatura;
+
+	public Long getIdFatura() {
+		return idFatura;
 	}
-	public void setFatura(FaturaTO fatura) {
-		this.fatura = fatura;
+	public void setIdFatura(Long idFatura) {
+		this.idFatura = idFatura;
 	}
 	public ContasBancariaTO getContaBancaria() {
 		return contaBancaria;

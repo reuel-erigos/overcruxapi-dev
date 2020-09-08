@@ -26,20 +26,21 @@ public class GetMovimentacoesCmd {
 	@Autowired private MovimentacoesTOBuilder toBuilder;
 	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 
-	public List<MovimentacoesTO> getAllFilter(Long idEmpresa, Long idPrograma, Long idProjeto, String valor, final Long dataInicio, final Long dataFim) {
+	public List<MovimentacoesTO> getAllFilter(Long idEmpresa, Long idPrograma, Long idProjeto, String valor, final Long dataInicio, final Long dataFim, final Long dataVencimento) {
 		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
 
-		LocalDate pDataInicio = Objects.nonNull(dataInicio) ? Java8DateUtil.getLocalDateTime(new Date(dataInicio)).toLocalDate() : null;
-		LocalDate pDataFim    = Objects.nonNull(dataFim) ? Java8DateUtil.getLocalDateTime(new Date(dataFim)).toLocalDate() : null;
+		LocalDate pDataInicio     = Objects.nonNull(dataInicio) ? Java8DateUtil.getLocalDateTime(new Date(dataInicio)).toLocalDate() : null;
+		LocalDate pDataFim        = Objects.nonNull(dataFim) ? Java8DateUtil.getLocalDateTime(new Date(dataFim)).toLocalDate() : null;
+		LocalDate pDataVencimento = Objects.nonNull(dataVencimento) ? Java8DateUtil.getLocalDateTime(new Date(dataVencimento)).toLocalDate() : null;
 		
 		Optional<List<Movimentacoes>> entitys = Optional.empty();
 
-		idEmpresa  = Objects.isNull(idPrograma) ? null : idEmpresa;
-		idPrograma = Objects.isNull(idPrograma) ? null : idPrograma;
-		idProjeto  = Objects.isNull(idProjeto) ? null : idProjeto;
-		valor      = StringUtils.isEmpty(valor.trim()) ? null : valor;
+		idEmpresa      = Objects.isNull(idPrograma) ? null : idEmpresa;
+		idPrograma     = Objects.isNull(idPrograma) ? null : idPrograma;
+		idProjeto      = Objects.isNull(idProjeto) ? null : idProjeto;
+		Double valorIn = StringUtils.isEmpty(valor.trim()) ? null : Double.valueOf(valor);
 
-		entitys = repository.findByFilterOrigem(idInstituicao, idEmpresa, idPrograma, idProjeto, valor);
+		entitys = repository.findByFilterOrigem(idInstituicao, idEmpresa, idPrograma, idProjeto, valorIn, pDataVencimento);
 
 		if (entitys.isPresent()) {
 			List<MovimentacoesTO> saldos = toBuilder.buildAll(entitys.get());
@@ -83,4 +84,5 @@ public class GetMovimentacoesCmd {
 		return repository.findById(id).orElseGet(null);
 	}
 
+	
 }

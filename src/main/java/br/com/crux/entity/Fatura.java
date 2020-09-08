@@ -1,16 +1,13 @@
 package br.com.crux.entity;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -31,12 +28,11 @@ public class Fatura implements Serializable {
 	@Column(name = "id_fatura")
 	private Long id;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_movimentacao")
-	private Movimentacoes movimentacao;
+	@Column(name = "id_movimentacao")
+	private Long idMovimentacao;
 
 	@Column(name = "dt_vencimento")
-	private LocalDateTime dataVencimento;
+	private LocalDate dataVencimento;
 
 	@Column(name = "vl_fatura")
 	private Double valor;
@@ -61,11 +57,11 @@ public class Fatura implements Serializable {
 		this.id = id;
 	}
 
-	public LocalDateTime getDataVencimento() {
+	public LocalDate getDataVencimento() {
 		return dataVencimento;
 	}
 
-	public void setDataVencimento(LocalDateTime dataVencimento) {
+	public void setDataVencimento(LocalDate dataVencimento) {
 		this.dataVencimento = dataVencimento;
 	}
 
@@ -93,12 +89,12 @@ public class Fatura implements Serializable {
 		this.usuarioAlteracao = usuarioAlteracao;
 	}
 
-	public Movimentacoes getMovimentacao() {
-		return movimentacao;
+	public Long getIdMovimentacao() {
+		return idMovimentacao;
 	}
 
-	public void setMovimentacao(Movimentacoes movimentacao) {
-		this.movimentacao = movimentacao;
+	public void setIdMovimentacao(Long idMovimentacao) {
+		this.idMovimentacao = idMovimentacao;
 	}
 
 	public String getCodigoBarra() {

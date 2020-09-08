@@ -36,7 +36,7 @@ public class GetFaturaCmd {
 	}
 
 	public List<FaturaTO> getFaturaTOByMovimentacao(Movimentacoes movimentacoes) {
-		Optional<List<Fatura>> lista = repository.findByMovimentacao(movimentacoes);
+		Optional<List<Fatura>> lista = repository.findByIdMovimentacao(movimentacoes.getId());
 
 		if (lista.isPresent()) {
 			return toBuilder.buildAll(lista.get());
@@ -47,7 +47,7 @@ public class GetFaturaCmd {
 	}
 
 	public List<Fatura> getPorMovimentacoes(Movimentacoes p) {
-		return repository.findByMovimentacao(p)
+		return repository.findByIdMovimentacao(p.getId())
 				.orElse(new ArrayList<Fatura>());
 	}
 

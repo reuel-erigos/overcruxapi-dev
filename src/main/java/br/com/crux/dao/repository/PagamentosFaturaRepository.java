@@ -14,8 +14,8 @@ import br.com.crux.entity.PagamentosFatura;
 public interface PagamentosFaturaRepository extends JpaRepository<PagamentosFatura, Long> {
 
 	@Query(value = "SELECT pf FROM PagamentosFatura pf"
-			+ " inner join Fatura f  on pf.fatura = f "
-			+ " inner join Movimentacoes m  on f.movimentacao = m "
+			+ " inner join Fatura f  on pf.idFatura = f.id "
+			+ " inner join Movimentacoes m  on f.idMovimentacao = m.id "
 			+ " where m.id = :id")
 	public Optional<List<PagamentosFatura>> findByIdMovimentacao(Long id);
 

@@ -12,7 +12,6 @@ import br.com.crux.cmd.GetContasBancariaCmd;
 import br.com.crux.cmd.GetFaturaCmd;
 import br.com.crux.cmd.GetUsuarioLogadoCmd;
 import br.com.crux.entity.ContasBancaria;
-import br.com.crux.entity.Fatura;
 import br.com.crux.entity.Movimentacoes;
 import br.com.crux.entity.PagamentosFatura;
 import br.com.crux.to.PagamentosFaturaTO;
@@ -34,8 +33,6 @@ public class PagamentosFaturaTOBuilder {
 
 		to.setContaBancaria(contasBancariaTOBuilder.buildTOCombo(entity.getContaBancaria()));
 		to.setContaReembolso(contasBancariaTOBuilder.buildTOCombo(entity.getContaReembolso()));
-		
-		to.setFatura(faturaTOBuilder.buildTO(entity.getFatura()));
 
 		return to;
 	}
@@ -50,11 +47,6 @@ public class PagamentosFaturaTOBuilder {
 		PagamentosFatura entity = new PagamentosFatura();
 
 		BeanUtils.copyProperties(to, entity);
-
-		if (Objects.nonNull(to.getFatura()) && Objects.nonNull(to.getFatura().getId())) {
-			Fatura fatura = getFaturaCmd.getById(to.getFatura().getId());
-			entity.setFatura(fatura);
-		}
 
 		if (Objects.nonNull(to.getContaBancaria()) && Objects.nonNull(to.getContaBancaria().getId())) {
 			ContasBancaria conta = getContasBancariaCmd.getById(to.getContaBancaria().getId());

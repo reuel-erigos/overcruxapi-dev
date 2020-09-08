@@ -5,10 +5,12 @@ import java.time.LocalDateTime;
 public class FaturaTO {
 
 	private Long id;
+	private Long idMovimentacao;
 	private LocalDateTime dataVencimento;
 	private Double valor;
 	private Long numeroParcela;
 	private String codigoBarra;
+	
 	
 	public Long getId() {
 		return id;
@@ -16,6 +18,14 @@ public class FaturaTO {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Long getIdMovimentacao() {
+		return idMovimentacao;
+	}
+
+	public void setIdMovimentacao(Long idMovimentacao) {
+		this.idMovimentacao = idMovimentacao;
 	}
 
 	public LocalDateTime getDataVencimento() {

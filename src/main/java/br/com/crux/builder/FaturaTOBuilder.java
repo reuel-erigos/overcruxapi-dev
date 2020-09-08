@@ -20,6 +20,7 @@ public class FaturaTOBuilder {
 	public FaturaTO buildTO(Fatura entity) {
 		FaturaTO to = new FaturaTO();
 		BeanUtils.copyProperties(entity, to);
+		to.setIdMovimentacao(entity.getIdMovimentacao());
 		return to;
 	}
 
@@ -33,9 +34,8 @@ public class FaturaTOBuilder {
 		Fatura entity = new Fatura();
 
 		BeanUtils.copyProperties(faturaTO, entity);
-		entity.setMovimentacao(movimentacoes);
-		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado()
-				.getIdUsuario());
+		entity.setIdMovimentacao(movimentacoes.getId());
+		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 
 		return entity;
 	}

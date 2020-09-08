@@ -135,4 +135,13 @@ public class Java8DateUtil {
 		
 	}
 	
+	/*
+	public static void main(String[] args) {
+		LocalDate dataReferencia = LocalDate.of(2020, 8, 04);
+		LocalDate dataInicio = null;
+		LocalDate dataFim = LocalDate.of(2020, 8, 03); //LocalDate.now();
+		
+		System.out.println(isVigente(dataReferencia, dataInicio, dataFim));
+	}
+	*/
 }
