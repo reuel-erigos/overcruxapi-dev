@@ -30,7 +30,7 @@ public interface MovimentacoesRepository extends JpaRepository<Movimentacoes, Lo
 			+ "     and (?3 is null or programa.id = ?3)                                        "
 			+ "     and (?4 is null or projeto.id = ?4)                                         "
 			+ "     and (?5 is null or m.valorMovimentacao = ?5)                                "
-			+ "     and (CAST(?6 AS date) is null or DATE_TRUNC('day', f.dataVencimento) = DATE_TRUNC('day', ?6))  ")
+			+ "     and (CAST(?6 AS date) is null or DATE_TRUNC('day', CAST(f.dataVencimento AS date)) = DATE_TRUNC('day', CAST(?6 AS date)))  ")
 	public Optional<List<Movimentacoes>> findByFilterOrigem(Long idInstituicao, 
 			                                                Long idEmpresa, 
 			                                                Long idPrograma, 
