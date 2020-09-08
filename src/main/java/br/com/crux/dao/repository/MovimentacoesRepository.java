@@ -30,7 +30,7 @@ public interface MovimentacoesRepository extends JpaRepository<Movimentacoes, Lo
 			+ "     and (?3 is null or programa.id = ?3)                                        "
 			+ "     and (?4 is null or projeto.id = ?4)                                         "
 			+ "     and (?5 is null or m.valorMovimentacao = ?5)                                "
-			+ "     and (?6 is null or f.dataVencimento.toLocalDate() = ?6)                     ")
+			+ "     and (CAST(?6 AS timestamp)) is null or f.dataVencimento.toLocalDate() = ?6) ")	
 	public Optional<List<Movimentacoes>> findByFilterOrigem(Long idInstituicao, 
 			                                                Long idEmpresa, 
 			                                                Long idPrograma, 
