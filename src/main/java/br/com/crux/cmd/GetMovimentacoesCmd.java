@@ -40,17 +40,23 @@ public class GetMovimentacoesCmd {
 		idProjeto      = Objects.isNull(idProjeto) ? null : idProjeto;
 		Double valorIn = StringUtils.isEmpty(valor.trim()) ? null : Double.valueOf(valor);
 
-		entitys = repository.findByFilterOrigem(idInstituicao, idEmpresa, idPrograma, idProjeto, valorIn, pDataVencimento);
+		entitys = repository.findByFilterOrigem(idInstituicao, idEmpresa, idPrograma, idProjeto, valorIn);
 
 		if (entitys.isPresent()) {
 			List<MovimentacoesTO> saldos = toBuilder.buildAll(entitys.get());
 
 			if (Objects.nonNull(dataInicio) || Objects.nonNull(dataFim)) {
-				return saldos.stream().filter(saldo -> {
+				saldos = saldos.stream().filter(saldo -> {
 					return Java8DateUtil.isVigente(saldo.getDataDocumento().toLocalDate(), pDataInicio, pDataFim);
 				}).collect(Collectors.toList());
 			}
 
+			if (Objects.nonNull(pDataVencimento) ) {
+				saldos = saldos.stream().filter(saldo -> {
+					return saldo.getFaturas().stream().anyMatch( fatura -> fatura.getDataVencimento().toLocalDate().equals(pDataVencimento));
+				}).collect(Collectors.toList());
+			}
+			
 			return saldos;
 		}
 
