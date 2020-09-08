@@ -29,13 +29,11 @@ public interface MovimentacoesRepository extends JpaRepository<Movimentacoes, Lo
 			+ "     and (?3 is null or programa.id = ?3)                                        "
 			+ "     and (?4 is null or projeto.id = ?4)                                         "
 			+ "     and (?5 is null or m.valorMovimentacao = ?5)                                ")
-			//+ "     and (coalesce(?6, null) is null or trunc_date('day',cast(f.dataVencimento as java.time.LocalDate)) = ?6) ")		
 	public Optional<List<Movimentacoes>> findByFilterOrigem(Long idInstituicao 
 			                                                ,Long idEmpresa
 			                                                ,Long idPrograma
 			                                                ,Long idProjeto 
 			                                                ,Double valor
-			                                               // ,LocalDate dataVencimento
 			                                                );
 	
 	@Query(value = "select f                                                "

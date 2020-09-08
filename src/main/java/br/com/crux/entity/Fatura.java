@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,6 +14,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import br.com.crux.infra.adapter.LocalDateTimeConverter;
 import br.com.crux.infra.constantes.Constantes;
 
 /**
@@ -33,6 +35,7 @@ public class Fatura implements Serializable {
 	@Column(name = "id_movimentacao")
 	private Long idMovimentacao;
 
+	@Convert(converter = LocalDateTimeConverter.class)
 	@Column(name = "dt_vencimento")
 	private LocalDateTime dataVencimento;
 	
