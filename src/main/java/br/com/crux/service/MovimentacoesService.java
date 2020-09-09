@@ -40,9 +40,10 @@ public class MovimentacoesService {
                                               @RequestParam(name = "dataFimDoc", required = false) Long dataFimDoc,
                                               @RequestParam(name = "dataVencimento", required = false) Long dataVencimento,
                                               @RequestParam(name = "dataInicioMov", required = false) Long dataInicioMov,
-                                              @RequestParam(name = "dataFimMov", required = false) Long dataFimMov                                              
+                                              @RequestParam(name = "dataFimMov", required = false) Long dataFimMov,
+                                              @RequestParam(name = "numeroDocumento", required = false) String numeroDocumento
                                                      ) {
-		return getCmd.getAllFilter(idEmpresa, idPrograma, idProjeto, valor, dataInicioDoc, dataFimDoc, dataVencimento, dataInicioMov, dataFimMov);
+		return getCmd.getAllFilter(idEmpresa, idPrograma, idProjeto, valor, dataInicioDoc, dataFimDoc, dataVencimento, dataInicioMov, dataFimMov, numeroDocumento);
 	}
 	
 	

@@ -28,24 +28,24 @@ public class GetMovimentacoesCmd {
 
 	public List<MovimentacoesTO> getAllFilter(Long idEmpresa, Long idPrograma, Long idProjeto, String valor, 
 			                                  Long dataInicioDoc, Long dataFimDoc, Long dataVencimento,
-			                                  Long dataInicioMov, Long dataFimMov) {
+			                                  Long dataInicioMov, Long dataFimMov, String numeroDocumento) {
 		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
 
 		LocalDate pDataInicioDoc  = Objects.nonNull(dataInicioDoc) ? Java8DateUtil.getLocalDateTime(new Date(dataInicioDoc)).toLocalDate() : null;
 		LocalDate pDataFimDoc     = Objects.nonNull(dataFimDoc) ? Java8DateUtil.getLocalDateTime(new Date(dataFimDoc)).toLocalDate() : null;
 		LocalDate pDataVencimento = Objects.nonNull(dataVencimento) ? Java8DateUtil.getLocalDateTime(new Date(dataVencimento)).toLocalDate() : null;
-
 		LocalDate pDataInicioMov  = Objects.nonNull(dataInicioMov) ? Java8DateUtil.getLocalDateTime(new Date(dataInicioMov)).toLocalDate() : null;
 		LocalDate pDataFimMov     = Objects.nonNull(dataFimMov) ? Java8DateUtil.getLocalDateTime(new Date(dataFimMov)).toLocalDate() : null;
 
 		Optional<List<Movimentacoes>> entitys = Optional.empty();
 
-		idEmpresa      = Objects.isNull(idEmpresa) ? null : idEmpresa;
-		idPrograma     = Objects.isNull(idPrograma) ? null : idPrograma;
-		idProjeto      = Objects.isNull(idProjeto) ? null : idProjeto;
-		Double valorIn = StringUtils.isEmpty(valor.trim()) ? null : Double.valueOf(valor);
+		idEmpresa       = Objects.isNull(idEmpresa) ? null : idEmpresa;
+		idPrograma      = Objects.isNull(idPrograma) ? null : idPrograma;
+		idProjeto       = Objects.isNull(idProjeto) ? null : idProjeto;
+		numeroDocumento = StringUtils.isEmpty(numeroDocumento.trim()) ? null : numeroDocumento;
+		Double valorIn  = StringUtils.isEmpty(valor.trim()) ? null : Double.valueOf(valor);
 
-		entitys = repository.findByFilterOrigem(idInstituicao, idEmpresa, idPrograma, idProjeto, valorIn);
+		entitys = repository.findByFilterOrigem(idInstituicao, idEmpresa, idPrograma, idProjeto, valorIn, numeroDocumento);
 
 		if (entitys.isPresent()) {
 			List<MovimentacoesTO> saldos = toBuilder.buildAll(entitys.get());
