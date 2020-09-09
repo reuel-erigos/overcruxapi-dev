@@ -50,13 +50,13 @@ public class GetMovimentacoesCmd {
 		if (entitys.isPresent()) {
 			List<MovimentacoesTO> saldos = toBuilder.buildAll(entitys.get());
 
-			if (Objects.nonNull(dataInicioDoc) || Objects.nonNull(dataFimDoc)) {
+			if (Objects.nonNull(pDataInicioDoc) || Objects.nonNull(pDataFimDoc)) {
 				saldos = saldos.stream().filter(saldo -> {
 					return Java8DateUtil.isVigente(saldo.getDataDocumento().toLocalDate(), pDataInicioDoc, pDataFimDoc);
 				}).collect(Collectors.toList());
 			}
 			
-			if (Objects.nonNull(pDataInicioMov) || Objects.nonNull(dataFimMov)) {
+			if (Objects.nonNull(pDataInicioMov) || Objects.nonNull(pDataFimMov)) {
 				saldos = saldos.stream().filter(saldo -> {
 					return Java8DateUtil.isVigente(saldo.getDataMovimentacao().toLocalDate(), pDataInicioMov, pDataFimMov);
 				}).collect(Collectors.toList());
