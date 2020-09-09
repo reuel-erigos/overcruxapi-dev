@@ -1,6 +1,7 @@
 package br.com.crux.to;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class PagamentosFaturaTO {
 
@@ -15,9 +16,10 @@ public class PagamentosFaturaTO {
 	private Double valorMulta;
 	private Double valorJuros;
 	private Boolean statusRegistroSaldo;
-	private ContasBancariaTO contaReembolso;
-	private LocalDateTime dataReembolso;
 	private String descricao;
+	
+	private List<RateiosPagamentosTO> rateioPagamento;
+	private List<ReembolsosPagamentosTO> reembolsos;
 	
 	public Long getId() {
 		return id;
@@ -86,23 +88,22 @@ public class PagamentosFaturaTO {
 	public void setStatusRegistroSaldo(Boolean statusRegistroSaldo) {
 		this.statusRegistroSaldo = statusRegistroSaldo;
 	}
-	public ContasBancariaTO getContaReembolso() {
-		return contaReembolso;
-	}
-	public void setContaReembolso(ContasBancariaTO contaReembols) {
-		this.contaReembolso = contaReembols;
-	}
-	public LocalDateTime getDataReembolso() {
-		return dataReembolso;
-	}
-	public void setDataReembolso(LocalDateTime dataReembolso) {
-		this.dataReembolso = dataReembolso;
-	}
 	public String getDescricao() {
 		return descricao;
 	}
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	
+	public List<RateiosPagamentosTO> getRateioPagamento() {
+		return rateioPagamento;
+	}
+	public void setRateioPagamento(List<RateiosPagamentosTO> rateioPagamento) {
+		this.rateioPagamento = rateioPagamento;
+	}
+	public List<ReembolsosPagamentosTO> getReembolsos() {
+		return reembolsos;
+	}
+	public void setReembolsos(List<ReembolsosPagamentosTO> reembolsos) {
+		this.reembolsos = reembolsos;
+	}
 }

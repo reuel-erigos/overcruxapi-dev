@@ -67,15 +67,10 @@ public class PagamentosFatura implements Serializable {
 	@Column(name = "st_registro_saldo")
 	private Boolean statusRegistroSaldo;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_conta_bancaria_reembolso")
-	private ContasBancaria contaReembolso;
-
-	@Column(name = "dt_reembolso")
-	private LocalDateTime dataReembolso;
-	
 	@Column(name = "ds_pagamento")
 	private String descricao;
+	
+	
 	
 	
 	public PagamentosFatura() {
@@ -167,22 +162,6 @@ public class PagamentosFatura implements Serializable {
 
 	public void setStatusRegistroSaldo(Boolean statusRegistroSaldo) {
 		this.statusRegistroSaldo = statusRegistroSaldo;
-	}
-
-	public ContasBancaria getContaReembolso() {
-		return contaReembolso;
-	}
-
-	public void setContaReembolso(ContasBancaria contaReembols) {
-		this.contaReembolso = contaReembols;
-	}
-
-	public LocalDateTime getDataReembolso() {
-		return dataReembolso;
-	}
-
-	public void setDataReembolso(LocalDateTime dataReembolso) {
-		this.dataReembolso = dataReembolso;
 	}
 
 	public String getDescricao() {
