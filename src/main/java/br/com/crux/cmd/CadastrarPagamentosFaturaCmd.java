@@ -27,9 +27,11 @@ public class CadastrarPagamentosFaturaCmd {
 	}
 
 	public List<PagamentosFatura> cadastrarLista(Movimentacoes movimentacoes, List<PagamentosFaturaTO> lista) {
+		/*
 		if(Objects.nonNull(movimentacoes.getContaBancaria())) {
 			validarContaReembolsoRule.verificar(movimentacoes.getContaBancaria().getId(), lista);
 		}
+		*/
 		
 		return lista.stream()
 				.map(item -> cadastrar(item, movimentacoes))

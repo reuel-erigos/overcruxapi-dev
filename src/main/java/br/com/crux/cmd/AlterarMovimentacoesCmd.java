@@ -35,9 +35,12 @@ public class AlterarMovimentacoesCmd {
 		Movimentacoes movimentacoes = repository.save(entity);
 
 		if(!to.getStTipoMovimentacao().toUpperCase().equals("T")) {
+			
+			/*
 			if(Objects.nonNull(to.getContaBancaria())) {
 				validarContaReembolsoRule.verificar(to.getContaBancaria().getId(), to.getPagamentosFatura());
 			}
+			*/
 			
 			alterarListaItensMovimentacoesCmd.alterarAll(to.getItensMovimentacoes(), movimentacoes);
 			alterarListaRateiosMovimentacoesCmd.alterarAll(to.getRateios(), movimentacoes);
