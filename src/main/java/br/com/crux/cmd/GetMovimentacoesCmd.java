@@ -42,8 +42,8 @@ public class GetMovimentacoesCmd {
 		idEmpresa       = Objects.isNull(idEmpresa) ? null : idEmpresa;
 		idPrograma      = Objects.isNull(idPrograma) ? null : idPrograma;
 		idProjeto       = Objects.isNull(idProjeto) ? null : idProjeto;
-		numeroDocumento = StringUtils.isEmpty(numeroDocumento.trim()) ? null : numeroDocumento;
-		Double valorIn  = StringUtils.isEmpty(valor.trim()) ? null : Double.valueOf(valor);
+		numeroDocumento = StringUtils.isEmpty(numeroDocumento) ? null : numeroDocumento;
+		Double valorIn  = StringUtils.isEmpty(valor) ? null : Double.valueOf(valor);
 
 		entitys = repository.findByFilterOrigem(idInstituicao, idEmpresa, idPrograma, idProjeto, valorIn, numeroDocumento);
 

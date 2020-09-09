@@ -74,6 +74,9 @@ public class PagamentosFatura implements Serializable {
 	@Column(name = "dt_reembolso")
 	private LocalDateTime dataReembolso;
 	
+	@Column(name = "ds_pagamento")
+	private String descricao;
+	
 	
 	public PagamentosFatura() {
 	}
@@ -180,6 +183,14 @@ public class PagamentosFatura implements Serializable {
 
 	public void setDataReembolso(LocalDateTime dataReembolso) {
 		this.dataReembolso = dataReembolso;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 	

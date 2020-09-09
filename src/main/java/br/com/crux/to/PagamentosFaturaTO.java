@@ -17,6 +17,7 @@ public class PagamentosFaturaTO {
 	private Boolean statusRegistroSaldo;
 	private ContasBancariaTO contaReembolso;
 	private LocalDateTime dataReembolso;
+	private String descricao;
 	
 	public Long getId() {
 		return id;
@@ -96,6 +97,12 @@ public class PagamentosFaturaTO {
 	}
 	public void setDataReembolso(LocalDateTime dataReembolso) {
 		this.dataReembolso = dataReembolso;
+	}
+	public String getDescricao() {
+		return descricao;
+	}
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 	
 }

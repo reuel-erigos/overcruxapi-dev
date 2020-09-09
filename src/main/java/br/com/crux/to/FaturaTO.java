@@ -2,11 +2,18 @@ package br.com.crux.to;
 
 import java.time.LocalDateTime;
 
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import br.com.crux.infra.adapter.LocalDateTimeAdapter;
+
 public class FaturaTO {
 
 	private Long id;
 	private Long idMovimentacao;
+	
+	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class) 
 	private LocalDateTime dataVencimento;
+	
 	private Double valor;
 	private Long numeroParcela;
 	private String codigoBarra;
