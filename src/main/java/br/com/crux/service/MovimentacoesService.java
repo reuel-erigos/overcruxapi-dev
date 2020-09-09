@@ -33,14 +33,16 @@ public class MovimentacoesService {
 	
 	@GetMapping(path = "/filter/origem", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<MovimentacoesTO> getAllFilter(@RequestParam(name = "empresa", required = false) Long idEmpresa,
-                                                     @RequestParam(name = "programa", required = false) Long idPrograma,
-                                                     @RequestParam(name = "projeto", required = false) Long idProjeto,
-                                                     @RequestParam(name = "valor", required = false) String valor,
-                                                     @RequestParam(name = "dataInicio", required = false) Long dataInicio,
-                                                     @RequestParam(name = "dataFim", required = false) Long dataFim,
-                                                     @RequestParam(name = "dataVencimento", required = false) Long dataVencimento
+                                              @RequestParam(name = "programa", required = false) Long idPrograma,
+                                              @RequestParam(name = "projeto", required = false) Long idProjeto,
+                                              @RequestParam(name = "valor", required = false) String valor,
+                                              @RequestParam(name = "dataInicioDoc", required = false) Long dataInicioDoc,
+                                              @RequestParam(name = "dataFimDoc", required = false) Long dataFimDoc,
+                                              @RequestParam(name = "dataVencimento", required = false) Long dataVencimento,
+                                              @RequestParam(name = "dataInicioMov", required = false) Long dataInicioMov,
+                                              @RequestParam(name = "dataFimMov", required = false) Long dataFimMov                                              
                                                      ) {
-		return getCmd.getAllFilter(idEmpresa, idPrograma, idProjeto, valor, dataInicio, dataFim, dataVencimento);
+		return getCmd.getAllFilter(idEmpresa, idPrograma, idProjeto, valor, dataInicioDoc, dataFimDoc, dataVencimento, dataInicioMov, dataFimMov);
 	}
 	
 	

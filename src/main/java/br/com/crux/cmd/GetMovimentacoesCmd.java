@@ -26,13 +26,18 @@ public class GetMovimentacoesCmd {
 	@Autowired private MovimentacoesTOBuilder toBuilder;
 	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 
-	public List<MovimentacoesTO> getAllFilter(Long idEmpresa, Long idPrograma, Long idProjeto, String valor, final Long dataInicio, final Long dataFim, final Long dataVencimento) {
+	public List<MovimentacoesTO> getAllFilter(Long idEmpresa, Long idPrograma, Long idProjeto, String valor, 
+			                                  Long dataInicioDoc, Long dataFimDoc, Long dataVencimento,
+			                                  Long dataInicioMov, Long dataFimMov) {
 		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
 
-		LocalDate pDataInicio     = Objects.nonNull(dataInicio) ? Java8DateUtil.getLocalDateTime(new Date(dataInicio)).toLocalDate() : null;
-		LocalDate pDataFim        = Objects.nonNull(dataFim) ? Java8DateUtil.getLocalDateTime(new Date(dataFim)).toLocalDate() : null;
+		LocalDate pDataInicioDoc  = Objects.nonNull(dataInicioDoc) ? Java8DateUtil.getLocalDateTime(new Date(dataInicioDoc)).toLocalDate() : null;
+		LocalDate pDataFimDoc     = Objects.nonNull(dataFimDoc) ? Java8DateUtil.getLocalDateTime(new Date(dataFimDoc)).toLocalDate() : null;
 		LocalDate pDataVencimento = Objects.nonNull(dataVencimento) ? Java8DateUtil.getLocalDateTime(new Date(dataVencimento)).toLocalDate() : null;
-		
+
+		LocalDate pDataInicioMov  = Objects.nonNull(dataInicioMov) ? Java8DateUtil.getLocalDateTime(new Date(dataInicioMov)).toLocalDate() : null;
+		LocalDate pDataFimMov     = Objects.nonNull(dataFimMov) ? Java8DateUtil.getLocalDateTime(new Date(dataFimMov)).toLocalDate() : null;
+
 		Optional<List<Movimentacoes>> entitys = Optional.empty();
 
 		idEmpresa      = Objects.isNull(idEmpresa) ? null : idEmpresa;
@@ -45,9 +50,15 @@ public class GetMovimentacoesCmd {
 		if (entitys.isPresent()) {
 			List<MovimentacoesTO> saldos = toBuilder.buildAll(entitys.get());
 
-			if (Objects.nonNull(dataInicio) || Objects.nonNull(dataFim)) {
+			if (Objects.nonNull(dataInicioDoc) || Objects.nonNull(dataFimDoc)) {
 				saldos = saldos.stream().filter(saldo -> {
-					return Java8DateUtil.isVigente(saldo.getDataDocumento().toLocalDate(), pDataInicio, pDataFim);
+					return Java8DateUtil.isVigente(saldo.getDataDocumento().toLocalDate(), pDataInicioDoc, pDataFimDoc);
+				}).collect(Collectors.toList());
+			}
+			
+			if (Objects.nonNull(pDataInicioMov) || Objects.nonNull(dataFimMov)) {
+				saldos = saldos.stream().filter(saldo -> {
+					return Java8DateUtil.isVigente(saldo.getDataMovimentacao().toLocalDate(), pDataInicioMov, pDataFimMov);
 				}).collect(Collectors.toList());
 			}
 
