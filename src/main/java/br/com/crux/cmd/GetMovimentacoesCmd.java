@@ -35,7 +35,7 @@ public class GetMovimentacoesCmd {
 		
 		Optional<List<Movimentacoes>> entitys = Optional.empty();
 
-		idEmpresa      = Objects.isNull(idPrograma) ? null : idEmpresa;
+		idEmpresa      = Objects.isNull(idEmpresa) ? null : idEmpresa;
 		idPrograma     = Objects.isNull(idPrograma) ? null : idPrograma;
 		idProjeto      = Objects.isNull(idProjeto) ? null : idProjeto;
 		Double valorIn = StringUtils.isEmpty(valor.trim()) ? null : Double.valueOf(valor);
