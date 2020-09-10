@@ -7,26 +7,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.builder.PagamentosFaturaTOBuilder;
+import br.com.crux.dao.base.BaseDao;
 import br.com.crux.dao.repository.PagamentosFaturaRepository;
 import br.com.crux.entity.Movimentacoes;
 import br.com.crux.entity.PagamentosFatura;
 import br.com.crux.to.PagamentosFaturaTO;
 
 @Component
-public class CadastrarPagamentosFaturaCmd {
+public class CadastrarPagamentosFaturaCmd extends BaseDao {
 
 	@Autowired private PagamentosFaturaRepository repository;
 	@Autowired private PagamentosFaturaTOBuilder tOBuilder;
-	@Autowired private AlterarListaReembolsoPagamentosCmd alterarListaReembolsoPagamentosCmd;
-	@Autowired private AlterarListaRateiosPagamentosCmd alterarListaRateiosPagamentosCmd;
 
 	public PagamentosFatura cadastrar(PagamentosFaturaTO pagamentosFaturaTO, Movimentacoes movimentacoes) {
 		PagamentosFatura entity = tOBuilder.build(movimentacoes, pagamentosFaturaTO);
 		PagamentosFatura entitySalva = repository.save(entity);
-		
-		alterarListaReembolsoPagamentosCmd.alterarAll(pagamentosFaturaTO.getReembolsos(), entitySalva);
-		alterarListaRateiosPagamentosCmd.alterarAll(pagamentosFaturaTO.getRateioPagamento(), entitySalva);
-		
+		em.flush();
 		return entitySalva;
 	}
 

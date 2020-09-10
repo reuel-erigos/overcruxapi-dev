@@ -13,9 +13,9 @@ import br.com.crux.entity.ReembolsosPagamentos;
 @Repository
 public interface ReembolsosPagamentosRepository extends JpaRepository<ReembolsosPagamentos, Long> {
 
-	@Query(value = "SELECT rp FROM ReembolsosPagamentos rp"
+	@Query(value = "SELECT rp FROM ReembolsosPagamentos rp                    "
 			+ " inner join PagamentosFatura p  on p.id = rp.idPagamentoFatura "
-			+ " where p.id = :id")
+			+ " where p.id = ?1                                               ")
 	public Optional<List<ReembolsosPagamentos>> findByIdPagamentoFatura(Long id);
 
 	

@@ -35,8 +35,8 @@ public class AlterarMovimentacoesCmd {
 			alterarListaItensMovimentacoesCmd.alterarAll(to.getItensMovimentacoes(), movimentacoes);
 			alterarListaRateiosMovimentacoesCmd.alterarAll(to.getRateios(), movimentacoes);
 			alterarListaRateiosMovimentacoesUnidadesCmd.alterarAll(to.getRateiosUnidades(), movimentacoes);
-			alterarListaPagamentosFaturaCmd.alterarAll(to.getPagamentosFatura(), movimentacoes);
 			alterarListaFaturasCmd.alterarAll(to.getFaturas(), movimentacoes);
+			alterarListaPagamentosFaturaCmd.alterarAll(to.getPagamentosFatura(), movimentacoes);
 		}
 
 		Optional<Movimentacoes> entitySalva = repository.findById(movimentacoes.getId());

@@ -18,6 +18,9 @@ public class AlterarListaPagamentosFaturaCmd extends AbstractAlterarListaCmd<Pag
 	@Autowired private GetPagamentosFaturaCmd getCmd;
 	@Autowired private CadastrarPagamentosFaturaCmd cadastrarCmd;
 	@Autowired private PagamentosFaturaRepository repository;
+	@Autowired private AlterarListaReembolsoPagamentosCmd alterarListaReembolsoPagamentosCmd;
+	@Autowired private AlterarListaRateiosPagamentosCmd alterarListaRateiosPagamentosCmd;
+
 	
 
 	@Override
@@ -43,7 +46,9 @@ public class AlterarListaPagamentosFaturaCmd extends AbstractAlterarListaCmd<Pag
 
 	@Override
 	protected void cadastrar(PagamentosFaturaTO to, Movimentacoes p) {
-		cadastrarCmd.cadastrar(to, p);
+		PagamentosFatura entitySalva = cadastrarCmd.cadastrar(to, p);
+		alterarListaReembolsoPagamentosCmd.alterarAll(to.getReembolsos(), entitySalva);
+		alterarListaRateiosPagamentosCmd.alterarAll(to.getRateioPagamento(), entitySalva);
 	}
 
 	@Override

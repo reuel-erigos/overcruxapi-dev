@@ -58,13 +58,17 @@ public class MovimentacoesTOBuilder {
 		to.setUnidade(unidadeTOBuilder.buildTOCombo(m.getUnidade()));
 		to.setDepartamento(departamentoTOBuilder.buildTOCombo(m.getDepartamento()));
 		
-		to.setItensMovimentacoes(getItensMovimentacoesCmd.getItensMovimentacoesTOByMovimentacao(m));
-		to.setFaturas(getFaturaCmd.getFaturaTOByMovimentacao(m));
-		to.setPagamentosFatura(getPagamentosFaturaCmd.getPagamentoFaturaTOByMovimentacao(m));
+		
+		if(!to.getStTipoMovimentacao().toUpperCase().equals("T")) {
+			to.setItensMovimentacoes(getItensMovimentacoesCmd.getItensMovimentacoesTOByMovimentacao(m));
+			to.setFaturas(getFaturaCmd.getFaturaTOByMovimentacao(m));
+			to.setPagamentosFatura(getPagamentosFaturaCmd.getPagamentoFaturaTOByMovimentacao(m));
+			to.setRateios(rateiosMovimentacoesTOBuilder.buildAllTO(getRateiosMovimentacoesCmd.getPorMovimentacoes(m)));
+			to.setRateiosUnidades(rateiosMovimentacoesUnidadesTOBuilder.buildAllTO(getRateiosMovimentacoesUnidadesCmd.getPorMovimentacoes(m)));
+		}
+		
 		to.setContaBancaria(contasBancariaTOBuilder.buildTO(m.getContaBancaria()));
 		to.setContaBancariaDestino(contasBancariaTOBuilder.buildTO(m.getContaBancariaDestino()));
-		to.setRateios(rateiosMovimentacoesTOBuilder.buildAllTO(getRateiosMovimentacoesCmd.getPorMovimentacoes(m)));
-		to.setRateiosUnidades(rateiosMovimentacoesUnidadesTOBuilder.buildAllTO(getRateiosMovimentacoesUnidadesCmd.getPorMovimentacoes(m)));
 		to.setDoador(doadoresTOBuilder.buildTO(m.getDoador()));
 
 		return to;
