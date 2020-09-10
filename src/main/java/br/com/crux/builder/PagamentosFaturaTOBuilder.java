@@ -9,12 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.cmd.GetContasBancariaCmd;
+import br.com.crux.cmd.GetRateiosPagamentosCmd;
 import br.com.crux.cmd.GetReembolsosPagamentosCmd;
 import br.com.crux.cmd.GetUsuarioLogadoCmd;
 import br.com.crux.entity.ContasBancaria;
 import br.com.crux.entity.Movimentacoes;
 import br.com.crux.entity.PagamentosFatura;
 import br.com.crux.to.PagamentosFaturaTO;
+import br.com.crux.to.RateiosPagamentosTO;
 import br.com.crux.to.ReembolsosPagamentosTO;
 
 @Component
@@ -24,7 +26,7 @@ public class PagamentosFaturaTOBuilder {
 	@Autowired private GetContasBancariaCmd getContasBancariaCmd;
 	@Autowired private ContasBancariaTOBuilder contasBancariaTOBuilder;
 	@Autowired private GetReembolsosPagamentosCmd getReembolsosPagamentosCmd;
-
+	@Autowired private GetRateiosPagamentosCmd getRateiosPagamentosCmd;
 	
 	public PagamentosFaturaTO buildTO(PagamentosFatura entity) {
 		PagamentosFaturaTO to = new PagamentosFaturaTO();
@@ -35,6 +37,9 @@ public class PagamentosFaturaTOBuilder {
 		
 		List<ReembolsosPagamentosTO> reembolsosTO = getReembolsosPagamentosCmd.getReembolsoPagamentoTOByIdPagamentoFatura(entity.getId());
 		to.setReembolsos(reembolsosTO);
+		
+		List<RateiosPagamentosTO> rateiosTO = getRateiosPagamentosCmd.getTOByIdPagamentoFatura(entity.getId());
+		to.setRateioPagamento(rateiosTO);
 
 		return to;
 	}
