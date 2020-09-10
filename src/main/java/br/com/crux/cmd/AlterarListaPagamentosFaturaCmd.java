@@ -47,12 +47,11 @@ public class AlterarListaPagamentosFaturaCmd extends AbstractAlterarListaCmd<Pag
 	@Override
 	protected void cadastrar(PagamentosFaturaTO to, Movimentacoes p) {
 		PagamentosFatura entitySalva = cadastrarCmd.cadastrar(to, p);
-		em.flush();
+		to.getReembolsos().forEach(r -> r.setIdPagamentoFatura(entitySalva.getId()));
+		to.getRateioPagamento().forEach(r -> r.setIdPagamentoFatura(entitySalva.getId()));
 		
 		alterarListaReembolsoPagamentosCmd.alterarAll(to.getReembolsos(), entitySalva);
-		em.flush();
 		alterarListaRateiosPagamentosCmd.alterarAll(to.getRateioPagamento(), entitySalva);
-		em.flush();
 	}
 
 	@Override

@@ -22,7 +22,6 @@ public class CadastrarPagamentosFaturaCmd extends BaseDao {
 	public PagamentosFatura cadastrar(PagamentosFaturaTO pagamentosFaturaTO, Movimentacoes movimentacoes) {
 		PagamentosFatura entity = tOBuilder.build(movimentacoes, pagamentosFaturaTO);
 		PagamentosFatura entitySalva = repository.save(entity);
-		em.flush();
 		return entitySalva;
 	}
 
