@@ -22,7 +22,7 @@ public class GetContasCentrosCustoCmd {
 	@Autowired private ContasCentrosCustoTOBuilder contasCentrosCustoTOBuilder;
 
 	public List<ContasCentrosCustoTO> getTOPorPrograma(Programa param) {
-		Optional<List<ContasCentrosCusto>> lista = contasCentrosCustoRepository.findByPrograma(param);
+		Optional<List<ContasCentrosCusto>> lista = contasCentrosCustoRepository.findByIdPrograma(param.getId());
 
 		if (lista.isPresent()) {
 			return contasCentrosCustoTOBuilder.buildAll(lista.get());
@@ -33,7 +33,7 @@ public class GetContasCentrosCustoCmd {
 	}
 
 	public List<ContasCentrosCustoTO> getTOPorProjeto(Projeto p) {
-		Optional<List<ContasCentrosCusto>> lista = contasCentrosCustoRepository.findByProjeto(p);
+		Optional<List<ContasCentrosCusto>> lista = contasCentrosCustoRepository.findByIdProjeto(p.getId());
 
 		if (lista.isPresent()) {
 			return contasCentrosCustoTOBuilder.buildAll(lista.get());

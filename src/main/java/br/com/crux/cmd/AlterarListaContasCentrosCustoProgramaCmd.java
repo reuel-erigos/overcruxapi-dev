@@ -31,7 +31,7 @@ public class AlterarListaContasCentrosCustoProgramaCmd extends AbstractAlterarLi
 
 	@Override
 	protected List<ContasCentrosCusto> getListaBanco(Programa pai) {
-		return repository.findByPrograma(pai)
+		return repository.findByIdPrograma(pai.getId())
 				.orElse(new ArrayList<ContasCentrosCusto>());
 	}
 

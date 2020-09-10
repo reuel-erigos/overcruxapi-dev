@@ -31,7 +31,7 @@ public class AlterarListaContasCentrosCustoProjetoCmd extends AbstractAlterarLis
 
 	@Override
 	protected List<ContasCentrosCusto> getListaBanco(Projeto pai) {
-		return repository.findByProjeto(pai)
+		return repository.findByIdProjeto(pai.getId())
 				.orElse(new ArrayList<ContasCentrosCusto>());
 	}
 
