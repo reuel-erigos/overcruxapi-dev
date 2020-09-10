@@ -18,4 +18,10 @@ public interface RateiosPagamentosRepository extends JpaRepository<RateiosPagame
 			+ " where f.idMovimentacao = ?1                                    ")
 	public Optional<List<RateiosPagamentos>> findByIdMovimento(Long idMovimento);
 
+	
+	@Query(value = "select distinct rp from RateiosPagamentos rp              "
+			+ " inner join PagamentosFatura p  on p.id = rp.idPagamentoFatura "
+			+ " where p.id = :id")
+	public Optional<List<RateiosPagamentos>> findByIdPagamentoFatura(Long id);
+
 }
