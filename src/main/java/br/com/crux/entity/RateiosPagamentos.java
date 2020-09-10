@@ -5,9 +5,12 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -29,8 +32,9 @@ public class RateiosPagamentos implements Serializable {
 	@Column(name = "id_pagamento") 
 	private Long idPagamentoFatura;
 	
-	@Column(name = "id_rateio_movimentacao") 
-	private Long idRateioMovimentacao;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_conta_bancaria") 
+	private ContasBancaria contaBancaria;
 	
 	@Convert(converter = SimNaoConverter.class)
 	@Column(name = "st_percentual")
@@ -63,12 +67,12 @@ public class RateiosPagamentos implements Serializable {
 		this.idPagamentoFatura = idPagamentoFatura;
 	}
 
-	public Long getIdRateioMovimentacao() {
-		return idRateioMovimentacao;
+	public ContasBancaria getContaBancaria() {
+		return contaBancaria;
 	}
 
-	public void setIdRateioMovimentacao(Long idRateioMovimentacao) {
-		this.idRateioMovimentacao = idRateioMovimentacao;
+	public void setContaBancaria(ContasBancaria contaBancaria) {
+		this.contaBancaria = contaBancaria;
 	}
 
 	public Boolean getStatusPercentual() {

@@ -53,8 +53,8 @@ public interface MovimentacoesRepository extends JpaRepository<Movimentacoes, Lo
 			+ "         inner join Unidade u on u = f.unidade               "
 			+ "         inner join Instituicao inst on inst = u.instituicao "
 			+ "   where 1=1                                                 "
-			+ "     and inst.id = ?1                                    "
-			+ "     and f.stTipoMovimentacao != 'T'                          ")
+			+ "     and inst.id = ?1                                        "
+			+ "     and f.stTipoMovimentacao != 'T'                         ")
 	public Optional<List<Movimentacoes>> getAllTipoMovimentoOrigem(Long idInstituicao);
 	
 	

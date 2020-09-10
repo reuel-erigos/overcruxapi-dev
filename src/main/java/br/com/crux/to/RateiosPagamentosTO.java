@@ -4,7 +4,7 @@ public class RateiosPagamentosTO{
 
 	private Long id;
 	private Long idPagamentoFatura;
-	private Long idRateioMovimentacao;
+	private ContasBancariaTO contaBancaria;
 	private Boolean statusPercentual;
 	private Double valorRateio;
 	private Long usuarioAlteracao;
@@ -28,12 +28,12 @@ public class RateiosPagamentosTO{
 		this.idPagamentoFatura = idPagamentoFatura;
 	}
 
-	public Long getIdRateioMovimentacao() {
-		return idRateioMovimentacao;
+	public ContasBancariaTO getContaBancaria() {
+		return contaBancaria;
 	}
 
-	public void setIdRateioMovimentacao(Long idRateioMovimentacao) {
-		this.idRateioMovimentacao = idRateioMovimentacao;
+	public void setContaBancaria(ContasBancariaTO contaBancaria) {
+		this.contaBancaria = contaBancaria;
 	}
 
 	public Boolean getStatusPercentual() {

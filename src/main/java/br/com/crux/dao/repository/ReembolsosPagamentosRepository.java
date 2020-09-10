@@ -18,4 +18,11 @@ public interface ReembolsosPagamentosRepository extends JpaRepository<Reembolsos
 			+ " where p.id = :id")
 	public Optional<List<ReembolsosPagamentos>> findByIdPagamentoFatura(Long id);
 
+	
+	@Query(value = "SELECT rp FROM ReembolsosPagamentos rp                      "
+			+ " inner join PagamentosFatura pf  on pf.id = rp.idPagamentoFatura "
+			+ " inner join Fatura f on f.id = pf.idFatura                       "
+			+ " where f.idMovimentacao = ?1                                     ")
+	public Optional<List<ReembolsosPagamentos>> findByIdMovimento(Long idMovimento);
+
 }

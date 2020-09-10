@@ -11,8 +11,12 @@ import org.springframework.stereotype.Component;
 import br.com.crux.dao.repository.MovimentacoesRepository;
 import br.com.crux.dao.repository.RateiosMovimentacoesRepository;
 import br.com.crux.dao.repository.RateiosMovimentacoesUnidadesRepository;
+import br.com.crux.dao.repository.RateiosPagamentosRepository;
+import br.com.crux.dao.repository.ReembolsosPagamentosRepository;
 import br.com.crux.entity.RateiosMovimentacoes;
 import br.com.crux.entity.RateiosMovimentacoesUnidades;
+import br.com.crux.entity.RateiosPagamentos;
+import br.com.crux.entity.ReembolsosPagamentos;
 import br.com.crux.exception.ParametroNaoInformadoException;
 import br.com.crux.exception.TabaleReferenciaEncontradaException;
 
@@ -23,11 +27,22 @@ public class ExcluirMovimentacoesCmd {
 	@Autowired private MovimentacoesRepository repository;
 	@Autowired private RateiosMovimentacoesRepository rateiosMovimentacoesRepository;
 	@Autowired private RateiosMovimentacoesUnidadesRepository rateiosMovimentacoesUnidadesRepository;
-
+	@Autowired private RateiosPagamentosRepository rateiosPagamentosRepository ;
+	@Autowired private ReembolsosPagamentosRepository reembolsosPagamentosRepository;
 	public void excluir(Long id) {
 		try {
 			if (Objects.isNull(id)) {
 				throw new ParametroNaoInformadoException("Erro ao excluir a entidade. Parâmetro 'id' ausente.");
+			}
+			
+			Optional<List<ReembolsosPagamentos>> reembolsos = reembolsosPagamentosRepository.findByIdMovimento(id);
+			if(reembolsos.isPresent()) {
+				reembolsosPagamentosRepository.deleteInBatch(reembolsos.get());
+			}
+			
+			Optional<List<RateiosPagamentos>> rateiosPagamentos = rateiosPagamentosRepository.findByIdMovimento(id);
+			if(rateiosPagamentos.isPresent()) {
+				rateiosPagamentosRepository.deleteInBatch(rateiosPagamentos.get());
 			}
 			
 			Optional<List<RateiosMovimentacoes>> rateios = rateiosMovimentacoesRepository.findByIdMovimento(id);
