@@ -48,7 +48,7 @@ public class ReembolsosPagamentos implements Serializable {
 	private Boolean statusPercentual;
 	
 	@Column(name = "vl_reembolso")
-	private Double valorRateio;
+	private Double valor;
 	
 	@Column(name = "id_usuario_apl")
 	private Long usuarioAlteracao;
@@ -105,12 +105,12 @@ public class ReembolsosPagamentos implements Serializable {
 		this.statusPercentual = statusPercentual;
 	}
 
-	public Double getValorRateio() {
-		return valorRateio;
+	public Double getValor() {
+		return valor;
 	}
 
-	public void setValorRateio(Double valorRateio) {
-		this.valorRateio = valorRateio;
+	public void setValor(Double valorRateio) {
+		this.valor = valorRateio;
 	}
 
 	public Long getUsuarioAlteracao() {

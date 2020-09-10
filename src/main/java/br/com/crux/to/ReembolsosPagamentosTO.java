@@ -18,7 +18,7 @@ public class ReembolsosPagamentosTO {
 	private LocalDateTime data;
 	
 	private Boolean statusPercentual;
-	private Double valorRateio;
+	private Double valor;
 	private Long usuarioAlteracao;
 
 	
@@ -73,12 +73,12 @@ public class ReembolsosPagamentosTO {
 		this.statusPercentual = statusPercentual;
 	}
 
-	public Double getValorRateio() {
-		return valorRateio;
+	public Double getValor() {
+		return valor;
 	}
 
-	public void setValorRateio(Double valorRateio) {
-		this.valorRateio = valorRateio;
+	public void setValor(Double valorRateio) {
+		this.valor = valorRateio;
 	}
 
 	public Long getUsuarioAlteracao() {
