@@ -1,11 +1,17 @@
 package br.com.crux.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
 
-import br.com.crux.entity.ContasBancaria;
-import br.com.crux.entity.Programa;
-import br.com.crux.entity.Projeto;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
 import br.com.crux.infra.constantes.Constantes;
 
 
@@ -31,13 +37,11 @@ public class ContasCentrosCusto implements Serializable {
 	@JoinColumn(name="id_conta_bancaria")
 	private ContasBancaria contasBancaria;
 
-	@ManyToOne
-	@JoinColumn(name="id_programa")
-	private Programa programa;
+	@Column(name="id_programa")
+	private Long idPrograma;
 
-	@ManyToOne
-	@JoinColumn(name="id_projeto")
-	private Projeto projeto;
+	@Column(name="id_projeto")
+	private Long idProjeto;
 
 	public ContasCentrosCusto() {
 	}
@@ -66,22 +70,21 @@ public class ContasCentrosCusto implements Serializable {
 		this.contasBancaria = contasBancaria;
 	}
 
-	public Programa getPrograma() {
-		return programa;
+	public Long getIdPrograma() {
+		return idPrograma;
 	}
 
-	public void setPrograma(Programa programa) {
-		this.programa = programa;
+	public void setIdPrograma(Long idPrograma) {
+		this.idPrograma = idPrograma;
 	}
 
-	public Projeto getProjeto() {
-		return projeto;
+	public Long getIdProjeto() {
+		return idProjeto;
 	}
 
-	public void setProjeto(Projeto projeto) {
-		this.projeto = projeto;
+	public void setIdProjeto(Long idProjeto) {
+		this.idProjeto = idProjeto;
 	}
 
-	
 	
 }

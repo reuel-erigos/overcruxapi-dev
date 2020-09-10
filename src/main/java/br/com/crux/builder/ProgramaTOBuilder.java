@@ -17,6 +17,7 @@ import br.com.crux.cmd.GetParceriasProgramaCmd;
 import br.com.crux.cmd.GetProgramaUnidadeCmd;
 import br.com.crux.entity.Objetivo;
 import br.com.crux.entity.Programa;
+import br.com.crux.to.ContasCentrosCustoTO;
 import br.com.crux.to.ProgramaTO;
 
 @Component
@@ -108,8 +109,10 @@ public class ProgramaTOBuilder {
 			return to;
 		}
 
-		to.setId(programa.getId());
-		to.setNome(programa.getNome());
+		BeanUtils.copyProperties(programa, to);
+		
+		List<ContasCentrosCustoTO> contasCentrosCustosTO = getContasCentrosCustoCmd.getTOPorPrograma(programa);
+		to.setContasCentrosCusto(contasCentrosCustosTO);
 
 		return to;
 	}

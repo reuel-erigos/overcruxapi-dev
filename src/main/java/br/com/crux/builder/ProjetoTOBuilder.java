@@ -17,6 +17,7 @@ import br.com.crux.cmd.GetProgramaCmd;
 import br.com.crux.cmd.GetProjetosUnidadeCmd;
 import br.com.crux.entity.Programa;
 import br.com.crux.entity.Projeto;
+import br.com.crux.to.ContasCentrosCustoTO;
 import br.com.crux.to.ProjetoTO;
 
 @Component
@@ -86,9 +87,10 @@ public class ProjetoTOBuilder {
 			return retorno;
 		}
 
-		retorno.setId(p.getId());
-		retorno.setNome(p.getNome());
-		retorno.setDescricao(p.getDescricao());
+		BeanUtils.copyProperties(p, retorno);
+		
+		List<ContasCentrosCustoTO> contasCentrosCustosTO = getContasCentrosCustoCmd.getTOPorProjeto(p);
+		retorno.setContasCentrosCusto(contasCentrosCustosTO);
 		
 		return retorno;
 

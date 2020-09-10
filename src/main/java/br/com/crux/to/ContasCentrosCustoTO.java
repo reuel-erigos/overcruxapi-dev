@@ -4,8 +4,8 @@ public class ContasCentrosCustoTO {
 
 	private Long id;
 	private ContasBancariaTO contasBancaria;
-	private ProgramaTO programa;
-	private ProjetoTO projeto;
+	private Long idPrograma;
+	private Long idProjeto;
 	
 	public Long getId() {
 		return id;
@@ -19,19 +19,17 @@ public class ContasCentrosCustoTO {
 	public void setContasBancaria(ContasBancariaTO contasBancaria) {
 		this.contasBancaria = contasBancaria;
 	}
-	public ProgramaTO getPrograma() {
-		return programa;
+	public Long getIdPrograma() {
+		return idPrograma;
 	}
-	public void setPrograma(ProgramaTO programa) {
-		this.programa = programa;
+	public void setIdPrograma(Long idPrograma) {
+		this.idPrograma = idPrograma;
 	}
-	public ProjetoTO getProjeto() {
-		return projeto;
+	public Long getIdProjeto() {
+		return idProjeto;
 	}
-	public void setProjeto(ProjetoTO projeto) {
-		this.projeto = projeto;
+	public void setIdProjeto(Long idProjeto) {
+		this.idProjeto = idProjeto;
 	}
-
-	
 	
 }

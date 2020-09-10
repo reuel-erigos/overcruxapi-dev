@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -24,32 +25,26 @@ public class ContasCentrosCustoTOBuilder {
 	public ContasCentrosCusto build(Programa programa, Projeto projeto, ContasCentrosCustoTO contasCentrosCustoTO) {
 		ContasCentrosCusto entity = new ContasCentrosCusto();
 		
-		entity.setId(contasCentrosCustoTO.getId());
+		BeanUtils.copyProperties(contasCentrosCustoTO, entity);
 
-		if (Objects.nonNull(contasCentrosCustoTO.getContasBancaria()) || Objects.nonNull(contasCentrosCustoTO.getContasBancaria()
-				.getId())) {
-			entity.setContasBancaria(getContasBancariaCmd.getById(contasCentrosCustoTO.getContasBancaria()
-					.getId()));
+		if (Objects.nonNull(contasCentrosCustoTO.getContasBancaria()) || Objects.nonNull(contasCentrosCustoTO.getContasBancaria().getId())) {
+			entity.setContasBancaria(getContasBancariaCmd.getById(contasCentrosCustoTO.getContasBancaria().getId()));
 		}
 
-		if (Objects.nonNull(programa)) {
-			entity.setPrograma(programa);
-		}
-
-		if (Objects.nonNull(projeto)) {
-			entity.setProjeto(projeto);
-		}
-
-		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado()
-				.getIdUsuario());
+		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 
 		return entity;
 	}
 
 	public ContasCentrosCustoTO buildTO(ContasCentrosCusto entity) {
 		ContasCentrosCustoTO to = new ContasCentrosCustoTO();
+		
+		if (Objects.isNull(entity)) {
+			return to;
+		}
+		
+		BeanUtils.copyProperties(entity, to);
 
-		to.setId(entity.getId());
 		to.setContasBancaria(contasBancariaTOBuilder.buildTOCombo(entity.getContasBancaria()));
 
 		return to;
