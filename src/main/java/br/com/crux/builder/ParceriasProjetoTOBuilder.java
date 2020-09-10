@@ -15,8 +15,6 @@ import br.com.crux.cmd.GetUsuarioLogadoCmd;
 import br.com.crux.entity.Empresa;
 import br.com.crux.entity.ParceriasProjeto;
 import br.com.crux.entity.Projeto;
-import br.com.crux.to.MateriaisProjetoTO;
-import br.com.crux.to.ParceriasCategoriasTO;
 import br.com.crux.to.ParceriasProjetoTO;
 
 @Component

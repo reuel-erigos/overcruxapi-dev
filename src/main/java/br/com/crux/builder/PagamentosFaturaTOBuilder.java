@@ -9,30 +9,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.cmd.GetContasBancariaCmd;
-import br.com.crux.cmd.GetFaturaCmd;
+import br.com.crux.cmd.GetReembolsosPagamentosCmd;
 import br.com.crux.cmd.GetUsuarioLogadoCmd;
 import br.com.crux.entity.ContasBancaria;
 import br.com.crux.entity.Movimentacoes;
 import br.com.crux.entity.PagamentosFatura;
 import br.com.crux.to.PagamentosFaturaTO;
+import br.com.crux.to.ReembolsosPagamentosTO;
 
 @Component
 public class PagamentosFaturaTOBuilder {
 
-	@Autowired GetUsuarioLogadoCmd getUsuarioLogadoCmd;
-	@Autowired GetFaturaCmd getFaturaCmd;
-	@Autowired GetContasBancariaCmd getContasBancariaCmd;
-	@Autowired ContasBancariaTOBuilder contasBancariaTOBuilder;
-	@Autowired FaturaTOBuilder faturaTOBuilder;
-	@Autowired SaldosContasBancariaTOBuilder saldosContasBancariaTOBuilder;
+	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
+	@Autowired private GetContasBancariaCmd getContasBancariaCmd;
+	@Autowired private ContasBancariaTOBuilder contasBancariaTOBuilder;
+	@Autowired private GetReembolsosPagamentosCmd getReembolsosPagamentosCmd;
 
+	
 	public PagamentosFaturaTO buildTO(PagamentosFatura entity) {
 		PagamentosFaturaTO to = new PagamentosFaturaTO();
 
 		BeanUtils.copyProperties(entity, to);
 
 		to.setContaBancaria(contasBancariaTOBuilder.buildTOCombo(entity.getContaBancaria()));
-		//to.setContaReembolso(contasBancariaTOBuilder.buildTOCombo(entity.getContaReembolso()));
+		
+		List<ReembolsosPagamentosTO> reembolsosTO = getReembolsosPagamentosCmd.getReembolsoPagamentoTOByIdPagamentoFatura(entity.getId());
+		to.setReembolsos(reembolsosTO);
 
 		return to;
 	}
@@ -52,12 +54,6 @@ public class PagamentosFaturaTOBuilder {
 			ContasBancaria conta = getContasBancariaCmd.getById(to.getContaBancaria().getId());
 			entity.setContaBancaria(conta);
 		}
-		/*
-		if (Objects.nonNull(to.getContaReembolso()) && Objects.nonNull(to.getContaReembolso().getId())) {
-			ContasBancaria conta = getContasBancariaCmd.getById(to.getContaReembolso().getId());
-			entity.setContaReembolso(conta);
-		}
-		*/
 		
 		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 

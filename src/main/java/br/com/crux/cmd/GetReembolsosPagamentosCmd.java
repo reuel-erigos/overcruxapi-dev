@@ -34,8 +34,8 @@ public class GetReembolsosPagamentosCmd {
 		return toBuilder.buildTO(entityOptional.get());
 	}
 
-	public List<ReembolsosPagamentosTO> getReembolsoPagamentoTOByPagamentoFatura(PagamentosFatura pagamento) {
-		Optional<List<ReembolsosPagamentos>> lista = repository.findByIdPagamentoFatura(pagamento.getId());
+	public List<ReembolsosPagamentosTO> getReembolsoPagamentoTOByIdPagamentoFatura(Long idPagamento) {
+		Optional<List<ReembolsosPagamentos>> lista = repository.findByIdPagamentoFatura(idPagamento);
 
 		if (lista.isPresent()) {
 			return toBuilder.buildAll(lista.get());
