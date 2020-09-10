@@ -17,14 +17,10 @@ public class CadastrarPagamentosFaturaCmd {
 
 	@Autowired private PagamentosFaturaRepository repository;
 	@Autowired private PagamentosFaturaTOBuilder tOBuilder;
-	@Autowired private CadastrarReembolsosPagamentosCmd cadastrarReembolsosPagamentosCmd;
 
 	public PagamentosFatura cadastrar(PagamentosFaturaTO pagamentosFaturaTO, Movimentacoes movimentacoes) {
 		PagamentosFatura entity = tOBuilder.build(movimentacoes, pagamentosFaturaTO);
 		PagamentosFatura entitySalva = repository.save(entity);
-		
-		cadastrarReembolsosPagamentosCmd.cadastrarLista(entitySalva, pagamentosFaturaTO.getReembolsos());
-		
 		return entitySalva;
 	}
 
