@@ -12,8 +12,8 @@ import br.com.crux.entity.RateiosPagamentos;
 @Repository
 public interface RateiosPagamentosRepository extends JpaRepository<RateiosPagamentos, Long> {
 
-	@Query(value = "select distinct rp from RateiosPagamentos pr               "
-			+ " inner join PagamentosFatura pf on pf.id = pr.idPagamentoFatura "
+	@Query(value = "select distinct rp from RateiosPagamentos rp               "
+			+ " inner join PagamentosFatura pf on pf.id = rp.idPagamentoFatura "
 			+ " inner join Fatura f on f.id = pf.idFatura                      "
 			+ " where f.idMovimentacao = ?1                                    ")
 	public Optional<List<RateiosPagamentos>> findByIdMovimento(Long idMovimento);
