@@ -53,7 +53,7 @@ public class Fatura implements Serializable {
 	@JoinColumn(name = "id_tributo_movimentacao") 
 	private TributosMovimentacoes tributoMovimentacao;
 	
-	@Column(name = "ds_destinatario_tributo")
+	@Column(name = "ds_fatura")
 	private String descricao;
 	
 	
