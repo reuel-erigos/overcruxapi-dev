@@ -42,6 +42,7 @@ public class ItensMovimentacoesTOBuilder {
 		
 		BeanUtils.copyProperties(entity, to);
 
+		to.setIdMovimentacao(entity.getId());
 		to.setCategoria(categoriasContabeisTOBuilder.buildTOCombo(entity.getCategoria()));
 		to.setDepartamento(departamentoTOBuilder.buildTOCombo(entity.getDepartamento()));
 		to.setMaterial(materialTOBuilder.buildTOCombo(entity.getMaterial()));
@@ -72,6 +73,7 @@ public class ItensMovimentacoesTOBuilder {
 			entity.setMaterial(retorno);
 		}
 
+		entity.setIdMovimentacao(movimentacoes.getId());
 		entity.setUnidade(movimentacoes.getUnidade());
 		entity.setDepartamento(movimentacoes.getDepartamento());
 		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
