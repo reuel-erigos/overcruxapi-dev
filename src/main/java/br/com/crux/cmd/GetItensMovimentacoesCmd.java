@@ -31,7 +31,7 @@ public class GetItensMovimentacoesCmd {
 	}
 
 	public List<ItensMovimentacoesTO> getItensMovimentacoesTOByMovimentacao(Movimentacoes movimentacoes) {
-		Optional<List<ItensMovimentacoes>> lista = repository.findByMovimentacao(movimentacoes);
+		Optional<List<ItensMovimentacoes>> lista = repository.findByIdMovimentacao(movimentacoes.getId());
 
 		if (lista.isPresent()) {
 			return toBuilder.buildAll(lista.get());
@@ -42,7 +42,7 @@ public class GetItensMovimentacoesCmd {
 	}
 
 	public List<ItensMovimentacoes> getPorMovimentacoes(Movimentacoes p) {
-		return repository.findByMovimentacao(p)
+		return repository.findByIdMovimentacao(p.getId())
 				.orElse(new ArrayList<ItensMovimentacoes>());
 	}
 	
