@@ -23,11 +23,7 @@ public class MovimentacoesTO {
 	private List<PagamentosFaturaTO> pagamentosFatura; 
 	private List<TributosMovimentacoesTO> tributos;
 	
-	private Double valorISS;
-	private Double valorICMS;
-	private Double valorIPI;
-	private Double valorPisConfinsCsll;
-	private Double valorInss;
+	
 	private ContasBancariaTO contaBancaria;
 	private ContasBancariaTO contaBancariaDestino;
 	
@@ -122,36 +118,6 @@ public class MovimentacoesTO {
 	}
 	public void setPagamentosFatura(List<PagamentosFaturaTO> pagamentosFaturaTO) {
 		this.pagamentosFatura = pagamentosFaturaTO;
-	}
-	public Double getValorISS() {
-		return valorISS;
-	}
-	public void setValorISS(Double valorISS) {
-		this.valorISS = valorISS;
-	}
-	public Double getValorICMS() {
-		return valorICMS;
-	}
-	public void setValorICMS(Double valorICMS) {
-		this.valorICMS = valorICMS;
-	}
-	public Double getValorIPI() {
-		return valorIPI;
-	}
-	public void setValorIPI(Double valorIPI) {
-		this.valorIPI = valorIPI;
-	}
-	public Double getValorPisConfinsCsll() {
-		return valorPisConfinsCsll;
-	}
-	public void setValorPisConfinsCsll(Double valorPisConfinsCsll) {
-		this.valorPisConfinsCsll = valorPisConfinsCsll;
-	}
-	public Double getValorInss() {
-		return valorInss;
-	}
-	public void setValorInss(Double valorInss) {
-		this.valorInss = valorInss;
 	}
 	public ContasBancariaTO getContaBancaria() {
 		return contaBancaria;
