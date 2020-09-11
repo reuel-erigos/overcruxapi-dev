@@ -15,6 +15,7 @@ import br.com.crux.entity.ProgramasUnidade;
 import br.com.crux.exception.NotFoundException;
 import br.com.crux.exception.ParametroNaoInformadoException;
 import br.com.crux.exception.TabaleReferenciaEncontradaException;
+import br.com.crux.exception.base.NegocioException;
 
 @Component
 public class ExcluirProgramaCmd {
@@ -53,7 +54,7 @@ public class ExcluirProgramaCmd {
 				}
 			}
 
-			throw new RuntimeException(e.getMessage());
+			throw new NegocioException(e.getMessage());
 		}
 
 	}

@@ -12,6 +12,7 @@ import br.com.crux.entity.AcoesCompetencia;
 import br.com.crux.exception.NotFoundException;
 import br.com.crux.exception.ParametroNaoInformadoException;
 import br.com.crux.exception.TabaleReferenciaEncontradaException;
+import br.com.crux.exception.base.NegocioException;
 
 @Component
 public class ExcluirAcoesCompetenciaCmd {
@@ -36,7 +37,7 @@ public class ExcluirAcoesCompetenciaCmd {
 				}
 			}
 
-			throw new RuntimeException(e.getMessage());
+			throw new NegocioException(e.getMessage());
 		}		
 		
 	}

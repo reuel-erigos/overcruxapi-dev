@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import br.com.crux.dao.repository.AcaoRepository;
 import br.com.crux.exception.ParametroNaoInformadoException;
 import br.com.crux.exception.TabaleReferenciaEncontradaException;
+import br.com.crux.exception.base.NegocioException;
 
 @Component
 public class ExcluirAcaoCmd {
@@ -29,7 +30,7 @@ public class ExcluirAcaoCmd {
 					throw new TabaleReferenciaEncontradaException("Erro ao excluir, verifique se há outro cadastro com referência com esse registro.");
 				}
 			}
-			throw new RuntimeException(e.getMessage());
+			throw new NegocioException(e.getMessage());
 		}		
 	}
 }

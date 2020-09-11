@@ -15,6 +15,7 @@ import br.com.crux.entity.ProjetosUnidade;
 import br.com.crux.exception.NotFoundException;
 import br.com.crux.exception.ParametroNaoInformadoException;
 import br.com.crux.exception.TabaleReferenciaEncontradaException;
+import br.com.crux.exception.base.NegocioException;
 
 @Component
 public class ExcluirProjetoCmd {
@@ -48,7 +49,7 @@ public class ExcluirProjetoCmd {
 				}
 			}
 
-			throw new RuntimeException(e.getMessage());
+			throw new NegocioException(e.getMessage());
 		}
 
 	}

@@ -13,6 +13,7 @@ import br.com.crux.dao.repository.EncaminhaAlunosRepository;
 import br.com.crux.entity.EncaminhaAlunos;
 import br.com.crux.exception.ParametroNaoInformadoException;
 import br.com.crux.exception.TabaleReferenciaEncontradaException;
+import br.com.crux.exception.base.NegocioException;
 import br.com.crux.to.AlunoTO;
 
 @Component
@@ -54,7 +55,7 @@ public class ExcluirAlunoCmd {
 				}
 			}
 
-			throw new RuntimeException(e.getMessage());
+			throw new NegocioException(e.getMessage());
 		}
 
 	}

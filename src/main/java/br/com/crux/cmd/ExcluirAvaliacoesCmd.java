@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import br.com.crux.dao.repository.AvaliacoesRepository;
 import br.com.crux.exception.ParametroNaoInformadoException;
 import br.com.crux.exception.TabaleReferenciaEncontradaException;
+import br.com.crux.exception.base.NegocioException;
 
 @Component
 public class ExcluirAvaliacoesCmd {
@@ -31,7 +32,7 @@ public class ExcluirAvaliacoesCmd {
 				}
 			}
 
-			throw new RuntimeException(e.getMessage());
+			throw new NegocioException(e.getMessage());
 		}	
 		
 	}

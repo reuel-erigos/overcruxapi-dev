@@ -21,6 +21,7 @@ import br.com.crux.entity.RateiosMovimentacoes;
 import br.com.crux.entity.RateiosMovimentacoesUnidades;
 import br.com.crux.exception.ParametroNaoInformadoException;
 import br.com.crux.exception.TabaleReferenciaEncontradaException;
+import br.com.crux.exception.base.NegocioException;
 
 @Component
 public class ExcluirMovimentacoesCmd {
@@ -74,7 +75,7 @@ public class ExcluirMovimentacoesCmd {
 				}
 			}
 			
-			throw new RuntimeException(e.getMessage());
+			throw new NegocioException(e.getMessage());
 		}
 
 	}
