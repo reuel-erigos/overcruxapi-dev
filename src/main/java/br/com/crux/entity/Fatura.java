@@ -53,6 +53,10 @@ public class Fatura implements Serializable {
 	@JoinColumn(name = "id_tributo_movimentacao") 
 	private TributosMovimentacoes tributoMovimentacao;
 	
+	@Column(name = "ds_destinatario_tributo")
+	private String descricao;
+	
+	
 	public Fatura() {
 	}
 
@@ -119,7 +123,14 @@ public class Fatura implements Serializable {
 	public void setTributoMovimentacao(TributosMovimentacoes tributoMovimentacao) {
 		this.tributoMovimentacao = tributoMovimentacao;
 	}
-	
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
 	
 
 }

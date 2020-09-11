@@ -3,7 +3,6 @@ package br.com.crux.entity;
 import java.io.Serializable;
 
 import javax.persistence.Column;
-import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,7 +14,6 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import br.com.crux.infra.constantes.Constantes;
-import br.com.crux.infra.dao.SimNaoConverter;
 
 
 @Entity
@@ -38,13 +36,6 @@ public class Tributos implements Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_categoria") 
 	private CategoriasContabeis categoria;
-	
-	@Convert(converter = SimNaoConverter.class)
-	@Column(name = "st_percentual")
-	private Boolean statusPercentual;
-	
-	@Column(name = "vl_rateio")
-	private Double valorRateio;
 	
 	@Column(name = "id_usuario_apl")
 	private Long usuarioAlteracao;
@@ -89,22 +80,6 @@ public class Tributos implements Serializable {
 
 	public void setCategoria(CategoriasContabeis categoria) {
 		this.categoria = categoria;
-	}
-
-	public Boolean getStatusPercentual() {
-		return statusPercentual;
-	}
-
-	public void setStatusPercentual(Boolean statusPercentual) {
-		this.statusPercentual = statusPercentual;
-	}
-
-	public Double getValorRateio() {
-		return valorRateio;
-	}
-
-	public void setValorRateio(Double valorRateio) {
-		this.valorRateio = valorRateio;
 	}
 
 	public Long getUsuarioAlteracao() {

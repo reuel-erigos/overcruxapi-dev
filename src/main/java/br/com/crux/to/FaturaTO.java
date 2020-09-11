@@ -18,6 +18,8 @@ public class FaturaTO {
 	private Long numeroParcela;
 	private String codigoBarra;
 	
+	private TributosMovimentacoesTO tributoMovimentacao;
+	private String descricao;
 	
 	public Long getId() {
 		return id;
@@ -66,6 +68,22 @@ public class FaturaTO {
 
 	public void setCodigoBarra(String codigoBarra) {
 		this.codigoBarra = codigoBarra;
+	}
+
+	public TributosMovimentacoesTO getTributoMovimentacao() {
+		return tributoMovimentacao;
+	}
+
+	public void setTributoMovimentacao(TributosMovimentacoesTO tributoMovimentacao) {
+		this.tributoMovimentacao = tributoMovimentacao;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 }

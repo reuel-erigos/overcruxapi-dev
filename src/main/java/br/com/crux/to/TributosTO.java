@@ -5,11 +5,9 @@ public class TributosTO {
 	private Long id;
 	private String codigo;
 	private String descricao;
-	private CategoriasContabeisTO categoria;
-	private Boolean statusPercentual;
-	private Double valorRateio;
 	private Long usuarioAlteracao;
 	private Long idInstituicao;
+	private CategoriasContabeisTO categoria;
 	private Long diaVencimento;
 
 	
@@ -40,30 +38,6 @@ public class TributosTO {
 		this.descricao = descricao;
 	}
 
-	public CategoriasContabeisTO getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(CategoriasContabeisTO categoria) {
-		this.categoria = categoria;
-	}
-
-	public Boolean getStatusPercentual() {
-		return statusPercentual;
-	}
-
-	public void setStatusPercentual(Boolean statusPercentual) {
-		this.statusPercentual = statusPercentual;
-	}
-
-	public Double getValorRateio() {
-		return valorRateio;
-	}
-
-	public void setValorRateio(Double valorRateio) {
-		this.valorRateio = valorRateio;
-	}
-
 	public Long getUsuarioAlteracao() {
 		return usuarioAlteracao;
 	}
@@ -78,6 +52,14 @@ public class TributosTO {
 
 	public void setIdInstituicao(Long idInstituicao) {
 		this.idInstituicao = idInstituicao;
+	}
+
+	public CategoriasContabeisTO getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(CategoriasContabeisTO categoria) {
+		this.categoria = categoria;
 	}
 
 	public Long getDiaVencimento() {
