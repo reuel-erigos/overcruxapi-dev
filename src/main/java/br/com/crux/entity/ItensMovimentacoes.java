@@ -45,9 +45,8 @@ public class ItensMovimentacoes implements Serializable {
 	@JoinColumn(name = "id_material")
 	private Material material;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_movimentacao")
-	private Movimentacoes movimentacao;
+	@Column(name = "id_movimentacao")
+	private Long idMovimentacao;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_unidade")
@@ -129,12 +128,16 @@ public class ItensMovimentacoes implements Serializable {
 		this.material = material;
 	}
 
-	public Movimentacoes getMovimentacao() {
-		return movimentacao;
+	public Long getIdMovimentacao() {
+		return idMovimentacao;
 	}
 
-	public void setMovimentacao(Movimentacoes movimentacao) {
-		this.movimentacao = movimentacao;
+	public void setIdMovimentacao(Long idMovimentacao) {
+		this.idMovimentacao = idMovimentacao;
+	}
+
+	public void setPedidosMateriais(PedidosMateriais pedidosMateriais) {
+		this.pedidosMateriais = pedidosMateriais;
 	}
 
 	public Unidade getUnidade() {

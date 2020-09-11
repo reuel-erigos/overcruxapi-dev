@@ -7,7 +7,7 @@ public class ItensMovimentacoesTO {
 	private CategoriasContabeisTO categoria;
 	private DepartamentoTO departamento;
 	private MaterialTO material;
-	private MovimentacoesTO movimentacao;
+	private Long idMovimentacao;
 	private UnidadeTO unidade;
 	private Long quantidadeMaterial;
 	private Double valorTotalItem;
@@ -61,12 +61,12 @@ public class ItensMovimentacoesTO {
 		this.material = material;
 	}
 
-	public MovimentacoesTO getMovimentacao() {
-		return movimentacao;
+	public Long getIdMovimentacao() {
+		return idMovimentacao;
 	}
 
-	public void setMovimentacao(MovimentacoesTO movimentacao) {
-		this.movimentacao = movimentacao;
+	public void setIdMovimentacao(Long idMovimentacao) {
+		this.idMovimentacao = idMovimentacao;
 	}
 
 	public UnidadeTO getUnidade() {

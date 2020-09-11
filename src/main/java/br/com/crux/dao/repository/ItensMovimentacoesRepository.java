@@ -21,4 +21,9 @@ public interface ItensMovimentacoesRepository extends JpaRepository<ItensMovimen
 			+ " where u.idUnidade = ?1")
 	public Optional<List<ItensMovimentacoes>> findByUnidade(Long idUnidade);
 
+	
+	@Query(value = "SELECT im FROM ItensMovimentacoes im "
+			+ " inner join Movimentacoes m on m.id = im.idMovimentacao "
+			+ " where m.id = ?1")
+	public Optional<List<ItensMovimentacoes>> findByIdMovimentacao(Long idMovimentacao);
 }

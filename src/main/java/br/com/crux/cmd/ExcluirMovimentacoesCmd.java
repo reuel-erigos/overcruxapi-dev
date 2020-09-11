@@ -8,15 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 
+import br.com.crux.dao.repository.FaturaRepository;
+import br.com.crux.dao.repository.ItensMovimentacoesRepository;
 import br.com.crux.dao.repository.MovimentacoesRepository;
+import br.com.crux.dao.repository.PagamentosFaturaRepository;
 import br.com.crux.dao.repository.RateiosMovimentacoesRepository;
 import br.com.crux.dao.repository.RateiosMovimentacoesUnidadesRepository;
-import br.com.crux.dao.repository.RateiosPagamentosRepository;
-import br.com.crux.dao.repository.ReembolsosPagamentosRepository;
+import br.com.crux.entity.Fatura;
+import br.com.crux.entity.ItensMovimentacoes;
+import br.com.crux.entity.PagamentosFatura;
 import br.com.crux.entity.RateiosMovimentacoes;
 import br.com.crux.entity.RateiosMovimentacoesUnidades;
-import br.com.crux.entity.RateiosPagamentos;
-import br.com.crux.entity.ReembolsosPagamentos;
 import br.com.crux.exception.ParametroNaoInformadoException;
 import br.com.crux.exception.TabaleReferenciaEncontradaException;
 
@@ -27,22 +29,30 @@ public class ExcluirMovimentacoesCmd {
 	@Autowired private MovimentacoesRepository repository;
 	@Autowired private RateiosMovimentacoesRepository rateiosMovimentacoesRepository;
 	@Autowired private RateiosMovimentacoesUnidadesRepository rateiosMovimentacoesUnidadesRepository;
-	@Autowired private RateiosPagamentosRepository rateiosPagamentosRepository ;
-	@Autowired private ReembolsosPagamentosRepository reembolsosPagamentosRepository;
+	@Autowired private PagamentosFaturaRepository pagamentosFaturaRepository;
+	@Autowired private ItensMovimentacoesRepository itensMovimentacoesRepository;
+	@Autowired private FaturaRepository faturaRepository;
+	
+	
 	public void excluir(Long id) {
 		try {
 			if (Objects.isNull(id)) {
 				throw new ParametroNaoInformadoException("Erro ao excluir a entidade. Parâmetro 'id' ausente.");
 			}
 			
-			Optional<List<ReembolsosPagamentos>> reembolsos = reembolsosPagamentosRepository.findByIdMovimento(id);
-			if(reembolsos.isPresent()) {
-				reembolsosPagamentosRepository.deleteInBatch(reembolsos.get());
+			Optional<List<Fatura>> faturas = faturaRepository.findByIdMovimentacao(id);
+			if(faturas.isPresent()) {
+				throw new TabaleReferenciaEncontradaException("Não é possível excluir o movimento, pois há faturas cadastradas.");
 			}
 			
-			Optional<List<RateiosPagamentos>> rateiosPagamentos = rateiosPagamentosRepository.findByIdMovimento(id);
-			if(rateiosPagamentos.isPresent()) {
-				rateiosPagamentosRepository.deleteInBatch(rateiosPagamentos.get());
+			Optional<List<PagamentosFatura>> pagamentos = pagamentosFaturaRepository.findByIdMovimentacao(id);
+			if(pagamentos.isPresent()) {
+				throw new TabaleReferenciaEncontradaException("Não é possível excluir o movimento, pois há pagamentos cadastrados.");
+			}
+			
+			Optional<List<ItensMovimentacoes>> itens = itensMovimentacoesRepository.findByIdMovimentacao(id);
+			if(itens.isPresent()) {
+				throw new  TabaleReferenciaEncontradaException("Não é possível excluir o movimento, pois há itens cadastrados.");
 			}
 			
 			Optional<List<RateiosMovimentacoes>> rateios = rateiosMovimentacoesRepository.findByIdMovimento(id);
@@ -54,8 +64,9 @@ public class ExcluirMovimentacoesCmd {
 			if(rateiosUnidades.isPresent()) {
 				rateiosMovimentacoesUnidadesRepository.deleteInBatch(rateiosUnidades.get());
 			}
-			
+						
 			repository.deleteById(id);
+			
 		} catch (Exception e) {
 			if(e.getCause() instanceof DataIntegrityViolationException || e.getCause().toString().contains("ConstraintViolationException")) {
 				throw new TabaleReferenciaEncontradaException("Erro ao excluir, verifique se há outro cadastro com referência a esta entidade.");

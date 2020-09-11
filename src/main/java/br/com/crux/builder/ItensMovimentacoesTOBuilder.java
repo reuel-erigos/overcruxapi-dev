@@ -42,8 +42,6 @@ public class ItensMovimentacoesTOBuilder {
 		
 		BeanUtils.copyProperties(entity, to);
 
-		to.setId(entity.getId());
-
 		to.setCategoria(categoriasContabeisTOBuilder.buildTOCombo(entity.getCategoria()));
 		to.setDepartamento(departamentoTOBuilder.buildTOCombo(entity.getDepartamento()));
 		to.setMaterial(materialTOBuilder.buildTOCombo(entity.getMaterial()));
@@ -64,23 +62,18 @@ public class ItensMovimentacoesTOBuilder {
 
 		BeanUtils.copyProperties(to, entity);
 
-		if (Objects.nonNull(to.getCategoria()) && Objects.nonNull(to.getCategoria()
-				.getId())) {
-			CategoriasContabeis retorno = getCategoriasContabeisCmd.getById(to.getCategoria()
-					.getId());
+		if (Objects.nonNull(to.getCategoria()) && Objects.nonNull(to.getCategoria().getId())) {
+			CategoriasContabeis retorno = getCategoriasContabeisCmd.getById(to.getCategoria().getId());
 			entity.setCategoria(retorno);
 		}
 
-		if (Objects.nonNull(to.getMaterial()) && Objects.nonNull(to.getMaterial()
-				.getId())) {
-			Material retorno = getMaterialCmd.getById(to.getMaterial()
-					.getId());
+		if (Objects.nonNull(to.getMaterial()) && Objects.nonNull(to.getMaterial().getId())) {
+			Material retorno = getMaterialCmd.getById(to.getMaterial().getId());
 			entity.setMaterial(retorno);
 		}
 
 		entity.setUnidade(movimentacoes.getUnidade());
 		entity.setDepartamento(movimentacoes.getDepartamento());
-		entity.setMovimentacao(movimentacoes);
 		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 		
 		return entity;
@@ -90,8 +83,6 @@ public class ItensMovimentacoesTOBuilder {
 		ItensMovimentacoesTO to = new ItensMovimentacoesTO();
 
 		BeanUtils.copyProperties(entity, to);
-
-		to.setId(entity.getId());
 
 		return to;
 	}
