@@ -20,7 +20,16 @@ public class GetTributoMovimentacaoCmd {
 	@Autowired private TributoMovimentacaoTOBuilder toBuilder;
 
 	
-	public List<TributosMovimentacoesTO> getAllByIdMovimentacao(Long idMovimentacao) {
+	public List<TributosMovimentacoes> getAllByIdMovimentacao(Long idMovimentacao) {
+		Optional<List<TributosMovimentacoes>> entitys = repository.findByIdMovimentacao(idMovimentacao);
+		if (entitys.isPresent()) {
+			return entitys.get();
+		}
+		return new ArrayList<TributosMovimentacoes>();
+	}
+
+	
+	public List<TributosMovimentacoesTO> getAllTOByIdMovimentacao(Long idMovimentacao) {
 		Optional<List<TributosMovimentacoes>> entitys = repository.findByIdMovimentacao(idMovimentacao);
 		if (entitys.isPresent()) {
 			return toBuilder.buildAll(entitys.get());

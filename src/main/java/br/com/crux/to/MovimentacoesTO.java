@@ -21,7 +21,7 @@ public class MovimentacoesTO {
 	private List<ItensMovimentacoesTO> itensMovimentacoes; 
 	private List<FaturaTO> faturas; 
 	private List<PagamentosFaturaTO> pagamentosFatura; 
-	
+	private List<TributosMovimentacoesTO> tributos;
 	
 	private Double valorISS;
 	private Double valorICMS;
@@ -195,4 +195,13 @@ public class MovimentacoesTO {
 	public void setDoador(DoadoresTO doador) {
 		this.doador = doador;
 	}
+
+	public List<TributosMovimentacoesTO> getTributos() {
+		return tributos;
+	}
+
+	public void setTributos(List<TributosMovimentacoesTO> tributos) {
+		this.tributos = tributos;
+	}
+	
 }

@@ -23,6 +23,7 @@ public class CadastrarMovimentacoesCmd {
 	@Autowired private CadastrarPagamentosFaturaCmd cadastrarPagamentosFaturaCmd;
 	@Autowired private CadastrarRateiosMovimentacoesCmd cadastrarRateiosMovimentacoesCmd;
 	@Autowired private CadastrarRateiosMovimentacoesUnidadesCmd cadastrarRateiosMovimentacoesUnidadesCmd;
+	@Autowired private CadastrarTributosMovimentacaoCmd cadastrarTributosMovimentacaoCmd;
 
 	public MovimentacoesTO cadastrar(MovimentacoesTO to) {
 		camposObrigatoriosRule.verificar(to);
@@ -37,6 +38,7 @@ public class CadastrarMovimentacoesCmd {
 			cadastrarItensMovimentacoesCmd.cadastrarLista(movimentacoes, to.getItensMovimentacoes());
 			cadastrarFaturasCmd.cadastrarLista(movimentacoes, to.getFaturas());
 			cadastrarPagamentosFaturaCmd.cadastrarLista(movimentacoes, to.getPagamentosFatura());
+			cadastrarTributosMovimentacaoCmd.cadastrarLista(movimentacoes, to.getTributos());
 		}
 
 		Optional<Movimentacoes> entitySalva = repository.findById(movimentacoes.getId());
