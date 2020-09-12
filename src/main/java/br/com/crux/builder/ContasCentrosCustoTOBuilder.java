@@ -31,6 +31,14 @@ public class ContasCentrosCustoTOBuilder {
 			entity.setContasBancaria(getContasBancariaCmd.getById(contasCentrosCustoTO.getContasBancaria().getId()));
 		}
 
+		if(Objects.nonNull(programa) && Objects.nonNull(programa.getId())) { 
+			entity.setIdPrograma(programa.getId());
+		}
+
+		if(Objects.nonNull(projeto) && Objects.nonNull(projeto.getId())) { 
+			entity.setIdProjeto(projeto.getId());
+		}
+
 		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 
 		return entity;
