@@ -21,16 +21,31 @@ public class GetTributoMovimentacaoCmd {
 
 	
 	public List<TributosMovimentacoes> getAllByIdMovimentacao(Long idMovimentacao) {
-		Optional<List<TributosMovimentacoes>> entitys = repository.findByIdMovimentacao(idMovimentacao);
+		Optional<List<TributosMovimentacoes>> entitys = repository.findAllByIdMovimentacao(idMovimentacao);
 		if (entitys.isPresent()) {
 			return entitys.get();
 		}
 		return new ArrayList<TributosMovimentacoes>();
 	}
 
+	public TributosMovimentacoes getByIdMovimentacaoAndIdTributo(Long idMovimentacao, Long idTributo) {
+		Optional<TributosMovimentacoes> entity = repository.findByIdMovimentacaoAndIdTributo(idMovimentacao, idTributo);
+		if (entity.isPresent()) {
+			return entity.get();
+		}
+		return null;
+	}
+	
+	public TributosMovimentacoesTO getTOByIdMovimentacaoAndIdTributo(Long idMovimentacao, Long idTributo) {
+		Optional<TributosMovimentacoes> entity = repository.findByIdMovimentacaoAndIdTributo(idMovimentacao, idTributo);
+		if (entity.isPresent()) {
+			return toBuilder.buildTO(entity.get());
+		}
+		return new TributosMovimentacoesTO();
+	}
 	
 	public List<TributosMovimentacoesTO> getAllTOByIdMovimentacao(Long idMovimentacao) {
-		Optional<List<TributosMovimentacoes>> entitys = repository.findByIdMovimentacao(idMovimentacao);
+		Optional<List<TributosMovimentacoes>> entitys = repository.findAllByIdMovimentacao(idMovimentacao);
 		if (entitys.isPresent()) {
 			return toBuilder.buildAll(entitys.get());
 		}
