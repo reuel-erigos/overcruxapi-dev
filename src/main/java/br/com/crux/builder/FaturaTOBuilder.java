@@ -42,7 +42,7 @@ public class FaturaTOBuilder {
 		BeanUtils.copyProperties(faturaTO, entity);
 		entity.setIdMovimentacao(movimentacoes.getId());
 		
-		if(Objects.nonNull(faturaTO.getTributoMovimentacao())) {
+		if(Objects.nonNull(faturaTO.getTributoMovimentacao()) && Objects.nonNull(faturaTO.getTributoMovimentacao().getTributo())) {
 			entity.setTributoMovimentacao(getTributoMovimentacaoCmd.getByIdMovimentacaoAndIdTributo(movimentacoes.getId(), faturaTO.getTributoMovimentacao().getTributo().getId()));
 		}
 		
