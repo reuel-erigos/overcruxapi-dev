@@ -15,17 +15,22 @@ import br.com.crux.to.ItensMovimentacoesTO;
 @Component
 public class CadastrarItensMovimentacoesCmd {
 
-	@Autowired ItensMovimentacoesRepository repository;
-	@Autowired ItensMovimentacoesTOBuilder tOBuilder;
+	@Autowired private ItensMovimentacoesRepository repository;
+	@Autowired private ItensMovimentacoesTOBuilder tOBuilder;
+	@Autowired private AlterarListaTributosItensMovimentacaoCmd alterarListaTributosItensMovimentacaoCmd;
 
-	public ItensMovimentacoes cadastrar(ItensMovimentacoesTO itensMovimentacoesTO, Movimentacoes movimentacoes) {
-		ItensMovimentacoes entity = tOBuilder.build(movimentacoes, itensMovimentacoesTO);
-		return repository.save(entity);
+	public ItensMovimentacoes cadastrar(ItensMovimentacoesTO itensMovimentacoesTO, Movimentacoes movimentacao) {
+		ItensMovimentacoes entity = tOBuilder.build(movimentacao, itensMovimentacoesTO);
+		
+		ItensMovimentacoes entitySalva = repository.save(entity);
+		alterarListaTributosItensMovimentacaoCmd.alterarAll(itensMovimentacoesTO.getTributos(), entitySalva);
+		
+		return entitySalva;
 	}
 
-	public List<ItensMovimentacoes> cadastrarLista(Movimentacoes movimentacoes, List<ItensMovimentacoesTO> list) {
+	public List<ItensMovimentacoes> cadastrarLista(Movimentacoes movimentacao, List<ItensMovimentacoesTO> list) {
 		return list.stream()
-				.map(item -> cadastrar(item,movimentacoes))
+				.map(item -> cadastrar(item,movimentacao))
 				.collect(Collectors.toList());
 
 	}

@@ -1,5 +1,7 @@
 package br.com.crux.to;
 
+import java.util.List;
+
 public class ItensMovimentacoesTO {
 
 	private Long id;
@@ -14,12 +16,7 @@ public class ItensMovimentacoesTO {
 	private Double valorUnitarioItem;
 	private PedidosMateriaisTO pedidosMateriais;
 
-	private Double valorISS;
-	private Double valorICMS;
-	private Double valorIPI;
-	private Double valorPisConfinsCsll;
-	private Double valorInss;
-
+	private List<TributosItensMovimentacoesTO> tributos;
 	
 	public Long getId() {
 		return id;
@@ -110,46 +107,13 @@ public class ItensMovimentacoesTO {
 		this.pedidosMateriais = pedidosMateriais;
 	}
 
-	public Double getValorISS() {
-		return valorISS;
+	public List<TributosItensMovimentacoesTO> getTributos() {
+		return tributos;
 	}
 
-	public void setValorISS(Double valorISS) {
-		this.valorISS = valorISS;
+	public void setTributos(List<TributosItensMovimentacoesTO> tributos) {
+		this.tributos = tributos;
 	}
 
-	public Double getValorICMS() {
-		return valorICMS;
-	}
-
-	public void setValorICMS(Double valorICMS) {
-		this.valorICMS = valorICMS;
-	}
-
-	public Double getValorIPI() {
-		return valorIPI;
-	}
-
-	public void setValorIPI(Double valorIPI) {
-		this.valorIPI = valorIPI;
-	}
-
-	public Double getValorPisConfinsCsll() {
-		return valorPisConfinsCsll;
-	}
-
-	public void setValorPisConfinsCsll(Double valorPisConfinsCsll) {
-		this.valorPisConfinsCsll = valorPisConfinsCsll;
-	}
-
-	public Double getValorInss() {
-		return valorInss;
-	}
-
-	public void setValorInss(Double valorInss) {
-		this.valorInss = valorInss;
-	}
 	
-	
-
 }

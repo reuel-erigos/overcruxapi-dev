@@ -9,9 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.cmd.GetCategoriasContabeisCmd;
-import br.com.crux.cmd.GetDepartamentoCmd;
 import br.com.crux.cmd.GetMaterialCmd;
-import br.com.crux.cmd.GetUnidadeCmd;
+import br.com.crux.cmd.GetTributosItensMovimentacaoCmd;
 import br.com.crux.cmd.GetUsuarioLogadoCmd;
 import br.com.crux.entity.CategoriasContabeis;
 import br.com.crux.entity.ItensMovimentacoes;
@@ -22,16 +21,15 @@ import br.com.crux.to.ItensMovimentacoesTO;
 @Component
 public class ItensMovimentacoesTOBuilder {
 
-	@Autowired CategoriasContabeisTOBuilder categoriasContabeisTOBuilder;
-	@Autowired DepartamentoTOBuilder departamentoTOBuilder;
-	@Autowired MaterialTOBuilder materialTOBuilder;
-	@Autowired PedidosMateriaisTOBuilder pedidosMateriaisTOBuilder;
-	@Autowired UnidadeTOBuilder unidadeTOBuilder;
-	@Autowired GetUsuarioLogadoCmd getUsuarioLogadoCmd;
-	@Autowired GetCategoriasContabeisCmd getCategoriasContabeisCmd;
-	@Autowired GetDepartamentoCmd getDepartamentoCmd;
-	@Autowired GetMaterialCmd getMaterialCmd;
-	@Autowired GetUnidadeCmd getUnidadeCmd;
+	@Autowired private CategoriasContabeisTOBuilder categoriasContabeisTOBuilder;
+	@Autowired private DepartamentoTOBuilder departamentoTOBuilder;
+	@Autowired private MaterialTOBuilder materialTOBuilder;
+	@Autowired private PedidosMateriaisTOBuilder pedidosMateriaisTOBuilder;
+	@Autowired private UnidadeTOBuilder unidadeTOBuilder;
+	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
+	@Autowired private GetCategoriasContabeisCmd getCategoriasContabeisCmd;
+	@Autowired private GetMaterialCmd getMaterialCmd;
+	@Autowired private GetTributosItensMovimentacaoCmd getTributosItensMovimentacaoCmd ;
 
 	public ItensMovimentacoesTO buildTO(ItensMovimentacoes entity) {
 		ItensMovimentacoesTO to = new ItensMovimentacoesTO();
@@ -48,6 +46,7 @@ public class ItensMovimentacoesTOBuilder {
 		to.setMaterial(materialTOBuilder.buildTOCombo(entity.getMaterial()));
 		to.setPedidosMateriais(pedidosMateriaisTOBuilder.buildTOCombo(entity.getPedidosMateriais()));
 		to.setUnidade(unidadeTOBuilder.buildTOCombo(entity.getUnidade()));
+		to.setTributos(getTributosItensMovimentacaoCmd.getAllTOByIdItemMovimentacao(entity.getId()));
 		
 		return to;
 	}
@@ -58,7 +57,7 @@ public class ItensMovimentacoesTOBuilder {
 				.collect(Collectors.toList());
 	}
 
-	public ItensMovimentacoes build(Movimentacoes movimentacoes, ItensMovimentacoesTO to) {
+	public ItensMovimentacoes build(Movimentacoes movimentacao, ItensMovimentacoesTO to) {
 		ItensMovimentacoes entity = new ItensMovimentacoes();
 
 		BeanUtils.copyProperties(to, entity);
@@ -73,9 +72,9 @@ public class ItensMovimentacoesTOBuilder {
 			entity.setMaterial(retorno);
 		}
 
-		entity.setIdMovimentacao(movimentacoes.getId());
-		entity.setUnidade(movimentacoes.getUnidade());
-		entity.setDepartamento(movimentacoes.getDepartamento());
+		entity.setIdMovimentacao(movimentacao.getId());
+		entity.setUnidade(movimentacao.getUnidade());
+		entity.setDepartamento(movimentacao.getDepartamento());
 		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 		
 		return entity;
