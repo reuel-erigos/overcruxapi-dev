@@ -20,7 +20,14 @@ public interface TributosItensMovimentacaoRepository extends JpaRepository<Tribu
 	public Optional<List<TributosItensMovimentacoes>> findAllByIdItemMovimentacao(Long idItenMovimentacao);	
 
 	
+	@Query(value = "SELECT t FROM TributosItensMovimentacoes t                "
+			+ " inner join Movimentacoes mov on mov.id = t.idItemMovimentacao "
+			+ " inner join Tributos tributo on tributo = t.tributo            "
+			+ " where mov.id = ?1                                             "
+			+ " order by tributo.descricao                                    ")
+	public Optional<List<TributosItensMovimentacoes>> findAllByIdMovimentacao(Long idMovimentacao);		
 
+	
 	@Query(value = "SELECT t FROM TributosItensMovimentacoes t     "
 			+ " inner join Tributos tributo on tributo = t.tributo "
 			+ " where t.idItemMovimentacao = ?1                    "
