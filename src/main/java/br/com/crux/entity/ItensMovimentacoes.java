@@ -68,22 +68,6 @@ public class ItensMovimentacoes implements Serializable {
 	@JoinColumn(name = "id_pedido_material")
 	private PedidosMateriais pedidosMateriais;
 
-	@Column(name = "vl_iss")
-	private Double valorISS;
-	
-	@Column(name = "vl_icms")
-	private Double valorICMS;
-	
-	@Column(name = "vl_ipi")
-	private Double valorIPI;
-	
-	@Column(name = "vl_pis_cofins_csll")
-	private Double valorPisConfinsCsll;
-	
-	@Column(name = "vl_inss")
-	private Double valorInss;
-	
-	
 
 	public ItensMovimentacoes() {
 	}
@@ -183,47 +167,5 @@ public class ItensMovimentacoes implements Serializable {
 	public PedidosMateriais getPedidosMateriais() {
 		return pedidosMateriais;
 	}
-
-	public Double getValorISS() {
-		return valorISS;
-	}
-
-	public void setValorISS(Double valorISS) {
-		this.valorISS = valorISS;
-	}
-
-	public Double getValorICMS() {
-		return valorICMS;
-	}
-
-	public void setValorICMS(Double valorICMS) {
-		this.valorICMS = valorICMS;
-	}
-
-	public Double getValorIPI() {
-		return valorIPI;
-	}
-
-	public void setValorIPI(Double valorIPI) {
-		this.valorIPI = valorIPI;
-	}
-
-	public Double getValorPisConfinsCsll() {
-		return valorPisConfinsCsll;
-	}
-
-	public void setValorPisConfinsCsll(Double valorPisConfinsCsll) {
-		this.valorPisConfinsCsll = valorPisConfinsCsll;
-	}
-
-	public Double getValorInss() {
-		return valorInss;
-	}
-
-	public void setValorInss(Double valorInss) {
-		this.valorInss = valorInss;
-	}
-
-
 
 }
