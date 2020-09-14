@@ -1,6 +1,7 @@
 package br.com.crux.cmd;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +20,18 @@ public class CadastrarItensMovimentacoesCmd {
 	@Autowired private ItensMovimentacoesTOBuilder tOBuilder;
 	@Autowired private AlterarListaTributosItensMovimentacaoCmd alterarListaTributosItensMovimentacaoCmd;
 
-	public ItensMovimentacoes cadastrar(ItensMovimentacoesTO itensMovimentacoesTO, Movimentacoes movimentacao) {
-		ItensMovimentacoes entity = tOBuilder.build(movimentacao, itensMovimentacoesTO);
+	public ItensMovimentacoes cadastrar(ItensMovimentacoesTO itemTO, Movimentacoes movimentacao) {
+		ItensMovimentacoes entity = tOBuilder.build(movimentacao, itemTO);
 		
-		ItensMovimentacoes entitySalva = repository.save(entity);
-		alterarListaTributosItensMovimentacaoCmd.alterarAll(itensMovimentacoesTO.getTributos(), entitySalva);
-		
-		return entitySalva;
+		// alteração do item
+		if(Objects.nonNull(itemTO) && Objects.nonNull(itemTO.getId())) {
+			alterarListaTributosItensMovimentacaoCmd.alterarAll(itemTO.getTributos(), entity);
+			entity = repository.save(entity);
+		} else {
+			entity = repository.save(entity);
+			alterarListaTributosItensMovimentacaoCmd.alterarAll(itemTO.getTributos(), entity);
+		}
+		return entity;
 	}
 
 	public List<ItensMovimentacoes> cadastrarLista(Movimentacoes movimentacao, List<ItensMovimentacoesTO> list) {
