@@ -1,14 +1,17 @@
 package br.com.crux.cmd;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.builder.ItensMovimentacoesTOBuilder;
 import br.com.crux.dao.repository.ItensMovimentacoesRepository;
+import br.com.crux.dao.repository.TributosItensMovimentacaoRepository;
 import br.com.crux.entity.ItensMovimentacoes;
 import br.com.crux.entity.Movimentacoes;
+import br.com.crux.entity.TributosItensMovimentacoes;
 import br.com.crux.to.ItensMovimentacoesTO;
 
 @Component
@@ -18,6 +21,7 @@ public class AlterarListaItensMovimentacoesCmd extends AbstractAlterarListaCmd<I
 	@Autowired private GetItensMovimentacoesCmd getCmd;
 	@Autowired private CadastrarItensMovimentacoesCmd cadastrarCmd;
 	@Autowired private ItensMovimentacoesRepository repository;
+	@Autowired private TributosItensMovimentacaoRepository tributosItensMovimentacaoRepository;
 
 	@Override
 	protected ItensMovimentacoesTO getTO(ItensMovimentacoes entity) {
@@ -48,8 +52,11 @@ public class AlterarListaItensMovimentacoesCmd extends AbstractAlterarListaCmd<I
 
 	@Override
 	protected void deletar(ItensMovimentacoes registro) {
+		Optional<List<TributosItensMovimentacoes>> itens = tributosItensMovimentacaoRepository.findAllByIdItemMovimentacao(registro.getId());
+		if(itens.isPresent()) {
+			tributosItensMovimentacaoRepository.deleteInBatch(itens.get());
+		}
 		repository.delete(registro);
-
 	}
 
 }

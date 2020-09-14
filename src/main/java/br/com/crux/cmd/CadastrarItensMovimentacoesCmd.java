@@ -22,15 +22,8 @@ public class CadastrarItensMovimentacoesCmd {
 
 	public ItensMovimentacoes cadastrar(ItensMovimentacoesTO itemTO, Movimentacoes movimentacao) {
 		ItensMovimentacoes entity = tOBuilder.build(movimentacao, itemTO);
-		
-		// alteração do item
-		if(Objects.nonNull(itemTO) && Objects.nonNull(itemTO.getId())) {
-			alterarListaTributosItensMovimentacaoCmd.alterarAll(itemTO.getTributos(), entity);
-			entity = repository.save(entity);
-		} else {
-			entity = repository.save(entity);
-			alterarListaTributosItensMovimentacaoCmd.alterarAll(itemTO.getTributos(), entity);
-		}
+		entity = repository.save(entity);
+		alterarListaTributosItensMovimentacaoCmd.alterarAll(itemTO.getTributos(), entity);
 		return entity;
 	}
 
