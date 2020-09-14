@@ -14,11 +14,13 @@ import br.com.crux.dao.repository.MovimentacoesRepository;
 import br.com.crux.dao.repository.PagamentosFaturaRepository;
 import br.com.crux.dao.repository.RateiosMovimentacoesRepository;
 import br.com.crux.dao.repository.RateiosMovimentacoesUnidadesRepository;
+import br.com.crux.dao.repository.TributosItensMovimentacaoRepository;
 import br.com.crux.entity.Fatura;
 import br.com.crux.entity.ItensMovimentacoes;
 import br.com.crux.entity.PagamentosFatura;
 import br.com.crux.entity.RateiosMovimentacoes;
 import br.com.crux.entity.RateiosMovimentacoesUnidades;
+import br.com.crux.entity.TributosItensMovimentacoes;
 import br.com.crux.exception.ParametroNaoInformadoException;
 import br.com.crux.exception.TabaleReferenciaEncontradaException;
 import br.com.crux.exception.base.NegocioException;
@@ -33,7 +35,7 @@ public class ExcluirMovimentacoesCmd {
 	@Autowired private PagamentosFaturaRepository pagamentosFaturaRepository;
 	@Autowired private ItensMovimentacoesRepository itensMovimentacoesRepository;
 	@Autowired private FaturaRepository faturaRepository;
-	
+	@Autowired private TributosItensMovimentacaoRepository tributosItensMovimentacaoRepository;
 	
 	public void excluir(Long id) {
 		try {
@@ -54,6 +56,11 @@ public class ExcluirMovimentacoesCmd {
 			Optional<List<ItensMovimentacoes>> itens = itensMovimentacoesRepository.findByIdMovimentacao(id);
 			if(itens.isPresent()) {
 				throw new  TabaleReferenciaEncontradaException("Não é possível excluir o movimento, pois há itens cadastrados.");
+			}
+			
+			Optional<List<TributosItensMovimentacoes>> tributos = tributosItensMovimentacaoRepository.findAllByIdMovimentacao(id);
+			if(tributos.isPresent()) {
+				tributosItensMovimentacaoRepository.deleteInBatch(tributos.get());
 			}
 			
 			Optional<List<RateiosMovimentacoes>> rateios = rateiosMovimentacoesRepository.findByIdMovimento(id);
