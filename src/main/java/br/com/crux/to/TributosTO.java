@@ -9,7 +9,8 @@ public class TributosTO {
 	private Long idInstituicao;
 	private CategoriasContabeisTO categoria;
 	private Long diaVencimento;
-
+	private String recebedor;
+	
 	
 	public TributosTO() {
 	}
@@ -68,6 +69,14 @@ public class TributosTO {
 
 	public void setDiaVencimento(Long diaVencimento) {
 		this.diaVencimento = diaVencimento;
+	}
+
+	public String getRecebedor() {
+		return recebedor;
+	}
+
+	public void setRecebedor(String recebedor) {
+		this.recebedor = recebedor;
 	}
 	
 }

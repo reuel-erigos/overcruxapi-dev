@@ -46,6 +46,9 @@ public class Tributos implements Serializable {
 	@Column(name = "dia_vencimento")
 	private Long diaVencimento;
 
+	@Column(name = "ds_recebedor")
+	private String recebedor;
+
 	
 	public Tributos() {
 	}
@@ -104,6 +107,14 @@ public class Tributos implements Serializable {
 
 	public void setDiaVencimento(Long diaVencimento) {
 		this.diaVencimento = diaVencimento;
+	}
+
+	public String getRecebedor() {
+		return recebedor;
+	}
+
+	public void setRecebedor(String recebedor) {
+		this.recebedor = recebedor;
 	}
 	
 }
