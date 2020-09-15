@@ -24,6 +24,11 @@ public class FaturaTOBuilder {
 
 	public FaturaTO buildTO(Fatura entity) {
 		FaturaTO to = new FaturaTO();
+		
+		if(Objects.isNull(entity)) {
+			return to;
+		}
+		
 		BeanUtils.copyProperties(entity, to);
 		to.setIdMovimentacao(entity.getIdMovimentacao());
 		to.setTributoMovimentacao(tributoMovimentacaoTOBuilder.buildTO(entity.getTributoMovimentacao()));

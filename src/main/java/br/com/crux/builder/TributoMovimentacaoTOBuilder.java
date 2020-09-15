@@ -12,6 +12,7 @@ import br.com.crux.cmd.GetTributoCmd;
 import br.com.crux.cmd.GetUsuarioLogadoCmd;
 import br.com.crux.entity.TributosMovimentacoes;
 import br.com.crux.to.TributosMovimentacoesTO;
+import br.com.crux.to.TributosTO;
 
 @Component
 public class TributoMovimentacaoTOBuilder {
@@ -23,6 +24,7 @@ public class TributoMovimentacaoTOBuilder {
 	public TributosMovimentacoesTO buildTO(TributosMovimentacoes entity) {
 		TributosMovimentacoesTO to = new TributosMovimentacoesTO();
 		if (Objects.isNull(entity)) {
+			to.setTributo(new TributosTO());
 			return to;
 		}
 		
