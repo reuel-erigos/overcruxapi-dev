@@ -1,6 +1,8 @@
 package br.com.crux.cmd;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +27,12 @@ public class CadastrarTributosMovimentacaoCmd {
 	}
 
 	public List<TributosMovimentacoes> cadastrarLista(Movimentacoes movimentacoes, List<TributosMovimentacoesTO> tributosTO) {
-		return tributosTO.stream()
-						.map(item -> cadastrar(item, movimentacoes.getId() ))
-						.collect(Collectors.toList());
+		if(Objects.nonNull(tributosTO)) {
+			return tributosTO.stream()
+					.map(item -> cadastrar(item, movimentacoes.getId() ))
+					.collect(Collectors.toList());
+		}
+		return new ArrayList<TributosMovimentacoes>();
 	}
 
 }
