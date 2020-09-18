@@ -22,20 +22,18 @@ public class ConciliacaoService {
 
 	@GetMapping(path = "/filter", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<ConciliacaoTO> getAllFilter(@RequestParam(name = "dataInicio", required = false) Long dataInicio,
-                                                           @RequestParam(name = "dataFim", required = false) Long dataFim,
-                                                           @RequestParam(name = "contaBancaria", required = false) Long idContaBancaria,
-                                                           @RequestParam(name = "tipoAcao", required = true) String tipoAcao
-                                                           ) {
-		return getCmd.getAllFilter(tipoAcao, dataInicio, dataFim, idContaBancaria);
+                                            @RequestParam(name = "dataFim", required = false) Long dataFim,
+                                            @RequestParam(name = "contaBancaria", required = false) Long idContaBancaria
+                                            ) {
+		return getCmd.getAllFilter(dataInicio, dataFim, idContaBancaria);
 	}
 
 	
 	@PostMapping(path = "/exportar")
 	public void gerar(@RequestParam(name = "dataInicio", required = false) Long dataInicio,
                       @RequestParam(name = "dataFim", required = false) Long dataFim,
-                      @RequestParam(name = "contaBancaria", required = false) Long idContaBancaria,
-                      @RequestParam(name = "tipoAcao", required = true) String tipoAcao
+                      @RequestParam(name = "contaBancaria", required = false) Long idContaBancaria
                       ) {
-		gerarCmd.gerar(tipoAcao, dataInicio, dataFim, idContaBancaria);
+		gerarCmd.gerar(dataInicio, dataFim, idContaBancaria);
 	}
 }

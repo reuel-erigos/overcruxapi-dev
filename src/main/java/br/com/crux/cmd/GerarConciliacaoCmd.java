@@ -18,13 +18,13 @@ public class GerarConciliacaoCmd {
 	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 
 
-	public void gerar(String tipoAcao, Long idContaBancaria, Long dataInicio, Long dataFim) {
+	public void gerar(Long idContaBancaria, Long dataInicio, Long dataFim) {
 		try {
 			LocalDate pDataInicio  = Objects.nonNull(dataInicio) ? Java8DateUtil.getLocalDateTime(new Date(dataInicio)).toLocalDate() : null;
 			LocalDate pDataFim     = Objects.nonNull(dataFim) ? Java8DateUtil.getLocalDateTime(new Date(dataFim)).toLocalDate() : null;
 			
 			Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
-			dao.exportar(tipoAcao, idInstituicao, idContaBancaria, pDataInicio, pDataFim);
+			dao.exportar(idInstituicao, idContaBancaria, pDataInicio, pDataFim);
 			
 		} catch (Exception e) {
 			throw new ConciliacaoNaoGeradoException(e.getMessage());

@@ -21,12 +21,12 @@ public class GetConciliacaoCmd {
 	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 
 
-	public List<ConciliacaoTO> getAllFilter(String tipoAcao, Long idContaBancaria, Long dataInicio, Long dataFim) {
+	public List<ConciliacaoTO> getAllFilter(Long idContaBancaria, Long dataInicio, Long dataFim) {
 		LocalDate pDataInicio  = Objects.nonNull(dataInicio) ? Java8DateUtil.getLocalDateTime(new Date(dataInicio)).toLocalDate() : null;
 		LocalDate pDataFim     = Objects.nonNull(dataFim) ? Java8DateUtil.getLocalDateTime(new Date(dataFim)).toLocalDate() : null;
 		
 		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
-		return toBuilder.buildAll(dao.getAll(tipoAcao, idInstituicao, idContaBancaria, pDataInicio, pDataFim));
+		return toBuilder.buildAll(dao.getAll(idInstituicao, idContaBancaria, pDataInicio, pDataFim));
 	}
 
 

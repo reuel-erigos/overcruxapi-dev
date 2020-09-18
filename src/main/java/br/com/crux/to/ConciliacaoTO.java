@@ -9,12 +9,12 @@ public class ConciliacaoTO {
 	private String tipo;
 	private String situacao;
 	private String numeroDocumento;
-	private LocalDate dataPagamentoRecebimento;
+	private LocalDate data;
 	private String banco;
-	private String apropriacaoFinanceira;
+	private String categoria;
 	private String fornecedor;
-	private String complementoHistorico;
-	private String nomeProjetoPrograma;
+	private String complemento;
+	private String centroCusto;
 	private String grupoContas;
 	private Double valor;
 
@@ -61,12 +61,12 @@ public class ConciliacaoTO {
 		this.numeroDocumento = numeroDocumento;
 	}
 
-	public LocalDate getDataPagamentoRecebimento() {
-		return dataPagamentoRecebimento;
+	public LocalDate getData() {
+		return data;
 	}
 
-	public void setDataPagamentoRecebimento(LocalDate dataPagamentoRecebimento) {
-		this.dataPagamentoRecebimento = dataPagamentoRecebimento;
+	public void setData(LocalDate dataPagamentoRecebimento) {
+		this.data = dataPagamentoRecebimento;
 	}
 
 	public String getBanco() {
@@ -77,12 +77,12 @@ public class ConciliacaoTO {
 		this.banco = banco;
 	}
 
-	public String getApropriacaoFinanceira() {
-		return apropriacaoFinanceira;
+	public String getCategoria() {
+		return categoria;
 	}
 
-	public void setApropriacaoFinanceira(String apropriacaoFinanceira) {
-		this.apropriacaoFinanceira = apropriacaoFinanceira;
+	public void setCategoria(String apropriacaoFinanceira) {
+		this.categoria = apropriacaoFinanceira;
 	}
 
 	public String getFornecedor() {
@@ -93,20 +93,20 @@ public class ConciliacaoTO {
 		this.fornecedor = fornecedor;
 	}
 
-	public String getComplementoHistorico() {
-		return complementoHistorico;
+	public String getComplemento() {
+		return complemento;
 	}
 
-	public void setComplementoHistorico(String complementoHistorico) {
-		this.complementoHistorico = complementoHistorico;
+	public void setComplemento(String complementoHistorico) {
+		this.complemento = complementoHistorico;
 	}
 
-	public String getNomeProjetoPrograma() {
-		return nomeProjetoPrograma;
+	public String getCentroCusto() {
+		return centroCusto;
 	}
 
-	public void setNomeProjetoPrograma(String nomeProjetoPrograma) {
-		this.nomeProjetoPrograma = nomeProjetoPrograma;
+	public void setCentroCusto(String nomeProjetoPrograma) {
+		this.centroCusto = nomeProjetoPrograma;
 	}
 
 	public String getGrupoContas() {

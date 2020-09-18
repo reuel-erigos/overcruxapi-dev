@@ -25,7 +25,7 @@ import br.com.crux.infra.util.DataUtil;
 @Component
 public class ConciliacaoDao extends BaseDao {
 
-	public void exportar(String tipoAcao, Long idInstituicao, Long idContaBancaria, LocalDate dataInicio, LocalDate dataFim){
+	public void exportar(Long idInstituicao, Long idContaBancaria, LocalDate dataInicio, LocalDate dataFim){
         Session session =null;
         try{
         	session = em.unwrap(Session.class);
@@ -36,13 +36,7 @@ public class ConciliacaoDao extends BaseDao {
               public void execute(Connection connection) throws SQLException {
                     CallableStatement statement =null;
                     
-                    String sqlString = "";
-                    if(tipoAcao.equals("PROVISIONAMENTO")) {
-                    	sqlString ="{call fn_gera_provisoes_financeiras(?,?,?,?)}";
-                    }
-                    if(tipoAcao.equals("CONCILIACAO")) {
-                    	sqlString ="{call fn_gera_conciliacao_bancaria(?,?,?,?)}";
-                    }
+                    String sqlString = "{call fn_gera_conciliacao_bancaria(?,?,?,?)}";
 
                     statement = connection.prepareCall(sqlString);
                     statement.setLong(1,idInstituicao);
@@ -78,13 +72,18 @@ public class ConciliacaoDao extends BaseDao {
         }
     }
 
-	public List<ConciliacaoDTO> getAll(String tipoAcao, Long idInstituicao, Long idContaBancaria, LocalDate dataInicio, LocalDate dataFim) {
+	public List<ConciliacaoDTO> getAll(Long idInstituicao, Long idContaBancaria, LocalDate dataInicio, LocalDate dataFim) {
 		StringBuilder sql = new StringBuilder();
 
 		sql.append("select fn_gera_conciliacao_bancaria(");
 		sql.append(idInstituicao);
 		sql.append(",");
-		sql.append(idContaBancaria);
+		
+		if(Objects.nonNull(idContaBancaria)) {
+			sql.append(idContaBancaria);
+		}else {
+			sql.append("null");
+		}
 		sql.append(",");
 		sql.append("DATE_TRUNC('DAY', to_date(" + dataInicio + ",'dd/mm/yyyy') )");
 		sql.append(",");
@@ -92,9 +91,6 @@ public class ConciliacaoDao extends BaseDao {
 		sql.append(")");
 
 		Query query = em.createNativeQuery(sql.toString());
-
-		//query.setParameter("p_dt_inicio", dataInicio.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-		//query.setParameter("p_dt_fim", dataFim.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 
 		@SuppressWarnings("unchecked")
 		List<Object[]> values = query.getResultList();
