@@ -2,6 +2,7 @@ package br.com.crux.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,8 +18,8 @@ import br.com.crux.to.ConciliacaoTO;
 @RequestMapping(value = "conciliacao")
 public class ConciliacaoService {
 	
-	private GetConciliacaoCmd getCmd;
-	private GerarConciliacaoCmd gerarCmd;
+	@Autowired private GetConciliacaoCmd getCmd;
+	@Autowired private GerarConciliacaoCmd gerarCmd;
 
 	@GetMapping(path = "/filter", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<ConciliacaoTO> getAllFilter(@RequestParam(name = "dataInicio", required = false) Long dataInicio,
