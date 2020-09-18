@@ -17,7 +17,18 @@ public class GetPessoaFisicaCmd {
 
 	@Autowired private PessoaFisicaRepository repository;
 	@Autowired private PessoaFisicaTOBuilder toBuilder;
+	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 
+	public List<PessoaFisicaTO> getAllFornecedoresColaboradores() {
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+		
+		List<PessoaFisica> entitys = repository.findAll();
+		if (entitys == null || entitys.isEmpty()) {
+			return new ArrayList<PessoaFisicaTO>();
+		}
+		return toBuilder.buildAll(entitys);
+	}
+	
 	public List<PessoaFisicaTO> getAll() {
 		List<PessoaFisica> entitys = repository.findAll();
 		if (entitys == null || entitys.isEmpty()) {

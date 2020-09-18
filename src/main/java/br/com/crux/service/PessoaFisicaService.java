@@ -30,4 +30,9 @@ public class PessoaFisicaService {
 		return getCmd.getTOById(id);
 	}
 
+	
+	@GetMapping(path = "/fornecedor_colaborador", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<PessoaFisicaTO> getAllFornecedoresColaboradores() {
+		return getCmd.getAllFornecedoresColaboradores();
+	}
 }
