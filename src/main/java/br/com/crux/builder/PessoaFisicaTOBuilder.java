@@ -5,15 +5,18 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.cmd.GetCondicoesMoradiaCmd;
 import br.com.crux.cmd.GetGrausInstrucaoCmd;
 import br.com.crux.cmd.GetUnidadeLogadaCmd;
+import br.com.crux.dao.dto.FornecedorColaboradorDTO;
 import br.com.crux.entity.CondicoesMoradia;
 import br.com.crux.entity.GrausInstrucao;
 import br.com.crux.entity.PessoaFisica;
+import br.com.crux.to.FornecedorColaboradorTO;
 import br.com.crux.to.PessoaFisicaTO;
 
 @Component
@@ -255,4 +258,22 @@ public class PessoaFisicaTOBuilder {
 		return dtos.stream().map(dto -> buildTO(dto)).collect(Collectors.toList());
 	}
 
+	
+	
+	
+	public FornecedorColaboradorTO buildTO(FornecedorColaboradorDTO dto) {
+		FornecedorColaboradorTO to = new FornecedorColaboradorTO();
+
+		if(Objects.isNull(dto)) {
+			return to;
+		}
+		
+		BeanUtils.copyProperties(dto, to);
+		
+		return to;
+	}
+	
+	public List<FornecedorColaboradorTO> buildAllDTO(List<FornecedorColaboradorDTO> dtos){
+		return dtos.stream().map(dto -> buildTO(dto)).collect(Collectors.toList());
+	}
 }

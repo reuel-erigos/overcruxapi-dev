@@ -84,6 +84,10 @@ public class Movimentacoes implements Serializable {
 	private Doadores doador;
 	
 	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="id_pessoa_fisica")
+	private PessoaFisica fornecedorColaborador;
+	
 	public Movimentacoes() {
 	}
 
@@ -213,6 +217,14 @@ public class Movimentacoes implements Serializable {
 
 	public void setDoador(Doadores doador) {
 		this.doador = doador;
+	}
+
+	public PessoaFisica getFornecedorColaborador() {
+		return fornecedorColaborador;
+	}
+
+	public void setFornecedorColaborador(PessoaFisica fornecedorColaborador) {
+		this.fornecedorColaborador = fornecedorColaborador;
 	}
 
 	

@@ -15,6 +15,7 @@ import br.com.crux.cmd.GetEmpresaCmd;
 import br.com.crux.cmd.GetFaturaCmd;
 import br.com.crux.cmd.GetItensMovimentacoesCmd;
 import br.com.crux.cmd.GetPagamentosFaturaCmd;
+import br.com.crux.cmd.GetPessoaFisicaCmd;
 import br.com.crux.cmd.GetRateiosMovimentacoesCmd;
 import br.com.crux.cmd.GetRateiosMovimentacoesUnidadesCmd;
 import br.com.crux.cmd.GetTributoMovimentacaoCmd;
@@ -22,6 +23,7 @@ import br.com.crux.cmd.GetUnidadeCmd;
 import br.com.crux.cmd.GetUsuarioLogadoCmd;
 import br.com.crux.entity.Doadores;
 import br.com.crux.entity.Movimentacoes;
+import br.com.crux.entity.PessoaFisica;
 import br.com.crux.to.MovimentacoesTO;
 
 @Component
@@ -46,7 +48,8 @@ public class MovimentacoesTOBuilder {
 	@Autowired private DoadoresTOBuilder doadoresTOBuilder;
 	@Autowired private GetDoadoresCmd getDoadoresCmd; 
 	@Autowired private GetTributoMovimentacaoCmd getTributoMovimentacaoCmd;
-	
+	@Autowired private PessoaFisicaTOBuilder pessoaFisicaTOBuilder;
+	@Autowired private GetPessoaFisicaCmd getPessoaFisicaCmd;
 	
 	
 	public MovimentacoesTO buildTO(Movimentacoes m) {
@@ -75,6 +78,7 @@ public class MovimentacoesTOBuilder {
 		to.setContaBancaria(contasBancariaTOBuilder.buildTO(m.getContaBancaria()));
 		to.setContaBancariaDestino(contasBancariaTOBuilder.buildTO(m.getContaBancariaDestino()));
 		to.setDoador(doadoresTOBuilder.buildTO(m.getDoador()));
+		to.setFornecedorColaborador(pessoaFisicaTOBuilder.buildTO(m.getFornecedorColaborador()));
 
 		return to;
 	}
@@ -115,6 +119,12 @@ public class MovimentacoesTOBuilder {
 			p.setDoador(obj);
 		}
 
+		if (Objects.nonNull(to.getFornecedorColaborador()) && Objects.nonNull(to.getFornecedorColaborador().getId())) {
+			PessoaFisica obj = getPessoaFisicaCmd.getById(to.getFornecedorColaborador().getId());
+			p.setFornecedorColaborador(obj);
+		}
+		
+		
 		p.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 		return p;
 	}
