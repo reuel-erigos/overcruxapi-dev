@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.crux.cmd.GetPessoaFisicaCmd;
+import br.com.crux.to.FornecedorColaboradorTO;
 import br.com.crux.to.PessoaFisicaTO;
 
 @RestController
@@ -32,7 +33,7 @@ public class PessoaFisicaService {
 
 	
 	@GetMapping(path = "/fornecedor_colaborador", produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<PessoaFisicaTO> getAllFornecedoresColaboradores() {
+	public List<FornecedorColaboradorTO> getAllFornecedoresColaboradores() {
 		return getCmd.getAllFornecedoresColaboradores();
 	}
 }
