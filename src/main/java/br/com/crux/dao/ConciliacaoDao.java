@@ -85,7 +85,7 @@ public class ConciliacaoDao extends BaseDao {
 			sql.append("null");
 		}
 		
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/mm/yyyy");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		
 		sql.append(",");
 		sql.append("DATE_TRUNC('DAY', to_date(" + formatter.format(dataInicio) + ",'dd/mm/yyyy') )");

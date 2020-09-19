@@ -26,7 +26,7 @@ public class ConciliacaoService {
                                             @RequestParam(name = "dataFim", required = false) Long dataFim,
                                             @RequestParam(name = "contaBancaria", required = false) Long idContaBancaria
                                             ) {
-		return getCmd.getAllFilter(dataInicio, dataFim, idContaBancaria);
+		return getCmd.getAllFilter(idContaBancaria, dataInicio, dataFim);
 	}
 
 	
