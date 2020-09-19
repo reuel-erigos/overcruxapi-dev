@@ -84,10 +84,13 @@ public class ConciliacaoDao extends BaseDao {
 		}else {
 			sql.append("null");
 		}
+		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/mm/yyyy");
+		
 		sql.append(",");
-		sql.append("DATE_TRUNC('DAY', to_date(" + dataInicio + ",'dd/mm/yyyy') )");
+		sql.append("DATE_TRUNC('DAY', to_date(" + formatter.format(dataInicio) + ",'dd/mm/yyyy') )");
 		sql.append(",");
-		sql.append("DATE_TRUNC('DAY', to_date(" + dataFim + ",'dd/mm/yyyy') )");
+		sql.append("DATE_TRUNC('DAY', to_date(" + formatter.format(dataFim) + ",'dd/mm/yyyy') )");
 		sql.append(")");
 
 		Query query = em.createNativeQuery(sql.toString());
