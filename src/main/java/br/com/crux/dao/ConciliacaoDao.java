@@ -82,15 +82,15 @@ public class ConciliacaoDao extends BaseDao {
 		if(Objects.nonNull(idContaBancaria)) {
 			sql.append(idContaBancaria);
 		}else {
-			sql.append("null");
+			sql.append(1);
 		}
 		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		
 		sql.append(",");
-		sql.append("DATE_TRUNC('DAY', to_date(" + formatter.format(dataInicio) + ",'dd/mm/yyyy') )");
+		sql.append("to_date('" + formatter.format(dataInicio) + "','dd/mm/yyyy') ");
 		sql.append(",");
-		sql.append("DATE_TRUNC('DAY', to_date(" + formatter.format(dataFim) + ",'dd/mm/yyyy') )");
+		sql.append("to_date('" + formatter.format(dataFim) + "','dd/mm/yyyy') ");
 		sql.append(")");
 
 		Query query = em.createNativeQuery(sql.toString());
