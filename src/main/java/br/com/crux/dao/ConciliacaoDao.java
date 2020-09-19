@@ -108,6 +108,7 @@ public class ConciliacaoDao extends BaseDao {
 			List<ConciliacaoDTO> retorno = new ArrayList<ConciliacaoDTO>();
 			values.stream().forEach(colunas -> retorno.add(new ConciliacaoDTO(colunas)));
 
+			session.getTransaction().commit();
 			return retorno;
 	
         }finally{
