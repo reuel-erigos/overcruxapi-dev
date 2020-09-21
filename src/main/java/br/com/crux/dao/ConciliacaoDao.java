@@ -28,11 +28,11 @@ import br.com.crux.infra.util.DataUtil;
 
 @Component
 public class ConciliacaoDao extends BaseDao {
-
-	public void exportar(Long idInstituicao, Long idContaBancaria, LocalDate dataInicio, LocalDate dataFim){
+	
+	public void gerar(Long idInstituicao, Long idContaBancaria, LocalDate dataInicio, LocalDate dataFim) {
         Session session =null;
         try{
-        	session = em.unwrap(Session.class);
+        	session = getSession();
             session.beginTransaction();
             
             session.doWork(new Work(){
@@ -40,7 +40,7 @@ public class ConciliacaoDao extends BaseDao {
               public void execute(Connection connection) throws SQLException {
                     CallableStatement statement =null;
                     
-                    String sqlString = "{call fn_gera_conciliacao_bancaria(?,?,?,?)}";
+                    String sqlString = "{call fn_gerar_conciliacao_bancaria(?,?,?,?)}";
 
                     statement = connection.prepareCall(sqlString);
                     statement.setLong(1,idInstituicao);
@@ -51,19 +51,11 @@ public class ConciliacaoDao extends BaseDao {
                     	statement.setNull(2, Types.INTEGER);
                     }
                     
-                    if(Objects.nonNull(dataInicio)) {
-                    	Date pDataInicio = DataUtil.parseDate(dataInicio.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-                    	statement.setTimestamp(3, new Timestamp(pDataInicio.getTime()));
-                    } else {
-                    	statement.setNull(3, Types.TIMESTAMP);
-                    }
-                    
-                    if(Objects.nonNull(dataFim)) {
-                    	Date pDataFim = DataUtil.parseDate(dataFim.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-                    	statement.setTimestamp(4, new Timestamp(pDataFim.getTime()));
-                    } else {
-                    	statement.setNull(4, Types.TIMESTAMP);
-                    }
+                	Date pDataInicio = DataUtil.parseDate(dataInicio.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                	statement.setTimestamp(3, new Timestamp(pDataInicio.getTime()));
+                
+                	Date pDataFim = DataUtil.parseDate(dataFim.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                	statement.setTimestamp(4, new Timestamp(pDataFim.getTime()));
                     
                     int count = statement.executeUpdate();
                     System.out.println(count +" registro(s) afetados");
@@ -72,18 +64,18 @@ public class ConciliacaoDao extends BaseDao {
             session.getTransaction().commit();
 
         }finally{
-            session.close();
+        	closeEntityManager();
         }
-    }
+	}
 
 	@SuppressWarnings({ "unchecked"})
 	public List<ConciliacaoDTO> getAll(Long idInstituicao, Long idContaBancaria, LocalDate dataInicio, LocalDate dataFim) {
 		Session session =null;
 		try {
-			session = em.unwrap(Session.class);
+			session = getSession();
 	        session.beginTransaction();
 			
-			ProcedureCall procedureCall =  session.createStoredProcedureCall("fn_gera_conciliacao_bancaria");
+			ProcedureCall procedureCall =  session.createStoredProcedureCall("fn_get_conciliacao_bancaria");
 			procedureCall.registerParameter(1, void.class, ParameterMode.REF_CURSOR);
 
 			procedureCall.registerParameter(2, BigDecimal.class, ParameterMode.IN);
@@ -97,7 +89,7 @@ public class ConciliacaoDao extends BaseDao {
 	    	Date pDataInicio = DataUtil.parseDate(dataInicio.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 			procedureCall.getParameterRegistration(4).bindValue(new java.sql.Date(pDataInicio.getTime()));
 			
-	    	Date pDataFim = DataUtil.parseDate(dataInicio.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+	    	Date pDataFim = DataUtil.parseDate(dataFim.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 			procedureCall.getParameterRegistration(5).bindValue(new java.sql.Date(pDataFim.getTime())); 
 
 			ProcedureOutputs procedureOutputs = procedureCall.getOutputs();
@@ -112,7 +104,7 @@ public class ConciliacaoDao extends BaseDao {
 			return retorno;
 	
         }finally{
-            session.close();
+        	closeEntityManager();
         }
 		
 	}
