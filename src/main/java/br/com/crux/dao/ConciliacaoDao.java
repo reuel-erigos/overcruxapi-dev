@@ -88,7 +88,7 @@ public class ConciliacaoDao extends BaseDao {
 			if(Objects.nonNull(idContaBancaria)) {
 				procedureCall.getParameterRegistration(3).bindValue(new BigDecimal(idContaBancaria)); 
 			}else {
-				procedureCall.getParameterRegistration(3).bindValue(null);
+				procedureCall.getParameterRegistration(3).enablePassingNulls(true);
 			}
 			
 	    	Date pDataInicio = DataUtil.parseDate(dataInicio.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
