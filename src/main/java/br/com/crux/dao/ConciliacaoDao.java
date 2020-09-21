@@ -84,7 +84,12 @@ public class ConciliacaoDao extends BaseDao {
 			procedureCall.registerParameter(5, Timestamp.class, ParameterMode.IN);
 			
 			procedureCall.getParameterRegistration(2).bindValue(new BigDecimal(idInstituicao));
-			procedureCall.getParameterRegistration(3).bindValue(new BigDecimal(idContaBancaria)); 
+			
+			if(Objects.nonNull(idContaBancaria)) {
+				procedureCall.getParameterRegistration(3).bindValue(new BigDecimal(idContaBancaria)); 
+			}else {
+				procedureCall.getParameterRegistration(3).bindValue(null);
+			}
 			
 	    	Date pDataInicio = DataUtil.parseDate(dataInicio.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 			procedureCall.getParameterRegistration(4).bindValue(new java.sql.Date(pDataInicio.getTime()));
