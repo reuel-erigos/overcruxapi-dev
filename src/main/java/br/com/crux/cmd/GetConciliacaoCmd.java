@@ -28,7 +28,7 @@ public class GetConciliacaoCmd {
 		LocalDate pDataFim     = Java8DateUtil.getLocalDateTime(new Date(dataFim)).toLocalDate();
 		
 		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
-		dao.gerar(idInstituicao, idContaBancaria, pDataInicio, pDataFim);
+		//dao.gerar(idInstituicao, idContaBancaria, pDataInicio, pDataFim);
 		
 		return toBuilder.buildAll(dao.getAll(idInstituicao, idContaBancaria, pDataInicio, pDataFim));
 	}
