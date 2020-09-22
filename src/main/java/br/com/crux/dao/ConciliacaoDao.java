@@ -24,6 +24,7 @@ import org.springframework.stereotype.Component;
 
 import br.com.crux.dao.base.BaseDao;
 import br.com.crux.dao.dto.ConciliacaoDTO;
+import br.com.crux.exception.ConciliacaoNaoGeradoException;
 import br.com.crux.infra.util.DataUtil;
 
 @Component
@@ -38,32 +39,44 @@ public class ConciliacaoDao extends BaseDao {
             session.doWork(new Work(){
               @Override
               public void execute(Connection connection) throws SQLException {
-                    CallableStatement statement =null;
-                    
-                    String sqlString = "{call fn_gerar_conciliacao_bancaria(?,?,?,?)}";
+            	  try {
+            		  CallableStatement statement =null;
+                      
+                      String sqlString = "{call fn_gerar_conciliacao_bancaria(?,?,?,?)}";
 
-                    statement = connection.prepareCall(sqlString);
-                    statement.setLong(1,idInstituicao);
-                    
-                    if(Objects.nonNull(idContaBancaria)) {
-                    	statement.setLong(2,idContaBancaria);
-                    } else {
-                    	statement.setNull(2, Types.INTEGER);
-                    }
-                    
-                	Date pDataInicio = DataUtil.parseDate(dataInicio.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-                	statement.setTimestamp(3, new Timestamp(pDataInicio.getTime()));
-                
-                	Date pDataFim = DataUtil.parseDate(dataFim.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-                	statement.setTimestamp(4, new Timestamp(pDataFim.getTime()));
-                    
-                    int count = statement.executeUpdate();
-                    System.out.println(count +" registro(s) afetados");
+                      statement = connection.prepareCall(sqlString);
+                      statement.setLong(1,idInstituicao);
+                      
+                      if(Objects.nonNull(idContaBancaria)) {
+                      	statement.setLong(2,idContaBancaria);
+                      } else {
+                      	statement.setNull(2, Types.INTEGER);
+                      }
+                      
+                  	Date pDataInicio = DataUtil.parseDate(dataInicio.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                  	statement.setTimestamp(3, new Timestamp(pDataInicio.getTime()));
+                  
+                  	Date pDataFim = DataUtil.parseDate(dataFim.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                  	statement.setTimestamp(4, new Timestamp(pDataFim.getTime()));
+                      
+                      int retorno = statement.executeUpdate();
+                      if(retorno != 0) {
+                    	  throw new ConciliacaoNaoGeradoException("Erro ao gerar a conciliação bancária, código erro banco: " + retorno);
+                      }
+                      
+            	  } catch (Exception e) {
+            		  if(e.getMessage().contains("Onde: PL/pgSQL")) {
+            			  throw new ConciliacaoNaoGeradoException(e.getMessage().substring(0, e.getMessage().indexOf("Onde")));
+            		  }
+            		  throw new ConciliacaoNaoGeradoException(e.getMessage());
+            	  }
+               
                 }
             });
             session.getTransaction().commit();
 
-        }finally{
+		}
+        finally{
         	closeEntityManager();
         }
 	}
@@ -108,7 +121,9 @@ public class ConciliacaoDao extends BaseDao {
 			session.getTransaction().commit();
 			return retorno;
 	
-        }finally{
+        }catch (Exception e) {
+  		  throw new ConciliacaoNaoGeradoException("Não foi possível obter os dados da conciliação bancária.");
+		}finally{
         	closeEntityManager();
         }
 		
