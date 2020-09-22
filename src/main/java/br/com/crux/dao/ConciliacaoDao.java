@@ -65,7 +65,7 @@ public class ConciliacaoDao extends BaseDao {
                       }
                       
             	  } catch (Exception e) {
-            		  String msg = "Where: PL/pgSQL";
+            		  String msg = "Where:";
             		  
             		  if(e.getMessage().contains(msg)) {
             			  throw new ConciliacaoNaoGeradoException(e.getMessage().substring(0, e.getMessage().indexOf(msg)));
