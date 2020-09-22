@@ -65,8 +65,10 @@ public class ConciliacaoDao extends BaseDao {
                       }
                       
             	  } catch (Exception e) {
-            		  if(e.getMessage().contains("Onde: PL/pgSQL")) {
-            			  throw new ConciliacaoNaoGeradoException(e.getMessage().substring(0, e.getMessage().indexOf("Onde")));
+            		  String msg = "Where: PL/pgSQL";
+            		  
+            		  if(e.getMessage().contains(msg)) {
+            			  throw new ConciliacaoNaoGeradoException(e.getMessage().substring(0, e.getMessage().indexOf(msg)));
             		  }
             		  throw new ConciliacaoNaoGeradoException(e.getMessage());
             	  }
