@@ -25,6 +25,7 @@ import org.springframework.stereotype.Component;
 import br.com.crux.dao.base.BaseDao;
 import br.com.crux.dao.dto.ConciliacaoDTO;
 import br.com.crux.exception.ConciliacaoNaoGeradoException;
+import br.com.crux.exception.base.NegocioException;
 import br.com.crux.infra.util.DataUtil;
 
 @Component
@@ -59,14 +60,16 @@ public class ConciliacaoDao extends BaseDao {
                   	Date pDataFim = DataUtil.parseDate(dataFim.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
                   	statement.setTimestamp(4, new Timestamp(pDataFim.getTime()));
                       
-                      int retorno = statement.executeUpdate();
-                      if(retorno != 0) {
-                    	  throw new ConciliacaoNaoGeradoException("Erro ao gerar a conciliação bancária, código erro banco: " + retorno);
-                      }
+                    int retorno = statement.executeUpdate();
+                    if(retorno != 0) {
+                   	  throw new ConciliacaoNaoGeradoException("Erro ao gerar a conciliação bancária, código erro banco: " + retorno);
+                    }
                       
-            	  } catch (Exception e) {
-            		  String msg = "Where:";
+            	  } catch (NegocioException e) {
+            		  throw new ConciliacaoNaoGeradoException(e.getMessage());
             		  
+            	  }	catch (Exception e) {
+            		  String msg = "Where:";            		  
             		  if(e.getMessage().contains(msg)) {
             			  throw new ConciliacaoNaoGeradoException(e.getMessage().substring(0, e.getMessage().indexOf(msg)));
             		  }
