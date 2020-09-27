@@ -1,7 +1,5 @@
 package br.com.crux.cmd;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
@@ -10,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.excel.ConciliacaoBancariaExcelFileExporter;
-import br.com.crux.exception.ConciliacaoSemDocumentoInvalidaException;
-import br.com.crux.exception.base.NegocioException;
 import br.com.crux.to.ConciliacaoTO;
 
 @Component
@@ -27,17 +23,11 @@ public class GerarArquivoConciliacaoCmd {
 			//throw new ConciliacaoSemDocumentoInvalidaException("Não é possível exportar, pois existem fornecedores sem documentos.");
 		}
 		
+		byte[] dados = conciliacaoBancariaExcelFileExporter.gerar(conciliacoes);
+		
 		ajustarCmd.ajustar(conciliacoes);
 		
-        ByteArrayInputStream stream = conciliacaoBancariaExcelFileExporter.gerarFileExcel(conciliacoes);
-        byte[] targetArray = new byte[stream.available()];
-        try {
-			stream.read(targetArray);
-		} catch (IOException e) {
-			throw new NegocioException	(e.getMessage());
-		}
-		return targetArray;
-			
+        return dados;
 	}
 
 

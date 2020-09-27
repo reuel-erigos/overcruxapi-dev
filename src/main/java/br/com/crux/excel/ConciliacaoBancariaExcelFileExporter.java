@@ -15,6 +15,8 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Component;
 
+import br.com.crux.exception.ConciliacaoNaoGeradoException;
+import br.com.crux.exception.base.NegocioException;
 import br.com.crux.infra.util.Java8DateUtil;
 import br.com.crux.to.ConciliacaoTO;
 
@@ -22,7 +24,19 @@ import br.com.crux.to.ConciliacaoTO;
 @Component
 public class ConciliacaoBancariaExcelFileExporter {
 	
-	public ByteArrayInputStream gerarFileExcel(List<ConciliacaoTO> conciliacoes) {
+	
+	public byte[] gerar(List<ConciliacaoTO> conciliacoes) {
+		ByteArrayInputStream stream = gerarFileExcel(conciliacoes);
+        byte[] targetArray = new byte[stream.available()];
+        try {
+			stream.read(targetArray);
+		} catch (IOException e) {
+			throw new NegocioException	(e.getMessage());
+		}
+        return targetArray;
+	}
+	
+	private ByteArrayInputStream gerarFileExcel(List<ConciliacaoTO> conciliacoes) {
 		
 		try(Workbook workbook = new XSSFWorkbook()){
 			Sheet sheet = workbook.createSheet("Conciliação");
@@ -38,42 +52,38 @@ public class ConciliacaoBancariaExcelFileExporter {
 	        cell.setCellStyle(headerCellStyle);
 	        
 	        cell = row.createCell(1);
-	        cell.setCellValue("Situação");
-	        cell.setCellStyle(headerCellStyle);
-	
-	        cell = row.createCell(2);
 	        cell.setCellValue("Documento");
 	        cell.setCellStyle(headerCellStyle);
 	
-	        cell = row.createCell(3);
+	        cell = row.createCell(2);
 	        cell.setCellValue("Data");
 	        cell.setCellStyle(headerCellStyle);
 
-	        cell = row.createCell(4);
+	        cell = row.createCell(3);
 	        cell.setCellValue("Banco");
 	        cell.setCellStyle(headerCellStyle);
 
-	        cell = row.createCell(5);
+	        cell = row.createCell(4);
 	        cell.setCellValue("Categoria");
 	        cell.setCellStyle(headerCellStyle);
 	        
-	        cell = row.createCell(6);
+	        cell = row.createCell(5);
 	        cell.setCellValue("Fornecedor");
 	        cell.setCellStyle(headerCellStyle);
 	        
-	        cell = row.createCell(7);
+	        cell = row.createCell(6);
 	        cell.setCellValue("Complemento");
 	        cell.setCellStyle(headerCellStyle);
 	        
-	        cell = row.createCell(8);
+	        cell = row.createCell(7);
 	        cell.setCellValue("Centro Custo");
 	        cell.setCellStyle(headerCellStyle);
 
-	        cell = row.createCell(9);
+	        cell = row.createCell(8);
 	        cell.setCellValue("Grupo Contas");
 	        cell.setCellStyle(headerCellStyle);
 
-	        cell = row.createCell(10);
+	        cell = row.createCell(9);
 	        cell.setCellValue("Valor");
 	        cell.setCellStyle(headerCellStyle);
 
@@ -82,16 +92,15 @@ public class ConciliacaoBancariaExcelFileExporter {
 	        for(int i = 0; i < conciliacoes.size(); i++) {
 	        	Row dataRow = sheet.createRow(i + 1);
 	        	dataRow.createCell(0).setCellValue(conciliacoes.get(i).getTipo());
-	        	dataRow.createCell(1).setCellValue(conciliacoes.get(i).getSituacao());
-	        	dataRow.createCell(2).setCellValue(conciliacoes.get(i).getNumeroDocumento());
-	        	dataRow.createCell(3).setCellValue(Java8DateUtil.getLocalDateFormater(conciliacoes.get(i).getData()));
-	        	dataRow.createCell(4).setCellValue(conciliacoes.get(i).getBanco());
-	        	dataRow.createCell(5).setCellValue(conciliacoes.get(i).getCategoria());
-	        	dataRow.createCell(6).setCellValue(conciliacoes.get(i).getFornecedor());
-	        	dataRow.createCell(7).setCellValue(conciliacoes.get(i).getComplemento());
-	        	dataRow.createCell(8).setCellValue(conciliacoes.get(i).getCentroCusto());
-	        	dataRow.createCell(9).setCellValue(conciliacoes.get(i).getGrupoContas());
-	        	dataRow.createCell(10).setCellValue(conciliacoes.get(i).getValor());
+	        	dataRow.createCell(1).setCellValue(conciliacoes.get(i).getNumeroDocumento());
+	        	dataRow.createCell(2).setCellValue(Java8DateUtil.getLocalDateFormater(conciliacoes.get(i).getData()));
+	        	dataRow.createCell(3).setCellValue(conciliacoes.get(i).getBanco());
+	        	dataRow.createCell(4).setCellValue(conciliacoes.get(i).getCategoria());
+	        	dataRow.createCell(5).setCellValue(conciliacoes.get(i).getFornecedor());
+	        	dataRow.createCell(6).setCellValue(conciliacoes.get(i).getComplemento());
+	        	dataRow.createCell(7).setCellValue(conciliacoes.get(i).getCentroCusto());
+	        	dataRow.createCell(8).setCellValue(conciliacoes.get(i).getGrupoContas());
+	        	dataRow.createCell(9).setCellValue(conciliacoes.get(i).getValor());
 	        }
 	
 	        // Making size of column auto resize to fit with data
@@ -105,15 +114,14 @@ public class ConciliacaoBancariaExcelFileExporter {
 	        sheet.autoSizeColumn(7);
 	        sheet.autoSizeColumn(8);
 	        sheet.autoSizeColumn(9);
-	        sheet.autoSizeColumn(10);
 	        
 	        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 	        workbook.write(outputStream);
 	        return new ByteArrayInputStream(outputStream.toByteArray());
 	        
-		} catch (IOException ex) {
+		} catch (Exception ex) {
 			ex.printStackTrace();
-			return null;
+			throw new ConciliacaoNaoGeradoException("Erro ao gerar o arquivo. " + ex.getMessage());
 		}
 	}
 }

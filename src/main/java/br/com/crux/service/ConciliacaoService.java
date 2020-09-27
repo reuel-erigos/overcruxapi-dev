@@ -45,7 +45,6 @@ public class ConciliacaoService {
 	}
 	
 	
-	@Transactional
 	@PostMapping(path = "/gerar-arquivo", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
 	public byte[] gerar(@RequestBody List<ConciliacaoTO> param) {
 		return gerarArquivoCmd.gerar(param);

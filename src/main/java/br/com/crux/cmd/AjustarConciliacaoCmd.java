@@ -7,13 +7,14 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import br.com.crux.dao.base.BaseDao;
 import br.com.crux.dao.repository.ConciliacaoBancariaRepository;
 import br.com.crux.entity.ConciliacaoBancaria;
 import br.com.crux.exception.ConciliacaoNaoGeradoException;
 import br.com.crux.to.ConciliacaoTO;
 
 @Component
-public class AjustarConciliacaoCmd {
+public class AjustarConciliacaoCmd extends BaseDao {
 
 	@Autowired private ConciliacaoBancariaRepository repository;
 
@@ -27,7 +28,6 @@ public class AjustarConciliacaoCmd {
 					entity.setDataExportacao(LocalDateTime.now());
 					if(c.getSituacao().equals("G") || c.getSituacao().equals("A")) {
 						entity.setStatus("E");
-						c.setSituacao("E");
 						repository.save(entity);
 					}
 
@@ -36,6 +36,8 @@ public class AjustarConciliacaoCmd {
 					}
 				}
 			});
+			
+			repository.flush();
 			
 		} catch (Exception e) {
 			throw new ConciliacaoNaoGeradoException(e.getMessage());
