@@ -28,6 +28,7 @@ public class AjustarConciliacaoCmd extends BaseDao {
 					entity.setDataExportacao(LocalDateTime.now());
 					if(c.getSituacao().equals("G") || c.getSituacao().equals("A")) {
 						entity.setStatus("E");
+						c.setSituacao("E");
 						repository.save(entity);
 					}
 

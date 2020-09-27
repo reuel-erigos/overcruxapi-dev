@@ -22,12 +22,10 @@ public class GerarArquivoConciliacaoCmd {
 		if(fornecedoresSemDocumento) {
 			//throw new ConciliacaoSemDocumentoInvalidaException("Não é possível exportar, pois existem fornecedores sem documentos.");
 		}
-		
-		byte[] dados = conciliacaoBancariaExcelFileExporter.gerar(conciliacoes);
-		
+
 		ajustarCmd.ajustar(conciliacoes);
 		
-        return dados;
+		return conciliacaoBancariaExcelFileExporter.gerar(conciliacoes);
 	}
 
 

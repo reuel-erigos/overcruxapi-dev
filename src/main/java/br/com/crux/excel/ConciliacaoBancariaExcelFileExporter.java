@@ -48,42 +48,50 @@ public class ConciliacaoBancariaExcelFileExporter {
 	        
 	        // Creating header
 	        Cell cell = row.createCell(0);
+	        cell.setCellValue("Código");
+	        cell.setCellStyle(headerCellStyle);
+
+	        cell = row.createCell(1);
 	        cell.setCellValue("Tipo");
 	        cell.setCellStyle(headerCellStyle);
+
+	        cell = row.createCell(2);
+	        cell.setCellValue("Situação");
+	        cell.setCellStyle(headerCellStyle);
 	        
-	        cell = row.createCell(1);
+	        cell = row.createCell(3);
 	        cell.setCellValue("Documento");
 	        cell.setCellStyle(headerCellStyle);
 	
-	        cell = row.createCell(2);
+	        cell = row.createCell(4);
 	        cell.setCellValue("Data");
 	        cell.setCellStyle(headerCellStyle);
 
-	        cell = row.createCell(3);
+	        cell = row.createCell(5);
 	        cell.setCellValue("Banco");
 	        cell.setCellStyle(headerCellStyle);
 
-	        cell = row.createCell(4);
+	        cell = row.createCell(6);
 	        cell.setCellValue("Categoria");
 	        cell.setCellStyle(headerCellStyle);
 	        
-	        cell = row.createCell(5);
+	        cell = row.createCell(7);
 	        cell.setCellValue("Fornecedor");
 	        cell.setCellStyle(headerCellStyle);
 	        
-	        cell = row.createCell(6);
+	        cell = row.createCell(8);
 	        cell.setCellValue("Complemento");
 	        cell.setCellStyle(headerCellStyle);
 	        
-	        cell = row.createCell(7);
+	        cell = row.createCell(9);
 	        cell.setCellValue("Centro Custo");
 	        cell.setCellStyle(headerCellStyle);
 
-	        cell = row.createCell(8);
+	        cell = row.createCell(10);
 	        cell.setCellValue("Grupo Contas");
 	        cell.setCellStyle(headerCellStyle);
 
-	        cell = row.createCell(9);
+	        cell = row.createCell(11);
 	        cell.setCellValue("Valor");
 	        cell.setCellStyle(headerCellStyle);
 
@@ -91,16 +99,18 @@ public class ConciliacaoBancariaExcelFileExporter {
 	        // Creating data rows for each customer
 	        for(int i = 0; i < conciliacoes.size(); i++) {
 	        	Row dataRow = sheet.createRow(i + 1);
-	        	dataRow.createCell(0).setCellValue(conciliacoes.get(i).getTipo());
-	        	dataRow.createCell(1).setCellValue(conciliacoes.get(i).getNumeroDocumento());
-	        	dataRow.createCell(2).setCellValue(Java8DateUtil.getLocalDateFormater(conciliacoes.get(i).getData()));
-	        	dataRow.createCell(3).setCellValue(conciliacoes.get(i).getBanco());
-	        	dataRow.createCell(4).setCellValue(conciliacoes.get(i).getCategoria());
-	        	dataRow.createCell(5).setCellValue(conciliacoes.get(i).getFornecedor());
-	        	dataRow.createCell(6).setCellValue(conciliacoes.get(i).getComplemento());
-	        	dataRow.createCell(7).setCellValue(conciliacoes.get(i).getCentroCusto());
-	        	dataRow.createCell(8).setCellValue(conciliacoes.get(i).getGrupoContas());
-	        	dataRow.createCell(9).setCellValue(conciliacoes.get(i).getValor());
+	        	dataRow.createCell(0).setCellValue(conciliacoes.get(i).getId());
+	        	dataRow.createCell(1).setCellValue(conciliacoes.get(i).getTipo());
+	        	dataRow.createCell(2).setCellValue(conciliacoes.get(i).getSituacao());
+	        	dataRow.createCell(3).setCellValue(conciliacoes.get(i).getNumeroDocumento());
+	        	dataRow.createCell(4).setCellValue(Java8DateUtil.getLocalDateFormater(conciliacoes.get(i).getData()));
+	        	dataRow.createCell(5).setCellValue(conciliacoes.get(i).getBanco());
+	        	dataRow.createCell(6).setCellValue(conciliacoes.get(i).getCategoria());
+	        	dataRow.createCell(7).setCellValue(conciliacoes.get(i).getFornecedor());
+	        	dataRow.createCell(8).setCellValue(conciliacoes.get(i).getComplemento());
+	        	dataRow.createCell(9).setCellValue(conciliacoes.get(i).getCentroCusto());
+	        	dataRow.createCell(10).setCellValue(conciliacoes.get(i).getGrupoContas());
+	        	dataRow.createCell(11).setCellValue(conciliacoes.get(i).getValor());
 	        }
 	
 	        // Making size of column auto resize to fit with data
@@ -114,6 +124,8 @@ public class ConciliacaoBancariaExcelFileExporter {
 	        sheet.autoSizeColumn(7);
 	        sheet.autoSizeColumn(8);
 	        sheet.autoSizeColumn(9);
+	        sheet.autoSizeColumn(10);
+	        
 	        
 	        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 	        workbook.write(outputStream);
