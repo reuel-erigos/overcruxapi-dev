@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,6 +34,15 @@ public class ConciliacaoService {
 		return getCmd.getAllFilter(idContaBancaria, dataInicio, dataFim);
 	}
 
+	
+	@GetMapping(path = "/carregar", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<ConciliacaoTO> carregar(@RequestParam(name = "dataInicio", required = false) Long dataInicio,
+                                        @RequestParam(name = "dataFim", required = false) Long dataFim,
+                                        @RequestParam(name = "contaBancaria", required = false) Long idContaBancaria
+                                            ) {
+		return getCmd.carregar(idContaBancaria, dataInicio, dataFim);
+	}
+	
 	
 	@PostMapping(path = "/exportar")
 	public void gerar(@RequestParam(name = "dataInicio", required = false) Long dataInicio,

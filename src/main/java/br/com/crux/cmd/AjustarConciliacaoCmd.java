@@ -37,8 +37,6 @@ public class AjustarConciliacaoCmd extends BaseDao {
 				}
 			});
 			
-			repository.flush();
-			
 		} catch (Exception e) {
 			throw new ConciliacaoNaoGeradoException(e.getMessage());
 		}

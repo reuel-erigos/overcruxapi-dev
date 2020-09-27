@@ -30,11 +30,20 @@ public class GetConciliacaoCmd {
 		LocalDate pDataFim     = Java8DateUtil.getLocalDateTime(new Date(dataFim)).toLocalDate();
 		
 		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+		return toBuilder.buildAll(getConciliacaoBancariaDao.getFilter(idInstituicao, idContaBancaria, pDataInicio, pDataFim));
+	}
+
+	public List<ConciliacaoTO> carregar(Long idContaBancaria, Long dataInicio, Long dataFim) {
+		rule.verificar(dataInicio, dataFim);
+		
+		LocalDate pDataInicio  = Java8DateUtil.getLocalDateTime(new Date(dataInicio)).toLocalDate();
+		LocalDate pDataFim     = Java8DateUtil.getLocalDateTime(new Date(dataFim)).toLocalDate();
+		
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
 		gerarConciliacaoBancariaDao.gerar(idInstituicao, idContaBancaria, pDataInicio, pDataFim);
 		
 		return toBuilder.buildAll(getConciliacaoBancariaDao.getFilter(idInstituicao, idContaBancaria, pDataInicio, pDataFim));
 	}
-
 
 
 }
