@@ -38,7 +38,7 @@ public class ConciliacaoDTO {
 		this.centroCusto              = (String) colunas[10];
 		this.grupoContas              = (String) colunas[11];
 		this.valor                    = (colunas[12] != null)? ((BigDecimal)colunas[12]).doubleValue() : null;
-		this.semDocumento             = (colunas[13] != null)? ((Boolean)colunas[13]).booleanValue() : null;
+		this.semDocumento             = (colunas[13] != null)? ((String)colunas[13]).toUpperCase().equals("S") : null;
 	}
 
 	public Long getId() {
