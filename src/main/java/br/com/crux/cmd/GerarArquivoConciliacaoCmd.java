@@ -22,10 +22,9 @@ public class GerarArquivoConciliacaoCmd {
 	public byte[] gerar(List<ConciliacaoTO> conciliacoes) {
 		try {
 			//
-			List<ConciliacaoTO> fornecedoresSemDocumento = conciliacoes.stream()
-			                                            .filter(c -> StringUtils.isEmpty(c.getFornecedor()) && !c.getSemDocumento())
-			                                            .collect(Collectors.toList());
-			if(Objects.nonNull(fornecedoresSemDocumento) && !fornecedoresSemDocumento.isEmpty()) {
+			boolean fornecedoresSemDocumento = conciliacoes.stream()
+			                                            .anyMatch(c -> StringUtils.isEmpty(c.getFornecedor()) && (Objects.isNull(c.getSemDocumento()) || !c.getSemDocumento()));
+			if(fornecedoresSemDocumento) {
 				throw new ConciliacaoSemDocumentoInvalidaException("Não é possível exportar, pois existem fornecedores sem documentos.");
 			}
 			
