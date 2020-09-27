@@ -13,14 +13,16 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.stereotype.Component;
 
 import br.com.crux.infra.util.Java8DateUtil;
 import br.com.crux.to.ConciliacaoTO;
 
 
+@Component
 public class ConciliacaoBancariaExcelFileExporter {
 	
-	public static ByteArrayInputStream gerarFileExcel(List<ConciliacaoTO> conciliacoes) {
+	public ByteArrayInputStream gerarFileExcel(List<ConciliacaoTO> conciliacoes) {
 		
 		try(Workbook workbook = new XSSFWorkbook()){
 			Sheet sheet = workbook.createSheet("Conciliação");
