@@ -8,7 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.builder.ConciliacaoTOBuilder;
-import br.com.crux.dao.ConciliacaoDao;
+import br.com.crux.dao.GerarConciliacaoBancariaDao;
+import br.com.crux.dao.GetConciliacaoBancariaDao;
 import br.com.crux.infra.util.Java8DateUtil;
 import br.com.crux.rule.ValidarConciliacaoBancariaRule;
 import br.com.crux.to.ConciliacaoTO;
@@ -16,7 +17,8 @@ import br.com.crux.to.ConciliacaoTO;
 @Component
 public class GetConciliacaoCmd {
 
-	@Autowired private ConciliacaoDao dao;
+	@Autowired private GerarConciliacaoBancariaDao gerarConciliacaoBancariaDao;
+	@Autowired private GetConciliacaoBancariaDao getConciliacaoBancariaDao; 
 	@Autowired private ConciliacaoTOBuilder toBuilder;
 	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 	@Autowired private ValidarConciliacaoBancariaRule rule;
@@ -28,9 +30,9 @@ public class GetConciliacaoCmd {
 		LocalDate pDataFim     = Java8DateUtil.getLocalDateTime(new Date(dataFim)).toLocalDate();
 		
 		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
-		dao.gerar(idInstituicao, idContaBancaria, pDataInicio, pDataFim);
+		gerarConciliacaoBancariaDao.gerar(idInstituicao, idContaBancaria, pDataInicio, pDataFim);
 		
-		return toBuilder.buildAll(dao.getFilter(idInstituicao, idContaBancaria, pDataInicio, pDataFim));
+		return toBuilder.buildAll(getConciliacaoBancariaDao.getFilter(idInstituicao, idContaBancaria, pDataInicio, pDataFim));
 	}
 
 

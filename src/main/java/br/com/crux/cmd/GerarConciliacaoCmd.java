@@ -6,7 +6,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.crux.dao.ConciliacaoDao;
+import br.com.crux.dao.GerarConciliacaoBancariaDao;
 import br.com.crux.exception.ConciliacaoNaoGeradoException;
 import br.com.crux.infra.util.Java8DateUtil;
 import br.com.crux.rule.ValidarConciliacaoBancariaRule;
@@ -14,7 +14,7 @@ import br.com.crux.rule.ValidarConciliacaoBancariaRule;
 @Component
 public class GerarConciliacaoCmd {
 
-	@Autowired private ConciliacaoDao dao;
+	@Autowired private GerarConciliacaoBancariaDao dao;
 	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 	@Autowired private ValidarConciliacaoBancariaRule rule;
 
