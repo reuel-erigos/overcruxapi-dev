@@ -3,7 +3,6 @@ package br.com.crux.cmd;
 import java.io.ByteArrayInputStream;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +11,7 @@ import org.springframework.stereotype.Component;
 import br.com.crux.excel.ConciliacaoBancariaExcelFileExporter;
 import br.com.crux.exception.ConciliacaoNaoGeradoException;
 import br.com.crux.exception.ConciliacaoSemDocumentoInvalidaException;
+import br.com.crux.exception.base.NegocioException;
 import br.com.crux.to.ConciliacaoTO;
 
 @Component
@@ -35,8 +35,10 @@ public class GerarArquivoConciliacaoCmd {
 	        stream.read(targetArray);
 			return targetArray;
 			
-		} catch (Exception e) {
+		} catch (NegocioException e) {
 			throw new ConciliacaoNaoGeradoException(e.getMessage());
+		} catch (Exception e) {
+			throw new NegocioException(e.getMessage());
 		}
 	}
 
