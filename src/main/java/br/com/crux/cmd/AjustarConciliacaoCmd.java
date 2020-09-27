@@ -25,8 +25,9 @@ public class AjustarConciliacaoCmd {
 					ConciliacaoBancaria entity = entityOptional.get();
 					
 					entity.setDataExportacao(LocalDateTime.now());
-					if(entity.getStatus().equals("G") || entity.getStatus().equals("A")) {
+					if(c.getSituacao().equals("G") || c.getSituacao().equals("A")) {
 						entity.setStatus("E");
+						c.setSituacao("E");
 						repository.save(entity);
 					}
 
