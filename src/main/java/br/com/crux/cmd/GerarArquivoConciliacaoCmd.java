@@ -24,7 +24,7 @@ public class GerarArquivoConciliacaoCmd {
 		boolean fornecedoresSemDocumento = conciliacoes.stream()
 		                                            .anyMatch(c -> StringUtils.isEmpty(c.getFornecedor()) && (Objects.isNull(c.getSemDocumento()) || !c.getSemDocumento()));
 		if(fornecedoresSemDocumento) {
-			throw new ConciliacaoSemDocumentoInvalidaException("Não é possível exportar, pois existem fornecedores sem documentos.");
+			//throw new ConciliacaoSemDocumentoInvalidaException("Não é possível exportar, pois existem fornecedores sem documentos.");
 		}
 		
 		ajustarCmd.ajustar(conciliacoes);
