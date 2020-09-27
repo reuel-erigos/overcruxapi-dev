@@ -27,8 +27,8 @@ public class ConciliacaoService {
 	@Autowired private GerarArquivoConciliacaoCmd gerarArquivoCmd;
 
 	@GetMapping(path = "/filter", produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<ConciliacaoTO> getAllFilter(@RequestParam(name = "dataInicio", required = false) Long dataInicio,
-                                            @RequestParam(name = "dataFim", required = false) Long dataFim,
+	public List<ConciliacaoTO> getAllFilter(@RequestParam(name = "dataInicio", required = true) Long dataInicio,
+                                            @RequestParam(name = "dataFim", required = true) Long dataFim,
                                             @RequestParam(name = "contaBancaria", required = false) Long idContaBancaria
                                             ) {
 		return getCmd.getAllFilter(idContaBancaria, dataInicio, dataFim);
@@ -36,8 +36,8 @@ public class ConciliacaoService {
 
 	
 	@GetMapping(path = "/carregar", produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<ConciliacaoTO> carregar(@RequestParam(name = "dataInicio", required = false) Long dataInicio,
-                                        @RequestParam(name = "dataFim", required = false) Long dataFim,
+	public List<ConciliacaoTO> carregar(@RequestParam(name = "dataInicio", required = true) Long dataInicio,
+                                        @RequestParam(name = "dataFim", required = true) Long dataFim,
                                         @RequestParam(name = "contaBancaria", required = false) Long idContaBancaria
                                             ) {
 		return getCmd.carregar(idContaBancaria, dataInicio, dataFim);
