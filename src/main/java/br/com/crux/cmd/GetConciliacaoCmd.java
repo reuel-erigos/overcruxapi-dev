@@ -30,7 +30,7 @@ public class GetConciliacaoCmd {
 		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
 		dao.gerar(idInstituicao, idContaBancaria, pDataInicio, pDataFim);
 		
-		return toBuilder.buildAll(dao.getAll(idInstituicao, idContaBancaria, pDataInicio, pDataFim));
+		return toBuilder.buildAll(dao.getFilter(idInstituicao, idContaBancaria, pDataInicio, pDataFim));
 	}
 
 

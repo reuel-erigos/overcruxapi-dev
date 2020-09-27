@@ -87,7 +87,7 @@ public class ConciliacaoDao extends BaseDao {
 	}
 
 	@SuppressWarnings({ "unchecked"})
-	public List<ConciliacaoDTO> getAll(Long idInstituicao, Long idContaBancaria, LocalDate dataInicio, LocalDate dataFim) {
+	public List<ConciliacaoDTO> getFilter(Long idInstituicao, Long idContaBancaria, LocalDate dataInicio, LocalDate dataFim) {
 		Session session =null;
 		try {
 			session = getSession();

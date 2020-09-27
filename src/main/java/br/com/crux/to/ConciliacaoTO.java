@@ -17,6 +17,7 @@ public class ConciliacaoTO {
 	private String centroCusto;
 	private String grupoContas;
 	private Double valor;
+	private Boolean semDocumento;
 
 	public ConciliacaoTO() {
 	}
@@ -123,6 +124,14 @@ public class ConciliacaoTO {
 
 	public void setValor(Double valor) {
 		this.valor = valor;
+	}
+
+	public Boolean getSemDocumento() {
+		return semDocumento;
+	}
+
+	public void setSemDocumento(Boolean semDocumento) {
+		this.semDocumento = semDocumento;
 	}
 
 	

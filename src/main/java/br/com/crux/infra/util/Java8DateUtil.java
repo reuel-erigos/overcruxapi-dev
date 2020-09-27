@@ -7,11 +7,25 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Objects;
 
 public class Java8DateUtil {
 
+	public static String getLocalDateTimeFormater(LocalDateTime ldt) {
+		if(ldt == null) return null;
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mi:ss");
+		return formatter.format(ldt);
+	}
+
+	public static String getLocalDateFormater(LocalDate ld) {
+		if(ld == null) return null;
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		return formatter.format(ld);
+	}
+
+	
 	public static Date getDate(LocalDateTime ldt) {
 		if(ldt == null) return null;
 		return Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant());

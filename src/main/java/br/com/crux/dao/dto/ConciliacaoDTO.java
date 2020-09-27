@@ -19,6 +19,7 @@ public class ConciliacaoDTO {
 	private String centroCusto;
 	private String grupoContas;
 	private Double valor;
+	private Boolean semDocumento;
 	
 	public ConciliacaoDTO() {
 	}
@@ -37,7 +38,7 @@ public class ConciliacaoDTO {
 		this.centroCusto              = (String) colunas[10];
 		this.grupoContas              = (String) colunas[11];
 		this.valor                    = (colunas[12] != null)? ((BigDecimal)colunas[12]).doubleValue() : null;
-		
+		this.semDocumento             = (colunas[13] != null)? ((Boolean)colunas[13]).booleanValue() : null;
 	}
 
 	public Long getId() {
@@ -144,4 +145,13 @@ public class ConciliacaoDTO {
 		this.valor = valor;
 	}
 
+	public Boolean getSemDocumento() {
+		return semDocumento;
+	}
+
+	public void setSemDocumento(Boolean semDocumento) {
+		this.semDocumento = semDocumento;
+	}
+
+	
 }
