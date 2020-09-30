@@ -32,7 +32,7 @@ public class GetProvisionamentoDao extends BaseDao {
 			session = getSession();
 	        session.beginTransaction();
 			
-			ProcedureCall procedureCall =  session.createStoredProcedureCall("fn_get_conciliacao_bancaria");
+			ProcedureCall procedureCall =  session.createStoredProcedureCall("fn_get_provisoes");
 			procedureCall.registerParameter(1, void.class, ParameterMode.REF_CURSOR);
 
 			procedureCall.registerParameter(2, BigDecimal.class, ParameterMode.IN);

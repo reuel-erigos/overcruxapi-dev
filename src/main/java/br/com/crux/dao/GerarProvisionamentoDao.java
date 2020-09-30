@@ -33,7 +33,7 @@ public class GerarProvisionamentoDao extends BaseDao {
 					try {
 						CallableStatement statement = null;
 
-						String sqlString = "{call fn_gerar_conciliacao_bancaria(?,?,?)}";
+						String sqlString = "{call fn_gerar_provisoes_financeiras(?,?,?)}";
 
 						statement = connection.prepareCall(sqlString);
 						statement.setLong(1, idInstituicao);
