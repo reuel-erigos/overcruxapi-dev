@@ -1,11 +1,9 @@
-package br.com.crux.dao.dto;
+package br.com.crux.to;
 
-import java.math.BigDecimal;
-import java.sql.Timestamp;
 import java.time.LocalDate;
 
-public class ProvisionamentoDTO {
-	
+public class ProvisionamentoTO {
+
 	private Long id;
 	private String situacao;
 	private String numeroDocumento;
@@ -18,23 +16,8 @@ public class ProvisionamentoDTO {
 	private String descricaoFornecedor;
 	private String nomeFornecedor;
 	private Boolean semDocumento;
-	
-	public ProvisionamentoDTO() {
-	}
-	
-	public ProvisionamentoDTO(Object[] colunas) {
-		this.id                       = (colunas[0] != null)? ((BigDecimal)colunas[0]).longValue() : null;
-		this.situacao                 = (String) colunas[1];
-		this.numeroDocumento          = (String) colunas[2];
-		this.data                     = (colunas[3] != null)? ((Timestamp)colunas[3]).toLocalDateTime().toLocalDate() : null;
-		this.valor                    = (colunas[4] != null)? ((BigDecimal)colunas[4]).doubleValue() : null;
-		this.complemento              = (String) colunas[5];
-		this.categoria                = (String) colunas[6];
-		this.centroCusto              = (String) colunas[7];
-		this.grupoContas              = (String) colunas[8];
-		this.descricaoFornecedor      = (String) colunas[9];
-		this.nomeFornecedor           = (String) colunas[10];
-		this.semDocumento             = (colunas[11] != null)? ((String)colunas[11]).toUpperCase().equals("S") : null;
+
+	public ProvisionamentoTO() {
 	}
 
 	public Long getId() {
@@ -133,5 +116,5 @@ public class ProvisionamentoDTO {
 		this.semDocumento = semDocumento;
 	}
 
-
+	
 }
