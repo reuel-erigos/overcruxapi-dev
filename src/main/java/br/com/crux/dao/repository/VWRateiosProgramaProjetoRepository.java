@@ -12,8 +12,8 @@ import br.com.crux.entity.view.RateiosProgramaProjeto;
 @Repository
 public interface VWRateiosProgramaProjetoRepository extends JpaRepository<RateiosProgramaProjeto, Long>{
 
-	@Query("SELECT VW FROM RateiosProgramaProjeto vw "
-			+ " WHERE VW.idMovimentacao = ?1")
+	@Query("SELECT vw FROM RateiosProgramaProjeto vw "
+			+ " WHERE vw.idMovimentacao = ?1")
 	public Optional<List<RateiosProgramaProjeto>> getAllPorIdMovimentacao(Long idMovimentacao);
 	
 	
