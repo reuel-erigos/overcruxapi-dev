@@ -28,7 +28,10 @@ public class GetMovimentacoesCmd {
 
 	public List<MovimentacoesTO> getAllFilter(Long idEmpresa, Long idPrograma, Long idProjeto, String valor, 
 			                                  Long dataInicioDoc, Long dataFimDoc, Long dataVencimento,
-			                                  Long dataInicioMov, Long dataFimMov, String numeroDocumento) {
+			                                  Long dataInicioMov, Long dataFimMov, 
+			                                  Long dataInicioPag, Long dataFimPag,
+			                                  String numeroDocumento) {
+		
 		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
 
 		LocalDate pDataInicioDoc  = Objects.nonNull(dataInicioDoc) ? Java8DateUtil.getLocalDateTime(new Date(dataInicioDoc)).toLocalDate() : null;
@@ -36,6 +39,8 @@ public class GetMovimentacoesCmd {
 		LocalDate pDataVencimento = Objects.nonNull(dataVencimento) ? Java8DateUtil.getLocalDateTime(new Date(dataVencimento)).toLocalDate() : null;
 		LocalDate pDataInicioMov  = Objects.nonNull(dataInicioMov) ? Java8DateUtil.getLocalDateTime(new Date(dataInicioMov)).toLocalDate() : null;
 		LocalDate pDataFimMov     = Objects.nonNull(dataFimMov) ? Java8DateUtil.getLocalDateTime(new Date(dataFimMov)).toLocalDate() : null;
+		LocalDate pDataInicioPag  = Objects.nonNull(dataInicioPag) ? Java8DateUtil.getLocalDateTime(new Date(dataInicioPag)).toLocalDate() : null;
+		LocalDate pDataFimPag     = Objects.nonNull(dataFimPag) ? Java8DateUtil.getLocalDateTime(new Date(dataFimPag)).toLocalDate() : null;
 
 		Optional<List<Movimentacoes>> entitys = Optional.empty();
 
@@ -61,6 +66,12 @@ public class GetMovimentacoesCmd {
 					return Java8DateUtil.isVigente(saldo.getDataMovimentacao().toLocalDate(), pDataInicioMov, pDataFimMov);
 				}).collect(Collectors.toList());
 			}
+			
+			if (Objects.nonNull(pDataInicioPag) || Objects.nonNull(pDataFimPag)) {
+				saldos = saldos.stream().filter(saldo -> {
+					return saldo.getPagamentosFatura().stream().anyMatch( fatura -> Java8DateUtil.isVigente(fatura.getDataPagamento().toLocalDate(), pDataInicioPag, pDataFimPag));
+				}).collect(Collectors.toList());
+			}			
 
 			if (Objects.nonNull(pDataVencimento) ) {
 				saldos = saldos.stream().filter(saldo -> {
