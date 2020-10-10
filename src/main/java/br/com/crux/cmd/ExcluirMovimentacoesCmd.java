@@ -92,6 +92,7 @@ public class ExcluirMovimentacoesCmd {
 				rateiosMovimentacoesUnidadesRepository.deleteInBatch(rateiosUnidades.get());
 			}
 					
+			repository.flush();
 			repository.deleteById(id);
 			
 		} catch (NegocioException e) {
