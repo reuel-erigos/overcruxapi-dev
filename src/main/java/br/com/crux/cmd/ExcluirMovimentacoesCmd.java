@@ -64,36 +64,42 @@ public class ExcluirMovimentacoesCmd {
 				});
 				
 				pagamentosFaturaRepository.deleteAll(pagamentos.get());
+				pagamentosFaturaRepository.flush();
 			}
 			
 			Optional<List<Fatura>> faturas = faturaRepository.findByIdMovimentacao(id);
 			if(faturas.isPresent()) {
 				faturaRepository.deleteAll(faturas.get());
+				faturaRepository.flush();
 			}
 			
 			Optional<List<ItensMovimentacoes>> itens = itensMovimentacoesRepository.findByIdMovimentacao(id);
 			if(itens.isPresent()) {
 				itensMovimentacoesRepository.deleteAll(itens.get());
+				itensMovimentacoesRepository.flush();
 			}
 
 			
 			Optional<List<TributosItensMovimentacoes>> tributos = tributosItensMovimentacaoRepository.findAllByIdMovimentacao(id);
 			if(tributos.isPresent()) {
 				tributosItensMovimentacaoRepository.deleteInBatch(tributos.get());
+				tributosItensMovimentacaoRepository.flush();
 			}
 			
 			Optional<List<RateiosMovimentacoes>> rateios = rateiosMovimentacoesRepository.findByIdMovimento(id);
 			if(rateios.isPresent()) {
 				rateiosMovimentacoesRepository.deleteInBatch(rateios.get());
+				rateiosMovimentacoesRepository.flush();
 			}
 			
 			Optional<List<RateiosMovimentacoesUnidades>> rateiosUnidades = rateiosMovimentacoesUnidadesRepository.findByIdMovimento(id);
 			if(rateiosUnidades.isPresent()) {
 				rateiosMovimentacoesUnidadesRepository.deleteInBatch(rateiosUnidades.get());
+				rateiosMovimentacoesUnidadesRepository.flush();
 			}
 					
-			repository.flush();
 			repository.deleteById(id);
+			repository.flush();
 			
 		} catch (NegocioException e) {
 			throw new NegocioException(e.getMessage());
