@@ -12,7 +12,7 @@ import br.com.crux.entity.ConciliacaoBancaria;
 @Repository
 public interface ConciliacaoBancariaRepository extends JpaRepository<ConciliacaoBancaria, Long>{
 
-	@Query("select p from ConciliacaoBancaria c       "
+	@Query("select c from ConciliacaoBancaria c       "
 			+ " where UPPER(c.status) = 'V'           "
 			+ " order by c.dataConciliacao asc        ")
 	public Optional<List<ConciliacaoBancaria>> findAllInconsistentes();
