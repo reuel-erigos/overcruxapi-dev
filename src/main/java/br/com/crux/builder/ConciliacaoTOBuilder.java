@@ -23,6 +23,17 @@ public class ConciliacaoTOBuilder {
 	public ConciliacaoTO build(ConciliacaoBancaria dto) {
 		ConciliacaoTO retorno = new ConciliacaoTO();
 		BeanUtils.copyProperties(dto, retorno);
+		
+		retorno.setId(dto.getId());
+		retorno.setCategoria(dto.getCategoria());
+		retorno.setCentroCusto(dto.getCentroCusto());
+		retorno.setComplemento(dto.getComplemento());
+		retorno.setData(dto.getDataConciliacao().toLocalDate());
+		retorno.setGrupoContas(dto.getGrupoConta());
+		retorno.setFornecedor(dto.getNomeFornecedor());
+		retorno.setNumeroDocumento(dto.getNumeroDocumento());
+		retorno.setValor(dto.getValor());
+		
 		return retorno;
 	}
 
