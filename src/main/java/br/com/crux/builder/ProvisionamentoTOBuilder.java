@@ -23,6 +23,18 @@ public class ProvisionamentoTOBuilder {
 	public ProvisionamentoTO build(Provisoes dto) {
 		ProvisionamentoTO retorno = new ProvisionamentoTO();
 		BeanUtils.copyProperties(dto, retorno);
+		
+		retorno.setId(dto.getId());
+		retorno.setCategoria(dto.getCategoria());
+		retorno.setCentroCusto(dto.getCentroCusto());
+		retorno.setComplemento(dto.getComplemento());
+		retorno.setData(dto.getDataProvisao().toLocalDate());
+		retorno.setDescricaoFornecedor(dto.getDescFornecedor());
+		retorno.setGrupoContas(dto.getGrupoConta());
+		retorno.setNomeFornecedor(dto.getNomeFornecedor());
+		retorno.setNumeroDocumento(dto.getNumeroDocumento());
+		retorno.setValor(dto.getValor());
+		
 		return retorno;
 	}
 
