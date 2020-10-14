@@ -14,7 +14,7 @@ public interface ConciliacaoBancariaRepository extends JpaRepository<Conciliacao
 
 	@Query("select c from ConciliacaoBancaria c       "
 			+ " where UPPER(c.status) = 'V'           "
-			+ " order by c.dataConciliacao asc        ")
+			+ " order by c.dataConciliacao desc       ")
 	public Optional<List<ConciliacaoBancaria>> findAllInconsistentes();
 	
 }

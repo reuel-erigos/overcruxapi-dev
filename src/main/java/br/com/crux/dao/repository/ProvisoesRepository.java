@@ -14,7 +14,7 @@ public interface ProvisoesRepository extends JpaRepository<Provisoes, Long>{
 
 	@Query("select p from Provisoes p       "
 			+ " where UPPER(p.status) = 'V' "
-			+ " order by p.dataProvisao asc ")
+			+ " order by p.dataProvisao desc ")
 	public Optional<List<Provisoes>> findAllInconsistentes();
 	
 }
