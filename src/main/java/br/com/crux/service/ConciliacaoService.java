@@ -34,6 +34,11 @@ public class ConciliacaoService {
 		return getCmd.getAllFilter(idContaBancaria, dataInicio, dataFim);
 	}
 
+	@GetMapping(path = "/inconsistentes", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<ConciliacaoTO> getAllInconsistentes() {
+		return getCmd.getAllInconsistentes();
+	}
+	
 	
 	@GetMapping(path = "/carregar", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<ConciliacaoTO> carregar(@RequestParam(name = "dataInicio", required = true) Long dataInicio,

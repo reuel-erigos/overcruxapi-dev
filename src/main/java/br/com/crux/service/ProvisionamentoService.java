@@ -28,15 +28,20 @@ public class ProvisionamentoService {
 
 	@GetMapping(path = "/filter", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<ProvisionamentoTO> getAllFilter(@RequestParam(name = "dataInicio", required = true) Long dataInicio,
-                                            @RequestParam(name = "dataFim", required = true) Long dataFim
-                                            ) {
+                                                @RequestParam(name = "dataFim", required = true) Long dataFim
+                                                ) {
 		return getCmd.getAllFilter(dataInicio, dataFim);
+	}
+	
+	@GetMapping(path = "/inconsistentes", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<ProvisionamentoTO> getAllInconsistentes() {
+		return getCmd.getAllInconsistentes();
 	}
 
 	
 	@GetMapping(path = "/carregar", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<ProvisionamentoTO> carregar(@RequestParam(name = "dataInicio", required = true) Long dataInicio,
-                                        @RequestParam(name = "dataFim", required = true) Long dataFim
+                                            @RequestParam(name = "dataFim", required = true) Long dataFim
                                             ) {
 		return getCmd.carregar(dataInicio, dataFim);
 	}
