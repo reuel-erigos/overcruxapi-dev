@@ -20,8 +20,8 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long>{
 			+ "     and inst.id = ?1                                                            "
 			+ "     and (?2 is null or a.id = ?2)                                               "
 			+ "     and (?3 is null or pf.nomeMae = ?3)                                         "
-			+ "     and (?4 is null or pf.cpf = ?4)                                             "
-			+ " order by pf.nome asc                                                           ")
+			+ "     and (?4 is null or ((?4 = '0' and pf.cpf is null) or pf.cpf = ?4 ))         "
+			+ " order by pf.nome asc                                                            ")
 	public Optional<List<Aluno>> findByFilter(Long idInstituicao, Long idAluno, String idPessoaFisicaMae, String cpfPessoaFisicaAluno);	
 	
 	
