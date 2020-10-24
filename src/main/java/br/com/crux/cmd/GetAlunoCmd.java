@@ -13,7 +13,6 @@ import br.com.crux.builder.AlunoTOBuilder;
 import br.com.crux.dao.repository.AlunoRepository;
 import br.com.crux.entity.Aluno;
 import br.com.crux.exception.NotFoundException;
-import br.com.crux.infra.util.NumeroUtil;
 import br.com.crux.to.AlunoTO;
 
 @Component
@@ -30,7 +29,7 @@ public class GetAlunoCmd {
 
 		idAluno              = Objects.isNull(idAluno) ? null : idAluno;
 		idPessoaFisicaMae    = Objects.isNull(idPessoaFisicaMae) ? null : idPessoaFisicaMae;
-		cpfPessoaFisicaAluno = StringUtils.isEmpty(cpfPessoaFisicaAluno) ? null : String.valueOf(NumeroUtil.extrairNumerosMatches(cpfPessoaFisicaAluno));
+		cpfPessoaFisicaAluno = StringUtils.isEmpty(cpfPessoaFisicaAluno) ? null : cpfPessoaFisicaAluno;
 		cpfPessoaFisicaAluno = Integer.valueOf(cpfPessoaFisicaAluno) == 0 ? null : cpfPessoaFisicaAluno;
 
 		entitys = repository.findByFilter(idInstituicao, idAluno, idPessoaFisicaMae, cpfPessoaFisicaAluno);
