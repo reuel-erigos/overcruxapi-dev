@@ -22,7 +22,7 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long>{
 			+ "     and (?3 is null or pf.id = ?3)                                              "
 			+ "     and (?4 is null or pf.cpf = ?4)                                             "
 			+ " order by pf.nome asc                                                           ")
-	public Optional<List<Aluno>> findByFilter(Long idInstituicao, Long idAluno, Long idPessoaFisicaMae, String cpfPessoaFisicaAluno);	
+	public Optional<List<Aluno>> findByFilter(Long idInstituicao, Long idAluno, String idPessoaFisicaMae, String cpfPessoaFisicaAluno);	
 	
 	
 	@Query(value = "SELECT a FROM Aluno a "

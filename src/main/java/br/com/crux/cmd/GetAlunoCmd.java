@@ -22,16 +22,16 @@ public class GetAlunoCmd {
 	@Autowired private AlunoTOBuilder toBuilder;
 	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 
-	public List<AlunoTO> getAllFilter(Long idAluno, Long idPessoaFisicaMae, String cpfPessoaFisicaAluno) {
+	public List<AlunoTO> getAllFilter(Long idAluno, String nomePessoaFisicaMae, String cpfPessoaFisicaAluno) {
 		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
 
 		Optional<List<Aluno>> entitys = Optional.empty();
 
 		idAluno              = Objects.isNull(idAluno) ? null : idAluno;
-		idPessoaFisicaMae    = Objects.isNull(idPessoaFisicaMae) ? null : idPessoaFisicaMae;
+		nomePessoaFisicaMae    = StringUtils.isEmpty(nomePessoaFisicaMae) ? null : nomePessoaFisicaMae;
 		cpfPessoaFisicaAluno = StringUtils.isEmpty(cpfPessoaFisicaAluno) || cpfPessoaFisicaAluno.equals("00000000000") ? null : cpfPessoaFisicaAluno;
 
-		entitys = repository.findByFilter(idInstituicao, idAluno, idPessoaFisicaMae, cpfPessoaFisicaAluno);
+		entitys = repository.findByFilter(idInstituicao, idAluno, nomePessoaFisicaMae, cpfPessoaFisicaAluno);
 		if (entitys.isPresent()) {
 			List<AlunoTO> alunos = toBuilder.buildAll(entitys.get());
 			return alunos;
