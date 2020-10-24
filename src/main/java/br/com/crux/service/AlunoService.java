@@ -20,6 +20,7 @@ import br.com.crux.cmd.CadastrarAlunoCmd;
 import br.com.crux.cmd.ExcluirAlunoCmd;
 import br.com.crux.cmd.GetAlunoCmd;
 import br.com.crux.to.AlunoTO;
+import br.com.crux.to.ComboAlunoTO;
 
 @RestController
 @RequestMapping(value = "aluno")
@@ -46,6 +47,11 @@ public class AlunoService {
 	@GetMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<AlunoTO> getAll() {
 		return getCmd.getAll();
+	}
+	
+	@GetMapping(path = "/combo", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<ComboAlunoTO> getAllAlunosByCombo() {
+		return getCmd.getAllAlunosByCombo();
 	}
 	
 	@GetMapping(path = "/nome/{nome}", produces = MediaType.APPLICATION_JSON_VALUE)

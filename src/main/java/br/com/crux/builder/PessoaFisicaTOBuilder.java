@@ -13,9 +13,11 @@ import br.com.crux.cmd.GetCondicoesMoradiaCmd;
 import br.com.crux.cmd.GetGrausInstrucaoCmd;
 import br.com.crux.cmd.GetUnidadeLogadaCmd;
 import br.com.crux.dao.dto.FornecedorColaboradorDTO;
+import br.com.crux.dao.dto.PessoaFisicaDTO;
 import br.com.crux.entity.CondicoesMoradia;
 import br.com.crux.entity.GrausInstrucao;
 import br.com.crux.entity.PessoaFisica;
+import br.com.crux.to.ComboPessoaFisicaTO;
 import br.com.crux.to.FornecedorColaboradorTO;
 import br.com.crux.to.PessoaFisicaTO;
 
@@ -257,9 +259,6 @@ public class PessoaFisicaTOBuilder {
 	public List<PessoaFisicaTO> buildAll(List<PessoaFisica> dtos) {
 		return dtos.stream().map(dto -> buildTO(dto)).collect(Collectors.toList());
 	}
-
-	
-	
 	
 	public FornecedorColaboradorTO buildTO(FornecedorColaboradorDTO dto) {
 		FornecedorColaboradorTO to = new FornecedorColaboradorTO();
@@ -273,7 +272,24 @@ public class PessoaFisicaTOBuilder {
 		return to;
 	}
 	
+	public ComboPessoaFisicaTO buildComboTO(PessoaFisicaDTO p) {
+		ComboPessoaFisicaTO retorno = new ComboPessoaFisicaTO();
+		
+		if(Objects.isNull(p)) {
+			return retorno;
+		}
+		
+		BeanUtils.copyProperties(p, retorno);
+		
+		return retorno;
+	}
+	
 	public List<FornecedorColaboradorTO> buildAllDTO(List<FornecedorColaboradorDTO> dtos){
 		return dtos.stream().map(dto -> buildTO(dto)).collect(Collectors.toList());
 	}
+	
+	public List<ComboPessoaFisicaTO> buildAllComboDTO(List<PessoaFisicaDTO> dtos) {
+		return dtos.stream().map(dto -> buildComboTO(dto)).collect(Collectors.toList());
+	}
+
 }

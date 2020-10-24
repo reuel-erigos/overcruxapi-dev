@@ -8,10 +8,13 @@ import org.springframework.stereotype.Component;
 
 import br.com.crux.builder.PessoaFisicaTOBuilder;
 import br.com.crux.dao.FornecedorColaboradorDao;
+import br.com.crux.dao.PessoaFisicaDao;
 import br.com.crux.dao.dto.FornecedorColaboradorDTO;
+import br.com.crux.dao.dto.PessoaFisicaDTO;
 import br.com.crux.dao.repository.PessoaFisicaRepository;
 import br.com.crux.entity.PessoaFisica;
 import br.com.crux.exception.NotFoundException;
+import br.com.crux.to.ComboPessoaFisicaTO;
 import br.com.crux.to.FornecedorColaboradorTO;
 import br.com.crux.to.PessoaFisicaTO;
 
@@ -22,6 +25,14 @@ public class GetPessoaFisicaCmd {
 	@Autowired private PessoaFisicaTOBuilder toBuilder;
 	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 	@Autowired private FornecedorColaboradorDao fornecedorColaboradorDao;
+	@Autowired private PessoaFisicaDao pessoaFisicaDao;
+	
+	public List<ComboPessoaFisicaTO> getAllByCombo() {
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+		List<PessoaFisicaDTO> pessoas = pessoaFisicaDao.getAllByUnidade(idInstituicao);
+		
+		return toBuilder.buildAllComboDTO(pessoas);
+	}
 
 	public List<FornecedorColaboradorTO> getAllFornecedoresColaboradores() {
 		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();

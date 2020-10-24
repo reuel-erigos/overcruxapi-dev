@@ -10,10 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.builder.AlunoTOBuilder;
+import br.com.crux.dao.AlunoDao;
+import br.com.crux.dao.dto.AlunoDTO;
 import br.com.crux.dao.repository.AlunoRepository;
 import br.com.crux.entity.Aluno;
 import br.com.crux.exception.NotFoundException;
 import br.com.crux.to.AlunoTO;
+import br.com.crux.to.ComboAlunoTO;
 
 @Component
 public class GetAlunoCmd {
@@ -21,6 +24,14 @@ public class GetAlunoCmd {
 	@Autowired private AlunoRepository repository;
 	@Autowired private AlunoTOBuilder toBuilder;
 	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
+	@Autowired private AlunoDao alunoDao;
+	
+	public List<ComboAlunoTO> getAllAlunosByCombo() {
+		Long idUnidade = getUnidadeLogadaCmd.getUnidadeTO().getIdUnidade();
+		List<AlunoDTO> alunos = alunoDao.getAllByUnidade(idUnidade);
+		
+		return toBuilder.buildAllDTO(alunos);
+	}
 
 	public List<AlunoTO> getAllFilter(Long idAluno, String nomePessoaFisicaMae, String cpfPessoaFisicaAluno) {
 		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
