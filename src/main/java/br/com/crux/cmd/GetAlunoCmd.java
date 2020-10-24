@@ -30,7 +30,7 @@ public class GetAlunoCmd {
 		idAluno              = Objects.isNull(idAluno) ? null : idAluno;
 		nomePessoaFisicaMae  = StringUtils.isEmpty(nomePessoaFisicaMae) ? null : nomePessoaFisicaMae;
 		cpfPessoaFisicaAluno = StringUtils.isEmpty(cpfPessoaFisicaAluno) ? null : cpfPessoaFisicaAluno;
-		cpfPessoaFisicaAluno = Objects.nonNull(cpfPessoaFisicaAluno) && cpfPessoaFisicaAluno.equals("00000000000") ? "0" : cpfPessoaFisicaAluno;
+		cpfPessoaFisicaAluno = StringUtils.isNotEmpty(cpfPessoaFisicaAluno) && cpfPessoaFisicaAluno.equals("00000000000") ? "0" : cpfPessoaFisicaAluno;
 
 		entitys = repository.findByFilter(idInstituicao, idAluno, nomePessoaFisicaMae, cpfPessoaFisicaAluno);
 		if (entitys.isPresent()) {
