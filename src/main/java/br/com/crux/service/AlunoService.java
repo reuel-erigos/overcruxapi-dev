@@ -2,7 +2,6 @@ package br.com.crux.service;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.crux.cmd.AlterarAlunoCmd;
@@ -34,6 +34,14 @@ public class AlunoService {
 	@Autowired
 	private CadastrarAlunoCmd cadastrarCmd;
 	
+	
+	@GetMapping(path = "/filter", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<AlunoTO> getAllFilter(@RequestParam(name = "idAluno", required = false) Long idAluno,
+                                      @RequestParam(name = "idPessoaFisicaMae", required = false) Long idPessoaFisicaMae,
+                                      @RequestParam(name = "cpfPessoaFisicaAluno", required = false) String cpfPessoaFisicaAluno
+                                                     ) {
+		return getCmd.getAllFilter(idAluno, idPessoaFisicaMae, cpfPessoaFisicaAluno);
+	}
 	
 	@GetMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<AlunoTO> getAll() {
