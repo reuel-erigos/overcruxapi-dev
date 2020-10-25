@@ -14,7 +14,7 @@ import br.com.crux.dao.dto.AlunoDTO;
 public class AlunoDao extends BaseDao{
 	
 	
-	public List<AlunoDTO> getAllByUnidade(Long idUnidade) {
+	public List<AlunoDTO> getAllByInstituicao(Long idInstituicao) {
 		StringBuilder sql = new StringBuilder();
 		
 		sql.append(" select a.id_aluno,                                                           ");
@@ -22,10 +22,10 @@ public class AlunoDao extends BaseDao{
 		sql.append("  from alunos a                                                               ");
 		sql.append(" inner join pessoas_fisicas pf on a.id_pessoa_fisica = pf.id_pessoa_fisica    ");
 		sql.append(" where 1=1                                                                    ");
-		sql.append("  and a.id_unidade = :idUnidade                                               ");
+		sql.append("  and pf.id_instituicao = :idInstituicao                                      ");
 		
 		Query query = em.createNativeQuery(sql.toString());
-		query.setParameter("idUnidade", idUnidade);
+		query.setParameter("idInstituicao", idInstituicao);
 		
 		@SuppressWarnings("unchecked")
 		List<Object[]> values = query.getResultList();

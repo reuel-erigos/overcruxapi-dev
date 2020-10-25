@@ -27,8 +27,8 @@ public class GetAlunoCmd {
 	@Autowired private AlunoDao alunoDao;
 	
 	public List<ComboAlunoTO> getAllAlunosByCombo() {
-		Long idUnidade = getUnidadeLogadaCmd.getUnidadeTO().getIdUnidade();
-		List<AlunoDTO> alunos = alunoDao.getAllByUnidade(idUnidade);
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+		List<AlunoDTO> alunos = alunoDao.getAllByInstituicao(idInstituicao);
 		
 		return toBuilder.buildAllDTO(alunos);
 	}
