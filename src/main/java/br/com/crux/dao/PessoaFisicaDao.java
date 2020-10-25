@@ -19,8 +19,8 @@ public class PessoaFisicaDao extends BaseDao{
 		
 		sql.append(" select pf.id_pessoa_fisica,                                           ");
 		sql.append("        pf.nm_pessoa_fisica,                                           ");
-		sql.append("        pf.nr_cpf, pf.nm_mae,                                          ");
-		sql.append("        pf.nm_pai                                                      ");
+		sql.append("        pf.nm_mae,                                                     ");
+		sql.append("        pf.nm_pai, pf.nr_cpf                                           ");
 		sql.append("  from pessoas_fisicas pf                                              ");
 		sql.append(" inner join instituicoes i on i.id_instituicao = pf.id_instituicao     ");
 		sql.append(" where 1=1                                                             ");
