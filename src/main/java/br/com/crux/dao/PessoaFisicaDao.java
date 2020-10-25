@@ -14,7 +14,7 @@ import br.com.crux.dao.dto.PessoaFisicaDTO;
 public class PessoaFisicaDao extends BaseDao{
 	
 	
-	public List<PessoaFisicaDTO> getAllByUnidade(Long idUnidade) {
+	public List<PessoaFisicaDTO> getAllByInstituicao(Long idInstituicao) {
 		StringBuilder sql = new StringBuilder();
 		
 		sql.append(" select pf.id_pessoa_fisica,                                           ");
@@ -27,7 +27,7 @@ public class PessoaFisicaDao extends BaseDao{
 		sql.append("  and i.id_instituicao = :idInstituicao                                ");
 		
 		Query query = em.createNativeQuery(sql.toString());
-		query.setParameter("idUnidade", idUnidade);
+		query.setParameter("idInstituicao", idInstituicao);
 		
 		@SuppressWarnings("unchecked")
 		List<Object[]> values = query.getResultList();

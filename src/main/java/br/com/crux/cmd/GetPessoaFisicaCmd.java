@@ -29,7 +29,7 @@ public class GetPessoaFisicaCmd {
 	
 	public List<ComboPessoaFisicaTO> getAllByCombo() {
 		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
-		List<PessoaFisicaDTO> pessoas = pessoaFisicaDao.getAllByUnidade(idInstituicao);
+		List<PessoaFisicaDTO> pessoas = pessoaFisicaDao.getAllByInstituicao(idInstituicao);
 		
 		return toBuilder.buildAllComboDTO(pessoas);
 	}
