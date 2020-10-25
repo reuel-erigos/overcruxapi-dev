@@ -49,7 +49,7 @@ public class AlunoService {
 		return getCmd.getAll();
 	}
 	
-	@GetMapping(path = "/combo", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(path = "/dados/resumidos", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<ComboAlunoTO> getAllAlunosByCombo() {
 		return getCmd.getAllAlunosByCombo();
 	}
