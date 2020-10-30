@@ -44,7 +44,7 @@ public class GetAlunosTrabalhandoCmd {
 	public AlunosTrabalhandoTO getById(Long id) {
 		Optional<AlunosTrabalhando> entityOptional = repository.findById(id);
 		if(!entityOptional.isPresent()) {
-			throw new NotFoundException("Trabalho aluno não encontrado.");
+			return null;
 		}
 		return toBuilder.buildTO(entityOptional.get());
 	}
