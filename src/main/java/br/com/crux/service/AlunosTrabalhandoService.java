@@ -18,6 +18,7 @@ import br.com.crux.cmd.CadastrarAlunosTrabalhandoCmd;
 import br.com.crux.cmd.ExcluirAlunosTrabalhandoCmd;
 import br.com.crux.cmd.GetAlunosTrabalhandoCmd;
 import br.com.crux.to.AlunosTrabalhandoTO;
+import br.com.crux.to.ComboAlunoTrabalhandoTO;
 
 @RestController
 @RequestMapping(value = "alunostrabalhando")
@@ -31,6 +32,11 @@ public class AlunosTrabalhandoService {
 	@GetMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<AlunosTrabalhandoTO> getAll() {
 		return getCmd.getAll();
+	}
+	
+	@GetMapping(path = "/dados/resumidos", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<ComboAlunoTrabalhandoTO> getAllByCombo() {
+		return getCmd.getAllByCombo();
 	}
 
 	@GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

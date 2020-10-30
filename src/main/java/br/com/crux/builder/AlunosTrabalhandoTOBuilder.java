@@ -10,10 +10,12 @@ import org.springframework.stereotype.Component;
 
 import br.com.crux.cmd.GetAlunoCmd;
 import br.com.crux.cmd.GetEmpresaCmd;
+import br.com.crux.dao.dto.AlunoTrabalhandoDTO;
 import br.com.crux.entity.Aluno;
 import br.com.crux.entity.AlunosTrabalhando;
 import br.com.crux.entity.Empresa;
 import br.com.crux.to.AlunosTrabalhandoTO;
+import br.com.crux.to.ComboAlunoTrabalhandoTO;
 
 @Component
 public class AlunosTrabalhandoTOBuilder {
@@ -66,9 +68,25 @@ public class AlunosTrabalhandoTOBuilder {
 
 		return retorno;
 	}
+	
+	public ComboAlunoTrabalhandoTO buildComboTO(AlunoTrabalhandoDTO p) {
+		ComboAlunoTrabalhandoTO retorno = new ComboAlunoTrabalhandoTO();
+		
+		if(Objects.isNull(p)) {
+			return retorno;
+		}
+		
+		retorno.setId(p.getId());
+		retorno.setNome(p.getNome());
+		return retorno;
+	}
 
 	public List<AlunosTrabalhandoTO> buildAll(List<AlunosTrabalhando> dtos) {
 		return dtos.stream().map(dto -> buildTO(dto)).collect(Collectors.toList());
+	}
+	
+	public List<ComboAlunoTrabalhandoTO> buildAllDTO(List<AlunoTrabalhandoDTO> dtos) {
+		return dtos.stream().map(dto -> buildComboTO(dto)).collect(Collectors.toList());
 	}
 
 }

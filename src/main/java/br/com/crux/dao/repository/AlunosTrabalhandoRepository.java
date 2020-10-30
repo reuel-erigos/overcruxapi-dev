@@ -15,9 +15,9 @@ public interface AlunosTrabalhandoRepository extends JpaRepository<AlunosTrabalh
 	
 	@Query(value = "SELECT at FROM AlunosTrabalhando at "
 			+ " inner join Aluno aluno on aluno = at.aluno"
-			+ " inner join Unidade uni on aluno.unidade = uni"
-			+ " where uni.idUnidade = ?1")
-	public Optional<List<AlunosTrabalhando>> findByUnidade(Long idUnidade);
+			+ " inner join Unidade uni on aluno.unidade = uni "
+			+ " inner join Instituicao inst on inst = uni.instituicao "
+			+ " where inst.id = ?1")
+	public Optional<List<AlunosTrabalhando>> findByInstituicao(Long idInstituicao);
 
-	
 }
