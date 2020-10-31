@@ -20,6 +20,7 @@ import br.com.crux.cmd.AlterarFuncionarioCmd;
 import br.com.crux.cmd.CadastrarFuncionarioCmd;
 import br.com.crux.cmd.ExcluirFuncionarioCmd;
 import br.com.crux.cmd.GetFuncionarioCmd;
+import br.com.crux.to.ComboFuncionarioTO;
 import br.com.crux.to.FuncionarioTO;
 
 @RestController
@@ -31,6 +32,13 @@ public class FuncionarioService {
 	@Autowired private AlterarFuncionarioCmd alterarCmd;
 	@Autowired private CadastrarFuncionarioCmd cadastrarCmd;
 
+	
+	
+	@GetMapping(path = "/dados/resumidos", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<ComboFuncionarioTO> getAllByCombo() {
+		return getCmd.getAllByCombo();
+	}
+	
 	@GetMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<FuncionarioTO> getAllPorUnidadeLogada() {
 		return getCmd.getAllPorUnidadeLogada();

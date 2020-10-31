@@ -8,23 +8,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.builder.FuncionarioTOBuilder;
+import br.com.crux.dao.FuncionarioDao;
+import br.com.crux.dao.dto.FuncionarioDTO;
 import br.com.crux.dao.repository.FuncionarioRepository;
 import br.com.crux.entity.Funcionario;
 import br.com.crux.exception.NotFoundException;
 import br.com.crux.exception.ParametroNaoInformadoException;
 import br.com.crux.to.AcessoUnidadeTO;
+import br.com.crux.to.ComboFuncionarioTO;
 import br.com.crux.to.FuncionarioTO;
 
 @Component
 public class GetFuncionarioCmd {
 
-	@Autowired
-	private FuncionarioRepository repository;
-	@Autowired
-	private FuncionarioTOBuilder toBuilder;
-	@Autowired
-	private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
+	@Autowired private FuncionarioRepository repository;
+	@Autowired private FuncionarioTOBuilder toBuilder;
+	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
+	@Autowired private FuncionarioDao funcionarioDao;
 
+	
+	public List<ComboFuncionarioTO> getAllByCombo() {
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+		List<FuncionarioDTO> alunos = funcionarioDao.getAllByInstituicao(idInstituicao);
+		
+		return toBuilder.buildAllDTO(alunos);
+	}
+	
 	public List<FuncionarioTO> getAllPorUnidadeLogada() {
 		AcessoUnidadeTO acessoUnidadeTO = getUnidadeLogadaCmd.get();
 

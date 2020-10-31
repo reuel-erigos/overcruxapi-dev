@@ -14,6 +14,7 @@ import br.com.crux.cmd.GetCargosCmd;
 import br.com.crux.cmd.GetDepartamentoCmd;
 import br.com.crux.cmd.GetEmpresaCmd;
 import br.com.crux.cmd.GetUnidadeCmd;
+import br.com.crux.dao.dto.FuncionarioDTO;
 import br.com.crux.entity.Cargo;
 import br.com.crux.entity.Departamentos;
 import br.com.crux.entity.Empresa;
@@ -22,6 +23,7 @@ import br.com.crux.entity.Unidade;
 import br.com.crux.enums.ConclusaoParecer;
 import br.com.crux.enums.ParecerEntrevistador;
 import br.com.crux.enums.TipoFuncionario;
+import br.com.crux.to.ComboFuncionarioTO;
 import br.com.crux.to.FuncionarioTO;
 
 @Component
@@ -394,6 +396,23 @@ public class FuncionarioTOBuilder {
 		return dtos.stream()
 				.map(dto -> buildTOCombo(dto))
 				.collect(Collectors.toList());
+	}
+	
+	
+	public ComboFuncionarioTO buildComboTO(FuncionarioDTO p) {
+		ComboFuncionarioTO retorno = new ComboFuncionarioTO();
+		
+		if(Objects.isNull(p)) {
+			return retorno;
+		}
+		
+		retorno.setId(p.getId());
+		retorno.setNome(p.getNome());
+		return retorno;
+	}
+	
+	public List<ComboFuncionarioTO> buildAllDTO(List<FuncionarioDTO> dtos) {
+		return dtos.stream().map(dto -> buildComboTO(dto)).collect(Collectors.toList());
 	}
 
 }

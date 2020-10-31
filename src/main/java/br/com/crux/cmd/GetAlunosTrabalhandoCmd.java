@@ -12,7 +12,6 @@ import br.com.crux.dao.AlunoTrabalhandoDao;
 import br.com.crux.dao.dto.AlunoTrabalhandoDTO;
 import br.com.crux.dao.repository.AlunosTrabalhandoRepository;
 import br.com.crux.entity.AlunosTrabalhando;
-import br.com.crux.exception.NotFoundException;
 import br.com.crux.to.AlunosTrabalhandoTO;
 import br.com.crux.to.ComboAlunoTrabalhandoTO;
 
