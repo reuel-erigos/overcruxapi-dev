@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import br.com.crux.cmd.GetEncaminhaAlunosCmd;
 import br.com.crux.cmd.GetNiveisTurmasCmd;
 import br.com.crux.cmd.GetVulnerabilidadesAlunoCmd;
-import br.com.crux.dao.dto.AlunoDTO;
+import br.com.crux.dao.dto.ComboAlunoDTO;
 import br.com.crux.entity.Aluno;
 import br.com.crux.entity.NiveisTurmas;
 import br.com.crux.to.AlunoTO;
@@ -112,7 +112,7 @@ public class AlunoTOBuilder {
 		return retorno;
 	}
 
-	public ComboAlunoTO buildComboTO(AlunoDTO p) {
+	public ComboAlunoTO buildComboTO(ComboAlunoDTO p) {
 		ComboAlunoTO retorno = new ComboAlunoTO();
 		
 		if(Objects.isNull(p)) {
@@ -129,7 +129,7 @@ public class AlunoTOBuilder {
 	}
 
 
-	public List<ComboAlunoTO> buildAllDTO(List<AlunoDTO> dtos) {
+	public List<ComboAlunoTO> buildAllDTO(List<ComboAlunoDTO> dtos) {
 		return dtos.stream().map(dto -> buildComboTO(dto)).collect(Collectors.toList());
 	}
 

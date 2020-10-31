@@ -8,19 +8,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.builder.ProjetoTOBuilder;
+import br.com.crux.dao.ProjetoDao;
+import br.com.crux.dao.dto.ComboProjetoDTO;
 import br.com.crux.dao.repository.ProjetoRepository;
 import br.com.crux.entity.Projeto;
 import br.com.crux.exception.NotFoundException;
+import br.com.crux.to.ComboProjetoTO;
 import br.com.crux.to.ProjetoTO;
 
 @Component
 public class GetProjetoCmd {
 
 	@Autowired private ProjetoRepository repository;
-	@Autowired private ProjetoTOBuilder toBuilder;
-	
+	@Autowired private ProjetoTOBuilder toBuilder;	
 	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
+	@Autowired private ProjetoDao projetoDao;
 	
+	
+	public List<ComboProjetoTO> getAllCombo() {
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+		List<ComboProjetoDTO> programas = projetoDao.getAllByInstituicao(idInstituicao);
+		return toBuilder.buildAllCombo(programas);
+	}
 	
 	public List<ProjetoTO> getAllPrograma(Long idPrograma) {
 		Optional<List<Projeto>> listaRetorno = repository.findByIdPrograma(idPrograma);
@@ -55,24 +64,6 @@ public class GetProjetoCmd {
 
 	public Projeto getById(Long id) {
 		return repository.findById(id).orElseGet(null);
-	}
-
-	public List<ProjetoTO> getAllIntituicaoLogadaCombo() {
-		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
-		Optional<List<Projeto>> listaRetorno = repository.findByIdInstituicao(idInstituicao);
-		if(listaRetorno.isPresent()) {
-			return toBuilder.buildAllCombo(listaRetorno.get());
-		}
-		return new ArrayList<ProjetoTO>();
-	}
-
-	public List<ProjetoTO> getAllCombo() {
-		Long idUnidade = getUnidadeLogadaCmd.get().getId();
-		Optional<List<Projeto>> listaRetorno = repository.findByIdUnidade(idUnidade);
-		if(listaRetorno.isPresent()) {
-			return toBuilder.buildAllCombo(listaRetorno.get());
-		}
-		return new ArrayList<ProjetoTO>();
 	}
 				
 }

@@ -18,7 +18,8 @@ public class Instituicao {
 
 	@Id 
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sq_instituicao") 
-	@SequenceGenerator(name = "sq_instituicao", sequenceName = "sq_instituicao", schema = Constantes.SCHEMA_PUBLIC, initialValue = 1, allocationSize = 1) @Column(name = "id_instituicao") 
+	@SequenceGenerator(name = "sq_instituicao", sequenceName = "sq_instituicao", schema = Constantes.SCHEMA_PUBLIC, initialValue = 1, allocationSize = 1) 
+	@Column(name = "id_instituicao") 
 	private Long id;
 
 	@Column(name = "nm_instituicao") 

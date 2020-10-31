@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 import br.com.crux.builder.AlunoTOBuilder;
 import br.com.crux.dao.AlunoDao;
-import br.com.crux.dao.dto.AlunoDTO;
+import br.com.crux.dao.dto.ComboAlunoDTO;
 import br.com.crux.dao.repository.AlunoRepository;
 import br.com.crux.entity.Aluno;
 import br.com.crux.exception.NotFoundException;
@@ -28,7 +28,7 @@ public class GetAlunoCmd {
 	
 	public List<ComboAlunoTO> getAllAlunosByCombo() {
 		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
-		List<AlunoDTO> alunos = alunoDao.getAllByInstituicao(idInstituicao);
+		List<ComboAlunoDTO> alunos = alunoDao.getAllByInstituicao(idInstituicao);
 		
 		return toBuilder.buildAllDTO(alunos);
 	}

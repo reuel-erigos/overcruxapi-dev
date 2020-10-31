@@ -8,11 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.builder.ProgramaTOBuilder;
+import br.com.crux.dao.ProgramaDao;
+import br.com.crux.dao.dto.ComboProgramaDTO;
 import br.com.crux.dao.repository.ProgramaRepository;
 import br.com.crux.entity.Programa;
 import br.com.crux.exception.NotFoundException;
+import br.com.crux.to.ComboProgramaTO;
 import br.com.crux.to.ProgramaTO;
-import br.com.crux.to.UnidadeTO;
 
 @Component
 public class GetProgramaCmd {
@@ -20,16 +22,7 @@ public class GetProgramaCmd {
 	@Autowired private ProgramaRepository repository;
 	@Autowired private ProgramaTOBuilder toBuilder;
 	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
-
-	public List<ProgramaTO> getAllProgramasIntituicaoLogada() {
-		UnidadeTO unidadeLogadaTO = getUnidadeLogadaCmd.getUnidadeTO();
-
-		Optional<List<Programa>> listaRetorno = repository.findByIdInstituicaoAndIdUnidade(unidadeLogadaTO.getInstituicao().getId(), unidadeLogadaTO.getIdUnidade());
-		if (listaRetorno.isPresent()) {
-			return toBuilder.buildAll(listaRetorno.get());
-		}
-		return new ArrayList<ProgramaTO>();
-	}
+	@Autowired private ProgramaDao programaDao;
 
 	public List<ProgramaTO> getAll() {
 		Long idUnidade = getUnidadeLogadaCmd.get().getId();
@@ -49,23 +42,10 @@ public class GetProgramaCmd {
 		return repository.findById(id).orElseGet(null);
 	}
 
-	public List<ProgramaTO> getAllProgramasIntituicaoLogadaCombo() {
-		UnidadeTO unidadeLogadaTO = getUnidadeLogadaCmd.getUnidadeTO();
-
-		Optional<List<Programa>> listaRetorno = repository.findByIdInstituicaoAndIdUnidade(unidadeLogadaTO.getInstituicao().getId(), unidadeLogadaTO.getIdUnidade());
-		if (listaRetorno.isPresent()) {
-			return toBuilder.buildAllCombo(listaRetorno.get());
-		}
-		return new ArrayList<ProgramaTO>();
-	}
-
-	public List<ProgramaTO> getAllCombo() {
-		Long idUnidade = getUnidadeLogadaCmd.get().getId();
-		Optional<List<Programa>> listaRetorno = repository.findByIdUnidade(idUnidade);
-		if (listaRetorno.isPresent()) {
-			return toBuilder.buildAllCombo(listaRetorno.get());
-		}
-		return new ArrayList<ProgramaTO>();
+	public List<ComboProgramaTO> getAllCombo() {
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+		List<ComboProgramaDTO> programas = programaDao.getAllByIdInstituicao(idInstituicao);
+		return toBuilder.buildAllCombo(programas);
 	}
 
 }

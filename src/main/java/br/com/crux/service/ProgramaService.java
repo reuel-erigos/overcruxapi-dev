@@ -18,6 +18,7 @@ import br.com.crux.cmd.AlterarProgramaCmd;
 import br.com.crux.cmd.CadastrarProgramaCmd;
 import br.com.crux.cmd.ExcluirProgramaCmd;
 import br.com.crux.cmd.GetProgramaCmd;
+import br.com.crux.to.ComboProgramaTO;
 import br.com.crux.to.ProgramaTO;
 
 @RestController
@@ -34,21 +35,11 @@ public class ProgramaService {
 		return getCmd.getAll();
 	}
 	
-	@GetMapping(path = "/combo", produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<ProgramaTO> getAllCombo() {
+	@GetMapping(path = "/dados/combo", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<ComboProgramaTO> getAllCombo() {
 		return getCmd.getAllCombo();
 	}
 	
-	@GetMapping(path = "/instituicao/logada/combo", produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<ProgramaTO> getAllProgramasIntituicaoLogadaCombo() {
-		return getCmd.getAllProgramasIntituicaoLogadaCombo();
-	}
-	
-	@GetMapping(path = "/instituicao/logada", produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<ProgramaTO> getAllProgramasIntituicaoLogada() {
-		return getCmd.getAllProgramasIntituicaoLogada();
-	}	
-
 	@GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ProgramaTO getById(@PathVariable(name = "id") Long id) {
 		return getCmd.getTOById(id);

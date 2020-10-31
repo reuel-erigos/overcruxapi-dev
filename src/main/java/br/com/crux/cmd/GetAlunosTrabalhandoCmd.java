@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 import br.com.crux.builder.AlunosTrabalhandoTOBuilder;
 import br.com.crux.dao.AlunoTrabalhandoDao;
-import br.com.crux.dao.dto.AlunoTrabalhandoDTO;
+import br.com.crux.dao.dto.ComboAlunoTrabalhandoDTO;
 import br.com.crux.dao.repository.AlunosTrabalhandoRepository;
 import br.com.crux.entity.AlunosTrabalhando;
 import br.com.crux.to.AlunosTrabalhandoTO;
@@ -25,7 +25,7 @@ public class GetAlunosTrabalhandoCmd {
 	
 	public List<ComboAlunoTrabalhandoTO> getAllByCombo() {
 		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
-		List<AlunoTrabalhandoDTO> alunos = alunoTrabalhandoDao.getAllByInstituicao(idInstituicao);
+		List<ComboAlunoTrabalhandoDTO> alunos = alunoTrabalhandoDao.getAllByInstituicao(idInstituicao);
 		
 		return toBuilder.buildAllDTO(alunos);
 	}

@@ -2,15 +2,15 @@ package br.com.crux.dao.dto;
 
 import java.math.BigDecimal;
 
-public class AlunoDTO {
+public class ComboAlunoDTO {
 	
 	private Long id;
 	private String nome;
 	
-	public AlunoDTO() {
+	public ComboAlunoDTO() {
 	}
 	
-	public AlunoDTO(Object[] colunas) {
+	public ComboAlunoDTO(Object[] colunas) {
 		this.id      = (colunas[0] != null)? ((BigDecimal)colunas[0]).longValue() : null;
 		this.nome    = (String) colunas[1];
 	}

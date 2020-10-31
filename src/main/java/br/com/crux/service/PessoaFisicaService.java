@@ -27,7 +27,7 @@ public class PessoaFisicaService {
 		return getCmd.getAll();
 	}
 	
-	@GetMapping(path = "/dados/resumidos", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(path = "/dados/combo", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<ComboPessoaFisicaTO> getAllByCombo() {
 		return getCmd.getAllByCombo();
 	}

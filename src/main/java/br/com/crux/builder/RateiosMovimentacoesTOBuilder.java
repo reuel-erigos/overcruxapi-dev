@@ -35,8 +35,8 @@ public class RateiosMovimentacoesTOBuilder {
 
 		BeanUtils.copyProperties(m, to);
 		
-		to.setPrograma(programaTOBuilder.buildTOCombo(m.getPrograma()));
-		to.setProjeto(projetoTOBuilder.buildTOCombo(m.getProjeto()));
+		to.setPrograma(programaTOBuilder.buildTOEnxuto(m.getPrograma()));
+		to.setProjeto(projetoTOBuilder.buildTOEnxuto(m.getProjeto()));
 
 		return to;
 	}

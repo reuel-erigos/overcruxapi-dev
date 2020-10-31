@@ -18,6 +18,7 @@ import br.com.crux.cmd.AlterarProjetoCmd;
 import br.com.crux.cmd.CadastrarProjetoCmd;
 import br.com.crux.cmd.ExcluirProjetoCmd;
 import br.com.crux.cmd.GetProjetoCmd;
+import br.com.crux.to.ComboProjetoTO;
 import br.com.crux.to.ProjetoTO;
 
 @RestController
@@ -30,16 +31,16 @@ public class ProjetoService {
 	@Autowired private CadastrarProjetoCmd cadastrarCmd;
 	
 	
+	@GetMapping(path = "/dados/combo", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<ComboProjetoTO> getAllCombo() {
+		return getCmd.getAllCombo();
+	}
+	
 	@GetMapping(path = "/instituicao/logada", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<ProjetoTO> getAllIntituicaoLogada() {
 		return getCmd.getAllIntituicaoLogada();
 	}
 
-	@GetMapping(path = "/instituicao/logada/combo", produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<ProjetoTO> getAllIntituicaoLogadaCombo() {
-		return getCmd.getAllIntituicaoLogadaCombo();
-	}
-	
 	@GetMapping(path = "/programa/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<ProjetoTO> getAllPorPrograma(@PathVariable(name = "id") Long id) {
 		return getCmd.getAllPrograma(id);
@@ -48,11 +49,6 @@ public class ProjetoService {
 	@GetMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<ProjetoTO> getAll() {
 		return getCmd.getAll();
-	}
-
-	@GetMapping(path = "/combo", produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<ProjetoTO> getAllCombo() {
-		return getCmd.getAllCombo();
 	}
 
 	@GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

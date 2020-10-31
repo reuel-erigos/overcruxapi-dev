@@ -34,7 +34,7 @@ public class FuncionarioService {
 
 	
 	
-	@GetMapping(path = "/dados/resumidos", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(path = "/dados/combo", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<ComboFuncionarioTO> getAllByCombo() {
 		return getCmd.getAllByCombo();
 	}

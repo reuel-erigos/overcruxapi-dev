@@ -97,8 +97,8 @@ public class MovimentacoesMateriaisTOBuilder {
 
 		to.setUnidade(unidadeBuilder.buildTOCombo(e.getUnidade()));
 		to.setEmpresa(empresaTOBuilder.buildTOCombo(e.getEmpresa()));
-		to.setPrograma(programaTOBuilder.buildTOCombo(e.getPrograma()));
-		to.setProjeto(projetoTOBuilder.buildTOCombo(e.getProjeto()));
+		to.setPrograma(programaTOBuilder.buildTOEnxuto(e.getPrograma()));
+		to.setProjeto(projetoTOBuilder.buildTOEnxuto(e.getProjeto()));
 		to.setDepartamento(departamentoTOBuilder.buildTOCombo(e.getDepartamento()));
 		
 		to.setItensMovimentacoesMateriais(getItensMovimentacoesMateriaisCmd.getItensMovimentacoesMateriaisTOByMovimentacaoMateriais(e));

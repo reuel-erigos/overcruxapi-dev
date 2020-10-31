@@ -15,9 +15,11 @@ import br.com.crux.cmd.GetContasCentrosCustoCmd;
 import br.com.crux.cmd.GetParceriasProjetoCmd;
 import br.com.crux.cmd.GetProgramaCmd;
 import br.com.crux.cmd.GetProjetosUnidadeCmd;
+import br.com.crux.dao.dto.ComboProjetoDTO;
 import br.com.crux.entity.Programa;
 import br.com.crux.entity.Projeto;
-import br.com.crux.to.ContasCentrosCustoTO;
+import br.com.crux.to.ComboProjetoTO;
+import br.com.crux.to.ProgramaTO;
 import br.com.crux.to.ProjetoTO;
 
 @Component
@@ -68,32 +70,32 @@ public class ProjetoTOBuilder {
 		return retorno;
 	}
 
+	public ProjetoTO buildTOEnxuto(Projeto projeto) {
+		if (Objects.isNull(projeto)) {return null;}
+		ProjetoTO to = new ProjetoTO();
+		to.setId(projeto.getId());
+		to.setNome(projeto.getNome());
+		return to;
+	}
+	
 	public List<ProjetoTO> buildAll(List<Projeto> dtos) {
 		return dtos.stream()
 				.map(dto -> buildTO(dto))
 				.collect(Collectors.toList());
 	}
 
-	public List<ProjetoTO> buildAllCombo(List<Projeto> dtos) {
+	
+	public List<ComboProjetoTO> buildAllCombo(List<ComboProjetoDTO> dtos) {
 		return dtos.stream()
-				.map(dto -> buildTOCombo(dto))
+				.map(this::buildTOCombo)
 				.collect(Collectors.toList());
 	}
 
-	public ProjetoTO buildTOCombo(Projeto p) {
-		ProjetoTO retorno = new ProjetoTO();
-
-		if (Objects.isNull(p)) {
-			return retorno;
-		}
-
-		BeanUtils.copyProperties(p, retorno);
-		
-		List<ContasCentrosCustoTO> contasCentrosCustosTO = getContasCentrosCustoCmd.getTOPorProjeto(p);
-		retorno.setContasCentrosCusto(contasCentrosCustosTO);
-		
-		return retorno;
-
+	public ComboProjetoTO buildTOCombo(ComboProjetoDTO dto) {
+		ComboProjetoTO to = new ComboProjetoTO();
+		if (Objects.isNull(dto)) {return to;}
+		to.setId(dto.getId());
+		to.setNome(dto.getNome());
+		return to;
 	}
-
 }

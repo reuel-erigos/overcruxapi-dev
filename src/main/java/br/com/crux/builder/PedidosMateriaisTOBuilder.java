@@ -107,8 +107,8 @@ public class PedidosMateriaisTOBuilder {
 		to.setDepartamento(departamentoTOBuilder.buildTOCombo(e.getDepartamento()));
 		to.setFuncionarioPedido(funcionarioTOBuilder.buildTOCombo(e.getFuncionarioPedido()));
 		to.setFuncionarioRecPed(funcionarioTOBuilder.buildTOCombo(e.getFuncionarioRecPed()));
-		to.setPrograma(programaTOBuilder.buildTOCombo(e.getPrograma()));
-		to.setProjeto(projetoTOBuilder.buildTOCombo(e.getProjeto()));
+		to.setPrograma(programaTOBuilder.buildTOEnxuto(e.getPrograma()));
+		to.setProjeto(projetoTOBuilder.buildTOEnxuto(e.getProjeto()));
 		to.setUnidade(unidadeTOBuilder.buildTOCombo(e.getUnidade()));
 
 		to.setItensPedidosMateriais(getItensPedidosMateriaisCmd.getItensPedidosMateriaisTOByPedidosMateriais(e));

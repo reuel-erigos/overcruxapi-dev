@@ -15,9 +15,10 @@ import br.com.crux.cmd.GetMateriaisProgramaCmd;
 import br.com.crux.cmd.GetObjetivoCmd;
 import br.com.crux.cmd.GetParceriasProgramaCmd;
 import br.com.crux.cmd.GetProgramaUnidadeCmd;
+import br.com.crux.dao.dto.ComboProgramaDTO;
 import br.com.crux.entity.Objetivo;
 import br.com.crux.entity.Programa;
-import br.com.crux.to.ContasCentrosCustoTO;
+import br.com.crux.to.ComboProgramaTO;
 import br.com.crux.to.ProgramaTO;
 
 @Component
@@ -86,34 +87,24 @@ public class ProgramaTOBuilder {
 	}
 
 	public ProgramaTO buildTOEnxuto(Programa programa) {
-		if (Objects.isNull(programa)) {
-			return null;
-		}
-
+		if (Objects.isNull(programa)) {return null;}
 		ProgramaTO to = new ProgramaTO();
 		to.setId(programa.getId());
-
+		to.setNome(programa.getNome());
 		return to;
 	}
 
-	public List<ProgramaTO> buildAllCombo(List<Programa> dtos) {
+	public List<ComboProgramaTO> buildAllCombo(List<ComboProgramaDTO> dtos) {
 		return dtos.stream()
 				.map(this::buildTOCombo)
 				.collect(Collectors.toList());
 	}
 
-	public ProgramaTO buildTOCombo(Programa programa) {
-		ProgramaTO to = new ProgramaTO();
-
-		if (Objects.isNull(programa)) {
-			return to;
-		}
-
-		BeanUtils.copyProperties(programa, to);
-		
-		List<ContasCentrosCustoTO> contasCentrosCustosTO = getContasCentrosCustoCmd.getTOPorPrograma(programa);
-		to.setContasCentrosCusto(contasCentrosCustosTO);
-
+	public ComboProgramaTO buildTOCombo(ComboProgramaDTO dto) {
+		ComboProgramaTO to = new ComboProgramaTO();
+		if (Objects.isNull(dto)) {return to;}
+		to.setId(dto.getId());
+		to.setNome(dto.getNome());
 		return to;
 	}
 

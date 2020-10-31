@@ -2,15 +2,15 @@ package br.com.crux.dao.dto;
 
 import java.math.BigDecimal;
 
-public class AlunoTrabalhandoDTO {
+public class ComboProjetoDTO {
 	
 	private Long id;
 	private String nome;
 	
-	public AlunoTrabalhandoDTO() {
+	public ComboProjetoDTO() {
 	}
 	
-	public AlunoTrabalhandoDTO(Object[] colunas) {
+	public ComboProjetoDTO(Object[] colunas) {
 		this.id      = (colunas[0] != null)? ((BigDecimal)colunas[0]).longValue() : null;
 		this.nome    = (String) colunas[1];
 	}

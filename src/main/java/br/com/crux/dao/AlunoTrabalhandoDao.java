@@ -8,13 +8,13 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.dao.base.BaseDao;
-import br.com.crux.dao.dto.AlunoTrabalhandoDTO;
+import br.com.crux.dao.dto.ComboAlunoTrabalhandoDTO;
 
 @Component
 public class AlunoTrabalhandoDao extends BaseDao{
 	
 	
-	public List<AlunoTrabalhandoDTO> getAllByInstituicao(Long idInstituicao) {
+	public List<ComboAlunoTrabalhandoDTO> getAllByInstituicao(Long idInstituicao) {
 		StringBuilder sql = new StringBuilder();
 		
 		sql.append(" select a.id_aluno_trabalhando,                                                 ");
@@ -31,8 +31,8 @@ public class AlunoTrabalhandoDao extends BaseDao{
 		@SuppressWarnings("unchecked")
 		List<Object[]> values = query.getResultList();
 		
-		List<AlunoTrabalhandoDTO> retorno = new ArrayList<AlunoTrabalhandoDTO>();
-		values.stream().forEach( colunas -> retorno.add(new AlunoTrabalhandoDTO(colunas)));
+		List<ComboAlunoTrabalhandoDTO> retorno = new ArrayList<ComboAlunoTrabalhandoDTO>();
+		values.stream().forEach( colunas -> retorno.add(new ComboAlunoTrabalhandoDTO(colunas)));
 		
 		return retorno;
 		
