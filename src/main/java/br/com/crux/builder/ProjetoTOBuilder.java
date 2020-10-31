@@ -19,7 +19,6 @@ import br.com.crux.dao.dto.ComboProjetoDTO;
 import br.com.crux.entity.Programa;
 import br.com.crux.entity.Projeto;
 import br.com.crux.to.ComboProjetoTO;
-import br.com.crux.to.ProgramaTO;
 import br.com.crux.to.ProjetoTO;
 
 @Component
