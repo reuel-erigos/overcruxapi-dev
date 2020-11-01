@@ -16,7 +16,7 @@ public class ProjetoDao extends BaseDao{
 	public List<ComboProjetoDTO> getAllByInstituicao(Long idInstituicao) {
 		StringBuilder sql = new StringBuilder();
 		
-		sql.append(" select p.id_projeto,                                                  ");
+		sql.append(" select distinct p.id_projeto,                                         ");
 		sql.append("        p.nm_projeto                                                   ");
 		sql.append("  from projetos p                                                      ");
 		sql.append(" inner join projetos_unidades pu on pu.id_projeto = p.id_projeto       ");

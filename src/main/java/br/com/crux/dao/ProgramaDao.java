@@ -17,7 +17,7 @@ public class ProgramaDao extends BaseDao{
 	public List<ComboProgramaDTO> getAllByIdInstituicao(Long idInstituicao) {
 		StringBuilder sql = new StringBuilder();
 		
-		sql.append(" select p.id_programa,                                                 ");
+		sql.append(" select distinct p.id_programa,                                        ");
 		sql.append("        p.nm_programa                                                  ");
 		sql.append("  from programas p                                                     ");
 		sql.append(" inner join programas_unidades pu on pu.id_programa = p.id_programa    ");
