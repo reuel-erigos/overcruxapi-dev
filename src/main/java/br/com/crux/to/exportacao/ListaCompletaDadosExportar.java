@@ -7,7 +7,7 @@ import br.com.crux.to.ExportacaoDadosAlunoTO;
 public class ListaCompletaDadosExportar {
 	
 	private List<ExportacaoDadosAlunoTO> listaDadosExportacao;
-	private List<DadosExportar> exportarDados;
+	private DadosExportar exportarDados;
 
 	public ListaCompletaDadosExportar() {
 	}
@@ -20,11 +20,11 @@ public class ListaCompletaDadosExportar {
 		this.listaDadosExportacao = listaDadosExportacao;
 	}
 
-	public List<DadosExportar> getExportarDados() {
+	public DadosExportar getExportarDados() {
 		return exportarDados;
 	}
 
-	public void setExportarDados(List<DadosExportar> exportarDados) {
+	public void setExportarDados(DadosExportar exportarDados) {
 		this.exportarDados = exportarDados;
 	}
 	
