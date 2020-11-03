@@ -17,15 +17,16 @@ import org.springframework.stereotype.Component;
 
 import br.com.crux.exception.ProvisionamentoNaoGeradoException;
 import br.com.crux.exception.base.NegocioException;
-import br.com.crux.to.ExportacaoDadosAlunoTO;
+import br.com.crux.to.exportacao.ListaCompletaDadosExportar;
 
 
 @Component
 public class ExportacaoDadosAlunoExcelFileExporter {
 	
 	
-	public byte[] gerar(List<ExportacaoDadosAlunoTO> dados) {
-		ByteArrayInputStream stream = gerarFileExcel(dados);
+	public byte[] gerar(List<ListaCompletaDadosExportar> dadosExportar) {
+		
+		ByteArrayInputStream stream = gerarFileExcel(dadosExportar);
         byte[] targetArray = new byte[stream.available()];
         try {
 			stream.read(targetArray);
@@ -35,7 +36,7 @@ public class ExportacaoDadosAlunoExcelFileExporter {
         return targetArray;
 	}
 	
-	private ByteArrayInputStream gerarFileExcel(List<ExportacaoDadosAlunoTO> dados) {
+	private ByteArrayInputStream gerarFileExcel(List<ListaCompletaDadosExportar> dados) {
 		
 		try(Workbook workbook = new XSSFWorkbook()){
 			Sheet sheet = workbook.createSheet("Provisão");

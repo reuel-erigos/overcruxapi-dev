@@ -4,7 +4,7 @@ public class ExportacaoDadosAlunoTO {
 	
 	private Long id;
 	private String nome;
-
+	
 	public ExportacaoDadosAlunoTO() {
 	}
 

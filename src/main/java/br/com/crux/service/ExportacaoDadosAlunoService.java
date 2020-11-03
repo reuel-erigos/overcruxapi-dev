@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.crux.cmd.GerarArquivoExportacaoDadosAlunoCmd;
 import br.com.crux.cmd.GetExportacaoDadosAlunoCmd;
 import br.com.crux.to.ExportacaoDadosAlunoTO;
+import br.com.crux.to.exportacao.ListaCompletaDadosExportar;
 
 @RestController
 @RequestMapping("exportardadosaluno")
@@ -40,7 +41,7 @@ public class ExportacaoDadosAlunoService {
 	
 	
 	@PostMapping(path = "/gerar-arquivo", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
-	public byte[] gerar(@RequestBody List<ExportacaoDadosAlunoTO> param) {
+	public byte[] gerar(@RequestBody List<ListaCompletaDadosExportar> param) {
 		return gerarArquivoCmd.gerar(param);
 	}
 	
