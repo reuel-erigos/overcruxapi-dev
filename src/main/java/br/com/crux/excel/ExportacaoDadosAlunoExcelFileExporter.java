@@ -3,7 +3,6 @@ package br.com.crux.excel;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.List;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
@@ -24,9 +23,9 @@ import br.com.crux.to.exportacao.ListaCompletaDadosExportar;
 public class ExportacaoDadosAlunoExcelFileExporter {
 	
 	
-	public byte[] gerar(List<ListaCompletaDadosExportar> dadosExportar) {
+	public byte[] gerar(ListaCompletaDadosExportar listaCompletaDadosExportar) {
 		
-		ByteArrayInputStream stream = gerarFileExcel(dadosExportar);
+		ByteArrayInputStream stream = gerarFileExcel(listaCompletaDadosExportar);
         byte[] targetArray = new byte[stream.available()];
         try {
 			stream.read(targetArray);
@@ -36,7 +35,7 @@ public class ExportacaoDadosAlunoExcelFileExporter {
         return targetArray;
 	}
 	
-	private ByteArrayInputStream gerarFileExcel(List<ListaCompletaDadosExportar> dados) {
+	private ByteArrayInputStream gerarFileExcel(ListaCompletaDadosExportar listaCompletaDadosExportar) {
 		
 		try(Workbook workbook = new XSSFWorkbook()){
 			Sheet sheet = workbook.createSheet("Provisão");
@@ -93,7 +92,7 @@ public class ExportacaoDadosAlunoExcelFileExporter {
 
 	        
 	        // Creating data rows for each customer
-	        for(int i = 0; i < dados.size(); i++) {
+	        for(int i = 0; i < listaCompletaDadosExportar.getListaDadosExportacao().size(); i++) {
 	        	Row dataRow = sheet.createRow(i + 1);
 	        	/*
 	        	dataRow.createCell(0).setCellValue(dados.get(i).getId());

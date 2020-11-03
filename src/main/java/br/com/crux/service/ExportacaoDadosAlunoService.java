@@ -41,7 +41,7 @@ public class ExportacaoDadosAlunoService {
 	
 	
 	@PostMapping(path = "/gerar-arquivo", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
-	public byte[] gerar(@RequestBody List<ListaCompletaDadosExportar> param) {
+	public byte[] gerar(@RequestBody ListaCompletaDadosExportar param) {
 		return gerarArquivoCmd.gerar(param);
 	}
 	

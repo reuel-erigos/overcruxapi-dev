@@ -1,7 +1,5 @@
 package br.com.crux.cmd;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +11,7 @@ public class GerarArquivoExportacaoDadosAlunoCmd {
 
 	@Autowired private ExportacaoDadosAlunoExcelFileExporter excelFileExporter;
 
-	public byte[] gerar(List<ListaCompletaDadosExportar> dados) {
+	public byte[] gerar(ListaCompletaDadosExportar dados) {
 		return excelFileExporter.gerar(dados);
 	}
 
