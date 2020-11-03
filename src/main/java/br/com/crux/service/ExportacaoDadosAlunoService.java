@@ -5,10 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.crux.cmd.GerarArquivoExportacaoDadosAlunoCmd;
 import br.com.crux.cmd.GetExportacaoDadosAlunoCmd;
 import br.com.crux.to.ExportacaoDadosAlunoTO;
 
@@ -17,6 +20,7 @@ import br.com.crux.to.ExportacaoDadosAlunoTO;
 public class ExportacaoDadosAlunoService {
 
 	@Autowired private GetExportacaoDadosAlunoCmd getCmd;
+	@Autowired private GerarArquivoExportacaoDadosAlunoCmd gerarArquivoCmd;
 
 	
 	@GetMapping(path = "/filter", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -34,5 +38,10 @@ public class ExportacaoDadosAlunoService {
 		return getCmd.getAllFilter(cpf, idBeneficiario, idMae, idPai, idPrograma, idProjeto, idUnidade, idResponsavel, dataInicioInstituicao, dataFimInstituicao);
 	}
 	
+	
+	@PostMapping(path = "/gerar-arquivo", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+	public byte[] gerar(@RequestBody List<ExportacaoDadosAlunoTO> param) {
+		return gerarArquivoCmd.gerar(param);
+	}
 	
 }
