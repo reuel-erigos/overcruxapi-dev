@@ -8,16 +8,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.builder.CategoriasContabeisTOBuilder;
+import br.com.crux.builder.PlanosContasTOBuilder;
 import br.com.crux.dao.repository.CategoriasContabeisRepository;
+import br.com.crux.dao.repository.VWPlanosContasRepository;
 import br.com.crux.entity.CategoriasContabeis;
+import br.com.crux.entity.view.PlanosContas;
 import br.com.crux.exception.NotFoundException;
 import br.com.crux.to.CategoriasContabeisTO;
+import br.com.crux.to.PlanosContasTO;
 
 @Component
 public class GetCategoriasContabeisCmd {
 
 	@Autowired private CategoriasContabeisRepository repository;
+	@Autowired private VWPlanosContasRepository planosContasRepository;
 	@Autowired private CategoriasContabeisTOBuilder toBuilder;
+	@Autowired private PlanosContasTOBuilder planosContasTOBuilder;
 	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 
 	public List<CategoriasContabeisTO> getAllByInstituicaoLogada() {
@@ -29,6 +35,17 @@ public class GetCategoriasContabeisCmd {
 		}
 		return new ArrayList<CategoriasContabeisTO>();
 
+	}
+
+	public List<PlanosContasTO> getAllByInstituicaoLogadaComboSuperior() {
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+		
+		Optional<List<PlanosContas>> entitys = planosContasRepository.findAllByInstituicao(idInstituicao);
+		if (entitys.isPresent()) {
+			return planosContasTOBuilder.buildAll(entitys.get());
+		}
+		return new ArrayList<PlanosContasTO>();
+		
 	}
 
 	public CategoriasContabeisTO getTOById(Long id) {

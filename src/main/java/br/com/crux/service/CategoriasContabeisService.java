@@ -17,6 +17,7 @@ import br.com.crux.cmd.CadastrarCategoriasContabeisCmd;
 import br.com.crux.cmd.ExcluirCategoriasContabeisCmd;
 import br.com.crux.cmd.GetCategoriasContabeisCmd;
 import br.com.crux.to.CategoriasContabeisTO;
+import br.com.crux.to.PlanosContasTO;
 
 @RestController
 @RequestMapping(value = "planoscontascontabeis")
@@ -30,6 +31,11 @@ public class CategoriasContabeisService {
 	@GetMapping
 	public List<CategoriasContabeisTO> getAll() {
 		return getCmd.getAllByInstituicaoLogada();
+	}
+
+	@GetMapping("/superior")
+	public List<PlanosContasTO> getAllCategorias() {
+		return getCmd.getAllByInstituicaoLogadaComboSuperior();
 	}
 
 	@GetMapping("/combo")
