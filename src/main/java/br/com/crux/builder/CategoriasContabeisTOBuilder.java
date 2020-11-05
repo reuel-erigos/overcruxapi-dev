@@ -40,6 +40,9 @@ public class CategoriasContabeisTOBuilder {
 		}
 
 		BeanUtils.copyProperties(entity, to);
+		
+		to.setSintetica(entity.getSintetica());
+		
 		to.setCategoriaSuperior(buildTOCategoriaSuperior(entity.getCategoriaSuperior()));
 
 		return to;
