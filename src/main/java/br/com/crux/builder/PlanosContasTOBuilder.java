@@ -22,6 +22,8 @@ public class PlanosContasTOBuilder {
 		}
 
 		BeanUtils.copyProperties(dto, to);
+
+		
 		return to;
 	}
 

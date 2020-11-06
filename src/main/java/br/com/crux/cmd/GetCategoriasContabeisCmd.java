@@ -1,8 +1,10 @@
 package br.com.crux.cmd;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -37,15 +39,16 @@ public class GetCategoriasContabeisCmd {
 
 	}
 
-	public List<PlanosContasTO> getAllByInstituicaoLogadaComboSuperior() {
+	public List<PlanosContasTO> getAllByInstituicaoLogadaComboSuperior(boolean hasSintetica) {
 		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+
+		List<PlanosContas> entitys = planosContasRepository.findAllByInstituicao(idInstituicao).orElseGet(Collections::emptyList);
 		
-		Optional<List<PlanosContas>> entitys = planosContasRepository.findAllByInstituicao(idInstituicao);
-		if (entitys.isPresent()) {
-			return planosContasTOBuilder.buildAll(entitys.get());
+		if(!hasSintetica) {
+			entitys = entitys.stream().filter(e -> e.getSintetica() != true).collect(Collectors.toList());
 		}
-		return new ArrayList<PlanosContasTO>();
 		
+		return planosContasTOBuilder.buildAll(entitys);
 	}
 
 	public CategoriasContabeisTO getTOById(Long id) {

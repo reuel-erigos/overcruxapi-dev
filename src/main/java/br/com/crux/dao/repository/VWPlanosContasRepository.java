@@ -13,10 +13,9 @@ import br.com.crux.entity.view.PlanosContas;
 public interface VWPlanosContasRepository extends JpaRepository<PlanosContas, Long>{
 
 	
-	@Query("select vw from PlanosContas vw "
-			+ "where vw.idInstituicao = ?1 "
+	@Query("select  vw from PlanosContas vw "
+			+ "where vw.idInstituicao = :idInstituicao "
 			+ " order by vw.planoConta ")
 	public Optional<List<PlanosContas>> findAllByInstituicao(Long idInstituicao);
 
-	
 }

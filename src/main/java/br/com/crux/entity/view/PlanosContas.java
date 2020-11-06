@@ -1,11 +1,14 @@
 package br.com.crux.entity.view;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Immutable;
+
+import br.com.crux.infra.dao.SimNaoConverter;
 
 @Entity
 @Immutable
@@ -24,6 +27,10 @@ public class PlanosContas {
 	
 	@Column(name = "id_instituicao")
 	private Long idInstituicao;
+	
+	@Convert(converter = SimNaoConverter.class)
+	@Column(name="st_categoria_sintetica")
+	private Boolean sintetica;
 	
 	public PlanosContas() {
 	}
@@ -58,6 +65,14 @@ public class PlanosContas {
 
 	public void setIdInstituicao(Long idInstituicao) {
 		this.idInstituicao = idInstituicao;
+	}
+
+	public Boolean getSintetica() {
+		return sintetica;
+	}
+
+	public void setSintetica(Boolean sintetica) {
+		this.sintetica = sintetica;
 	}
 
 

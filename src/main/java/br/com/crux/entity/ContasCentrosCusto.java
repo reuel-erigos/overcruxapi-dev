@@ -37,10 +37,10 @@ public class ContasCentrosCusto implements Serializable {
 	@JoinColumn(name="id_conta_bancaria")
 	private ContasBancaria contasBancaria;
 
-	@Column(name="id_programa")
+	@Column(name="id_parceria_programa")
 	private Long idPrograma;
 
-	@Column(name="id_projeto")
+	@Column(name="id_parceria_projeto")
 	private Long idProjeto;
 
 	public ContasCentrosCusto() {

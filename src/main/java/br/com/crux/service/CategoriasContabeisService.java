@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.crux.cmd.AlterarCategoriasContabeisCmd;
@@ -33,9 +34,9 @@ public class CategoriasContabeisService {
 		return getCmd.getAllByInstituicaoLogada();
 	}
 
-	@GetMapping("/superior")
-	public List<PlanosContasTO> getAllCategorias() {
-		return getCmd.getAllByInstituicaoLogadaComboSuperior();
+	@GetMapping("/view")
+	public List<PlanosContasTO> getAllCategorias(@RequestParam(name = "hasSintetica", required = false, defaultValue ="true") boolean hasSintetica) {
+		return getCmd.getAllByInstituicaoLogadaComboSuperior(hasSintetica);
 	}
 
 	@GetMapping("/combo")
