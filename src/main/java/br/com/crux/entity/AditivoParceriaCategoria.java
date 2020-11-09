@@ -76,4 +76,12 @@ public class AditivoParceriaCategoria implements Serializable {
 		this.valorAditivo = valorAditivo;
 	}
 
+	public ParceriasCategorias getParceriasCategorias() {
+		return parceriasCategorias;
+	}
+
+	public void setParceriasCategorias(ParceriasCategorias parceriasCategorias) {
+		this.parceriasCategorias = parceriasCategorias;
+	}
+
 }
