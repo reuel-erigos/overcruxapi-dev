@@ -29,8 +29,16 @@ public class AditivoParceriaProjeto implements Serializable {
 	private Long id;
 
 	@ManyToOne 
-	@JoinColumn(name = "id_parceria_projjeto") 
+	@JoinColumn(name = "id_parceria_projeto") 
 	private ParceriasProjeto parceriasProjeto;
+
+	public ParceriasProjeto getParceriasProjeto() {
+		return parceriasProjeto;
+	}
+
+	public void setParceriasProjeto(ParceriasProjeto parceriasProjeto) {
+		this.parceriasProjeto = parceriasProjeto;
+	}
 
 	@Column(name = "dt_aditivo")
 	private LocalDateTime dataAditivo;
@@ -74,14 +82,6 @@ public class AditivoParceriaProjeto implements Serializable {
 
 	public void setValorAditivo(Double valorAditivo) {
 		this.valorAditivo = valorAditivo;
-	}
-
-	public ParceriasProjeto getParceriasProjeto() {
-		return parceriasProjeto;
-	}
-
-	public void setParceriasProjeto(ParceriasProjeto parceriasProjeto) {
-		this.parceriasProjeto = parceriasProjeto;
 	}
 
 }
