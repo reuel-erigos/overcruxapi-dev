@@ -44,8 +44,6 @@ public class AlterarProgramaCmd {
 		alterarListaComposicaoRhProgramaCmd.alterarAll(to.getComposicaoRhPrograma(), programa);
 		
 		alterarListaContasCentrosCustoProgramaCmd.alterarAll(to.getContasCentrosCusto(), programa);
-
 		
-
 	}
 }

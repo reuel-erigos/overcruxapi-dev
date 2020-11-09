@@ -28,6 +28,7 @@ public class ParceriasProgramaTOBuilder {
 	@Autowired GetParceriasCategoriasCmd getParceriasCategoriasCmd;
 	@Autowired MateriaisProgramaTOBuilder materiaisProgramaTOBuilder;
 	@Autowired ParceriasCategoriasTOBuilder parceriasCategoriasTOBuilder;
+	@Autowired AditivoParceriaProgramaTOBuilder aditivoParceriaProgramaTOBuilder;
 	
 
 	public ParceriasPrograma build(Programa programa, ParceriasProgramaTO parceriaProgramaTO) {
@@ -62,7 +63,8 @@ public class ParceriasProgramaTOBuilder {
 		to.setEmpresa(empresaTOBuilder.buildTO(parceriasPrograma.getEmpresa()));
 
 		to.setMateriaisPrograma(materiaisProgramaTOBuilder.buildAll(parceriasPrograma.getMateriaisProgramas()));
-        to.setParceriasCategorias(parceriasCategoriasTOBuilder.buildAllTO(parceriasPrograma.getParceriasCategorias()));		
+        to.setParceriasCategorias(parceriasCategoriasTOBuilder.buildAllTO(parceriasPrograma.getParceriasCategorias()));
+        to.setAditivosParceriasProgramas(aditivoParceriaProgramaTOBuilder.buildTO(parceriasPrograma.getAditivosParceriaPrograma()));
 		
 		return to;
 	}

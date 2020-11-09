@@ -12,66 +12,89 @@ public class ParceriasProgramaTO {
 	private EmpresaTO empresa;
 	private ProgramaTO programa;
 	private Double valorParceria;
-	
-	
+
 	private List<MateriaisProgramaTO> materiaisPrograma;
 	private List<ParceriasCategoriasTO> parceriasCategorias;
-	
+	private List<AditivoParceriaProgramaTO> aditivosParceriasProgramas;
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getDsTipoParceria() {
 		return dsTipoParceria;
 	}
+
 	public void setDsTipoParceria(String dsTipoParceria) {
 		this.dsTipoParceria = dsTipoParceria;
 	}
+
 	public LocalDateTime getDtFimParceria() {
 		return dtFimParceria;
 	}
+
 	public void setDtFimParceria(LocalDateTime dtFimParceria) {
 		this.dtFimParceria = dtFimParceria;
 	}
+
 	public LocalDateTime getDtInicioParceria() {
 		return dtInicioParceria;
 	}
+
 	public void setDtInicioParceria(LocalDateTime dtInicioParceria) {
 		this.dtInicioParceria = dtInicioParceria;
 	}
+
 	public EmpresaTO getEmpresa() {
 		return empresa;
 	}
+
 	public void setEmpresa(EmpresaTO empresa) {
 		this.empresa = empresa;
 	}
+
 	public ProgramaTO getPrograma() {
 		return programa;
 	}
+
 	public void setPrograma(ProgramaTO programa) {
 		this.programa = programa;
 	}
+
 	public Double getValorParceria() {
 		return valorParceria;
 	}
+
 	public void setValorParceria(Double valorParceria) {
 		this.valorParceria = valorParceria;
 	}
+
 	public List<MateriaisProgramaTO> getMateriaisPrograma() {
 		return materiaisPrograma;
 	}
+
 	public void setMateriaisPrograma(List<MateriaisProgramaTO> materiaisPrograma) {
 		this.materiaisPrograma = materiaisPrograma;
 	}
+
 	public List<ParceriasCategoriasTO> getParceriasCategorias() {
 		return parceriasCategorias;
 	}
+
 	public void setParceriasCategorias(List<ParceriasCategoriasTO> parceriasCategorias) {
 		this.parceriasCategorias = parceriasCategorias;
 	}
-	
-	
+
+	public List<AditivoParceriaProgramaTO> getAditivosParceriasProgramas() {
+		return aditivosParceriasProgramas;
+	}
+
+	public void setAditivosParceriasProgramas(List<AditivoParceriaProgramaTO> aditivosParceriasProgramas) {
+		this.aditivosParceriasProgramas = aditivosParceriasProgramas;
+	}
 
 }
