@@ -28,6 +28,7 @@ public class ParceriasProjetoTOBuilder {
 	@Autowired MateriaisProjetoTOBuilder materiaisProjetoTOBuilder;
 	@Autowired GetParceriasCategoriasCmd getParceriasCategoriasCmd;
 	@Autowired ParceriasCategoriasTOBuilder parceriasCategoriasTOBuilder;
+	@Autowired AditivoParceriaProjetoTOBuilder aditivoParceriaProjetoTOBuilder;
 
 	public ParceriasProjeto buildEntity(Projeto projeto, ParceriasProjetoTO parceriaProjetoTO) {
 
@@ -64,7 +65,8 @@ public class ParceriasProjetoTOBuilder {
 
 		to.setEmpresa(empresaTOBuilder.buildTO(parceriaProjeto.getEmpresa()));
 		to.setMateriaisProjeto(materiaisProjetoTOBuilder.buildAllTO(parceriaProjeto.getMateriaisProjetos()));
-        to.setParceriasCategorias(parceriasCategoriasTOBuilder.buildAllTO(parceriaProjeto.getParceriasCategorias()));		
+        to.setParceriasCategorias(parceriasCategoriasTOBuilder.buildAllTO(parceriaProjeto.getParceriasCategorias()));
+        to.setAditivosParceriasProjeto(aditivoParceriaProjetoTOBuilder.buildTO(parceriaProjeto.getAditivosParceriaProjeto()));
 
 		return to;
 	}

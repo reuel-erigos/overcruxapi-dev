@@ -143,5 +143,13 @@ public class ParceriasProjeto  {
 	public void setParceriasCategorias(List<ParceriasCategorias> parceriasCategorias) {
 		this.parceriasCategorias = parceriasCategorias;
 	}
+
+	public List<AditivoParceriaProjeto> getAditivosParceriaProjeto() {
+		return aditivosParceriaProjeto;
+	}
+
+	public void setAditivosParceriaProjeto(List<AditivoParceriaProjeto> aditivosParceriaProjeto) {
+		this.aditivosParceriaProjeto = aditivosParceriaProjeto;
+	}
 	
 }
