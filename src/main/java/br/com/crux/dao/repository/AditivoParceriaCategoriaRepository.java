@@ -12,6 +12,6 @@ import br.com.crux.entity.ParceriasCategorias;
 @Repository
 public interface AditivoParceriaCategoriaRepository extends JpaRepository<AditivoParceriaCategoria, Long> {
 
-	public Optional<List<AditivoParceriaCategoria>> findByParceriaCategoria(ParceriasCategorias parceriasCategorias);
+	public Optional<List<AditivoParceriaCategoria>> findByParceriasCategorias(ParceriasCategorias parceriasCategorias);
 
 }

@@ -37,7 +37,7 @@ public class AlterarAditivoParceriaCategoriaCmd
 
 	@Override
 	protected List<AditivoParceriaCategoria> getListaBanco(ParceriasCategorias pai) {
-		return repository.findByParceriaCategoria(pai).orElse(new ArrayList<AditivoParceriaCategoria>());
+		return repository.findByParceriasCategorias(pai).orElse(new ArrayList<AditivoParceriaCategoria>());
 	}
 
 	@Override
