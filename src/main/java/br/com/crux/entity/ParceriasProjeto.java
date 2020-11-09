@@ -57,6 +57,9 @@ public class ParceriasProjeto  {
 	@OneToMany(mappedBy="parceriasProjeto")
 	private List<ParceriasCategorias> parceriasCategorias;
 	
+	@OneToMany(mappedBy="parceriasProjeto")
+	private List<AditivoParceriaProjeto> aditivosParceriaProjeto;
+	
 
 	public ParceriasProjeto() {
 	}

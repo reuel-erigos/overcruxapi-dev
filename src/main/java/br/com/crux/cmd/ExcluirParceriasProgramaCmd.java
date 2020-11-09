@@ -18,6 +18,7 @@ public class ExcluirParceriasProgramaCmd {
 
 	@Autowired private ExcluirMateriaisParceriasProgramaCmd excluirMateriaisParceriasProgramaCmd;
 	@Autowired private ExcluirParceriasCategoriasCmd excluirParceriasCategoriasCmd;
+	@Autowired private ExcluirAditivoParceriaProgramaCmd excluirAditivoParceriaProgramaCmd;
 	@Autowired private GetMateriaisParceirosProgramaCmd getMateriaisParceirosProgramaCmd;
 	@Autowired private GetParceriasCategoriasCmd getParceriasCategoriasCmd;
 	@Autowired private ParceriasProgramaRepository parceriasProgramaRepository;
@@ -27,6 +28,7 @@ public class ExcluirParceriasProgramaCmd {
 		List<ParceriasCategorias> listaParceriasCategorias = getParceriasCategoriasCmd.getParceriasCategoriasByParceriasPrograma(parceriasPrograma);
 		excluirMateriaisParceriasProgramaCmd.deletarAll(listaMateriasParceiros);
 		excluirParceriasCategoriasCmd.deletarAll(listaParceriasCategorias);
+		excluirAditivoParceriaProgramaCmd.deletarAll(parceriasPrograma.getAditivosParceriaPrograma());
 
 		try {
 			parceriasProgramaRepository.delete(parceriasPrograma);
