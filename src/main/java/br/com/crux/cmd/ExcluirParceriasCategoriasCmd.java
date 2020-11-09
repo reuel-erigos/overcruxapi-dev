@@ -12,6 +12,8 @@ import br.com.crux.entity.ParceriasCategorias;
 public class ExcluirParceriasCategoriasCmd {
 
 	@Autowired ParceriasCategoriasRepository repository;
+	
+	//TODO: josue fazer o excluir dos aditivos!!!!
 
 	public void deletarAll(List<ParceriasCategorias> listaParceriasCategorias) {
 		repository.deleteInBatch(listaParceriasCategorias);
