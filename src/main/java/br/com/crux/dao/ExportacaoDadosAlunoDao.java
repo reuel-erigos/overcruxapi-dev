@@ -29,7 +29,7 @@ public class ExportacaoDadosAlunoDao extends BaseDao{
 		sql.append("        p.nm_pessoa_fisica,                                                                             ");
 		sql.append("        p.dt_nascimento,                                                                                ");
 		sql.append("        p.nm_mae,                                                                                       ");
-		sql.append("        p.nm_mai,                                                                                       ");
+		sql.append("        p.nm_pai,                                                                                       ");
         sql.append("        p.nr_cpf,                                                                                       ");
         sql.append("        p.nr_nis,                                                                                       ");
         sql.append("        p.ds_email,                                                                                     ");
