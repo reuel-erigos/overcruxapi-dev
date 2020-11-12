@@ -26,7 +26,7 @@ public class CadastrarParceriaProgramaCmd {
 		ParceriasPrograma parceriasPrograma = programasUnidadeRepository.save(entity);
 		
 		alterarMateriaisParceriaProgramaCmd.alterarAll(programa, parceriasPrograma, parceriaPrograma.getMateriaisPrograma());
-		alterarParceriasCategoriasProgramaCmd.alterarAll(parceriasPrograma, parceriaPrograma.getParceriasCategorias());
+		alterarParceriasCategoriasProgramaCmd.alterarAll(parceriaPrograma.getParceriasCategorias(), parceriasPrograma);
 		alterarAditivoParceriaProgramaCmd.alterarAll(parceriaPrograma.getAditivosParceriasProgramas(), parceriasPrograma);
 		
 		
