@@ -3,10 +3,12 @@ package br.com.crux.dao;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import javax.persistence.Query;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.dao.base.BaseDao;
@@ -27,6 +29,7 @@ public class ExportacaoDadosAlunoDao extends BaseDao{
 		sql.append("        p.nm_pessoa_fisica,                                                                             ");
 		sql.append("        p.dt_nascimento,                                                                                ");
 		sql.append("        p.nm_mae,                                                                                       ");
+		sql.append("        p.nm_mai,                                                                                       ");
         sql.append("        p.nr_cpf,                                                                                       ");
         sql.append("        p.nr_nis,                                                                                       ");
         sql.append("        p.ds_email,                                                                                     ");
@@ -50,29 +53,86 @@ public class ExportacaoDadosAlunoDao extends BaseDao{
 		sql.append("      left join unidades u on u.id_unidade = a.id_unidade                                               ");
 		sql.append(" WHERE 1 = 1                                                                                            ");
 		sql.append("  and p.id_instituicao = :idInstituicao                                                                 ");
-		sql.append("  and (:p_nr_cpf is null or :p_nr_cpf = p.nr_cpf)                                                       ");
-		sql.append("  and (:p_dt_entrada is null or :p_dt_entrada >= p.dt_entrada)                                           ");
-		sql.append("  and (:p_dt_desligamento is null or :p_dt_desligamento <= p.dt_desligamento)                            ");
-		sql.append("  and (:p_id_pessoa_fisica is null or :p_id_pessoa_fisica = p.id_pessoa_fisica)                         ");
-		sql.append("  and (:p_id_pessoa_fisica_mae is null or :p_id_pessoa_fisica_mae = pfm.id_pessoa_fisica)               ");
-		sql.append("  and (:p_id_pessoa_fisica_pai is null or :p_id_pessoa_fisica_mae = pfp.id_pessoa_fisica)               ");
-		sql.append("  and (:p_id_programa is null or :p_id_programa = poa.id_programa or :p_id_programa = po.id_programa)   ");
-		sql.append("  and (:p_id_projeto is null or :p_id_projeto = poa.id_projeto or :p_id_projeto = po.id_projeto)        ");
-		sql.append("  and (:p_id_unidade is null or :p_id_unidade = u.id_unidade)                                           ");
-		sql.append(" order by p.nm_pessoa_fisica, p.nm_mae                                                                  ");
+		
+		if(StringUtils.isNotEmpty(cpf)) {
+			sql.append("  and :p_nr_cpf = p.nr_cpf                                                                          ");
+		}
+		
+		if(Objects.nonNull(dataInicioInstituicao)) {
+			sql.append("   AND DATE_TRUNC('DAY', a.dt_entrada) >= DATE_TRUNC('DAY', to_date( :p_dt_entrada ,'dd/mm/yyyy') )        ");
+		}
+		
+		if(Objects.nonNull(dataFimInstituicao)) {
+			sql.append("   AND DATE_TRUNC('DAY', a.dt_desligamento) <= DATE_TRUNC('DAY', to_date( :p_dt_desligamento ,'dd/mm/yyyy') )        ");
+		}
+		
+		if(Objects.nonNull(idBeneficiario)) {
+			sql.append("  and :p_id_pessoa_fisica = p.id_pessoa_fisica                          ");
+		}
+		
+		if(Objects.nonNull(idMae)) {
+			sql.append("  and :p_id_pessoa_fisica_mae = pfm.id_pessoa_fisica               ");
+		}
+		
+		if(Objects.nonNull(idPai)) {
+			sql.append("  and :p_id_pessoa_fisica_pai = pfp.id_pessoa_fisica               ");
+		}
+		
+		if(Objects.nonNull(idPrograma)) {
+			sql.append("  and :p_id_programa = poa.id_programa or :p_id_programa = po.id_programa ");
+		}
+		
+		if(Objects.nonNull(idProjeto)) {
+			sql.append("  and :p_id_projeto = pra.id_projeto or :p_id_projeto = pr.id_projeto        ");
+		}
+		
+		if(Objects.nonNull(idUnidade)) {
+			sql.append("  and :p_id_unidade = u.id_unidade  ");
+		}
+		
+		
+		sql.append(" order by p.nm_pessoa_fisica, p.nm_mae  ");
 		
 		
 		Query query = em.createNativeQuery(sql.toString());
 		query.setParameter("idInstituicao", idInstituicao);
-		query.setParameter("p_nr_cpf", cpf);
-		query.setParameter("p_dt_entrada", Java8DateUtil.getLocalDateFormater(dataInicioInstituicao));
-		query.setParameter("p_dt_desligamento", Java8DateUtil.getLocalDateFormater(dataFimInstituicao));
-		query.setParameter("p_id_pessoa_fisica", idBeneficiario);
-		query.setParameter("p_id_pessoa_fisica_mae", idMae);
-		query.setParameter("p_id_pessoa_fisica_pai", idPai);
-		query.setParameter("p_id_programa", idPrograma);
-		query.setParameter("p_id_projeto", idProjeto);
-		query.setParameter("p_id_unidade", idUnidade);
+		
+		if(StringUtils.isNotEmpty(cpf)) {
+			query.setParameter("p_nr_cpf", cpf);
+		}
+		
+		if(Objects.nonNull(dataInicioInstituicao)) {
+			query.setParameter("p_dt_entrada", Java8DateUtil.getLocalDateFormater(dataInicioInstituicao));
+		}
+		
+		if(Objects.nonNull(dataFimInstituicao)) {
+			query.setParameter("p_dt_desligamento", Java8DateUtil.getLocalDateFormater(dataFimInstituicao));
+		}
+		
+		
+		if(Objects.nonNull(idBeneficiario)) {
+			query.setParameter("p_id_pessoa_fisica", idBeneficiario);
+		}
+		
+		if(Objects.nonNull(idMae)) {
+			query.setParameter("p_id_pessoa_fisica_mae", idMae);
+		}
+
+		if(Objects.nonNull(idPai)) {
+			query.setParameter("p_id_pessoa_fisica_pai", idPai);
+		}
+		
+		if(Objects.nonNull(idPrograma)) {
+			query.setParameter("p_id_programa", idPrograma);
+		}
+
+		if(Objects.nonNull(idProjeto)) {
+			query.setParameter("p_id_projeto", idProjeto);
+		}
+
+		if(Objects.nonNull(idUnidade)) {
+			query.setParameter("p_id_unidade", idUnidade);
+		}
 
 		
 		@SuppressWarnings("unchecked")
