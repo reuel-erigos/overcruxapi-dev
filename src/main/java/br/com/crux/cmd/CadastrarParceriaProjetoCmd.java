@@ -15,12 +15,13 @@ import br.com.crux.to.ParceriasProjetoTO;
 @Component
 public class CadastrarParceriaProjetoCmd {
 
-	@Autowired ParceriasProjetoRepository parceriasProjetoRepository;
-	@Autowired ParceriasProjetoTOBuilder parceriasProjetoTOBuilder;
-	@Autowired AlterarMateriaisParceriaProjetoCmd alterarMateriaisParceriaProjetoCmd;
-	@Autowired AlterarParceriasCategoriasProjetoCmd alterarParceriasCategoriasProjetoCmd;
-	@Autowired AlterarAditivoParceriaProjetoCmd alterarAditivoParceriaProjetoCmd;
-
+	@Autowired private ParceriasProjetoRepository parceriasProjetoRepository;
+	@Autowired private ParceriasProjetoTOBuilder parceriasProjetoTOBuilder;
+	@Autowired private AlterarMateriaisParceriaProjetoCmd alterarMateriaisParceriaProjetoCmd;
+	@Autowired private AlterarParceriasCategoriasProjetoCmd alterarParceriasCategoriasProjetoCmd;
+	@Autowired private AlterarAditivoParceriaProjetoCmd alterarAditivoParceriaProjetoCmd;
+	@Autowired private AlterarContasCentrosCustoProjetoCmd alterarContasCentrosCustoProjetoCmd;
+	
 	public ParceriasProjeto cadastrar(Projeto projeto, ParceriasProjetoTO to) {
 		ParceriasProjeto entity = parceriasProjetoTOBuilder.buildEntity(projeto, to);
 		ParceriasProjeto parceriasProjeto = parceriasProjetoRepository.save(entity);
@@ -28,6 +29,8 @@ public class CadastrarParceriaProjetoCmd {
 		alterarMateriaisParceriaProjetoCmd.alterarAll(projeto, parceriasProjeto, to.getMateriaisProjeto());
 		alterarParceriasCategoriasProjetoCmd.alterarAll(to.getParceriasCategorias(), parceriasProjeto);
 		alterarAditivoParceriaProjetoCmd.alterarAll(to.getAditivosParceriasProjeto(), parceriasProjeto);
+		
+		alterarContasCentrosCustoProjetoCmd.alterarAll(to.getContasCentrosCusto(), parceriasProjeto);
 		
 		return entity;
 	}

@@ -11,32 +11,25 @@ import org.springframework.stereotype.Component;
 import br.com.crux.cmd.GetContasBancariaCmd;
 import br.com.crux.cmd.GetUsuarioLogadoCmd;
 import br.com.crux.entity.ContasCentrosCusto;
-import br.com.crux.entity.Programa;
-import br.com.crux.entity.Projeto;
 import br.com.crux.to.ContasCentrosCustoTO;
 
 @Component
 public class ContasCentrosCustoTOBuilder {
 
-	@Autowired GetUsuarioLogadoCmd getUsuarioLogadoCmd;
-	@Autowired GetContasBancariaCmd getContasBancariaCmd;
-	@Autowired ContasBancariaTOBuilder contasBancariaTOBuilder;
+	@Autowired
+	GetUsuarioLogadoCmd getUsuarioLogadoCmd;
+	@Autowired
+	GetContasBancariaCmd getContasBancariaCmd;
+	@Autowired
+	ContasBancariaTOBuilder contasBancariaTOBuilder;
 
-	public ContasCentrosCusto build(Programa programa, Projeto projeto, ContasCentrosCustoTO contasCentrosCustoTO) {
+	public ContasCentrosCusto build(ContasCentrosCustoTO to) {
 		ContasCentrosCusto entity = new ContasCentrosCusto();
-		
-		BeanUtils.copyProperties(contasCentrosCustoTO, entity);
 
-		if (Objects.nonNull(contasCentrosCustoTO.getContasBancaria()) || Objects.nonNull(contasCentrosCustoTO.getContasBancaria().getId())) {
-			entity.setContasBancaria(getContasBancariaCmd.getById(contasCentrosCustoTO.getContasBancaria().getId()));
-		}
+		BeanUtils.copyProperties(to, entity);
 
-		if(Objects.nonNull(programa) && Objects.nonNull(programa.getId())) { 
-			entity.setIdPrograma(programa.getId());
-		}
-
-		if(Objects.nonNull(projeto) && Objects.nonNull(projeto.getId())) { 
-			entity.setIdProjeto(projeto.getId());
+		if (Objects.nonNull(to.getContasBancaria()) || Objects.nonNull(to.getContasBancaria().getId())) {
+			entity.setContasBancaria(getContasBancariaCmd.getById(to.getContasBancaria().getId()));
 		}
 
 		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
@@ -46,11 +39,11 @@ public class ContasCentrosCustoTOBuilder {
 
 	public ContasCentrosCustoTO buildTO(ContasCentrosCusto entity) {
 		ContasCentrosCustoTO to = new ContasCentrosCustoTO();
-		
+
 		if (Objects.isNull(entity)) {
 			return to;
 		}
-		
+
 		BeanUtils.copyProperties(entity, to);
 
 		to.setContasBancaria(contasBancariaTOBuilder.buildTOCombo(entity.getContasBancaria()));
@@ -58,11 +51,12 @@ public class ContasCentrosCustoTOBuilder {
 		return to;
 	}
 
-	public List<ContasCentrosCustoTO> buildAll(List<ContasCentrosCusto> lista) {
-		return lista.stream()
-				.map(this::buildTO)
-				.collect(Collectors.toList());
+	public List<ContasCentrosCustoTO> buildAllTO(List<ContasCentrosCusto> lista) {
+		return lista.stream().map(this::buildTO).collect(Collectors.toList());
 	}
 
-	
+	public List<ContasCentrosCusto> buildAll(List<ContasCentrosCustoTO> lista) {
+		return lista.stream().map(this::build).collect(Collectors.toList());
+	}
+
 }

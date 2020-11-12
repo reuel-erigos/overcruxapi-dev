@@ -60,6 +60,9 @@ public class ParceriasProjeto  {
 	@OneToMany(mappedBy="parceriasProjeto")
 	private List<AditivoParceriaProjeto> aditivosParceriaProjeto;
 	
+	@OneToMany(mappedBy="parceriasProjeto")
+	private List<ContasCentrosCusto> contasCentrosCusto;
+	
 
 	public ParceriasProjeto() {
 	}
@@ -150,6 +153,14 @@ public class ParceriasProjeto  {
 
 	public void setAditivosParceriaProjeto(List<AditivoParceriaProjeto> aditivosParceriaProjeto) {
 		this.aditivosParceriaProjeto = aditivosParceriaProjeto;
+	}
+
+	public List<ContasCentrosCusto> getContasCentrosCusto() {
+		return contasCentrosCusto;
+	}
+
+	public void setContasCentrosCusto(List<ContasCentrosCusto> contasCentrosCusto) {
+		this.contasCentrosCusto = contasCentrosCusto;
 	}
 	
 }

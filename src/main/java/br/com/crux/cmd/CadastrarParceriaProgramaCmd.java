@@ -15,20 +15,23 @@ import br.com.crux.to.ParceriasProgramaTO;
 @Component
 public class CadastrarParceriaProgramaCmd {
 
-	@Autowired ParceriasProgramaRepository programasUnidadeRepository;
-	@Autowired ParceriasProgramaTOBuilder parceriasProgramaTOBuilder;
-	@Autowired AlterarMateriaisParceriaProgramaCmd alterarMateriaisParceriaProgramaCmd;
-	@Autowired AlterarParceriasCategoriasProgramaCmd alterarParceriasCategoriasProgramaCmd;
-	@Autowired AlterarAditivoParceriaProgramaCmd alterarAditivoParceriaProgramaCmd;
-
-	public ParceriasPrograma cadastrar(Programa programa, ParceriasProgramaTO parceriaPrograma) {
-		ParceriasPrograma entity = parceriasProgramaTOBuilder.build(programa, parceriaPrograma);
+	@Autowired private ParceriasProgramaRepository programasUnidadeRepository;
+	@Autowired private ParceriasProgramaTOBuilder parceriasProgramaTOBuilder;
+	@Autowired private AlterarMateriaisParceriaProgramaCmd alterarMateriaisParceriaProgramaCmd;
+	@Autowired private AlterarParceriasCategoriasProgramaCmd alterarParceriasCategoriasProgramaCmd;
+	@Autowired private AlterarContasCentrosCustoProgramaCmd alterarContasCentrosCustoCmd;
+	@Autowired private AlterarAditivoParceriaProgramaCmd alterarAditivoParceriaProgramaCmd;
+//	@Autowired private CadastrarContasCentrosCustoCmd cadastrarContasCentrosCustoCmd;
+	
+	public ParceriasPrograma cadastrar(Programa programa, ParceriasProgramaTO to) {
+		ParceriasPrograma entity = parceriasProgramaTOBuilder.build(programa, to);
 		ParceriasPrograma parceriasPrograma = programasUnidadeRepository.save(entity);
 		
-		alterarMateriaisParceriaProgramaCmd.alterarAll(programa, parceriasPrograma, parceriaPrograma.getMateriaisPrograma());
-		alterarParceriasCategoriasProgramaCmd.alterarAll(parceriaPrograma.getParceriasCategorias(), parceriasPrograma);
-		alterarAditivoParceriaProgramaCmd.alterarAll(parceriaPrograma.getAditivosParceriasProgramas(), parceriasPrograma);
-		
+		alterarMateriaisParceriaProgramaCmd.alterarAll(programa, parceriasPrograma, to.getMateriaisPrograma());
+		alterarParceriasCategoriasProgramaCmd.alterarAll(to.getParceriasCategorias(), parceriasPrograma);
+		alterarAditivoParceriaProgramaCmd.alterarAll(to.getAditivosParceriasProgramas(), parceriasPrograma);
+//		cadastrarContasCentrosCustoCmd.cadastrarLista(parceriasPrograma,null,to.getContasCentrosCusto());
+		alterarContasCentrosCustoCmd.alterarAll(to.getContasCentrosCusto(), parceriasPrograma);
 		
 		return entity;
 	}

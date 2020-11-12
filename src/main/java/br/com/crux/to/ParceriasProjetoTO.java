@@ -25,6 +25,8 @@ public class ParceriasProjetoTO {
 
 	private List<AditivoParceriaProjetoTO> aditivosParceriasProjeto;
 
+	private List<ContasCentrosCustoTO> contasCentrosCusto;
+	
 	public List<ParceriasCategoriasTO> getParceriasCategorias() {
 		return parceriasCategorias;
 	}
@@ -103,6 +105,14 @@ public class ParceriasProjetoTO {
 
 	public void setAditivosParceriasProjeto(List<AditivoParceriaProjetoTO> aditivosParceriasProjeto) {
 		this.aditivosParceriasProjeto = aditivosParceriasProjeto;
+	}
+
+	public List<ContasCentrosCustoTO> getContasCentrosCusto() {
+		return contasCentrosCusto;
+	}
+
+	public void setContasCentrosCusto(List<ContasCentrosCustoTO> contasCentrosCusto) {
+		this.contasCentrosCusto = contasCentrosCusto;
 	}
 
 }

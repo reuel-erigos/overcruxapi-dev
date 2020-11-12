@@ -9,30 +9,35 @@ import org.springframework.stereotype.Component;
 import br.com.crux.builder.ContasCentrosCustoTOBuilder;
 import br.com.crux.dao.repository.ContasCentrosCustoRepository;
 import br.com.crux.entity.ContasCentrosCusto;
-import br.com.crux.entity.Programa;
+import br.com.crux.entity.ParceriasPrograma;
 import br.com.crux.to.ContasCentrosCustoTO;
 
 @Component
-public class AlterarListaContasCentrosCustoProgramaCmd extends AbstractAlterarListaCmd<ContasCentrosCusto, ContasCentrosCustoTO, Programa> {
+public class AlterarContasCentrosCustoProgramaCmd
+		extends AbstractAlterarListaCmd<ContasCentrosCusto, ContasCentrosCustoTO, ParceriasPrograma> {
 
-	@Autowired private ContasCentrosCustoTOBuilder toBuilder;
-	@Autowired private ContasCentrosCustoRepository repository;
-	@Autowired private CadastrarContasCentrosCustoCmd cadastrarCmd;
+	@Autowired
+	private ContasCentrosCustoTOBuilder builder;
+	@Autowired
+	private ContasCentrosCustoRepository repository;
+	@Autowired
+	private CadastrarContasCentrosCustoCmd cadastrarCmd;
+	@Autowired
+	private ExcluirContasCentrosCustoCmd excluirCmd;
 
 	@Override
 	protected ContasCentrosCustoTO getTO(ContasCentrosCusto entity) {
-		return toBuilder.buildTO(entity);
+		return builder.buildTO(entity);
 	}
 
 	@Override
 	protected List<ContasCentrosCustoTO> getTOListaBanco(List<ContasCentrosCusto> lista) {
-		return toBuilder.buildAll(lista);
+		return builder.buildAllTO(lista);
 	}
 
 	@Override
-	protected List<ContasCentrosCusto> getListaBanco(Programa pai) {
-		return repository.findByIdPrograma(pai.getId())
-				.orElse(new ArrayList<ContasCentrosCusto>());
+	protected List<ContasCentrosCusto> getListaBanco(ParceriasPrograma pai) {
+		return repository.findByParceriasPrograma(pai).orElse(new ArrayList<ContasCentrosCusto>());
 	}
 
 	@Override
@@ -41,14 +46,14 @@ public class AlterarListaContasCentrosCustoProgramaCmd extends AbstractAlterarLi
 	}
 
 	@Override
-	protected void cadastrar(ContasCentrosCustoTO to, Programa p) {
+	protected void cadastrar(ContasCentrosCustoTO to, ParceriasPrograma p) {
 		cadastrarCmd.cadastrar(p, null, to);
+
 	}
 
 	@Override
 	protected void deletar(ContasCentrosCusto registro) {
-		repository.delete(registro);
-
+		excluirCmd.excluir(registro);
 	}
 
 }

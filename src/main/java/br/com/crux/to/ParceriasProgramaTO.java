@@ -16,6 +16,8 @@ public class ParceriasProgramaTO {
 	private List<MateriaisProgramaTO> materiaisPrograma;
 	private List<ParceriasCategoriasTO> parceriasCategorias;
 	private List<AditivoParceriaProgramaTO> aditivosParceriasProgramas;
+	
+	private List<ContasCentrosCustoTO> contasCentrosCusto;
 
 	public Long getId() {
 		return id;
@@ -95,6 +97,14 @@ public class ParceriasProgramaTO {
 
 	public void setAditivosParceriasProgramas(List<AditivoParceriaProgramaTO> aditivosParceriasProgramas) {
 		this.aditivosParceriasProgramas = aditivosParceriasProgramas;
+	}
+
+	public List<ContasCentrosCustoTO> getContasCentrosCusto() {
+		return contasCentrosCusto;
+	}
+
+	public void setContasCentrosCusto(List<ContasCentrosCustoTO> contasCentrosCusto) {
+		this.contasCentrosCusto = contasCentrosCusto;
 	}
 
 }

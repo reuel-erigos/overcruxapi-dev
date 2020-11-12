@@ -27,7 +27,6 @@ public class ProgramaTO {
 	private List<ParceriasProgramaTO> parceriasPrograma;
 	private List<ComposicaoRhProgramaTO> composicaoRhPrograma;
 	private List<MateriaisProgramaTO> materiaisPrograma;
-	private List<ContasCentrosCustoTO> contasCentrosCusto;
 	private String publicoAlvo;
 	private String justificativa;
 	private String objetivoGeral;
@@ -192,14 +191,6 @@ public class ProgramaTO {
 		this.objetivoGeral = objetivoGeral;
 	}
 
-	public List<ContasCentrosCustoTO> getContasCentrosCusto() {
-		return contasCentrosCusto;
-	}
-
-	public void setContasCentrosCusto(List<ContasCentrosCustoTO> contasCentrosCusto) {
-		this.contasCentrosCusto = contasCentrosCusto;
-	}
-	
 	public String getObjetivoEspecifico() {
 		return objetivoEspecifico;
 	}

@@ -59,8 +59,19 @@ public class ParceriasPrograma  {
 
 	@OneToMany(mappedBy="parceriasPrograma")
 	private List<AditivoParceriaPrograma> aditivosParceriaPrograma;
+	
+	@OneToMany(mappedBy="parceriasPrograma")
+	private List<ContasCentrosCusto> contasCentrosCusto;
 
 	
+	public List<ContasCentrosCusto> getContasCentrosCusto() {
+		return contasCentrosCusto;
+	}
+
+	public void setContasCentrosCusto(List<ContasCentrosCusto> contasCentrosCusto) {
+		this.contasCentrosCusto = contasCentrosCusto;
+	}
+
 	public ParceriasPrograma() {
 	}
 

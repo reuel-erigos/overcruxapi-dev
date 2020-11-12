@@ -10,32 +10,35 @@ import org.springframework.stereotype.Component;
 
 import br.com.crux.cmd.GetColaboradoresProgramaCmd;
 import br.com.crux.cmd.GetComposicaoRhProgramaCmd;
-import br.com.crux.cmd.GetContasCentrosCustoCmd;
 import br.com.crux.cmd.GetMateriaisProgramaCmd;
 import br.com.crux.cmd.GetObjetivoCmd;
 import br.com.crux.cmd.GetParceriasProgramaCmd;
 import br.com.crux.cmd.GetProgramaUnidadeCmd;
 import br.com.crux.entity.Objetivo;
 import br.com.crux.entity.Programa;
-import br.com.crux.to.ContasCentrosCustoTO;
 import br.com.crux.to.ProgramaTO;
 
 @Component
 public class ProgramaTOBuilder {
 
-	@Autowired private ObjetivoTOBuilder objetivoTOBuilder;
-	@Autowired private GetObjetivoCmd getObjetivoCmd;
-	@Autowired private GetProgramaUnidadeCmd getProgramaUnidadeCmd;
-	@Autowired private GetColaboradoresProgramaCmd getColaboradoresProjetoCmd;
-	@Autowired private GetParceriasProgramaCmd getParceriasProgramaCmd;
-	@Autowired private GetComposicaoRhProgramaCmd getComposicaoRhProgramaCmd;
-	@Autowired private GetMateriaisProgramaCmd getMateriaisProgramaCmd;
-	@Autowired private GetContasCentrosCustoCmd getContasCentrosCustoCmd;
+	@Autowired
+	private ObjetivoTOBuilder objetivoTOBuilder;
+	@Autowired
+	private GetObjetivoCmd getObjetivoCmd;
+	@Autowired
+	private GetProgramaUnidadeCmd getProgramaUnidadeCmd;
+	@Autowired
+	private GetColaboradoresProgramaCmd getColaboradoresProjetoCmd;
+	@Autowired
+	private GetParceriasProgramaCmd getParceriasProgramaCmd;
+	@Autowired
+	private GetComposicaoRhProgramaCmd getComposicaoRhProgramaCmd;
+	@Autowired
+	private GetMateriaisProgramaCmd getMateriaisProgramaCmd;
 
-	
 	public Programa build(ProgramaTO param) {
 		Programa retorno = new Programa();
-		
+
 		BeanUtils.copyProperties(param, retorno);
 
 		if (Objects.nonNull(param.getObjetivo()) && Objects.nonNull(param.getObjetivo().getIdObjetivo())) {
@@ -52,10 +55,10 @@ public class ProgramaTOBuilder {
 		if (Objects.isNull(param)) {
 			return retorno;
 		}
-		
+
 		BeanUtils.copyProperties(param, retorno);
 		retorno.setObjetivo(objetivoTOBuilder.buildTO(param.getObjetivo()));
-		
+
 		return retorno;
 	}
 
@@ -65,7 +68,7 @@ public class ProgramaTOBuilder {
 		if (Objects.isNull(param)) {
 			return retorno;
 		}
-		
+
 		BeanUtils.copyProperties(param, retorno);
 
 		retorno.setObjetivo(objetivoTOBuilder.buildTO(param.getObjetivo()));
@@ -74,15 +77,12 @@ public class ProgramaTOBuilder {
 		retorno.setParceriasPrograma(getParceriasProgramaCmd.getParceriasProgramaTOByPrograma(param));
 		retorno.setComposicaoRhPrograma(getComposicaoRhProgramaCmd.getComposicaoRhProgramaByPrograma(param));
 		retorno.setMateriaisPrograma(getMateriaisProgramaCmd.getMateriaisProgramaByPrograma(param));
-		retorno.setContasCentrosCusto(getContasCentrosCustoCmd.getTOPorPrograma(param));
-		
+
 		return retorno;
 	}
 
 	public List<ProgramaTO> buildAll(List<Programa> dtos) {
-		return dtos.stream()
-				.map(this::buildTO)
-				.collect(Collectors.toList());
+		return dtos.stream().map(this::buildTO).collect(Collectors.toList());
 	}
 
 	public ProgramaTO buildTOEnxuto(Programa programa) {
@@ -97,9 +97,7 @@ public class ProgramaTOBuilder {
 	}
 
 	public List<ProgramaTO> buildAllCombo(List<Programa> dtos) {
-		return dtos.stream()
-				.map(this::buildTOCombo)
-				.collect(Collectors.toList());
+		return dtos.stream().map(this::buildTOCombo).collect(Collectors.toList());
 	}
 
 	public ProgramaTO buildTOCombo(Programa programa) {
@@ -110,9 +108,6 @@ public class ProgramaTOBuilder {
 		}
 
 		BeanUtils.copyProperties(programa, to);
-		
-		List<ContasCentrosCustoTO> contasCentrosCustosTO = getContasCentrosCustoCmd.getTOPorPrograma(programa);
-		to.setContasCentrosCusto(contasCentrosCustosTO);
 
 		return to;
 	}
