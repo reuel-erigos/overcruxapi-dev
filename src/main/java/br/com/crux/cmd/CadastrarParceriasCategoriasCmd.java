@@ -22,11 +22,11 @@ public class CadastrarParceriasCategoriasCmd {
 	
 
 	public ParceriasCategorias cadastrar(ParceriasPrograma parceriasPrograma, ParceriasProjeto parceriasProjeto, ParceriasCategoriasTO to) {
-		ParceriasCategorias entity = toBuilder.buildEntity(parceriasPrograma, null, to);
+		ParceriasCategorias entity = toBuilder.buildEntity(parceriasPrograma, parceriasProjeto, to);
+	
+		ParceriasCategorias pc = repository.save(entity);
 		
 		alterarAditivoParceriaCategoriaCmd.alterarAll(to.getAditivosParceriasCategorias(), entity);
-		
-		ParceriasCategorias pc = repository.save(entity);
 		
 		return pc;
 	}

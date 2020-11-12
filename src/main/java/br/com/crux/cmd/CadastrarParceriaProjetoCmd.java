@@ -26,7 +26,7 @@ public class CadastrarParceriaProjetoCmd {
 		ParceriasProjeto parceriasProjeto = parceriasProjetoRepository.save(entity);
 		
 		alterarMateriaisParceriaProjetoCmd.alterarAll(projeto, parceriasProjeto, to.getMateriaisProjeto());
-		alterarParceriasCategoriasProjetoCmd.alterarAll(projeto, parceriasProjeto, to.getParceriasCategorias() );
+		alterarParceriasCategoriasProjetoCmd.alterarAll(to.getParceriasCategorias(), parceriasProjeto);
 		alterarAditivoParceriaProjetoCmd.alterarAll(to.getAditivosParceriasProjeto(), parceriasProjeto);
 		
 		return entity;

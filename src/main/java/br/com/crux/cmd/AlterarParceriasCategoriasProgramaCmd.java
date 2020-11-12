@@ -20,10 +20,12 @@ public class AlterarParceriasCategoriasProgramaCmd {
 	@Autowired private ParceriasCategoriasTOBuilder toBuilder;
 	@Autowired private ParceriasCategoriasRepository repository;
 	@Autowired private GetParceriasCategoriasCmd getParceriasCategoriasCmd;
+	@Autowired private AlterarAditivoParceriaCategoriaCmd alterarAditivoParceriaCategoriaCmd;
 	
 
 	private void alterar(ParceriasPrograma parceriasPrograma, ParceriasCategoriasTO parceriasCategoriasTO) {
 		ParceriasCategorias entity = toBuilder.buildEntity(parceriasPrograma , null, parceriasCategoriasTO);
+		alterarAditivoParceriaCategoriaCmd.alterarAll(parceriasCategoriasTO.getAditivosParceriasCategorias(), entity);
 		repository.save(entity);
 	}
 	
