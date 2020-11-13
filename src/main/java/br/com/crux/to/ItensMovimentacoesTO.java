@@ -7,6 +7,7 @@ public class ItensMovimentacoesTO {
 	private Long id;
 	private String descricaoItemMovimentacao;
 	private CategoriasContabeisTO categoria;
+	private CategoriasContabeisTO categoriaAdicional;
 	private DepartamentoTO departamento;
 	private MaterialTO material;
 	private Long idMovimentacao;
@@ -113,6 +114,14 @@ public class ItensMovimentacoesTO {
 
 	public void setTributos(List<TributosItensMovimentacoesTO> tributos) {
 		this.tributos = tributos;
+	}
+
+	public CategoriasContabeisTO getCategoriaAdicional() {
+		return categoriaAdicional;
+	}
+
+	public void setCategoriaAdicional(CategoriasContabeisTO categoriaAdicional) {
+		this.categoriaAdicional = categoriaAdicional;
 	}
 
 	

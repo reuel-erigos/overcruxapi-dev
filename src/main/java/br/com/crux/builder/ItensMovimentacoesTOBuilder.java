@@ -42,6 +42,7 @@ public class ItensMovimentacoesTOBuilder {
 
 		to.setIdMovimentacao(entity.getId());
 		to.setCategoria(categoriasContabeisTOBuilder.buildTOCombo(entity.getCategoria()));
+		to.setCategoriaAdicional(categoriasContabeisTOBuilder.buildTOCombo(entity.getCategoriaAdicional()));
 		to.setDepartamento(departamentoTOBuilder.buildTOCombo(entity.getDepartamento()));
 		to.setMaterial(materialTOBuilder.buildTOCombo(entity.getMaterial()));
 		to.setPedidosMateriais(pedidosMateriaisTOBuilder.buildTOCombo(entity.getPedidosMateriais()));
@@ -65,6 +66,11 @@ public class ItensMovimentacoesTOBuilder {
 		if (Objects.nonNull(to.getCategoria()) && Objects.nonNull(to.getCategoria().getId())) {
 			CategoriasContabeis retorno = getCategoriasContabeisCmd.getById(to.getCategoria().getId());
 			entity.setCategoria(retorno);
+		}
+
+		if (Objects.nonNull(to.getCategoriaAdicional()) && Objects.nonNull(to.getCategoriaAdicional().getId())) {
+			CategoriasContabeis retorno = getCategoriasContabeisCmd.getById(to.getCategoriaAdicional().getId());
+			entity.setCategoriaAdicional(retorno);
 		}
 
 		if (Objects.nonNull(to.getMaterial()) && Objects.nonNull(to.getMaterial().getId())) {
