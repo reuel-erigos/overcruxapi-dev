@@ -6,7 +6,8 @@ import java.time.LocalDate;
 
 public class ExportacaoDadosAlunoDTO {
 	
-	private Long id;
+	private Long idPessoaFisica;
+	private Long idAluno;
 	private String matricula;
 	private String nomeBeneficiario;
 	private LocalDate dataNascimento;
@@ -27,29 +28,38 @@ public class ExportacaoDadosAlunoDTO {
 	}
 	
 	public ExportacaoDadosAlunoDTO(Object[] colunas) {
-		this.id                  = (colunas[0] != null)? ((BigDecimal)colunas[0]).longValue() : null;
-		this.matricula           = (String) colunas[1];
+		this.idPessoaFisica      = (colunas[0] != null)? ((BigDecimal)colunas[0]).longValue() : null;
+		this.idAluno             = (colunas[1] != null)? ((BigDecimal)colunas[1]).longValue() : null;
+		this.matricula           = (String) colunas[2];
 		this.nomeBeneficiario    = (String) colunas[2];
-		this.dataNascimento      = (colunas[3] != null)? ((Timestamp)colunas[3]).toLocalDateTime().toLocalDate() : null;
-		this.nomeMae             = (String) colunas[4];
-		this.nomePai             = (String) colunas[5];
-		this.cpf                 = (String) colunas[6];
-		this.nis                 = (String) colunas[7];
-		this.email               = (String) colunas[8];
-		this.celular             = (String) colunas[9];
-		this.foneResidencial     = (String) colunas[10];
-		this.foneComercial       = (String) colunas[11];
-		this.unidade             = (String) colunas[12];
-		this.dataEntrada         = (colunas[13] != null)? ((Timestamp)colunas[13]).toLocalDateTime().toLocalDate() : null;
-		this.dataDesligamento    = (colunas[14] != null)? ((Timestamp)colunas[14]).toLocalDateTime().toLocalDate() : null;
+		this.dataNascimento      = (colunas[4] != null)? ((Timestamp)colunas[4]).toLocalDateTime().toLocalDate() : null;
+		this.nomeMae             = (String) colunas[5];
+		this.nomePai             = (String) colunas[6];
+		this.cpf                 = (String) colunas[7];
+		this.nis                 = (String) colunas[8];
+		this.email               = (String) colunas[9];
+		this.celular             = (String) colunas[10];
+		this.foneResidencial     = (String) colunas[11];
+		this.foneComercial       = (String) colunas[12];
+		this.unidade             = (String) colunas[13];
+		this.dataEntrada         = (colunas[14] != null)? ((Timestamp)colunas[14]).toLocalDateTime().toLocalDate() : null;
+		this.dataDesligamento    = (colunas[15] != null)? ((Timestamp)colunas[15]).toLocalDateTime().toLocalDate() : null;
 	}
 
-	public Long getId() {
-		return id;
+	public Long getIdPessoaFisica() {
+		return idPessoaFisica;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setIdPessoaFisica(Long id) {
+		this.idPessoaFisica = id;
+	}
+
+	public Long getIdAluno() {
+		return idAluno;
+	}
+
+	public void setIdAluno(Long idAluno) {
+		this.idAluno = idAluno;
 	}
 
 	public String getMatricula() {

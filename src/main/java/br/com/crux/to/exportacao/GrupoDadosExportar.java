@@ -5,6 +5,7 @@ import java.util.List;
 public class GrupoDadosExportar {
 	
 	private String nome;
+	private String entidade;
 	private boolean exportar;
 	private List<Coluna> colunas;
 
@@ -19,6 +20,14 @@ public class GrupoDadosExportar {
 		this.nome = nome;
 	}
 
+	public String getEntidade() {
+		return entidade;
+	}
+
+	public void setEntidade(String entidade) {
+		this.entidade = entidade;
+	}
+	
 	public boolean isExportar() {
 		return exportar;
 	}

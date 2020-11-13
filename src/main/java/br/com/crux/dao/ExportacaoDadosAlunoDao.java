@@ -25,6 +25,7 @@ public class ExportacaoDadosAlunoDao extends BaseDao{
 		StringBuilder sql = new StringBuilder();
 		
 		sql.append(" select p.id_pessoa_fisica,                                                                             ");
+		sql.append("        a.id_aluno,                                                                                     ");
 		sql.append("        a.nr_matricula_aluno,                                                                           ");
 		sql.append("        p.nm_pessoa_fisica,                                                                             ");
 		sql.append("        p.dt_nascimento,                                                                                ");

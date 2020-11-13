@@ -4,7 +4,8 @@ import java.time.LocalDate;
 
 public class ExportacaoDadosAlunoTO {
 	
-	private Long id;
+	private Long idPessoaFisica;
+	private Long idAluno;
 	private String matricula;
 	private String nomeBeneficiario;
 	private LocalDate dataNascimento;
@@ -23,14 +24,22 @@ public class ExportacaoDadosAlunoTO {
 	public ExportacaoDadosAlunoTO() {
 	}
 
-	public Long getId() {
-		return id;
+	public Long getIdPessoaFisica() {
+		return idPessoaFisica;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setIdPessoaFisica(Long idPessoaFisica) {
+		this.idPessoaFisica = idPessoaFisica;
 	}
 
+	public Long getIdAluno() {
+		return idAluno;
+	}
+
+	public void setIdAluno(Long idAluno) {
+		this.idAluno = idAluno;
+	}
+	
 	public String getMatricula() {
 		return matricula;
 	}
