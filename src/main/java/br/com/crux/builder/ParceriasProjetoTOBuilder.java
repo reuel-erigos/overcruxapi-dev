@@ -54,7 +54,7 @@ public class ParceriasProjetoTOBuilder {
 		}
 
 		if(Objects.nonNull(parceriaProjetoTO.getContasCentrosCusto())) {
-			parceriasProjeto.setContasCentrosCusto(contasCentrosCustoTOBuilder.buildAll(parceriaProjetoTO.getContasCentrosCusto()));
+			parceriasProjeto.setContasCentrosCusto(contasCentrosCustoTOBuilder.buildAll(parceriaProjetoTO.getContasCentrosCusto(),null,parceriasProjeto));
 		}
 
 		return parceriasProjeto;
@@ -73,6 +73,7 @@ public class ParceriasProjetoTOBuilder {
 		to.setMateriaisProjeto(materiaisProjetoTOBuilder.buildAllTO(parceriaProjeto.getMateriaisProjetos()));
         to.setParceriasCategorias(parceriasCategoriasTOBuilder.buildAllTO(parceriaProjeto.getParceriasCategorias()));
         to.setAditivosParceriasProjeto(aditivoParceriaProjetoTOBuilder.buildTO(parceriaProjeto.getAditivosParceriaProjeto()));
+        to.setContasCentrosCusto(contasCentrosCustoTOBuilder.buildAllTO(parceriaProjeto.getContasCentrosCusto()));
 
 		return to;
 	}

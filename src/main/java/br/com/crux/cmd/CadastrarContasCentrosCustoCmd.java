@@ -23,7 +23,7 @@ public class CadastrarContasCentrosCustoCmd {
 
 	public ContasCentrosCusto cadastrar(ParceriasPrograma parceriasPrograma, ParceriasProjeto parceriasProjeto,
 			ContasCentrosCustoTO contasCentrosCustoTO) {
-		ContasCentrosCusto contasCentrosCusto = contasCentrosCustoTOBuilder.build(contasCentrosCustoTO);
+		ContasCentrosCusto contasCentrosCusto = contasCentrosCustoTOBuilder.build(contasCentrosCustoTO,parceriasPrograma,parceriasProjeto);
 		return repository.save(contasCentrosCusto);
 	}
 
