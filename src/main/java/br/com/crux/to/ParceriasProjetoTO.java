@@ -6,30 +6,17 @@ import java.util.List;
 public class ParceriasProjetoTO {
 
 	private Long id;
-
 	private String descricaoTipoParceria;
-
 	private LocalDateTime dataFim;
-
 	private LocalDateTime dataInicio;
-
 	private EmpresaTO empresa;
-
 	private ProjetoTO projeto;
-
+	private Long quantidadeMaterial;
 	private Double valorParceria;
 	
 	private List<MateriaisProjetoTO> materiaisProjeto;
-	
 	private List<ParceriasCategoriasTO> parceriasCategorias;
-
-	public List<ParceriasCategoriasTO> getParceriasCategorias() {
-		return parceriasCategorias;
-	}
-
-	public void setParceriasCategorias(List<ParceriasCategoriasTO> parceriasCategorias) {
-		this.parceriasCategorias = parceriasCategorias;
-	}
+	
 
 	public Long getId() {
 		return id;
@@ -95,4 +82,21 @@ public class ParceriasProjetoTO {
 		this.materiaisProjeto = materiaisProjeto;
 	}
 
+	public Long getQuantidadeMaterial() {
+		return quantidadeMaterial;
+	}
+
+	public void setQuantidadeMaterial(Long quantidadeMaterial) {
+		this.quantidadeMaterial = quantidadeMaterial;
+	}
+
+	public List<ParceriasCategoriasTO> getParceriasCategorias() {
+		return parceriasCategorias;
+	}
+
+	public void setParceriasCategorias(List<ParceriasCategoriasTO> parceriasCategorias) {
+		this.parceriasCategorias = parceriasCategorias;
+	}
+
+	
 }
