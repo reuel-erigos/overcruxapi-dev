@@ -20,15 +20,26 @@ import br.com.crux.to.ParceriasProgramaTO;
 @Component
 public class ParceriasProgramaTOBuilder {
 
-	@Autowired GetUsuarioLogadoCmd getUsuarioLogadoCmd;
-	@Autowired GetEmpresaCmd empresaCmd;
-	@Autowired EmpresaTOBuilder empresaTOBuilder;
-	@Autowired ProjetoTOBuilder projetoTOBuilder;
-	@Autowired GetMateriaisParceirosProgramaCmd getMateriaisParceirosProgramaCmd;
-	@Autowired GetParceriasCategoriasCmd getParceriasCategoriasCmd;
-	@Autowired MateriaisProgramaTOBuilder materiaisProgramaTOBuilder;
-	@Autowired ParceriasCategoriasTOBuilder parceriasCategoriasTOBuilder;
-	
+	@Autowired
+	GetUsuarioLogadoCmd getUsuarioLogadoCmd;
+	@Autowired
+	GetEmpresaCmd empresaCmd;
+	@Autowired
+	EmpresaTOBuilder empresaTOBuilder;
+	@Autowired
+	ProjetoTOBuilder projetoTOBuilder;
+	@Autowired
+	GetMateriaisParceirosProgramaCmd getMateriaisParceirosProgramaCmd;
+	@Autowired
+	GetParceriasCategoriasCmd getParceriasCategoriasCmd;
+	@Autowired
+	MateriaisProgramaTOBuilder materiaisProgramaTOBuilder;
+	@Autowired
+	ParceriasCategoriasTOBuilder parceriasCategoriasTOBuilder;
+	@Autowired
+	AditivoParceriaProgramaTOBuilder aditivoParceriaProgramaTOBuilder;
+	@Autowired
+	ContasCentrosCustoTOBuilder contasCentrosCustoTOBuilder;
 
 	public ParceriasPrograma build(Programa programa, ParceriasProgramaTO parceriaProgramaTO) {
 		ParceriasPrograma parceriasPrograma = new ParceriasPrograma();
@@ -37,13 +48,19 @@ public class ParceriasProgramaTOBuilder {
 
 		parceriasPrograma.setPrograma(programa);
 
-		if (Objects.nonNull(parceriaProgramaTO.getEmpresa()) && Objects.nonNull(parceriaProgramaTO.getEmpresa().getId())) {
+		if (Objects.nonNull(parceriaProgramaTO.getEmpresa())
+				&& Objects.nonNull(parceriaProgramaTO.getEmpresa().getId())) {
 			Empresa e = empresaCmd.getById(parceriaProgramaTO.getEmpresa().getId());
 			parceriasPrograma.setEmpresa(e);
 		}
-		parceriasPrograma.setMateriaisProgramas(materiaisProgramaTOBuilder.buildAllTO(parceriaProgramaTO.getMateriaisPrograma()));
-		parceriasPrograma.setParceriasCategorias(parceriasCategoriasTOBuilder.buildAll(parceriaProgramaTO.getParceriasCategorias()));	
-        
+		parceriasPrograma.setMateriaisProgramas(
+				materiaisProgramaTOBuilder.buildAllTO(parceriaProgramaTO.getMateriaisPrograma()));
+		parceriasPrograma.setParceriasCategorias(
+				parceriasCategoriasTOBuilder.buildAll(parceriaProgramaTO.getParceriasCategorias()));
+
+		parceriasPrograma.setContasCentrosCusto(contasCentrosCustoTOBuilder
+				.buildAll(parceriaProgramaTO.getContasCentrosCusto(), parceriasPrograma, null));
+
 		parceriasPrograma.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 
 		return parceriasPrograma;
@@ -62,11 +79,13 @@ public class ParceriasProgramaTOBuilder {
 		to.setEmpresa(empresaTOBuilder.buildTO(parceriasPrograma.getEmpresa()));
 
 		to.setMateriaisPrograma(materiaisProgramaTOBuilder.buildAll(parceriasPrograma.getMateriaisProgramas()));
-        to.setParceriasCategorias(parceriasCategoriasTOBuilder.buildAllTO(parceriasPrograma.getParceriasCategorias()));		
-		
+		to.setParceriasCategorias(parceriasCategoriasTOBuilder.buildAllTO(parceriasPrograma.getParceriasCategorias()));
+		to.setAditivosParceriasProgramas(
+				aditivoParceriaProgramaTOBuilder.buildTO(parceriasPrograma.getAditivosParceriaPrograma()));
+		to.setContasCentrosCusto(contasCentrosCustoTOBuilder.buildAllTO(parceriasPrograma.getContasCentrosCusto()));
+
 		return to;
 	}
-
 
 	public ParceriasProgramaTO buildSemDependencia(ParceriasPrograma p) {
 
@@ -82,10 +101,10 @@ public class ParceriasProgramaTOBuilder {
 		to.setId(p.getId());
 		to.setValorParceria(p.getValorParceria());
 		to.setEmpresa(empresaTOBuilder.buildTO(p.getEmpresa()));
-		
+
 		return to;
 	}
-	
+
 	public ParceriasPrograma buildEntity(ParceriasProgramaTO parceriasPrograma) {
 		ParceriasPrograma to = new ParceriasPrograma();
 
@@ -97,22 +116,21 @@ public class ParceriasProgramaTOBuilder {
 
 		to.setEmpresa(empresaTOBuilder.build(parceriasPrograma.getEmpresa()));
 
-		if(Objects.nonNull(parceriasPrograma.getMateriaisPrograma())) {
+		if (Objects.nonNull(parceriasPrograma.getMateriaisPrograma())) {
 			to.setMateriaisProgramas(materiaisProgramaTOBuilder.buildAllTO(parceriasPrograma.getMateriaisPrograma()));
 		}
-		
-		if(Objects.nonNull(parceriasPrograma.getParceriasCategorias())) {
-			to.setParceriasCategorias(parceriasCategoriasTOBuilder.buildAll(parceriasPrograma.getParceriasCategorias()));		
+
+		if (Objects.nonNull(parceriasPrograma.getParceriasCategorias())) {
+			to.setParceriasCategorias(
+					parceriasCategoriasTOBuilder.buildAll(parceriasPrograma.getParceriasCategorias()));
 		}
-		
+
 		return to;
 	}
-	
+
 	public List<ParceriasProgramaTO> buildAll(List<ParceriasPrograma> lista) {
 
-		return lista.stream()
-				.map(this::buildTO)
-				.collect(Collectors.toList());
+		return lista.stream().map(this::buildTO).collect(Collectors.toList());
 	}
 
 	public ParceriasProgramaTO buildTOCombo(ParceriasPrograma e) {
@@ -121,7 +139,7 @@ public class ParceriasProgramaTOBuilder {
 		if (Objects.isNull(e)) {
 			return to;
 		}
-		
+
 		BeanUtils.copyProperties(e, to);
 
 		return to;

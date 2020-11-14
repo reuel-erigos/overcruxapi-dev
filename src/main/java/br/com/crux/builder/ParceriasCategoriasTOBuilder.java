@@ -19,14 +19,21 @@ import br.com.crux.to.ParceriasCategoriasTO;
 @Component
 public class ParceriasCategoriasTOBuilder {
 
-	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
-	@Autowired private CategoriasContabeisTOBuilder categoriasContabeisTOBuilder;
-	@Autowired private ParceriasProgramaTOBuilder parceriasProgramaTOBuilder;
-	@Autowired private ParceriasProjetoTOBuilder parceriasProjetoTOBuilder;
-	@Autowired private GetCategoriasContabeisCmd getCategoriasContabeisCmd;
+	@Autowired
+	private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
+	@Autowired
+	private CategoriasContabeisTOBuilder categoriasContabeisTOBuilder;
+	@Autowired
+	private AditivoParceriaCategoriaTOBuilder aditivoParceriaCategoriaTOBuilder;
+	@Autowired
+	private ParceriasProgramaTOBuilder parceriasProgramaTOBuilder;
+	@Autowired
+	private ParceriasProjetoTOBuilder parceriasProjetoTOBuilder;
+	@Autowired
+	private GetCategoriasContabeisCmd getCategoriasContabeisCmd;
 
-	
-	public ParceriasCategorias buildEntity(ParceriasPrograma parceriasPrograma, ParceriasProjeto parceriasProjeto, ParceriasCategoriasTO to) {
+	public ParceriasCategorias buildEntity(ParceriasPrograma parceriasPrograma, ParceriasProjeto parceriasProjeto,
+			ParceriasCategoriasTO to) {
 
 		ParceriasCategorias e = new ParceriasCategorias();
 
@@ -66,37 +73,37 @@ public class ParceriasCategoriasTOBuilder {
 			to.setParceriasProjeto(parceriasProjetoTOBuilder.buildTOSemDependencia(e.getParceriasProjeto()));
 		}
 
-		return to;
-	}
-
-	
-	public ParceriasCategorias build(ParceriasCategoriasTO e) {
-		ParceriasCategorias to = new ParceriasCategorias();
-
-		BeanUtils.copyProperties(e, to);
-
-		to.setCategoriasContabeis(categoriasContabeisTOBuilder.build(e.getCategoriasContabeis()));
-
-		if (Objects.nonNull(e.getParceriasPrograma())) {
-			to.setParceriasPrograma(parceriasProgramaTOBuilder.buildEntity(e.getParceriasPrograma()));
-		}
-
-		if (Objects.nonNull(e.getParceriasPrograma())) {
-			to.setParceriasProjeto(parceriasProjetoTOBuilder.buildTO(e.getParceriasProjeto()));
+		if (Objects.nonNull(e.getAditivoParceriaCategoria())) {
+			to.setAditivosParceriasCategorias(
+					(aditivoParceriaCategoriaTOBuilder.buildTO(e.getAditivoParceriaCategoria())));
 		}
 
 		return to;
 	}
-	
+
+	public ParceriasCategorias build(ParceriasCategoriasTO to) {
+		ParceriasCategorias e = new ParceriasCategorias();
+
+		BeanUtils.copyProperties(to, e);
+
+		e.setCategoriasContabeis(categoriasContabeisTOBuilder.build(to.getCategoriasContabeis()));
+
+		if (Objects.nonNull(to.getParceriasPrograma())) {
+			e.setParceriasPrograma(parceriasProgramaTOBuilder.buildEntity(to.getParceriasPrograma()));
+		}
+
+		if (Objects.nonNull(to.getParceriasPrograma())) {
+			e.setParceriasProjeto(parceriasProjetoTOBuilder.buildTO(to.getParceriasProjeto()));
+		}
+
+		return e;
+	}
+
 	public List<ParceriasCategoriasTO> buildAllTO(List<ParceriasCategorias> lista) {
-		return lista.stream()
-				.map(this::buildTO)
-				.collect(Collectors.toList());
+		return lista.stream().map(this::buildTO).collect(Collectors.toList());
 	}
 
 	public List<ParceriasCategorias> buildAll(List<ParceriasCategoriasTO> lista) {
-		return lista.stream()
-				.map(this::build)
-				.collect(Collectors.toList());
+		return lista.stream().map(this::build).collect(Collectors.toList());
 	}
 }

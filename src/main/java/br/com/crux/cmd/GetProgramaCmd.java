@@ -45,7 +45,7 @@ public class GetProgramaCmd {
 	public List<ComboProgramaTO> getAllCombo() {
 		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
 		List<ComboProgramaDTO> programas = programaDao.getAllByIdInstituicao(idInstituicao);
-		return toBuilder.buildAllCombo(programas);
+		return toBuilder.buildAllParaCombo(programas);
 	}
 
 }

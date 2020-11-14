@@ -21,7 +21,7 @@ public class AlterarProgramaCmd {
 	@Autowired private AlterarListaColaboradoresProgramaCmd alterarListaColaboradoresProgramaCmd;
 	@Autowired private AlterarParceriasProgramaCmd alterarParceriasProgramaCmd;
 	@Autowired private AlterarListaComposicaoRhProgramaCmd alterarListaComposicaoRhProgramaCmd;
-	@Autowired private AlterarListaContasCentrosCustoProgramaCmd alterarListaContasCentrosCustoProgramaCmd;
+	
 	
 	
 	public void alterar(ProgramaTO to) {
@@ -43,9 +43,7 @@ public class AlterarProgramaCmd {
 		
 		alterarListaComposicaoRhProgramaCmd.alterarAll(to.getComposicaoRhPrograma(), programa);
 		
-		alterarListaContasCentrosCustoProgramaCmd.alterarAll(to.getContasCentrosCusto(), programa);
-
 		
-
+		
 	}
 }

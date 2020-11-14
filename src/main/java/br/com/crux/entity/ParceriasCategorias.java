@@ -1,6 +1,7 @@
 package br.com.crux.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -37,6 +39,9 @@ public class ParceriasCategorias implements Serializable {
 
 	@Column(name = "vl_parceria_categoria") 
 	private Double valorParceriaCategoria;
+	
+	@OneToMany(mappedBy="parceriasCategorias")
+	private List<AditivoParceriaCategoria> aditivoParceriaCategoria;
 
 	@Column(name = "id_usuario_apl") 
 	private Long usuarioAlteracao;
@@ -90,6 +95,14 @@ public class ParceriasCategorias implements Serializable {
 
 	public void setValorParceriaCategoria(Double valorParceriaCategoria) {
 		this.valorParceriaCategoria = valorParceriaCategoria;
+	}
+
+	public List<AditivoParceriaCategoria> getAditivoParceriaCategoria() {
+		return aditivoParceriaCategoria;
+	}
+
+	public void setAditivoParceriaCategoria(List<AditivoParceriaCategoria> aditivoParceriaCategoria) {
+		this.aditivoParceriaCategoria = aditivoParceriaCategoria;
 	}
 
 }

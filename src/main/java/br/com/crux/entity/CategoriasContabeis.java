@@ -1,6 +1,7 @@
 package br.com.crux.entity;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,6 +13,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import br.com.crux.infra.constantes.Constantes;
+import br.com.crux.infra.dao.SimNaoConverter;
 
 
 @Entity
@@ -44,9 +46,13 @@ public class CategoriasContabeis  {
 	@Column(name="cd_categoria_contabil")
 	private String codigoCategoriaContabil;
 	
+	
 	@Column(name="id_instituicao", nullable = true)
 	private Long idInstituicao;
 	
+	@Convert(converter = SimNaoConverter.class)
+	@Column(name="st_categoria_sintetica")
+	private Boolean sintetica;
 
 	public Long getId() {
 		return id;
@@ -112,6 +118,13 @@ public class CategoriasContabeis  {
 		this.idInstituicao = idInstituicao;
 	}
 
-	
+	public Boolean getSintetica() {
+		return sintetica;
+	}
+
+	public void setSintetica(Boolean sintetica) {
+		this.sintetica = sintetica;
+	}
+
 	
 }
