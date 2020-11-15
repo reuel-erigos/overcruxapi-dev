@@ -11,7 +11,6 @@ public class ParceriasProjetoTO {
 	private LocalDateTime dataInicio;
 	private EmpresaTO empresa;
 	private ProjetoTO projeto;
-	private Long quantidadeMaterial;
 	private Double valorParceria;
 	
 	private List<MateriaisProjetoTO> materiaisProjeto;
@@ -84,13 +83,6 @@ public class ParceriasProjetoTO {
 		this.materiaisProjeto = materiaisProjeto;
 	}
 
-	public Long getQuantidadeMaterial() {
-		return quantidadeMaterial;
-	}
-
-	public void setQuantidadeMaterial(Long quantidadeMaterial) {
-		this.quantidadeMaterial = quantidadeMaterial;
-	}
 
 	public List<ParceriasCategoriasTO> getParceriasCategorias() {
 		return parceriasCategorias;
