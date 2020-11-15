@@ -39,20 +39,11 @@ public class Oficinas implements Serializable {
 	@Column(name = "dt_inicio_atividade")
 	private LocalDateTime dataInicio;
 
-	@Column(name = "dt_prev_inicio")
-	private LocalDateTime dataPrevisaoInicio;
-
-	@Column(name = "dt_prev_termino")
-	private LocalDateTime dataPrevisaoTermino;
-
 	@Column(name = "hr_fim")
 	private Long horaFim;
 
 	@Column(name = "hr_inicio")
 	private Long horaInicio;
-
-	@Column(name = "nr_aulas")
-	private Long numeroAulas;
 
 	@Column(name = "nr_carga_horaria")
 	private Long cargaHoraria;
@@ -60,14 +51,8 @@ public class Oficinas implements Serializable {
 	@Column(name = "nr_maximo_participantes")
 	private Long maximoParticipantes;
 
-	@Column(name = "periodo_atividade")
-	private Long periodoAtividade;
-
 	@Column(name = "st_domingo")
 	private String domingo;
-
-	@Column(name = "st_horario_fixo")
-	private String horarioFixo;
 
 	@Column(name = "st_local_execucao")
 	private String localExecucao;
@@ -90,15 +75,8 @@ public class Oficinas implements Serializable {
 	@Column(name = "st_terca")
 	private String terca;
 
-	@Column(name = "tx_observacoes")
-	private String observacoes;
-
 	@Column(name = "vl_custo_atividade")
 	private Double valorCustoAtividade;
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "planos_acao_id_plano_acao")
-	private PlanosAcao planosAcao;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "projetos_id_projeto")
@@ -161,21 +139,6 @@ public class Oficinas implements Serializable {
 		this.dataInicio = dataInicio;
 	}
 
-	public LocalDateTime getDataPrevisaoInicio() {
-		return dataPrevisaoInicio;
-	}
-
-	public void setDataPrevisaoInicio(LocalDateTime dataPrevisaoInicio) {
-		this.dataPrevisaoInicio = dataPrevisaoInicio;
-	}
-
-	public LocalDateTime getDataPrevisaoTermino() {
-		return dataPrevisaoTermino;
-	}
-
-	public void setDataPrevisaoTermino(LocalDateTime dataPrevisaoTermino) {
-		this.dataPrevisaoTermino = dataPrevisaoTermino;
-	}
 
 	public Long getHoraFim() {
 		return horaFim;
@@ -193,13 +156,6 @@ public class Oficinas implements Serializable {
 		this.horaInicio = horaInicio;
 	}
 
-	public Long getNumeroAulas() {
-		return numeroAulas;
-	}
-
-	public void setNumeroAulas(Long numeroAulas) {
-		this.numeroAulas = numeroAulas;
-	}
 
 	public Long getCargaHoraria() {
 		return cargaHoraria;
@@ -217,13 +173,6 @@ public class Oficinas implements Serializable {
 		this.maximoParticipantes = maximoParticipantes;
 	}
 
-	public Long getPeriodoAtividade() {
-		return periodoAtividade;
-	}
-
-	public void setPeriodoAtividade(Long periodoAtividade) {
-		this.periodoAtividade = periodoAtividade;
-	}
 
 	public String getDomingo() {
 		return domingo;
@@ -231,14 +180,6 @@ public class Oficinas implements Serializable {
 
 	public void setDomingo(String domingo) {
 		this.domingo = domingo;
-	}
-
-	public String getHorarioFixo() {
-		return horarioFixo;
-	}
-
-	public void setHorarioFixo(String horarioFixo) {
-		this.horarioFixo = horarioFixo;
 	}
 
 	public String getLocalExecucao() {
@@ -297,13 +238,6 @@ public class Oficinas implements Serializable {
 		this.terca = terca;
 	}
 
-	public String getObservacoes() {
-		return observacoes;
-	}
-
-	public void setObservacoes(String observacoes) {
-		this.observacoes = observacoes;
-	}
 
 	public Double getValorCustoAtividade() {
 		return valorCustoAtividade;
@@ -311,14 +245,6 @@ public class Oficinas implements Serializable {
 
 	public void setValorCustoAtividade(Double valorCustoAtividade) {
 		this.valorCustoAtividade = valorCustoAtividade;
-	}
-
-	public PlanosAcao getPlanosAcao() {
-		return planosAcao;
-	}
-
-	public void setPlanosAcao(PlanosAcao planosAcao) {
-		this.planosAcao = planosAcao;
 	}
 
 	public Projeto getProjeto() {
