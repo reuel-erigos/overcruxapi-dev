@@ -28,10 +28,6 @@ public class CamposObrigatoriosAtividadeRule {
 			throw new CamposObrigatoriosException("Unidade deve ser informada.");
 		}
 
-		if (Objects.isNull(to.getProjeto()) && Objects.isNull(to.getProjeto().getId())) {
-			throw new CamposObrigatoriosException("Projeto deve ser informado.");
-		}
-
 		if (Objects.isNull(to.getPlanosAcao()) && Objects.isNull(to.getPlanosAcao().getId())) {
 			throw new CamposObrigatoriosException("Plano de Ação deve ser informado.");
 		}
