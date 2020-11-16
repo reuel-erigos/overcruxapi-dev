@@ -54,6 +54,8 @@ public class OficinasTO {
 
 	private Long idTurma;
 	
+	private Long idTipoAtividade;
+	
 	private List<ColaboradoresAtividadeTO> colaboradoresAtividade;
 	private List<MateriaisAtividadeTO> materiaisAtividade;
 	
@@ -319,6 +321,14 @@ public class OficinasTO {
 
 	public void setMateriaisAtividade(List<MateriaisAtividadeTO> materiaisAtividade) {
 		this.materiaisAtividade = materiaisAtividade;
+	}
+
+	public Long getIdTipoAtividade() {
+		return idTipoAtividade;
+	}
+
+	public void setIdTipoAtividade(Long idTipoAtividade) {
+		this.idTipoAtividade = idTipoAtividade;
 	}
 
 }

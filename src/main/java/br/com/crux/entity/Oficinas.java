@@ -93,6 +93,11 @@ public class Oficinas implements Serializable {
 	@Column(name = "id_turma")
 	private Long idTurma;
 
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="id_tipo_atividade")
+	private TiposAtividades tipoAtividade;
+
+
 	@Column(name = "id_usuario_apl")
 	private Long usuarioAlteracao;
 
@@ -285,6 +290,14 @@ public class Oficinas implements Serializable {
 
 	public void setIdTurma(Long idTurma) {
 		this.idTurma = idTurma;
+	}
+
+	public TiposAtividades getTipoAtividade() {
+		return tipoAtividade;
+	}
+
+	public void setTipoAtividade(TiposAtividades tipoAtividade) {
+		this.tipoAtividade = tipoAtividade;
 	}
 
 	
