@@ -5,6 +5,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -48,11 +49,7 @@ public class OficinasTOBuilder {
 	public Oficinas build(OficinasTO p) {
 		Oficinas retorno = new Oficinas();
 
-		retorno.setId(p.getId());
-		retorno.setDescricao(p.getDescricao());
-		retorno.setDescricaoLocalExecucao(p.getDescricaoLocalExecucao());
-		retorno.setDataFim(p.getDataFim());
-		retorno.setDataInicio(p.getDataInicio());
+		BeanUtils.copyProperties(p, retorno);
 
 		Optional.ofNullable(p.getHoraFim()).ifPresent(hora -> {
 			retorno.setHoraFim(Java8DateUtil.horaStringToLong(p.getHoraFim()));
@@ -62,10 +59,6 @@ public class OficinasTOBuilder {
 			retorno.setHoraInicio(
 					Java8DateUtil.horaStringToLong(p.getHoraInicio()));
 		});
-
-		retorno.setCargaHoraria(p.getCargaHoraria());
-		retorno.setMaximoParticipantes(p.getMaximoParticipantes());
-		retorno.setLocalExecucao(p.getLocalExecucao());
 
 		retorno.setSegunda(
 				Objects.isNull(p.getSegunda()) || !p.getSegunda() ? "N" : "S");
@@ -82,7 +75,6 @@ public class OficinasTOBuilder {
 		retorno.setDomingo(
 				Objects.isNull(p.getDomingo()) || !p.getDomingo() ? "N" : "S");
 
-		retorno.setValorCustoAtividade(p.getValorCustoAtividade());
 
 		Optional.ofNullable(p.getUnidade()).ifPresent(u -> {
 			if (Objects.nonNull(u.getIdUnidade())) {
@@ -106,14 +98,9 @@ public class OficinasTOBuilder {
 
 		});
 		
-		if(Objects.nonNull(p.getIdTipoAtividade())) {
-			retorno.setTipoAtividade(getTiposAtividadesCmd.getById(p.getIdTipoAtividade()));
+		if(Objects.nonNull(p.getTiposAtividades())) {
+			retorno.setTipoAtividade(getTiposAtividadesCmd.getById(p.getTiposAtividades()));
 		}
-		
-
-		retorno.setIdTurma(p.getIdTurma());
-
-		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
 
 		return retorno;
 	}
@@ -125,11 +112,8 @@ public class OficinasTOBuilder {
 			return retorno;
 		}
 
-		retorno.setId(p.getId());
-		retorno.setDescricao(p.getDescricao());
-		retorno.setDescricaoLocalExecucao(p.getDescricaoLocalExecucao());
-		retorno.setDataFim(p.getDataFim());
-		retorno.setDataInicio(p.getDataInicio());
+		BeanUtils.copyProperties(p, retorno);
+		
 
 		Optional.ofNullable(p.getHoraFim()).ifPresent(hora -> {
 
@@ -139,10 +123,6 @@ public class OficinasTOBuilder {
 		Optional.ofNullable(p.getHoraInicio()).ifPresent(hora -> {
 			retorno.setHoraInicio(formatarHora(hora));
 		});
-
-		retorno.setCargaHoraria(p.getCargaHoraria());
-		retorno.setMaximoParticipantes(p.getMaximoParticipantes());
-		retorno.setLocalExecucao(p.getLocalExecucao());
 
 		retorno.setSegunda(Objects.nonNull(p.getSegunda())
 				&& p.getSegunda().equalsIgnoreCase("S") ? true : false);
@@ -159,14 +139,13 @@ public class OficinasTOBuilder {
 		retorno.setDomingo(Objects.nonNull(p.getDomingo())
 				&& p.getDomingo().equalsIgnoreCase("S") ? true : false);
 
-		retorno.setValorCustoAtividade(p.getValorCustoAtividade());
 		retorno.setUnidade(unidadeBuilder.buildTO(p.getUnidade()));
 		retorno.setProjeto(projetoBuilder.buildTO(p.getProjeto()));
 		retorno.setPrograma(programaTOBuilder.buildTO(p.getPrograma()));
-		retorno.setIdTurma(p.getIdTurma());
 		
+
 		if(Objects.nonNull(p.getTipoAtividade())) {
-			retorno.setIdTipoAtividade(p.getTipoAtividade().getId());
+			retorno.setTiposAtividades(p.getTipoAtividade().getId());
 		}
 
 		if (Objects.nonNull(p.getId())) {
@@ -180,8 +159,6 @@ public class OficinasTOBuilder {
 					.getAllTOPorAtividade(p.getId());
 			retorno.setMateriaisAtividade(materiaisAtividade);
 		}
-
-		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
 
 		return retorno;
 	}

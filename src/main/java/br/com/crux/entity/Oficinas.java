@@ -96,6 +96,9 @@ public class Oficinas implements Serializable {
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_tipo_atividade")
 	private TiposAtividades tipoAtividade;
+	
+	@Column(name = "tx_observacoes")
+	private String observacoes;
 
 
 	@Column(name = "id_usuario_apl")
@@ -298,6 +301,14 @@ public class Oficinas implements Serializable {
 
 	public void setTipoAtividade(TiposAtividades tipoAtividade) {
 		this.tipoAtividade = tipoAtividade;
+	}
+
+	public String getObservacoes() {
+		return observacoes;
+	}
+
+	public void setObservacoes(String observacoes) {
+		this.observacoes = observacoes;
 	}
 
 	
