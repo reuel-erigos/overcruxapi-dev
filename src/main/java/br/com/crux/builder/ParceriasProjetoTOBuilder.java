@@ -28,6 +28,8 @@ public class ParceriasProjetoTOBuilder {
 	@Autowired MateriaisProjetoTOBuilder materiaisProjetoTOBuilder;
 	@Autowired GetParceriasCategoriasCmd getParceriasCategoriasCmd;
 	@Autowired ParceriasCategoriasTOBuilder parceriasCategoriasTOBuilder;
+	@Autowired ContasCentrosCustoTOBuilder contasCentrosCustoTOBuilder;
+	@Autowired AditivoParceriaProjetoTOBuilder aditivoParceriaProjetoTOBuilder;
 
 	public ParceriasProjeto buildEntity(Projeto projeto, ParceriasProjetoTO parceriaProjetoTO) {
 
@@ -46,8 +48,13 @@ public class ParceriasProjetoTOBuilder {
 		if(Objects.nonNull(parceriaProjetoTO.getMateriaisProjeto())) {
 			parceriasProjeto.setMateriaisProjetos(materiaisProjetoTOBuilder.buildAll(parceriaProjetoTO.getMateriaisProjeto()));
 		}
+		
 		if(Objects.nonNull(parceriaProjetoTO.getParceriasCategorias())) {
 			parceriasProjeto.setParceriasCategorias(parceriasCategoriasTOBuilder.buildAll(parceriaProjetoTO.getParceriasCategorias()));
+		}
+
+		if(Objects.nonNull(parceriaProjetoTO.getContasCentrosCusto())) {
+			parceriasProjeto.setContasCentrosCusto(contasCentrosCustoTOBuilder.buildAll(parceriaProjetoTO.getContasCentrosCusto(),null,parceriasProjeto));
 		}
 
 		return parceriasProjeto;
@@ -64,7 +71,9 @@ public class ParceriasProjetoTOBuilder {
 
 		to.setEmpresa(empresaTOBuilder.buildTO(parceriaProjeto.getEmpresa()));
 		to.setMateriaisProjeto(materiaisProjetoTOBuilder.buildAllTO(parceriaProjeto.getMateriaisProjetos()));
-        to.setParceriasCategorias(parceriasCategoriasTOBuilder.buildAllTO(parceriaProjeto.getParceriasCategorias()));		
+        to.setParceriasCategorias(parceriasCategoriasTOBuilder.buildAllTO(parceriaProjeto.getParceriasCategorias()));
+        to.setAditivosParceriasProjeto(aditivoParceriaProjetoTOBuilder.buildTO(parceriaProjeto.getAditivosParceriaProjeto()));
+        to.setContasCentrosCusto(contasCentrosCustoTOBuilder.buildAllTO(parceriaProjeto.getContasCentrosCusto()));
 
 		return to;
 	}

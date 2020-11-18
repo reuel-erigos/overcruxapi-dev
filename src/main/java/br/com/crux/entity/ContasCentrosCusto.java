@@ -37,12 +37,14 @@ public class ContasCentrosCusto implements Serializable {
 	@JoinColumn(name="id_conta_bancaria")
 	private ContasBancaria contasBancaria;
 
-	@Column(name="id_programa")
-	private Long idPrograma;
+	@ManyToOne 
+	@JoinColumn(name="id_parceria_programa")
+	private ParceriasPrograma parceriasPrograma;
 
-	@Column(name="id_projeto")
-	private Long idProjeto;
-
+	@ManyToOne 
+	@JoinColumn(name = "id_parceria_projeto") 
+	private ParceriasProjeto parceriasProjeto;
+	
 	public ContasCentrosCusto() {
 	}
 
@@ -70,21 +72,21 @@ public class ContasCentrosCusto implements Serializable {
 		this.contasBancaria = contasBancaria;
 	}
 
-	public Long getIdPrograma() {
-		return idPrograma;
+	public ParceriasPrograma getParceriasPrograma() {
+		return parceriasPrograma;
 	}
 
-	public void setIdPrograma(Long idPrograma) {
-		this.idPrograma = idPrograma;
+	public void setParceriasPrograma(ParceriasPrograma parceriasPrograma) {
+		this.parceriasPrograma = parceriasPrograma;
 	}
 
-	public Long getIdProjeto() {
-		return idProjeto;
+	public ParceriasProjeto getParceriasProjeto() {
+		return parceriasProjeto;
 	}
 
-	public void setIdProjeto(Long idProjeto) {
-		this.idProjeto = idProjeto;
+	public void setParceriasProjeto(ParceriasProjeto parceriasProjeto) {
+		this.parceriasProjeto = parceriasProjeto;
 	}
-
+	
 	
 }

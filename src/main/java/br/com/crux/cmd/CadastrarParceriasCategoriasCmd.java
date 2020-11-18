@@ -18,10 +18,17 @@ public class CadastrarParceriasCategoriasCmd {
 
 	@Autowired ParceriasCategoriasRepository repository;
 	@Autowired ParceriasCategoriasTOBuilder toBuilder;
+	@Autowired AlterarAditivoParceriaCategoriaCmd alterarAditivoParceriaCategoriaCmd;
+	
 
 	public ParceriasCategorias cadastrar(ParceriasPrograma parceriasPrograma, ParceriasProjeto parceriasProjeto, ParceriasCategoriasTO to) {
-		ParceriasCategorias entity = toBuilder.buildEntity(parceriasPrograma, null, to);
-		return repository.save(entity);
+		ParceriasCategorias entity = toBuilder.buildEntity(parceriasPrograma, parceriasProjeto, to);
+	
+		ParceriasCategorias pc = repository.save(entity);
+		
+		alterarAditivoParceriaCategoriaCmd.alterarAll(to.getAditivosParceriasCategorias(), entity);
+		
+		return pc;
 	}
 
 	public List<ParceriasCategorias> cadastrarLista(ParceriasPrograma parceriasPrograma, ParceriasProjeto parceriasProjeto, List<ParceriasCategoriasTO> list) {

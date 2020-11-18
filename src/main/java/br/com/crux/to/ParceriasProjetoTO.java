@@ -23,6 +23,10 @@ public class ParceriasProjetoTO {
 	
 	private List<ParceriasCategoriasTO> parceriasCategorias;
 
+	private List<AditivoParceriaProjetoTO> aditivosParceriasProjeto;
+
+	private List<ContasCentrosCustoTO> contasCentrosCusto;
+	
 	public List<ParceriasCategoriasTO> getParceriasCategorias() {
 		return parceriasCategorias;
 	}
@@ -93,6 +97,22 @@ public class ParceriasProjetoTO {
 
 	public void setMateriaisProjeto(List<MateriaisProjetoTO> materiaisProjeto) {
 		this.materiaisProjeto = materiaisProjeto;
+	}
+
+	public List<AditivoParceriaProjetoTO> getAditivosParceriasProjeto() {
+		return aditivosParceriasProjeto;
+	}
+
+	public void setAditivosParceriasProjeto(List<AditivoParceriaProjetoTO> aditivosParceriasProjeto) {
+		this.aditivosParceriasProjeto = aditivosParceriasProjeto;
+	}
+
+	public List<ContasCentrosCustoTO> getContasCentrosCusto() {
+		return contasCentrosCusto;
+	}
+
+	public void setContasCentrosCusto(List<ContasCentrosCustoTO> contasCentrosCusto) {
+		this.contasCentrosCusto = contasCentrosCusto;
 	}
 
 }

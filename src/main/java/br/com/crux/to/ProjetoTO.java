@@ -31,7 +31,6 @@ public class ProjetoTO {
 	private List<ColaboradoresProjetoTO> colaboradoresProjeto;
 	private List<ParceriasProjetoTO> parceriasProjeto;
 	private List<ComposicaoRhProjetoTO> composicaoRhProjeto;
-	private List<ContasCentrosCustoTO> contasCentrosCusto;
 	private String publicoAlvo;
 	private String justificativa;
 	private String objetivoGeral;
@@ -177,14 +176,6 @@ public class ProjetoTO {
 
 	public void setObjetivoGeral(String objetivoGeral) {
 		this.objetivoGeral = objetivoGeral;
-	}
-
-	public List<ContasCentrosCustoTO> getContasCentrosCusto() {
-		return contasCentrosCusto;
-	}
-
-	public void setContasCentrosCusto(List<ContasCentrosCustoTO> contasCentrosCusto) {
-		this.contasCentrosCusto = contasCentrosCusto;
 	}
 	
 	public Long getIdCoordenador() {

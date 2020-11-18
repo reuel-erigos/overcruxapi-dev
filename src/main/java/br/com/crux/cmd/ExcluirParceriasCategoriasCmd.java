@@ -12,10 +12,25 @@ import br.com.crux.entity.ParceriasCategorias;
 public class ExcluirParceriasCategoriasCmd {
 
 	@Autowired ParceriasCategoriasRepository repository;
+	@Autowired ExcluirAditivoParceriaCategoriaCmd excluirAditivoParceriaCategoriaCmd;
 
+	public void excluir(ParceriasCategorias entity) {
+		excluirAditivoParceriaCategoriaCmd.deletarAll(entity.getAditivoParceriaCategoria());
+		repository.delete(entity);
+	}
+	
 	public void deletarAll(List<ParceriasCategorias> listaParceriasCategorias) {
+		
+		listaParceriasCategorias
+		.forEach(pc -> excluirAditivoParceriaCategoriaCmd.deletarAll(pc.getAditivoParceriaCategoria())); 
+		
 		repository.deleteInBatch(listaParceriasCategorias);
 
 	}
+
+
+
+
+
 
 }

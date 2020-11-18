@@ -9,7 +9,8 @@ public class CategoriasContabeisTO {
 	private String descricaoCategoria;
 	private String codigoCategoriaContabil;
 	private Long idInstituicao;
-
+	private Boolean sintetica;
+					
 	public Long getId() {
 		return id;
 	}
@@ -65,5 +66,13 @@ public class CategoriasContabeisTO {
 	public void setIdInstituicao(Long idInstituicao) {
 		this.idInstituicao = idInstituicao;
 	}
-	
+
+	public Boolean getSintetica() {
+		return sintetica;
+	}
+
+	public void setSintetica(Boolean sintetico) {
+		this.sintetica = sintetico;
+	}
+
 }
