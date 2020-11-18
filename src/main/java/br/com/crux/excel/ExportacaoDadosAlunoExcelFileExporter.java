@@ -127,13 +127,15 @@ public class ExportacaoDadosAlunoExcelFileExporter {
           	    preencherOutrasInformacoesAluno(ga, indexDados, dataRow, alunoTO);
           	    
           	    //Dados do familiar
-          	    preencherDadosPessoaisFamiliar(gf,indexDados, dataRow, rv);
-          	    preencherParentescoFamiliar(gf,indexDados, dataRow, rv);
-                preencherResponsavelFamiliar(gf,indexDados, dataRow, rv);
-                preencherEscolaridadeFamiliar(gf,indexDados, dataRow, rv);
-                preencherDocumentosFamiliar(gf,indexDados, dataRow, rv);
-                preencherDadosProfissionaisFamiliar(gf,indexDados, dataRow, rv);
-                preencherOutrasInformacoesFamiliar(gf,indexDados, dataRow, rv);
+          	    if(Objects.nonNull(rv)) {
+          	    	preencherDadosPessoaisFamiliar(gf,indexDados, dataRow, rv);
+          	    	preencherParentescoFamiliar(gf,indexDados, dataRow, rv);
+          	    	preencherResponsavelFamiliar(gf,indexDados, dataRow, rv);
+          	    	preencherEscolaridadeFamiliar(gf,indexDados, dataRow, rv);
+          	    	preencherDocumentosFamiliar(gf,indexDados, dataRow, rv);
+          	    	preencherDadosProfissionaisFamiliar(gf,indexDados, dataRow, rv);
+          	    	preencherOutrasInformacoesFamiliar(gf,indexDados, dataRow, rv);
+          	    }
                 
 	        }
 	        
@@ -162,71 +164,75 @@ public class ExportacaoDadosAlunoExcelFileExporter {
                                .forEach(coluna -> {
                             	   
             	  if(coluna.getNome().equals("tipoEscolaRegular")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getTipoEscola());           	  
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getTipoEscola()).orElse(""));           	  
             	  }
             	  
             	  if(coluna.getNome().equals("turnoEscolaRegular")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getTurno());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getTurno()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("identificacaoEscolaFrequentada")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getEscola());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getEscola()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("nomeCursoEscolaRegular")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getCursoEscola());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getCursoEscola()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("periodoCursoEscolaRegular")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getPeriodoEscola());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getPeriodoEscola()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("serieCursoEscolaRegular")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getSerieEscola());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getSerieEscola()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("regiaoAdministrativaEscola")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getRegiaoEscola());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getRegiaoEscola()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("possuiDeficiencia")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getEhDeficiente());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getEhDeficiente()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("descricaoDeficiencia")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getDescricaoDeficiencia());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getDescricaoDeficiencia()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("descricaoProblemaSaude")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getProblemaSaude());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getProblemaSaude()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("descricaoMedicamentosControlados")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getMedicamentosControlados());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getMedicamentosControlados()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("descricaoRelevanteAtendimentoOutroOrgao")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getDescricaoPessoaFisicaAtendidoOrgaoRede());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getDescricaoPessoaFisicaAtendidoOrgaoRede()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("descricaoOutrosBeneficiosFamilia")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getOutrosBenSoc());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getOutrosBenSoc()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("descricaoRelevanteRedeApoioSocial")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getRedeApoioSocial());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getRedeApoioSocial()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("descricaoRedeApoioSocial")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getRedeApSocRelev());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getRedeApSocRelev()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("valorOutrosBeneficiosSociais")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getValorOutrosBenerficiosSoc());
+            		  if(Objects.nonNull(rv.getFamiliar().getPessoasFisica()) && Objects.nonNull(rv.getFamiliar().getPessoasFisica().getValorOutrosBenerficiosSoc())) {
+            			  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getValorOutrosBenerficiosSoc());
+            		  } else {
+            			  dataRow.createCell(indexDados.getAndIncrement()).setCellValue("");
+            		  }
             	  }
             	  
             	  if(coluna.getNome().equals("identificacaoOrigemRenda")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getOrigemRendaFamiliar());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getOrigemRendaFamiliar()).orElse(""));
             	  }
 
 			});		
@@ -243,35 +249,67 @@ public class ExportacaoDadosAlunoExcelFileExporter {
                                .forEach(coluna -> {
                             	   
             	  if(coluna.getNome().equals("profissao")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getProfissao());           	  
+            		  if(Objects.nonNull(rv.getFamiliar().getPessoasFisica()) && Objects.nonNull(rv.getFamiliar().getPessoasFisica().getProfissao())) {
+            			  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getProfissao());           	  
+            		  } else {
+            			  dataRow.createCell(indexDados.getAndIncrement()).setCellValue("");
+            		  }
             	  }
             	  
             	  if(coluna.getNome().equals("empresa")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getNomeEmpresaTrabalho());
+            		  if(Objects.nonNull(rv.getFamiliar().getPessoasFisica()) && Objects.nonNull(rv.getFamiliar().getPessoasFisica().getNomeEmpresaTrabalho())) {
+            			  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getNomeEmpresaTrabalho());
+            		  } else {
+            			  dataRow.createCell(indexDados.getAndIncrement()).setCellValue("");
+            		  }
             	  }
             	  
             	  if(coluna.getNome().equals("possuiBolsaFamilia")) {
+            		  if(Objects.nonNull(rv.getFamiliar().getPessoasFisica()) && Objects.nonNull(rv.getFamiliar().getPessoasFisica().getBeneficiarioBolsaFamilia())) {
+            		  } else {
+            			  dataRow.createCell(indexDados.getAndIncrement()).setCellValue("");
+            		  }
             		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getBeneficiarioBolsaFamilia());
             	  }
             	  
             	  if(coluna.getNome().equals("valorBolsaFamilia")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getValorBolsaFamilia());
+            		  if(Objects.nonNull(rv.getFamiliar().getPessoasFisica()) && Objects.nonNull(rv.getFamiliar().getPessoasFisica().getValorBolsaFamilia())) {
+            			  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getValorBolsaFamilia());
+            		  } else {
+            			  dataRow.createCell(indexDados.getAndIncrement()).setCellValue("");
+            		  }
             	  }
             	  
             	  if(coluna.getNome().equals("valorRenda")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getValorRenda());
+            		  if(Objects.nonNull(rv.getFamiliar().getPessoasFisica()) && Objects.nonNull(rv.getFamiliar().getPessoasFisica().getValorRenda())) {
+            			  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getValorRenda());
+            		  } else {
+            			  dataRow.createCell(indexDados.getAndIncrement()).setCellValue("");
+            		  }
             	  }
             	  
             	  if(coluna.getNome().equals("telefoneComercial")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getTelefoneComercial());
+            		  if(Objects.nonNull(rv.getFamiliar().getPessoasFisica()) && Objects.nonNull(rv.getFamiliar().getPessoasFisica().getTelefoneComercial())) {
+            			  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getTelefoneComercial());
+            		  } else {
+            			  dataRow.createCell(indexDados.getAndIncrement()).setCellValue("");
+            		  }
             	  }
             	  
             	  if(coluna.getNome().equals("situacaoTrabalho")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getSituacaoTrabalho());
+            		  if(Objects.nonNull(rv.getFamiliar().getPessoasFisica()) && Objects.nonNull(rv.getFamiliar().getPessoasFisica().getSituacaoTrabalho())) {
+            			  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getSituacaoTrabalho());
+            		  } else {
+            			  dataRow.createCell(indexDados.getAndIncrement()).setCellValue("");
+            		  }
             	  }
             	  
             	  if(coluna.getNome().equals("motivoNaoTrabalhar")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getMotivoNaoTrab());
+            		  if(Objects.nonNull(rv.getFamiliar().getPessoasFisica()) && Objects.nonNull(rv.getFamiliar().getPessoasFisica().getMotivoNaoTrab())) {
+            			  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getMotivoNaoTrab());
+            		  } else {
+            			  dataRow.createCell(indexDados.getAndIncrement()).setCellValue("");
+            		  }
             	  }
             	  
 			});		
@@ -288,27 +326,27 @@ public class ExportacaoDadosAlunoExcelFileExporter {
                                .forEach(coluna -> {
                             	   
             	  if(coluna.getNome().equals("cpf")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getCpf());           	  
+           			  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getCpf()).orElse(""));           	  
             	  }
             	  
             	  if(coluna.getNome().equals("nis")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getNis());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getNis()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("pis")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getNumeroPisPasep());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getNumeroPisPasep()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("identidade")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getIdentidade());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getIdentidade()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("orgaoExpedidor")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getOrgaoCi());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getOrgaoCi()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("ufCI")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getUfCi());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getUfCi()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("dataEmissao")) {
@@ -320,35 +358,35 @@ public class ExportacaoDadosAlunoExcelFileExporter {
             	  }
             	  
             	  if(coluna.getNome().equals("tituloEleitoral")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getTituloEleitor());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getTituloEleitor()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("zona")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getZonaTitulo());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getZonaTitulo()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("sessao")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getSessaoTitulo());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getSessaoTitulo()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("numeroReservista")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getNumeroReservista());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getNumeroReservista()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("numeroRegiaoMilitar")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getRegiaoMilitarReservista());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getRegiaoMilitarReservista()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("ufReservista")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getUfRegiaoMilitar());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getUfRegiaoMilitar()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("cnh")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getNumeroCNH());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getNumeroCNH()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("categoriaCnh")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getCategoriaCNH());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getCategoriaCNH()).orElse(""));
             	  }
 
             	  if(coluna.getNome().equals("dataVencimentoCnh")) {
@@ -360,15 +398,15 @@ public class ExportacaoDadosAlunoExcelFileExporter {
             	  }
             	  
             	  if(coluna.getNome().equals("numeroCarteiraTrabalho")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getCts());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getCts()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("numeroSerie")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getSerieCtps());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getSerieCtps()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("ufCarteiraTrabalho")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getUfCTS());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getUfCTS()).orElse(""));
             	  }
 			});		
     	}	
@@ -384,11 +422,11 @@ public class ExportacaoDadosAlunoExcelFileExporter {
                                .forEach(coluna -> {
                             	   
             	  if(coluna.getNome().equals("descricao")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getEscolaridade());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getEscolaridade()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("nivel")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getNivelEscolaridade());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getNivelEscolaridade()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("grauInstrucao")) {
@@ -427,27 +465,27 @@ public class ExportacaoDadosAlunoExcelFileExporter {
                   }
             	  
                   if(coluna.getNome().equals("beneficiarioMesmoEndereco")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getMesmoEnderResponsavel());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getMesmoEnderResponsavel()).orElse(""));
                   }
 
                   if(coluna.getNome().equals("autorizaLevarBuscar")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getTransportaAluno());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getTransportaAluno()).orElse(null));
                   }
                   
                   if(coluna.getNome().equals("temTutela")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getTutelaAluno());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getTutelaAluno()).orElse(null));
                   }
                   
                   if(coluna.getNome().equals("responsavelFinanceiro")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getResponsavelFinanceiroPeloAluno());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getResponsavelFinanceiroPeloAluno()).orElse(null));
                   }
                   
                   if(coluna.getNome().equals("descricaoGrauParentesco")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getDescGrauParentesco());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getDescGrauParentesco()).orElse(""));
                   }
                   
                   if(coluna.getNome().equals("descricaoDesligamento")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getDescDesligamento());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getDescDesligamento()).orElse(""));
                   }
 			});		
     	}
@@ -478,19 +516,19 @@ public class ExportacaoDadosAlunoExcelFileExporter {
                   }
             	  
                   if(coluna.getNome().equals("situacaoParentesco")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getSituacaoParentesco());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getSituacaoParentesco()).orElse(""));
                   }
 
                   if(coluna.getNome().equals("descricaoGrauParentesco")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getDescGrauParentesco());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getDescGrauParentesco()).orElse(""));
                   }
                   
                   if(coluna.getNome().equals("descricaoDesligamento")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getDescDesligamento());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getDescDesligamento()).orElse(""));
                   }
                   
                   if(coluna.getNome().equals("outrasInformacoes")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getDescOutrasInformacoes());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getDescOutrasInformacoes()).orElse(""));
                   }
 			});		
     	}
@@ -506,7 +544,7 @@ public class ExportacaoDadosAlunoExcelFileExporter {
                                .forEach(coluna -> {
                             	   
                   if(coluna.getNome().equals("nomeCompleto")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getNome());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getNome()).orElse(""));
                   }
             	  
                   if(coluna.getNome().equals("dataNascimento")) {
@@ -518,75 +556,75 @@ public class ExportacaoDadosAlunoExcelFileExporter {
                   }
             	  
                   if(coluna.getNome().equals("cidadeNaturalidade")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getCidadeNaturalidade());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getCidadeNaturalidade()).orElse(""));
                   }
 
                   if(coluna.getNome().equals("ufNaturalidade")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getUfNascimento());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getUfNascimento()).orElse(""));
                   }
                   
                   if(coluna.getNome().equals("sexo")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getSexo());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getSexo()).orElse(""));
                   }
                   
                   if(coluna.getNome().equals("racaCor")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getRaca());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getRaca()).orElse(""));
                   }
                   
                   if(coluna.getNome().equals("nomeMae")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getNomeMae());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getNomeMae()).orElse(""));
                   }
                   
                   if(coluna.getNome().equals("nomePai")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getNomePai());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getNomePai()).orElse(""));
                   }
                   
                   if(coluna.getNome().equals("estadoCivil")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getEstadoCivil());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getEstadoCivil()).orElse(""));
                   }
                   
                   if(coluna.getNome().equals("tipoSangue")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getTipoSangue());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getTipoSangue()).orElse(""));
                   }
                   
                   if(coluna.getNome().equals("cep")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getCep());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getCep()).orElse(null));
                   }
                   
                   if(coluna.getNome().equals("endereco")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getEndereco());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getEndereco()).orElse(""));
                   }
                   
                   if(coluna.getNome().equals("cidade")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getCidade());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getCidade()).orElse(""));
                   }
                   
                   if(coluna.getNome().equals("bairro")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getBairro());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getBairro()).orElse(""));
                   }
                   
                   if(coluna.getNome().equals("ufEndereco")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getUf());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getUf()).orElse(""));
                   }
                   
                   if(coluna.getNome().equals("pontoReferncia")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getPontoReferencia());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getPontoReferencia()).orElse(""));
                   }
                   
                   if(coluna.getNome().equals("telefoneResidencial")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getTelefoneResidencial());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getTelefoneResidencial()).orElse(""));
                   }
                   
                   if(coluna.getNome().equals("celular")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getCelular());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getCelular()).orElse(""));
                   }
                   
                   if(coluna.getNome().equals("email")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getEmail());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getEmail()).orElse(""));
                   }
                   
                   if(coluna.getNome().equals("autorizoRecebimentoEmail")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(rv.getFamiliar().getPessoasFisica().getAutorizaEmail());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getAutorizaEmail()).orElse(""));
                   }
 			});		
     	}
@@ -603,7 +641,7 @@ public class ExportacaoDadosAlunoExcelFileExporter {
                                .forEach(coluna -> {
                             	   
                   if(coluna.getNome().equals("nomeCompleto")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getNome());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getNome()).orElse(""));
                   }
             	  
                   if(coluna.getNome().equals("dataNascimento")) {
@@ -615,75 +653,75 @@ public class ExportacaoDadosAlunoExcelFileExporter {
                   }
             	  
                   if(coluna.getNome().equals("cidadeNaturalidade")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getCidadeNaturalidade());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getCidadeNaturalidade()).orElse(""));
                   }
 
                   if(coluna.getNome().equals("uf")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getUfNascimento());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getUfNascimento()).orElse(""));
                   }
                   
                   if(coluna.getNome().equals("sexo")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getSexo());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getSexo()).orElse(""));
                   }
                   
                   if(coluna.getNome().equals("racaCor")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getRaca());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getRaca()).orElse(""));
                   }
                   
                   if(coluna.getNome().equals("nomeMae")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getNomeMae());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getNomeMae()).orElse(""));
                   }
                   
                   if(coluna.getNome().equals("nomePai")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getNomePai());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getNomePai()).orElse(""));
                   }
                   
                   if(coluna.getNome().equals("estadoCivil")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getEstadoCivil());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getEstadoCivil()).orElse(""));
                   }
                   
                   if(coluna.getNome().equals("tipoSangue")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getTipoSangue());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getTipoSangue()).orElse(""));
                   }
                   
                   if(coluna.getNome().equals("cep")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getCep());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getCep()).orElse(null));
                   }
                   
                   if(coluna.getNome().equals("endereco")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getEndereco());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getEndereco()).orElse(""));
                   }
                   
                   if(coluna.getNome().equals("cidade")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getCidade());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getCidade()).orElse(""));
                   }
                   
                   if(coluna.getNome().equals("bairro")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getBairro());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getBairro()).orElse(""));
                   }
                   
                   if(coluna.getNome().equals("ufEndereco")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getUf());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getUf()).orElse(""));
                   }
                   
                   if(coluna.getNome().equals("pontoReferncia")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getPontoReferencia());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getPontoReferencia()).orElse(""));
                   }
                   
                   if(coluna.getNome().equals("telefoneResidencial")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getTelefoneResidencial());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getTelefoneResidencial()).orElse(""));
                   }
                   
                   if(coluna.getNome().equals("celular")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getCelular());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getCelular()).orElse(""));
                   }
                   
                   if(coluna.getNome().equals("email")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getEmail());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getEmail()).orElse(""));
                   }
                   
                   if(coluna.getNome().equals("autorizoRecebimentoEmail")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getAutorizaEmail());
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getAutorizaEmail()).orElse(""));
                   }
 			});		
     	}	
@@ -698,15 +736,15 @@ public class ExportacaoDadosAlunoExcelFileExporter {
                                .forEach(coluna -> {
                             	   
 	        	  if(coluna.getNome().equals("matricula")) {
-	        		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getMatriculaAluno());
+	        		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getMatriculaAluno()).orElse(""));
 	        	  }
 	        	  
 	        	  if(coluna.getNome().equals("unidade")) {
-	        		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getUnidade().getNomeUnidade());
+	        		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getUnidade().getNomeUnidade()).orElse(""));
 	        	  }
 	        	  
 	        	  if(coluna.getNome().equals("nivelTurma")) {
-	        		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getNivelTurma().getDescricao());
+	        		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getNivelTurma().getDescricao()).orElse(""));
 	        	  }
             	  
 	        	  if(coluna.getNome().equals("dataEntrada")) {
@@ -726,31 +764,31 @@ public class ExportacaoDadosAlunoExcelFileExporter {
 	        	  }
             	  
 	        	  if(coluna.getNome().equals("moraComOsPais")) {
-	        		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getMoraPais());
+	        		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getMoraPais()).orElse(""));
 	        	  }
 	        	  
 	        	  if(coluna.getNome().equals("paisSaoCasados")) {
-	        		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPaisCasados());
+	        		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPaisCasados()).orElse(""));
 	        	  }
 	        	  
 	        	  if(coluna.getNome().equals("alunoMatriculadoEscolaPublica")) {
-	        		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getMatriculadoEscPub());
+	        		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getMatriculadoEscPub()).orElse(""));
 	        	  }
 	        	  
 	        	  if(coluna.getNome().equals("alunoPublicoPrioritario")) {
-	        		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPublicoPrioritario());
+	        		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPublicoPrioritario()).orElse(""));
 	        	  }
 	        	  
 	        	  if(coluna.getNome().equals("descPessoaBuscaAlunoEscola")) {
-	        		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getDescBuscaEscola());
+	        		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getDescBuscaEscola()).orElse(""));
 	        	  }
 	        	  
 	        	  if(coluna.getNome().equals("desligamento")) {
-	        		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getDescDesligamento());            	  
+	        		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getDescDesligamento()).orElse(""));            	  
 	        	  }
 	        	  
 	        	  if(coluna.getNome().equals("observacao")) {
-	        		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getObservacoes());
+	        		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getObservacoes()).orElse(""));
 	        	  }
             	  
 			});		
@@ -766,11 +804,11 @@ public class ExportacaoDadosAlunoExcelFileExporter {
                                .forEach(coluna -> {
                             	   
             	  if(coluna.getNome().equals("descricao")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getEscolaridade());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getEscolaridade()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("nivelEscolaridade")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getNivelEscolaridade());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getNivelEscolaridade()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("grauInstrucao")) {
@@ -782,31 +820,31 @@ public class ExportacaoDadosAlunoExcelFileExporter {
             	  }
             	  
             	  if(coluna.getNome().equals("tipoEscolaRegular")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getTipoEscola());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getTipoEscola()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("TurnoEscolaRegular")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getTurno());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getTurno()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("identificacaoEscolaFrequentada")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getEscola());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getEscola()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("nomeCursoEscolaRegular")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getCursoEscola());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getCursoEscola()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("periodoCursoEscolaRegular")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getPeriodoEscola());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getPeriodoEscola()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("serieCursoEscolaRegular")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getSerieEscola());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getSerieEscola()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("regiaoAdministrativaEscola")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getRegiaoEscola());            	  
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getRegiaoEscola()).orElse(""));            	  
             	  }
 			});		
     	}	
@@ -821,27 +859,27 @@ public class ExportacaoDadosAlunoExcelFileExporter {
                                .forEach(coluna -> {
                             	   
             	  if(coluna.getNome().equals("cpf")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getCpf());           	  
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getCpf()).orElse(""));           	  
             	  }
             	  
             	  if(coluna.getNome().equals("nis")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getNis());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getNis()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("pis")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getNumeroPisPasep());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getNumeroPisPasep()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("identidade")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getIdentidade());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getIdentidade()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("orgaoExpedidor")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getOrgaoCi());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getOrgaoCi()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("ufCI")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getUfCi());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getUfCi()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("dataEmissao")) {
@@ -853,35 +891,35 @@ public class ExportacaoDadosAlunoExcelFileExporter {
             	  }
             	  
             	  if(coluna.getNome().equals("tituloEleitoral")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getTituloEleitor());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getTituloEleitor()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("zona")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getZonaTitulo());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getZonaTitulo()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("sessao")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getSessaoTitulo());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getSessaoTitulo()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("numeroReservista")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getNumeroReservista());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getNumeroReservista()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("numeroRegiaoMilitar")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getRegiaoMilitarReservista());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getRegiaoMilitarReservista()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("ufReservista")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getUfRegiaoMilitar());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getUfRegiaoMilitar()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("cnh")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getNumeroCNH());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getNumeroCNH()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("categoriaCnh")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getCategoriaCNH());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getCategoriaCNH()).orElse(""));
             	  }
 
             	  if(coluna.getNome().equals("dataVencimentoCnh")) {
@@ -893,15 +931,15 @@ public class ExportacaoDadosAlunoExcelFileExporter {
             	  }
             	  
             	  if(coluna.getNome().equals("numeroCarteiraTrabalho")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getCts());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getCts()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("numeroSerie")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getSerieCtps());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getSerieCtps()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("ufCarteiraTrabalho")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getUfCTS());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getUfCTS()).orElse(""));
             	  }
 			});		
     	}	
@@ -916,55 +954,63 @@ public class ExportacaoDadosAlunoExcelFileExporter {
                                .forEach(coluna -> {
                             	   
             	  if(coluna.getNome().equals("possuiDeficiencia")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getEhDeficiente());           	  
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getEhDeficiente()).orElse(""));           	  
             	  }
             	  
             	  if(coluna.getNome().equals("descricaoDeficiencia")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getDescricaoDeficiencia());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getDescricaoDeficiencia()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("descricaoProblemaSaude")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getProblemaSaude());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getProblemaSaude()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("descricaoMedicamentosControlados")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getMedicamentosControlados());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getMedicamentosControlados()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("condicaoMoradia")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getCondicoesMoradia().getDescricao());
+            		  if(Objects.nonNull(alunoTO.getPessoaFisica().getCondicoesMoradia())) {
+            			  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getCondicoesMoradia().getDescricao());
+            		  } else {
+            			  dataRow.createCell(indexDados.getAndIncrement()).setCellValue("");
+            		  }
             	  }
             	  
             	  if(coluna.getNome().equals("descricaoCondicaoMoradia")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getCondicaoMoradia());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getCondicaoMoradia()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("jaAtendidoEmOutroOrgao")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getAtendidoOrgaoRede());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getAtendidoOrgaoRede()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("descricaoRelevanteAtendimentoOutroOrgao")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getDescricaoPessoaFisicaAtendidoOrgaoRede());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getDescricaoPessoaFisicaAtendidoOrgaoRede()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("descricaoOutrosBeneficiosFamilia")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getOutrosBenSoc());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getOutrosBenSoc()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("descricaoRelevanteRedeApoioSocial")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getRedeApoioSocial());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getRedeApoioSocial()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("descricaoRedeApoioSocial")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getRedeApSocRelev());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getRedeApSocRelev()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("valorOutrosBeneficiosSociais")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getValorOutrosBenerficiosSoc());
+            		  if(Objects.nonNull(alunoTO.getPessoaFisica()) && Objects.nonNull(alunoTO.getPessoaFisica().getValorOutrosBenerficiosSoc())) {
+            			  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getValorOutrosBenerficiosSoc());
+            		  } else {
+            			  dataRow.createCell(indexDados.getAndIncrement()).setCellValue("");
+            		  }
             	  }
             	  
             	  if(coluna.getNome().equals("identificacaoOrigemRenda")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(alunoTO.getPessoaFisica().getOrigemRendaFamiliar());
+            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getOrigemRendaFamiliar()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("origemBeneficio")) {
@@ -975,6 +1021,10 @@ public class ExportacaoDadosAlunoExcelFileExporter {
         				  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(encaminhamento.getEntidadeSocial().getEmpresa().getNomeFantasia());
         				  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Java8DateUtil.getLocalDateFormater(encaminhamento.getDataEncaminhaAluno().toLocalDate()));
         				  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(encaminhamento.getDescricao());
+            		  }else {
+        				  dataRow.createCell(indexDados.getAndIncrement()).setCellValue("");
+        				  dataRow.createCell(indexDados.getAndIncrement()).setCellValue("");
+        				  dataRow.createCell(indexDados.getAndIncrement()).setCellValue("");
             		  }
             	  }
 			});		
