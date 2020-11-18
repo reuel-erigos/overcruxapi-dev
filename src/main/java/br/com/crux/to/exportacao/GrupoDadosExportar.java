@@ -4,20 +4,21 @@ import java.util.List;
 
 public class GrupoDadosExportar {
 	
-	private String nome;
+	private String descricao;
 	private String entidade;
 	private boolean exportar;
 	private List<Coluna> colunas;
+	private String nomeGrupo;
 
 	public GrupoDadosExportar() {
 	}
 
-	public String getNome() {
-		return nome;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setDescricao(String nome) {
+		this.descricao = nome;
 	}
 
 	public String getEntidade() {
@@ -42,6 +43,14 @@ public class GrupoDadosExportar {
 
 	public void setColunas(List<Coluna> colunas) {
 		this.colunas = colunas;
+	}
+
+	public String getNomeGrupo() {
+		return nomeGrupo;
+	}
+
+	public void setNomeGrupo(String nomeGrupo) {
+		this.nomeGrupo = nomeGrupo;
 	}
 	
 	

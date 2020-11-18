@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import br.com.crux.dao.base.BaseDao;
 import br.com.crux.dao.dto.ExportacaoDadosAlunoDTO;
 import br.com.crux.infra.util.Java8DateUtil;
+import br.com.crux.infra.util.NumeroUtil;
 
 @Component
 public class ExportacaoDadosAlunoDao extends BaseDao{
@@ -68,7 +69,7 @@ public class ExportacaoDadosAlunoDao extends BaseDao{
 		}
 		
 		if(Objects.nonNull(idBeneficiario)) {
-			sql.append("  and :p_id_pessoa_fisica = p.id_pessoa_fisica                          ");
+			sql.append("  and :p_id_aluno = a.id_aluno                            ");
 		}
 		
 		if(Objects.nonNull(idMae)) {
@@ -99,7 +100,7 @@ public class ExportacaoDadosAlunoDao extends BaseDao{
 		query.setParameter("idInstituicao", idInstituicao);
 		
 		if(StringUtils.isNotEmpty(cpf)) {
-			query.setParameter("p_nr_cpf", cpf);
+			query.setParameter("p_nr_cpf", NumeroUtil.extrairNumerosMatches(cpf));
 		}
 		
 		if(Objects.nonNull(dataInicioInstituicao)) {
@@ -112,7 +113,7 @@ public class ExportacaoDadosAlunoDao extends BaseDao{
 		
 		
 		if(Objects.nonNull(idBeneficiario)) {
-			query.setParameter("p_id_pessoa_fisica", idBeneficiario);
+			query.setParameter("p_id_aluno", idBeneficiario);
 		}
 		
 		if(Objects.nonNull(idMae)) {

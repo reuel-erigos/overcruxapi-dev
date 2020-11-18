@@ -31,7 +31,7 @@ public class ExportacaoDadosAlunoDTO {
 		this.idPessoaFisica      = (colunas[0] != null)? ((BigDecimal)colunas[0]).longValue() : null;
 		this.idAluno             = (colunas[1] != null)? ((BigDecimal)colunas[1]).longValue() : null;
 		this.matricula           = (String) colunas[2];
-		this.nomeBeneficiario    = (String) colunas[2];
+		this.nomeBeneficiario    = (String) colunas[3];
 		this.dataNascimento      = (colunas[4] != null)? ((Timestamp)colunas[4]).toLocalDateTime().toLocalDate() : null;
 		this.nomeMae             = (String) colunas[5];
 		this.nomePai             = (String) colunas[6];

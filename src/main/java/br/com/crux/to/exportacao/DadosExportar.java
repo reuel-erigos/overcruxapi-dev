@@ -4,17 +4,17 @@ import java.util.List;
 
 public class DadosExportar {
 
-	private List<GrupoDadosExportar> grupo;
+	private List<GrupoDadosExportar> dados;
 
 	public DadosExportar() {
 	}
 
-	public List<GrupoDadosExportar> getGrupo() {
-		return grupo;
+	public List<GrupoDadosExportar> getDados() {
+		return dados;
 	}
 
-	public void setGrupo(List<GrupoDadosExportar> dados) {
-		this.grupo = dados;
+	public void setDados(List<GrupoDadosExportar> dados) {
+		this.dados = dados;
 	}
 	
 	
