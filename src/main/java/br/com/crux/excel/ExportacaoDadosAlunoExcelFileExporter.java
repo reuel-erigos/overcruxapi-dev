@@ -66,7 +66,7 @@ public class ExportacaoDadosAlunoExcelFileExporter {
 			Row row = sheet.createRow(0);
 			
 			AtomicInteger indexColuna = new AtomicInteger(0);
-			grupoAluno.stream().filter(grupo -> grupo.isExportar()).forEach(grupo -> {
+			grupoAluno.stream().forEach(grupo -> {
 				
 				CellStyle headerCellStyle = workbook.createCellStyle();
 				headerCellStyle.setFillForegroundColor(IndexedColors.AQUA.getIndex());
@@ -91,7 +91,7 @@ public class ExportacaoDadosAlunoExcelFileExporter {
 			});
 			
 
-			grupoFamiliar.stream().filter(grupo -> grupo.isExportar()).forEach(grupo -> {
+			grupoFamiliar.stream().forEach(grupo -> {
 				CellStyle headerCellStyle = workbook.createCellStyle();
 				headerCellStyle.setFillForegroundColor(IndexedColors.LIME.getIndex());
 				headerCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
@@ -115,8 +115,8 @@ public class ExportacaoDadosAlunoExcelFileExporter {
 	        	AlunoTO alunoTO        = getAlunoCmd.getTOById(dados.getIdAluno());
 	        	ResponsaveisAlunoTO rv = getResponsavelFamiliarVigenteCmd.getResponsavelVigente(alunoTO.getId());
 	        	
-	        	List<GrupoDadosExportar> ga = grupoAluno.stream().filter(grupo -> grupo.isExportar()).collect(Collectors.toList());
-	        	List<GrupoDadosExportar> gf = grupoFamiliar.stream().filter(grupo -> grupo.isExportar()).collect(Collectors.toList());
+	        	List<GrupoDadosExportar> ga = grupoAluno.stream().collect(Collectors.toList());
+	        	List<GrupoDadosExportar> gf = grupoFamiliar.stream().collect(Collectors.toList());
 	        	
 	        	
 	        	//Dados do Aluno
