@@ -14,10 +14,8 @@ import br.com.crux.cmd.GetMateriaisProgramaCmd;
 import br.com.crux.cmd.GetObjetivoCmd;
 import br.com.crux.cmd.GetParceriasProgramaCmd;
 import br.com.crux.cmd.GetProgramaUnidadeCmd;
-import br.com.crux.dao.dto.ComboProgramaDTO;
 import br.com.crux.entity.Objetivo;
 import br.com.crux.entity.Programa;
-import br.com.crux.to.ComboProgramaTO;
 import br.com.crux.to.ProgramaTO;
 
 @Component
@@ -93,26 +91,6 @@ public class ProgramaTOBuilder {
 		to.setId(programa.getId());
 		to.setNome(programa.getNome());
 		return to;
-	}
-
-	public List<ComboProgramaTO> buildAllParaCombo(List<ComboProgramaDTO> dtos) {
-		return dtos.stream()
-				.map(this::buildTOCombo)
-				.collect(Collectors.toList());
-	}
-
-	public ComboProgramaTO buildTOCombo(ComboProgramaDTO dto) {
-		ComboProgramaTO to = new ComboProgramaTO();
-		
-		if (Objects.isNull(dto)) {
-			return to;
-			}
-	
-		to.setId(dto.getId());
-		to.setNome(dto.getNome());
-		
-		return to;
-		
 	}
 
 }

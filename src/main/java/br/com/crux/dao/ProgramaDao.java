@@ -18,7 +18,9 @@ public class ProgramaDao extends BaseDao{
 		StringBuilder sql = new StringBuilder();
 		
 		sql.append(" select distinct p.id_programa,                                        ");
-		sql.append("        p.nm_programa                                                  ");
+		sql.append("        p.nm_programa,                                                 ");
+		sql.append("        p.dt_implantacao,                                              ");
+		sql.append("        p.dt_termino                                                   ");
 		sql.append("  from programas p                                                     ");
 		sql.append(" inner join programas_unidades pu on pu.id_programa = p.id_programa    ");
 		sql.append(" inner join unidades u on u.id_unidade = pu.id_unidade                 ");
