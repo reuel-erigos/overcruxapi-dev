@@ -25,15 +25,16 @@ public class TiposAtividadesTOBuilder {
 
 	public TiposAtividadesTO buildTO(TiposAtividades entity) {
 		TiposAtividadesTO to = new TiposAtividadesTO();
-		
-		if(Objects.isNull(entity)) {
+
+		if (Objects.isNull(entity)) {
 			return to;
 		}
-		
+
 		BeanUtils.copyProperties(entity, to);
-		
-		to.setInstituicao(instituicaoTOBuilder.buildTO(entity.getInstituicao()));
-		
+
+		to.setInstituicao(
+				instituicaoTOBuilder.buildTO(entity.getInstituicao()));
+
 		return to;
 	}
 
@@ -45,12 +46,15 @@ public class TiposAtividadesTOBuilder {
 		TiposAtividades entity = new TiposAtividades();
 
 		BeanUtils.copyProperties(to, entity);
-		
-		if(Objects.nonNull(to.getInstituicao()) && Objects.nonNull(to.getInstituicao().getId())) {
-			entity.setInstituicao(getInstituicaoCmd.getById(to.getInstituicao().getId()));
+
+		if (Objects.nonNull(to.getInstituicao())
+				&& Objects.nonNull(to.getInstituicao().getId())) {
+			entity.setInstituicao(
+					getInstituicaoCmd.getById(to.getInstituicao().getId()));
 		}
-		
-		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
+
+		entity.setUsuarioAlteracao(
+				getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 
 		return entity;
 	}
