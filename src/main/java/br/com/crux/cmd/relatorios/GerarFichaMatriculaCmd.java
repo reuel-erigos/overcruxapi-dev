@@ -1,6 +1,5 @@
 package br.com.crux.cmd.relatorios;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,43 +7,33 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import br.com.crux.builder.relatorios.FichaMatriculaTOBuilder;
+import br.com.crux.dao.relatorios.FichaMatriculaDao;
 import br.com.crux.exception.base.NegocioException;
 import br.com.crux.infra.relatorio.GeradorRelatorio;
-import br.com.crux.infra.relatorio.TipoRelatorio;
+import br.com.crux.to.relatorios.FichaMatriculaTO;
 
 @Component
 public class GerarFichaMatriculaCmd {
 
-	@Autowired
-	private GeradorRelatorio geradorRelatorio;
+	@Autowired private GeradorRelatorio geradorRelatorio;
+	@Autowired private FichaMatriculaDao fichaMatriculaDao;
+	@Autowired private FichaMatriculaTOBuilder fichaMatriculaTOBuilder;
 	
-	public byte[] gerarPDF(List<ParametrosTO> param, TipoRelatorio tipoRelatorio)  {
+	public byte[] gerarPDF(List<ParametrosTO> param, String tipoRelatorio)  {
 		try {
 			String nomeRelatorio = "Ficha_Matricula";
-			String pathRelatorio = "ficha_matricula";
+			String[] path = {"casa_azul", "ficha_matricula"};
 			
 			Map<String, Object> parametros = new HashMap<>();
 			
-			List<String> dados = new ArrayList<String>();
+			List<FichaMatriculaTO> dados = fichaMatriculaTOBuilder.buildAll(fichaMatriculaDao.get());
 			
-			
-			switch (tipoRelatorio) {
-			case PDF:
-				return geradorRelatorio.gerarPDF(parametros, dados, nomeRelatorio, pathRelatorio);
-			case XLS:
-				return geradorRelatorio.gerarExcel(parametros, dados, nomeRelatorio, pathRelatorio);
-			default:
-				throw new RuntimeException("Tipo de relatório inválido.");
-			}
+			return geradorRelatorio.gerar(parametros, dados, nomeRelatorio, path, tipoRelatorio);
 			
 		} catch (Exception e) {
 			throw new NegocioException("Não foi possível gerar o relatório.");
 		}
 	}
-	
-	
-	
-	
-	
 	
 }

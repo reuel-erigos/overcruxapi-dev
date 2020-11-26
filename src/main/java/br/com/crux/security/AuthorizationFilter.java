@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpHeaders;
@@ -40,32 +41,33 @@ public class AuthorizationFilter extends OncePerRequestFilter {
 		String idsessionusuario = request.getHeader(SecurityContantes.IDSESSIONUSUARIO);
 		
 		try {
-			if(jwt == null || !jwt.startsWith(SecurityContantes.JWT_PROVIDER)) {
+			if((jwt == null || !jwt.startsWith(SecurityContantes.JWT_PROVIDER)) && StringUtils.isNotEmpty(idsessionusuario) ) {
 				
 				throw new TokenInvalidoException("Token ausente na requisição.");
 				
 			} else {
-				
-				jwt = jwt.replace(SecurityContantes.JWT_PROVIDER, "");
-				
-				//Valida o token informado
-				Claims claims = new JwtManager().validaToken(jwt);
-				if( claims == null ) {
-					throw new TokenInvalidoException("Token de acesso inválido.");
+				if(StringUtils.isNotEmpty(jwt)) {
+					jwt = jwt.replace(SecurityContantes.JWT_PROVIDER, "");
+					
+					//Valida o token informado
+					Claims claims = new JwtManager().validaToken(jwt);
+					if( claims == null ) {
+						throw new TokenInvalidoException("Token de acesso inválido.");
+					}
+					
+					String username = claims.getSubject();
+					
+					@SuppressWarnings("unchecked")
+					List<String> roles = (List<String>) claims.get(SecurityContantes.JWT_ROLE_KEY);
+					
+					List<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>();
+					roles.forEach(role -> {
+						grantedAuthorities.add(new SimpleGrantedAuthority(role));
+					});
+					
+					Authentication authentication = new UsernamePasswordAuthenticationToken(username +"@"+idsessionusuario, null, grantedAuthorities);
+					SecurityContextHolder.getContext().setAuthentication(authentication);
 				}
-				
-				String username = claims.getSubject();
-				
-				@SuppressWarnings("unchecked")
-				List<String> roles = (List<String>) claims.get(SecurityContantes.JWT_ROLE_KEY);
-				
-				List<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>();
-				roles.forEach(role -> {
-					grantedAuthorities.add(new SimpleGrantedAuthority(role));
-				});
-				
-				Authentication authentication = new UsernamePasswordAuthenticationToken(username +"@"+idsessionusuario, null, grantedAuthorities);
-				SecurityContextHolder.getContext().setAuthentication(authentication);
 			}
 			
 		} catch (Exception e) {
