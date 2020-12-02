@@ -14,6 +14,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
 
+import br.com.crux.cmd.GetUsuarioLogadoCmd;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -31,6 +32,8 @@ public class GeradorRelatorio {
 	
 	@Autowired
 	private ResourceLoader resourceLoader;
+	@Autowired
+	private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
 	
 	/**
 	 * 
@@ -64,6 +67,7 @@ public class GeradorRelatorio {
 		
 		parametros = parametros == null ? parametros = new HashMap<>() : parametros;
 		parametros.put("P_PATH_ROOT", "relatorios"+File.separator+path[0]);
+		parametros.put("P_NOME_USUARIO_LOGADO", getUsuarioLogadoCmd.getUsuarioLogado().getNomeUsuario());
 		
 		final Resource fileResource = resourceLoader.getResource("classpath:relatorios" + File.separator + pathCompleto + File.separator +nomeRelatorio+".jasper");
 		InputStream jasperStream = fileResource.getInputStream();
