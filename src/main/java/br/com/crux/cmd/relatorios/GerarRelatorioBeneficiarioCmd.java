@@ -14,20 +14,20 @@ import br.com.crux.infra.relatorio.GeradorRelatorio;
 import br.com.crux.to.relatorios.FichaMatriculaTO;
 
 @Component
-public class GerarFichaMatriculaCmd {
+public class GerarRelatorioBeneficiarioCmd {
 
 	@Autowired private GeradorRelatorio geradorRelatorio;
 	@Autowired private FichaMatriculaDao fichaMatriculaDao;
 	@Autowired private FichaMatriculaTOBuilder fichaMatriculaTOBuilder;
 	
-	public byte[] gerarPDF(List<ParametrosTO> param, String tipoRelatorio)  {
+	public byte[] gerar(List<Integer> listaIdsPessoaFisica, String tipoRelatorio)  {
 		try {
 			String nomeRelatorio = "Ficha_Matricula";
 			String[] path = {"casa_azul", "ficha_matricula"};
 			
 			Map<String, Object> parametros = new HashMap<>();
 			
-			List<FichaMatriculaTO> dados = fichaMatriculaTOBuilder.buildAll(fichaMatriculaDao.get());
+			List<FichaMatriculaTO> dados = fichaMatriculaTOBuilder.buildAll(fichaMatriculaDao.get(listaIdsPessoaFisica));
 			
 			return geradorRelatorio.gerar(parametros, dados, nomeRelatorio, path, tipoRelatorio);
 			

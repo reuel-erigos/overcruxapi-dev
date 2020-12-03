@@ -10,20 +10,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.crux.cmd.relatorios.GerarFichaMatriculaCmd;
-import br.com.crux.cmd.relatorios.ParametrosTO;
+import br.com.crux.cmd.relatorios.GerarRelatorioBeneficiarioCmd;
 
 @RestController
 @RequestMapping(value = "fichamatricula")
-public class FichaMatriculaService {
+public class RelatorioBeneficiarioService {
 
 	@Autowired
-	private GerarFichaMatriculaCmd gerarFichaMatriculaCmd;
+	private GerarRelatorioBeneficiarioCmd gerarFichaMatriculaCmd;
 	
 
 	@PostMapping(path = "/tipo/{tipo}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
-	public byte[] gerarPDF(@RequestBody List<ParametrosTO> param, @PathVariable(name = "tipo") String tipo) {
-		return gerarFichaMatriculaCmd.gerarPDF(param, tipo);
+	public byte[] gerar(@RequestBody List<Integer> listaIdsPessoaFisica, @PathVariable(name = "tipo") String tipo) {
+		return gerarFichaMatriculaCmd.gerar(listaIdsPessoaFisica, tipo);
 	}
 	
 }

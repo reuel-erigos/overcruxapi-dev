@@ -2,6 +2,7 @@ package br.com.crux.dao.relatorios;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.Query;
 
@@ -14,7 +15,7 @@ import br.com.crux.to.relatorios.FichaMatriculaDTO;
 public class FichaMatriculaDao extends BaseDao{
 	
 	
-	public List<FichaMatriculaDTO> get() {
+	public List<FichaMatriculaDTO> get(List<Integer> listaIdsPessoaFisica) {
 		StringBuilder sql = new StringBuilder();
 		
 		sql.append(" select                                ");
@@ -59,12 +60,11 @@ public class FichaMatriculaDao extends BaseDao{
 		sql.append("       nr_nis                        , ");
 		sql.append("       nis_responsavel                 ");
 		sql.append("  from vw_relatorio_ficha_cadastral    ");
-
-		
-		
+		sql.append(" where id_pessoa_fisica in (");
+		sql.append(String.join(", ", listaIdsPessoaFisica.stream().map(String::valueOf).collect(Collectors.toList())));
+		sql.append(" )");
 		
 		Query query = em.createNativeQuery(sql.toString());
-		//query.setParameter("idInstituicao", idInstituicao);
 		
 		@SuppressWarnings("unchecked")
 		List<Object[]> values = query.getResultList();
@@ -75,5 +75,6 @@ public class FichaMatriculaDao extends BaseDao{
 		return retorno;
 		
 	}
+	
 	
 }
