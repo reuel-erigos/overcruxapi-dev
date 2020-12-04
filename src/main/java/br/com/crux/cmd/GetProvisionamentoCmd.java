@@ -28,26 +28,26 @@ public class GetProvisionamentoCmd {
 	@Autowired private ValidarProvisionamentoRule rule;
 	@Autowired private ProvisoesRepository repository;
 
-	public List<ProvisionamentoTO> getAllFilter(Long dataInicio, Long dataFim) {
+	public List<ProvisionamentoTO> getAllFilter(Long dataInicio, Long dataFim, String nomeCentroCusto) {
 		rule.verificar(dataInicio, dataFim);
 		
 		LocalDate pDataInicio  = Java8DateUtil.getLocalDateTime(new Date(dataInicio)).toLocalDate();
 		LocalDate pDataFim     = Java8DateUtil.getLocalDateTime(new Date(dataFim)).toLocalDate();
 		
 		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
-		return toBuilder.buildAll(getDao.getFilter(idInstituicao, pDataInicio, pDataFim));
+		return toBuilder.buildAll(getDao.getFilter(idInstituicao, pDataInicio, pDataFim, nomeCentroCusto));
 	}
 
-	public List<ProvisionamentoTO> carregar(Long dataInicio, Long dataFim) {
+	public List<ProvisionamentoTO> carregar(Long dataInicio, Long dataFim, String nomeCentroCusto) {
 		rule.verificar(dataInicio, dataFim);
 		
 		LocalDate pDataInicio  = Java8DateUtil.getLocalDateTime(new Date(dataInicio)).toLocalDate();
 		LocalDate pDataFim     = Java8DateUtil.getLocalDateTime(new Date(dataFim)).toLocalDate();
 		
 		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
-		gerarDao.gerar(idInstituicao, pDataInicio, pDataFim);
+		gerarDao.gerar(idInstituicao, pDataInicio, pDataFim, nomeCentroCusto);
 		
-		return toBuilder.buildAll(getDao.getFilter(idInstituicao, pDataInicio, pDataFim));
+		return toBuilder.buildAll(getDao.getFilter(idInstituicao, pDataInicio, pDataFim, nomeCentroCusto));
 	}
 
 	

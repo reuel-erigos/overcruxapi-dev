@@ -4,10 +4,12 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.sql.Types;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Session;
 import org.hibernate.jdbc.Work;
 import org.springframework.stereotype.Component;
@@ -21,7 +23,7 @@ import br.com.crux.infra.util.DataUtil;
 @Component
 public class GerarProvisionamentoDao extends BaseDao {
 
-	public void gerar(Long idInstituicao, LocalDate dataInicio, LocalDate dataFim) {
+	public void gerar(Long idInstituicao, LocalDate dataInicio, LocalDate dataFim, String nomeCentroCusto) {
 		Session session = null;
 		try {
 			session = getSession();
@@ -33,7 +35,7 @@ public class GerarProvisionamentoDao extends BaseDao {
 					try {
 						CallableStatement statement = null;
 
-						String sqlString = "{call fn_gerar_provisoes_financeiras(?,?,?)}";
+						String sqlString = "{call fn_gerar_provisoes_financeiras(?,?,?,?)}";
 
 						statement = connection.prepareCall(sqlString);
 						statement.setLong(1, idInstituicao);
@@ -43,6 +45,12 @@ public class GerarProvisionamentoDao extends BaseDao {
 
 						Date pDataFim = DataUtil.parseDate(dataFim.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 						statement.setTimestamp(3, new Timestamp(pDataFim.getTime()));
+						
+						if(StringUtils.isNotEmpty(nomeCentroCusto)) {
+							statement.setString(4, nomeCentroCusto);
+						} else {
+							statement.setNull(4, Types.VARCHAR);
+						}
 
 						int retorno = statement.executeUpdate();
 						if (retorno != 0) {

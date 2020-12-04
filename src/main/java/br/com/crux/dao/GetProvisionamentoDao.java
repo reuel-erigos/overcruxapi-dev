@@ -10,6 +10,7 @@ import java.util.List;
 
 import javax.persistence.ParameterMode;
 
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Session;
 import org.hibernate.procedure.ProcedureCall;
 import org.hibernate.procedure.ProcedureOutputs;
@@ -26,7 +27,7 @@ public class GetProvisionamentoDao extends BaseDao {
 	
 
 	@SuppressWarnings({ "unchecked"})
-	public List<ProvisionamentoDTO> getFilter(Long idInstituicao,LocalDate dataInicio, LocalDate dataFim) {
+	public List<ProvisionamentoDTO> getFilter(Long idInstituicao,LocalDate dataInicio, LocalDate dataFim, String nomeCentroCusto) {
 		Session session =null;
 		try {
 			session = getSession();
@@ -38,6 +39,7 @@ public class GetProvisionamentoDao extends BaseDao {
 			procedureCall.registerParameter(2, BigDecimal.class, ParameterMode.IN);
 			procedureCall.registerParameter(3, Timestamp.class, ParameterMode.IN);
 			procedureCall.registerParameter(4, Timestamp.class, ParameterMode.IN);
+			procedureCall.registerParameter(5, String.class, ParameterMode.IN);
 			
 			procedureCall.getParameterRegistration(2).bindValue(new BigDecimal(idInstituicao));
 			
@@ -47,6 +49,12 @@ public class GetProvisionamentoDao extends BaseDao {
 	    	Date pDataFim = DataUtil.parseDate(dataFim.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 			procedureCall.getParameterRegistration(4).bindValue(new java.sql.Date(pDataFim.getTime())); 
 
+			procedureCall.getParameterRegistration(5).enablePassingNulls(true);
+			
+			nomeCentroCusto = StringUtils.isEmpty(nomeCentroCusto) ? null : nomeCentroCusto;
+			procedureCall.getParameterRegistration(5).bindValue(nomeCentroCusto);
+			
+			
 			ProcedureOutputs procedureOutputs = procedureCall.getOutputs();
 			ResultSetOutput resultSetOutput = (ResultSetOutput)procedureOutputs.getCurrent();
 			
