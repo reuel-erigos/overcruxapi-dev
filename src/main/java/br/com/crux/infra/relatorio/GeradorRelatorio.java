@@ -48,8 +48,8 @@ public class GeradorRelatorio {
 	 * @throws IOException
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public byte[] gerar(Map<String, Object> parametros, List<?> dados, String nomeRelatorio, String[] path, String tipo) throws Exception {
-		TipoRelatorio tipoRelatorio = TipoRelatorio.getPorTipo(tipo);	
+	public byte[] gerar(Map<String, Object> parametros, List<?> dados, String nomeRelatorio, String[] path, String mimeType) throws Exception {
+		TipoRelatorio tipoRelatorio = TipoRelatorio.getPorTipo(mimeType);	
 		
 		Exporter exporter = null;		
 		switch (tipoRelatorio) {

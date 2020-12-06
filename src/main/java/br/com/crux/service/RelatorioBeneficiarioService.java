@@ -13,16 +13,20 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.crux.cmd.relatorios.GerarRelatorioBeneficiarioCmd;
 
 @RestController
-@RequestMapping(value = "fichamatricula")
+@RequestMapping(value = "relatoriobeneficiario")
 public class RelatorioBeneficiarioService {
 
 	@Autowired
-	private GerarRelatorioBeneficiarioCmd gerarFichaMatriculaCmd;
+	private GerarRelatorioBeneficiarioCmd gerarRelatorioBeneficiarioCmd;
 	
 
-	@PostMapping(path = "/tipo/{tipo}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
-	public byte[] gerar(@RequestBody List<Integer> listaIdsPessoaFisica, @PathVariable(name = "tipo") String tipo) {
-		return gerarFichaMatriculaCmd.gerar(listaIdsPessoaFisica, tipo);
+	@PostMapping(path = "/mimeType/{mimeType}/tipo/{tiporelatorio}", 
+			     consumes = MediaType.APPLICATION_JSON_VALUE, 
+			     produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+	public byte[] gerar(@RequestBody List<Integer> listaIdsPessoaFisica, 
+			            @PathVariable(name = "mimetype") String mimeType, 
+			            @PathVariable(name = "tiporelatorio") String tipoRelatorio) {
+		return gerarRelatorioBeneficiarioCmd.gerar(listaIdsPessoaFisica, mimeType, tipoRelatorio);
 	}
 	
 }
