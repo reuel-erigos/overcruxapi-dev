@@ -7,17 +7,17 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.crux.builder.relatorios.FichaMatriculaTOBuilder;
+import br.com.crux.builder.relatorios.PasseEstudantilBeneficiarioTOBuilder;
 import br.com.crux.dao.relatorios.PasseEstudantilBeneficiarioDao;
 import br.com.crux.infra.relatorio.GeradorRelatorio;
-import br.com.crux.to.relatorios.FichaMatriculaTO;
+import br.com.crux.to.relatorios.beneficiarios.PasseEstudantilBeneficiarioTO;
 
 @Component
 public class GerarRelatorioPasseEstudantilBeneficiarioCmd {
 
 	@Autowired private GeradorRelatorio geradorRelatorio;
 	@Autowired private PasseEstudantilBeneficiarioDao dao;
-	@Autowired private FichaMatriculaTOBuilder builder;
+	@Autowired private PasseEstudantilBeneficiarioTOBuilder builder;
 	
 	public byte[] gerar(List<Integer> listaIdsPessoaFisica,String mimeType) throws Exception  {
 		String nomeRelatorio = "Passe_Estudantil";
@@ -25,7 +25,7 @@ public class GerarRelatorioPasseEstudantilBeneficiarioCmd {
 		
 		Map<String, Object> parametros = new HashMap<>();
 		
-		List<FichaMatriculaTO> dados = builder.buildAll(dao.get(listaIdsPessoaFisica));
+		List<PasseEstudantilBeneficiarioTO> dados = builder.buildAll(dao.get(listaIdsPessoaFisica));
 		
 		return geradorRelatorio.gerar(parametros, dados, nomeRelatorio, path, mimeType);
 	}

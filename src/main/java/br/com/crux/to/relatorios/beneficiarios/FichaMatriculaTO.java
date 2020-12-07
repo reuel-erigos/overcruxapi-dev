@@ -1,4 +1,4 @@
-package br.com.crux.to.relatorios;
+package br.com.crux.to.relatorios.beneficiarios;
 
 import java.time.LocalDate;
 

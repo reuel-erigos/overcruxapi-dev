@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
-import br.com.crux.to.relatorios.FichaMatriculaDTO;
-import br.com.crux.to.relatorios.FichaMatriculaTO;
+import br.com.crux.to.relatorios.beneficiarios.FichaMatriculaDTO;
+import br.com.crux.to.relatorios.beneficiarios.FichaMatriculaTO;
 
 @Component
 public class FichaMatriculaTOBuilder {

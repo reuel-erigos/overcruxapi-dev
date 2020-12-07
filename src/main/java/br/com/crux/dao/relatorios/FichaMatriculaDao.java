@@ -9,7 +9,7 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.dao.base.BaseDao;
-import br.com.crux.to.relatorios.FichaMatriculaDTO;
+import br.com.crux.to.relatorios.beneficiarios.FichaMatriculaDTO;
 
 @Component
 public class FichaMatriculaDao extends BaseDao{

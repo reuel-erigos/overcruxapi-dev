@@ -20,9 +20,7 @@ public class RelatorioBeneficiarioService {
 	private GerarRelatorioBeneficiarioCmd gerarRelatorioBeneficiarioCmd;
 	
 
-	@PostMapping(path = "/mimeType/{mimeType}/tipo/{tiporelatorio}", 
-			     consumes = MediaType.APPLICATION_JSON_VALUE, 
-			     produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+	@PostMapping(path = "/mimetype/{mimetype}/tipo/{tiporelatorio}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
 	public byte[] gerar(@RequestBody List<Integer> listaIdsPessoaFisica, 
 			            @PathVariable(name = "mimetype") String mimeType, 
 			            @PathVariable(name = "tiporelatorio") String tipoRelatorio) {

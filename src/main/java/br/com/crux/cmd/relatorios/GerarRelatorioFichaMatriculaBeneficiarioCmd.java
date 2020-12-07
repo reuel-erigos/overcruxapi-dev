@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import br.com.crux.builder.relatorios.FichaMatriculaTOBuilder;
 import br.com.crux.dao.relatorios.FichaMatriculaDao;
 import br.com.crux.infra.relatorio.GeradorRelatorio;
-import br.com.crux.to.relatorios.FichaMatriculaTO;
+import br.com.crux.to.relatorios.beneficiarios.FichaMatriculaTO;
 
 @Component
 public class GerarRelatorioFichaMatriculaBeneficiarioCmd {
