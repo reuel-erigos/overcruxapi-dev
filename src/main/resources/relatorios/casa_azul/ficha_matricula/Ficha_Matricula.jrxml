@@ -1,0 +1,1026 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Ficha_Matricula" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" isTitleNewPage="true" uuid="834ad189-7b77-460b-af4d-f3e68c98ad0b">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="S3Manager-DEV"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="378"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="608"/>
+	<parameter name="P_PATH_ROOT" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:/desenvolvimento/apps/jaspersoftstudio_workspace/S3Manager"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_NOME_USUARIO_LOGADO" class="java.lang.String" isForPrompting="false"/>
+	<queryString language="SQL">
+		<![CDATA[select                                
+     id_pessoa_fisica              as "idPessoaFisica"             , 
+     nome                          as "nome"                       , 
+     ds_endereco                   as "endereco"                   , 
+     ds_bairro                     as "bairro"                     , 
+     sg_uf_endereco                as "ufEndereco"                 , 
+     nr_cep                        as "cep"                        , 
+     nr_fone_celular               as "foneCelular"                , 
+     nr_telefone_residencial       as "telefoneResidencial"        , 
+     nr_telefone_comercial         as "telefoneComercial"          , 
+     ds_sexo                       as "sexo"                       , 
+     dt_nascimento                 as "dataNascimento"             , 
+     naturalidade                  as "naturalidade"               , 
+     nm_mae                        as "nomeMae"                    , 
+     nm_pai                        as "nomePai"                    , 
+     encaminhado                   as "encaminhado"                , 
+     ds_publico_prioritario        as "descPublicoPrioritario"     , 
+     dt_matricula                  as "dataMatricula"              , 
+     ds_turno                      as "turno"                      , 
+     atividade                     as "atividade"                  , 
+     ds_escola                     as "escola"                     , 
+     ds_serie_escola               as "serie"                      , 
+     ds_problema_saude             as "descProblemaSaude"          , 
+     ds_medicamentos_controlados   as "descMedicamentosControlados", 
+     st_mora_pais                  as "moraComPais"                , 
+     st_pais_casados               as "paisCasados"                , 
+     renda_familiar                as "rendaFamiliar"              , 
+     fonte_renda_familiar          as "fonteRendaFamiliar"         , 
+     tx_observacoes                as "observacoes"                , 
+     ds_busca_escola               as "descBuscaEscola"            , 
+     st_apr_externa_pub            as "apresentacaoExterna"        , 
+     nome_responsavel              as "nomeResponsavel"            , 
+     dt_nascimento_responsavel     as "dataNascimentoResponsavel"  , 
+     rg_responsavel                as "rgResponsavel"              , 
+     nr_cpf_responsavel            as "cpfResponsavel"             , 
+     fone_celular_responsavel      as "foneCelularResponsavel"     , 
+     fone_residencial_responsavel  as "foneResidencialResponsavel" , 
+     fone_comercial_responsavel    as "foneComercialResponsavel"   , 
+     nm_grau_parentesco            as "nomeGrauParentesco"         , 
+     nr_nis                        as "nisAluno"                   , 
+     nis_responsavel               as "nisResponsavel"               
+from vw_relatorio_ficha_cadastral]]>
+	</queryString>
+	<field name="idPessoaFisica" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="idPessoaFisica"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
+	<field name="endereco" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="endereco"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
+	<field name="bairro" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="bairro"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
+	<field name="ufEndereco" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="ufEndereco"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
+	<field name="cep" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="cep"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
+	<field name="foneCelular" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="foneCelular"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
+	<field name="telefoneResidencial" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="telefoneResidencial"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
+	<field name="telefoneComercial" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="telefoneComercial"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
+	<field name="sexo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="sexo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
+	<field name="dataNascimento" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="dataNascimento"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
+	<field name="naturalidade" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="naturalidade"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
+	<field name="nomeMae" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nomeMae"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
+	<field name="nomePai" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nomePai"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
+	<field name="encaminhado" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="encaminhado"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
+	<field name="descPublicoPrioritario" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="descPublicoPrioritario"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
+	<field name="dataMatricula" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="dataMatricula"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
+	<field name="turno" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="turno"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
+	<field name="atividade" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="atividade"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
+	<field name="escola" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="escola"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
+	<field name="serie" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="serie"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
+	<field name="descProblemaSaude" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="descProblemaSaude"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
+	<field name="descMedicamentosControlados" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="descMedicamentosControlados"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
+	<field name="moraComPais" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="moraComPais"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
+	<field name="paisCasados" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="paisCasados"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
+	<field name="rendaFamiliar" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="rendaFamiliar"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
+	<field name="fonteRendaFamiliar" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="fonteRendaFamiliar"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
+	<field name="observacoes" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="observacoes"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
+	<field name="descBuscaEscola" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="descBuscaEscola"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
+	<field name="apresentacaoExterna" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="apresentacaoExterna"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
+	<field name="nomeResponsavel" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nomeResponsavel"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
+	<field name="dataNascimentoResponsavel" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="dataNascimentoResponsavel"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
+	<field name="rgResponsavel" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="rgResponsavel"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
+	<field name="cpfResponsavel" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="cpfResponsavel"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
+	<field name="foneCelularResponsavel" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="foneCelularResponsavel"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
+	<field name="foneResidencialResponsavel" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="foneResidencialResponsavel"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
+	<field name="foneComercialResponsavel" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="foneComercialResponsavel"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
+	<field name="nomeGrauParentesco" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nomeGrauParentesco"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
+	<field name="nisAluno" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nisAluno"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
+	<field name="nisResponsavel" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nisResponsavel"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="120" splitType="Stretch">
+			<image scaleImage="FillFrame" hAlign="Center">
+				<reportElement x="-20" y="-20" width="595" height="140" uuid="fe3627a4-7863-4119-8553-36897ac034c1">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{P_PATH_ROOT} +"/header_relatorio_casa_azul.PNG"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="190" y="91" width="170" height="15" uuid="3dc5097b-9300-4fd7-9af6-1cb83378874a">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FICHA DE MATRÍCULA]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="614">
+			<textField isBlankWhenNull="true">
+				<reportElement x="34" y="29" width="517" height="15" uuid="244e492d-c5f8-4609-afa8-b8c391b3fa5b">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="29" width="34" height="15" uuid="bf239623-d108-42f8-a955-7939f04e51db">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Nome:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="46" width="49" height="15" uuid="e1475713-4252-4f0e-9e7c-02f882dd70cd">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Endereço:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="50" y="46" width="501" height="15" uuid="bf33db29-2eac-4e88-8dad-4a09bc3a1067">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{endereco}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="63" width="49" height="15" uuid="259ecb7e-05d7-4a63-ad98-9c46c70a7383">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Cidade:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="50" y="63" width="350" height="15" uuid="3257f157-9739-4fc3-ac6c-90b5432955dd">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bairro}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="406" y="63" width="49" height="15" uuid="b590d407-add1-41dc-bb06-6fd9eda94c7c">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Cep:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="455" y="63" width="95" height="15" uuid="f2b938bc-b93e-4d6f-94aa-b11697dd322e">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cep}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="80" width="49" height="15" uuid="688c6aef-e48d-4353-84f8-4e6754d34794">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Telefone:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="50" y="80" width="130" height="15" uuid="2c17938e-72b7-4fa3-9ba4-32ede3929643">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telefoneResidencial}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="186" y="80" width="49" height="15" uuid="1730477e-397f-4bbd-a789-8c56358bf7d2">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Celular:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="235" y="80" width="130" height="15" uuid="a36d29e8-ff1a-49c0-95af-12d9f660d71f">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{foneCelular}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="371" y="80" width="49" height="15" uuid="2247a3e2-756a-4fd3-be0c-3cea6170bcd5">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Tel Com:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="420" y="80" width="130" height="15" uuid="b47ba11c-9565-4300-b3e1-3629847d1ae8">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telefoneComercial}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="98" width="49" height="15" uuid="a7cd5a37-343b-4826-9016-dd7d79b92c79">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Sexo:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="50" y="98" width="80" height="15" uuid="c594efad-9511-44c5-99d9-cccd8e467f63">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sexo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="133" y="98" width="94" height="15" uuid="0e17e372-ba7b-4bb2-aaf7-d57a1af35483">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Data de Nascimento:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="227" y="98" width="85" height="15" uuid="52bf5635-b8bf-45d2-a9bf-344ca1ac5f90">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dataNascimento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="316" y="98" width="49" height="15" uuid="83e90b5b-ff0c-4c2a-9330-fc6a10a22961">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Naturalidade:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="365" y="98" width="185" height="15" uuid="9eb84473-d89a-493e-b209-8b0f4dcd33eb">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{naturalidade}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="115" width="69" height="15" uuid="2342a9ad-3128-4c86-a6e7-e03cd7fef43e">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Nome do Pai:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="70" y="115" width="481" height="15" uuid="8d1547c2-abb7-4bf3-ad3c-7c839bc01be9">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nomePai}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="132" width="69" height="15" uuid="fa116cab-a7c0-4d94-86c3-153e2d1f0cba">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Nome do Mãe:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="69" y="132" width="481" height="15" uuid="471e058b-ffa3-4696-a100-17b899472398">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nomeMae}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="150" width="90" height="15" uuid="5a9ffb72-9de9-468d-9b49-dc217cd3f3ac">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Encaminhado por:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="90" y="150" width="460" height="15" uuid="c3dfd298-e212-4428-9132-970c8864471e">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{encaminhado}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="168" width="90" height="15" uuid="c1975721-201b-433d-bc1c-77ad51afafa7">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Público Prioritário:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="90" y="168" width="460" height="15" uuid="48ae929e-f4df-4c60-81e9-9a8ea175585d">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descPublicoPrioritario}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="186" width="89" height="15" uuid="41353de4-1b15-4096-a342-cd3705a35268">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Data de Matrícula:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="90" y="186" width="130" height="15" uuid="39bea795-9ba5-4f09-b3cb-fbed7cd12e32">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dataMatricula}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="226" y="186" width="49" height="15" uuid="87175cb8-d478-49a4-befa-1fd6e074203f">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Turno:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="275" y="186" width="130" height="15" uuid="2558b60f-b091-4977-bd56-cdcd893b4cd9">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{turno}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="204" width="90" height="15" uuid="f9d2c39b-6961-4079-80c9-921523fa58ad">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Atividade:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="90" y="204" width="460" height="15" uuid="8e111ae3-26cf-4165-bc73-90a59085adcf">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{atividade}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="222" width="49" height="15" uuid="d43c0c84-d4a6-4572-b10d-97ac11046406">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Escola:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="50" y="222" width="310" height="15" uuid="87710b8b-c823-42ac-88ca-7b279caf1182">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{escola}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="365" y="222" width="65" height="15" uuid="386a80bb-489a-4135-91e3-4301079a0555">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Série/Turma:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="430" y="222" width="120" height="15" uuid="6be06780-1953-41a7-9c72-4c85cbf941b5">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{serie}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="240" width="99" height="15" uuid="793b67a2-48b2-4035-ab44-10f915cc1c1b">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Problemas de Saúde:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="100" y="240" width="50" height="15" uuid="48e09625-4a9a-4e06-8b75-66dd81270f10">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descProblemaSaude}.equals("") ? "Não" : "Sim"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="158" y="240" width="32" height="15" uuid="71183371-f257-430e-8bf6-7d55d138c6f6">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Quais?]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="190" y="240" width="360" height="15" uuid="257bad4c-113e-4c40-9204-4b1efac3ea40">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descProblemaSaude}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="258" width="99" height="15" uuid="77e6b226-d634-4953-a9b0-086c14a9289f">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Toma medicamentos:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="100" y="258" width="50" height="15" uuid="16bb2553-49f9-4e9f-a269-7937f045fdb9">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descMedicamentosControlados}.equals("") ? "Não" : "Sim"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="158" y="258" width="32" height="15" uuid="c58a4f29-baeb-44d2-83d5-02baca075035">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Quais?]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="190" y="258" width="360" height="15" uuid="971ed228-4ff6-4959-9bfb-44bdd6103b2a">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descMedicamentosControlados}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="276" width="99" height="15" uuid="bc844aca-eaf1-4f3a-b43f-081e1820cb47">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Mora com os pais:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="99" y="276" width="50" height="15" uuid="26318957-bde6-483e-844b-10ce192cc52f">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{moraComPais}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="157" y="276" width="103" height="15" uuid="db29ea8e-4313-4cc3-a367-8608a544e56f">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Os pais são casados?]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="260" y="276" width="50" height="15" uuid="9c13da78-fb46-476e-9cf7-14a17b11e0e5">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{paisCasados}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="294" width="99" height="15" uuid="1a832885-6241-43e9-9022-5fd141c62ab0">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Renda Familiar:]]></text>
+			</staticText>
+			<textField pattern="¤#,##0.##;¤-#,##0.##" isBlankWhenNull="true">
+				<reportElement x="99" y="294" width="71" height="15" uuid="1040ef23-667b-4a8f-89f1-9fdce9ad3171">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rendaFamiliar}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="176" y="294" width="58" height="15" uuid="afefb3d1-5e15-4e9d-9171-9807b8c5aaa4">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Proveniente:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="235" y="294" width="314" height="15" uuid="deca241e-f8fc-4c08-8404-46725460ff66">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fonteRendaFamiliar}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="312" width="60" height="15" uuid="9511513c-abcb-47b8-af07-2334d87a6c04">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Observação:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="60" y="312" width="490" height="15" isPrintWhenDetailOverflows="true" uuid="65362a23-4150-4051-b90e-b1e819d959aa">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{observacoes}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="330" width="110" height="15" uuid="5217fc43-af8e-4cd8-a942-51e864239977">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Quem pegaria a criança:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="110" y="330" width="440" height="15" isPrintWhenDetailOverflows="true" uuid="eb6e6694-78c5-429d-ab92-d06545ed74bf">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descBuscaEscola}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="348" width="380" height="15" uuid="3f9b2873-7032-4abe-95c3-4baeca08cd6f">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[O beneficiário poderá participar de apresentações externas e publicidade em geral ?]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="381" y="348" width="49" height="15" isPrintWhenDetailOverflows="true" uuid="5ee677dd-b8e7-4699-8c23-e7e14ca5b2a6">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apresentacaoExterna}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="366" width="68" height="15" uuid="45d3989f-04d2-40bc-827f-5c0e29bf8138">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Responsável:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="70" y="366" width="481" height="15" isPrintWhenDetailOverflows="true" uuid="e905b3d5-29cf-4d4c-8fbb-9997a4d6e189">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nomeResponsavel}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="384" width="110" height="15" uuid="3e53ea54-e776-4c5e-9f47-bc1bd85899b4">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Data de Nasc. do Resp.:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="111" y="384" width="149" height="15" isPrintWhenDetailOverflows="true" uuid="dd3ab963-77d9-4604-a7a8-644e61c80899">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dataNascimentoResponsavel}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="402" width="19" height="15" uuid="6ffeab06-2384-4260-829f-472d2cf8d577">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Rg:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="21" y="402" width="99" height="15" uuid="69b2a13a-9575-4987-830f-cc3ae8fa4969">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rgResponsavel}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="130" y="402" width="75" height="15" uuid="2ff88f39-6a99-41bb-a74c-20ad4b92c360">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[CPF nº (Resp):]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="205" y="402" width="130" height="15" uuid="f74f180e-fd8e-4feb-be2b-37a0f82d46ad">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cpfResponsavel}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="421" width="69" height="15" uuid="10a9d0ad-2295-4991-99ab-0a69333588e8">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Telefone Resp:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="71" y="421" width="245" height="15" uuid="a3fe646c-f570-4e03-aa93-efea9773ebd8">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{foneCelularResponsavel} + "  "+ $F{foneResidencialResponsavel} + "  "+$F{foneComercialResponsavel}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="322" y="421" width="96" height="15" uuid="9691f6b5-d1f3-4b9e-b8c3-19ccfa48f7af">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Grau de Parentesco:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="419" y="421" width="130" height="15" uuid="79ef4114-9966-471e-8b32-e3489b2ad05e">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nomeGrauParentesco}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="439" width="69" height="15" uuid="8fedb156-53e6-4998-ae71-cc0d0cfc7c08">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[NIS do Aluno:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="71" y="439" width="99" height="15" uuid="ade55033-70f7-43a8-8e35-442b43f7d8fe">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nisAluno}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="178" y="439" width="96" height="15" uuid="e9c17893-457b-4695-a09f-984e9ed708ea">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[NIS do Resp:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="275" y="439" width="130" height="15" uuid="1e8a805e-169a-4f9a-b454-f6a347e103d7">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nisResponsavel}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="124" y="520" width="311" height="1" uuid="fa515934-01fe-40d6-8426-ced22c8add49"/>
+			</line>
+			<staticText>
+				<reportElement x="248" y="530" width="60" height="15" uuid="513b0a60-a5b7-456f-a1d2-b4e4594fa8f0">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<text><![CDATA[Responsável]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="574" width="98" height="15" uuid="9abbdf35-2e02-4ad9-94ea-57a2edc743e4">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Resp. pela Matrícula:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="100" y="574" width="335" height="15" uuid="aa459a70-b815-48a9-ba27-894d9afb5a8b">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{P_NOME_USUARIO_LOGADO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="446" y="574" width="32" height="15" uuid="fbc57bf7-9411-44ea-ab80-7b63c10a8a55">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Data:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="480" y="574" width="66" height="15" uuid="0816c221-f6d6-4d12-aff5-bfb4ad2b9b67">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="60">
+			<image scaleImage="FillFrame" hAlign="Center" vAlign="Bottom">
+				<reportElement x="-20" y="6" width="595" height="54" uuid="d7d0c8df-d5ac-446c-8d57-a0ec46b96ffe">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{P_PATH_ROOT} + "/rodape_relatorio_casa_azul.PNG"]]></imageExpression>
+			</image>
+		</band>
+	</columnFooter>
+</jasperReport>
