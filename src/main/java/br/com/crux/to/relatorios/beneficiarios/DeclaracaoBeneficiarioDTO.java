@@ -39,6 +39,13 @@ public class DeclaracaoBeneficiarioDTO {
 	private String escolaridade                 ;
 	private String observacaoDeclaracaoMatricula;
 	private String dataDeclaracaoMatricula      ;
+	private String turma                        ;
+	private String foneCelularMae               ;
+	private String foneResidencialMae           ;
+	private String foneComercialMae             ;
+	private String foneCelularPai               ;
+	private String foneResidencialPai           ;
+	private String foneComercialPai             ;
 
 	
 	public DeclaracaoBeneficiarioDTO() {
@@ -80,6 +87,14 @@ public class DeclaracaoBeneficiarioDTO {
 		this.escolaridade                    = (colunas[32] != null) ? (String) colunas[32] : "";
 		this.observacaoDeclaracaoMatricula   = (colunas[33] != null) ? (String) colunas[33] : "";
 		this.dataDeclaracaoMatricula         = (colunas[34] != null) ? (String) colunas[34] : "";
+		this.turma                           = (colunas[35] != null) ? (String) colunas[35] : "";
+		this.foneCelularMae                  = (colunas[36] != null) ? (String) colunas[36] : "";
+		this.foneResidencialMae              = (colunas[37] != null) ? (String) colunas[37] : "";
+		this.foneComercialMae                = (colunas[38] != null) ? (String) colunas[38] : "";
+		this.foneCelularPai                  = (colunas[39] != null) ? (String) colunas[39] : "";
+		this.foneResidencialPai              = (colunas[40] != null) ? (String) colunas[40] : "";
+		this.foneComercialPai                = (colunas[41] != null) ? (String) colunas[41] : "";
+
 	}
 
 	public Long getIdAluno() {
@@ -429,6 +444,62 @@ public class DeclaracaoBeneficiarioDTO {
 
 	public void setDataDeclaracaoMatricula(String dataDeclaracaoMatricula) {
 		this.dataDeclaracaoMatricula = dataDeclaracaoMatricula;
+	}
+
+	public String getTurma() {
+		return turma;
+	}
+
+	public void setTurma(String turma) {
+		this.turma = turma;
+	}
+
+	public String getFoneCelularMae() {
+		return foneCelularMae;
+	}
+
+	public void setFoneCelularMae(String foneCelularMae) {
+		this.foneCelularMae = foneCelularMae;
+	}
+
+	public String getFoneResidencialMae() {
+		return foneResidencialMae;
+	}
+
+	public void setFoneResidencialMae(String foneResidencialMae) {
+		this.foneResidencialMae = foneResidencialMae;
+	}
+
+	public String getFoneComercialMae() {
+		return foneComercialMae;
+	}
+
+	public void setFoneComercialMae(String foneComercialMae) {
+		this.foneComercialMae = foneComercialMae;
+	}
+
+	public String getFoneCelularPai() {
+		return foneCelularPai;
+	}
+
+	public void setFoneCelularPai(String foneCelularPai) {
+		this.foneCelularPai = foneCelularPai;
+	}
+
+	public String getFoneResidencialPai() {
+		return foneResidencialPai;
+	}
+
+	public void setFoneResidencialPai(String foneResidencialPai) {
+		this.foneResidencialPai = foneResidencialPai;
+	}
+
+	public String getFoneComercialPai() {
+		return foneComercialPai;
+	}
+
+	public void setFoneComercialPai(String foneComercialPai) {
+		this.foneComercialPai = foneComercialPai;
 	}
 	
 }

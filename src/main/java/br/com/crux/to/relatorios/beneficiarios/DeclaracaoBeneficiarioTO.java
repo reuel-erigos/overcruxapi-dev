@@ -37,6 +37,14 @@ public class DeclaracaoBeneficiarioTO {
 	private String escolaridade                 ;
 	private String observacaoDeclaracaoMatricula;
 	private String dataDeclaracaoMatricula      ;
+	private String turma                        ;
+	private String foneCelularMae               ;
+	private String foneResidencialMae           ;
+	private String foneComercialMae             ;
+	private String foneCelularPai               ;
+	private String foneResidencialPai           ;
+	private String foneComercialPai             ;
+	
 
 	
 	public DeclaracaoBeneficiarioTO() {
@@ -390,6 +398,76 @@ public class DeclaracaoBeneficiarioTO {
 
 	public void setDataDeclaracaoMatricula(String dataDeclaracaoMatricula) {
 		this.dataDeclaracaoMatricula = dataDeclaracaoMatricula;
+	}
+
+
+	public String getTurma() {
+		return turma;
+	}
+
+
+	public void setTurma(String turma) {
+		this.turma = turma;
+	}
+
+
+	public String getFoneCelularMae() {
+		return foneCelularMae;
+	}
+
+
+	public void setFoneCelularMae(String foneCelularMae) {
+		this.foneCelularMae = foneCelularMae;
+	}
+
+
+	public String getFoneResidencialMae() {
+		return foneResidencialMae;
+	}
+
+
+	public void setFoneResidencialMae(String foneResidencialMae) {
+		this.foneResidencialMae = foneResidencialMae;
+	}
+
+
+	public String getFoneComercialMae() {
+		return foneComercialMae;
+	}
+
+
+	public void setFoneComercialMae(String foneComercialMae) {
+		this.foneComercialMae = foneComercialMae;
+	}
+
+
+	public String getFoneCelularPai() {
+		return foneCelularPai;
+	}
+
+
+	public void setFoneCelularPai(String foneCelularPai) {
+		this.foneCelularPai = foneCelularPai;
+	}
+
+
+	public String getFoneResidencialPai() {
+		return foneResidencialPai;
+	}
+
+
+	public void setFoneResidencialPai(String foneResidencialPai) {
+		this.foneResidencialPai = foneResidencialPai;
+	}
+
+
+	public String getFoneComercialPai() {
+		return foneComercialPai;
+	}
+
+
+	public void setFoneComercialPai(String foneComercialPai) {
+		this.foneComercialPai = foneComercialPai;
 	}
 	
 }
