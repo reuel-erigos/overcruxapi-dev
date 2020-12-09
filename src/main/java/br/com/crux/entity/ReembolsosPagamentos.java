@@ -51,7 +51,11 @@ public class ReembolsosPagamentos implements Serializable {
 	private Double valor;
 	
 	@Column(name = "id_usuario_apl")
-	private Long usuarioAlteracao;
+	private Long usuarioAlteracao;	
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_conta_bancaria_destino") 
+	private ContasBancaria contaBancariaDestino;
 
 	
 	public ReembolsosPagamentos() {
@@ -119,6 +123,14 @@ public class ReembolsosPagamentos implements Serializable {
 
 	public void setUsuarioAlteracao(Long usuarioAlteracao) {
 		this.usuarioAlteracao = usuarioAlteracao;
+	}
+
+	public ContasBancaria getContaBancariaDestino() {
+		return contaBancariaDestino;
+	}
+
+	public void setContaBancariaDestino(ContasBancaria contaBancariaDestino) {
+		this.contaBancariaDestino = contaBancariaDestino;
 	}
 	
 }

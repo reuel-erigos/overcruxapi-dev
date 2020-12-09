@@ -27,6 +27,7 @@ public class ReembolsosPagamentosTOBuilder {
 
 		BeanUtils.copyProperties(entity, to);
 		to.setContaBancaria(contasBancariaTOBuilder.buildTOCombo(entity.getContaBancaria()));
+		to.setContaBancariaDestino(contasBancariaTOBuilder.buildTOCombo(entity.getContaBancariaDestino()));
 
 		return to;
 	}
@@ -45,6 +46,11 @@ public class ReembolsosPagamentosTOBuilder {
 		if (Objects.nonNull(to.getContaBancaria()) && Objects.nonNull(to.getContaBancaria().getId())) {
 			ContasBancaria conta = getContasBancariaCmd.getById(to.getContaBancaria().getId());
 			entity.setContaBancaria(conta);
+		}
+		
+		if (Objects.nonNull(to.getContaBancariaDestino()) && Objects.nonNull(to.getContaBancariaDestino().getId())) {
+			ContasBancaria conta = getContasBancariaCmd.getById(to.getContaBancariaDestino().getId());
+			entity.setContaBancariaDestino(conta);
 		}
 		
 		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());

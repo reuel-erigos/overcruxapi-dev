@@ -30,6 +30,8 @@ public class MovimentacoesTO {
 	private List<RateiosMovimentacoesTO> rateios;
 	private List<RateiosMovimentacoesUnidadesTO> rateiosUnidades;
 	
+	private List<ParceriasProgramaTO> parceriasPrograma;
+	
 	private DoadoresTO doador;
 	private PessoaFisicaTO fornecedorColaborador;
 	
@@ -178,6 +180,14 @@ public class MovimentacoesTO {
 
 	public void setFornecedorColaborador(PessoaFisicaTO fornecedorColaborador) {
 		this.fornecedorColaborador = fornecedorColaborador;
+	}
+
+	public List<ParceriasProgramaTO> getParceriasPrograma() {
+		return parceriasPrograma;
+	}
+
+	public void setParceriasPrograma(List<ParceriasProgramaTO> parceriasPrograma) {
+		this.parceriasPrograma = parceriasPrograma;
 	}
 	
 }
