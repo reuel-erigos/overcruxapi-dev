@@ -9,14 +9,15 @@ import br.com.crux.infra.adapter.LocalDateTimeAdapter;
 public class MateriaisProjetoTO {
 
 	private Long id;
-
-	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class) private LocalDateTime dataFim;
-
-	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class) private LocalDateTime dataInicio;
-
 	private MaterialTO material;
-
+	private Long quantidadeMaterial;
 	private Double valorMaterial;
+
+	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class) 
+	private LocalDateTime dataFim;
+
+	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class) 
+	private LocalDateTime dataInicio;
 
 
 	public Long getId() {
@@ -57,6 +58,14 @@ public class MateriaisProjetoTO {
 
 	public void setValorMaterial(Double valorMaterial) {
 		this.valorMaterial = valorMaterial;
+	}
+
+	public Long getQuantidadeMaterial() {
+		return quantidadeMaterial;
+	}
+
+	public void setQuantidadeMaterial(Long quantidadeMaterial) {
+		this.quantidadeMaterial = quantidadeMaterial;
 	}
 
 }

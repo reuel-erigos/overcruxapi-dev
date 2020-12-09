@@ -9,6 +9,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.dao.repository.ArquivoRepository;
+import br.com.crux.dao.repository.EstruturaUnidadeRepository;
 import br.com.crux.dao.repository.PerspectivaRepository;
 import br.com.crux.dao.repository.UnidadeRepository;
 import br.com.crux.dao.repository.UsuariosUnidadeRepository;
@@ -21,6 +22,7 @@ import br.com.crux.exception.TabaleReferenciaEncontradaException;
 public class ExcluirUnidadeCmd {
 
 	@Autowired private UnidadeRepository unidadeRepository;
+	@Autowired private EstruturaUnidadeRepository estruturaUnidadeRepository;
 	@Autowired private UsuariosUnidadeRepository usuariosUnidadeRepository;
 	
 	@Autowired private ArquivoRepository arquivoRepository;
@@ -30,6 +32,8 @@ public class ExcluirUnidadeCmd {
 	public void excluir(Long idUnidade) {
 		try {
 			Optional<Unidade> unidade = unidadeRepository.findById(idUnidade);
+			
+			estruturaUnidadeRepository.deleteAll(unidade.get().getEstruturasUnidades());
 			
 			Optional<List<Perspectiva>> perspectiva = perspectivaRepository.findByIdUnidade(unidade.get().getIdUnidade());
 			if(perspectiva.isPresent()) {

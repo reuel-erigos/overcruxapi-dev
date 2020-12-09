@@ -43,9 +43,12 @@ public class MateriaisPrograma  {
 	@Column(name="id_usuario_apl")
 	private Long usuarioAlteracao;
 
+	@Column(name="qtd_material")
+	private Long quantidadeMaterial;
+	
 	@Column(name="vl_material")
 	private Double vlMaterial;
-
+	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_parceria_programa")
 	private ParceriasPrograma parceriasPrograma;
@@ -115,6 +118,14 @@ public class MateriaisPrograma  {
 
 	public void setParceriasPrograma(ParceriasPrograma parceriasPrograma) {
 		this.parceriasPrograma = parceriasPrograma;
+	}
+
+	public Long getQuantidadeMaterial() {
+		return quantidadeMaterial;
+	}
+
+	public void setQuantidadeMaterial(Long quantidadeMaterial) {
+		this.quantidadeMaterial = quantidadeMaterial;
 	}
 
 

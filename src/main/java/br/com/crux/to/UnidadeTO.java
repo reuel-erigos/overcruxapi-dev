@@ -1,6 +1,7 @@
 package br.com.crux.to;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -48,6 +49,8 @@ public class UnidadeTO {
 	
 	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
 	private LocalDateTime dataVigenciaCas;
+	
+	private List<EstruturaUnidadeTO> estruturasUnidades;
 	
 
 	public UnidadeTO() {
@@ -328,6 +331,14 @@ public class UnidadeTO {
 
 	public void setUnidadeLogada(Boolean unidadeLogada) {
 		this.unidadeLogada = unidadeLogada;
+	}
+
+	public List<EstruturaUnidadeTO> getEstruturasUnidades() {
+		return estruturasUnidades;
+	}
+
+	public void setEstruturasUnidades(List<EstruturaUnidadeTO> estruturaUnidade) {
+		this.estruturasUnidades = estruturaUnidade;
 	}
 
 	

@@ -25,6 +25,7 @@ public class AlterarUnidadeCmd {
 	@Autowired private UnidadeTOBuilder unidadeTOBuilder;
 	@Autowired private GetUnidadeCmd getUnidadeCmd;
 	@Autowired private InstituicaoRepository instituicaoRepository;
+	@Autowired private AlterarEstruturaUnidadeCmd alterarEstruturaUnidadeCmd;
 
 	public UnidadeTO alterar(UnidadeTO to) {
 		validarCadastroUnidadeRule.validar(to.getNomeUnidade(), to.getNomeUnidade());
@@ -44,6 +45,9 @@ public class AlterarUnidadeCmd {
 		}
 
 		Unidade retorno = unidadeRepository.save(unidade);
+		
+		alterarEstruturaUnidadeCmd.alterarAll(to.getEstruturasUnidades(), retorno);
+		
 		return unidadeTOBuilder.buildTO(retorno);
 
 	}

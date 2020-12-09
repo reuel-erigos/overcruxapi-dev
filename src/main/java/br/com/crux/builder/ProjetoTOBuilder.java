@@ -73,22 +73,27 @@ public class ProjetoTOBuilder {
 	}
 
 	public ProjetoTO buildTOEnxuto(Projeto projeto) {
-		if (Objects.isNull(projeto)) {return null;}
+		if (Objects.isNull(projeto)) {
+			return null;
+		}
 		ProjetoTO to = new ProjetoTO();
 		to.setId(projeto.getId());
 		to.setNome(projeto.getNome());
 		return to;
 	}
-	
+
 	public List<ProjetoTO> buildAll(List<Projeto> dtos) {
 		return dtos.stream().map(dto -> buildTO(dto)).collect(Collectors.toList());
 	}
 
-	
 	public List<ComboProjetoTO> buildAllCombo(List<ComboProjetoDTO> dtos) {
 		return dtos.stream()
 				.map(this::buildTOCombo)
 				.collect(Collectors.toList());
+	}
+	
+	public List<ComboProjetoTO> buildAllParaCombo(List<ComboProjetoDTO> dtos) {
+		return dtos.stream().map(this::buildTOCombo).collect(Collectors.toList());
 	}
 
 	public ComboProjetoTO buildTOCombo(ComboProjetoDTO dto) {
@@ -96,6 +101,8 @@ public class ProjetoTOBuilder {
 		if (Objects.isNull(dto)) {return to;}
 		to.setId(dto.getId());
 		to.setNome(dto.getNome());
+
 		return to;
 	}
+
 }

@@ -5,17 +5,17 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.cmd.GetColaboradoresAtividadeCmd;
 import br.com.crux.cmd.GetMateriaisAtividadeCmd;
-import br.com.crux.cmd.GetPlanosAcaoCmd;
 import br.com.crux.cmd.GetProgramaCmd;
 import br.com.crux.cmd.GetProjetoCmd;
+import br.com.crux.cmd.GetTiposAtividadesCmd;
 import br.com.crux.cmd.GetUnidadeCmd;
 import br.com.crux.entity.Oficinas;
-import br.com.crux.entity.PlanosAcao;
 import br.com.crux.entity.Programa;
 import br.com.crux.entity.Projeto;
 import br.com.crux.entity.Unidade;
@@ -27,53 +27,54 @@ import br.com.crux.to.OficinasTO;
 @Component
 public class OficinasTOBuilder {
 
-	@Autowired private UnidadeTOBuilder unidadeBuilder;
-	@Autowired private ProjetoTOBuilder projetoBuilder;
-	@Autowired private ProgramaTOBuilder programaTOBuilder;
-	@Autowired private PlanosAcaoTOBuilder planosAcaoBuilder;
-	@Autowired private GetUnidadeCmd getUnidadeCmd;
-	@Autowired private GetProjetoCmd getProjetoCmd;
-	@Autowired private GetProgramaCmd getProgramaCmd;
-	@Autowired private GetPlanosAcaoCmd getPlanosAcaoCmd;
-	@Autowired private GetColaboradoresAtividadeCmd getColaboradoresAtividadeCmd;
-	@Autowired private GetMateriaisAtividadeCmd getMateriaisAtividadeCmd;
+	@Autowired
+	private UnidadeTOBuilder unidadeBuilder;
+	@Autowired
+	private ProjetoTOBuilder projetoBuilder;
+	@Autowired
+	private ProgramaTOBuilder programaTOBuilder;
+	@Autowired
+	private GetUnidadeCmd getUnidadeCmd;
+	@Autowired
+	private GetProjetoCmd getProjetoCmd;
+	@Autowired
+	private GetProgramaCmd getProgramaCmd;
+	@Autowired
+	private GetColaboradoresAtividadeCmd getColaboradoresAtividadeCmd;
+	@Autowired
+	private GetMateriaisAtividadeCmd getMateriaisAtividadeCmd;
+	@Autowired
+	private GetTiposAtividadesCmd getTiposAtividadesCmd;
 
 	public Oficinas build(OficinasTO p) {
 		Oficinas retorno = new Oficinas();
 
-		retorno.setId(p.getId());
-		retorno.setDescricao(p.getDescricao());
-		retorno.setDescricaoLocalExecucao(p.getDescricaoLocalExecucao());
-		retorno.setDataFim(p.getDataFim());
-		retorno.setDataInicio(p.getDataInicio());
-		retorno.setDataPrevisaoInicio(p.getDataPrevisaoInicio());
-		retorno.setDataPrevisaoTermino(p.getDataPrevisaoTermino());
+		BeanUtils.copyProperties(p, retorno);
 
 		Optional.ofNullable(p.getHoraFim()).ifPresent(hora -> {
 			retorno.setHoraFim(Java8DateUtil.horaStringToLong(p.getHoraFim()));
 		});
 
 		Optional.ofNullable(p.getHoraInicio()).ifPresent(hora -> {
-			retorno.setHoraInicio(Java8DateUtil.horaStringToLong(p.getHoraInicio()));
+			retorno.setHoraInicio(
+					Java8DateUtil.horaStringToLong(p.getHoraInicio()));
 		});
 
-		retorno.setNumeroAulas(p.getNumeroAulas());
-		retorno.setCargaHoraria(p.getCargaHoraria());
-		retorno.setMaximoParticipantes(p.getMaximoParticipantes());
-		retorno.setPeriodoAtividade(p.getPeriodoAtividade());
-		retorno.setHorarioFixo(p.getHorarioFixo());
-		retorno.setLocalExecucao(p.getLocalExecucao());
+		retorno.setSegunda(
+				Objects.isNull(p.getSegunda()) || !p.getSegunda() ? "N" : "S");
+		retorno.setTerca(
+				Objects.isNull(p.getTerca()) || !p.getTerca() ? "N" : "S");
+		retorno.setQuarta(
+				Objects.isNull(p.getQuarta()) || !p.getQuarta() ? "N" : "S");
+		retorno.setQuinta(
+				Objects.isNull(p.getQuinta()) || !p.getQuinta() ? "N" : "S");
+		retorno.setSexta(
+				Objects.isNull(p.getSexta()) || !p.getSexta() ? "N" : "S");
+		retorno.setSabado(
+				Objects.isNull(p.getSabado()) || !p.getSabado() ? "N" : "S");
+		retorno.setDomingo(
+				Objects.isNull(p.getDomingo()) || !p.getDomingo() ? "N" : "S");
 
-		retorno.setSegunda(Objects.isNull(p.getSegunda()) || !p.getSegunda() ? "N" : "S");
-		retorno.setTerca(Objects.isNull(p.getTerca()) || !p.getTerca() ? "N" : "S");
-		retorno.setQuarta(Objects.isNull(p.getQuarta()) || !p.getQuarta() ? "N" : "S");
-		retorno.setQuinta(Objects.isNull(p.getQuinta()) || !p.getQuinta() ? "N" : "S");
-		retorno.setSexta(Objects.isNull(p.getSexta()) || !p.getSexta() ? "N" : "S");
-		retorno.setSabado(Objects.isNull(p.getSabado()) || !p.getSabado() ? "N" : "S");
-		retorno.setDomingo(Objects.isNull(p.getDomingo()) || !p.getDomingo() ? "N" : "S");
-
-		retorno.setObservacoes(p.getObservacoes());
-		retorno.setValorCustoAtividade(p.getValorCustoAtividade());
 
 		Optional.ofNullable(p.getUnidade()).ifPresent(u -> {
 			if (Objects.nonNull(u.getIdUnidade())) {
@@ -88,7 +89,7 @@ public class OficinasTOBuilder {
 				retorno.setProjeto(projeto);
 			}
 		});
-		
+
 		Optional.ofNullable(p.getPrograma()).ifPresent(pj -> {
 			if (Objects.nonNull(pj.getId())) {
 				Programa programa = getProgramaCmd.getById(pj.getId());
@@ -97,17 +98,9 @@ public class OficinasTOBuilder {
 
 		});
 		
-		retorno.setIdTurma(p.getIdTurma());
-
-		Optional.ofNullable(p.getPlanosAcao()).ifPresent(pa -> {
-			if (Objects.nonNull(pa.getId())) {
-				PlanosAcao planos = getPlanosAcaoCmd.getById(pa.getId());
-				retorno.setPlanosAcao(planos);
-			}
-
-		});
-		
-		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
+		if(Objects.nonNull(p.getTiposAtividades())) {
+			retorno.setTipoAtividade(getTiposAtividadesCmd.getById(p.getTiposAtividades()));
+		}
 
 		return retorno;
 	}
@@ -119,13 +112,8 @@ public class OficinasTOBuilder {
 			return retorno;
 		}
 
-		retorno.setId(p.getId());
-		retorno.setDescricao(p.getDescricao());
-		retorno.setDescricaoLocalExecucao(p.getDescricaoLocalExecucao());
-		retorno.setDataFim(p.getDataFim());
-		retorno.setDataInicio(p.getDataInicio());
-		retorno.setDataPrevisaoInicio(p.getDataPrevisaoInicio());
-		retorno.setDataPrevisaoTermino(p.getDataPrevisaoTermino());
+		BeanUtils.copyProperties(p, retorno);
+		
 
 		Optional.ofNullable(p.getHoraFim()).ifPresent(hora -> {
 
@@ -136,41 +124,41 @@ public class OficinasTOBuilder {
 			retorno.setHoraInicio(formatarHora(hora));
 		});
 
-		retorno.setNumeroAulas(p.getNumeroAulas());
-		retorno.setCargaHoraria(p.getCargaHoraria());
-		retorno.setMaximoParticipantes(p.getMaximoParticipantes());
-		retorno.setPeriodoAtividade(p.getPeriodoAtividade());
-		retorno.setHorarioFixo(p.getHorarioFixo());
-		retorno.setLocalExecucao(p.getLocalExecucao());
+		retorno.setSegunda(Objects.nonNull(p.getSegunda())
+				&& p.getSegunda().equalsIgnoreCase("S") ? true : false);
+		retorno.setTerca(Objects.nonNull(p.getTerca())
+				&& p.getTerca().equalsIgnoreCase("S") ? true : false);
+		retorno.setQuarta(Objects.nonNull(p.getQuarta())
+				&& p.getQuarta().equalsIgnoreCase("S") ? true : false);
+		retorno.setQuinta(Objects.nonNull(p.getQuinta())
+				&& p.getQuinta().equalsIgnoreCase("S") ? true : false);
+		retorno.setSexta(Objects.nonNull(p.getSexta())
+				&& p.getSexta().equalsIgnoreCase("S") ? true : false);
+		retorno.setSabado(Objects.nonNull(p.getSabado())
+				&& p.getSabado().equalsIgnoreCase("S") ? true : false);
+		retorno.setDomingo(Objects.nonNull(p.getDomingo())
+				&& p.getDomingo().equalsIgnoreCase("S") ? true : false);
 
-		retorno.setSegunda(Objects.nonNull(p.getSegunda()) && p.getSegunda().equalsIgnoreCase("S") ? true : false);
-		retorno.setTerca(Objects.nonNull(p.getTerca()) && p.getTerca().equalsIgnoreCase("S") ? true : false);
-		retorno.setQuarta(Objects.nonNull(p.getQuarta()) && p.getQuarta().equalsIgnoreCase("S") ? true : false);
-		retorno.setQuinta(Objects.nonNull(p.getQuinta()) && p.getQuinta().equalsIgnoreCase("S") ? true : false);
-		retorno.setSexta(Objects.nonNull(p.getSexta()) && p.getSexta().equalsIgnoreCase("S") ? true : false);
-		retorno.setSabado(Objects.nonNull(p.getSabado()) && p.getSabado().equalsIgnoreCase("S") ? true : false);
-		retorno.setDomingo(Objects.nonNull(p.getDomingo()) && p.getDomingo().equalsIgnoreCase("S") ? true : false);
-
-		retorno.setObservacoes(p.getObservacoes());
-		retorno.setValorCustoAtividade(p.getValorCustoAtividade());
 		retorno.setUnidade(unidadeBuilder.buildTO(p.getUnidade()));
 		retorno.setProjeto(projetoBuilder.buildTO(p.getProjeto()));
 		retorno.setPrograma(programaTOBuilder.buildTO(p.getPrograma()));
-		retorno.setIdTurma(p.getIdTurma());
 		
-		retorno.setPlanosAcao(planosAcaoBuilder.buildTO(p.getPlanosAcao()));
 
-		if(Objects.nonNull(p.getId())) {
-			List<ColaboradoresAtividadeTO> colaboradores = getColaboradoresAtividadeCmd.getPorAtividade(p.getId());
+		if(Objects.nonNull(p.getTipoAtividade())) {
+			retorno.setTiposAtividades(p.getTipoAtividade().getId());
+		}
+
+		if (Objects.nonNull(p.getId())) {
+			List<ColaboradoresAtividadeTO> colaboradores = getColaboradoresAtividadeCmd
+					.getPorAtividade(p.getId());
 			retorno.setColaboradoresAtividade(colaboradores);
 		}
-		
-		if(Objects.nonNull(p.getId())) {
-			List<MateriaisAtividadeTO> materiaisAtividade = getMateriaisAtividadeCmd.getAllTOPorAtividade(p.getId());
+
+		if (Objects.nonNull(p.getId())) {
+			List<MateriaisAtividadeTO> materiaisAtividade = getMateriaisAtividadeCmd
+					.getAllTOPorAtividade(p.getId());
 			retorno.setMateriaisAtividade(materiaisAtividade);
 		}
-
-		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
 
 		return retorno;
 	}
@@ -184,9 +172,8 @@ public class OficinasTOBuilder {
 	}
 
 	public List<OficinasTO> buildAll(List<Oficinas> dtos) {
-		return dtos.stream().map(dto -> buildTO(dto)).collect(Collectors.toList());
+		return dtos.stream().map(dto -> buildTO(dto))
+				.collect(Collectors.toList());
 	}
-	
-	
 
 }

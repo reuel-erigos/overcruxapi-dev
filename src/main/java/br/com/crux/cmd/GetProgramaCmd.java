@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import br.com.crux.builder.ComboProgramaTOBuilder;
 import br.com.crux.builder.ProgramaTOBuilder;
 import br.com.crux.dao.ProgramaDao;
 import br.com.crux.dao.dto.ComboProgramaDTO;
@@ -21,6 +22,7 @@ public class GetProgramaCmd {
 
 	@Autowired private ProgramaRepository repository;
 	@Autowired private ProgramaTOBuilder toBuilder;
+	@Autowired private ComboProgramaTOBuilder comboTOBuilder;
 	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 	@Autowired private ProgramaDao programaDao;
 
@@ -45,7 +47,7 @@ public class GetProgramaCmd {
 	public List<ComboProgramaTO> getAllCombo() {
 		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
 		List<ComboProgramaDTO> programas = programaDao.getAllByIdInstituicao(idInstituicao);
-		return toBuilder.buildAllCombo(programas);
+		return comboTOBuilder.buildTO(programas);
 	}
 
 }

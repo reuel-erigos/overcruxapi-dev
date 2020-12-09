@@ -1,6 +1,7 @@
 package br.com.crux.entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -127,6 +129,9 @@ public class Unidade{
 	
 	@Column(name = "nr_ordem_exibicao")
 	private Long ordemExibicao;
+	
+	@OneToMany(mappedBy="unidade")
+	private List<EstruturaUnidade> estruturasUnidades;
 	
 	
 	public Unidade() {
@@ -405,6 +410,14 @@ public class Unidade{
 		} else if (!idUnidade.equals(other.idUnidade))
 			return false;
 		return true;
+	}
+
+	public List<EstruturaUnidade> getEstruturasUnidades() {
+		return estruturasUnidades;
+	}
+
+	public void setEstruturasUnidades(List<EstruturaUnidade> estruturasUnidades) {
+		this.estruturasUnidades = estruturasUnidades;
 	}
 
 	

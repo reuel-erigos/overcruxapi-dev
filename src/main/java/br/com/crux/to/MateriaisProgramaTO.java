@@ -9,6 +9,7 @@ public class MateriaisProgramaTO {
 	private LocalDateTime dataInicio;
 	private MaterialTO material;
 	private ProgramaTO programa;
+	private Long quantidadeMaterial;
 	private Double vlMaterial;
 	private ParceriasProgramaTO parceriasPrograma;
 	
@@ -53,6 +54,12 @@ public class MateriaisProgramaTO {
 	}
 	public void setParceriasPrograma(ParceriasProgramaTO parceriasPrograma) {
 		this.parceriasPrograma = parceriasPrograma;
+	}
+	public Long getQuantidadeMaterial() {
+		return quantidadeMaterial;
+	}
+	public void setQuantidadeMaterial(Long quantidadeMaterial) {
+		this.quantidadeMaterial = quantidadeMaterial;
 	}
 
 	

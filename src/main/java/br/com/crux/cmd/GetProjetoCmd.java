@@ -28,7 +28,7 @@ public class GetProjetoCmd {
 	public List<ComboProjetoTO> getAllCombo() {
 		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
 		List<ComboProjetoDTO> programas = projetoDao.getAllByInstituicao(idInstituicao);
-		return toBuilder.buildAllCombo(programas);
+		return toBuilder.buildAllParaCombo(programas);
 	}
 	
 	public List<ProjetoTO> getAllPrograma(Long idPrograma) {

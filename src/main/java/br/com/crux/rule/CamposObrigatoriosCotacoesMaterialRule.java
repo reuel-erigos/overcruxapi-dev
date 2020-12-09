@@ -17,11 +17,6 @@ public class CamposObrigatoriosCotacoesMaterialRule {
 			throw new CamposObrigatoriosException("O material deve ser informado.");
 		}
 
-		if (Objects.isNull(to.getPedidosMaterial()) || Objects.isNull(to.getPedidosMaterial()
-				.getId())) {
-			throw new CamposObrigatoriosException("O pedido deve ser informado.");
-		}
-
 		if (Objects.isNull(to.getEmpresa()) || Objects.isNull(to.getEmpresa()
 				.getId())) {
 			throw new CamposObrigatoriosException("A empresa deve ser informada.");
