@@ -12,10 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.builder.SaldosContasBancariaTOBuilder;
+import br.com.crux.dao.SaldoContaBancariaDao;
+import br.com.crux.dao.dto.SaldoContaBancariaDTO;
 import br.com.crux.dao.repository.SaldosContasBancariaRepository;
 import br.com.crux.entity.SaldosContasBancaria;
 import br.com.crux.exception.NotFoundException;
 import br.com.crux.infra.util.Java8DateUtil;
+import br.com.crux.rule.SaldoContaBancariaRule;
 import br.com.crux.to.SaldosContasBancariaTO;
 
 @Component
@@ -24,6 +27,14 @@ public class GetSaldosContasBancariaCmd {
 	@Autowired private SaldosContasBancariaRepository repository;
 	@Autowired private SaldosContasBancariaTOBuilder toBuilder;
 	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
+	@Autowired private SaldoContaBancariaDao saldoContaBancariaDao;
+	@Autowired private SaldoContaBancariaRule saldoContaBancariaRule;
+	 
+	
+	public SaldoContaBancariaDTO getSaldoContaBancaria(LocalDateTime dataInicio, LocalDateTime dataFinal, Long idContaBancaria) {
+		saldoContaBancariaRule.verificar(dataInicio, dataFinal, idContaBancaria);
+		return saldoContaBancariaDao.getSaldoContaBancaria(dataInicio.toLocalDate(), dataFinal.toLocalDate(), idContaBancaria);
+	}
 
 	
 	public List<SaldosContasBancariaTO> getAllFilter( String tipoContaBancaria, 

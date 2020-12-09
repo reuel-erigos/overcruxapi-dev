@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.crux.cmd.GetSaldosContasBancariaCmd;
+import br.com.crux.dao.dto.SaldoContaBancariaDTO;
 import br.com.crux.to.SaldosContasBancariaTO;
 
 @RestController
@@ -43,4 +45,13 @@ public class SaldosContasBancariaService {
 		return getCmd.getPorConta(id);
 	}
 
+	
+	@GetMapping(path = "/saldo/{contabancaria}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public SaldoContaBancariaDTO getSaldoContaBancaria(@PathVariable(name = "contabancaria") Long numeroContaBancaria,
+													   @RequestParam(name = "dataInicio", required = true) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataInicio,
+											           @RequestParam(name = "dataFim", required = true) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataFinal
+			                                           ) {
+		return getCmd.getSaldoContaBancaria(dataInicio, dataFinal, numeroContaBancaria);
+	}
+	
 }

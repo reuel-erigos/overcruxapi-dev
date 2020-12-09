@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.crux.cmd.GerarArquivoProvisionamentoCmd;
-import br.com.crux.cmd.GerarProvisionamentoCmd;
 import br.com.crux.cmd.GetProvisionamentoCmd;
 import br.com.crux.to.ProvisionamentoTO;
 
@@ -23,14 +22,14 @@ import br.com.crux.to.ProvisionamentoTO;
 public class ProvisionamentoService {
 	
 	@Autowired private GetProvisionamentoCmd getCmd;
-	@Autowired private GerarProvisionamentoCmd gerarCmd;
 	@Autowired private GerarArquivoProvisionamentoCmd gerarArquivoCmd;
 
 	@GetMapping(path = "/filter", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<ProvisionamentoTO> getAllFilter(@RequestParam(name = "dataInicio", required = true) Long dataInicio,
-                                                @RequestParam(name = "dataFim", required = true) Long dataFim
+                                                @RequestParam(name = "dataFim", required = true) Long dataFim,
+                                                @RequestParam(name = "centrocusto", required = false) String nomeCentroCusto
                                                 ) {
-		return getCmd.getAllFilter(dataInicio, dataFim);
+		return getCmd.getAllFilter(dataInicio, dataFim, nomeCentroCusto);
 	}
 	
 	@GetMapping(path = "/inconsistentes", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -41,17 +40,10 @@ public class ProvisionamentoService {
 	
 	@GetMapping(path = "/carregar", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<ProvisionamentoTO> carregar(@RequestParam(name = "dataInicio", required = true) Long dataInicio,
-                                            @RequestParam(name = "dataFim", required = true) Long dataFim
+                                            @RequestParam(name = "dataFim", required = true) Long dataFim,
+                                            @RequestParam(name = "centrocusto", required = false) String nomeCentroCusto
                                             ) {
-		return getCmd.carregar(dataInicio, dataFim);
-	}
-	
-	
-	@PostMapping(path = "/exportar")
-	public void gerar(@RequestParam(name = "dataInicio", required = false) Long dataInicio,
-                      @RequestParam(name = "dataFim", required = false) Long dataFim
-                      ) {
-		gerarCmd.gerar(dataInicio, dataFim);
+		return getCmd.carregar(dataInicio, dataFim, nomeCentroCusto);
 	}
 	
 	
