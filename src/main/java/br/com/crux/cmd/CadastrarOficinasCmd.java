@@ -38,6 +38,7 @@ public class CadastrarOficinasCmd {
 		
 		oficinasTO.stream().forEach(oficinaTO -> {
 			oficinaTO.setIdTurma(turmaTO.getId());
+			oficinaTO.setUnidade(turmaTO.getUnidade());
 			cadastrar(oficinaTO);
 		});
 	

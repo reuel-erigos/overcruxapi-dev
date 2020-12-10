@@ -97,10 +97,6 @@ public class Oficinas implements Serializable {
 	@JoinColumn(name="id_tipo_atividade")
 	private TiposAtividades tipoAtividade;
 	
-	@Column(name = "tx_observacoes")
-	private String observacoes;
-
-
 	@Column(name = "id_usuario_apl")
 	private Long usuarioAlteracao;
 
@@ -303,13 +299,5 @@ public class Oficinas implements Serializable {
 		this.tipoAtividade = tipoAtividade;
 	}
 
-	public String getObservacoes() {
-		return observacoes;
-	}
 
-	public void setObservacoes(String observacoes) {
-		this.observacoes = observacoes;
-	}
-
-	
 }

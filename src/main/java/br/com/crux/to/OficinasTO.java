@@ -21,19 +21,10 @@ public class OficinasTO {
 	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class) 
 	private LocalDateTime dataInicio;
 
-	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class) 
-	private LocalDateTime dataPrevisaoInicio;
-
-	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class) 
-	private LocalDateTime dataPrevisaoTermino;
-
 	private String horaFim;
 	private String horaInicio;
-	private Long numeroAulas;
 	private Long cargaHoraria;
 	private Long maximoParticipantes;
-	private Long periodoAtividade;
-	private String horarioFixo;
 	private String localExecucao;
 
 	private Boolean segunda;
@@ -44,10 +35,8 @@ public class OficinasTO {
 	private Boolean sabado;
 	private Boolean domingo;
 
-	private String observacoes;
 	private Double valorCustoAtividade;
 
-	private PlanosAcaoTO planosAcao;
 	private ProjetoTO projeto;
 	private ProgramaTO programa;
 	private UnidadeTO unidade;
@@ -104,22 +93,6 @@ public class OficinasTO {
 		this.dataInicio = dataInicio;
 	}
 
-	public LocalDateTime getDataPrevisaoInicio() {
-		return dataPrevisaoInicio;
-	}
-
-	public void setDataPrevisaoInicio(LocalDateTime dataPrevisaoInicio) {
-		this.dataPrevisaoInicio = dataPrevisaoInicio;
-	}
-
-	public LocalDateTime getDataPrevisaoTermino() {
-		return dataPrevisaoTermino;
-	}
-
-	public void setDataPrevisaoTermino(LocalDateTime dataPrevisaoTermino) {
-		this.dataPrevisaoTermino = dataPrevisaoTermino;
-	}
-
 	public String getHoraFim() {
 		return horaFim;
 	}
@@ -134,14 +107,6 @@ public class OficinasTO {
 
 	public void setHoraInicio(String horaInicio) {
 		this.horaInicio = horaInicio;
-	}
-
-	public Long getNumeroAulas() {
-		return numeroAulas;
-	}
-
-	public void setNumeroAulas(Long numeroAulas) {
-		this.numeroAulas = numeroAulas;
 	}
 
 	public Long getCargaHoraria() {
@@ -160,28 +125,12 @@ public class OficinasTO {
 		this.maximoParticipantes = maximoParticipantes;
 	}
 
-	public Long getPeriodoAtividade() {
-		return periodoAtividade;
-	}
-
-	public void setPeriodoAtividade(Long periodoAtividade) {
-		this.periodoAtividade = periodoAtividade;
-	}
-
 	public Boolean getDomingo() {
 		return domingo;
 	}
 
 	public void setDomingo(Boolean domingo) {
 		this.domingo = domingo;
-	}
-
-	public String getHorarioFixo() {
-		return horarioFixo;
-	}
-
-	public void setHorarioFixo(String horarioFixo) {
-		this.horarioFixo = horarioFixo;
 	}
 
 	public String getLocalExecucao() {
@@ -240,28 +189,12 @@ public class OficinasTO {
 		this.terca = terca;
 	}
 
-	public String getObservacoes() {
-		return observacoes;
-	}
-
-	public void setObservacoes(String observacoes) {
-		this.observacoes = observacoes;
-	}
-
 	public Double getValorCustoAtividade() {
 		return valorCustoAtividade;
 	}
 
 	public void setValorCustoAtividade(Double valorCustoAtividade) {
 		this.valorCustoAtividade = valorCustoAtividade;
-	}
-
-	public PlanosAcaoTO getPlanosAcao() {
-		return planosAcao;
-	}
-
-	public void setPlanosAcao(PlanosAcaoTO planosAcao) {
-		this.planosAcao = planosAcao;
 	}
 
 	public ProjetoTO getProjeto() {
