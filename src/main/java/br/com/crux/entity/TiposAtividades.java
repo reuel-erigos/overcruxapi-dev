@@ -4,12 +4,9 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -30,9 +27,8 @@ public class TiposAtividades implements Serializable {
 	@Column(name="ds_tipo_atividade")
 	private String descricao;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="id_instituicao", nullable = true)
-	private Instituicao instituicao;
+	@Column(name="id_instituicao", nullable = true)
+	private Long idInstituicao;
 
 	@Column(name="id_usuario_apl")
 	private Long usuarioAlteracao;
@@ -66,12 +62,14 @@ public class TiposAtividades implements Serializable {
 		this.usuarioAlteracao = usuarioAlteracao;
 	}
 
-	public Instituicao getInstituicao() {
-		return instituicao;
+	public Long getIdInstituicao() {
+		return idInstituicao;
 	}
 
-	public void setInstituicao(Instituicao instituicao) {
-		this.instituicao = instituicao;
+	public void setIdInstituicao(Long idInstituicao) {
+		this.idInstituicao = idInstituicao;
 	}
+
+
 
 }

@@ -8,7 +8,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.crux.cmd.GetInstituicaoCmd;
 import br.com.crux.cmd.GetUsuarioLogadoCmd;
 import br.com.crux.entity.TiposAtividades;
 import br.com.crux.to.TiposAtividadesTO;
@@ -16,12 +15,7 @@ import br.com.crux.to.TiposAtividadesTO;
 @Component
 public class TiposAtividadesTOBuilder {
 
-	@Autowired
-	private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
-	@Autowired
-	private GetInstituicaoCmd getInstituicaoCmd;
-	@Autowired
-	private InstituicaoTOBuilder instituicaoTOBuilder;
+	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
 
 	public TiposAtividadesTO buildTO(TiposAtividades entity) {
 		TiposAtividadesTO to = new TiposAtividadesTO();
@@ -31,9 +25,6 @@ public class TiposAtividadesTOBuilder {
 		}
 
 		BeanUtils.copyProperties(entity, to);
-
-		to.setInstituicao(
-				instituicaoTOBuilder.buildTO(entity.getInstituicao()));
 
 		return to;
 	}
@@ -47,14 +38,7 @@ public class TiposAtividadesTOBuilder {
 
 		BeanUtils.copyProperties(to, entity);
 
-		if (Objects.nonNull(to.getInstituicao())
-				&& Objects.nonNull(to.getInstituicao().getId())) {
-			entity.setInstituicao(
-					getInstituicaoCmd.getById(to.getInstituicao().getId()));
-		}
-
-		entity.setUsuarioAlteracao(
-				getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
+		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 
 		return entity;
 	}

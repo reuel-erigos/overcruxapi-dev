@@ -3,7 +3,7 @@ package br.com.crux.to;
 public class TiposAtividadesTO {
 	private Long id;
 	private String descricao;
-	private InstituicaoTO instituicao;
+	private Long idInstituicao;
 	
 	
 	public TiposAtividadesTO() {
@@ -26,12 +26,12 @@ public class TiposAtividadesTO {
 		this.descricao = descricao;
 	}
 
-	public InstituicaoTO getInstituicao() {
-		return instituicao;
+	public Long getIdInstituicao() {
+		return idInstituicao;
 	}
 
-	public void setInstituicao(InstituicaoTO instituicao) {
-		this.instituicao = instituicao;
+	public void setIdInstituicao(Long idInstituicao) {
+		this.idInstituicao = idInstituicao;
 	}
 
 
