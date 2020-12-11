@@ -23,6 +23,7 @@ public class FuncionarioDao extends BaseDao{
 		sql.append(" inner join pessoas_fisicas pf on f.id_pessoa_fisica = pf.id_pessoa_fisica    ");
 		sql.append(" where 1=1                                                                    ");
 		sql.append("  and pf.id_instituicao = :idInstituicao                                      ");
+		sql.append(" order by pf.nm_pessoa_fisica                                                 ");
 		
 		Query query = em.createNativeQuery(sql.toString());
 		query.setParameter("idInstituicao", idInstituicao);

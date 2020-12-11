@@ -77,12 +77,22 @@ public class ParceriasProgramaTOBuilder {
 		BeanUtils.copyProperties(parceriasPrograma, to, "projeto", "empresa");
 
 		to.setEmpresa(empresaTOBuilder.buildTO(parceriasPrograma.getEmpresa()));
-
-		to.setMateriaisPrograma(materiaisProgramaTOBuilder.buildAll(parceriasPrograma.getMateriaisProgramas()));
-		to.setParceriasCategorias(parceriasCategoriasTOBuilder.buildAllTO(parceriasPrograma.getParceriasCategorias()));
-		to.setAditivosParceriasProgramas(
-				aditivoParceriaProgramaTOBuilder.buildTO(parceriasPrograma.getAditivosParceriaPrograma()));
-		to.setContasCentrosCusto(contasCentrosCustoTOBuilder.buildAllTO(parceriasPrograma.getContasCentrosCusto()));
+		
+		if(Objects.nonNull(parceriasPrograma.getMateriaisProgramas())) {
+			to.setMateriaisPrograma(materiaisProgramaTOBuilder.buildAll(parceriasPrograma.getMateriaisProgramas()));
+		}
+		
+		if(Objects.nonNull(parceriasPrograma.getParceriasCategorias())) {
+			to.setParceriasCategorias(parceriasCategoriasTOBuilder.buildAllTO(parceriasPrograma.getParceriasCategorias()));
+		}
+		
+		if(Objects.nonNull(parceriasPrograma.getAditivosParceriaPrograma())) {
+			to.setAditivosParceriasProgramas(aditivoParceriaProgramaTOBuilder.buildTO(parceriasPrograma.getAditivosParceriaPrograma()));
+		}
+		
+		if(Objects.nonNull(parceriasPrograma.getContasCentrosCusto())) {
+			to.setContasCentrosCusto(contasCentrosCustoTOBuilder.buildAllTO(parceriasPrograma.getContasCentrosCusto()));
+		}
 
 		return to;
 	}

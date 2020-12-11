@@ -70,10 +70,21 @@ public class ParceriasProjetoTOBuilder {
 		BeanUtils.copyProperties(parceriaProjeto, to, "projeto", "empresa");
 
 		to.setEmpresa(empresaTOBuilder.buildTO(parceriaProjeto.getEmpresa()));
-		to.setMateriaisProjeto(materiaisProjetoTOBuilder.buildAllTO(parceriaProjeto.getMateriaisProjetos()));
-        to.setParceriasCategorias(parceriasCategoriasTOBuilder.buildAllTO(parceriaProjeto.getParceriasCategorias()));
-        to.setAditivosParceriasProjeto(aditivoParceriaProjetoTOBuilder.buildTO(parceriaProjeto.getAditivosParceriaProjeto()));
-        to.setContasCentrosCusto(contasCentrosCustoTOBuilder.buildAllTO(parceriaProjeto.getContasCentrosCusto()));
+		if(Objects.nonNull(parceriaProjeto.getMateriaisProjetos())) {
+			to.setMateriaisProjeto(materiaisProjetoTOBuilder.buildAllTO(parceriaProjeto.getMateriaisProjetos()));
+		}
+		
+		if(Objects.nonNull(parceriaProjeto.getParceriasCategorias())) {
+			to.setParceriasCategorias(parceriasCategoriasTOBuilder.buildAllTO(parceriaProjeto.getParceriasCategorias()));
+		}
+		
+		if(Objects.nonNull(parceriaProjeto.getAditivosParceriaProjeto())) {
+			to.setAditivosParceriasProjeto(aditivoParceriaProjetoTOBuilder.buildTO(parceriaProjeto.getAditivosParceriaProjeto()));
+		}
+		
+		if(Objects.nonNull(parceriaProjeto.getContasCentrosCusto())) {
+			to.setContasCentrosCusto(contasCentrosCustoTOBuilder.buildAllTO(parceriaProjeto.getContasCentrosCusto()));
+		}
 
 		return to;
 	}
