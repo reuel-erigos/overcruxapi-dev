@@ -100,6 +100,7 @@ public class AlterarOficinasCmd {
 		if(Objects.nonNull(novos)){
 			novos.forEach(novo -> {
 				novo.setIdTurma(turmaTO.getId());
+				novo.setUnidade(turmaTO.getUnidade());
 				alterar(novo);
 			});
 		}
