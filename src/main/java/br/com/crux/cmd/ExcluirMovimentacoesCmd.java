@@ -103,16 +103,6 @@ public class ExcluirMovimentacoesCmd {
 			
 		} catch (NegocioException e) {
 			throw new NegocioException(e.getMessage());
-			
-		}catch (Exception e) {
-			if(Objects.nonNull(e.getCause())) {
-				if(e.getCause() instanceof DataIntegrityViolationException || e.getCause().toString().contains("ConstraintViolationException")) {
-					throw new TabaleReferenciaEncontradaException("Erro ao excluir, verifique se há outro cadastro com referência com esse registro.");
-				}
-			}
-			
-			throw new RuntimeException(e.getMessage());
 		}
-
 	}
 }

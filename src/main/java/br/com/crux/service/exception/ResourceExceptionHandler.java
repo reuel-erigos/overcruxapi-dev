@@ -3,6 +3,7 @@ package br.com.crux.service.exception;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -28,6 +29,9 @@ public class ResourceExceptionHandler extends ResponseEntityExceptionHandler{
 		if (throwable instanceof NegocioException || throwable.getCause() instanceof NegocioException) {
 			status = STATUS_ERRO_NEGOCIO;
 			apiError = new ApiError(HttpStatus.NOT_FOUND.value(), throwable.getMessage());
+		} else if (throwable instanceof DataIntegrityViolationException) {
+			status = STATUS_ERRO_NEGOCIO;
+			apiError = new ApiError(HttpStatus.NOT_FOUND.value(), "Erro ao excluir, há outro cadastro com referência com esse registro.");
 		} else {
 			status = HttpStatus.INTERNAL_SERVER_ERROR.value();
 			log.error("server exception", throwable);

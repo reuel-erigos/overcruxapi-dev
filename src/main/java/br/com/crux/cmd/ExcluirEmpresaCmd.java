@@ -4,14 +4,12 @@ import java.util.Objects;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.dao.repository.EmpresaRepository;
 import br.com.crux.entity.Empresa;
 import br.com.crux.exception.NotFoundException;
 import br.com.crux.exception.ParametroNaoInformadoException;
-import br.com.crux.exception.TabaleReferenciaEncontradaException;
 
 @Component
 public class ExcluirEmpresaCmd {
@@ -21,26 +19,15 @@ public class ExcluirEmpresaCmd {
 	
 	
 	public void excluir(Long id) {
-		try {
-			if(Objects.isNull(id)) {
-				throw new ParametroNaoInformadoException("Erro ao excluir.");
-			}
-			
-			Optional<Empresa> entity = repository.findById(id);
-			if(!entity.isPresent()) {
-				throw new NotFoundException("Empresa informada não existe.");
-			}
-			
-			repository.deleteById(id);
-		} catch (Exception e) {
-			if(Objects.nonNull(e.getCause())) {
-				if(e.getCause() instanceof DataIntegrityViolationException || e.getCause().toString().contains("ConstraintViolationException")) {
-					throw new TabaleReferenciaEncontradaException("Erro ao excluir, verifique se há outro cadastro com referência com esse registro.");
-				}
-			}
-
-			throw new RuntimeException(e.getMessage());
-		}	
+		if(Objects.isNull(id)) {
+			throw new ParametroNaoInformadoException("Erro ao excluir.");
+		}
 		
+		Optional<Empresa> entity = repository.findById(id);
+		if(!entity.isPresent()) {
+			throw new NotFoundException("Empresa informada não existe.");
+		}
+		
+		repository.deleteById(id);
 	}
 }

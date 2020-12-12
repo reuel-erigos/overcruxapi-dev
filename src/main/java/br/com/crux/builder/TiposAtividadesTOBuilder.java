@@ -8,6 +8,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import br.com.crux.cmd.GetUnidadeLogadaCmd;
 import br.com.crux.cmd.GetUsuarioLogadoCmd;
 import br.com.crux.entity.TiposAtividades;
 import br.com.crux.to.TiposAtividadesTO;
@@ -16,6 +17,7 @@ import br.com.crux.to.TiposAtividadesTO;
 public class TiposAtividadesTOBuilder {
 
 	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
+	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 
 	public TiposAtividadesTO buildTO(TiposAtividades entity) {
 		TiposAtividadesTO to = new TiposAtividadesTO();
@@ -39,6 +41,7 @@ public class TiposAtividadesTOBuilder {
 		BeanUtils.copyProperties(to, entity);
 
 		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
+		entity.setIdInstituicao(getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId());
 
 		return entity;
 	}

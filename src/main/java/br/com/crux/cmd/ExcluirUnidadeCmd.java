@@ -1,11 +1,9 @@
 package br.com.crux.cmd;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.dao.repository.ArquivoRepository;
@@ -30,37 +28,26 @@ public class ExcluirUnidadeCmd {
 	
 	
 	public void excluir(Long idUnidade) {
-		try {
-			Optional<Unidade> unidade = unidadeRepository.findById(idUnidade);
-			
-			estruturaUnidadeRepository.deleteAll(unidade.get().getEstruturasUnidades());
-			
-			Optional<List<Perspectiva>> perspectiva = perspectivaRepository.findByIdUnidade(unidade.get().getIdUnidade());
-			if(perspectiva.isPresent()) {
-				throw new TabaleReferenciaEncontradaException("Por favor, exclua a Perspectiva antes.");
-			}
-			if(unidade.get().getIdArquivo() != null) {
-				arquivoRepository.deleteById(unidade.get().getIdArquivo());
-			}
-			
-			
-			Optional<List<UsuariosUnidade>> usuariosUnidade = usuariosUnidadeRepository.findByUnidade(unidade.get());
-			if(usuariosUnidade.isPresent()) {
-				usuariosUnidade.get().stream().forEach(uu -> {
-					usuariosUnidadeRepository.deleteById(uu.getId());
-				});
-			}
-			
-			unidadeRepository.delete(unidade.get());
-			
-		} catch (Exception e) {
-			if(Objects.nonNull(e.getCause())) {
-				if(e.getCause() instanceof DataIntegrityViolationException || e.getCause().toString().contains("ConstraintViolationException")) {
-					throw new TabaleReferenciaEncontradaException("Erro ao excluir, verifique se há outro cadastro com referência com esse registro.");
-				}
-			}
-
-			throw new RuntimeException(e.getMessage());
+		Optional<Unidade> unidade = unidadeRepository.findById(idUnidade);
+		
+		estruturaUnidadeRepository.deleteAll(unidade.get().getEstruturasUnidades());
+		
+		Optional<List<Perspectiva>> perspectiva = perspectivaRepository.findByIdUnidade(unidade.get().getIdUnidade());
+		if(perspectiva.isPresent()) {
+			throw new TabaleReferenciaEncontradaException("Por favor, exclua a Perspectiva antes.");
 		}
+		if(unidade.get().getIdArquivo() != null) {
+			arquivoRepository.deleteById(unidade.get().getIdArquivo());
+		}
+		
+		
+		Optional<List<UsuariosUnidade>> usuariosUnidade = usuariosUnidadeRepository.findByUnidade(unidade.get());
+		if(usuariosUnidade.isPresent()) {
+			usuariosUnidade.get().stream().forEach(uu -> {
+				usuariosUnidadeRepository.deleteById(uu.getId());
+			});
+		}
+		
+		unidadeRepository.delete(unidade.get());
 	}
 }

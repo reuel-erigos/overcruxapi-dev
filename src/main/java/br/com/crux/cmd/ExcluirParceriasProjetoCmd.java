@@ -1,17 +1,14 @@
 package br.com.crux.cmd;
 
 import java.util.List;
-import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.dao.repository.ParceriasProjetoRepository;
 import br.com.crux.entity.MateriaisProjeto;
 import br.com.crux.entity.ParceriasCategorias;
 import br.com.crux.entity.ParceriasProjeto;
-import br.com.crux.exception.TabaleReferenciaEncontradaException;
 
 @Component
 public class ExcluirParceriasProjetoCmd {
@@ -29,19 +26,7 @@ public class ExcluirParceriasProjetoCmd {
 		List<ParceriasCategorias> listaParceriasCategorias = getParceriasCategoriasCmd.getParceriasCategoriasByParceriasProjeto(parceriasProjeto);
 		excluirParceriasCategoriasCmd.deletarAll(listaParceriasCategorias);
 
-		try {
-			parceriasProjetoRepository.delete(parceriasProjeto);
-
-		} catch (Exception e) {
-			if(Objects.nonNull(e.getCause())) {
-				if(e.getCause() instanceof DataIntegrityViolationException || e.getCause().toString().contains("ConstraintViolationException")) {
-					throw new TabaleReferenciaEncontradaException("Erro ao excluir, verifique se há outro cadastro com referência com esse registro.");
-				}
-			}
-
-			throw new RuntimeException(e.getMessage());
-		}
-
+		parceriasProjetoRepository.delete(parceriasProjeto);
 	}
 
 }
