@@ -5,15 +5,20 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.cmd.GetEncaminhaAlunosCmd;
 import br.com.crux.cmd.GetNiveisTurmasCmd;
+import br.com.crux.cmd.GetProgramaCmd;
+import br.com.crux.cmd.GetProjetoCmd;
 import br.com.crux.cmd.GetVulnerabilidadesAlunoCmd;
 import br.com.crux.dao.dto.ComboAlunoDTO;
 import br.com.crux.entity.Aluno;
 import br.com.crux.entity.NiveisTurmas;
+import br.com.crux.entity.Programa;
+import br.com.crux.entity.Projeto;
 import br.com.crux.to.AlunoTO;
 import br.com.crux.to.ComboAlunoTO;
 
@@ -26,29 +31,16 @@ public class AlunoTOBuilder {
 	@Autowired private NiveisTurmasTOBuilder niveisTurmasTOBuilder;
 	@Autowired private GetNiveisTurmasCmd getNiveisTurmasCmd;
 	@Autowired private GetEncaminhaAlunosCmd encaminhaAlunosCmd;
+	@Autowired private GetProgramaCmd getProgramaCmd;
+	@Autowired private GetProjetoCmd getProjetoCmd;
 
 	public Aluno build(AlunoTO p) {
 		Aluno retorno = new Aluno();
 
-		retorno.setId(p.getId());
-		retorno.setDescProblemaSaude(p.getDescProblemaSaude());
-		retorno.setDescMedicamentosControlados(p.getDescMedicamentosControlados());
-		retorno.setDescOutrasInformacoes(p.getDescOutrasInformacoes());
-		retorno.setDescFormaIngressoEntidade(p.getDescFormaIngressoEntidade());
-		retorno.setAtendidoOrgaoRede(p.getAtendidoOrgaoRede());
-		retorno.setDataEntrada(p.getDataEntrada());
-		retorno.setObservacoes(p.getObservacoes());
-		retorno.setDataDesligamento(p.getDataDesligamento());
-		retorno.setDescDesligamento(p.getDescDesligamento());
+		BeanUtils.copyProperties(p, retorno);
+		
 		retorno.setPessoasFisica(pessoaFisicaBuilder.build(p.getPessoaFisica()));
 		retorno.setUnidade(unidadeBuilder.build(p.getUnidade()));
-		retorno.setDataCadastro(p.getDataCadastro()); 
-		retorno.setDataAlteracaoCadastro(p.getDataAlteracaoCadastro());
-		retorno.setMoraPais(p.getMoraPais());
-		retorno.setPaisCasados(p.getPaisCasados());
-		retorno.setMatriculadoEscPub(p.getMatriculadoEscPub());
-		retorno.setDescBuscaEscola(p.getDescBuscaEscola());
-		retorno.setPublicoPrioritario(p.getPublicoPrioritario());
 		
 		if(StringUtils.isEmpty(p.getMatriculaAluno())) {
 			retorno.setMatriculaAluno(String.valueOf(p.getId()));
@@ -60,11 +52,21 @@ public class AlunoTOBuilder {
 			retorno.getPessoasFisica().setCpf(String.valueOf(p.getId()));
 		}
 		
-		
 		if(Objects.nonNull(p.getNivelTurma()) && Objects.nonNull(p.getNivelTurma().getId())) {
 			NiveisTurmas niveisTurmas = getNiveisTurmasCmd.getById(p.getNivelTurma().getId());
 			retorno.setNivelTurma(niveisTurmas);
 		}
+		
+		if(Objects.nonNull(p.getPrograma()) && Objects.nonNull(p.getPrograma().getId())) {
+			Programa programa = getProgramaCmd.getById(p.getNivelTurma().getId());
+			retorno.setPrograma(programa);
+		}
+
+		if(Objects.nonNull(p.getProjeto()) && Objects.nonNull(p.getProjeto().getId())) {
+			Projeto projeto= getProjetoCmd.getById(p.getProjeto().getId());
+			retorno.setProjeto(projeto);
+		}
+
 		
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
 
@@ -78,28 +80,11 @@ public class AlunoTOBuilder {
 			return retorno;
 		}
 		
-		retorno.setId(p.getId());
-		retorno.setDescProblemaSaude(p.getDescProblemaSaude());
-		retorno.setDescMedicamentosControlados(p.getDescMedicamentosControlados());
-		retorno.setDescOutrasInformacoes(p.getDescOutrasInformacoes());
-		retorno.setDescFormaIngressoEntidade(p.getDescFormaIngressoEntidade());
-		retorno.setAtendidoOrgaoRede(p.getAtendidoOrgaoRede());
-		retorno.setDataEntrada(p.getDataEntrada());
-		retorno.setObservacoes(p.getObservacoes());
-		retorno.setDataDesligamento(p.getDataDesligamento());
-		retorno.setDescDesligamento(p.getDescDesligamento());
+		BeanUtils.copyProperties(p, retorno);
+		
 		retorno.setPessoaFisica(pessoaFisicaBuilder.buildTO(p.getPessoasFisica()));
 		retorno.setUnidade(unidadeBuilder.buildTO(p.getUnidade()));
-		retorno.setDataCadastro(p.getDataCadastro()); 
-		retorno.setDataAlteracaoCadastro(p.getDataAlteracaoCadastro());
-		retorno.setMoraPais(p.getMoraPais());
-		retorno.setPaisCasados(p.getPaisCasados());
-		retorno.setMatriculadoEscPub(p.getMatriculadoEscPub());
-		retorno.setDescBuscaEscola(p.getDescBuscaEscola());
-		retorno.setPublicoPrioritario(p.getPublicoPrioritario());
-		retorno.setMatriculaAluno(p.getMatriculaAluno());
 		retorno.setNivelTurma(niveisTurmasTOBuilder.buildTO(p.getNivelTurma()));
-		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
 
 		if(Objects.nonNull(p.getId())) {
 			retorno.setVulnerabilidades(getVulnerabilidadesAlunoCmd.getAllAlunoTO(p.getId()));

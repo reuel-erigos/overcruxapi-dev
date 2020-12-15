@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import br.com.crux.exception.RelatorioException;
 import br.com.crux.exception.base.NegocioException;
+import br.com.crux.infra.constantes.TipoRelatorioBeneficiario;
 
 @Component
 public class GerarRelatorioBeneficiarioCmd {
@@ -15,9 +16,7 @@ public class GerarRelatorioBeneficiarioCmd {
 	@Autowired private GerarRelatorioDeclaracaoBeneficiarioCmd gerarRelatorioDeclaracaoBeneficiarioCmd;
 	@Autowired private GerarRelatorioPasseEstudantilBeneficiarioCmd gerarRelatorioPasseEstudantilBeneficiarioCmd;
 	
-	private static final String FICHA_MATRICULA  = "FM";
-	private static final String DECLARACAO       = "DE";
-	private static final String PASSE_ESTUDANTIL = "PE";
+
 	
 	
 	public byte[] gerar(List<Integer> listaIdsPessoaFisica,String mimeType, String tipoRelatorio)  {
@@ -25,13 +24,13 @@ public class GerarRelatorioBeneficiarioCmd {
 			byte[] dados = null;
 			
 			switch (tipoRelatorio) {
-			case FICHA_MATRICULA:
+			case TipoRelatorioBeneficiario.FICHA_MATRICULA:
 				dados = gerarRelatorioFichaMatriculaCmd.gerar(listaIdsPessoaFisica, mimeType);
 				break;
-			case DECLARACAO:
+			case TipoRelatorioBeneficiario.DECLARACAO:
 				dados = gerarRelatorioDeclaracaoBeneficiarioCmd.gerar(listaIdsPessoaFisica, mimeType);
 				break;
-			case PASSE_ESTUDANTIL:
+			case TipoRelatorioBeneficiario.PASSE_ESTUDANTIL:
 				dados = gerarRelatorioPasseEstudantilBeneficiarioCmd.gerar(listaIdsPessoaFisica, mimeType);
 				break;				
 			default:

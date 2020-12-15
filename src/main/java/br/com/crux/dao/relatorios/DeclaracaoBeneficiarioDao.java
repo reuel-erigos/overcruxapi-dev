@@ -53,7 +53,14 @@ public class DeclaracaoBeneficiarioDao extends BaseDao{
 		sql.append("			ds_escola                               ,   ");
 		sql.append("			ds_escolaridade                         ,   ");
 		sql.append("			tx_observacao_declaracao_matricula      ,   ");
-		sql.append("			dt_declaracao_matricula                     ");
+		sql.append("			dt_declaracao_matricula                 ,   ");
+		sql.append("			turma                                   ,   ");
+		sql.append("			fone_celular_mae                        ,   ");
+		sql.append("			fone_residencial_mae                    ,   ");
+		sql.append("			fone_comercial_mae                      ,   ");
+		sql.append("			fone_celular_pai                        ,   ");
+		sql.append("			fone_residencial_pai                    ,   ");
+		sql.append("			fone_comercial_pai                          ");		
 		sql.append("	from vw_relatorio_declaracao_matricula              ");
 		sql.append(" where id_pessoa_fisica in (");
 		sql.append(String.join(", ", listaIdsPessoaFisica.stream().map(String::valueOf).collect(Collectors.toList())));

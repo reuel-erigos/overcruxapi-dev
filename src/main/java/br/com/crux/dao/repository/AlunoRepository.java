@@ -1,11 +1,14 @@
 package br.com.crux.dao.repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.crux.entity.Aluno;
 
@@ -35,5 +38,18 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long>{
 			+ " inner join PessoaFisica pf on a.pessoasFisica = pf"
 			+ " where Upper(pf.nome) like %?1%")
 	public Optional<List<Aluno>> findAlunosByNome(String nome);
+	
+	
+	
+	@Transactional(readOnly = false)
+	@Modifying
+	@Query("UPDATE Aluno SET observacaoDeclaracaoMatricula = ?1, dataDeclaracaoMatricula = ?2 WHERE id in ?3" )
+	public int updateObservacaoDeclaracaoMatricula(String texto, LocalDateTime data, List<Long> listaIdsAlunos);
+	
+	@Transactional(readOnly = false)
+	@Modifying
+	@Query("UPDATE Aluno SET observacaoDeclaracaoPasse = ?1, dataDeclaracaoPasse = ?2 WHERE id in ?3" )
+	public int updateObservacaoDeclaracaoPasse(String texto, LocalDateTime data, List<Long> listaIdsAlunos);
+
 	
 }

@@ -3,6 +3,7 @@ package br.com.crux.entity;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -14,6 +15,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import br.com.crux.infra.constantes.Constantes;
+import br.com.crux.infra.dao.SimNaoConverter;
 
 
 /**
@@ -98,7 +100,30 @@ public class Aluno {
 	@Column(name="id_usuario_apl")
 	private Long usuarioAlteracao;
 
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="id_programa")
+	private Programa programa;
 
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="id_projeto")
+	private Projeto projeto;
+
+	@Column(name="tx_observacao_declaracao_passe")
+	private String observacaoDeclaracaoPasse;
+	
+	@Column(name="dt_declaracao_passe")
+	private LocalDateTime dataDeclaracaoPasse;
+	
+	@Column(name="tx_observacao_declaracao_matricula")
+	private String observacaoDeclaracaoMatricula;
+	
+	@Column(name="dt_declaracao_matricula")
+	private LocalDateTime dataDeclaracaoMatricula;
+	
+	@Convert(converter = SimNaoConverter.class)
+	@Column(name = "st_apr_externa_pub")
+	private Boolean participaApresentacaoExterna;
+	
 	public Aluno() {
 	}
 
@@ -276,6 +301,62 @@ public class Aluno {
 
 	public void setNivelTurma(NiveisTurmas nivelTurma) {
 		this.nivelTurma = nivelTurma;
+	}
+
+	public Programa getPrograma() {
+		return programa;
+	}
+
+	public void setPrograma(Programa programa) {
+		this.programa = programa;
+	}
+
+	public Projeto getProjeto() {
+		return projeto;
+	}
+
+	public void setProjeto(Projeto projeto) {
+		this.projeto = projeto;
+	}
+
+	public String getObservacaoDeclaracaoPasse() {
+		return observacaoDeclaracaoPasse;
+	}
+
+	public void setObservacaoDeclaracaoPasse(String observacaoDeclaracaoPasse) {
+		this.observacaoDeclaracaoPasse = observacaoDeclaracaoPasse;
+	}
+
+	public LocalDateTime getDataDeclaracaoPasse() {
+		return dataDeclaracaoPasse;
+	}
+
+	public void setDataDeclaracaoPasse(LocalDateTime dataDeclaracaoPasse) {
+		this.dataDeclaracaoPasse = dataDeclaracaoPasse;
+	}
+
+	public String getObservacaoDeclaracaoMatricula() {
+		return observacaoDeclaracaoMatricula;
+	}
+
+	public void setObservacaoDeclaracaoMatricula(String observacaoDeclaracaoMatricula) {
+		this.observacaoDeclaracaoMatricula = observacaoDeclaracaoMatricula;
+	}
+
+	public LocalDateTime getDataDeclaracaoMatricula() {
+		return dataDeclaracaoMatricula;
+	}
+
+	public void setDataDeclaracaoMatricula(LocalDateTime dataDeclaracaoMatricula) {
+		this.dataDeclaracaoMatricula = dataDeclaracaoMatricula;
+	}
+
+	public Boolean getParticipaApresentacaoExterna() {
+		return participaApresentacaoExterna;
+	}
+
+	public void setParticipaApresentacaoExterna(Boolean participaApresentacaoExterna) {
+		this.participaApresentacaoExterna = participaApresentacaoExterna;
 	}
 	
 	

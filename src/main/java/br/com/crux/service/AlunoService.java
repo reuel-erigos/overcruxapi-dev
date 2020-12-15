@@ -21,6 +21,7 @@ import br.com.crux.cmd.ExcluirAlunoCmd;
 import br.com.crux.cmd.GetAlunoCmd;
 import br.com.crux.to.AlunoTO;
 import br.com.crux.to.ComboAlunoTO;
+import br.com.crux.to.relatorios.beneficiarios.DadosObservacaoRelatorio;
 
 @RestController
 @RequestMapping(value = "aluno")
@@ -81,4 +82,10 @@ public class AlunoService {
 		excluirCmd.excluir(id);
 	}
 
+	
+	@Transactional
+	@PutMapping(path = "/observacao", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public void gerar(@RequestBody DadosObservacaoRelatorio  dadosObservacaoRelatorio) {
+		alterarCmd.salvarTextoObservacaoRelatorio(dadosObservacaoRelatorio);
+	}
 }

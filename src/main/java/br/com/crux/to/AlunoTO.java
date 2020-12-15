@@ -43,6 +43,22 @@ public class AlunoTO {
 	private List<VulnerabilidadesAlunoTO> vulnerabilidades;
 	private List<EncaminhaAlunosTO> encaminhamentos;
 
+	private ProgramaTO programa;
+	private ProjetoTO projeto;
+	
+	private String observacaoDeclaracaoPasse;
+	
+	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
+	private LocalDateTime dataDeclaracaoPasse;
+	
+	private String observacaoDeclaracaoMatricula;
+	
+	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
+	private LocalDateTime dataDeclaracaoMatricula;
+	
+	private Boolean participaApresentacaoExterna;
+	
+	
 	public AlunoTO() {
 	}
 
@@ -236,6 +252,62 @@ public class AlunoTO {
 
 	public void setEncaminhamentos(List<EncaminhaAlunosTO> encaminhamentos) {
 		this.encaminhamentos = encaminhamentos;
+	}
+
+	public ProgramaTO getPrograma() {
+		return programa;
+	}
+
+	public void setPrograma(ProgramaTO programa) {
+		this.programa = programa;
+	}
+
+	public ProjetoTO getProjeto() {
+		return projeto;
+	}
+
+	public void setProjeto(ProjetoTO projeto) {
+		this.projeto = projeto;
+	}
+
+	public String getObservacaoDeclaracaoPasse() {
+		return observacaoDeclaracaoPasse;
+	}
+
+	public void setObservacaoDeclaracaoPasse(String observacaoDeclaracaoPasse) {
+		this.observacaoDeclaracaoPasse = observacaoDeclaracaoPasse;
+	}
+
+	public LocalDateTime getDataDeclaracaoPasse() {
+		return dataDeclaracaoPasse;
+	}
+
+	public void setDataDeclaracaoPasse(LocalDateTime dataDeclaracaoPasse) {
+		this.dataDeclaracaoPasse = dataDeclaracaoPasse;
+	}
+
+	public String getObservacaoDeclaracaoMatricula() {
+		return observacaoDeclaracaoMatricula;
+	}
+
+	public void setObservacaoDeclaracaoMatricula(String observacaoDeclaracaoMatricula) {
+		this.observacaoDeclaracaoMatricula = observacaoDeclaracaoMatricula;
+	}
+
+	public LocalDateTime getDataDeclaracaoMatricula() {
+		return dataDeclaracaoMatricula;
+	}
+
+	public void setDataDeclaracaoMatricula(LocalDateTime dataDeclaracaoMatricula) {
+		this.dataDeclaracaoMatricula = dataDeclaracaoMatricula;
+	}
+
+	public Boolean getParticipaApresentacaoExterna() {
+		return participaApresentacaoExterna;
+	}
+
+	public void setParticipaApresentacaoExterna(Boolean participaApresentacaoExterna) {
+		this.participaApresentacaoExterna = participaApresentacaoExterna;
 	}	
 
 	

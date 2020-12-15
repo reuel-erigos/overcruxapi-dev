@@ -1,5 +1,6 @@
 package br.com.crux.cmd;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -10,10 +11,12 @@ import br.com.crux.builder.AlunoTOBuilder;
 import br.com.crux.dao.repository.AlunoRepository;
 import br.com.crux.entity.Aluno;
 import br.com.crux.exception.NotFoundException;
+import br.com.crux.infra.constantes.TipoRelatorioBeneficiario;
 import br.com.crux.rule.CamposObrigatoriosAlunoRule;
 import br.com.crux.to.AlunoTO;
 import br.com.crux.to.EncaminhaAlunosTO;
 import br.com.crux.to.VulnerabilidadesAlunoTO;
+import br.com.crux.to.relatorios.beneficiarios.DadosObservacaoRelatorio;
 
 @Component
 public class AlterarAlunoCmd {
@@ -47,5 +50,15 @@ public class AlterarAlunoCmd {
 		Aluno alunoSalvo = repository.save(aluno);
 		
 		return alunoTOBuilder.buildTO(alunoSalvo);
+	}
+	
+	
+	public void salvarTextoObservacaoRelatorio(DadosObservacaoRelatorio  dadosObservacaoRelatorio)  {
+		if(dadosObservacaoRelatorio.getTipoRelatorio().equals(TipoRelatorioBeneficiario.PASSE_ESTUDANTIL)) {
+			repository.updateObservacaoDeclaracaoPasse(dadosObservacaoRelatorio.getTextoObservacao(), LocalDateTime.now(), dadosObservacaoRelatorio.getListaIdsAlunos());
+		}
+		if(dadosObservacaoRelatorio.getTipoRelatorio().equals(TipoRelatorioBeneficiario.DECLARACAO)) {
+			repository.updateObservacaoDeclaracaoMatricula(dadosObservacaoRelatorio.getTextoObservacao(), LocalDateTime.now(), dadosObservacaoRelatorio.getListaIdsAlunos());
+		}
 	}
 }
