@@ -57,13 +57,13 @@ public class GetMovimentacoesCmd {
 
 			if (Objects.nonNull(pDataInicioDoc) || Objects.nonNull(pDataFimDoc)) {
 				saldos = saldos.stream().filter(saldo -> {
-					return Java8DateUtil.isVigente(saldo.getDataDocumento().toLocalDate(), pDataInicioDoc, pDataFimDoc);
+					return Objects.nonNull(saldo.getDataDocumento()) && Java8DateUtil.isVigente(saldo.getDataDocumento().toLocalDate(), pDataInicioDoc, pDataFimDoc);
 				}).collect(Collectors.toList());
 			}
 			
 			if (Objects.nonNull(pDataInicioMov) || Objects.nonNull(pDataFimMov)) {
 				saldos = saldos.stream().filter(saldo -> {
-					return Java8DateUtil.isVigente(saldo.getDataMovimentacao().toLocalDate(), pDataInicioMov, pDataFimMov);
+					return Objects.nonNull(saldo.getDataMovimentacao()) && Java8DateUtil.isVigente(saldo.getDataMovimentacao().toLocalDate(), pDataInicioMov, pDataFimMov);
 				}).collect(Collectors.toList());
 			}
 			
