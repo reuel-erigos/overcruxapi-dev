@@ -41,14 +41,13 @@ public class PasseEstudantilBeneficiarioDao extends BaseDao{
 		sql.append("			fone_celular_responsavel                ,   ");
 		sql.append("			fone_residencial_responsavel            ,   ");
 		sql.append("			fone_comercial_responsavel              ,   ");
-		sql.append("			cd_unidade                              ,   ");
+		sql.append("			unidade                                 ,   ");
 		sql.append("			programa                                ,   ");
 		sql.append("			dias_semana                             ,   ");
 		sql.append("			hr_inicio                               ,   ");
 		sql.append("			hr_fim                                  ,   ");
 		sql.append("			st_apr_externa_pub                      ,   ");
 		sql.append("			dt_matricula                            ,   ");
-		sql.append("			ds_curso_escola                         ,   ");
 		sql.append("			ds_escola                               ,   ");
 		sql.append("			ds_escolaridade                         ,   ");
 		sql.append("			tx_observacao_declaracao_passe          ,   ");
