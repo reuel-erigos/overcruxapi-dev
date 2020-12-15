@@ -21,11 +21,12 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
-import net.sf.jasperreports.engine.export.JRXlsExporter;
+import net.sf.jasperreports.engine.export.ooxml.JRXlsxExporter;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.export.Exporter;
 import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
+import net.sf.jasperreports.export.SimpleXlsxReportConfiguration;
 
 @Component
 public class GeradorRelatorio {
@@ -47,21 +48,9 @@ public class GeradorRelatorio {
 	 * @throws SQLException
 	 * @throws IOException
 	 */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SuppressWarnings({ "rawtypes" })
 	public byte[] gerar(Map<String, Object> parametros, List<?> dados, String nomeRelatorio, String[] path, String mimeType) throws Exception {
 		TipoRelatorio tipoRelatorio = TipoRelatorio.getPorTipo(mimeType);	
-		
-		Exporter exporter = null;		
-		switch (tipoRelatorio) {
-		case PDF:
-			exporter = new JRPdfExporter();
-			break;
-		case XLS:
-			exporter = new JRXlsExporter();
-			break;
-		default:
-			throw new Exception("Não é possível gerar o tipo de relatório informado (" + tipoRelatorio + "). Suportado apenas:[1-PDF, 2-XLS]");
-		}
 		
 		String pathCompleto = String.join(File.separator, path);
 		
@@ -69,6 +58,26 @@ public class GeradorRelatorio {
 		parametros.put("P_PATH_ROOT", "relatorios"+File.separator+path[0]);
 		parametros.put("P_NOME_USUARIO_LOGADO", getUsuarioLogadoCmd.getUsuarioLogado().getNomeUsuario());
 		
+		byte[] toReturn = null;
+		Exporter exporter = null;		
+		switch (tipoRelatorio) {
+		case PDF:
+			exporter = new JRPdfExporter();
+			toReturn = gerarRelatorioPDF(parametros, dados, nomeRelatorio, exporter, pathCompleto);
+			break;
+		case XLS:
+			exporter = new JRXlsxExporter();
+			toReturn = gerarRelatorioPDF(parametros, dados, nomeRelatorio, exporter, pathCompleto);
+			break;
+		default:
+			throw new Exception("Não é possível gerar o tipo de relatório informado (" + tipoRelatorio + "). Suportado apenas:[1-PDF, 2-XLS]");
+		}
+				
+		return toReturn;
+	}
+
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	private byte[] gerarRelatorioPDF(Map<String, Object> parametros, List<?> dados, String nomeRelatorio, Exporter exporter, String pathCompleto) throws IOException, JRException {
 		final Resource fileResource = resourceLoader.getResource("classpath:relatorios" + File.separator + pathCompleto + File.separator +nomeRelatorio+".jasper");
 		InputStream jasperStream = fileResource.getInputStream();
 		JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
@@ -84,9 +93,36 @@ public class GeradorRelatorio {
 		
 		byte[] toReturn = baosReport.toByteArray();
 		baosReport.close();
-				
 		return toReturn;
 	}
 	
+	
+	@SuppressWarnings("unused")
+	private byte[] gerarRelatorioExcel(Map<String, Object> parametros, List<String> dados, String nomeRelatorio, String pathCompleto) throws IOException, JRException {
+		parametros.put("IS_IGNORE_PAGINATION", true);		
+		
+		final Resource fileResource = resourceLoader.getResource("classpath:relatorios" + File.separator + pathCompleto + File.separator +nomeRelatorio+".jasper");
+		InputStream jasperStream = fileResource.getInputStream();
+		JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
+		
+		JRBeanCollectionDataSource beanColDataSource = new JRBeanCollectionDataSource(dados);
+		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parametros, beanColDataSource);
+		
+		ByteArrayOutputStream xlsReport = new ByteArrayOutputStream();
+		JRXlsxExporter exporter = new JRXlsxExporter();
+        SimpleXlsxReportConfiguration reportConfigXLS = new SimpleXlsxReportConfiguration();
+        reportConfigXLS.setSheetNames(new String[] { "dados" });
+        reportConfigXLS.setRemoveEmptySpaceBetweenRows(true);
+        reportConfigXLS.setForcePageBreaks(false);
+        reportConfigXLS.setWrapText(false);
+        reportConfigXLS.setCollapseRowSpan(true);
+        exporter.setConfiguration(reportConfigXLS);
+        
+        exporter.setExporterInput(new SimpleExporterInput(jasperPrint));        
+        exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(xlsReport));
+       
+        exporter.exportReport();
+        return xlsReport.toByteArray();
+	}
 	
 }
