@@ -219,26 +219,26 @@ from vw_relatorio_declaracao_matricula]]>
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="614">
+		<band height="409">
 			<line>
-				<reportElement x="124" y="559" width="311" height="1" uuid="fa515934-01fe-40d6-8426-ced22c8add49"/>
+				<reportElement x="124" y="379" width="311" height="1" uuid="fa515934-01fe-40d6-8426-ced22c8add49"/>
 			</line>
 			<staticText>
-				<reportElement x="217" y="573" width="112" height="15" uuid="513b0a60-a5b7-456f-a1d2-b4e4594fa8f0">
+				<reportElement x="217" y="393" width="112" height="15" uuid="513b0a60-a5b7-456f-a1d2-b4e4594fa8f0">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<text><![CDATA[Atendente na Casa Azul]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="446" y="574" width="32" height="15" uuid="fbc57bf7-9411-44ea-ab80-7b63c10a8a55">
+				<reportElement x="446" y="394" width="32" height="15" uuid="fbc57bf7-9411-44ea-ab80-7b63c10a8a55">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Bottom"/>
 				<text><![CDATA[Data:]]></text>
 			</staticText>
 			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-				<reportElement x="480" y="574" width="66" height="15" uuid="0816c221-f6d6-4d12-aff5-bfb4ad2b9b67">
+				<reportElement x="480" y="394" width="66" height="15" uuid="0816c221-f6d6-4d12-aff5-bfb4ad2b9b67">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -338,7 +338,7 @@ from vw_relatorio_declaracao_matricula]]>
 				</reportElement>
 			</line>
 			<line>
-				<reportElement x="-15" y="520" width="586" height="1" uuid="28f5daf1-a0c7-4bab-abad-1ba2b4ed5e6c">
+				<reportElement x="-15" y="340" width="586" height="1" uuid="28f5daf1-a0c7-4bab-abad-1ba2b4ed5e6c">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 			</line>
@@ -712,9 +712,10 @@ from vw_relatorio_declaracao_matricula]]>
 				<textFieldExpression><![CDATA[$F{escola}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="-10" y="312" width="560" height="198" uuid="94f66fed-eef7-4790-87f3-844a30757a94">
+				<reportElement x="-10" y="312" width="560" height="13" isPrintWhenDetailOverflows="true" uuid="94f66fed-eef7-4790-87f3-844a30757a94">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
+				<textElement markup="html"/>
 				<textFieldExpression><![CDATA[$F{observacaoDeclaracaoMatricula}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
