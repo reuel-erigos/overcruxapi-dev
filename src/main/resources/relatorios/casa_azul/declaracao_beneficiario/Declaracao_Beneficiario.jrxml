@@ -712,7 +712,7 @@ from vw_relatorio_declaracao_matricula]]>
 				<textFieldExpression><![CDATA[$F{escola}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="-10" y="312" width="560" height="13" isPrintWhenDetailOverflows="true" uuid="94f66fed-eef7-4790-87f3-844a30757a94">
+				<reportElement x="-10" y="312" width="560" height="13" uuid="94f66fed-eef7-4790-87f3-844a30757a94">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement markup="html"/>

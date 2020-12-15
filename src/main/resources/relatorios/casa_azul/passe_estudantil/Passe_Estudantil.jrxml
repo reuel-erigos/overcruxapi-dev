@@ -678,7 +678,7 @@ from vw_relatorio_declaracao_passe_estudantil]]>
 				<textFieldExpression><![CDATA[$F{escola}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="-10" y="350" width="560" height="13" isPrintWhenDetailOverflows="true" uuid="94f66fed-eef7-4790-87f3-844a30757a94">
+				<reportElement x="-10" y="350" width="560" height="13" uuid="94f66fed-eef7-4790-87f3-844a30757a94">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement markup="html"/>
@@ -717,7 +717,7 @@ from vw_relatorio_declaracao_passe_estudantil]]>
 				<textFieldExpression><![CDATA[$F{escolaridade}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="-11" y="308" width="461" height="14" uuid="bdf30f8e-b686-4d04-b0a8-40184c1179ca">
+				<reportElement x="-12" y="308" width="465" height="14" uuid="bdf30f8e-b686-4d04-b0a8-40184c1179ca">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -727,7 +727,7 @@ from vw_relatorio_declaracao_passe_estudantil]]>
 				<text><![CDATA[Declaramos para os devidos fins que o(a) beneficiário(a) acima citado frequenta a instituição de ]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="450" y="308" width="100" height="14" uuid="6b095655-c2d3-4331-91fd-106f08c1bb0e">
+				<reportElement x="453" y="308" width="100" height="14" uuid="6b095655-c2d3-4331-91fd-106f08c1bb0e">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
