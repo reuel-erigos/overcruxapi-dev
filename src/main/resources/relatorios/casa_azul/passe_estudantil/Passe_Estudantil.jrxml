@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PasseEstudantil" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" isTitleNewPage="true" uuid="834ad189-7b77-460b-af4d-f3e68c98ad0b">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PasseEstudantil" pageWidth="595" pageHeight="842" whenNoDataType="BlankPage" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" isTitleNewPage="true" isSummaryNewPage="true" uuid="834ad189-7b77-460b-af4d-f3e68c98ad0b">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="S3Manager-DEV"/>
 	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="378"/>
@@ -10,42 +10,50 @@
 	</parameter>
 	<parameter name="P_NOME_USUARIO_LOGADO" class="java.lang.String" isForPrompting="false"/>
 	<queryString language="SQL">
-		<![CDATA[select 
-		id_aluno                                as "idAluno",
-		id_pessoa_fisica                        as "idPessoaFisica",
-		nr_matricula_aluno                      as "matriculaAluno",
-		nome                                    as "nomeAluno",
-		dt_nascimento                           as "dataNascimentoAluno",
-		nr_cpf                                  as "cpfAluno",
-		ds_endereco                             as "enderecoAluno",
-		ds_bairro                               as "bairroAluno",
-		sg_uf_endereco                          as "ufEnderecoAluno",
-		nm_mae                                  as "nomeMae",
-		nm_pai                                  as "nomePai",
-		nr_cep                                  as "cep",
-		nr_fone_celular                         as "foneCelular",
-		nr_telefone_residencial                 as "foneResidencial",
-		nr_telefone_comercial                   as "foneComercial",
-		nome_responsavel                        as "nomeResponsavel",
-		dt_nascimento_responsavel               as "dataNascimentoResponsavel",
-		nr_cpf_responsavel                      as "cpfResponsavel",
-		rg_responsavel                          as "rgResponsavel",
-		nm_grau_parentesco                      as "grauParentesco",
-		fone_celular_responsavel                as "foneCelularResponsavel",
-		fone_residencial_responsavel            as "foneResidencialResponsavel",
-		fone_comercial_responsavel              as "foneComercialResponsavel",
-		unidade                              as "codigoUnidade",
-		programa                                as "programa",
-		dias_semana                             as "diasSemana",
-		hr_inicio                               as "horaInicio",
-		hr_fim                                  as "horaFim",
-		st_apr_externa_pub                      as "participaApresentacoesExterna",
-		dt_matricula                            as "dataMatricula",
-		ds_escola                               as "escola",
-		ds_escolaridade                         as "escolaridade",
-		tx_observacao_declaracao_passe      as "observacaoDeclaracaoPasse",
-		dt_declaracao_passe                 as "dataDeclaracaoPasse"
-from vw_relatorio_declaracao_passe_estudantil]]>
+		<![CDATA[
+select                                              
+id_aluno                                as "idAluno"                      ,   
+id_pessoa_fisica                        as "idPessoaFisica"               ,   
+nr_matricula_aluno                      as "matriculaAluno"               ,   
+nome                                    as "nomeAluno"                    ,   
+dt_nascimento                           as "dataNascimentoAluno"          ,   
+nr_cpf                                  as "cpfAluno"                     ,   
+ds_endereco                             as "enderecoAluno"                ,   
+ds_bairro                               as "bairroAluno"                  ,   
+sg_uf_endereco                          as "ufEnderecoAluno"              ,   
+nm_mae                                  as "nomeMae"                      ,   
+nm_pai                                  as "nomePai"                      ,   
+nr_cep                                  as "cep"                          ,   
+nr_fone_celular                         as "foneCelular"                  ,   
+nr_telefone_residencial                 as "foneResidencial"              ,   
+nr_telefone_comercial                   as "foneComercial"                ,   
+nome_responsavel                        as "nomeResponsavel"              ,   
+dt_nascimento_responsavel               as "dataNascimentoResponsavel"    ,   
+nr_cpf_responsavel                      as "cpfResponsavel"               ,   
+rg_responsavel                          as "rgResponsavel"                ,   
+nm_grau_parentesco                      as "grauParentesco"               ,   
+fone_celular_responsavel                as "foneCelularResponsavel"       ,   
+fone_residencial_responsavel            as "foneResidencialResponsavel"   ,   
+fone_comercial_responsavel              as "foneComercialResponsavel"     ,   
+unidade                                 as "unidade"                      ,   
+programa                                as "programa"                     ,   
+dias_semana                             as "diasSemana"                   ,   
+hr_inicio                               as "horaInicio"                   ,   
+hr_fim                                  as "horaFim"                      ,   
+st_apr_externa_pub                      as "participaApresentacoesExterna",   
+dt_matricula                            as "dataMatricula"                ,   
+ds_escola                               as "escola"                       ,   
+ds_escolaridade                         as "escolaridade"                 ,   
+tx_observacao_declaracao_passe          as "observacaoDeclaracaoPasse"    ,   
+dt_declaracao_passe                     as "dataDeclaracaoPasse"          ,   
+turma                                   as "turma"                        ,   
+fone_celular_mae                        as "foneCelularMae"               ,   
+fone_residencial_mae                    as "foneResidencialMae"           ,   
+fone_comercial_mae                      as "foneComercialMae"             ,   
+fone_celular_pai                        as "foneCelularPai"               ,   
+fone_residencial_pai                    as "foneResidencialPai"           ,   
+fone_comercial_pai                      as "foneComercialPai"                 
+from vw_relatorio_declaracao_passe_estudantil ]]>
 	</queryString>
 	<field name="idAluno" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.label" value="idAluno"/>
@@ -139,7 +147,7 @@ from vw_relatorio_declaracao_passe_estudantil]]>
 		<property name="com.jaspersoft.studio.field.label" value="foneComercialResponsavel"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_declaracao_passe_estudantil"/>
 	</field>
-	<field name="codigoUnidade" class="java.lang.String">
+	<field name="unidade" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="codigoUnidade"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_declaracao_passe_estudantil"/>
 	</field>
@@ -214,26 +222,26 @@ from vw_relatorio_declaracao_passe_estudantil]]>
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="493">
+		<band height="493" splitType="Prevent">
 			<line>
-				<reportElement x="124" y="463" width="311" height="1" uuid="fa515934-01fe-40d6-8426-ced22c8add49"/>
+				<reportElement positionType="FixRelativeToBottom" x="124" y="463" width="311" height="1" uuid="fa515934-01fe-40d6-8426-ced22c8add49"/>
 			</line>
 			<staticText>
-				<reportElement x="217" y="477" width="112" height="15" uuid="513b0a60-a5b7-456f-a1d2-b4e4594fa8f0">
+				<reportElement positionType="FixRelativeToBottom" x="217" y="477" width="112" height="15" uuid="513b0a60-a5b7-456f-a1d2-b4e4594fa8f0">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<text><![CDATA[Atendente na Casa Azul]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="446" y="478" width="32" height="15" uuid="fbc57bf7-9411-44ea-ab80-7b63c10a8a55">
+				<reportElement positionType="FixRelativeToBottom" x="446" y="478" width="32" height="15" uuid="fbc57bf7-9411-44ea-ab80-7b63c10a8a55">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Bottom"/>
 				<text><![CDATA[Data:]]></text>
 			</staticText>
 			<textField evaluationTime="Report" pattern="dd/MM/yyyy" isBlankWhenNull="true">
-				<reportElement x="480" y="478" width="66" height="15" uuid="0816c221-f6d6-4d12-aff5-bfb4ad2b9b67">
+				<reportElement positionType="FixRelativeToBottom" x="480" y="478" width="66" height="15" uuid="0816c221-f6d6-4d12-aff5-bfb4ad2b9b67">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -310,7 +318,7 @@ from vw_relatorio_declaracao_passe_estudantil]]>
 				</reportElement>
 			</line>
 			<line>
-				<reportElement x="-15" y="397" width="586" height="1" uuid="28f5daf1-a0c7-4bab-abad-1ba2b4ed5e6c">
+				<reportElement positionType="FixRelativeToBottom" x="-15" y="397" width="586" height="1" uuid="28f5daf1-a0c7-4bab-abad-1ba2b4ed5e6c">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 			</line>
@@ -334,7 +342,7 @@ from vw_relatorio_declaracao_passe_estudantil]]>
 				<text><![CDATA[End. Res.:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="271" y="28" width="70" height="14" uuid="e4e5b62d-74bc-4f64-861b-1d8d51351277">
+				<reportElement x="271" y="28" width="74" height="14" uuid="e4e5b62d-74bc-4f64-861b-1d8d51351277">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
@@ -352,7 +360,7 @@ from vw_relatorio_declaracao_passe_estudantil]]>
 				<text><![CDATA[CPF:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="-14" y="79" width="65" height="14" uuid="b756d37a-68cf-47ea-a0b6-c022b1da7b88">
+				<reportElement x="-14" y="79" width="74" height="14" uuid="b756d37a-68cf-47ea-a0b6-c022b1da7b88">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -362,17 +370,17 @@ from vw_relatorio_declaracao_passe_estudantil]]>
 				<text><![CDATA[Nome do Pai:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="-14" y="95" width="69" height="14" uuid="3ca81636-4801-448d-9d23-33e386c8bf09">
+				<reportElement x="-14" y="95" width="74" height="14" uuid="3ca81636-4801-448d-9d23-33e386c8bf09">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Nome do Mãe:]]></text>
+				<text><![CDATA[Nome da Mãe:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="272" y="45" width="33" height="14" uuid="0fe512a3-f3b1-4428-b49b-314a2800e41f">
+				<reportElement x="272" y="45" width="40" height="14" uuid="0fe512a3-f3b1-4428-b49b-314a2800e41f">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -382,7 +390,7 @@ from vw_relatorio_declaracao_passe_estudantil]]>
 				<text><![CDATA[Bairro:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="272" y="62" width="38" height="14" uuid="321c02e6-a0f1-4910-92cd-21df92000b46">
+				<reportElement x="272" y="62" width="40" height="14" uuid="321c02e6-a0f1-4910-92cd-21df92000b46">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -450,7 +458,7 @@ from vw_relatorio_declaracao_passe_estudantil]]>
 				<text><![CDATA[CPF:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="-13" y="172" width="60" height="14" uuid="5cb65e4e-8f26-4f9d-99ed-dd27915d3e4f">
+				<reportElement x="-13" y="172" width="62" height="14" uuid="5cb65e4e-8f26-4f9d-99ed-dd27915d3e4f">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -470,7 +478,7 @@ from vw_relatorio_declaracao_passe_estudantil]]>
 				<text><![CDATA[RG:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="272" y="155" width="48" height="14" uuid="a4a2f985-e2dc-4de0-862e-110812c94805">
+				<reportElement x="272" y="155" width="52" height="14" uuid="a4a2f985-e2dc-4de0-862e-110812c94805">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -500,7 +508,7 @@ from vw_relatorio_declaracao_passe_estudantil]]>
 				<text><![CDATA[Turma:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="210" y="234" width="82" height="14" uuid="f5bf580f-1e07-4c75-9d9c-0536db96a01d">
+				<reportElement x="210" y="234" width="86" height="14" uuid="f5bf580f-1e07-4c75-9d9c-0536db96a01d">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -530,7 +538,7 @@ from vw_relatorio_declaracao_passe_estudantil]]>
 				<text><![CDATA[Escola:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="210" y="217" width="40" height="14" uuid="fd22cd84-e08f-4bda-afb9-bc3d2d5377f1">
+				<reportElement x="210" y="217" width="44" height="14" uuid="fd22cd84-e08f-4bda-afb9-bc3d2d5377f1">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -564,7 +572,7 @@ from vw_relatorio_declaracao_passe_estudantil]]>
 				<textFieldExpression><![CDATA[$F{foneCelular} +" " + $F{foneResidencial} +" " + $F{foneComercial}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="342" y="28" width="85" height="14" uuid="e0934058-2ed8-4562-9746-0653b2cee916">
+				<reportElement x="346" y="28" width="85" height="14" uuid="e0934058-2ed8-4562-9746-0653b2cee916">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{dataNascimentoAluno}]]></textFieldExpression>
@@ -576,25 +584,25 @@ from vw_relatorio_declaracao_passe_estudantil]]>
 				<textFieldExpression><![CDATA[$F{cpfAluno}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="307" y="45" width="243" height="14" uuid="3c0a646b-d9c7-45e5-8322-0be4bc7e5594">
+				<reportElement x="314" y="45" width="230" height="14" uuid="3c0a646b-d9c7-45e5-8322-0be4bc7e5594">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{bairroAluno}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="312" y="62" width="238" height="14" uuid="25756b13-1a70-4acb-a291-1d490b3c6483">
+				<reportElement x="315" y="62" width="230" height="14" uuid="25756b13-1a70-4acb-a291-1d490b3c6483">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[new String("Brasília - DF")]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="52" y="79" width="332" height="14" uuid="2c4623ea-b023-4d35-960a-64a6e4fcb92a">
+				<reportElement x="64" y="79" width="320" height="14" uuid="2c4623ea-b023-4d35-960a-64a6e4fcb92a">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{nomePai}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="56" y="95" width="328" height="14" uuid="a71fad01-ea20-4384-a51e-ca6e076d56ac">
+				<reportElement x="64" y="95" width="320" height="14" uuid="a71fad01-ea20-4384-a51e-ca6e076d56ac">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{nomeMae}]]></textFieldExpression>
@@ -636,13 +644,13 @@ from vw_relatorio_declaracao_passe_estudantil]]>
 				<textFieldExpression><![CDATA[$F{dataNascimentoResponsavel}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="322" y="155" width="158" height="14" uuid="3045177f-59aa-4c20-b795-eb5b9290e082">
+				<reportElement x="327" y="155" width="158" height="14" uuid="3045177f-59aa-4c20-b795-eb5b9290e082">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{foneCelularResponsavel}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="48" y="172" width="217" height="14" uuid="ae88ecc0-77e0-4642-a345-b63e36599482">
+				<reportElement x="50" y="172" width="217" height="14" uuid="ae88ecc0-77e0-4642-a345-b63e36599482">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{grauParentesco}]]></textFieldExpression>
@@ -651,10 +659,10 @@ from vw_relatorio_declaracao_passe_estudantil]]>
 				<reportElement x="16" y="217" width="184" height="14" uuid="692e0aec-638d-4c31-9e38-2627284b5854">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textFieldExpression><![CDATA[$F{codigoUnidade} + "-" +$F{programa}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{unidade} + "-" +$F{programa}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="251" y="217" width="299" height="14" uuid="9a75de37-84ba-4933-8366-130cee569ccd">
+				<reportElement x="254" y="217" width="299" height="14" uuid="9a75de37-84ba-4933-8366-130cee569ccd">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{diasSemana} + " - " + $F{horaInicio} + " às " + $F{horaFim}]]></textFieldExpression>
@@ -666,7 +674,7 @@ from vw_relatorio_declaracao_passe_estudantil]]>
 				<textFieldExpression><![CDATA[$F{turma}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="293" y="234" width="90" height="14" uuid="965c39b4-ee06-4463-b65d-3b224b379abe">
+				<reportElement x="296" y="234" width="90" height="14" uuid="965c39b4-ee06-4463-b65d-3b224b379abe">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{dataMatricula}]]></textFieldExpression>
@@ -677,7 +685,7 @@ from vw_relatorio_declaracao_passe_estudantil]]>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{escola}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement x="-10" y="350" width="560" height="13" uuid="94f66fed-eef7-4790-87f3-844a30757a94">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -746,7 +754,7 @@ from vw_relatorio_declaracao_passe_estudantil]]>
 				<text><![CDATA[no horário contrário ao da escola.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="-9" y="378" width="289" height="14" uuid="9336ed4d-d702-47e3-838b-77dc9a9f6528">
+				<reportElement positionType="FixRelativeToBottom" x="-9" y="378" width="289" height="14" uuid="9336ed4d-d702-47e3-838b-77dc9a9f6528">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -756,7 +764,7 @@ from vw_relatorio_declaracao_passe_estudantil]]>
 				<text><![CDATA[Ocorréncia e ação aberta para o coordenação do programa:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="280" y="378" width="270" height="14" uuid="dbc8ca6d-b4e2-4ceb-9265-ec708a57cc8c">
+				<reportElement positionType="FixRelativeToBottom" x="280" y="378" width="270" height="14" uuid="dbc8ca6d-b4e2-4ceb-9265-ec708a57cc8c">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{programa}]]></textFieldExpression>
@@ -769,6 +777,11 @@ from vw_relatorio_declaracao_passe_estudantil]]>
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{matriculaAluno}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="431" y="234" width="122" height="14" uuid="274afa8b-f7b4-4a9e-af21-97bd191606d2">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
 			</textField>
 		</band>
 	</detail>

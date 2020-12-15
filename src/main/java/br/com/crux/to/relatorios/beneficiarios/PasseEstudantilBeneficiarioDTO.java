@@ -27,7 +27,7 @@ public class PasseEstudantilBeneficiarioDTO {
 	private String foneCelularResponsavel       ;
 	private String foneResidencialResponsavel   ;
 	private String foneComercialResponsavel     ;
-	private String codigoUnidade                ;
+	private String unidade                ;
 	private String programa                     ;
 	private String diasSemana                   ;
 	private Long   horaInicio                   ;
@@ -74,7 +74,7 @@ public class PasseEstudantilBeneficiarioDTO {
 		this.foneCelularResponsavel          = (colunas[20] != null) ? (String) colunas[20] : "";
 		this.foneResidencialResponsavel      = (colunas[21] != null) ? (String) colunas[21] : "";
 		this.foneComercialResponsavel        = (colunas[22] != null) ? (String) colunas[22] : "";
-		this.codigoUnidade                   = (colunas[23] != null) ? (String) colunas[23] : "";
+		this.unidade                   = (colunas[23] != null) ? (String) colunas[23] : "";
 		this.programa                        = (colunas[24] != null) ? (String) colunas[24] : "";
 		this.diasSemana                      = (colunas[26] != null) ? (String) colunas[25] : "";
 		this.horaInicio                      = (colunas[26] != null)? ((BigDecimal)colunas[26]).longValue() : null;
@@ -325,13 +325,13 @@ public class PasseEstudantilBeneficiarioDTO {
 	}
 
 
-	public String getCodigoUnidade() {
-		return codigoUnidade;
+	public String getUnidade() {
+		return unidade;
 	}
 
 
-	public void setCodigoUnidade(String codigoUnidade) {
-		this.codigoUnidade = codigoUnidade;
+	public void setUnidade(String codigoUnidade) {
+		this.unidade = codigoUnidade;
 	}
 
 
