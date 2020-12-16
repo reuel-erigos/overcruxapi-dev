@@ -25,7 +25,7 @@ public class PasseEstudantilBeneficiarioTO {
 	private String foneCelularResponsavel       ;
 	private String foneResidencialResponsavel   ;
 	private String foneComercialResponsavel     ;
-	private String codigoUnidade                ;
+	private String unidade                      ;
 	private String programa                     ;
 	private String diasSemana                   ;
 	private Long horaInicio                     ;
@@ -279,13 +279,13 @@ public class PasseEstudantilBeneficiarioTO {
 	}
 
 
-	public String getCodigoUnidade() {
-		return codigoUnidade;
+	public String getUnidade() {
+		return unidade;
 	}
 
 
-	public void setCodigoUnidade(String codigoUnidade) {
-		this.codigoUnidade = codigoUnidade;
+	public void setUnidade(String codigoUnidade) {
+		this.unidade = codigoUnidade;
 	}
 
 
