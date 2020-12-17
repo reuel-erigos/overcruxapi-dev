@@ -703,7 +703,7 @@ from vw_relatorio_declaracao_matricula]]>
 				<reportElement x="61" y="231" width="525" height="14" uuid="9a75de37-84ba-4933-8366-130cee569ccd">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textFieldExpression><![CDATA[$F{diasSemana} + " - " + $F{horaInicio} + " às " + $F{horaFim}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{diasSemana} != null ? ($F{diasSemana} + " - " + $F{horaInicio} + " às " + $F{horaFim}) : ""]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="409" y="214" width="177" height="14" uuid="b2fba967-a48d-4fff-aa74-aceba1923aab">

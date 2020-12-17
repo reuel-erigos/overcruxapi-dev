@@ -343,8 +343,9 @@ from vw_relatorio_declaracao_passe_estudantil]]>
 				<text><![CDATA[End. Res.:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="290" y="28" width="82" height="14" uuid="e4e5b62d-74bc-4f64-861b-1d8d51351277">
+				<reportElement x="287" y="28" width="84" height="14" uuid="e4e5b62d-74bc-4f64-861b-1d8d51351277">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement>
 					<font isBold="true"/>
@@ -361,7 +362,7 @@ from vw_relatorio_declaracao_passe_estudantil]]>
 				<text><![CDATA[CPF:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="5" y="79" width="78" height="14" uuid="b756d37a-68cf-47ea-a0b6-c022b1da7b88">
+				<reportElement x="5" y="79" width="84" height="14" uuid="b756d37a-68cf-47ea-a0b6-c022b1da7b88">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -371,7 +372,7 @@ from vw_relatorio_declaracao_passe_estudantil]]>
 				<text><![CDATA[Nome do Pai:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="5" y="95" width="78" height="14" uuid="3ca81636-4801-448d-9d23-33e386c8bf09">
+				<reportElement x="5" y="95" width="84" height="14" uuid="3ca81636-4801-448d-9d23-33e386c8bf09">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -587,13 +588,13 @@ from vw_relatorio_declaracao_passe_estudantil]]>
 				<textFieldExpression><![CDATA[new String("Brasília - DF")]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="86" y="79" width="320" height="14" uuid="2c4623ea-b023-4d35-960a-64a6e4fcb92a">
+				<reportElement x="91" y="79" width="316" height="14" uuid="2c4623ea-b023-4d35-960a-64a6e4fcb92a">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{nomePai}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="86" y="95" width="320" height="14" uuid="a71fad01-ea20-4384-a51e-ca6e076d56ac">
+				<reportElement x="91" y="95" width="316" height="14" uuid="a71fad01-ea20-4384-a51e-ca6e076d56ac">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{nomeMae}]]></textFieldExpression>
@@ -656,7 +657,7 @@ from vw_relatorio_declaracao_passe_estudantil]]>
 				<reportElement x="349" y="217" width="228" height="14" uuid="9a75de37-84ba-4933-8366-130cee569ccd">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textFieldExpression><![CDATA[$F{diasSemana} + " - " + $F{horaInicio} + " às " + $F{horaFim}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{diasSemana} != null ? ($F{diasSemana} + " - " + $F{horaInicio} + " às " + $F{horaFim}) : ""]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="54" y="234" width="166" height="14" uuid="b2fba967-a48d-4fff-aa74-aceba1923aab">
@@ -724,21 +725,14 @@ from vw_relatorio_declaracao_passe_estudantil]]>
 				</textElement>
 				<textFieldExpression><![CDATA[new String("Declaramos para os devidos fins que o(a) beneficiário(a) acima citado frequenta a instituição de ") + $F{diasSemana}.toLowerCase() + "," + new String("no horário contrário ao da escola.")]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement positionType="FixRelativeToBottom" x="10" y="378" width="310" height="14" uuid="9336ed4d-d702-47e3-838b-77dc9a9f6528">
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="FixRelativeToBottom" x="9" y="378" width="570" height="14" uuid="dbc8ca6d-b4e2-4ceb-9265-ec708a57cc8c">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Ocorréncia e ação aberta para o coordenação do programa:]]></text>
-			</staticText>
-			<textField isBlankWhenNull="true">
-				<reportElement positionType="FixRelativeToBottom" x="331" y="378" width="248" height="14" uuid="dbc8ca6d-b4e2-4ceb-9265-ec708a57cc8c">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<textFieldExpression><![CDATA[$F{programa}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[new String("Ocorréncia e ação aberta para o coordenação do programa:") + $F{programa}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="509" y="6" width="71" height="14" uuid="f674283c-fa51-4325-b171-5d7a7d11087b">
