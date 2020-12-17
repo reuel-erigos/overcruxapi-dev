@@ -449,14 +449,14 @@ from vw_relatorio_ficha_cadastral]]>
 				<textFieldExpression><![CDATA[$F{naturalidade}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="17" y="106" width="69" height="15" uuid="2342a9ad-3128-4c86-a6e7-e03cd7fef43e">
+				<reportElement x="17" y="106" width="73" height="15" uuid="2342a9ad-3128-4c86-a6e7-e03cd7fef43e">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Bottom"/>
 				<text><![CDATA[Nome do Pai:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="86" y="106" width="481" height="15" uuid="8d1547c2-abb7-4bf3-ad3c-7c839bc01be9">
+				<reportElement x="90" y="106" width="477" height="15" uuid="8d1547c2-abb7-4bf3-ad3c-7c839bc01be9">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -468,14 +468,14 @@ from vw_relatorio_ficha_cadastral]]>
 				<textFieldExpression><![CDATA[$F{nomePai}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="16" y="123" width="69" height="15" uuid="fa116cab-a7c0-4d94-86c3-153e2d1f0cba">
+				<reportElement x="16" y="123" width="74" height="15" uuid="fa116cab-a7c0-4d94-86c3-153e2d1f0cba">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Bottom"/>
 				<text><![CDATA[Nome da Mãe:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="85" y="123" width="481" height="15" uuid="471e058b-ffa3-4696-a100-17b899472398">
+				<reportElement x="90" y="123" width="476" height="15" uuid="471e058b-ffa3-4696-a100-17b899472398">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -487,14 +487,15 @@ from vw_relatorio_ficha_cadastral]]>
 				<textFieldExpression><![CDATA[$F{nomeMae}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="16" y="141" width="90" height="15" uuid="5a9ffb72-9de9-468d-9b49-dc217cd3f3ac">
+				<reportElement x="16" y="141" width="95" height="15" uuid="5a9ffb72-9de9-468d-9b49-dc217cd3f3ac">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Bottom"/>
 				<text><![CDATA[Encaminhado por:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="106" y="141" width="460" height="15" uuid="c3dfd298-e212-4428-9132-970c8864471e">
+				<reportElement x="116" y="141" width="448" height="15" uuid="c3dfd298-e212-4428-9132-970c8864471e">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -506,14 +507,14 @@ from vw_relatorio_ficha_cadastral]]>
 				<textFieldExpression><![CDATA[$F{encaminhado}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="16" y="159" width="90" height="15" uuid="c1975721-201b-433d-bc1c-77ad51afafa7">
+				<reportElement x="16" y="159" width="94" height="15" uuid="c1975721-201b-433d-bc1c-77ad51afafa7">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Bottom"/>
 				<text><![CDATA[Público Prioritário:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="106" y="159" width="460" height="15" uuid="48ae929e-f4df-4c60-81e9-9a8ea175585d">
+				<reportElement x="116" y="159" width="450" height="15" uuid="48ae929e-f4df-4c60-81e9-9a8ea175585d">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -525,14 +526,14 @@ from vw_relatorio_ficha_cadastral]]>
 				<textFieldExpression><![CDATA[$F{descPublicoPrioritario}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="17" y="177" width="89" height="15" uuid="41353de4-1b15-4096-a342-cd3705a35268">
+				<reportElement x="17" y="177" width="94" height="15" uuid="41353de4-1b15-4096-a342-cd3705a35268">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Bottom"/>
 				<text><![CDATA[Data de Matrícula:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="106" y="177" width="130" height="15" uuid="39bea795-9ba5-4f09-b3cb-fbed7cd12e32">
+				<reportElement x="115" y="177" width="120" height="15" uuid="39bea795-9ba5-4f09-b3cb-fbed7cd12e32">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -563,14 +564,14 @@ from vw_relatorio_ficha_cadastral]]>
 				<textFieldExpression><![CDATA[$F{turno}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="16" y="195" width="90" height="15" uuid="f9d2c39b-6961-4079-80c9-921523fa58ad">
+				<reportElement x="16" y="195" width="94" height="15" uuid="f9d2c39b-6961-4079-80c9-921523fa58ad">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Bottom"/>
 				<text><![CDATA[Atividade:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="106" y="195" width="460" height="15" uuid="8e111ae3-26cf-4165-bc73-90a59085adcf">
+				<reportElement x="116" y="195" width="450" height="15" uuid="8e111ae3-26cf-4165-bc73-90a59085adcf">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -620,14 +621,14 @@ from vw_relatorio_ficha_cadastral]]>
 				<textFieldExpression><![CDATA[$F{serie}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="17" y="231" width="99" height="15" uuid="793b67a2-48b2-4035-ab44-10f915cc1c1b">
+				<reportElement x="17" y="231" width="105" height="15" uuid="793b67a2-48b2-4035-ab44-10f915cc1c1b">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Bottom"/>
 				<text><![CDATA[Problemas de Saúde:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="116" y="231" width="50" height="15" uuid="48e09625-4a9a-4e06-8b75-66dd81270f10">
+				<reportElement x="123" y="231" width="50" height="15" uuid="48e09625-4a9a-4e06-8b75-66dd81270f10">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -658,14 +659,14 @@ from vw_relatorio_ficha_cadastral]]>
 				<textFieldExpression><![CDATA[$F{descProblemaSaude}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="17" y="249" width="99" height="15" uuid="77e6b226-d634-4953-a9b0-086c14a9289f">
+				<reportElement x="17" y="249" width="105" height="15" uuid="77e6b226-d634-4953-a9b0-086c14a9289f">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Bottom"/>
 				<text><![CDATA[Toma medicamentos:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="116" y="249" width="50" height="15" uuid="16bb2553-49f9-4e9f-a269-7937f045fdb9">
+				<reportElement x="123" y="249" width="50" height="15" uuid="16bb2553-49f9-4e9f-a269-7937f045fdb9">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -696,14 +697,14 @@ from vw_relatorio_ficha_cadastral]]>
 				<textFieldExpression><![CDATA[$F{descMedicamentosControlados}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="16" y="267" width="99" height="15" uuid="bc844aca-eaf1-4f3a-b43f-081e1820cb47">
+				<reportElement x="16" y="267" width="106" height="15" uuid="bc844aca-eaf1-4f3a-b43f-081e1820cb47">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Bottom"/>
 				<text><![CDATA[Mora com os pais:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="115" y="267" width="50" height="15" uuid="26318957-bde6-483e-844b-10ce192cc52f">
+				<reportElement x="123" y="267" width="50" height="15" uuid="26318957-bde6-483e-844b-10ce192cc52f">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -715,14 +716,14 @@ from vw_relatorio_ficha_cadastral]]>
 				<textFieldExpression><![CDATA[$F{moraComPais}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="173" y="267" width="103" height="15" uuid="db29ea8e-4313-4cc3-a367-8608a544e56f">
+				<reportElement x="173" y="267" width="108" height="15" uuid="db29ea8e-4313-4cc3-a367-8608a544e56f">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Bottom"/>
 				<text><![CDATA[Os pais são casados?]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="276" y="267" width="50" height="15" uuid="9c13da78-fb46-476e-9cf7-14a17b11e0e5">
+				<reportElement x="282" y="267" width="50" height="15" uuid="9c13da78-fb46-476e-9cf7-14a17b11e0e5">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -753,7 +754,7 @@ from vw_relatorio_ficha_cadastral]]>
 				<textFieldExpression><![CDATA[$F{rendaFamiliar}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="192" y="285" width="58" height="15" uuid="afefb3d1-5e15-4e9d-9171-9807b8c5aaa4">
+				<reportElement x="192" y="285" width="66" height="15" uuid="afefb3d1-5e15-4e9d-9171-9807b8c5aaa4">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -761,7 +762,7 @@ from vw_relatorio_ficha_cadastral]]>
 				<text><![CDATA[Proveniente:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="251" y="285" width="314" height="15" uuid="deca241e-f8fc-4c08-8404-46725460ff66">
+				<reportElement x="258" y="285" width="306" height="15" uuid="deca241e-f8fc-4c08-8404-46725460ff66">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -773,14 +774,14 @@ from vw_relatorio_ficha_cadastral]]>
 				<textFieldExpression><![CDATA[$F{fonteRendaFamiliar}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="16" y="303" width="60" height="15" uuid="9511513c-abcb-47b8-af07-2334d87a6c04">
+				<reportElement x="16" y="303" width="68" height="15" uuid="9511513c-abcb-47b8-af07-2334d87a6c04">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Bottom"/>
 				<text><![CDATA[Observação:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="76" y="303" width="490" height="15" isPrintWhenDetailOverflows="true" uuid="65362a23-4150-4051-b90e-b1e819d959aa">
+				<reportElement x="85" y="303" width="480" height="15" isPrintWhenDetailOverflows="true" uuid="65362a23-4150-4051-b90e-b1e819d959aa">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -792,14 +793,14 @@ from vw_relatorio_ficha_cadastral]]>
 				<textFieldExpression><![CDATA[$F{observacoes}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="16" y="321" width="110" height="15" uuid="5217fc43-af8e-4cd8-a942-51e864239977">
+				<reportElement x="16" y="321" width="120" height="15" uuid="5217fc43-af8e-4cd8-a942-51e864239977">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Bottom"/>
 				<text><![CDATA[Quem pegaria a criança:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="126" y="321" width="440" height="15" isPrintWhenDetailOverflows="true" uuid="eb6e6694-78c5-429d-ab92-d06545ed74bf">
+				<reportElement x="136" y="321" width="430" height="15" isPrintWhenDetailOverflows="true" uuid="eb6e6694-78c5-429d-ab92-d06545ed74bf">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -811,14 +812,14 @@ from vw_relatorio_ficha_cadastral]]>
 				<textFieldExpression><![CDATA[$F{descBuscaEscola}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="16" y="339" width="380" height="15" uuid="3f9b2873-7032-4abe-95c3-4baeca08cd6f">
+				<reportElement x="16" y="339" width="388" height="15" uuid="3f9b2873-7032-4abe-95c3-4baeca08cd6f">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Bottom"/>
 				<text><![CDATA[O beneficiário poderá participar de apresentações externas e publicidade em geral ?]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="397" y="339" width="49" height="15" isPrintWhenDetailOverflows="true" uuid="5ee677dd-b8e7-4699-8c23-e7e14ca5b2a6">
+				<reportElement x="405" y="339" width="49" height="15" isPrintWhenDetailOverflows="true" uuid="5ee677dd-b8e7-4699-8c23-e7e14ca5b2a6">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -849,14 +850,14 @@ from vw_relatorio_ficha_cadastral]]>
 				<textFieldExpression><![CDATA[$F{nomeResponsavel}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="17" y="375" width="110" height="15" uuid="3e53ea54-e776-4c5e-9f47-bc1bd85899b4">
+				<reportElement x="17" y="375" width="118" height="15" uuid="3e53ea54-e776-4c5e-9f47-bc1bd85899b4">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Bottom"/>
 				<text><![CDATA[Data de Nasc. do Resp.:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="127" y="375" width="149" height="15" isPrintWhenDetailOverflows="true" uuid="dd3ab963-77d9-4604-a7a8-644e61c80899">
+				<reportElement x="137" y="375" width="149" height="15" isPrintWhenDetailOverflows="true" uuid="dd3ab963-77d9-4604-a7a8-644e61c80899">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -906,14 +907,14 @@ from vw_relatorio_ficha_cadastral]]>
 				<textFieldExpression><![CDATA[$F{cpfResponsavel}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="17" y="412" width="69" height="15" uuid="10a9d0ad-2295-4991-99ab-0a69333588e8">
+				<reportElement x="17" y="412" width="73" height="15" uuid="10a9d0ad-2295-4991-99ab-0a69333588e8">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Bottom"/>
 				<text><![CDATA[Telefone Resp:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="87" y="412" width="245" height="15" uuid="a3fe646c-f570-4e03-aa93-efea9773ebd8">
+				<reportElement x="93" y="412" width="245" height="15" uuid="a3fe646c-f570-4e03-aa93-efea9773ebd8">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -925,14 +926,14 @@ from vw_relatorio_ficha_cadastral]]>
 				<textFieldExpression><![CDATA[$F{foneCelularResponsavel} + "  "+ $F{foneResidencialResponsavel} + "  "+$F{foneComercialResponsavel}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="338" y="412" width="96" height="15" uuid="9691f6b5-d1f3-4b9e-b8c3-19ccfa48f7af">
+				<reportElement x="343" y="412" width="102" height="15" uuid="9691f6b5-d1f3-4b9e-b8c3-19ccfa48f7af">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Bottom"/>
 				<text><![CDATA[Grau de Parentesco:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="435" y="412" width="130" height="15" uuid="79ef4114-9966-471e-8b32-e3489b2ad05e">
+				<reportElement x="447" y="412" width="130" height="15" uuid="79ef4114-9966-471e-8b32-e3489b2ad05e">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>

@@ -14,13 +14,13 @@ public class FichaMatriculaTO {
 	private String     telefoneResidencial;
 	private String     telefoneComercial;
 	private String     sexo;
-	private LocalDate  dataNascimento;
+	private String     dataNascimento;
 	private String     naturalidade;
 	private String     nomeMae;
 	private String     nomePai;
 	private String     encaminhado;
 	private String     descPublicoPrioritario;
-	private LocalDate  dataMatricula;
+	private String     dataMatricula;
 	private String     turno;
 	private String     atividade;
 	private String     escola;
@@ -35,7 +35,7 @@ public class FichaMatriculaTO {
 	private String     descBuscaEscola;
 	private Boolean    apresentacaoExterna;
 	private String     nomeResponsavel;
-	private LocalDate  dataNascimentoResponsavel;
+	private String     dataNascimentoResponsavel;
 	private String     rgResponsavel;
 	private String     cpfResponsavel;
 	private String     foneCelularResponsavel;
@@ -130,11 +130,11 @@ public class FichaMatriculaTO {
 		this.sexo = sexo;
 	}
 
-	public LocalDate getDataNascimento() {
+	public String getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(LocalDate dataNascimento) {
+	public void setDataNascimento(String dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 
@@ -178,11 +178,11 @@ public class FichaMatriculaTO {
 		this.descPublicoPrioritario = descPublicoPrioritario;
 	}
 
-	public LocalDate getDataMatricula() {
+	public String getDataMatricula() {
 		return dataMatricula;
 	}
 
-	public void setDataMatricula(LocalDate dataMatricula) {
+	public void setDataMatricula(String dataMatricula) {
 		this.dataMatricula = dataMatricula;
 	}
 
@@ -298,11 +298,11 @@ public class FichaMatriculaTO {
 		this.nomeResponsavel = nomeResponsavel;
 	}
 
-	public LocalDate getDataNascimentoResponsavel() {
+	public String getDataNascimentoResponsavel() {
 		return dataNascimentoResponsavel;
 	}
 
-	public void setDataNascimentoResponsavel(LocalDate dataNascimentoResponsavel) {
+	public void setDataNascimentoResponsavel(String dataNascimentoResponsavel) {
 		this.dataNascimentoResponsavel = dataNascimentoResponsavel;
 	}
 

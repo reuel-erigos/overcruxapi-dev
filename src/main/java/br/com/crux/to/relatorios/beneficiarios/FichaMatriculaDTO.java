@@ -65,13 +65,13 @@ public class FichaMatriculaDTO {
 		this.telefoneResidencial             = (String) colunas[7];
 		this.telefoneComercial               = (String) colunas[8];
 		this.sexo                            = (String) colunas[9];
-		this.dataNascimento                  = (String) colunas[10];
+		this.dataNascimento                  = (colunas[10] != null) ? ((String) colunas[10]) : "";
 		this.naturalidade                    = (String) colunas[11];
 		this.nomeMae                         = (String) colunas[12];
 		this.nomePai                         = (String) colunas[13];
 		this.encaminhado                     = (String) colunas[14];
 		this.descPublicoPrioritario          = (String) colunas[15];
-		this.dataMatricula                   = (String) colunas[16];
+		this.dataMatricula                   = (colunas[16] != null) ? ((String) colunas[16]) : "";
 		this.turno                           = (String) colunas[17];
 		this.atividade                       = (String) colunas[18];
 		this.escola                          = (String) colunas[19];
@@ -86,7 +86,7 @@ public class FichaMatriculaDTO {
 		this.descBuscaEscola                 = (String) colunas[28];
 		this.apresentacaoExterna             = (String) colunas[29];
 		this.nomeResponsavel                 = (String) colunas[30];
-		this.dataNascimentoResponsavel       = (String) colunas[31];
+		this.dataNascimentoResponsavel       = (colunas[31] != null) ? ((String) colunas[31]) : "";
 		this.rgResponsavel                   = (String) colunas[32];
 		this.cpfResponsavel                  = (String) colunas[33];
 		this.foneCelularResponsavel          = (colunas[34] != null) ? ((String) colunas[34]) : "";
