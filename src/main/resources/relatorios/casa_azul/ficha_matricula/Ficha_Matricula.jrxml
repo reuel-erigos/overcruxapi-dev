@@ -164,7 +164,7 @@ from vw_relatorio_ficha_cadastral]]>
 		<property name="com.jaspersoft.studio.field.label" value="paisCasados"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
 	</field>
-	<field name="rendaFamiliar" class="java.lang.Double">
+	<field name="rendaFamiliar" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="rendaFamiliar"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
 	</field>
@@ -741,14 +741,14 @@ from vw_relatorio_ficha_cadastral]]>
 				<textElement verticalAlignment="Bottom"/>
 				<text><![CDATA[Renda Familiar:]]></text>
 			</staticText>
-			<textField pattern="#,##0.##;-#,##0.##" isBlankWhenNull="true">
+			<textField pattern="¤#,##0.##;¤-#,##0.##" isBlankWhenNull="true">
 				<reportElement x="115" y="285" width="71" height="15" uuid="1040ef23-667b-4a8f-89f1-9fdce9ad3171">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
 					<bottomPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Center">
+				<textElement textAlignment="Left">
 					<font isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{rendaFamiliar}]]></textFieldExpression>
@@ -812,14 +812,14 @@ from vw_relatorio_ficha_cadastral]]>
 				<textFieldExpression><![CDATA[$F{descBuscaEscola}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="16" y="339" width="398" height="15" uuid="3f9b2873-7032-4abe-95c3-4baeca08cd6f">
+				<reportElement x="16" y="339" width="418" height="15" uuid="3f9b2873-7032-4abe-95c3-4baeca08cd6f">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Bottom"/>
 				<text><![CDATA[O beneficiário poderá participar de apresentações externas e publicidade em geral ?]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="415" y="339" width="49" height="15" isPrintWhenDetailOverflows="true" uuid="5ee677dd-b8e7-4699-8c23-e7e14ca5b2a6">
+				<reportElement x="435" y="339" width="49" height="15" isPrintWhenDetailOverflows="true" uuid="5ee677dd-b8e7-4699-8c23-e7e14ca5b2a6">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>

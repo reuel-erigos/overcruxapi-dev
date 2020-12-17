@@ -2,6 +2,8 @@ package br.com.crux.to.relatorios.beneficiarios;
 
 import java.math.BigDecimal;
 
+import br.com.crux.infra.util.NumeroUtil;
+
 public class FichaMatriculaDTO {
 	
 	private Long       idPessoaFisica;
@@ -29,7 +31,7 @@ public class FichaMatriculaDTO {
 	private String     descMedicamentosControlados;
 	private String     moraComPais;
 	private String     paisCasados;
-	private Double     rendaFamiliar;
+	private String     rendaFamiliar;
 	private String     fonteRendaFamiliar;
 	private String     observacoes;
 	private String     descBuscaEscola;
@@ -80,7 +82,7 @@ public class FichaMatriculaDTO {
 		this.descMedicamentosControlados     = (String) colunas[22];
 		this.moraComPais                     = (String) colunas[23];
 		this.paisCasados                     = (String) colunas[24];
-		this.rendaFamiliar                   = (colunas[25] != null)? ((BigDecimal)colunas[25]).doubleValue() : null;
+		this.rendaFamiliar                   = (colunas[25] != null)? NumeroUtil.formataMoeda(((BigDecimal)colunas[25]).doubleValue()) : null;
 		this.fonteRendaFamiliar              = (String) colunas[26];
 		this.observacoes                     = (String) colunas[27];
 		this.descBuscaEscola                 = (String) colunas[28];
@@ -300,11 +302,11 @@ public class FichaMatriculaDTO {
 		this.paisCasados = paisCasados;
 	}
 
-	public Double getRendaFamiliar() {
+	public String getRendaFamiliar() {
 		return rendaFamiliar;
 	}
 
-	public void setRendaFamiliar(Double rendaFamiliar) {
+	public void setRendaFamiliar(String rendaFamiliar) {
 		this.rendaFamiliar = rendaFamiliar;
 	}
 
@@ -435,5 +437,5 @@ public class FichaMatriculaDTO {
 	public void setTomaMedicamentosControlados(String tomaMedicamentosControlados) {
 		this.tomaMedicamentosControlados = tomaMedicamentosControlados;
 	}
-	
 }
+

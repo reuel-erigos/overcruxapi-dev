@@ -7,7 +7,7 @@ public class FichaMatriculaTO {
 	private String     endereco;
 	private String     bairro;
 	private String     ufEndereco;
-	private Long       cep;
+	private String     cep;
 	private String     foneCelular;
 	private String     telefoneResidencial;
 	private String     telefoneComercial;
@@ -25,13 +25,13 @@ public class FichaMatriculaTO {
 	private String     serie;
 	private String     descProblemaSaude;
 	private String     descMedicamentosControlados;
-	private Boolean    moraComPais;
-	private Boolean    paisCasados;
-	private Double     rendaFamiliar;
+	private String     moraComPais;
+	private String     paisCasados;
+	private String     rendaFamiliar;
 	private String     fonteRendaFamiliar;
 	private String     observacoes;
 	private String     descBuscaEscola;
-	private Boolean    apresentacaoExterna;
+	private String     apresentacaoExterna;
 	private String     nomeResponsavel;
 	private String     dataNascimentoResponsavel;
 	private String     rgResponsavel;
@@ -88,11 +88,11 @@ public class FichaMatriculaTO {
 		this.ufEndereco = ufEndereco;
 	}
 
-	public Long getCep() {
+	public String getCep() {
 		return cep;
 	}
 
-	public void setCep(Long cep) {
+	public void setCep(String cep) {
 		this.cep = cep;
 	}
 
@@ -232,27 +232,27 @@ public class FichaMatriculaTO {
 		this.descMedicamentosControlados = descMedicamentosControlados;
 	}
 
-	public Boolean getMoraComPais() {
+	public String getMoraComPais() {
 		return moraComPais;
 	}
 
-	public void setMoraComPais(Boolean moraComPais) {
+	public void setMoraComPais(String moraComPais) {
 		this.moraComPais = moraComPais;
 	}
 
-	public Boolean getPaisCasados() {
+	public String getPaisCasados() {
 		return paisCasados;
 	}
 
-	public void setPaisCasados(Boolean paisCasados) {
+	public void setPaisCasados(String paisCasados) {
 		this.paisCasados = paisCasados;
 	}
 
-	public Double getRendaFamiliar() {
+	public String getRendaFamiliar() {
 		return rendaFamiliar;
 	}
 
-	public void setRendaFamiliar(Double rendaFamiliar) {
+	public void setRendaFamiliar(String rendaFamiliar) {
 		this.rendaFamiliar = rendaFamiliar;
 	}
 
@@ -280,11 +280,11 @@ public class FichaMatriculaTO {
 		this.descBuscaEscola = descBuscaEscola;
 	}
 
-	public Boolean getApresentacaoExterna() {
+	public String getApresentacaoExterna() {
 		return apresentacaoExterna;
 	}
 
-	public void setApresentacaoExterna(Boolean apresentacaoExterna) {
+	public void setApresentacaoExterna(String apresentacaoExterna) {
 		this.apresentacaoExterna = apresentacaoExterna;
 	}
 
