@@ -343,7 +343,7 @@ from vw_relatorio_declaracao_passe_estudantil]]>
 				<text><![CDATA[End. Res.:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="290" y="28" width="74" height="14" uuid="e4e5b62d-74bc-4f64-861b-1d8d51351277">
+				<reportElement x="290" y="28" width="82" height="14" uuid="e4e5b62d-74bc-4f64-861b-1d8d51351277">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
@@ -563,7 +563,7 @@ from vw_relatorio_declaracao_passe_estudantil]]>
 				<textFieldExpression><![CDATA[$F{foneCelular} +" " + $F{foneResidencial} +" " + $F{foneComercial}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="365" y="28" width="85" height="14" uuid="e0934058-2ed8-4562-9746-0653b2cee916">
+				<reportElement x="373" y="28" width="77" height="14" uuid="e0934058-2ed8-4562-9746-0653b2cee916">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{dataNascimentoAluno}]]></textFieldExpression>
@@ -716,7 +716,7 @@ from vw_relatorio_declaracao_passe_estudantil]]>
 				<textFieldExpression><![CDATA[$F{escolaridade}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-				<reportElement x="6" y="308" width="572" height="14" uuid="6b095655-c2d3-4331-91fd-106f08c1bb0e">
+				<reportElement x="6" y="307" width="572" height="14" uuid="6b095655-c2d3-4331-91fd-106f08c1bb0e">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
