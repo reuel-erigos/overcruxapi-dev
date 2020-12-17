@@ -9,7 +9,7 @@ public class FichaMatriculaDTO {
 	private String     endereco;
 	private String     bairro;
 	private String     ufEndereco;
-	private Long       cep;
+	private String     cep;
 	private String     foneCelular;
 	private String     telefoneResidencial;
 	private String     telefoneComercial;
@@ -44,6 +44,8 @@ public class FichaMatriculaDTO {
 	private String     nomeGrauParentesco;
 	private String     nisAluno;
 	private String     nisResponsavel;
+	private String     temProblemaSaude;
+	private String     tomaMedicamentosControlados;
 	
 	
 
@@ -58,7 +60,7 @@ public class FichaMatriculaDTO {
 		this.endereco                        = (String) colunas[2];
 		this.bairro                          = (String) colunas[3];
 		this.ufEndereco                      = (String) colunas[4];
-		this.cep                             = (colunas[5] != null)? ((BigDecimal)colunas[5]).longValue() : null;
+		this.cep                             = (colunas[5] != null) ? ((String) colunas[5]) : "";
 		this.foneCelular                     = (String) colunas[6];
 		this.telefoneResidencial             = (String) colunas[7];
 		this.telefoneComercial               = (String) colunas[8];
@@ -93,6 +95,9 @@ public class FichaMatriculaDTO {
 		this.nomeGrauParentesco              = (String) colunas[37];
 		this.nisAluno                        = (String) colunas[38];
 		this.nisResponsavel                  = (String) colunas[39];
+		this.temProblemaSaude                = (String) colunas[40];
+		this.tomaMedicamentosControlados     = (String) colunas[41];
+
 	}
 
 	public Long getIdPessoaFisica() {
@@ -135,11 +140,11 @@ public class FichaMatriculaDTO {
 		this.ufEndereco = ufEndereco;
 	}
 
-	public Long getCep() {
+	public String getCep() {
 		return cep;
 	}
 
-	public void setCep(Long cep) {
+	public void setCep(String cep) {
 		this.cep = cep;
 	}
 
@@ -415,4 +420,20 @@ public class FichaMatriculaDTO {
 		this.nisResponsavel = nisResponsavel;
 	}
 
+	public String getTemProblemaSaude() {
+		return temProblemaSaude;
+	}
+
+	public void setTemProblemaSaude(String temProblemaSaude) {
+		this.temProblemaSaude = temProblemaSaude;
+	}
+
+	public String getTomaMedicamentosControlados() {
+		return tomaMedicamentosControlados;
+	}
+
+	public void setTomaMedicamentosControlados(String tomaMedicamentosControlados) {
+		this.tomaMedicamentosControlados = tomaMedicamentosControlados;
+	}
+	
 }

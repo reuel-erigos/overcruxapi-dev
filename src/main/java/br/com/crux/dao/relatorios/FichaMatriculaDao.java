@@ -58,7 +58,9 @@ public class FichaMatriculaDao extends BaseDao{
 		sql.append("       fone_comercial_responsavel    , ");
 		sql.append("       nm_grau_parentesco            , ");
 		sql.append("       nr_nis                        , ");
-		sql.append("       nis_responsavel                 ");
+		sql.append("       nis_responsavel               , ");
+		sql.append("       st_problema_saude             , ");
+		sql.append("       st_medicamentos_controlados     ");
 		sql.append("  from vw_relatorio_ficha_cadastral    ");
 		sql.append(" where id_pessoa_fisica in (");
 		sql.append(String.join(", ", listaIdsPessoaFisica.stream().map(String::valueOf).collect(Collectors.toList())));

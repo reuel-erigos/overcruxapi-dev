@@ -59,7 +59,9 @@
      fone_comercial_responsavel    as "foneComercialResponsavel"   , 
      nm_grau_parentesco            as "nomeGrauParentesco"         , 
      nr_nis                        as "nisAluno"                   , 
-     nis_responsavel               as "nisResponsavel"               
+     nis_responsavel               as "nisResponsavel"  ,
+     st_problema_saude       as "temProblemaSaude",
+     st_medicamentos_controlados  as "tomaMedicamentosControlados"
 from vw_relatorio_ficha_cadastral]]>
 	</queryString>
 	<field name="idPessoaFisica" class="java.lang.Long">
@@ -82,7 +84,7 @@ from vw_relatorio_ficha_cadastral]]>
 		<property name="com.jaspersoft.studio.field.label" value="ufEndereco"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
 	</field>
-	<field name="cep" class="java.lang.Long">
+	<field name="cep" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="cep"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
 	</field>
@@ -222,6 +224,8 @@ from vw_relatorio_ficha_cadastral]]>
 		<property name="com.jaspersoft.studio.field.label" value="nisResponsavel"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
 	</field>
+	<field name="temProblemaSaude" class="java.lang.String"/>
+	<field name="tomaMedicamentosControlados" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -626,7 +630,7 @@ from vw_relatorio_ficha_cadastral]]>
 				<textElement>
 					<font isUnderline="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{descProblemaSaude}.equals("") ? "Não" : "Sim"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{temProblemaSaude}.equals("") ? "Não" : "Sim"]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="174" y="231" width="32" height="15" uuid="71183371-f257-430e-8bf6-7d55d138c6f6">
@@ -664,7 +668,8 @@ from vw_relatorio_ficha_cadastral]]>
 				<textElement>
 					<font isUnderline="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{descMedicamentosControlados}.equals("") ? "Não" : "Sim"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{tomaMedicamentosControlados}.equals("") ? "Não" : "Sim"
+]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="174" y="249" width="32" height="15" uuid="c58a4f29-baeb-44d2-83d5-02baca075035">
@@ -737,7 +742,7 @@ from vw_relatorio_ficha_cadastral]]>
 				<box>
 					<bottomPen lineWidth="1.0"/>
 				</box>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{rendaFamiliar}]]></textFieldExpression>
@@ -975,10 +980,11 @@ from vw_relatorio_ficha_cadastral]]>
 				<reportElement x="140" y="511" width="311" height="1" uuid="fa515934-01fe-40d6-8426-ced22c8add49"/>
 			</line>
 			<staticText>
-				<reportElement x="264" y="521" width="60" height="15" uuid="513b0a60-a5b7-456f-a1d2-b4e4594fa8f0">
+				<reportElement x="258" y="521" width="74" height="15" uuid="513b0a60-a5b7-456f-a1d2-b4e4594fa8f0">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
+				<textElement textAlignment="Center"/>
 				<text><![CDATA[Responsável]]></text>
 			</staticText>
 			<staticText>
@@ -1007,7 +1013,7 @@ from vw_relatorio_ficha_cadastral]]>
 				<textElement verticalAlignment="Bottom"/>
 				<text><![CDATA[Data:]]></text>
 			</staticText>
-			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+			<textField pattern="&apos;Brasília, &apos; d &apos;de&apos; MMMM yyyy" isBlankWhenNull="true">
 				<reportElement x="496" y="565" width="66" height="15" uuid="0816c221-f6d6-4d12-aff5-bfb4ad2b9b67">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
