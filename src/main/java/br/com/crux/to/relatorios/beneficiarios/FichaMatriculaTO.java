@@ -44,6 +44,8 @@ public class FichaMatriculaTO {
 	private String     nomeGrauParentesco;
 	private String     nisAluno;
 	private String     nisResponsavel;
+	private String     temProblemaSaude;
+	private String     tomaMedicamentosControlados;
 
 	public FichaMatriculaTO() {
 	}
@@ -368,7 +370,21 @@ public class FichaMatriculaTO {
 		this.nisResponsavel = nisResponsavel;
 	}
 
+	public String getTemProblemaSaude() {
+		return temProblemaSaude;
+	}
 
-	
+	public void setTemProblemaSaude(String temProblemaSaude) {
+		this.temProblemaSaude = temProblemaSaude;
+	}
+
+	public String getTomaMedicamentosControlados() {
+		return tomaMedicamentosControlados;
+	}
+
+	public void setTomaMedicamentosControlados(String tomaMedicamentosControlados) {
+		this.tomaMedicamentosControlados = tomaMedicamentosControlados;
+	}
+
 
 }
