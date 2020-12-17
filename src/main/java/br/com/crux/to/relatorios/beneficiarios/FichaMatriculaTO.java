@@ -1,7 +1,5 @@
 package br.com.crux.to.relatorios.beneficiarios;
 
-import java.time.LocalDate;
-
 public class FichaMatriculaTO {
 
 	private Long       idPessoaFisica;
