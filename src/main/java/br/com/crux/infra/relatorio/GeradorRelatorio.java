@@ -59,6 +59,7 @@ public class GeradorRelatorio {
 		parametros.put("P_PATH_ROOT", "relatorios"+File.separator+path[0]);
 		parametros.put("P_NOME_USUARIO_LOGADO", getUsuarioLogadoCmd.getUsuarioLogado().getNomeUsuario());
 		parametros.put("REPORT_LOCALE", new Locale("pt","BR"));
+		parametros.put("REPORT_TIME_ZONE", "UTC-3");
 		
 		byte[] toReturn = null;
 		Exporter exporter = null;		
