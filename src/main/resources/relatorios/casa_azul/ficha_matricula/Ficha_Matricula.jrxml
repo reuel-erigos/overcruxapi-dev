@@ -224,8 +224,14 @@ from vw_relatorio_ficha_cadastral]]>
 		<property name="com.jaspersoft.studio.field.label" value="nisResponsavel"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
 	</field>
-	<field name="temProblemaSaude" class="java.lang.String"/>
-	<field name="tomaMedicamentosControlados" class="java.lang.String"/>
+	<field name="temProblemaSaude" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="temProblemaSaude"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
+	<field name="tomaMedicamentosControlados" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="tomaMedicamentosControlados"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_ficha_cadastral"/>
+	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -668,8 +674,7 @@ from vw_relatorio_ficha_cadastral]]>
 				<textElement>
 					<font isUnderline="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{tomaMedicamentosControlados}.equals("") ? "Não" : "Sim"
-]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{tomaMedicamentosControlados}.equals("") ? "Não" : "Sim"]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="174" y="249" width="32" height="15" uuid="c58a4f29-baeb-44d2-83d5-02baca075035">
