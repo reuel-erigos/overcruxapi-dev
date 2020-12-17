@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.TimeZone;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -59,7 +60,7 @@ public class GeradorRelatorio {
 		parametros.put("P_PATH_ROOT", "relatorios"+File.separator+path[0]);
 		parametros.put("P_NOME_USUARIO_LOGADO", getUsuarioLogadoCmd.getUsuarioLogado().getNomeUsuario());
 		parametros.put("REPORT_LOCALE", new Locale("pt","BR"));
-		parametros.put("REPORT_TIME_ZONE", "UTC-3");
+		parametros.put("REPORT_TIME_ZONE", TimeZone.getTimeZone("America/Sao_Paulo"));
 		
 		byte[] toReturn = null;
 		Exporter exporter = null;		
