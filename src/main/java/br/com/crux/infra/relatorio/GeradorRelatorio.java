@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +58,7 @@ public class GeradorRelatorio {
 		parametros = parametros == null ? parametros = new HashMap<>() : parametros;
 		parametros.put("P_PATH_ROOT", "relatorios"+File.separator+path[0]);
 		parametros.put("P_NOME_USUARIO_LOGADO", getUsuarioLogadoCmd.getUsuarioLogado().getNomeUsuario());
+		parametros.put("REPORT_LOCALE", new Locale("pt","BR"));
 		
 		byte[] toReturn = null;
 		Exporter exporter = null;		
