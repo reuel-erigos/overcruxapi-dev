@@ -98,7 +98,7 @@ from vw_relatorio_declaracao_passe_estudantil]]>
 		<property name="com.jaspersoft.studio.field.label" value="nomePai"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_declaracao_passe_estudantil"/>
 	</field>
-	<field name="cep" class="java.lang.Long">
+	<field name="cep" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="cep"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_declaracao_passe_estudantil"/>
 	</field>
