@@ -15,7 +15,7 @@ public class DeclaracaoBeneficiarioDTO {
 	private String ufEnderecoAluno              ;
 	private String nomeMae                      ;
 	private String nomePai                      ;
-	private Long   cep                          ;
+	private String cep                          ;
 	private String foneCelular                  ;
 	private String foneResidencial              ;
 	private String foneComercial                ;
@@ -63,7 +63,7 @@ public class DeclaracaoBeneficiarioDTO {
 		this.ufEnderecoAluno                 = (colunas[8] != null) ? (String) colunas[8] : "";
 		this.nomeMae                         = (colunas[9] != null) ? (String) colunas[9] : "";
 		this.nomePai                         = (colunas[10] != null) ? (String) colunas[10]: "";
-		this.cep                             = (colunas[11] != null)? ((BigDecimal)colunas[11]).longValue() : null;
+		this.cep                             = (colunas[11] != null) ? (String) colunas[11]: "";
 		this.foneCelular                     = (colunas[12] != null) ? (String) colunas[12] : "";
 		this.foneResidencial                 = (colunas[13] != null) ? (String) colunas[13] : "";
 		this.foneComercial                   = (colunas[14] != null) ? (String) colunas[14] : "";
@@ -207,12 +207,12 @@ public class DeclaracaoBeneficiarioDTO {
 	}
 
 
-	public Long getCep() {
+	public String getCep() {
 		return cep;
 	}
 
 
-	public void setCep(Long cep) {
+	public void setCep(String cep) {
 		this.cep = cep;
 	}
 

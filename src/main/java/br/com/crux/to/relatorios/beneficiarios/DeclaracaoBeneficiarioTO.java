@@ -13,7 +13,7 @@ public class DeclaracaoBeneficiarioTO {
 	private String ufEnderecoAluno              ;
 	private String nomeMae                      ;
 	private String nomePai                      ;
-	private Long cep                            ;
+	private String cep                          ;
 	private String foneCelular                  ;
 	private String foneResidencial              ;
 	private String foneComercial                ;
@@ -161,12 +161,12 @@ public class DeclaracaoBeneficiarioTO {
 	}
 
 
-	public Long getCep() {
+	public String getCep() {
 		return cep;
 	}
 
 
-	public void setCep(Long cep) {
+	public void setCep(String cep) {
 		this.cep = cep;
 	}
 
