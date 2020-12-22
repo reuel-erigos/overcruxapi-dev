@@ -10,12 +10,14 @@ import org.springframework.stereotype.Component;
 
 import br.com.crux.cmd.GetCategoriasContabeisCmd;
 import br.com.crux.cmd.GetMaterialCmd;
+import br.com.crux.cmd.GetPedidosMateriaisCmd;
 import br.com.crux.cmd.GetTributosItensMovimentacaoCmd;
 import br.com.crux.cmd.GetUsuarioLogadoCmd;
 import br.com.crux.entity.CategoriasContabeis;
 import br.com.crux.entity.ItensMovimentacoes;
 import br.com.crux.entity.Material;
 import br.com.crux.entity.Movimentacoes;
+import br.com.crux.entity.PedidosMateriais;
 import br.com.crux.to.ItensMovimentacoesTO;
 
 @Component
@@ -25,6 +27,7 @@ public class ItensMovimentacoesTOBuilder {
 	@Autowired private DepartamentoTOBuilder departamentoTOBuilder;
 	@Autowired private MaterialTOBuilder materialTOBuilder;
 	@Autowired private PedidosMateriaisTOBuilder pedidosMateriaisTOBuilder;
+	@Autowired private GetPedidosMateriaisCmd getPedidosMateriaisCmd;
 	@Autowired private UnidadeTOBuilder unidadeTOBuilder;
 	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
 	@Autowired private GetCategoriasContabeisCmd getCategoriasContabeisCmd;
@@ -78,6 +81,11 @@ public class ItensMovimentacoesTOBuilder {
 			entity.setMaterial(retorno);
 		}
 
+		if (Objects.nonNull(to.getPedidosMateriais()) && Objects.nonNull(to.getPedidosMateriais().getId())) {
+			PedidosMateriais retorno = getPedidosMateriaisCmd.getById(to.getPedidosMateriais().getId());
+			entity.setPedidosMateriais(retorno);
+		}
+		
 		entity.setIdMovimentacao(movimentacao.getId());
 		entity.setUnidade(movimentacao.getUnidade());
 		entity.setDepartamento(movimentacao.getDepartamento());
