@@ -17,7 +17,7 @@ public class PlanosContas {
 
 	@Id
 	@Column(name = "id_categoria")
-	private Long idCategoria;
+	private Long id;
 	
 	@Column(name = "plano_conta")
 	private String planoConta;
@@ -35,12 +35,12 @@ public class PlanosContas {
 	public PlanosContas() {
 	}
 
-	public Long getIdCategoria() {
-		return idCategoria;
+	public Long getId() {
+		return id;
 	}
 
-	public void setIdCategoria(Long idCategoria) {
-		this.idCategoria = idCategoria;
+	public void setId(Long idCategoria) {
+		this.id = idCategoria;
 	}
 
 	public String getPlanoConta() {

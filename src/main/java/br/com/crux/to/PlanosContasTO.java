@@ -2,17 +2,17 @@ package br.com.crux.to;
 
 public class PlanosContasTO {
 
-	private Long idCategoria;
+	private Long id;
 	private String planoConta;
 	private String codigoCategoriaContabil;
 	private Long idInstituicao;
 	
-	public Long getIdCategoria() {
-		return idCategoria;
+	public Long getId() {
+		return id;
 	}
 	
-	public void setIdCategoria(Long idCategoria) {
-		this.idCategoria = idCategoria;
+	public void setId(Long idCategoria) {
+		this.id = idCategoria;
 	}
 	
 	public String getPlanoConta() {
