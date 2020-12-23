@@ -21,7 +21,7 @@ import br.com.crux.cmd.GetSituacaoExAlunoCmd;
 import br.com.crux.to.SituacaoExAlunoTO;
 
 @RestController
-@RequestMapping(value = "tiposatividades")
+@RequestMapping(value = "situacoesexalunos")
 public class SituacaoExAlunoService {
 
 	@Autowired private GetSituacaoExAlunoCmd getCmd;
