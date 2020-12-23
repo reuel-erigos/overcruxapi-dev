@@ -16,7 +16,6 @@ import org.springframework.stereotype.Component;
 
 import br.com.crux.dao.base.BaseDao;
 import br.com.crux.exception.ConciliacaoNaoGeradoException;
-import br.com.crux.exception.base.NegocioException;
 import br.com.crux.infra.util.DataUtil;
 
 @Component
@@ -33,46 +32,40 @@ public class GerarConciliacaoBancariaDao extends BaseDao {
               public void execute(Connection connection) throws SQLException {
             	  try {
             		  CallableStatement statement =null;
-                      
-                      String sqlString = "{call fn_gerar_conciliacao_bancaria(?,?,?,?)}";
-
-                      statement = connection.prepareCall(sqlString);
-                      statement.setLong(1,idInstituicao);
-                      
-                      if(Objects.nonNull(idContaBancaria)) {
-                      	statement.setLong(2,idContaBancaria);
-                      } else {
-                      	statement.setNull(2, Types.INTEGER);
-                      }
-                      
-                  	Date pDataInicio = DataUtil.parseDate(dataInicio.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-                  	statement.setTimestamp(3, new Timestamp(pDataInicio.getTime()));
-                  
-                  	Date pDataFim = DataUtil.parseDate(dataFim.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-                  	statement.setTimestamp(4, new Timestamp(pDataFim.getTime()));
-                      
-                    int retorno = statement.executeUpdate();
-                    if(retorno != 0) {
-                   	  throw new ConciliacaoNaoGeradoException("Erro ao gerar a conciliação bancária, código erro banco: " + retorno);
-                    }
-                      
-            	  } catch (NegocioException e) {
-            		  throw new ConciliacaoNaoGeradoException(e.getMessage());
             		  
-            	  }	catch (Exception e) {
-            		  String msg = "Where:";            		  
-            		  if(e.getMessage().contains(msg)) {
-            			  throw new ConciliacaoNaoGeradoException(e.getMessage().substring(0, e.getMessage().indexOf(msg)));
+            		  String sqlString = "{call fn_gerar_conciliacao_bancaria(?,?,?,?)}";
+            		  
+            		  statement = connection.prepareCall(sqlString);
+            		  statement.setLong(1,idInstituicao);
+            		  
+            		  if(Objects.nonNull(idContaBancaria)) {
+            			  statement.setLong(2,idContaBancaria);
+            		  } else {
+            			  statement.setNull(2, Types.INTEGER);
             		  }
-            		  throw new ConciliacaoNaoGeradoException(e.getMessage());
-            	  }
-               
+            		  
+            		  Date pDataInicio = DataUtil.parseDate(dataInicio.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+            		  statement.setTimestamp(3, new Timestamp(pDataInicio.getTime()));
+            		  
+            		  Date pDataFim = DataUtil.parseDate(dataFim.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+            		  statement.setTimestamp(4, new Timestamp(pDataFim.getTime()));
+            		  
+            		  int retorno = statement.executeUpdate();
+            		  if(retorno != 0) {
+            			  throw new ConciliacaoNaoGeradoException("Erro ao gerar a conciliação bancária, código erro banco: " + retorno);
+            		  }
+  				  } finally {
+  					  if(!connection.isClosed()) {
+  						  connection.close();
+  					  }
+				  }
                 }
             });
             session.getTransaction().commit();
 
 		}
         finally{
+        	
         	closeEntityManager();
         }
 	}
