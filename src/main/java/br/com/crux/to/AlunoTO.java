@@ -37,7 +37,9 @@ public class AlunoTO {
 	private String descBuscaEscola;
 	private String publicoPrioritario;
 	private String matriculaAluno;
-	private NiveisTurmasTO nivelTurma;	
+	private NiveisTurmasTO nivelTurma;
+	private TiposPublicoPrioritarioTO tiposPublicoPrioritario;
+	private MotivoDesligamentoTO motivoDesligamento;
 	private Long usuarioAlteracao;
 
 	private List<VulnerabilidadesAlunoTO> vulnerabilidades;
@@ -236,6 +238,23 @@ public class AlunoTO {
 
 	public void setEncaminhamentos(List<EncaminhaAlunosTO> encaminhamentos) {
 		this.encaminhamentos = encaminhamentos;
+	}
+
+	public TiposPublicoPrioritarioTO getTiposPublicoPrioritario() {
+		return tiposPublicoPrioritario;
+	}
+
+	public void setTiposPublicoPrioritario(
+			TiposPublicoPrioritarioTO tiposPublicoPrioritarioTO) {
+		this.tiposPublicoPrioritario = tiposPublicoPrioritarioTO;
+	}
+
+	public MotivoDesligamentoTO getMotivoDesligamento() {
+		return motivoDesligamento;
+	}
+
+	public void setMotivoDesligamento(MotivoDesligamentoTO motivoDesligamentoTO) {
+		this.motivoDesligamento = motivoDesligamentoTO;
 	}	
 
 	
