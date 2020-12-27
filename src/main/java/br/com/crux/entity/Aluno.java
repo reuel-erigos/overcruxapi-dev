@@ -57,6 +57,12 @@ public class Aluno {
 	
 	@Column(name="ds_desligamento")
 	private String descDesligamento;
+
+	@Column(name="dt_sugestao_desligamento")
+	private LocalDateTime dataSugestaoDesligamento;
+	
+	@Column(name="ds_sugestao_desligamento")
+	private String descricaoSugestaoDesligamento;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_pessoa_fisica")
@@ -89,8 +95,6 @@ public class Aluno {
 
 	@Column(name="nr_matricula_aluno")
 	private String matriculaAluno;
-	
-    
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_nivel_turma")
@@ -301,6 +305,23 @@ public class Aluno {
 
 	public void setTiposPublicoPrioritario(TiposPublicoPrioritario tiposPublicoPrioritario) {
 		this.tiposPublicoPrioritario = tiposPublicoPrioritario;
+	}
+
+	public LocalDateTime getDataSugestaoDesligamento() {
+		return dataSugestaoDesligamento;
+	}
+
+	public void setDataSugestaoDesligamento(LocalDateTime dataSugestaoDesligamento) {
+		this.dataSugestaoDesligamento = dataSugestaoDesligamento;
+	}
+
+	public String getDescricaoSugestaoDesligamento() {
+		return descricaoSugestaoDesligamento;
+	}
+
+	public void setDescricaoSugestaoDesligamento(
+			String descricaoSugestaoDesligamento) {
+		this.descricaoSugestaoDesligamento = descricaoSugestaoDesligamento;
 	}
 	
 	

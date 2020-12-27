@@ -51,6 +51,7 @@ public class UnidadeTO {
 	private LocalDateTime dataVigenciaCas;
 	
 	private List<EstruturaUnidadeTO> estruturasUnidades;
+	private List<CertificadoUnidadeTO> certificadosUnidade;
 	
 
 	public UnidadeTO() {
@@ -339,6 +340,14 @@ public class UnidadeTO {
 
 	public void setEstruturasUnidades(List<EstruturaUnidadeTO> estruturaUnidade) {
 		this.estruturasUnidades = estruturaUnidade;
+	}
+
+	public List<CertificadoUnidadeTO> getCertificadosUnidade() {
+		return certificadosUnidade;
+	}
+
+	public void setCertificadosUnidade(List<CertificadoUnidadeTO> certificadosUnidade) {
+		this.certificadosUnidade = certificadosUnidade;
 	}
 
 	

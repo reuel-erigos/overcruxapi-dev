@@ -132,6 +132,9 @@ public class Unidade{
 	
 	@OneToMany(mappedBy="unidade")
 	private List<EstruturaUnidade> estruturasUnidades;
+
+	@OneToMany(mappedBy="unidade")
+	private List<CertificadoUnidade> certificadosUnidade;
 	
 	
 	public Unidade() {
@@ -418,6 +421,14 @@ public class Unidade{
 
 	public void setEstruturasUnidades(List<EstruturaUnidade> estruturasUnidades) {
 		this.estruturasUnidades = estruturasUnidades;
+	}
+
+	public List<CertificadoUnidade> getCertificadosUnidade() {
+		return certificadosUnidade;
+	}
+
+	public void setCertificadosUnidade(List<CertificadoUnidade> certificadosUnidade) {
+		this.certificadosUnidade = certificadosUnidade;
 	}
 
 	

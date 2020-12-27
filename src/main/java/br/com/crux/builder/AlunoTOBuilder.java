@@ -5,6 +5,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -38,6 +39,8 @@ public class AlunoTOBuilder {
 	public Aluno build(AlunoTO p) {
 		Aluno retorno = new Aluno();
 
+		BeanUtils.copyProperties(p, retorno);
+		
 		retorno.setId(p.getId());
 		retorno.setDescProblemaSaude(p.getDescProblemaSaude());
 		retorno.setDescMedicamentosControlados(p.getDescMedicamentosControlados());
@@ -95,6 +98,8 @@ public class AlunoTOBuilder {
 		if(Objects.isNull(p)) {
 			return retorno;
 		}
+		
+		BeanUtils.copyProperties(p, retorno);
 		
 		retorno.setId(p.getId());
 		retorno.setDescProblemaSaude(p.getDescProblemaSaude());

@@ -44,6 +44,8 @@ public class AlunoTO {
 
 	private List<VulnerabilidadesAlunoTO> vulnerabilidades;
 	private List<EncaminhaAlunosTO> encaminhamentos;
+	private LocalDateTime dataSugestaoDesligamento;
+	private String descricaoSugestaoDesligamento;
 
 	public AlunoTO() {
 	}
@@ -255,6 +257,23 @@ public class AlunoTO {
 
 	public void setMotivoDesligamento(MotivoDesligamentoTO motivoDesligamentoTO) {
 		this.motivoDesligamento = motivoDesligamentoTO;
+	}
+
+	public LocalDateTime getDataSugestaoDesligamento() {
+		return dataSugestaoDesligamento;
+	}
+
+	public void setDataSugestaoDesligamento(LocalDateTime dataSugestaoDesligamento) {
+		this.dataSugestaoDesligamento = dataSugestaoDesligamento;
+	}
+
+	public String getDescricaoSugestaoDesligamento() {
+		return descricaoSugestaoDesligamento;
+	}
+
+	public void setDescricaoSugestaoDesligamento(
+			String descricaoSugestaoDesligamento) {
+		this.descricaoSugestaoDesligamento = descricaoSugestaoDesligamento;
 	}	
 
 	

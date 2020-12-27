@@ -32,6 +32,7 @@ public class CadastrarUnidadeCmd {
 	@Autowired private GetUsuarioSistemaCmd getUsuarioSistemaCmd;
 	@Autowired private UsuariosSistemaTOBuilder usuariosSistemaTOBuilder;
 	@Autowired private AlterarEstruturaUnidadeCmd alterarEstruturaUnidadeCmd;
+	@Autowired private AlterarCertificadoUnidadeCmd alterarCertificadoUnidadeCmd;
 	
 	
 
@@ -53,6 +54,7 @@ public class CadastrarUnidadeCmd {
 		Unidade retorno = unidadeRepository.save(unidade);
 		
 		alterarEstruturaUnidadeCmd.alterarAll(to.getEstruturasUnidades(), retorno);
+		alterarCertificadoUnidadeCmd.alterarAll(to.getCertificadosUnidade(), retorno);
 		
 		UsuariosUnidadesTO usuariosUnidadesTO = new UsuariosUnidadesTO();
 		usuariosUnidadesTO.setUnidade(unidadeTOBuilder.buildTO(retorno));
