@@ -21,7 +21,7 @@ import br.com.crux.cmd.GetTiposDoadoresCmd;
 import br.com.crux.to.TiposDoadoresTO;
 
 @RestController
-@RequestMapping(value = "situacoesexalunos")
+@RequestMapping(value = "tiposdoadores")
 public class TiposDoadoresService {
 
 	@Autowired private GetTiposDoadoresCmd getCmd;

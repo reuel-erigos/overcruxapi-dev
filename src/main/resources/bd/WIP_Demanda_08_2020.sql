@@ -4,3 +4,5 @@ INSERT INTO public.modulos (id_modulo, ds_modulo, nm_modulo, id_usuario_apl, mod
 INSERT INTO public.modulos (id_modulo, ds_modulo, nm_modulo, id_usuario_apl, modulo_pai) VALUES(nextval('sq_id_modulo'), 'Situações ex-alunos', 'SITUACOES_EX_ALUNOS', 19, 98);
 INSERT INTO public.modulos (id_modulo, ds_modulo, nm_modulo, id_usuario_apl, modulo_pai) VALUES(nextval('sq_id_modulo'), 'Motivos Desligamentos', 'MOTIVOS_DESLIGAMENTOS', 19, 199);
 INSERT INTO public.modulos (id_modulo, ds_modulo, nm_modulo, id_usuario_apl, modulo_pai) VALUES(nextval('sq_id_modulo'), 'Público Prioritário', 'TIPOS_PUBLICOS_PRIORITARIOS', 19, 199);
+INSERT INTO public.modulos (id_modulo, ds_modulo, nm_modulo, id_usuario_apl, modulo_pai) VALUES(nextval('sq_id_modulo'), 'Tabelas de Referência - Programas e Projetos', 'TB_REFERENCIA_PROGRAMAS_PROJETOS', 3, 159);
+INSERT INTO public.modulos (id_modulo, ds_modulo, nm_modulo, id_usuario_apl, modulo_pai) VALUES(nextval('sq_id_modulo'), 'Tipos Doadores', 'TIPOS_DOADORES', 3, 216);
