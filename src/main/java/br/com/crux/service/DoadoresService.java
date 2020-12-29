@@ -20,7 +20,7 @@ import br.com.crux.cmd.GetDoadoresCmd;
 import br.com.crux.to.DoadoresTO;
 
 @RestController
-@RequestMapping("doadores")
+@RequestMapping(value = "doadores")
 public class DoadoresService {
 
 	@Autowired private GetDoadoresCmd getCmd;

@@ -30,7 +30,7 @@ public class TiposDoadores implements Serializable {
 	@Column(name="ds_tipo_doador")
 	private String descricao;
 	
-	@Column(name="id_instituicao")
+	@Column(name="id_instituicao", nullable = true)
 	private Long idInstituicao;
 
 	@Column(name="id_usuario_apl")
@@ -63,15 +63,7 @@ public class TiposDoadores implements Serializable {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-
-	public Long getIdInstituicao() {
-		return idInstituicao;
-	}
-
-	public void setIdInstituicao(Long idInstituicao) {
-		this.idInstituicao = idInstituicao;
-	}
-
+	
 	public Long getUsuarioAlteracao() {
 		return usuarioAlteracao;
 	}
@@ -79,5 +71,14 @@ public class TiposDoadores implements Serializable {
 	public void setUsuarioAlteracao(Long usuarioAlteracao) {
 		this.usuarioAlteracao = usuarioAlteracao;
 	}
+
+	public Long getIdInstituicao() {
+		return idInstituicao;
+	}
+
+	public void setIdInstituicao(Long instituicao) {
+		this.idInstituicao = instituicao;
+	}
+
 
 }

@@ -23,6 +23,7 @@ public class GetTiposDoadoresCmd {
 
 	public List<TiposDoadoresTO> getAllTO() {
 		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+		
 		Optional<List<TiposDoadores>> lista = repository.findByIdInstituicao(idInstituicao);
 		if (lista.isPresent()) {
 			return toBuilder.buildAll(lista.get());

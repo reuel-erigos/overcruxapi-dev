@@ -2,6 +2,10 @@ package br.com.crux.to;
 
 import java.time.LocalDateTime;
 
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import br.com.crux.infra.adapter.LocalDateTimeAdapter;
+
 
 public class DoadoresTO {
 
@@ -9,10 +13,14 @@ public class DoadoresTO {
 	private PessoaFisicaTO pessoasFisica;
 	private EmpresaTO empresa;
 	private TiposDoadoresTO tipoDoador;
+	
+	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class) 
 	private LocalDateTime dataInicioVinculo;
+	
+	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class) 
 	private LocalDateTime dataFimVinculo;
+	
 	private Long idInstituicao;
-	private Long usuarioAlteracao;
 	
 	
 	public DoadoresTO() {
@@ -72,14 +80,6 @@ public class DoadoresTO {
 
 	public void setIdInstituicao(Long idInstituicao) {
 		this.idInstituicao = idInstituicao;
-	}
-
-	public Long getUsuarioAlteracao() {
-		return usuarioAlteracao;
-	}
-
-	public void setUsuarioAlteracao(Long usuarioAlteracao) {
-		this.usuarioAlteracao = usuarioAlteracao;
 	}
 
 }

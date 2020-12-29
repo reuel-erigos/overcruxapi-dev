@@ -8,3 +8,7 @@ INSERT INTO public.modulos (id_modulo, ds_modulo, nm_modulo, id_usuario_apl, mod
 
 --Verifcar o id gerado no script anterior - TB_REFERENCIA_PROGRAMAS_PROJETOS.. esse id será o modulo pai nesse script, no caso de desenvolvimento o id foi 216.
 INSERT INTO public.modulos (id_modulo, ds_modulo, nm_modulo, id_usuario_apl, modulo_pai) VALUES(nextval('sq_id_modulo'), 'Tipos Doadores', 'TIPOS_DOADORES', 3, 216);
+
+
+--Não tinha no documento falando em qual menu ficaria.
+INSERT INTO public.modulos (id_modulo, ds_modulo, nm_modulo, id_usuario_apl, modulo_pai) VALUES(nextval('sq_id_modulo'), 'Doadores', 'DOADORES', 3, 159);

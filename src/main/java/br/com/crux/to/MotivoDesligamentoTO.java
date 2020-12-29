@@ -5,6 +5,8 @@ public class MotivoDesligamentoTO {
 	private Long id;
 	
 	private String motivoDesligamento;
+	
+	private Long idInstituicao;
 
 	public Long getId() {
 		return id;
@@ -20,6 +22,14 @@ public class MotivoDesligamentoTO {
 
 	public void setMotivoDesligamento(String motivoDesligamento) {
 		this.motivoDesligamento = motivoDesligamento;
+	}
+
+	public Long getIdInstituicao() {
+		return idInstituicao;
+	}
+
+	public void setIdInstituicao(Long idInstituicao) {
+		this.idInstituicao = idInstituicao;
 	}
 
 

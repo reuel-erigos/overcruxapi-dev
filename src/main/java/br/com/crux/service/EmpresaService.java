@@ -17,6 +17,7 @@ import br.com.crux.cmd.AlterarEmpresaCmd;
 import br.com.crux.cmd.CadastrarEmpresaCmd;
 import br.com.crux.cmd.ExcluirEmpresaCmd;
 import br.com.crux.cmd.GetEmpresaCmd;
+import br.com.crux.to.ComboEmpresaTO;
 import br.com.crux.to.EmpresaTO;
 
 @RestController
@@ -36,6 +37,11 @@ public class EmpresaService {
 	@GetMapping(path = "/combo", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<EmpresaTO> getAllCombo() {
 		return getCmd.getAllCombo();
+	}
+	
+	@GetMapping(path = "/dados/combo", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<ComboEmpresaTO> getAllByCombo() {
+		return getCmd.getAllByCombo();
 	}
 
 	@GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

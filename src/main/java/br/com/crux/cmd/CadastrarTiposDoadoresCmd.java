@@ -18,7 +18,6 @@ public class CadastrarTiposDoadoresCmd {
 	
 	
 	public void cadastrar(TiposDoadoresTO to) {
-		
 		camposObrigatoriosRule.verificar(to);
 		
 		TiposDoadores entity = toBuilder.build(to);
