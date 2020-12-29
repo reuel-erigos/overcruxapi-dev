@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioFuncao" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" isTitleNewPage="true" uuid="834ad189-7b77-460b-af4d-f3e68c98ad0b">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="S3Manager-DEV"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="378"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="608"/>
+	<parameter name="P_PATH_ROOT" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:/desenvolvimento/apps/jaspersoftstudio_workspace/S3Manager"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[select id_unidade as "idUnidade",
+         id_pessoa_fisica as "idPessoaFisica",
+         id_cargo as "idCargo",
+         id_funcao as "idFuncao",
+         cd_unidade as "codigoUnidade",
+         nm_unidade as "nomeUnidade",
+         nm_pessoa_fisica as "nomePessoaFisica",
+         nm_funcao as "nomeFuncao",
+         cd_cargo as "codigoCargo",
+         nm_cargo as "nomeCargo"
+    from vw_relatorio_funcao_colaborador]]>
+	</queryString>
+	<field name="idUnidade" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="idUnidade"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_funcao_colaborador"/>
+	</field>
+	<field name="idPessoaFisica" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="idPessoaFisica"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_funcao_colaborador"/>
+	</field>
+	<field name="idCargo" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="idCargo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_funcao_colaborador"/>
+	</field>
+	<field name="idFuncao" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="idFuncao"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_funcao_colaborador"/>
+	</field>
+	<field name="codigoUnidade" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="codigoUnidade"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_funcao_colaborador"/>
+	</field>
+	<field name="nomeUnidade" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nomeUnidade"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_funcao_colaborador"/>
+	</field>
+	<field name="nomePessoaFisica" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nomePessoaFisica"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_funcao_colaborador"/>
+	</field>
+	<field name="nomeFuncao" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nomeFuncao"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_funcao_colaborador"/>
+	</field>
+	<field name="codigoCargo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="codigoCargo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_funcao_colaborador"/>
+	</field>
+	<field name="nomeCargo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nomeCargo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_funcao_colaborador"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="145" splitType="Stretch">
+			<image scaleImage="FillFrame" hAlign="Center">
+				<reportElement x="-20" y="-20" width="595" height="140" uuid="fe3627a4-7863-4119-8553-36897ac034c1">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{P_PATH_ROOT} +"/header_relatorio_casa_azul.PNG"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement mode="Transparent" x="-21" y="120" width="596" height="25" backcolor="#D1CDCD" uuid="e9414093-c702-4481-9354-025d55840a67">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[Relatório de Função]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="19">
+			<staticText>
+				<reportElement mode="Opaque" x="-20" y="1" width="268" height="18" forecolor="#FFFFFF" backcolor="#030303" uuid="c81d1bdb-1d56-453f-979f-5a36fff91738">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Função]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="248" y="1" width="327" height="18" forecolor="#FFFFFF" backcolor="#030303" uuid="10cd5281-bb8c-4867-8bf1-c504e6b2ccc6">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Funcionário]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="18">
+			<textField isBlankWhenNull="true">
+				<reportElement x="-20" y="0" width="268" height="18" uuid="52ce1bb6-8450-4db1-924a-f3c77a496811">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="43b38f0c-cc43-48da-a81e-d05e315db5ee"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{nomeFuncao}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="249" y="0" width="326" height="18" uuid="c2f041a8-fac9-44f5-93b8-4d13bb072483">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="34cfdcbb-7358-4b5b-8c23-f4a7703e0e90"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{nomePessoaFisica}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="80">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<image scaleImage="FillFrame" hAlign="Center" vAlign="Bottom">
+				<reportElement x="-20" y="25" width="595" height="54" uuid="d7d0c8df-d5ac-446c-8d57-a0ec46b96ffe">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{P_PATH_ROOT} + "/rodape_relatorio_casa_azul.PNG"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="456" y="7" width="68" height="14" uuid="5f02d6b3-815b-4af5-afe4-26db2a3a44d6">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="526" y="7" width="43" height="14" uuid="878f1dae-2611-48f2-b40d-a1648d1e710e">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="-20" y="2" width="595" height="1" uuid="841e6306-1960-47bb-8c7a-fa3f963c0f5f">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</line>
+		</band>
+	</columnFooter>
+</jasperReport>

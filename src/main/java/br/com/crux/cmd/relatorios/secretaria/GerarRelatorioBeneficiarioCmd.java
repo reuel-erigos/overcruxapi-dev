@@ -1,4 +1,4 @@
-package br.com.crux.cmd.relatorios;
+package br.com.crux.cmd.relatorios.secretaria;
 
 import java.util.List;
 
@@ -34,7 +34,7 @@ public class GerarRelatorioBeneficiarioCmd {
 				dados = gerarRelatorioPasseEstudantilBeneficiarioCmd.gerar(listaIdsPessoaFisica, mimeType);
 				break;				
 			default:
-				throw new RelatorioException("Tipo de relatório informátido está inválido.");
+				throw new RelatorioException("Tipo de relatório informado está inválido.");
 			}
 			
 			return dados;

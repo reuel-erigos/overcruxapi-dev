@@ -1,4 +1,4 @@
-package br.com.crux.cmd.relatorios;
+package br.com.crux.cmd.relatorios.secretaria;
 
 import java.util.HashMap;
 import java.util.List;
@@ -21,7 +21,7 @@ public class GerarRelatorioDeclaracaoBeneficiarioCmd {
 	
 	public byte[] gerar(List<Integer> listaIdsPessoaFisica,String mimeType) throws Exception  {
 		String nomeRelatorio = "Declaracao_Beneficiario";
-		String[] path = {"casa_azul", "declaracao_beneficiario"};
+		String[] path = {"casa_azul", "secretaria", "declaracao_beneficiario"};
 		
 		Map<String, Object> parametros = new HashMap<>();
 		
