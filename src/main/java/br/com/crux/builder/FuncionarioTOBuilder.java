@@ -50,16 +50,13 @@ public class FuncionarioTOBuilder {
 		retorno.setDataAdmissao(to.getDataAdmissao());
 		retorno.setDataDemissao(to.getDataDemissao());
 
-		if (StringUtils.isEmpty(to.getHoraInicioJornada()) || to.getHoraInicioJornada()
-				.length() < 5) {
+		if (StringUtils.isEmpty(to.getHoraInicioJornada()) || to.getHoraInicioJornada().length() < 5) {
 			retorno.setHoraInicioJornada(null);
 		} else {
 			retorno.setHoraInicioJornada(getData(to.getHoraInicioJornada()));
-
 		}
 
-		if (StringUtils.isEmpty(to.getHoraFimJornada()) || to.getHoraFimJornada()
-				.length() < 5) {
+		if (StringUtils.isEmpty(to.getHoraFimJornada()) || to.getHoraFimJornada().length() < 5) {
 			retorno.setHoraFimJornada(null);
 		} else {
 			retorno.setHoraFimJornada(getData(to.getHoraFimJornada()));
