@@ -23,7 +23,7 @@ public class AniversariantesDao extends BaseDao{
 		sql.append("         cd_unidade,                          ");
 		sql.append("         nm_unidade,                          ");
 		sql.append("         nm_pessoa_fisica,                    ");
-		sql.append("         dt_nascimento                        ");
+		sql.append("         dt_nascimento,                       ");
 		sql.append("         mes                                  ");
 		sql.append("    from vw_relatorio_aniversario_colaborador ");		
 		sql.append(" where id_pessoa_fisica in (");

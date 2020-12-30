@@ -34,7 +34,7 @@ public class CensoDao extends BaseDao{
 		sql.append("          ds_email                 ,  ");
 		sql.append("          ds_escolaridade          ,  ");
 		sql.append("          ds_profissao             ,  ");
-		sql.append("          cd_tipo_contratac        ,  ");
+		sql.append("          cd_tipo_contratacao      ,  ");
 		sql.append("          nm_funcao                ,  ");
 		sql.append("          cd_cargo                 ,  ");
 		sql.append("          nm_cargo                 ,  ");
