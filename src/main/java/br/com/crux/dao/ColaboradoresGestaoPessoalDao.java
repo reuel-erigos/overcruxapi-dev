@@ -25,8 +25,8 @@ public class ColaboradoresGestaoPessoalDao extends BaseDao{
 		StringBuilder sql = new StringBuilder();
 		
 		sql.append(" select p.id_pessoa_fisica                                                                                                          ");
-		sql.append("        ,p.nm_pessoa_fisica                                                                                                         ");
 		sql.append("        ,colaborador.id_funcionario                                                                                                 ");
+		sql.append("        ,p.nm_pessoa_fisica                                                                                                         ");
 		sql.append("        ,p.ds_email                                                                                                                 ");
 		sql.append("        ,u.cd_unidade || ' - ' || u.nm_unidade as unidade                                                                           ");
 		sql.append("        ,du.cd_unidade_departamento || ' - ' || du.nm_departamento as departamento                                                  ");
