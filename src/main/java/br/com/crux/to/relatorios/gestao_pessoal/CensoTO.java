@@ -22,8 +22,8 @@ public class CensoTO {
     private String nomeFuncao;
     private String codigoCargo;
     private String nomeCargo; 
-    private String qtdCargaHorariaMinima;
-    private String qtdCargaHorariaMaxima;
+    private Long   qtdCargaHorariaMinima;
+    private Long   qtdCargaHorariaMaxima;
     private String dataAdmissao;
     
     public CensoTO() {
@@ -189,19 +189,19 @@ public class CensoTO {
 		this.nomeCargo = nomeCargo;
 	}
 
-	public String getQtdCargaHorariaMinima() {
+	public Long getQtdCargaHorariaMinima() {
 		return qtdCargaHorariaMinima;
 	}
 
-	public void setQtdCargaHorariaMinima(String qtdCargaHorariaMinima) {
+	public void setQtdCargaHorariaMinima(Long qtdCargaHorariaMinima) {
 		this.qtdCargaHorariaMinima = qtdCargaHorariaMinima;
 	}
 
-	public String getQtdCargaHorariaMaxima() {
+	public Long getQtdCargaHorariaMaxima() {
 		return qtdCargaHorariaMaxima;
 	}
 
-	public void setQtdCargaHorariaMaxima(String qtdCargaHorariaMaxima) {
+	public void setQtdCargaHorariaMaxima(Long qtdCargaHorariaMaxima) {
 		this.qtdCargaHorariaMaxima = qtdCargaHorariaMaxima;
 	}
 

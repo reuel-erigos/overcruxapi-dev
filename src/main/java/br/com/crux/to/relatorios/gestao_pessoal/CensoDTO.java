@@ -28,8 +28,8 @@ public class CensoDTO {
     private String nomeFuncao;
     private String codigoCargo;
     private String nomeCargo; 
-    private String qtdCargaHorariaMinima;
-    private String qtdCargaHorariaMaxima;
+    private Long   qtdCargaHorariaMinima;
+    private Long   qtdCargaHorariaMaxima;
     private String dataAdmissao;
 
     public CensoDTO() {
@@ -56,8 +56,8 @@ public class CensoDTO {
 		this.nomeFuncao            = (colunas[17] != null) ? (String) colunas[17] : "";
 		this.codigoCargo           = (colunas[18] != null) ? (String) colunas[18] : "";
 		this.nomeCargo             = (colunas[19] != null) ? (String) colunas[19] : "";
-		this.qtdCargaHorariaMinima = (colunas[20] != null) ? (String) colunas[20] : "";
-		this.qtdCargaHorariaMaxima = (colunas[21] != null) ? (String) colunas[21] : "";
+		this.qtdCargaHorariaMinima = (colunas[20] != null)? ((BigDecimal)colunas[20]).longValue() : 0;  
+		this.qtdCargaHorariaMaxima = (colunas[21] != null)? ((BigDecimal)colunas[21]).longValue() : 0;  
 		this.dataAdmissao          = (colunas[22] != null) ? DataUtil.formataData(new Date(((Timestamp) colunas[22]).getTime()), "dd/MM/yyyy") : "";
 	}
 
@@ -221,19 +221,19 @@ public class CensoDTO {
 		this.nomeCargo = nomeCargo;
 	}
 
-	public String getQtdCargaHorariaMinima() {
+	public Long getQtdCargaHorariaMinima() {
 		return qtdCargaHorariaMinima;
 	}
 
-	public void setQtdCargaHorariaMinima(String qtdCargaHorariaMinima) {
+	public void setQtdCargaHorariaMinima(Long qtdCargaHorariaMinima) {
 		this.qtdCargaHorariaMinima = qtdCargaHorariaMinima;
 	}
 
-	public String getQtdCargaHorariaMaxima() {
+	public Long getQtdCargaHorariaMaxima() {
 		return qtdCargaHorariaMaxima;
 	}
 
-	public void setQtdCargaHorariaMaxima(String qtdCargaHorariaMaxima) {
+	public void setQtdCargaHorariaMaxima(Long qtdCargaHorariaMaxima) {
 		this.qtdCargaHorariaMaxima = qtdCargaHorariaMaxima;
 	}
 
