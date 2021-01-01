@@ -6,7 +6,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.crux.cmd.GetInstituicaoCmd;
 import br.com.crux.cmd.GetUnidadeLogadaCmd;
 import br.com.crux.cmd.GetUsuarioLogadoCmd;
 import br.com.crux.entity.MotivoDesligamento;
@@ -17,7 +16,6 @@ public class MotivoDesligamentoTOBuilder extends Builder<MotivoDesligamento, Mot
 
 	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
 	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
-	@Autowired private GetInstituicaoCmd getInstituicaoCmd;
 
 	public MotivoDesligamentoTO buildTO(MotivoDesligamento entity) {
 		MotivoDesligamentoTO to = new MotivoDesligamentoTO();
@@ -28,9 +26,6 @@ public class MotivoDesligamentoTOBuilder extends Builder<MotivoDesligamento, Mot
 		
 		BeanUtils.copyProperties(entity, to);
 		
-		if(entity.getInstituicao() != null) {
-			to.setIdInstituicao(entity.getInstituicao().getId());
-		}
 		
 		return to;
 	}
@@ -42,7 +37,7 @@ public class MotivoDesligamentoTOBuilder extends Builder<MotivoDesligamento, Mot
 		BeanUtils.copyProperties(to, entity);
 		
 		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
-		entity.setInstituicao(getInstituicaoCmd.getById(idInstituicao));
+		entity.setIdInstituicao(idInstituicao);
 		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 
 		return entity;

@@ -8,36 +8,38 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import br.com.crux.cmd.GetCargosCmd;
 import br.com.crux.cmd.GetInstituicaoCmd;
 import br.com.crux.cmd.GetUnidadeCmd;
+import br.com.crux.cmd.GetUnidadeLogadaCmd;
 import br.com.crux.cmd.GetUsuarioLogadoCmd;
 import br.com.crux.entity.Funcoes;
-import br.com.crux.entity.Instituicao;
-import br.com.crux.entity.Unidade;
 import br.com.crux.to.FuncoesTO;
 
 @Component
 public class FuncoesTOBuilder {
 
-	@Autowired private UnidadeTOBuilder unidadeBuilder;
-	@Autowired private GetUnidadeCmd getUnidadeCmd;
-	@Autowired private GetInstituicaoCmd getInstituicaoCmd;
 	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
+	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
+	@Autowired private GetCargosCmd getCargosCmd;
+	@Autowired private CargosTOBuilder cargosTOBuilder;
+	@Autowired private GetInstituicaoCmd getInstituicaoCmd;
+	@Autowired private GetUnidadeCmd getUnidadeCmd;
+	
 
 	public Funcoes build(FuncoesTO to) {
 		Funcoes entity = new Funcoes();
 
 		BeanUtils.copyProperties(to, entity);
 
-		if (Objects.nonNull(to.getUnidade()) && Objects.nonNull(to.getUnidade()
-				.getIdUnidade())) {
-			Unidade unidade = getUnidadeCmd.getById(to.getUnidade()
-					.getIdUnidade());
-			entity.setUnidade(unidade);
-			Instituicao instituicao = getInstituicaoCmd.getPorUnidade(unidade);
-			entity.setInstituicao(instituicao);
+		getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+		
+		if(to.getCargo() != null && to.getCargo().getId() != null) {
+			entity.setCargo(getCargosCmd.getById(to.getCargo().getId()));
 		}
-
+		
+		entity.setUnidade(getUnidadeCmd.getById(getUnidadeLogadaCmd.getUnidadeTO().getIdUnidade()));
+		entity.setInstituicao(getInstituicaoCmd.getById(getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId()));
 		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado()
 				.getIdUsuario());
 
@@ -53,7 +55,7 @@ public class FuncoesTOBuilder {
 
 		BeanUtils.copyProperties(entity, to);
 
-		to.setUnidade(unidadeBuilder.buildTOCombo(entity.getUnidade()));
+		to.setCargo(cargosTOBuilder.buildTO(entity.getCargo()));
 
 		return to;
 	}

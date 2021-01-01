@@ -18,9 +18,11 @@ public class GetTiposPublicoPrioritarioCmd {
 
 	@Autowired private TiposPublicoPrioritarioRepository repository;
 	@Autowired private TiposPublicoPrioritarioTOBuilder toBuilder;
+	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 
 	public List<TiposPublicoPrioritarioTO> getAll() {
-		List<TiposPublicoPrioritario> lista = repository.findAll();
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+		List<TiposPublicoPrioritario> lista = repository.findByInstituicao(idInstituicao);
 		if(lista.isEmpty()) {
 			return Collections.emptyList();
 		}

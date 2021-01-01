@@ -3,7 +3,6 @@ package br.com.crux.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,46 +13,40 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.crux.cmd.AlterarDoadoresCmd;
-import br.com.crux.cmd.CadastrarDoadoresCmd;
-import br.com.crux.cmd.ExcluirDoadoresCmd;
-import br.com.crux.cmd.GetDoadoresCmd;
-import br.com.crux.dao.dto.ComboDoadoresDTO;
-import br.com.crux.to.DoadoresTO;
+import br.com.crux.cmd.AlterarFornecedoresCmd;
+import br.com.crux.cmd.CadastrarFornecedoresCmd;
+import br.com.crux.cmd.ExcluirFornecedoresCmd;
+import br.com.crux.cmd.GetFornecedoresCmd;
+import br.com.crux.to.FornecedorTO;
 
 @RestController
-@RequestMapping(value = "doadores")
-public class DoadoresService {
+@RequestMapping(value = "fornecedores")
+public class FornecedoresService {
 
-	@Autowired private GetDoadoresCmd getCmd;
-	@Autowired private CadastrarDoadoresCmd cadastrarCmd;
-	@Autowired private AlterarDoadoresCmd alterarCmd;
-	@Autowired private ExcluirDoadoresCmd excluirCmd;
+	@Autowired private GetFornecedoresCmd getCmd;
+	@Autowired private CadastrarFornecedoresCmd cadastrarCmd;
+	@Autowired private AlterarFornecedoresCmd alterarCmd;
+	@Autowired private ExcluirFornecedoresCmd excluirCmd;
 
 	@GetMapping("")
-	public List<DoadoresTO> getAll() {
+	public List<FornecedorTO> getAll() {
 		return getCmd.getAllTO();
 	}
 	
 	@GetMapping("/{id}")
-	public DoadoresTO getById(@PathVariable Long id) {
+	public FornecedorTO getById(@PathVariable Long id) {
 		return getCmd.getTOById(id);
-	}
-
-	@GetMapping(path = "/dados/combo", produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<ComboDoadoresDTO> getAllByCombo() {
-		return getCmd.getAllByCombo();
 	}
 	
 	@PostMapping
 	@Transactional
-	public DoadoresTO cadastrar(@RequestBody DoadoresTO to) {
+	public FornecedorTO cadastrar(@RequestBody FornecedorTO to) {
 		return cadastrarCmd.cadastrar(to);
 	}
 
 	@PutMapping
 	@Transactional
-	public DoadoresTO alterar(@RequestBody DoadoresTO to) {
+	public FornecedorTO alterar(@RequestBody FornecedorTO to) {
 		return alterarCmd.alterar(to);
 	}
 

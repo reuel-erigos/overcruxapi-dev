@@ -10,28 +10,22 @@ import org.springframework.stereotype.Component;
 
 import br.com.crux.cmd.GetEmpresaCmd;
 import br.com.crux.cmd.GetPessoaFisicaCmd;
-import br.com.crux.cmd.GetTiposDoadoresCmd;
-import br.com.crux.cmd.GetUnidadeLogadaCmd;
 import br.com.crux.cmd.GetUsuarioLogadoCmd;
-import br.com.crux.dao.dto.ComboDoadoresDTO;
-import br.com.crux.entity.Doadores;
-import br.com.crux.to.DoadoresTO;
+import br.com.crux.entity.Fornecedor;
+import br.com.crux.to.FornecedorTO;
 
 @Component
-public class DoadoresTOBuilder {
+public class FornecedoresTOBuilder {
 
 	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
 	
 	@Autowired private GetEmpresaCmd getEmpresaCmd;
 	@Autowired private EmpresaTOBuilder empresaTOBuilder;
-	@Autowired private GetTiposDoadoresCmd getTiposDoadoresCmd;
-	@Autowired private TiposDoadoresTOBuilder tiposDoadoresTOBuilder;
 	@Autowired private GetPessoaFisicaCmd getPessoaFisicaCmd;
 	@Autowired private PessoaFisicaTOBuilder pessoaFisicaTOBuilder;
-	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 
-	public DoadoresTO buildTO(Doadores entity) {
-		DoadoresTO to = new DoadoresTO();
+	public FornecedorTO buildTO(Fornecedor entity) {
+		FornecedorTO to = new FornecedorTO();
 		if (Objects.isNull(entity)) {
 			return to;
 		}
@@ -39,14 +33,13 @@ public class DoadoresTOBuilder {
 		BeanUtils.copyProperties(entity, to);
 		
 		to.setEmpresa(empresaTOBuilder.buildTOCombo(entity.getEmpresa()));
-		to.setTipoDoador(tiposDoadoresTOBuilder.buildTO(entity.getTipoDoador()));
 		to.setPessoasFisica(pessoaFisicaTOBuilder.buildParaCombo(entity.getPessoasFisica()));
 		
 		return to;
 	}
 
-	public Doadores build(DoadoresTO to) {
-		Doadores entity = new Doadores();
+	public Fornecedor build(FornecedorTO to) {
+		Fornecedor entity = new Fornecedor();
 
 		BeanUtils.copyProperties(to, entity);
 		
@@ -54,42 +47,20 @@ public class DoadoresTOBuilder {
 			entity.setEmpresa(getEmpresaCmd.getById(to.getEmpresa().getId()));
 		}
 
-		if (Objects.nonNull(to.getTipoDoador()) && Objects.nonNull(to.getTipoDoador().getId())) {
-			entity.setTipoDoador(getTiposDoadoresCmd.getById(to.getTipoDoador().getId()));
-		}
 		
 		if (Objects.nonNull(to.getPessoasFisica()) && Objects.nonNull(to.getPessoasFisica().getId())) {
 			entity.setPessoasFisica(getPessoaFisicaCmd.getById(to.getPessoasFisica().getId()));
 		}
 		
-		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
-		entity.setIdInstituicao(idInstituicao);
 		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 
 		return entity;
 	}
 	
-	public List<DoadoresTO> buildAll(List<Doadores> lista) {
+	public List<FornecedorTO> buildAll(List<Fornecedor> lista) {
 		return lista.stream()
 				.map(this::buildTO)
 				.collect(Collectors.toList());
-	}
-
-	public ComboDoadoresDTO buildComboTO(ComboDoadoresDTO p) {
-		ComboDoadoresDTO retorno = new ComboDoadoresDTO();
-		
-		if(Objects.isNull(p)) {
-			return retorno;
-		}
-		
-		BeanUtils.copyProperties(p, retorno);
-		
-		return retorno;
-	}
-
-	
-	public List<ComboDoadoresDTO> buildAllDTO(List<ComboDoadoresDTO> dtos) {
-		return dtos.stream().map(dto -> buildComboTO(dto)).collect(Collectors.toList());
 	}
 
 

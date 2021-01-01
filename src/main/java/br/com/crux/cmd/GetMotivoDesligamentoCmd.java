@@ -18,9 +18,11 @@ public class GetMotivoDesligamentoCmd {
 
 	@Autowired private MotivoDesligamentoRepository repository;
 	@Autowired private MotivoDesligamentoTOBuilder toBuilder;
+	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 
 	public List<MotivoDesligamentoTO> getAll() {
-		List<MotivoDesligamento> lista = repository.findAll();
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+		List<MotivoDesligamento> lista = repository.findByInstituicao(idInstituicao);
 		if(lista.isEmpty()) {
 			return Collections.emptyList();
 		}
@@ -32,7 +34,7 @@ public class GetMotivoDesligamentoCmd {
 	}
 
 	public MotivoDesligamentoTO getTOById(Long id) {
-		MotivoDesligamento entity = repository.findById(id).orElseThrow(() -> new NotFoundException("Situação do ex aluno não encontrada."));
+		MotivoDesligamento entity = repository.findById(id).orElseThrow(() -> new NotFoundException("Registro não encontrado."));
 		return toBuilder.buildTO(entity);
 	}
 }

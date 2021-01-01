@@ -1,6 +1,7 @@
 package br.com.crux.to;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -44,6 +45,7 @@ public class AlunoTO {
 
 	private List<VulnerabilidadesAlunoTO> vulnerabilidades;
 	private List<EncaminhaAlunosTO> encaminhamentos;
+	private List<BeneficioSocialPessoaFisicaTO> benefeciosSociaisPessoaFisica;
 	private LocalDateTime dataSugestaoDesligamento;
 	private String descricaoSugestaoDesligamento;
 
@@ -274,6 +276,18 @@ public class AlunoTO {
 	public void setDescricaoSugestaoDesligamento(
 			String descricaoSugestaoDesligamento) {
 		this.descricaoSugestaoDesligamento = descricaoSugestaoDesligamento;
+	}
+
+	public List<BeneficioSocialPessoaFisicaTO> getBenefeciosSociaisPessoaFisica() {
+		if(benefeciosSociaisPessoaFisica== null) {
+			benefeciosSociaisPessoaFisica = new ArrayList<BeneficioSocialPessoaFisicaTO>();
+		}
+		return benefeciosSociaisPessoaFisica;
+	}
+
+	public void setBenefeciosSociaisPessoaFisica(
+			List<BeneficioSocialPessoaFisicaTO> benefeciosSociaisPessoaFisica) {
+		this.benefeciosSociaisPessoaFisica = benefeciosSociaisPessoaFisica;
 	}	
 
 	

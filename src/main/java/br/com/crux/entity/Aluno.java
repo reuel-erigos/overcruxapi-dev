@@ -323,7 +323,7 @@ public class Aluno {
 			String descricaoSugestaoDesligamento) {
 		this.descricaoSugestaoDesligamento = descricaoSugestaoDesligamento;
 	}
-	
+
 	
 
 }
