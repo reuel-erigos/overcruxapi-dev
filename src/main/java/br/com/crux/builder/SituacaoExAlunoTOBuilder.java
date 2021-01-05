@@ -1,6 +1,8 @@
 package br.com.crux.builder;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +10,9 @@ import org.springframework.stereotype.Component;
 
 import br.com.crux.cmd.GetAlunoCmd;
 import br.com.crux.cmd.GetUsuarioLogadoCmd;
+import br.com.crux.dao.dto.ComboSituacaoExAlunoDTO;
 import br.com.crux.entity.SituacaoExAluno;
+import br.com.crux.to.ComboSituacaoExAlunoTO;
 import br.com.crux.to.SituacaoExAlunoTO;
 
 @Component
@@ -48,6 +52,24 @@ public class SituacaoExAlunoTOBuilder extends Builder<SituacaoExAluno, SituacaoE
 		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 
 		return entity;
+	}
+
+
+	public ComboSituacaoExAlunoTO buildComboTO(ComboSituacaoExAlunoDTO p) {
+		ComboSituacaoExAlunoTO retorno = new ComboSituacaoExAlunoTO();
+		
+		if(Objects.isNull(p)) {
+			return retorno;
+		}
+		
+		BeanUtils.copyProperties(p,retorno);
+		
+		return retorno;
+	}
+
+	
+	public List<ComboSituacaoExAlunoTO> buildAllDTO(List<ComboSituacaoExAlunoDTO> dtos) {
+		return dtos.stream().map(dto -> buildComboTO(dto)).collect(Collectors.toList());
 	}
 
 }

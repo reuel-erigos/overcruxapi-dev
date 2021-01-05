@@ -27,19 +27,35 @@ public class Funcoes implements Serializable {
 	@Column(name="id_funcao")
 	private Long id;
 
-	@Column(name="nm_funcao")
+	@Column(name="nm_funcao", nullable = false)
 	private String nome;
 
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_unidade")
 	private Unidade unidade;
+
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="id_cargo")
+	private Cargo cargo;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_instituicao", nullable = true)
 	private Instituicao instituicao;
 
-	@Column(name="vl_salario")
+	@Column(name="vl_remuneracao")
 	private Double valorSalario;
+
+	@Column(name="ds_funcao")
+	private String descricao;
+
+	@Column(name="ds_atribuicoes")
+	private String atribuicoes;
+	
+	@Column(name="ds_conhecimentos_especificos")
+	private String conhecimentosEspecificos;
+
+	@Column(name="ds_comportamentos_esperados")
+	private String comportamentosEsperados;
 
 	@Column(name="id_usuario_apl")
 	private Long usuarioAlteracao;
@@ -95,6 +111,47 @@ public class Funcoes implements Serializable {
 		this.valorSalario = valorSalario;
 	}
 
+	public Cargo getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(Cargo cargo) {
+		this.cargo = cargo;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public String getAtribuicoes() {
+		return atribuicoes;
+	}
+
+	public void setAtribuicoes(String atribuicoes) {
+		this.atribuicoes = atribuicoes;
+	}
+
+	public String getConhecimentosEspecificos() {
+		return conhecimentosEspecificos;
+	}
+
+	public void setConhecimentosEspecificos(String conhecimentosEspecificos) {
+		this.conhecimentosEspecificos = conhecimentosEspecificos;
+	}
+
+	public String getComportamentosEsperados() {
+		return comportamentosEsperados;
+	}
+
+	public void setComportamentosEsperados(String comportamentosEsperados) {
+		this.comportamentosEsperados = comportamentosEsperados;
+	}
+
+	
 	
 
 }

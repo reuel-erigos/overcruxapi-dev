@@ -11,7 +11,9 @@ import org.springframework.stereotype.Component;
 import br.com.crux.cmd.GetEmpresaCmd;
 import br.com.crux.cmd.GetPessoaFisicaCmd;
 import br.com.crux.cmd.GetTiposDoadoresCmd;
+import br.com.crux.cmd.GetUnidadeLogadaCmd;
 import br.com.crux.cmd.GetUsuarioLogadoCmd;
+import br.com.crux.dao.dto.ComboDoadoresDTO;
 import br.com.crux.entity.Doadores;
 import br.com.crux.to.DoadoresTO;
 
@@ -26,6 +28,7 @@ public class DoadoresTOBuilder {
 	@Autowired private TiposDoadoresTOBuilder tiposDoadoresTOBuilder;
 	@Autowired private GetPessoaFisicaCmd getPessoaFisicaCmd;
 	@Autowired private PessoaFisicaTOBuilder pessoaFisicaTOBuilder;
+	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 
 	public DoadoresTO buildTO(Doadores entity) {
 		DoadoresTO to = new DoadoresTO();
@@ -59,6 +62,8 @@ public class DoadoresTOBuilder {
 			entity.setPessoasFisica(getPessoaFisicaCmd.getById(to.getPessoasFisica().getId()));
 		}
 		
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+		entity.setIdInstituicao(idInstituicao);
 		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 
 		return entity;
@@ -70,6 +75,22 @@ public class DoadoresTOBuilder {
 				.collect(Collectors.toList());
 	}
 
+	public ComboDoadoresDTO buildComboTO(ComboDoadoresDTO p) {
+		ComboDoadoresDTO retorno = new ComboDoadoresDTO();
+		
+		if(Objects.isNull(p)) {
+			return retorno;
+		}
+		
+		BeanUtils.copyProperties(p, retorno);
+		
+		return retorno;
+	}
+
+	
+	public List<ComboDoadoresDTO> buildAllDTO(List<ComboDoadoresDTO> dtos) {
+		return dtos.stream().map(dto -> buildComboTO(dto)).collect(Collectors.toList());
+	}
 
 
 }

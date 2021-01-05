@@ -55,6 +55,9 @@ public class Cargo{
 	
 	@Column(name="qt_horas")
 	private Long qtdHoras;	
+	
+	@Column(name="vl_remuneracao")
+	private Double valorRemuneracao;
 
 	public Cargo() {
 	}
@@ -129,6 +132,14 @@ public class Cargo{
 
 	public void setQtdHoras(Long qtdHoras) {
 		this.qtdHoras = qtdHoras;
+	}
+
+	public Double getValorRemuneracao() {
+		return valorRemuneracao;
+	}
+
+	public void setValorRemuneracao(Double valorRemuneracao) {
+		this.valorRemuneracao = valorRemuneracao;
 	}
 
 	

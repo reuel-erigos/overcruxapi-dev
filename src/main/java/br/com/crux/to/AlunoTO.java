@@ -1,6 +1,7 @@
 package br.com.crux.to;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -37,11 +38,16 @@ public class AlunoTO {
 	private String descBuscaEscola;
 	private String publicoPrioritario;
 	private String matriculaAluno;
-	private NiveisTurmasTO nivelTurma;	
+	private NiveisTurmasTO nivelTurma;
+	private TiposPublicoPrioritarioTO tiposPublicoPrioritario;
+	private MotivoDesligamentoTO motivoDesligamento;
 	private Long usuarioAlteracao;
 
 	private List<VulnerabilidadesAlunoTO> vulnerabilidades;
 	private List<EncaminhaAlunosTO> encaminhamentos;
+	private List<BeneficioSocialPessoaFisicaTO> benefeciosSociaisPessoaFisica;
+	private LocalDateTime dataSugestaoDesligamento;
+	private String descricaoSugestaoDesligamento;
 
 	private ProgramaTO programa;
 	private ProjetoTO projeto;
@@ -254,6 +260,7 @@ public class AlunoTO {
 		this.encaminhamentos = encaminhamentos;
 	}
 
+
 	public ProgramaTO getPrograma() {
 		return programa;
 	}
@@ -308,6 +315,52 @@ public class AlunoTO {
 
 	public void setParticipaApresentacaoExterna(Boolean participaApresentacaoExterna) {
 		this.participaApresentacaoExterna = participaApresentacaoExterna;
+	}
+	
+	public TiposPublicoPrioritarioTO getTiposPublicoPrioritario() {
+		return tiposPublicoPrioritario;
+	}
+
+	public void setTiposPublicoPrioritario(
+			TiposPublicoPrioritarioTO tiposPublicoPrioritarioTO) {
+		this.tiposPublicoPrioritario = tiposPublicoPrioritarioTO;
+	}
+
+	public MotivoDesligamentoTO getMotivoDesligamento() {
+		return motivoDesligamento;
+	}
+
+	public void setMotivoDesligamento(MotivoDesligamentoTO motivoDesligamentoTO) {
+		this.motivoDesligamento = motivoDesligamentoTO;
+	}
+
+	public LocalDateTime getDataSugestaoDesligamento() {
+		return dataSugestaoDesligamento;
+	}
+
+	public void setDataSugestaoDesligamento(LocalDateTime dataSugestaoDesligamento) {
+		this.dataSugestaoDesligamento = dataSugestaoDesligamento;
+	}
+
+	public String getDescricaoSugestaoDesligamento() {
+		return descricaoSugestaoDesligamento;
+	}
+
+	public void setDescricaoSugestaoDesligamento(
+			String descricaoSugestaoDesligamento) {
+		this.descricaoSugestaoDesligamento = descricaoSugestaoDesligamento;
+	}
+
+	public List<BeneficioSocialPessoaFisicaTO> getBenefeciosSociaisPessoaFisica() {
+		if(benefeciosSociaisPessoaFisica== null) {
+			benefeciosSociaisPessoaFisica = new ArrayList<BeneficioSocialPessoaFisicaTO>();
+		}
+		return benefeciosSociaisPessoaFisica;
+	}
+
+	public void setBenefeciosSociaisPessoaFisica(List<BeneficioSocialPessoaFisicaTO> benefeciosSociaisPessoaFisica) {
+		this.benefeciosSociaisPessoaFisica = benefeciosSociaisPessoaFisica;
+
 	}	
 
 	

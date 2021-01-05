@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.builder.DoadoresTOBuilder;
+import br.com.crux.dao.DoadoresDAO;
+import br.com.crux.dao.dto.ComboDoadoresDTO;
 import br.com.crux.dao.repository.DoadoresRepository;
 import br.com.crux.entity.Doadores;
 import br.com.crux.to.DoadoresTO;
@@ -20,6 +22,7 @@ public class GetDoadoresCmd {
 	@Autowired private DoadoresRepository repository;
 	@Autowired private DoadoresTOBuilder toBuilder;
 	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
+	@Autowired private DoadoresDAO doadoresDAO;
 	
 	
 	public List<DoadoresTO> getAllTO() {
@@ -41,5 +44,12 @@ public class GetDoadoresCmd {
 	
 	public Doadores getById(Long id) {
 		return repository.findById(id).orElseGet(null);
+	}
+	
+	public List<ComboDoadoresDTO> getAllByCombo() {
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+		List<ComboDoadoresDTO> doadores = doadoresDAO.getAllByInstituicao(idInstituicao);
+		
+		return toBuilder.buildAllDTO(doadores);
 	}
 }

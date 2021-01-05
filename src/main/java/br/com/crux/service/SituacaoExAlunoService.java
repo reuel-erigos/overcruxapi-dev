@@ -18,10 +18,11 @@ import br.com.crux.cmd.AlterarSituacaoExAlunoCmd;
 import br.com.crux.cmd.CadastrarSituacaoExAlunoCmd;
 import br.com.crux.cmd.ExcluirSituacaoExAlunoCmd;
 import br.com.crux.cmd.GetSituacaoExAlunoCmd;
+import br.com.crux.to.ComboSituacaoExAlunoTO;
 import br.com.crux.to.SituacaoExAlunoTO;
 
 @RestController
-@RequestMapping(value = "situacaoexaluno")
+@RequestMapping(value = "situacoesexalunos")
 public class SituacaoExAlunoService {
 
 	@Autowired private GetSituacaoExAlunoCmd getCmd;
@@ -39,6 +40,12 @@ public class SituacaoExAlunoService {
 		return getCmd.getTOById(id);
 	}
 
+
+	@GetMapping(path = "/dados/combo", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<ComboSituacaoExAlunoTO> getAllByCombo() {
+		return getCmd.getAllByCombo();
+	}
+	
 	@PostMapping
 	@Transactional
 	public void cadastrar(@RequestBody SituacaoExAlunoTO to) {

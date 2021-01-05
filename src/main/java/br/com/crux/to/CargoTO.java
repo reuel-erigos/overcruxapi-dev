@@ -11,6 +11,7 @@ public class CargoTO {
 	private String descricaoPerfilProfissional;
 	private String descricaoResumoAtividades;	
 	private Long qtdHoras;		
+	private Double valorRemuneracao;
 	
 
 	public CargoTO() {
@@ -86,6 +87,14 @@ public class CargoTO {
 
 	public void setQtdHoras(Long qtdHoras) {
 		this.qtdHoras = qtdHoras;
+	}
+
+	public Double getValorRemuneracao() {
+		return valorRemuneracao;
+	}
+
+	public void setValorRemuneracao(Double valorRemuneracao) {
+		this.valorRemuneracao = valorRemuneracao;
 	}
 
 	

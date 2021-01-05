@@ -5,38 +5,44 @@ public class FuncoesTO {
 
 	private Long id;
 	private String nome;
+	private CargoTO cargo;
 	private Double valorSalario;
-	private UnidadeTO unidade;
+	private String descricao;
+	private String atribuicoes;
+	private String conhecimentosEspecificos;
+	private String comportamentosEsperados;
 	
 
 	public FuncoesTO() {}
 
-	public FuncoesTO(Long id) {
-		this.id = id;
-	}
-	
+
 	public Long getId() {
 		return id;
 	}
+
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
+
 	public String getNome() {
 		return nome;
 	}
+
 
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-	public UnidadeTO getUnidade() {
-		return unidade;
+
+	public CargoTO getCargo() {
+		return cargo;
 	}
 
-	public void setUnidade(UnidadeTO unidade) {
-		this.unidade = unidade;
+
+	public void setCargo(CargoTO cargo) {
+		this.cargo = cargo;
 	}
 
 
@@ -44,8 +50,51 @@ public class FuncoesTO {
 		return valorSalario;
 	}
 
+
 	public void setValorSalario(Double valorSalario) {
 		this.valorSalario = valorSalario;
 	}
+
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+
+	public String getAtribuicoes() {
+		return atribuicoes;
+	}
+
+
+	public void setAtribuicoes(String atribuicoes) {
+		this.atribuicoes = atribuicoes;
+	}
+
+
+	public String getConhecimentosEspecificos() {
+		return conhecimentosEspecificos;
+	}
+
+
+	public void setConhecimentosEspecificos(String conhecimentosEspecificos) {
+		this.conhecimentosEspecificos = conhecimentosEspecificos;
+	}
+
+
+	public String getComportamentosEsperados() {
+		return comportamentosEsperados;
+	}
+
+
+	public void setComportamentosEsperados(String comportamentosEsperados) {
+		this.comportamentosEsperados = comportamentosEsperados;
+	}
+
+	
 
 }

@@ -16,6 +16,7 @@ public class ExcluirPessoaFisicaCmd {
 
 	@Autowired private PessoaFisicaRepository repository;
 	@Autowired private ExcluirArquivoPessoaFisicaCmd excluirArquivoPessoaFisicaCmd;
+	
 
 	public void excluirPorId(Long idPessoa) {
 		if (Objects.isNull(idPessoa)) {

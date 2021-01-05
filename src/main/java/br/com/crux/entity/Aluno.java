@@ -59,6 +59,12 @@ public class Aluno {
 	
 	@Column(name="ds_desligamento")
 	private String descDesligamento;
+
+	@Column(name="dt_sugestao_desligamento")
+	private LocalDateTime dataSugestaoDesligamento;
+	
+	@Column(name="ds_sugestao_desligamento")
+	private String descricaoSugestaoDesligamento;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_pessoa_fisica")
@@ -92,10 +98,17 @@ public class Aluno {
 	@Column(name="nr_matricula_aluno")
 	private String matriculaAluno;
 	
-
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_nivel_turma")
 	private NiveisTurmas nivelTurma;	
+
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="id_motivo_desligamento")
+	private MotivoDesligamento motivoDesligamento;	
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="id_tipo_publico_prioritario")
+	private TiposPublicoPrioritario tiposPublicoPrioritario;	
 
 	@Column(name="id_usuario_apl")
 	private Long usuarioAlteracao;
@@ -359,6 +372,37 @@ public class Aluno {
 		this.participaApresentacaoExterna = participaApresentacaoExterna;
 	}
 	
-	
+	public MotivoDesligamento getMotivoDesligamento() {
+		return motivoDesligamento;
+	}
+
+	public void setMotivoDesligamento(MotivoDesligamento motivoDesligamento) {
+		this.motivoDesligamento = motivoDesligamento;
+	}
+
+	public TiposPublicoPrioritario getTiposPublicoPrioritario() {
+		return tiposPublicoPrioritario;
+	}
+
+	public void setTiposPublicoPrioritario(TiposPublicoPrioritario tiposPublicoPrioritario) {
+		this.tiposPublicoPrioritario = tiposPublicoPrioritario;
+	}
+
+	public LocalDateTime getDataSugestaoDesligamento() {
+		return dataSugestaoDesligamento;
+	}
+
+	public void setDataSugestaoDesligamento(LocalDateTime dataSugestaoDesligamento) {
+		this.dataSugestaoDesligamento = dataSugestaoDesligamento;
+	}
+
+	public String getDescricaoSugestaoDesligamento() {
+		return descricaoSugestaoDesligamento;
+	}
+
+	public void setDescricaoSugestaoDesligamento(
+			String descricaoSugestaoDesligamento) {
+		this.descricaoSugestaoDesligamento = descricaoSugestaoDesligamento;
+	}
 
 }

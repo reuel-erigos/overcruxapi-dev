@@ -3,6 +3,7 @@ package br.com.crux.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,10 +18,11 @@ import br.com.crux.cmd.AlterarDoadoresCmd;
 import br.com.crux.cmd.CadastrarDoadoresCmd;
 import br.com.crux.cmd.ExcluirDoadoresCmd;
 import br.com.crux.cmd.GetDoadoresCmd;
+import br.com.crux.dao.dto.ComboDoadoresDTO;
 import br.com.crux.to.DoadoresTO;
 
 @RestController
-@RequestMapping("doadores")
+@RequestMapping(value = "doadores")
 public class DoadoresService {
 
 	@Autowired private GetDoadoresCmd getCmd;
@@ -38,6 +40,11 @@ public class DoadoresService {
 		return getCmd.getTOById(id);
 	}
 
+	@GetMapping(path = "/dados/combo", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<ComboDoadoresDTO> getAllByCombo() {
+		return getCmd.getAllByCombo();
+	}
+	
 	@PostMapping
 	@Transactional
 	public DoadoresTO cadastrar(@RequestBody DoadoresTO to) {

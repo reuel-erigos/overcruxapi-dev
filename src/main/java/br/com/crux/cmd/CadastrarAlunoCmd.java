@@ -22,6 +22,7 @@ public class CadastrarAlunoCmd {
 	@Autowired private CadastrarPessoaFisicaCmd cadastrarPessoaFisicaCmd;
 	@Autowired private CadastrarVulnerabilidadesAlunoCmd cadastrarVulnerabilidadesAlunoCmd;
 	@Autowired private CadastrarEncaminhaAlunosCmd cadastrarEncaminhaAlunosCmd;
+	@Autowired private CadastrarBeneficioSocialPessoaFisicaCmd cadastrarBeneficiosSociaisPFCmd;
 	
 	public AlunoTO cadastrar(AlunoTO to) {
 		camposObrigatoriosRule.verificar(to);
@@ -42,6 +43,8 @@ public class CadastrarAlunoCmd {
 		cadastrarVulnerabilidadesAlunoCmd.cadastrar(to.getVulnerabilidades(), alunoTOSalvo);
 		
 		cadastrarEncaminhaAlunosCmd.cadastrarLista(alunoTOSalvo, to.getEncaminhamentos());
+
+		cadastrarBeneficiosSociaisPFCmd.cadastrarLista(entity.getPessoasFisica(), to.getBenefeciosSociaisPessoaFisica());
 		
 		return alunoTOSalvo;
 	}

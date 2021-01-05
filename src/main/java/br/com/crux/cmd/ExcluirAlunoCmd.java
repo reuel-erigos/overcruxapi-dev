@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.dao.repository.AlunoRepository;
+import br.com.crux.dao.repository.BeneficioSocialPessoaFisicaRepository;
 import br.com.crux.dao.repository.EncaminhaAlunosRepository;
 import br.com.crux.entity.EncaminhaAlunos;
 import br.com.crux.exception.ParametroNaoInformadoException;
@@ -22,6 +23,7 @@ public class ExcluirAlunoCmd {
 	@Autowired private ExcluirPessoaFisicaCmd excluirPessoaFisicaCmd;
 	@Autowired private EncaminhaAlunosRepository encaminhaAlunosRepository;
 	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
+	@Autowired private BeneficioSocialPessoaFisicaRepository beneficioSocialPessoaFisicaRepository;
 
 	public void excluir(Long id) {
 		if (Objects.isNull(id)) {
@@ -29,6 +31,8 @@ public class ExcluirAlunoCmd {
 		}
 
 		AlunoTO alunoTO = getAlunoCmd.getTOById(id);
+		
+		alunoTO.getBenefeciosSociaisPessoaFisica().forEach(bs -> beneficioSocialPessoaFisicaRepository.deleteById(bs.getId()));
 
 		//Apaga todos as vulnerabilidades desse aluno.
 		alunoTO.getVulnerabilidades().stream().forEach(r -> excluirAlunoCmd.excluir(r.getId()));
@@ -43,6 +47,5 @@ public class ExcluirAlunoCmd {
 
 		//Apaga a pessoa fisica
 		excluirPessoaFisicaCmd.excluirPorId(alunoTO.getPessoaFisica().getId());
-
 	}
 }

@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import br.com.crux.cmd.GetCertificadoUnidadeCmd;
 import br.com.crux.cmd.GetEstruturaUnidadeCmd;
 import br.com.crux.cmd.GetInstituicaoCmd;
 import br.com.crux.entity.Instituicao;
@@ -22,6 +23,8 @@ public class UnidadeTOBuilder {
 	@Autowired private GetInstituicaoCmd getInstituicaoCmd;
 	@Autowired private EstruturaUnidadeTOBuilder estruturaUnidadeTOBuilder;
 	@Autowired private GetEstruturaUnidadeCmd getEstruturaUnidadeCmd;
+	@Autowired private CertificadoUnidadeTOBuilder certificadoUnidadeTOBuilder;
+	@Autowired private GetCertificadoUnidadeCmd getCertificadoUnidadeCmd;
 
 	public Unidade build(UnidadeTO to) {
 		Unidade unidade = new Unidade();
@@ -108,6 +111,7 @@ public class UnidadeTOBuilder {
 		to.setInstituicao(instituicaoTOBuilder.buildTO(entity.getInstituicao()));
 		
 		to.setEstruturasUnidades(estruturaUnidadeTOBuilder.buildAll(getEstruturaUnidadeCmd.getByUnidade(entity)));
+		to.setCertificadosUnidade(certificadoUnidadeTOBuilder.buildAll(getCertificadoUnidadeCmd.getByUnidade(entity)));
 		
 		to.setNumeroCas(entity.getNumeroCas());
 		to.setNumeroCdca(entity.getNumeroCdca());

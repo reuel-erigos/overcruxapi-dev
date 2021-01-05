@@ -28,6 +28,7 @@ public class AlterarAlunoCmd {
 	@Autowired private AlterarPessoaFisicaCmd alterarPessoaFisicaCmd;
 	@Autowired private AlterarVulnerabilidadesAlunoCmd alterarVulnerabilidadesAlunoCmd;
 	@Autowired private AlterarListaEncaminhamentoAlunosCmd alterarListaEncaminhamentoAlunosCmd;
+	@Autowired private AlterarListaBeneficioSocialPessoaFisicaCmd alterarListaBeneficioSocialPessoaFisicaCmd;
 	
 	public AlunoTO alterar(AlunoTO alunoTO) {
 		camposObrigatoriosRule.verificar(alunoTO);
@@ -46,6 +47,7 @@ public class AlterarAlunoCmd {
 		
 		alterarVulnerabilidadesAlunoCmd.alterarAll(alunoTO.getVulnerabilidades(), alunoTO);
 		alterarListaEncaminhamentoAlunosCmd.alterarAll(alunoTO.getEncaminhamentos(), aluno);
+		alterarListaBeneficioSocialPessoaFisicaCmd.alterarAll(alunoTO.getBenefeciosSociaisPessoaFisica(), aluno.getPessoasFisica());
 		
 		Aluno alunoSalvo = repository.save(aluno);
 		
