@@ -30,7 +30,7 @@ public class ColaboradoresGestaoPessoalDao extends BaseDao{
 		sql.append("        ,p.ds_email                                                                                                                 ");
 		sql.append("        ,u.cd_unidade || ' - ' || u.nm_unidade as unidade                                                                           ");
 		sql.append("        ,du.cd_unidade_departamento || ' - ' || du.nm_departamento as departamento                                                  ");
-		sql.append("        ,c.cd_cargo || ' - ' || c.nm_cargo  as cargo                                                                                ");
+		sql.append("        ,c.nm_cargo  as cargo                                                                                                       ");
 		sql.append("        ,f.nm_funcao                                                                                                                ");
 		sql.append("    from pessoas_fisicas p                                                                                                          ");
 		sql.append("      inner join funcionarios colaborador on p.id_pessoa_fisica = colaborador.id_pessoa_fisica                                      ");
@@ -75,7 +75,7 @@ public class ColaboradoresGestaoPessoalDao extends BaseDao{
 		}
 
 		
-		sql.append(" order by p.nm_pessoa_fisica, p.nm_pessoa_fisica  ");
+		sql.append(" order by p.nm_pessoa_fisica ");
 		
 		
 		Query query = em.createNativeQuery(sql.toString());

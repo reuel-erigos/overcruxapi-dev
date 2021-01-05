@@ -14,6 +14,7 @@ public interface CargoRepository extends JpaRepository<Cargo, Long> {
 
 	@Query(value = "select c from Cargo c "
 			+ " inner join Instituicao i on i = c.instituicao "
-			+ " where i.id = ?1")
+			+ " where i.id = ?1 "
+			+ " order by c.nome ")
 	public Optional<List<Cargo>> findByIdInstituicao(Long idInstituicao);
 }

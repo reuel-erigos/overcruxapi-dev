@@ -15,8 +15,15 @@ public interface DepartamentoRepository extends JpaRepository<Departamentos, Lon
 
 	@Query(value = "select d from Departamentos d"
 			+ " inner join Unidade u on u = d.unidade "
-			+ "where u.idUnidade = ?1")
+			+ " where u.idUnidade = ?1"
+			+ " order by d.nmDepartamento")
 	public Optional<List<Departamentos>> findByIdUnidade(Long idUnidade);
 	
+	@Query(value = "select d from Departamentos d"
+			+ " inner join Unidade u on u = d.unidade "
+			+ " inner join Instituicao i on i = u.instituicao "
+			+ "where i.id = ?1 "
+			+ " order by d.nmDepartamento")
+	public Optional<List<Departamentos>> findByIdInstituicao(Long idInstituicao);
 	
 }

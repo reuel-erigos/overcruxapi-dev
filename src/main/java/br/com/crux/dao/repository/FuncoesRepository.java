@@ -15,7 +15,8 @@ public interface FuncoesRepository extends JpaRepository<Funcoes, Long> {
 	@Query(value = "select f from Funcoes f "
 			     + " inner join FuncoesInstituicao fi on fi.funcao = f " 
 	             + " inner join Instituicao i on i = fi.instituicao " 
-			     + " where i.id = ?1")
+			     + " where i.id = ?1 "
+			     + " order by f.nome ")
 	public Optional<List<Funcoes>> findByIdInstituicao(Long idInstituicao);
 
 }
