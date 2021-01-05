@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.dao.repository.CboRepository;
+import br.com.crux.dao.repository.InstituicaoRepository;
 import br.com.crux.entity.Cargo;
 import br.com.crux.entity.Cbo;
+import br.com.crux.entity.Instituicao;
 import br.com.crux.enums.TipoCargo;
 import br.com.crux.to.CargoTO;
 
@@ -20,6 +22,8 @@ public class CargosTOBuilder {
 	
 	@Autowired private CboTOBuilder cboTOBuilder;
 	@Autowired private CboRepository repository;
+	@Autowired private InstituicaoRepository instituicaoRepository;
+	@Autowired private InstituicaoTOBuilder instituicaoTOBuilder;
 	
 	public Cargo build(CargoTO param) {
 		Cargo retorno = new Cargo();
@@ -34,7 +38,12 @@ public class CargosTOBuilder {
 			Optional<Cbo> cbo = repository.findById(param.getCbo().getId());
 			retorno.setCbo(cbo.get());
 		} 
-		
+
+		if(Objects.nonNull(param.getInstituicao()) && Objects.nonNull(param.getInstituicao().getId())) {
+			Optional<Instituicao> instituicao = instituicaoRepository.findById(param.getInstituicao().getId());
+			retorno.setInstituicao(instituicao.get());
+		} 
+
 		retorno.setDescricaoPerfilProfissional(param.getDescricaoPerfilProfissional());
 		retorno.setDescricaoResumoAtividades(param.getDescricaoResumoAtividades());
 		retorno.setQtdHoras(param.getQtdHoras());
@@ -60,6 +69,9 @@ public class CargosTOBuilder {
 		
 		if(Objects.nonNull(param.getCbo())) {
 			retorno.setCbo(cboTOBuilder.buildTO(param.getCbo()));
+		}
+		if(Objects.nonNull(param.getInstituicao())) {
+			retorno.setInstituicao(instituicaoTOBuilder.buildTO(param.getInstituicao()));
 		}
 			
 		retorno.setDescricaoPerfilProfissional(param.getDescricaoPerfilProfissional());

@@ -22,9 +22,8 @@ public class GetFuncoesCmd {
 	
 	
 	public List<FuncoesTO> getAll() {
-	
-		Long idUnidade = getUnidadeLogadaCmd.get().getId();
-		Optional<List<Funcoes>> entitys = repository.findByIdUnidade(idUnidade);
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+		Optional<List<Funcoes>> entitys = repository.findByIdInstituicao(idInstituicao);
 		if(entitys.isPresent()) {
 			return toBuilder.buildAll(entitys.get());
 		}

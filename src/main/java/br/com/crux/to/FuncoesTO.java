@@ -11,7 +11,8 @@ public class FuncoesTO {
 	private String atribuicoes;
 	private String conhecimentosEspecificos;
 	private String comportamentosEsperados;
-	
+	private Long qtdCargaHorariaMinima;
+	private Long qtdCargaHorariaMaxima;
 
 	public FuncoesTO() {}
 
@@ -93,6 +94,26 @@ public class FuncoesTO {
 
 	public void setComportamentosEsperados(String comportamentosEsperados) {
 		this.comportamentosEsperados = comportamentosEsperados;
+	}
+
+
+	public Long getQtdCargaHorariaMinima() {
+		return qtdCargaHorariaMinima;
+	}
+
+
+	public void setQtdCargaHorariaMinima(Long qtdCargaHorariaMinima) {
+		this.qtdCargaHorariaMinima = qtdCargaHorariaMinima;
+	}
+
+
+	public Long getQtdCargaHorariaMaxima() {
+		return qtdCargaHorariaMaxima;
+	}
+
+
+	public void setQtdCargaHorariaMaxima(Long qtdCargaHorariaMaxima) {
+		this.qtdCargaHorariaMaxima = qtdCargaHorariaMaxima;
 	}
 
 	

@@ -59,6 +59,11 @@ public class Cargo{
 	@Column(name="vl_remuneracao")
 	private Double valorRemuneracao;
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="id_instituicao")
+	private Instituicao instituicao;
+	
+	
 	public Cargo() {
 	}
 
@@ -142,7 +147,13 @@ public class Cargo{
 		this.valorRemuneracao = valorRemuneracao;
 	}
 
-	
-	
+	public Instituicao getInstituicao() {
+		return instituicao;
+	}
+
+	public void setInstituicao(Instituicao instituicao) {
+		this.instituicao = instituicao;
+	}
+
 
 }

@@ -12,6 +12,7 @@ public class CargoTO {
 	private String descricaoResumoAtividades;	
 	private Long qtdHoras;		
 	private Double valorRemuneracao;
+	private InstituicaoTO instituicao;
 	
 
 	public CargoTO() {
@@ -95,6 +96,14 @@ public class CargoTO {
 
 	public void setValorRemuneracao(Double valorRemuneracao) {
 		this.valorRemuneracao = valorRemuneracao;
+	}
+
+	public InstituicaoTO getInstituicao() {
+		return instituicao;
+	}
+
+	public void setInstituicao(InstituicaoTO instituicao) {
+		this.instituicao = instituicao;
 	}
 
 	

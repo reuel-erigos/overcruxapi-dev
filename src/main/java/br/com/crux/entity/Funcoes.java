@@ -59,7 +59,14 @@ public class Funcoes implements Serializable {
 
 	@Column(name="id_usuario_apl")
 	private Long usuarioAlteracao;
-
+	
+	@Column(name="qtd_carga_horaria_minima")
+	private Long qtdCargaHorariaMinima;
+	
+	@Column(name="qtd_carga_horaria_maxima")
+	private Long qtdCargaHorariaMaxima;
+	
+	
 	public Funcoes() {
 	}
 
@@ -151,7 +158,21 @@ public class Funcoes implements Serializable {
 		this.comportamentosEsperados = comportamentosEsperados;
 	}
 
-	
-	
+	public Long getQtdCargaHorariaMinima() {
+		return qtdCargaHorariaMinima;
+	}
+
+	public void setQtdCargaHorariaMinima(Long qtdCargaHorariaMinima) {
+		this.qtdCargaHorariaMinima = qtdCargaHorariaMinima;
+	}
+
+	public Long getQtdCargaHorariaMaxima() {
+		return qtdCargaHorariaMaxima;
+	}
+
+	public void setQtdCargaHorariaMaxima(Long qtdCargaHorariaMaxima) {
+		this.qtdCargaHorariaMaxima = qtdCargaHorariaMaxima;
+	}
+
 
 }

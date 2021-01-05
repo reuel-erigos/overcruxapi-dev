@@ -40,8 +40,7 @@ public class FuncoesTOBuilder {
 		
 		entity.setUnidade(getUnidadeCmd.getById(getUnidadeLogadaCmd.getUnidadeTO().getIdUnidade()));
 		entity.setInstituicao(getInstituicaoCmd.getById(getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId()));
-		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado()
-				.getIdUsuario());
+		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 
 		return entity;
 	}
