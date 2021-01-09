@@ -19,7 +19,7 @@ public class GerarRelatorioFaturasPagarCmd {
 	
 	public byte[] gerar(List<FaturasPagarTO> dados, String mimeType)  {
 		try {
-			String nomeRelatorio = "Faturas_Pagar";
+			String nomeRelatorio = "FaturasPagar";
 			String[] path = {"casa_azul", "financeiro", "faturas_pagar"};
 			
 			Map<String, Object> parametros = new HashMap<>();

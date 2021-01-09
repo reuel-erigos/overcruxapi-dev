@@ -10,7 +10,7 @@ public class FaturasPagarTO {
 	private Double valorMovimentacao;
 	private String dataVencimento;
 	private Double valorFatura;
-	private Long numeroParcela;
+	private Long   numeroParcela;
 	private String descFatura;
 	private String nomeCategoria;
 

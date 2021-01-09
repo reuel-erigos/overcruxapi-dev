@@ -10,17 +10,17 @@ import org.springframework.stereotype.Component;
 import br.com.crux.exception.RelatorioException;
 import br.com.crux.exception.base.NegocioException;
 import br.com.crux.infra.relatorio.GeradorRelatorio;
-import br.com.crux.to.relatorios.financeiro.NormativaPagamentosTO;
+import br.com.crux.to.relatorios.financeiro.SaldoProjetoTO;
 
 @Component
-public class GerarRelatorioNormativaPagamentosCmd {
+public class GerarRelatorioSaldoProjetoCmd {
 	
 	@Autowired private GeradorRelatorio geradorRelatorio;
 	
-	public byte[] gerar(List<NormativaPagamentosTO> dados, String mimeType)  {
+	public byte[] gerar(List<SaldoProjetoTO> dados, String mimeType)  {
 		try {
-			String nomeRelatorio = "NormativaPagamentos";
-			String[] path = {"casa_azul", "financeiro", "normativa_pagamento"};
+			String nomeRelatorio = "SaldoProjeto";
+			String[] path = {"casa_azul", "financeiro", "saldo_projeto"};
 			
 			Map<String, Object> parametros = new HashMap<>();
 			
