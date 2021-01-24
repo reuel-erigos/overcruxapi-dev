@@ -6,6 +6,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import br.com.crux.cmd.GetUnidadeLogadaCmd;
 import br.com.crux.cmd.GetUsuarioLogadoCmd;
 import br.com.crux.entity.TiposPublicoPrioritario;
 import br.com.crux.to.TiposPublicoPrioritarioTO;
@@ -15,6 +16,8 @@ public class TiposPublicoPrioritarioTOBuilder extends Builder<TiposPublicoPriori
 
 	@Autowired
 	private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
+	@Autowired
+	private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 
 	public TiposPublicoPrioritarioTO buildTO(TiposPublicoPrioritario entity) {
 		TiposPublicoPrioritarioTO to = new TiposPublicoPrioritarioTO();
@@ -35,6 +38,9 @@ public class TiposPublicoPrioritarioTOBuilder extends Builder<TiposPublicoPriori
 
 		BeanUtils.copyProperties(to, entity);
 		
+		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+		entity.setIdInstituicao(idInstituicao);
 		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 
 		return entity;

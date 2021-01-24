@@ -46,6 +46,10 @@ public class Cargo{
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_cbo")
 	private Cbo cbo;
+
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="id_grau_instrucao")
+	private GrausInstrucao grausInstrucao;
 	
 	@Column(name="ds_perfil_profissional")
 	private String descricaoPerfilProfissional;
@@ -59,9 +63,8 @@ public class Cargo{
 	@Column(name="vl_remuneracao")
 	private Double valorRemuneracao;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="id_instituicao")
-	private Instituicao instituicao;
+	@Column(name="id_instituicao", nullable = true)
+	private Long idInstituicao;
 	
 	
 	public Cargo() {
@@ -147,12 +150,20 @@ public class Cargo{
 		this.valorRemuneracao = valorRemuneracao;
 	}
 
-	public Instituicao getInstituicao() {
-		return instituicao;
+	public GrausInstrucao getGrausInstrucao() {
+		return grausInstrucao;
 	}
 
-	public void setInstituicao(Instituicao instituicao) {
-		this.instituicao = instituicao;
+	public void setGrausInstrucao(GrausInstrucao grausInstrucao) {
+		this.grausInstrucao = grausInstrucao;
+	}
+
+	public Long getIdInstituicao() {
+		return idInstituicao;
+	}
+
+	public void setIdInstituicao(Long idInstituicao) {
+		this.idInstituicao = idInstituicao;
 	}
 
 
