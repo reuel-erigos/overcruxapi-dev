@@ -9,6 +9,7 @@ public class CargoTO {
 	private Long usuarioAlteracao;
 	private CboTO cbo;
 	private String descricaoPerfilProfissional;
+	private GrausInstrucaoTO grausInstrucao;
 	private String descricaoResumoAtividades;	
 	private Long qtdHoras;		
 	private Double valorRemuneracao;
@@ -104,6 +105,14 @@ public class CargoTO {
 
 	public void setInstituicao(InstituicaoTO instituicao) {
 		this.instituicao = instituicao;
+	}
+
+	public GrausInstrucaoTO getGrausInstrucao() {
+		return grausInstrucao;
+	}
+
+	public void setGrausInstrucao(GrausInstrucaoTO grausInstrucaoTO) {
+		this.grausInstrucao = grausInstrucaoTO;
 	}
 
 	

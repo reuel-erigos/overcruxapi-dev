@@ -9,6 +9,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import br.com.crux.cmd.GetBeneficioSocialPessoaFisicaCmd;
 import br.com.crux.cmd.GetEncaminhaAlunosCmd;
 import br.com.crux.cmd.GetMotivoDesligamentoCmd;
 import br.com.crux.cmd.GetNiveisTurmasCmd;
@@ -41,6 +42,7 @@ public class AlunoTOBuilder {
 	@Autowired private GetEncaminhaAlunosCmd encaminhaAlunosCmd;
 	@Autowired private GetProgramaCmd getProgramaCmd;
 	@Autowired private GetProjetoCmd getProjetoCmd;
+	@Autowired private GetBeneficioSocialPessoaFisicaCmd getBeneficioSocialPessoaFisicaCmd;
 
 	public Aluno build(AlunoTO p) {
 		Aluno retorno = new Aluno();
@@ -131,6 +133,10 @@ public class AlunoTOBuilder {
 		
 		if(Objects.nonNull(p.getId())) {
 			retorno.setEncaminhamentos(encaminhaAlunosCmd.getAll(p.getId(), null));
+		}
+		
+		if(Objects.nonNull(p.getId()) && Objects.nonNull(p.getPessoasFisica())) {
+			retorno.setBenefeciosSociaisPessoaFisica(getBeneficioSocialPessoaFisicaCmd.getAllPorPessoaFisicaTO(p.getPessoasFisica().getId()));
 		}
 
 		return retorno;

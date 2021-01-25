@@ -16,7 +16,7 @@ public class CamposObrigatoriosAlunoRule {
 		}
 
 		if(Objects.isNull(to.getPessoaFisica()) && Objects.isNull(to.getPessoaFisica().getId())) {
-			throw new CamposObrigatoriosException("Pessoa Fícisa deve ser informada.");
+			throw new CamposObrigatoriosException("Pessoa Físisa deve ser informada.");
 		}		
 	}
 }

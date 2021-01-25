@@ -8,11 +8,13 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import br.com.crux.cmd.GetGrausInstrucaoCmd;
+import br.com.crux.cmd.GetUnidadeLogadaCmd;
+import br.com.crux.cmd.GetUsuarioLogadoCmd;
 import br.com.crux.dao.repository.CboRepository;
-import br.com.crux.dao.repository.InstituicaoRepository;
 import br.com.crux.entity.Cargo;
 import br.com.crux.entity.Cbo;
-import br.com.crux.entity.Instituicao;
+import br.com.crux.entity.GrausInstrucao;
 import br.com.crux.enums.TipoCargo;
 import br.com.crux.to.CargoTO;
 
@@ -22,8 +24,10 @@ public class CargosTOBuilder {
 	
 	@Autowired private CboTOBuilder cboTOBuilder;
 	@Autowired private CboRepository repository;
-	@Autowired private InstituicaoRepository instituicaoRepository;
-	@Autowired private InstituicaoTOBuilder instituicaoTOBuilder;
+	@Autowired private GetGrausInstrucaoCmd getGrausInstrucaoCmd;
+	@Autowired private GrausInstrucaoTOBuilder grausInstrucaoTOBuilder;
+	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
+	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
 	
 	public Cargo build(CargoTO param) {
 		Cargo retorno = new Cargo();
@@ -39,14 +43,25 @@ public class CargosTOBuilder {
 			retorno.setCbo(cbo.get());
 		} 
 
-		if(Objects.nonNull(param.getInstituicao()) && Objects.nonNull(param.getInstituicao().getId())) {
-			Optional<Instituicao> instituicao = instituicaoRepository.findById(param.getInstituicao().getId());
-			retorno.setInstituicao(instituicao.get());
+		
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+		retorno.setIdInstituicao(idInstituicao);
+		retorno.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
+		
+		
+		if(Objects.nonNull(param.getGrausInstrucao()) && Objects.nonNull(param.getGrausInstrucao().getId())) {
+			GrausInstrucao grauInstrucao = getGrausInstrucaoCmd.getById(param.getGrausInstrucao().getId());
+			retorno.setGrausInstrucao(grauInstrucao);
 		} 
+		
+		
 
 		retorno.setDescricaoPerfilProfissional(param.getDescricaoPerfilProfissional());
 		retorno.setDescricaoResumoAtividades(param.getDescricaoResumoAtividades());
 		retorno.setQtdHoras(param.getQtdHoras());
+		retorno.setCodigo("Codigo enquanto nao ajusta a tabela");
+		
+		
 		
 		
 		return retorno;
@@ -70,10 +85,11 @@ public class CargosTOBuilder {
 		if(Objects.nonNull(param.getCbo())) {
 			retorno.setCbo(cboTOBuilder.buildTO(param.getCbo()));
 		}
-		if(Objects.nonNull(param.getInstituicao())) {
-			retorno.setInstituicao(instituicaoTOBuilder.buildTO(param.getInstituicao()));
-		}
 			
+		if(Objects.nonNull(param.getGrausInstrucao())) {
+			retorno.setGrausInstrucao(grausInstrucaoTOBuilder.buildTO(param.getGrausInstrucao()));
+		}
+		
 		retorno.setDescricaoPerfilProfissional(param.getDescricaoPerfilProfissional());
 		retorno.setDescricaoResumoAtividades(param.getDescricaoResumoAtividades());
 		retorno.setQtdHoras(param.getQtdHoras());
