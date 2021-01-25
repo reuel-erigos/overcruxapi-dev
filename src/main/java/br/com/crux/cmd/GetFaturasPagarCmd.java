@@ -22,9 +22,9 @@ public class GetFaturasPagarCmd {
 
 	@Autowired private FaturasPagarDao       dao;
 	@Autowired private FaturasPagarTOBuilder toBuilder;
-
+	@Autowired private GetCategoriasContabeisCmd getCategoriasContabeisCmd;
 	
-	public List<FaturasPagarTO> getAllFilter(String categoria, String cnpjCpf, String programaProjeto, Long dataInicio, Long dataFim, Long dataInicioVenc, Long dataFimVenc) {
+	public List<FaturasPagarTO> getAllFilter(Long idcategoria, String cnpjCpf, String programaProjeto, Long dataInicio, Long dataFim, Long dataInicioVenc, Long dataFimVenc) {
 		Optional<List<FaturasPagarDTO>> entitys = Optional.empty();
 
 		LocalDate pDataInicio     = Objects.nonNull(dataInicio) ? Java8DateUtil.getLocalDateTime(new Date(dataInicio)).toLocalDate() : null;
@@ -32,9 +32,9 @@ public class GetFaturasPagarCmd {
 		LocalDate pDataInicioVenc = Objects.nonNull(dataInicioVenc) ? Java8DateUtil.getLocalDateTime(new Date(dataInicioVenc)).toLocalDate() : null;
 		LocalDate pDataFimVenc    = Objects.nonNull(dataFimVenc) ? Java8DateUtil.getLocalDateTime(new Date(dataFimVenc)).toLocalDate() : null;
 
-		categoria       = StringUtils.isEmpty(categoria) ? null : categoria;
-		cnpjCpf         = StringUtils.isEmpty(cnpjCpf) ? null : cnpjCpf;
-		programaProjeto = StringUtils.isEmpty(programaProjeto) ? null : programaProjeto;
+		String categoria  = Objects.nonNull(idcategoria) ? null : getCategoriasContabeisCmd.getTOById(idcategoria).getNome();
+		cnpjCpf           = StringUtils.isEmpty(cnpjCpf) ? null : cnpjCpf;
+		programaProjeto   = StringUtils.isEmpty(programaProjeto) ? null : programaProjeto;
 
 		entitys = dao.getAllFilter(categoria, cnpjCpf, programaProjeto, pDataInicio, pDataFim, pDataInicioVenc, pDataFimVenc);
 

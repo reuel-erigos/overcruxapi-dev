@@ -32,12 +32,12 @@ public class RelatorioNormativaPagamentosService {
 	
 	
 	@GetMapping(path = "/filter", produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<NormativaPagamentosTO> getAllFilter(@RequestParam(name = "categoria", required = false) String categoria,
+	public List<NormativaPagamentosTO> getAllFilter(@RequestParam(name = "idcategoria", required = false) Long idcategoria,
 		                                            @RequestParam(name = "cnpj_cpf", required = false) String cnpjCpf,
 		                                            @RequestParam(name = "programaProjeto", required = false) String programaProjeto,
 		                                            @RequestParam(name = "dataInicio", required = false) Long dataInicio,
 		                                            @RequestParam(name = "dataFim", required = false) Long dataFim
 		                                            ) {
-		return getCmd.getAllFilter(categoria, cnpjCpf, programaProjeto, dataInicio, dataFim);
+		return getCmd.getAllFilter(idcategoria, cnpjCpf, programaProjeto, dataInicio, dataFim);
 	}
 }

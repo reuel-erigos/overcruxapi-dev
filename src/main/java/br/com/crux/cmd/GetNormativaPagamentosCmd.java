@@ -22,17 +22,18 @@ public class GetNormativaPagamentosCmd {
 
 	@Autowired private NormativaPagamentosDao       dao;
 	@Autowired private NormativaPagamentosTOBuilder toBuilder;
+	@Autowired private GetCategoriasContabeisCmd getCategoriasContabeisCmd;
 
 	
-	public List<NormativaPagamentosTO> getAllFilter(String categoria, String cnpjCpf, String programaProjeto, Long dataInicio, Long dataFim) {
+	public List<NormativaPagamentosTO> getAllFilter(Long idcategoria, String cnpjCpf, String programaProjeto, Long dataInicio, Long dataFim) {
 		Optional<List<NormativaPagamentosDTO>> entitys = Optional.empty();
 
 		LocalDate pDataInicio = Objects.nonNull(dataInicio) ? Java8DateUtil.getLocalDateTime(new Date(dataInicio)).toLocalDate() : null;
 		LocalDate pDataFim    = Objects.nonNull(dataFim) ? Java8DateUtil.getLocalDateTime(new Date(dataFim)).toLocalDate() : null;
 
-		categoria       = StringUtils.isEmpty(categoria) ? null : categoria;
-		cnpjCpf         = StringUtils.isEmpty(cnpjCpf) ? null : cnpjCpf;
-		programaProjeto = StringUtils.isEmpty(programaProjeto) ? null : programaProjeto;
+		String categoria  = Objects.nonNull(idcategoria) ? null : getCategoriasContabeisCmd.getTOById(idcategoria).getNome();
+		cnpjCpf           = StringUtils.isEmpty(cnpjCpf) ? null : cnpjCpf;
+		programaProjeto   = StringUtils.isEmpty(programaProjeto) ? null : programaProjeto;
 
 		entitys = dao.getAllFilter(categoria, cnpjCpf, programaProjeto, pDataInicio, pDataFim);
 

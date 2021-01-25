@@ -19,7 +19,7 @@ import br.com.crux.to.relatorios.financeiro.SaldoProjetoDTO;
 public class SaldoProjetoDao extends BaseDao{
 	
 	
-	public Optional<List<SaldoProjetoDTO>> getAllFilter(String contaBancaria, String programaProjeto, 
+	public Optional<List<SaldoProjetoDTO>> getAllFilter(Long idContaBancaria, String programaProjeto, 
 			                                            LocalDate dataInicio, LocalDate dataFim){
 		StringBuilder sql = new StringBuilder();
 		
@@ -34,10 +34,10 @@ public class SaldoProjetoDao extends BaseDao{
 		sql.append("        p.nr_parcela,                                      ");
 		sql.append("        p.ds_fatura,                                       ");
 		sql.append("        p.nm_categoria                                     ");
-		sql.append("   from vw_relatorio_faturas_pagar_periodo p             ");
-		sql.append(" WHERE 1 = 1                                                                                                                        ");
+		sql.append("   from vw_relatorio_faturas_pagar_periodo p               ");
+		sql.append(" WHERE 1 = 1                                               ");
 		
-		if(StringUtils.isNotEmpty(contaBancaria)) {
+		if(Objects.nonNull(idContaBancaria)) {
 			sql.append("  and :p_contaBancaria = p.cnpj_cpf  ");
 		}
 
@@ -59,8 +59,8 @@ public class SaldoProjetoDao extends BaseDao{
 		Query query = em.createNativeQuery(sql.toString());
 		
 
-		if(StringUtils.isNotEmpty(contaBancaria)) {
-			query.setParameter("p_nm_categoria", contaBancaria);
+		if(Objects.nonNull(idContaBancaria)) {
+			query.setParameter("p_nm_categoria", idContaBancaria);
 		}
 
 		if(StringUtils.isNotEmpty(programaProjeto)) {

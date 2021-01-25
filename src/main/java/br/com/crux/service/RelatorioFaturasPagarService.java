@@ -32,7 +32,7 @@ public class RelatorioFaturasPagarService {
 	
 	
 	@GetMapping(path = "/filter", produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<FaturasPagarTO> getAllFilter(@RequestParam(name = "categoria", required = false) String categoria,
+	public List<FaturasPagarTO> getAllFilter(@RequestParam(name = "idcategoria", required = false) Long idcategoria,
 		                                     @RequestParam(name = "cnpj_cpf", required = false) String cnpjCpf,
 		                                     @RequestParam(name = "programaProjeto", required = false) String programaProjeto,
 		                                     @RequestParam(name = "dataInicio", required = false) Long dataInicio,
@@ -40,6 +40,6 @@ public class RelatorioFaturasPagarService {
 		                                     @RequestParam(name = "dataInicioVenc", required = false) Long dataInicioVenc,
 		                                     @RequestParam(name = "dataFimVenc", required = false) Long dataFimVenc
 		                                     ) {
-		return getCmd.getAllFilter(categoria, cnpjCpf, programaProjeto, dataInicio, dataFim, dataInicioVenc, dataFimVenc);
+		return getCmd.getAllFilter(idcategoria, cnpjCpf, programaProjeto, dataInicio, dataFim, dataInicioVenc, dataFimVenc);
 	}
 }

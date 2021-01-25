@@ -24,16 +24,16 @@ public class GetSaldoProjetoCmd {
 	@Autowired private SaldoProjetoTOBuilder toBuilder;
 
 	
-	public List<SaldoProjetoTO> getAllFilter(String contaBancaria, String programaProjeto, Long dataInicio, Long dataFim) {
+	public List<SaldoProjetoTO> getAllFilter(Long idcontaBancaria, String programaProjeto, Long dataInicio, Long dataFim) {
 		Optional<List<SaldoProjetoDTO>> entitys = Optional.empty();
 
 		LocalDate pDataInicio     = Objects.nonNull(dataInicio) ? Java8DateUtil.getLocalDateTime(new Date(dataInicio)).toLocalDate() : null;
 		LocalDate pDataFim        = Objects.nonNull(dataFim) ? Java8DateUtil.getLocalDateTime(new Date(dataFim)).toLocalDate() : null;
 
-		contaBancaria       = StringUtils.isEmpty(contaBancaria) ? null : contaBancaria;
+		idcontaBancaria  = Objects.nonNull(idcontaBancaria) ? null : idcontaBancaria;
 		programaProjeto = StringUtils.isEmpty(programaProjeto) ? null : programaProjeto;
 
-		entitys = dao.getAllFilter(contaBancaria, programaProjeto, pDataInicio, pDataFim);
+		entitys = dao.getAllFilter(idcontaBancaria, programaProjeto, pDataInicio, pDataFim);
 
 		if (entitys.isPresent()) {
 			return toBuilder.buildAllDTO(entitys.get());

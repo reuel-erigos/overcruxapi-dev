@@ -32,11 +32,11 @@ public class RelatorioSaldoProjetoService {
 	
 	
 	@GetMapping(path = "/filter", produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<SaldoProjetoTO> getAllFilter(@RequestParam(name = "contaBancaria", required = false) String contaBancaria,
+	public List<SaldoProjetoTO> getAllFilter(@RequestParam(name = "idcontaBancaria", required = false) Long idcontaBancaria,
 		                                     @RequestParam(name = "programaProjeto", required = false) String programaProjeto,
 		                                     @RequestParam(name = "dataInicio", required = false) Long dataInicio,
 		                                     @RequestParam(name = "dataFim", required = false) Long dataFim
 		                                     ) {
-		return getCmd.getAllFilter(contaBancaria, programaProjeto, dataInicio, dataFim);
+		return getCmd.getAllFilter(idcontaBancaria, programaProjeto, dataInicio, dataFim);
 	}
 }
