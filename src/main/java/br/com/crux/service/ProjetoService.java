@@ -46,11 +46,6 @@ public class ProjetoService {
 		return getCmd.getAllPrograma(id);
 	}	
 
-	@GetMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<ProjetoTO> getAll() {
-		return getCmd.getAll();
-	}
-
 	@GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ProjetoTO getById(@PathVariable(name = "id") Long id) {
 		return getCmd.getTOById(id);
