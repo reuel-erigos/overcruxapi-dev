@@ -15,7 +15,7 @@ public interface ProjetoRepository extends JpaRepository<Projeto, Long>{
 	@Query(value = "SELECT p FROM Projeto p"
 			+ " inner join ProjetosUnidade pu on pu.projeto = p "
 			+ " where pu.unidade.idUnidade = :idUnidade"
-			+ " order by pj.nome ")	
+			+ " order by p.nome ")	
 	public Optional<List<Projeto>> findByIdUnidade(Long idUnidade);
 	
 	
