@@ -20,7 +20,7 @@ public interface ProjetoRepository extends JpaRepository<Projeto, Long>{
 	
 	
 	@Query(value = "SELECT distinct pj FROM Projeto pj "
-			+ " inner join ProjetosUnidade pu on p.projeto = pj "
+			+ " inner join ProjetosUnidade pu on pu.projeto = pj "
 			+ " inner join Unidade uni on uni = pu.unidade "
 			+ " inner join Instituicao ins on ins = uni.instituicao"
 			+ " where ins.id = ?1"
