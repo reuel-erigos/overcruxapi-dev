@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -24,16 +23,17 @@ public class GetSaldoProjetoCmd {
 	@Autowired private SaldoProjetoTOBuilder toBuilder;
 
 	
-	public List<SaldoProjetoTO> getAllFilter(Long idcontaBancaria, String programaProjeto, Long dataInicio, Long dataFim) {
+	public List<SaldoProjetoTO> getAllFilter(Long idcontaBancaria, Long idPrograma, Long idProjeto, Long dataInicio, Long dataFim) {
 		Optional<List<SaldoProjetoDTO>> entitys = Optional.empty();
 
 		LocalDate pDataInicio     = Objects.nonNull(dataInicio) ? Java8DateUtil.getLocalDateTime(new Date(dataInicio)).toLocalDate() : null;
 		LocalDate pDataFim        = Objects.nonNull(dataFim) ? Java8DateUtil.getLocalDateTime(new Date(dataFim)).toLocalDate() : null;
 
-		idcontaBancaria  = Objects.nonNull(idcontaBancaria) ? null : idcontaBancaria;
-		programaProjeto = StringUtils.isEmpty(programaProjeto) ? null : programaProjeto;
-
-		entitys = dao.getAllFilter(idcontaBancaria, programaProjeto, pDataInicio, pDataFim);
+		idcontaBancaria = Objects.nonNull(idcontaBancaria) ? null : idcontaBancaria;
+		idPrograma      = Objects.nonNull(idPrograma) ? null : idPrograma;
+		idProjeto       = Objects.nonNull(idProjeto) ? null : idProjeto;
+		
+		entitys = dao.getAllFilter(idcontaBancaria, idPrograma, idProjeto, pDataInicio, pDataFim);
 
 		if (entitys.isPresent()) {
 			return toBuilder.buildAllDTO(entitys.get());

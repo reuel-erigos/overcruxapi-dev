@@ -8,7 +8,6 @@ import java.util.Optional;
 
 import javax.persistence.Query;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.dao.base.BaseDao;
@@ -19,8 +18,7 @@ import br.com.crux.to.relatorios.financeiro.SaldoProjetoDTO;
 public class SaldoProjetoDao extends BaseDao{
 	
 	
-	public Optional<List<SaldoProjetoDTO>> getAllFilter(Long idContaBancaria, String programaProjeto, 
-			                                            LocalDate dataInicio, LocalDate dataFim){
+	public Optional<List<SaldoProjetoDTO>> getAllFilter(Long idContaBancaria, Long idPrograma, Long idProjeto, LocalDate dataInicio, LocalDate dataFim){
 		StringBuilder sql = new StringBuilder();
 		
 		sql.append(" select p.nm_programa_projeto,                             ");
@@ -41,8 +39,13 @@ public class SaldoProjetoDao extends BaseDao{
 			sql.append("  and :p_contaBancaria = p.cnpj_cpf  ");
 		}
 
-		if(StringUtils.isNotEmpty(programaProjeto)) {
-			sql.append("  and :p_programaProjeto = p.nm_programa_projeto  ");
+
+		if(Objects.nonNull(idPrograma)) {
+			sql.append("  and :p_programa = p.idPrograma  ");
+		}
+
+		if(Objects.nonNull(idProjeto)) {
+			sql.append("  and :p_projeto = p.idProjeto  ");
 		}
 
 		if(Objects.nonNull(dataInicio)) {
@@ -63,8 +66,12 @@ public class SaldoProjetoDao extends BaseDao{
 			query.setParameter("p_nm_categoria", idContaBancaria);
 		}
 
-		if(StringUtils.isNotEmpty(programaProjeto)) {
-			query.setParameter("p_programaProjeto", programaProjeto);
+		if(Objects.nonNull(idPrograma)) {
+			query.setParameter("p_programa", idPrograma);
+		}
+
+		if(Objects.nonNull(idProjeto)) {
+			query.setParameter("p_programa", idProjeto);
 		}
 		
 		if(Objects.nonNull(dataInicio)) {

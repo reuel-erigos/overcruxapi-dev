@@ -8,19 +8,17 @@ import java.util.Optional;
 
 import javax.persistence.Query;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.dao.base.BaseDao;
 import br.com.crux.infra.util.Java8DateUtil;
-import br.com.crux.infra.util.NumeroUtil;
 import br.com.crux.to.relatorios.financeiro.FaturasPagarDTO;
 
 @Component
 public class FaturasPagarDao extends BaseDao{
 	
 	
-	public Optional<List<FaturasPagarDTO>> getAllFilter(String categoria, String cnpjCpf, String programaProjeto, 
+	public Optional<List<FaturasPagarDTO>> getAllFilter(Long idCategoria, Long idEmpresa, Long idPessoaFisica, Long idPrograma, Long idProjeto, 
 			                                                          LocalDate dataInicio, LocalDate dataFim,
 			                                                          LocalDate dataInicioVenc, LocalDate dataFimVenc){
 		StringBuilder sql = new StringBuilder();
@@ -35,21 +33,38 @@ public class FaturasPagarDao extends BaseDao{
 		sql.append("        p.vl_fatura,                                       ");
 		sql.append("        p.nr_parcela,                                      ");
 		sql.append("        p.ds_fatura,                                       ");
-		sql.append("        p.nm_categoria                                     ");
+		sql.append("        p.nm_categoria,                                    ");
+		sql.append("        p.id_empresa,                                      ");
+		sql.append("        p.id_pessoa_fisic  a,                              ");
+		sql.append("        p.id_programa,                                     ");
+		sql.append("        p.id_projeto,                                      ");
+		sql.append("        p.id_movimentacao                                  ");
 		sql.append("   from vw_relatorio_faturas_pagar_periodo p             ");
 		sql.append(" WHERE 1 = 1                                                                                                                        ");
 		
-		if(StringUtils.isNotEmpty(cnpjCpf)) {
-			sql.append("  and :p_cnpj_cpf = p.cnpj_cpf  ");
+
+		if(Objects.nonNull(idEmpresa)) {
+			sql.append("  and :p_empresa = p.id_empresa  ");
 		}
 
-		if(StringUtils.isNotEmpty(categoria)) {
-			sql.append("  and :p_nm_categoria = p.nm_categoria  ");
+		if(Objects.nonNull(idPessoaFisica)) {
+			sql.append("  and :p_pessoa_fisica = p.idPessoaFisica  ");
 		}
 
-		if(StringUtils.isNotEmpty(programaProjeto)) {
-			sql.append("  and :p_programaProjeto = p.nm_programa_projeto  ");
+		if(Objects.nonNull(idPrograma)) {
+			sql.append("  and :p_programa = p.idPrograma  ");
 		}
+
+		if(Objects.nonNull(idProjeto)) {
+			sql.append("  and :p_projeto = p.idProjeto  ");
+		}
+
+		if(Objects.nonNull(idCategoria)) {
+			sql.append(" and (id_movimentacao in (select c.id_movimentacao   ");
+			sql.append("	from vw_rateio_itens_movimentacoes_categorias c  ");
+			sql.append("	where c.id_categoria = :p_id_categoria)          ");
+			sql.append("	or p_id_categoria is null)                       ");
+		}  
 
 		if(Objects.nonNull(dataInicio)) {
 			sql.append("   AND DATE_TRUNC('DAY', p.dt_documento) >= DATE_TRUNC('DAY', to_date( :p_dt_inicio ,'dd/mm/yyyy') )     ");
@@ -72,16 +87,24 @@ public class FaturasPagarDao extends BaseDao{
 		
 		Query query = em.createNativeQuery(sql.toString());
 		
-		if(StringUtils.isNotEmpty(cnpjCpf)) {
-			query.setParameter("p_cnpj_cpf", NumeroUtil.extrairNumerosMatches(cnpjCpf));
+		if(Objects.nonNull(idCategoria)) {
+			query.setParameter("p_id_categoria", idCategoria);
+		}
+		
+		if(Objects.nonNull(idEmpresa)) {
+			query.setParameter("p_empresa", idEmpresa);
 		}
 
-		if(StringUtils.isNotEmpty(categoria)) {
-			query.setParameter("p_nm_categoria", categoria);
+		if(Objects.nonNull(idPessoaFisica)) {
+			query.setParameter("p_pessoa_fisica", idPessoaFisica);
 		}
 
-		if(StringUtils.isNotEmpty(programaProjeto)) {
-			query.setParameter("p_programaProjeto", programaProjeto);
+		if(Objects.nonNull(idPrograma)) {
+			query.setParameter("p_programa", idPrograma);
+		}
+
+		if(Objects.nonNull(idProjeto)) {
+			query.setParameter("p_programa", idProjeto);
 		}
 		
 		if(Objects.nonNull(dataInicio)) {

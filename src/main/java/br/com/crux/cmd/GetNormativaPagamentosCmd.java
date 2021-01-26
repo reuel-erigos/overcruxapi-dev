@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,20 +21,21 @@ public class GetNormativaPagamentosCmd {
 
 	@Autowired private NormativaPagamentosDao       dao;
 	@Autowired private NormativaPagamentosTOBuilder toBuilder;
-	@Autowired private GetCategoriasContabeisCmd getCategoriasContabeisCmd;
 
 	
-	public List<NormativaPagamentosTO> getAllFilter(Long idcategoria, String cnpjCpf, String programaProjeto, Long dataInicio, Long dataFim) {
+	public List<NormativaPagamentosTO> getAllFilter(Long idcategoria, Long idEmpresa, Long idPessoaFisica, Long idPrograma, Long idProjeto, Long dataInicio, Long dataFim) {
 		Optional<List<NormativaPagamentosDTO>> entitys = Optional.empty();
 
 		LocalDate pDataInicio = Objects.nonNull(dataInicio) ? Java8DateUtil.getLocalDateTime(new Date(dataInicio)).toLocalDate() : null;
 		LocalDate pDataFim    = Objects.nonNull(dataFim) ? Java8DateUtil.getLocalDateTime(new Date(dataFim)).toLocalDate() : null;
 
-		String categoria  = Objects.nonNull(idcategoria) ? null : getCategoriasContabeisCmd.getTOById(idcategoria).getNome();
-		cnpjCpf           = StringUtils.isEmpty(cnpjCpf) ? null : cnpjCpf;
-		programaProjeto   = StringUtils.isEmpty(programaProjeto) ? null : programaProjeto;
-
-		entitys = dao.getAllFilter(categoria, cnpjCpf, programaProjeto, pDataInicio, pDataFim);
+		idcategoria     = Objects.nonNull(idcategoria) ? null : idcategoria;
+		idEmpresa       = Objects.nonNull(idEmpresa) ? null : idEmpresa;
+		idPessoaFisica  = Objects.nonNull(idPessoaFisica) ? null : idPessoaFisica;
+		idPrograma      = Objects.nonNull(idPrograma) ? null : idPrograma;
+		idProjeto       = Objects.nonNull(idProjeto) ? null : idProjeto;
+		
+		entitys = dao.getAllFilter(idcategoria, idEmpresa, idPessoaFisica, idPrograma, idProjeto, pDataInicio, pDataFim);
 
 		if (entitys.isPresent()) {
 			return toBuilder.buildAllDTO(entitys.get());

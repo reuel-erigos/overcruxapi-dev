@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,9 +21,8 @@ public class GetFaturasPagarCmd {
 
 	@Autowired private FaturasPagarDao       dao;
 	@Autowired private FaturasPagarTOBuilder toBuilder;
-	@Autowired private GetCategoriasContabeisCmd getCategoriasContabeisCmd;
 	
-	public List<FaturasPagarTO> getAllFilter(Long idcategoria, String cnpjCpf, String programaProjeto, Long dataInicio, Long dataFim, Long dataInicioVenc, Long dataFimVenc) {
+	public List<FaturasPagarTO> getAllFilter(Long idcategoria, Long idEmpresa, Long idPessoaFisica, Long idPrograma, Long idProjeto, Long dataInicio, Long dataFim, Long dataInicioVenc, Long dataFimVenc) {
 		Optional<List<FaturasPagarDTO>> entitys = Optional.empty();
 
 		LocalDate pDataInicio     = Objects.nonNull(dataInicio) ? Java8DateUtil.getLocalDateTime(new Date(dataInicio)).toLocalDate() : null;
@@ -32,11 +30,13 @@ public class GetFaturasPagarCmd {
 		LocalDate pDataInicioVenc = Objects.nonNull(dataInicioVenc) ? Java8DateUtil.getLocalDateTime(new Date(dataInicioVenc)).toLocalDate() : null;
 		LocalDate pDataFimVenc    = Objects.nonNull(dataFimVenc) ? Java8DateUtil.getLocalDateTime(new Date(dataFimVenc)).toLocalDate() : null;
 
-		String categoria  = Objects.nonNull(idcategoria) ? null : getCategoriasContabeisCmd.getTOById(idcategoria).getNome();
-		cnpjCpf           = StringUtils.isEmpty(cnpjCpf) ? null : cnpjCpf;
-		programaProjeto   = StringUtils.isEmpty(programaProjeto) ? null : programaProjeto;
+		idcategoria     = Objects.nonNull(idcategoria) ? null : idcategoria;
+		idEmpresa       = Objects.nonNull(idEmpresa) ? null : idEmpresa;
+		idPessoaFisica  = Objects.nonNull(idPessoaFisica) ? null : idPessoaFisica;
+		idPrograma      = Objects.nonNull(idPrograma) ? null : idPrograma;
+		idProjeto       = Objects.nonNull(idProjeto) ? null : idProjeto;
 
-		entitys = dao.getAllFilter(categoria, cnpjCpf, programaProjeto, pDataInicio, pDataFim, pDataInicioVenc, pDataFimVenc);
+		entitys = dao.getAllFilter(idcategoria, idEmpresa, idPessoaFisica, idPrograma, idProjeto, pDataInicio, pDataFim, pDataInicioVenc, pDataFimVenc);
 
 		if (entitys.isPresent()) {
 			return toBuilder.buildAllDTO(entitys.get());
