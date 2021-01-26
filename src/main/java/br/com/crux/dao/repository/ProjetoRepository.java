@@ -15,7 +15,7 @@ public interface ProjetoRepository extends JpaRepository<Projeto, Long>{
 	@Query(value = "SELECT p FROM Projeto p"
 			+ " inner join ProjetosUnidade pu on pu.projeto = p "
 			+ " where pu.unidade.idUnidade = :idUnidade"
-			+ " order by p.nome ")	
+			+ " order by pj.nome ")	
 	public Optional<List<Projeto>> findByIdUnidade(Long idUnidade);
 	
 	
@@ -24,7 +24,7 @@ public interface ProjetoRepository extends JpaRepository<Projeto, Long>{
 			+ " inner join Unidade uni on uni = pu.unidade "
 			+ " inner join Instituicao ins on ins = uni.instituicao"
 			+ " where ins.id = ?1"
-			+ " order by p.nome ")
+			+ " order by pj.nome ")
 	public Optional<List<Projeto>> findByIdInstituicao(Long idInstituicao);	
 	
 	
@@ -32,6 +32,6 @@ public interface ProjetoRepository extends JpaRepository<Projeto, Long>{
 	@Query(value = "SELECT pj FROM Projeto pj "
 			+ " inner join Programa p on p.id = pj.programa.id "
 			+ " where p.id = ?1"
-			+ " order by p.nome ")
+			+ " order by pj.nome ")
 	public Optional<List<Projeto>> findByIdPrograma(Long idPrograma);	
 }
