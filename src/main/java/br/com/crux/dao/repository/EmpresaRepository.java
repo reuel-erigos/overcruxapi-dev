@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import br.com.crux.entity.Empresa;
+import br.com.crux.enums.TipoEmpresa;
 
 @Repository
 public interface EmpresaRepository extends JpaRepository<Empresa, Long> {
@@ -18,4 +19,11 @@ public interface EmpresaRepository extends JpaRepository<Empresa, Long> {
 			+ " order by e.nomeRazaoSocial asc                          ")
 	public Optional<List<Empresa>> getAllByInstituicao(Long idInstituicao);
 
+		
+	@Query("select e from Empresa e                                     "
+			+ "inner join Instituicao inst on inst.id = e.idInstituicao "
+			+ " where inst.id = ?1                                      "
+			+ " and e.tipoEmpresa in (?2)                            "
+			+ " order by e.nomeRazaoSocial asc                          ")
+	public Optional<List<Empresa>> getAllPorTipoByInstituicao(Long idInstituicao,List<TipoEmpresa> tipos);
 }
