@@ -1,6 +1,8 @@
 package br.com.crux.cmd;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,6 +14,7 @@ import br.com.crux.dao.EmpresaDAO;
 import br.com.crux.dao.dto.EmpresaDTO;
 import br.com.crux.dao.repository.EmpresaRepository;
 import br.com.crux.entity.Empresa;
+import br.com.crux.enums.TipoEmpresa;
 import br.com.crux.exception.NotFoundException;
 import br.com.crux.to.ComboEmpresaTO;
 import br.com.crux.to.EmpresaTO;
@@ -28,6 +31,18 @@ public class GetEmpresaCmd {
 		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
 		
 		Optional<List<Empresa>> lista = repository.getAllByInstituicao(idInstituicao);
+		if(lista.isPresent()) {
+			return toBuilder.buildAll(lista.get());
+		}
+		return new ArrayList<EmpresaTO>();
+	}
+
+	public List<EmpresaTO> getAllPorTipo(String tipo) {
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+		
+		List<TipoEmpresa> tipos = getTipos(tipo);
+		
+		Optional<List<Empresa>> lista = repository.getAllPorTipoByInstituicao(idInstituicao,tipos);
 		if(lista.isPresent()) {
 			return toBuilder.buildAll(lista.get());
 		}
@@ -63,4 +78,23 @@ public class GetEmpresaCmd {
 		return toBuilder.buildAllComboDTO(empresas);
 	}
 
+	
+	private List<TipoEmpresa> getTipos(String tipo){
+		
+		if(tipo.equalsIgnoreCase("P")) {
+			return Arrays.asList(TipoEmpresa.PARCEIRA, TipoEmpresa.PARCEIRAFORNECEDOR,TipoEmpresa.PARCEIRACLIENTEFORNECEDOR,TipoEmpresa.PARCEIRACLIENTE);
+		}
+		
+		if(tipo.equalsIgnoreCase("F")) {
+			return Arrays.asList(TipoEmpresa.FORNECEDOR, TipoEmpresa.PARCEIRAFORNECEDOR,TipoEmpresa.PARCEIRACLIENTEFORNECEDOR,TipoEmpresa.FORNECEDORCLIENTE);
+		}
+
+		if(tipo.equalsIgnoreCase("C")) {
+			return Arrays.asList(TipoEmpresa.CLIENTE, TipoEmpresa.PARCEIRACLIENTEFORNECEDOR,TipoEmpresa.PARCEIRACLIENTE,TipoEmpresa.FORNECEDORCLIENTE);
+		}
+		
+		
+		
+		return Collections.emptyList();
+	}
 }

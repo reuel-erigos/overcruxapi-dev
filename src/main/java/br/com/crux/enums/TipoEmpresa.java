@@ -5,11 +5,18 @@ public enum TipoEmpresa {
 	// P = PARCEIRA; V = CONVÊNIO; T = CONTRATO; F = FORNECEDOR; C = CLIENTE; O =
 	// OUTRO)
 
-	PARCEIRA(1, "P", "Parceria"), CONVÊNIO(2, "V", "Convênio"), CONTRATO(3, "T", "Contrato"),
-	FORNECEDOR(4, "F", "Fornecedor"), CLIENTE(5, "C", "Cliente"),
-	PARCEIRACLIENTE(6, "L", "Parceria e Cliente"), PARCEIRAFORNECEDOR(7, "R", "Parceria e Fornecedor"),
-	PARCEIRACLIENTEFORNECEDOR(8, "E", "Parceria, Cliente e Fornecedor"), 
-	FORNECEDORCLIENTE(9, "N", "Fornecedor e Cliente"), OUTRO(10, "O", "Outro");
+	// @formatter:off
+	PARCEIRA 	                (1, "P", "Parceria"), 
+	CONVÊNIO					(2, "V", "Convênio"), 
+	CONTRATO					(3, "T", "Contrato"),
+	FORNECEDOR					(4, "F", "Fornecedor"), 
+	CLIENTE						(5, "C", "Cliente"),
+	PARCEIRACLIENTE				(6, "L", "Parceria e Cliente"), 
+	PARCEIRAFORNECEDOR			(7, "R", "Parceria e Fornecedor"),
+	PARCEIRACLIENTEFORNECEDOR	(8, "E", "Parceria, Cliente e Fornecedor"), 
+	FORNECEDORCLIENTE			(9, "N", "Fornecedor e Cliente"), 
+	OUTRO						(10, "O", "Outro");
+	// @formatter:on
 
 	private Integer id;
 	private String tipo;
