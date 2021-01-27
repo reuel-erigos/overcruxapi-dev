@@ -1,10 +1,6 @@
 package br.com.crux.to.relatorios.financeiro;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
-import java.util.Date;
-
-import br.com.crux.infra.util.DataUtil;
 
 public class FaturasPagarDTO {
 	
