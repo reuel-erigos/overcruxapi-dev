@@ -29,11 +29,11 @@ public class GetNormativaPagamentosCmd {
 		LocalDate pDataInicio = Objects.nonNull(dataInicio) ? Java8DateUtil.getLocalDateTime(new Date(dataInicio)).toLocalDate() : null;
 		LocalDate pDataFim    = Objects.nonNull(dataFim) ? Java8DateUtil.getLocalDateTime(new Date(dataFim)).toLocalDate() : null;
 
-		idcategoria     = Objects.nonNull(idcategoria) ? null : idcategoria;
-		idEmpresa       = Objects.nonNull(idEmpresa) ? null : idEmpresa;
-		idPessoaFisica  = Objects.nonNull(idPessoaFisica) ? null : idPessoaFisica;
-		idPrograma      = Objects.nonNull(idPrograma) ? null : idPrograma;
-		idProjeto       = Objects.nonNull(idProjeto) ? null : idProjeto;
+		idcategoria     = Objects.isNull(idcategoria) ? null : idcategoria;
+		idEmpresa       = Objects.isNull(idEmpresa) ? null : idEmpresa;
+		idPessoaFisica  = Objects.isNull(idPessoaFisica) ? null : idPessoaFisica;
+		idPrograma      = Objects.isNull(idPrograma) ? null : idPrograma;
+		idProjeto       = Objects.isNull(idProjeto) ? null : idProjeto;
 		
 		entitys = dao.getAllFilter(idcategoria, idEmpresa, idPessoaFisica, idPrograma, idProjeto, pDataInicio, pDataFim);
 

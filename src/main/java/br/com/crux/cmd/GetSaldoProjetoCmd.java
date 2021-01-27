@@ -29,9 +29,9 @@ public class GetSaldoProjetoCmd {
 		LocalDate pDataInicio     = Objects.nonNull(dataInicio) ? Java8DateUtil.getLocalDateTime(new Date(dataInicio)).toLocalDate() : null;
 		LocalDate pDataFim        = Objects.nonNull(dataFim) ? Java8DateUtil.getLocalDateTime(new Date(dataFim)).toLocalDate() : null;
 
-		idcontaBancaria = Objects.nonNull(idcontaBancaria) ? null : idcontaBancaria;
-		idPrograma      = Objects.nonNull(idPrograma) ? null : idPrograma;
-		idProjeto       = Objects.nonNull(idProjeto) ? null : idProjeto;
+		idcontaBancaria = Objects.isNull(idcontaBancaria) ? null : idcontaBancaria;
+		idPrograma      = Objects.isNull(idPrograma) ? null : idPrograma;
+		idProjeto       = Objects.isNull(idProjeto) ? null : idProjeto;
 		
 		entitys = dao.getAllFilter(idcontaBancaria, idPrograma, idProjeto, pDataInicio, pDataFim);
 
