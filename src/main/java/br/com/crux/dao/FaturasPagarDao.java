@@ -35,12 +35,12 @@ public class FaturasPagarDao extends BaseDao{
 		sql.append("        p.ds_fatura,                                       ");
 		sql.append("        p.nm_categoria,                                    ");
 		sql.append("        p.id_empresa,                                      ");
-		sql.append("        p.id_pessoa_fisic  a,                              ");
+		sql.append("        p.id_pessoa_fisica,                                ");
 		sql.append("        p.id_programa,                                     ");
 		sql.append("        p.id_projeto,                                      ");
 		sql.append("        p.id_movimentacao                                  ");
-		sql.append("   from vw_relatorio_faturas_pagar_periodo p             ");
-		sql.append(" WHERE 1 = 1                                                                                                                        ");
+		sql.append("   from vw_relatorio_faturas_pagar_periodo p               ");
+		sql.append(" WHERE 1 = 1                                               ");
 		
 
 		if(Objects.nonNull(idEmpresa)) {
