@@ -93,7 +93,7 @@ public class NormativaPagamentosDao extends BaseDao{
 		}
 
 		if(Objects.nonNull(idProjeto)) {
-			query.setParameter("p_programa", idProjeto);
+			query.setParameter("p_projeto", idProjeto);
 		}
 
 		if(Objects.nonNull(dataInicio)) {
