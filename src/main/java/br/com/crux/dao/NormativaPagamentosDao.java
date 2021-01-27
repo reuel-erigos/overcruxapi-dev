@@ -45,22 +45,22 @@ public class NormativaPagamentosDao extends BaseDao{
 		}
 
 		if(Objects.nonNull(idPessoaFisica)) {
-			sql.append("  and :p_pessoa_fisica = p.idPessoaFisica  ");
+			sql.append("  and :p_pessoa_fisica = p.id_pessoa_fisica  ");
 		}
 
 		if(Objects.nonNull(idPrograma)) {
-			sql.append("  and :p_programa = p.idPrograma  ");
+			sql.append("  and :p_programa = p.id_programa  ");
 		}
 
 		if(Objects.nonNull(idProjeto)) {
-			sql.append("  and :p_projeto = p.idProjeto  ");
+			sql.append("  and :p_projeto = p.id_projeto  ");
 		}
 
 		if(Objects.nonNull(idCategoria)) {
-			sql.append(" and (id_movimentacao in (select c.id_movimentacao   ");
-			sql.append("	from vw_rateio_itens_movimentacoes_categorias c  ");
-			sql.append("	where c.id_categoria = :p_id_categoria)          ");
-			sql.append("	or p_id_categoria is null)                       ");
+			sql.append(" and (p.id_movimentacao in (select c.id_movimentacao   ");
+			sql.append("	from vw_rateio_itens_movimentacoes_categorias c    ");
+			sql.append("	where c.id_categoria = :p_id_categoria)            ");
+			sql.append("	or :p_id_categoria is null)                        ");
 		}                                           
 		
 

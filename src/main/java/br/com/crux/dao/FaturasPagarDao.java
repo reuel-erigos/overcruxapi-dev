@@ -60,10 +60,10 @@ public class FaturasPagarDao extends BaseDao{
 		}
 
 		if(Objects.nonNull(idCategoria)) {
-			sql.append(" and (id_movimentacao in (select c.id_movimentacao   ");
-			sql.append("	from vw_rateio_itens_movimentacoes_categorias c  ");
-			sql.append("	where c.id_categoria = :p_id_categoria)          ");
-			sql.append("	or p_id_categoria is null)                       ");
+			sql.append(" and (p.id_movimentacao in (select c.id_movimentacao   ");
+			sql.append("	from vw_rateio_itens_movimentacoes_categorias c    ");
+			sql.append("	where c.id_categoria = :p_id_categoria)            ");
+			sql.append("	or :p_id_categoria is null)                        ");
 		}  
 
 		if(Objects.nonNull(dataInicio)) {

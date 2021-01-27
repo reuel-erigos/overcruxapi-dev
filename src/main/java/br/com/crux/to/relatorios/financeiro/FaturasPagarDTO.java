@@ -30,7 +30,7 @@ public class FaturasPagarDTO {
 		this.numeroDocumento           = (colunas[3] != null) ? (String) colunas[3] : "";
 		this.dataDocumento             = (colunas[4] != null) ? (String) colunas[4] : "";
 		this.valorMovimentacao         = (colunas[5] != null)? ((BigDecimal)colunas[5]).doubleValue() : null; 
-		this.dataVencimento            = (colunas[6] != null) ? DataUtil.formataData(new Date(((Timestamp) colunas[6]).getTime()), "dd/MM/yyyy") : "";
+		this.dataVencimento            = (colunas[6] != null) ? (String) colunas[6] : "";
 		this.valorFatura               = (colunas[7] != null)? ((BigDecimal)colunas[7]).doubleValue() : null;
 		this.numeroParcela             = (colunas[8] != null)? ((BigDecimal)colunas[8]).longValue() : null;
 		this.descFatura                = (colunas[9] != null) ? (String) colunas[9] : "";
