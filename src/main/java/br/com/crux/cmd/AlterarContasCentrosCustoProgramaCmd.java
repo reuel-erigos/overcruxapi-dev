@@ -24,6 +24,9 @@ public class AlterarContasCentrosCustoProgramaCmd
 	private CadastrarContasCentrosCustoCmd cadastrarCmd;
 	@Autowired
 	private ExcluirContasCentrosCustoCmd excluirCmd;
+	@Autowired
+	private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
+	
 
 	@Override
 	protected ContasCentrosCustoTO getTO(ContasCentrosCusto entity) {
@@ -37,7 +40,8 @@ public class AlterarContasCentrosCustoProgramaCmd
 
 	@Override
 	protected List<ContasCentrosCusto> getListaBanco(ParceriasPrograma pai) {
-		return repository.findByParceriasPrograma(pai).orElse(new ArrayList<ContasCentrosCusto>());
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+		return repository.findByParceriasPrograma(idInstituicao, pai.getId()).orElse(new ArrayList<ContasCentrosCusto>());
 	}
 
 	@Override

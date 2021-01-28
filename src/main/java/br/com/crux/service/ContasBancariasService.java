@@ -43,6 +43,11 @@ public class ContasBancariasService {
 	}
 	
 	
+	@GetMapping("/instituicao/contascentrocustos")
+	public List<ContasBancariaTO> findAllContasCentroCustos(){
+		return getCmd.findAllContasCentroCustos();
+	}
+	
 	@GetMapping("/{id}")
 	public ContasBancariaTO getById(@PathVariable Long id) {
 		return getCmd.getTOById(id);

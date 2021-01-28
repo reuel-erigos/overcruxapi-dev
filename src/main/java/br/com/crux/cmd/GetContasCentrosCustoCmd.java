@@ -18,13 +18,13 @@ import br.com.crux.to.ContasCentrosCustoTO;
 @Component
 public class GetContasCentrosCustoCmd {
 
-	@Autowired
-	private ContasCentrosCustoRepository contasCentrosCustoRepository;
-	@Autowired
-	private ContasCentrosCustoTOBuilder contasCentrosCustoTOBuilder;
+	@Autowired private ContasCentrosCustoRepository contasCentrosCustoRepository;
+	@Autowired private ContasCentrosCustoTOBuilder contasCentrosCustoTOBuilder;
+	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 
 	public List<ContasCentrosCustoTO> getTOPorParceriasPrograma(ParceriasPrograma p) {
-		Optional<List<ContasCentrosCusto>> lista = contasCentrosCustoRepository.findByParceriasPrograma(p);
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+		Optional<List<ContasCentrosCusto>> lista = contasCentrosCustoRepository.findByParceriasPrograma(idInstituicao, p.getId());
 
 		if (lista.isPresent()) {
 			return contasCentrosCustoTOBuilder.buildAllTO(lista.get());
@@ -35,14 +35,12 @@ public class GetContasCentrosCustoCmd {
 	}
 
 	public List<ContasCentrosCustoTO> getTOPorParceriasProjeto(ParceriasProjeto p) {
-		Optional<List<ContasCentrosCusto>> lista = contasCentrosCustoRepository.findByParceriasProjeto(p);
-
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+		Optional<List<ContasCentrosCusto>> lista = contasCentrosCustoRepository.findByParceriasProjeto(idInstituicao, p.getId());
 		if (lista.isPresent()) {
 			return contasCentrosCustoTOBuilder.buildAllTO(lista.get());
 		}
-
 		return new ArrayList<ContasCentrosCustoTO>();
-
 	}
 
 }

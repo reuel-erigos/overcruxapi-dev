@@ -24,6 +24,9 @@ public class AlterarContasCentrosCustoProjetoCmd
 	private CadastrarContasCentrosCustoCmd cadastrarCmd;
 	@Autowired
 	private ExcluirContasCentrosCustoCmd excluirCmd;
+	@Autowired
+	private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
+	
 
 	@Override
 	protected ContasCentrosCustoTO getTO(ContasCentrosCusto entity) {
@@ -37,7 +40,8 @@ public class AlterarContasCentrosCustoProjetoCmd
 
 	@Override
 	protected List<ContasCentrosCusto> getListaBanco(ParceriasProjeto pai) {
-		return repository.findByParceriasProjeto(pai).orElse(new ArrayList<ContasCentrosCusto>());
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+		return repository.findByParceriasProjeto(idInstituicao, pai.getId()).orElse(new ArrayList<ContasCentrosCusto>());
 	}
 
 	@Override

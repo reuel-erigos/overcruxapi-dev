@@ -60,4 +60,15 @@ public class GetContasBancariaCmd {
 		return new ArrayList<ContasBancariaTO>();
 	}
 	
+	
+	public List<ContasBancariaTO> findAllContasCentroCustos(){
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+		
+		Optional<List<ContasBancaria>> entitys = repository.findAllContasCentroCustos(idInstituicao);
+		if (entitys.isPresent()) {
+			return toBuilder.buildAllCombo(entitys.get());
+		}
+		return new ArrayList<ContasBancariaTO>();
+	}
+	
 }
