@@ -24,15 +24,21 @@ public interface ContasBancariaRepository extends JpaRepository<ContasBancaria, 
 	public Optional<List<ContasBancaria>> findByIdInstituicao(Long idInstituicao);
 
 	
-	
-	
-	@Query(value = "select distinct cb from ContasBancaria cb "
-			+ " inner join ContasCentrosCusto ccc on ccc.contasBancaria = cb" 
-            + " inner join Unidade u on u = cb.unidade "
-            + " inner join Instituicao i on i = u.instituicao " 
-		      + " where i.id = ?1  "
-		      + " order by cb.numeroBanco, cb.nomeBanco, cb.numeroAgencia, cb.numeroContaBancaria ")
-	public Optional<List<ContasBancaria>> findAllContasCentroCustos(Long idInstituicao);
+	@Query(value = 	  " select distinct cb.*                                                                                                                 "
+			+ "   from contas_bancarias cb                                                                                                                   "
+			+ "     inner join (select ccc.id_conta_bancaria                                                                                                 "
+			+ "                   from contas_centros_custo ccc                                                                                              "
+			+ "                     inner join parcerias_programas	pp on pp.id_parceria_programa = ccc.id_parceria_programa                                 "
+			+ "                 union                                                                                                                        "
+			+ "                 select ccc.id_conta_bancaria                                                                                                 "
+			+ "                   from contas_centros_custo ccc                                                                                              "
+			+ "                     inner join parcerias_projetos	ppj on ppj.id_parceria_projeto = ccc.id_parceria_projeto                                 "
+			+ "                 where DATE_TRUNC('DAY', to_date( ?1 ,'dd/mm/yyyy') )                                                                         "
+			+ "                        between DATE_TRUNC('DAY', dt_inicio_parceria)                                                                         "
+			+ "                            and coalesce( DATE_TRUNC('DAY',dt_fim_parceria) ,  DATE_TRUNC('DAY', to_date( ?1 ,'dd/mm/yyyy') ) )               "
+			+ "      ) ccc on ccc.id_conta_bancaria = cb.id_conta_bancaria                                                                                   "
+		      + " order by cb.nr_banco, cb.nm_banco, cb.nr_agencia, cb.nr_conta_bancaria ", nativeQuery = true)
+	public Optional<List<ContasBancaria>> findAllContasCentroCustos(Long idInstituicao, String dataReembolso);
 
 	
 	
