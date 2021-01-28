@@ -72,7 +72,7 @@ public class GetContasBancariaCmd {
 		
 		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
 		
-		Optional<List<ContasBancaria>> entitys = repository.findAllContasCentroCustos(idInstituicao, DataUtil.parseDate(dataString));
+		Optional<List<ContasBancaria>> entitys = repository.findAllContasCentroCustos(idInstituicao, dataString);
 		if (entitys.isPresent()) {
 			return toBuilder.buildAllCombo(entitys.get());
 		}

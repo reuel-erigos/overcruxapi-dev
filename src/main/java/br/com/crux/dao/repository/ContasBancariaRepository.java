@@ -1,12 +1,10 @@
 package br.com.crux.dao.repository;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import br.com.crux.entity.ContasBancaria;
@@ -28,6 +26,8 @@ public interface ContasBancariaRepository extends JpaRepository<ContasBancaria, 
 	
 	@Query(value = 	  " select distinct cb.*                                                                                                                 "
 			+ "   from contas_bancarias cb                                                                                                                   "
+			+ "     inner join unidades u on u.id_unidade = cb.id_unidade                                                                                    " 
+			+ "     inner join instituicoes i on i.id_instituicao = u.id_instituicao                                                                         "
 			+ "     inner join (select ccc.id_conta_bancaria                                                                                                 "
 			+ "                   from contas_centros_custo ccc                                                                                              "
 			+ "                     inner join parcerias_programas	pp on pp.id_parceria_programa = ccc.id_parceria_programa                                 "
@@ -35,12 +35,14 @@ public interface ContasBancariaRepository extends JpaRepository<ContasBancaria, 
 			+ "                 select ccc.id_conta_bancaria                                                                                                 "
 			+ "                   from contas_centros_custo ccc                                                                                              "
 			+ "                     inner join parcerias_projetos	ppj on ppj.id_parceria_projeto = ccc.id_parceria_projeto                                 "
-			+ "                 where DATE_TRUNC('DAY', :dataReembolso )                                                                                                                     "
+			+ "                 where DATE_TRUNC('DAY', to_date( ?2 ,'dd/mm/yyyy') )                                                                         "
 			+ "                        between DATE_TRUNC('DAY', dt_inicio_parceria)                                                                         "
-			+ "                            and coalesce( DATE_TRUNC('DAY' , dt_fim_parceria) , DATE_TRUNC('DAY', :dataReembolso )  )                                                          "
+			+ "                            and coalesce( DATE_TRUNC('DAY',dt_fim_parceria) ,  DATE_TRUNC('DAY', to_date( ?2 ,'dd/mm/yyyy') ) )               "
 			+ "      ) ccc on ccc.id_conta_bancaria = cb.id_conta_bancaria                                                                                   "
-		      + " order by cb.nr_banco, cb.nm_banco, cb.nr_agencia, cb.nr_conta_bancaria ", nativeQuery = true)
-	public Optional<List<ContasBancaria>> findAllContasCentroCustos(Long idInstituicao, @Param("dataReembolso") Date dataReembolso);
+			+ " where 1=1                                                                                                                                    "
+			+ "   and i.id_instituicao = ?1                                                                                                                  "
+		    + " order by cb.nr_banco, cb.nm_banco, cb.nr_agencia, cb.nr_conta_bancaria ", nativeQuery = true)
+	public Optional<List<ContasBancaria>> findAllContasCentroCustos(Long idInstituicao, String dataReembolso);
 
 	
 	
