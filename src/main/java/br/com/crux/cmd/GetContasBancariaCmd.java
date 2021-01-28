@@ -14,6 +14,7 @@ import br.com.crux.builder.ContasBancariaTOBuilder;
 import br.com.crux.dao.repository.ContasBancariaRepository;
 import br.com.crux.entity.ContasBancaria;
 import br.com.crux.exception.NotFoundException;
+import br.com.crux.infra.util.DataUtil;
 import br.com.crux.infra.util.Java8DateUtil;
 import br.com.crux.to.ContasBancariaTO;
 
@@ -67,10 +68,11 @@ public class GetContasBancariaCmd {
 	
 	public List<ContasBancariaTO> findAllContasCentroCustos(Long dataReembolso){
 		LocalDate pDataReembolso = Objects.nonNull(dataReembolso) ? Java8DateUtil.getLocalDateTime(new Date(dataReembolso)).toLocalDate() : null;
+		String dataString = Java8DateUtil.getLocalDateFormater(pDataReembolso);
 		
 		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
 		
-		Optional<List<ContasBancaria>> entitys = repository.findAllContasCentroCustos(idInstituicao, Java8DateUtil.getLocalDateFormater(pDataReembolso));
+		Optional<List<ContasBancaria>> entitys = repository.findAllContasCentroCustos(idInstituicao, DataUtil.parseDate(dataString));
 		if (entitys.isPresent()) {
 			return toBuilder.buildAllCombo(entitys.get());
 		}
