@@ -21,19 +21,20 @@ public class GetSaldoProjetoCmd {
 
 	@Autowired private SaldoProjetoDao       dao;
 	@Autowired private SaldoProjetoTOBuilder toBuilder;
+	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 
 	
-	public List<SaldoProjetoTO> getAllFilter(Long idcontaBancaria, Long idPrograma, Long idProjeto, Long dataInicio, Long dataFim) {
+	public List<SaldoProjetoTO> getAllFilter(Long idPrograma, Long idProjeto, Long dataInicio, Long dataFim) {
 		Optional<List<SaldoProjetoDTO>> entitys = Optional.empty();
 
 		LocalDate pDataInicio     = Objects.nonNull(dataInicio) ? Java8DateUtil.getLocalDateTime(new Date(dataInicio)).toLocalDate() : null;
 		LocalDate pDataFim        = Objects.nonNull(dataFim) ? Java8DateUtil.getLocalDateTime(new Date(dataFim)).toLocalDate() : null;
 
-		idcontaBancaria = Objects.isNull(idcontaBancaria) ? null : idcontaBancaria;
-		idPrograma      = Objects.isNull(idPrograma) ? null : idPrograma;
-		idProjeto       = Objects.isNull(idProjeto) ? null : idProjeto;
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+		idPrograma         = Objects.isNull(idPrograma) ? null : idPrograma;
+		idProjeto          = Objects.isNull(idProjeto) ? null : idProjeto;
 		
-		entitys = dao.getAllFilter(idcontaBancaria, idPrograma, idProjeto, pDataInicio, pDataFim);
+		entitys = Optional.ofNullable(dao.getAllFilter(idInstituicao, idPrograma, idProjeto, pDataInicio, pDataFim));
 
 		if (entitys.isPresent()) {
 			return toBuilder.buildAllDTO(entitys.get());

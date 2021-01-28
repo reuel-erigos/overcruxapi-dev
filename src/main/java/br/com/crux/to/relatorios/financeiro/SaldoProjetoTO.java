@@ -2,16 +2,26 @@ package br.com.crux.to.relatorios.financeiro;
 
 public class SaldoProjetoTO {
 
+	private String nomeProgramaProjeto;
 	private String tipoTransacao;
 	private String descricao;
 	private String numeroDocumento;
-	private String dataDocumento;
-	private Double valor;
+	private String dataOperacao;
+	private Double valorOperacao;
 	private String banco;
 	private String conta;
+	private String parceiro;
 	private Double saldo;
 
 	public SaldoProjetoTO() {
+	}
+
+	public String getNomeProgramaProjeto() {
+		return nomeProgramaProjeto;
+	}
+
+	public void setNomeProgramaProjeto(String nomeProgramaProjeto) {
+		this.nomeProgramaProjeto = nomeProgramaProjeto;
 	}
 
 	public String getTipoTransacao() {
@@ -38,20 +48,20 @@ public class SaldoProjetoTO {
 		this.numeroDocumento = numeroDocumento;
 	}
 
-	public String getDataDocumento() {
-		return dataDocumento;
+	public String getDataOperacao() {
+		return dataOperacao;
 	}
 
-	public void setDataDocumento(String dataDocumento) {
-		this.dataDocumento = dataDocumento;
+	public void setDataOperacao(String dataOperacao) {
+		this.dataOperacao = dataOperacao;
 	}
 
-	public Double getValor() {
-		return valor;
+	public Double getValorOperacao() {
+		return valorOperacao;
 	}
 
-	public void setValor(Double valor) {
-		this.valor = valor;
+	public void setValorOperacao(Double valorOperacao) {
+		this.valorOperacao = valorOperacao;
 	}
 
 	public String getBanco() {
@@ -70,6 +80,14 @@ public class SaldoProjetoTO {
 		this.conta = conta;
 	}
 
+	public String getParceiro() {
+		return parceiro;
+	}
+
+	public void setParceiro(String parceiro) {
+		this.parceiro = parceiro;
+	}
+
 	public Double getSaldo() {
 		return saldo;
 	}
@@ -77,5 +95,7 @@ public class SaldoProjetoTO {
 	public void setSaldo(Double saldo) {
 		this.saldo = saldo;
 	}
+
+	
 
 }

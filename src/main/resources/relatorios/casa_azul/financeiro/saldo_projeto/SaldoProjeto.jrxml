@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FaturasPagar" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="0" bottomMargin="0" isTitleNewPage="true" uuid="a75d3ea6-db4f-495a-bef9-2bf85e57e50a">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SaldoProjeto" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="0" bottomMargin="0" isTitleNewPage="true" uuid="a75d3ea6-db4f-495a-bef9-2bf85e57e50a">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="S3Manager-DEV"/>
 	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="468"/>
@@ -43,11 +43,11 @@
 		<property name="com.jaspersoft.studio.field.label" value="numeroDocumento"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_faturas_pagar_periodo"/>
 	</field>
-	<field name="dataDocumento" class="java.lang.String">
+	<field name="dataOperacao" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="dataDocumento"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_faturas_pagar_periodo"/>
 	</field>
-	<field name="valor" class="java.lang.Double">
+	<field name="valorOperacao" class="java.lang.Double">
 		<property name="com.jaspersoft.studio.field.label" value="valorMovimentacao"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_faturas_pagar_periodo"/>
 	</field>
@@ -253,7 +253,7 @@
 				<textElement>
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{dataDocumento}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{dataOperacao}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" pattern="¤#,##0.00;¤-#,##0.00" isBlankWhenNull="true">
 				<reportElement x="482" y="0" width="46" height="11" uuid="0bfde8f7-8a41-4840-8ac3-4744948c7192">
@@ -263,7 +263,7 @@
 				<textElement textAlignment="Left">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{valorOperacao}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement x="528" y="0" width="140" height="11" uuid="ff6351ca-3f58-42e2-b4df-c1602366522f">
