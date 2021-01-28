@@ -40,7 +40,7 @@ public interface ContasBancariaRepository extends JpaRepository<ContasBancaria, 
 			+ "                            and coalesce( DATE_TRUNC('DAY' , dt_fim_parceria) , DATE_TRUNC('DAY', :dataReembolso )  )                                                          "
 			+ "      ) ccc on ccc.id_conta_bancaria = cb.id_conta_bancaria                                                                                   "
 		      + " order by cb.nr_banco, cb.nm_banco, cb.nr_agencia, cb.nr_conta_bancaria ", nativeQuery = true)
-	public Optional<List<ContasBancaria>> findAllContasCentroCustos(Long idInstituicao, @Param("from") Date dataReembolso);
+	public Optional<List<ContasBancaria>> findAllContasCentroCustos(Long idInstituicao, @Param("dataReembolso") Date dataReembolso);
 
 	
 	
