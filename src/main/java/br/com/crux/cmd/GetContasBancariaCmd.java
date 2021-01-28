@@ -14,7 +14,6 @@ import br.com.crux.builder.ContasBancariaTOBuilder;
 import br.com.crux.dao.repository.ContasBancariaRepository;
 import br.com.crux.entity.ContasBancaria;
 import br.com.crux.exception.NotFoundException;
-import br.com.crux.infra.util.DataUtil;
 import br.com.crux.infra.util.Java8DateUtil;
 import br.com.crux.to.ContasBancariaTO;
 
