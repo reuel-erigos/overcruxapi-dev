@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.ParameterMode;
 
@@ -45,12 +46,17 @@ public class SaldoProjetoDao extends BaseDao{
 			
 			procedureCall.getParameterRegistration(2).bindValue(new BigDecimal(idInstituicao));
 			
-			procedureCall.getParameterRegistration(3).enablePassingNulls(true);
-			procedureCall.getParameterRegistration(3).bindValue(new BigDecimal(idPrograma));
+			if(Objects.isNull(idPrograma)) {
+				procedureCall.getParameterRegistration(3).enablePassingNulls(true);
+			}else {
+				procedureCall.getParameterRegistration(3).bindValue(new BigDecimal(idPrograma));
+			}
 			
-			procedureCall.getParameterRegistration(4).enablePassingNulls(true);
-			procedureCall.getParameterRegistration(4).bindValue(new BigDecimal(idProjeto));
-			
+			if(Objects.isNull(idProjeto)) {
+				procedureCall.getParameterRegistration(4).enablePassingNulls(true);
+			} else {
+				procedureCall.getParameterRegistration(4).bindValue(new BigDecimal(idProjeto));
+			}
 			
 	    	Date pDataInicio = DataUtil.parseDate(dataInicio.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 			procedureCall.getParameterRegistration(5).bindValue(new java.sql.Date(pDataInicio.getTime()));
