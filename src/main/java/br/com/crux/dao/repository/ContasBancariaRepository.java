@@ -33,9 +33,9 @@ public interface ContasBancariaRepository extends JpaRepository<ContasBancaria, 
 			+ "                 select ccc.id_conta_bancaria                                                                                                 "
 			+ "                   from contas_centros_custo ccc                                                                                              "
 			+ "                     inner join parcerias_projetos	ppj on ppj.id_parceria_projeto = ccc.id_parceria_projeto                                 "
-			+ "                 where DATE_TRUNC('DAY', ?1 )                                                                                                 "
+			+ "                 where ?1                                                                                                                     "
 			+ "                        between DATE_TRUNC('DAY', dt_inicio_parceria)                                                                         "
-			+ "                            and coalesce( DATE_TRUNC('DAY',dt_fim_parceria) ,  DATE_TRUNC('DAY', ?1 ) )                                       "
+			+ "                            and coalesce( DATE_TRUNC('DAY',dt_fim_parceria) , ?1  )                                                           "
 			+ "      ) ccc on ccc.id_conta_bancaria = cb.id_conta_bancaria                                                                                   "
 		      + " order by cb.nr_banco, cb.nm_banco, cb.nr_agencia, cb.nr_conta_bancaria ", nativeQuery = true)
 	public Optional<List<ContasBancaria>> findAllContasCentroCustos(Long idInstituicao, String dataReembolso);
