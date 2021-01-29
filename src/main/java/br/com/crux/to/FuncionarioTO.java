@@ -44,8 +44,10 @@ public class FuncionarioTO {
 	private List<AlocacoesFuncionarioTO> alocacoesFuncionario;
 
 	private String horaInicioJornada;
-
 	private String horaFimJornada;
+	
+	private String descMotivoDemissao;
+	private LocalDateTime dataUltimoExame;
 
 	public FuncionarioTO() {
 	}
@@ -228,6 +230,22 @@ public class FuncionarioTO {
 
 	public void setHoraFimJornada(String horaFimJornada) {
 		this.horaFimJornada = horaFimJornada;
+	}
+
+	public String getDescMotivoDemissao() {
+		return descMotivoDemissao;
+	}
+
+	public void setDescMotivoDemissao(String descMomotiDemissao) {
+		this.descMotivoDemissao = descMomotiDemissao;
+	}
+
+	public LocalDateTime getDataUltimoExame() {
+		return dataUltimoExame;
+	}
+
+	public void setDataUltimoExame(LocalDateTime dataUltimoExame) {
+		this.dataUltimoExame = dataUltimoExame;
 	}
 
 }

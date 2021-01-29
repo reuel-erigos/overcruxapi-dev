@@ -100,10 +100,9 @@ public class PessoaFisicaTO {
 	private Long idInstituicao;
 	private String emailProfissional;
 	private String origemRendaFamiliar;
-	
-	
-	
-	
+	private String celular2;
+	private String foneRecado;	
+	private Boolean semCpf;
 	
 	public PessoaFisicaTO() {
 	}
@@ -753,5 +752,31 @@ public class PessoaFisicaTO {
 
 	public void setOrigemRendaFamiliar(String origemRendaFamiliar) {
 		this.origemRendaFamiliar = origemRendaFamiliar;
+	}
+
+	public String getCelular2() {
+		return celular2;
+	}
+
+	public void setCelular2(String celular2) {
+		this.celular2 = celular2;
+	}
+
+	public String getFoneRecado() {
+		return foneRecado;
+	}
+
+	public void setFoneRecado(String foneRecado) {
+		this.foneRecado = foneRecado;
+	}
+
+	public Boolean getSemCpf() {
+		return semCpf;
+	}
+
+	public void setSemCpf(Boolean semCpf) {
+		this.semCpf = semCpf;
 	}	
+	
+	
 }

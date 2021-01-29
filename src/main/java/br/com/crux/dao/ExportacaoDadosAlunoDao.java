@@ -22,7 +22,9 @@ public class ExportacaoDadosAlunoDao extends BaseDao{
 	
 	public Optional<List<ExportacaoDadosAlunoDTO>> getAllFilter(String cpf, Long idBeneficiario, Long idMae, Long idPai, Long idPrograma,
 														        Long idProjeto, Long idUnidade, Long idResponsavel, 
-														        LocalDate dataInicioInstituicao, LocalDate dataFimInstituicao, Long idInstituicao){
+														        LocalDate dataInicioEntradaInstituicao, LocalDate dataFimEntradaInstituicao, 
+														        LocalDate dataInicioSaidaInstituicao, LocalDate dataFimSaidaInstituicao,
+														        Long idInstituicao){
 		StringBuilder sql = new StringBuilder();
 		
 		sql.append(" select p.id_pessoa_fisica,                                                                             ");
@@ -60,12 +62,21 @@ public class ExportacaoDadosAlunoDao extends BaseDao{
 			sql.append("  and :p_nr_cpf = p.nr_cpf                                                                          ");
 		}
 		
-		if(Objects.nonNull(dataInicioInstituicao)) {
-			sql.append("   AND DATE_TRUNC('DAY', a.dt_entrada) >= DATE_TRUNC('DAY', to_date( :p_dt_entrada ,'dd/mm/yyyy') )        ");
+		if(Objects.nonNull(dataInicioEntradaInstituicao)) {
+			sql.append("   AND DATE_TRUNC('DAY', a.dt_entrada) >= DATE_TRUNC('DAY', to_date( :p_dt_inicio_entrada ,'dd/mm/yyyy') )        ");
 		}
 		
-		if(Objects.nonNull(dataFimInstituicao)) {
-			sql.append("   AND DATE_TRUNC('DAY', a.dt_desligamento) <= DATE_TRUNC('DAY', to_date( :p_dt_desligamento ,'dd/mm/yyyy') )        ");
+		if(Objects.nonNull(dataFimEntradaInstituicao)) {
+			sql.append("   AND DATE_TRUNC('DAY', a.dt_entrada) <= DATE_TRUNC('DAY', to_date( :p_dt_fim_entrada ,'dd/mm/yyyy') )        ");
+		}
+		
+		
+		if(Objects.nonNull(dataInicioSaidaInstituicao)) {
+			sql.append("   AND DATE_TRUNC('DAY', a.dt_desligamento) >= DATE_TRUNC('DAY', to_date( :p_dt_inicio_saida ,'dd/mm/yyyy') )        ");
+		}
+		
+		if(Objects.nonNull(dataFimSaidaInstituicao)) {
+			sql.append("   AND DATE_TRUNC('DAY', a.dt_desligamento) <= DATE_TRUNC('DAY', to_date( :p_dt_fim_saida ,'dd/mm/yyyy') )        ");
 		}
 		
 		if(Objects.nonNull(idBeneficiario)) {
@@ -103,14 +114,22 @@ public class ExportacaoDadosAlunoDao extends BaseDao{
 			query.setParameter("p_nr_cpf", NumeroUtil.extrairNumerosMatches(cpf));
 		}
 		
-		if(Objects.nonNull(dataInicioInstituicao)) {
-			query.setParameter("p_dt_entrada", Java8DateUtil.getLocalDateFormater(dataInicioInstituicao));
+		if(Objects.nonNull(dataInicioEntradaInstituicao)) {
+			query.setParameter("p_dt_inicio_entrada", Java8DateUtil.getLocalDateFormater(dataInicioEntradaInstituicao));
 		}
 		
-		if(Objects.nonNull(dataFimInstituicao)) {
-			query.setParameter("p_dt_desligamento", Java8DateUtil.getLocalDateFormater(dataFimInstituicao));
+		if(Objects.nonNull(dataFimEntradaInstituicao)) {
+			query.setParameter("p_dt_fim_entrada", Java8DateUtil.getLocalDateFormater(dataFimEntradaInstituicao));
 		}
 		
+		
+		if(Objects.nonNull(dataInicioSaidaInstituicao)) {
+			query.setParameter("p_dt_inicio_saida", Java8DateUtil.getLocalDateFormater(dataInicioSaidaInstituicao));
+		}
+		
+		if(Objects.nonNull(dataFimSaidaInstituicao)) {
+			query.setParameter("p_dt_fim_saida", Java8DateUtil.getLocalDateFormater(dataFimSaidaInstituicao));
+		}
 		
 		if(Objects.nonNull(idBeneficiario)) {
 			query.setParameter("p_id_aluno", idBeneficiario);

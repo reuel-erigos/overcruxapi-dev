@@ -126,9 +126,9 @@ public class GetUnidadeCmd {
 	}
 
 	public List<UnidadeTO> getAllParaCombo() {
-	UsuarioLogadoTO user = getUsuarioLogadoCmd.getUsuarioLogado();
-		
-		Optional<List<Unidade>> unidadesOptional = unidadeRepository.findAllUnidadesDoUsuarioLogado(user.getIdUsuario());
+	    UsuarioLogadoTO user = getUsuarioLogadoCmd.getUsuarioLogado();
+	    
+		Optional<List<Unidade>> unidadesOptional = unidadeRepository.findAllUnidadesDaInsttuicaoDoUsuarioLogado(user.getIdUsuario());
 		if(!unidadesOptional.isPresent()) {
 			return null;
 		}

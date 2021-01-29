@@ -49,6 +49,8 @@ public class FuncionarioTOBuilder {
 		retorno.setMatricula(to.getMatricula());
 		retorno.setDataAdmissao(to.getDataAdmissao());
 		retorno.setDataDemissao(to.getDataDemissao());
+		retorno.setDataUltimoExame(to.getDataUltimoExame());
+		retorno.setDescMotivoDemissao(to.getDescMotivoDemissao());
 
 		if (StringUtils.isEmpty(to.getHoraInicioJornada()) || to.getHoraInicioJornada().length() < 5) {
 			retorno.setHoraInicioJornada(null);
@@ -154,6 +156,9 @@ public class FuncionarioTOBuilder {
 		retorno.setMatricula(entity.getMatricula());
 		retorno.setDataAdmissao(entity.getDataAdmissao());
 		retorno.setDataDemissao(entity.getDataDemissao());
+		retorno.setDataUltimoExame(entity.getDataUltimoExame());
+		retorno.setDescMotivoDemissao(entity.getDescMotivoDemissao());
+
 
 		Optional.ofNullable(entity.getTipoFuncionario())
 				.ifPresent(tf -> {
@@ -276,6 +281,9 @@ public class FuncionarioTOBuilder {
 		retorno.setMatricula(p.getMatricula());
 		retorno.setDataAdmissao(p.getDataAdmissao());
 		retorno.setDataDemissao(p.getDataDemissao());
+		retorno.setDataUltimoExame(p.getDataUltimoExame());
+		retorno.setDescMotivoDemissao(p.getDescMotivoDemissao());
+
 
 		Optional.ofNullable(p.getTipoFuncionario())
 				.ifPresent(tf -> {
@@ -327,6 +335,9 @@ public class FuncionarioTOBuilder {
 		retorno.setDataDemissao(p.getDataDemissao());
 		retorno.setTipoFuncionario(TipoFuncionario.getPorTipo(p.getTipoFuncionario()));
 		retorno.setSalarioPretendido(p.getSalarioPretendido());
+		retorno.setDataUltimoExame(p.getDataUltimoExame());
+		retorno.setDescMotivoDemissao(p.getDescMotivoDemissao());
+
 
 		Optional.ofNullable(p.getCargo())
 				.ifPresent(cargo -> {

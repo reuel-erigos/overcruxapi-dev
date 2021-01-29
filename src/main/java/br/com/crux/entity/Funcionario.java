@@ -120,7 +120,14 @@ public class Funcionario implements Serializable {
 	@Column(name="hr_fim_horario")
 	private LocalDateTime horaFimJornada;
 	
+	@Column(name="ds_motivo_demissao")
+	private String descMotivoDemissao;
 
+	@Column(name="dt_ultimo_exame")
+	private LocalDateTime dataUltimoExame;
+
+
+	
 	public Funcionario() {
 	}
 
@@ -341,6 +348,26 @@ public class Funcionario implements Serializable {
 
 	public void setHoraFimJornada(LocalDateTime horaFimJornada) {
 		this.horaFimJornada = horaFimJornada;
+	}
+
+
+	public String getDescMotivoDemissao() {
+		return descMotivoDemissao;
+	}
+
+
+	public void setDescMotivoDemissao(String descMomotiDemissao) {
+		this.descMotivoDemissao = descMomotiDemissao;
+	}
+
+
+	public LocalDateTime getDataUltimoExame() {
+		return dataUltimoExame;
+	}
+
+
+	public void setDataUltimoExame(LocalDateTime dataUltimoExame) {
+		this.dataUltimoExame = dataUltimoExame;
 	}
 	
 	

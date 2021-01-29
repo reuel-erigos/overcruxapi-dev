@@ -27,15 +27,19 @@ public class GetExportacaoDadosAlunoCmd {
 	
 	public List<ExportacaoDadosAlunoTO> getAllFilter(String cpf, Long idBeneficiario, Long idMae, Long idPai, 
 			                                         Long idPrograma, Long idProjeto, Long idUnidade, Long idResponsavel, 
-                                                     Long dataInicioInstituicao, Long dataFimInstituicao
+                                                     Long dataInicioEntradaInstituicao, Long dataFimEntradaInstituicao,
+                                                     Long dataInicioSaidaInstituicao, Long dataFimSaidaInstituicao
             ) {
 		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
 
 		Optional<List<ExportacaoDadosAlunoDTO>> entitys = Optional.empty();
 
-		LocalDate pDataInicioInstituicao  = Objects.nonNull(dataInicioInstituicao) ? Java8DateUtil.getLocalDateTime(new Date(dataInicioInstituicao)).toLocalDate() : null;
-		LocalDate pDataFimInstituicao     = Objects.nonNull(dataFimInstituicao) ? Java8DateUtil.getLocalDateTime(new Date(dataFimInstituicao)).toLocalDate() : null;
+		LocalDate pDataInicioEntradaInstituicao  = Objects.nonNull(dataInicioEntradaInstituicao) ? Java8DateUtil.getLocalDateTime(new Date(dataInicioEntradaInstituicao)).toLocalDate() : null;
+		LocalDate pDataFimEntradaInstituicao     = Objects.nonNull(dataFimEntradaInstituicao) ? Java8DateUtil.getLocalDateTime(new Date(dataFimEntradaInstituicao)).toLocalDate() : null;
 
+		LocalDate pDataInicioSaidaInstituicao  = Objects.nonNull(dataInicioSaidaInstituicao) ? Java8DateUtil.getLocalDateTime(new Date(dataInicioSaidaInstituicao)).toLocalDate() : null;
+		LocalDate pDataFimSaidaInstituicao     = Objects.nonNull(dataFimSaidaInstituicao) ? Java8DateUtil.getLocalDateTime(new Date(dataFimSaidaInstituicao)).toLocalDate() : null;
+		
 		cpf             = StringUtils.isEmpty(cpf) ? null : cpf;
 		idBeneficiario  = Objects.isNull(idBeneficiario) ? null : idBeneficiario;
 		idMae           = Objects.isNull(idMae) ? null : idMae;
@@ -47,7 +51,9 @@ public class GetExportacaoDadosAlunoCmd {
 
 		entitys = dao.getAllFilter(cpf, idBeneficiario, idMae, idPai, 
 				                   idPrograma, idProjeto, idUnidade, 
-				                   idResponsavel, pDataInicioInstituicao, pDataFimInstituicao,
+				                   idResponsavel, 
+				                   pDataInicioEntradaInstituicao, pDataFimEntradaInstituicao,
+				                   pDataInicioSaidaInstituicao, pDataFimSaidaInstituicao,
 				                   idInstituicao);
 
 		if (entitys.isPresent()) {

@@ -281,6 +281,16 @@ public class PessoaFisica {
 	@Column(name = "ds_valor_renda")
 	private String origemRendaFamiliar;
 	
+	@Column(name = "nr_fone_celular_2")
+	private String celular2;
+
+	@Column(name = "nr_fone_recado")
+	private String foneRecado;
+	
+	
+	@Convert(converter = SimNaoConverter.class)
+	@Column(name = "st_sem_cpf")
+	private Boolean semCpf;
 
 	public PessoaFisica() {
 	}
@@ -932,7 +942,30 @@ public class PessoaFisica {
 	public void setOrigemRendaFamiliar(String origemRendaFamiliar) {
 		this.origemRendaFamiliar = origemRendaFamiliar;
 	}
-	
-	
 
+	public String getCelular2() {
+		return celular2;
+	}
+
+	public void setCelular2(String celular2) {
+		this.celular2 = celular2;
+	}
+
+	public String getFoneRecado() {
+		return foneRecado;
+	}
+
+	public void setFoneRecado(String foneRecado) {
+		this.foneRecado = foneRecado;
+	}
+
+	public Boolean getSemCpf() {
+		return semCpf;
+	}
+
+	public void setSemCpf(Boolean semCpf) {
+		this.semCpf = semCpf;
+	}
+	
+	
 }

@@ -1,7 +1,6 @@
 package br.com.crux.cmd;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -33,10 +32,6 @@ public class CadastrarAlunoCmd {
 
 		entity.setPessoasFisica(cadastrarPessoaFisicaCmd.cadastrar(to.getPessoaFisica()));
 		AlunoTO alunoTOSalvo = alunoTOBuilder.buildTO(repository.save(entity));
-		
-		if(Objects.isNull(alunoTOSalvo.getPessoaFisica().getCpf())) {
-			alunoTOSalvo.getPessoaFisica().setCpf(String.valueOf(alunoTOSalvo.getId()));
-		}
 		
 		entity.setMatriculaAluno(String.valueOf(alunoTOSalvo.getId()));
 		

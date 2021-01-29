@@ -5,6 +5,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -74,6 +75,13 @@ public class PessoaFisicaTOBuilder {
 		retorno.setCep(p.getCep());
 		retorno.setIdentidade(p.getIdentidade());
 		retorno.setCpf(p.getCpf());
+		
+		if(StringUtils.isEmpty(p.getCpf())) {
+			p.setSemCpf(true);
+		}else {
+			p.setSemCpf(false);
+		}
+		
 		retorno.setCts(p.getCts());
 		retorno.setCelular(p.getCelular());
 		retorno.setNis(p.getNis());
@@ -142,7 +150,10 @@ public class PessoaFisicaTOBuilder {
 		
 		retorno.setIdInstituicao(getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId());
 		retorno.setEmailProfissional(p.getEmailProfissional());
-
+		retorno.setCelular2(p.getCelular2());
+		retorno.setFoneRecado(p.getFoneRecado());
+		retorno.setSemCpf(p.getSemCpf());
+		
 		return retorno;
 	}
 
@@ -236,6 +247,9 @@ public class PessoaFisicaTOBuilder {
 		
 		retorno.setIdInstituicao(p.getIdInstituicao());
 		retorno.setEmailProfissional(p.getEmailProfissional());
+		retorno.setCelular2(p.getCelular2());
+		retorno.setFoneRecado(p.getFoneRecado());
+		retorno.setSemCpf(p.getSemCpf());
 
 
 		return retorno;

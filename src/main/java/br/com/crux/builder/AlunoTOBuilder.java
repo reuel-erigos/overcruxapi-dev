@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -43,6 +42,8 @@ public class AlunoTOBuilder {
 	@Autowired private GetProgramaCmd getProgramaCmd;
 	@Autowired private GetProjetoCmd getProjetoCmd;
 	@Autowired private GetBeneficioSocialPessoaFisicaCmd getBeneficioSocialPessoaFisicaCmd;
+	@Autowired private ProgramaTOBuilder programaTOBuilder;
+	@Autowired private ProjetoTOBuilder projetoTOBuilder;
 
 	public Aluno build(AlunoTO p) {
 		Aluno retorno = new Aluno();
@@ -61,24 +62,14 @@ public class AlunoTOBuilder {
 		retorno.setDescDesligamento(p.getDescDesligamento());
 		retorno.setPessoasFisica(pessoaFisicaBuilder.build(p.getPessoaFisica()));
 		retorno.setUnidade(unidadeBuilder.build(p.getUnidade()));
-		
-		if(StringUtils.isEmpty(p.getMatriculaAluno())) {
-			retorno.setMatriculaAluno(String.valueOf(p.getId()));
-		}else {
-			retorno.setMatriculaAluno(p.getMatriculaAluno());
-		}
-
-		if(Objects.isNull(p.getPessoaFisica().getCpf())) {
-			retorno.getPessoasFisica().setCpf(String.valueOf(p.getId()));
-		}
-		
+	
 		if(Objects.nonNull(p.getNivelTurma()) && Objects.nonNull(p.getNivelTurma().getId())) {
 			NiveisTurmas niveisTurmas = getNiveisTurmasCmd.getById(p.getNivelTurma().getId());
 			retorno.setNivelTurma(niveisTurmas);
 		}
 		
 		if(Objects.nonNull(p.getPrograma()) && Objects.nonNull(p.getPrograma().getId())) {
-			Programa programa = getProgramaCmd.getById(p.getNivelTurma().getId());
+			Programa programa = getProgramaCmd.getById(p.getPrograma().getId());
 			retorno.setPrograma(programa);
 		}
 
@@ -86,6 +77,7 @@ public class AlunoTOBuilder {
 			Projeto projeto= getProjetoCmd.getById(p.getProjeto().getId());
 			retorno.setProjeto(projeto);
 		}
+		
 		if(Objects.nonNull(p.getMotivoDesligamento()) && Objects.nonNull(p.getMotivoDesligamento().getId())) {
 			MotivoDesligamento motivoDesligamento = getMotivoDesligamentoCmd.getById(p.getMotivoDesligamento().getId());
 			retorno.setMotivoDesligamento(motivoDesligamento);
@@ -137,6 +129,13 @@ public class AlunoTOBuilder {
 		
 		if(Objects.nonNull(p.getId()) && Objects.nonNull(p.getPessoasFisica())) {
 			retorno.setBenefeciosSociaisPessoaFisica(getBeneficioSocialPessoaFisicaCmd.getAllPorPessoaFisicaTO(p.getPessoasFisica().getId()));
+		}
+		
+		if(Objects.nonNull(p.getPrograma())) {
+			retorno.setPrograma(programaTOBuilder.buildTO(p.getPrograma()));
+		}
+		if(Objects.nonNull(p.getProjeto())) {
+			retorno.setProjeto(projetoTOBuilder.buildTO(p.getProjeto()));
 		}
 
 		return retorno;
