@@ -23,7 +23,7 @@ public class GetNormativaPagamentosCmd {
 	@Autowired private NormativaPagamentosTOBuilder toBuilder;
 
 	
-	public List<NormativaPagamentosTO> getAllFilter(Long idcategoria, Long idEmpresa, Long idPessoaFisica, Long idPrograma, Long idProjeto, Long dataInicio, Long dataFim) {
+	public List<NormativaPagamentosTO> getAllFilter(Long idcategoria, Long idEmpresa, Long idPessoaFisica, Long idPrograma, Long idProjeto, Long dataInicio, Long dataFim, boolean tipoRubrica) {
 		Optional<List<NormativaPagamentosDTO>> entitys = Optional.empty();
 
 		LocalDate pDataInicio = Objects.nonNull(dataInicio) ? Java8DateUtil.getLocalDateTime(new Date(dataInicio)).toLocalDate() : null;
@@ -35,7 +35,7 @@ public class GetNormativaPagamentosCmd {
 		idPrograma      = Objects.isNull(idPrograma) ? null : idPrograma;
 		idProjeto       = Objects.isNull(idProjeto) ? null : idProjeto;
 		
-		entitys = dao.getAllFilter(idcategoria, idEmpresa, idPessoaFisica, idPrograma, idProjeto, pDataInicio, pDataFim);
+		entitys = dao.getAllFilter(idcategoria, idEmpresa, idPessoaFisica, idPrograma, idProjeto, pDataInicio, pDataFim, tipoRubrica);
 
 		if (entitys.isPresent()) {
 			return toBuilder.buildAllDTO(entitys.get());

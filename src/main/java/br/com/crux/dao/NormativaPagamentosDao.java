@@ -18,27 +18,27 @@ import br.com.crux.to.relatorios.financeiro.NormativaPagamentosDTO;
 public class NormativaPagamentosDao extends BaseDao{
 	
 	
-	public Optional<List<NormativaPagamentosDTO>> getAllFilter(Long idCategoria, Long idEmpresa, Long idPessoaFisica, Long idPrograma, Long idProjeto, LocalDate dataInicio, LocalDate dataFim){
+	public Optional<List<NormativaPagamentosDTO>> getAllFilter(Long idCategoria, Long idEmpresa, Long idPessoaFisica, Long idPrograma, Long idProjeto, LocalDate dataInicio, LocalDate dataFim, boolean tipoRubrica){
 		StringBuilder sql = new StringBuilder();
 		
-		sql.append(" select p.nm_programa_projeto,                           ");
-		sql.append("        p.ds_fornecedor,                                 ");
-		sql.append("        p.nr_documento,                                  ");
-		sql.append("        p.cnpj_cpf,                                      ");
-		sql.append("        p.dt_documento,                                  ");
-		sql.append("        p.vl_movimentacao,                               ");
-		sql.append("        p.nr_doc_pagamento,                              ");
-		sql.append("        p.dt_pagamento,                                  ");
-		sql.append("        p.nm_categoria,                                  ");
-		sql.append("        p.vl_pagamento,                                  ");
-		sql.append("        p.dt_vencimento_proxima,                         ");
-		sql.append("        p.id_empresa,                                    ");
-		sql.append("        p.id_pessoa_fisica,                              ");
-		sql.append("        p.id_programa,                                   ");
-		sql.append("        p.id_projeto,                                    ");
-		sql.append("        p.id_movimentacao                                ");
-		sql.append("   from vw_relatorio_relacao_nominativa_pagamentos p     ");
-		sql.append(" WHERE 1 = 1                                             ");
+		sql.append(" select p.nm_programa_projeto,                                                                      ");
+		sql.append("        p.ds_fornecedor,                                                                            ");
+		sql.append("        p.nr_documento,                                                                             ");
+		sql.append("        p.cnpj_cpf,                                                                                 ");
+		sql.append("        p.dt_documento,                                                                             ");
+		sql.append("        p.vl_movimentacao,                                                                          ");
+		sql.append("        p.nr_doc_pagamento,                                                                         ");
+		sql.append("        p.dt_pagamento,                                                                             ");
+		sql.append("        fn_retorna_categorias_itens_movimentacoes(p.id_movimentacao, :p_tipo_rubrica ) nm_categoria ");
+		sql.append("        p.vl_pagamento,                                                                             ");
+		sql.append("        p.dt_vencimento_proxima,                                                                    ");
+		sql.append("        p.id_empresa,                                                                               ");
+		sql.append("        p.id_pessoa_fisica,                                                                         ");
+		sql.append("        p.id_programa,                                                                              ");
+		sql.append("        p.id_projeto,                                                                               ");
+		sql.append("        p.id_movimentacao                                                                           ");
+		sql.append("   from vw_relatorio_relacao_nominativa_pagamentos p                                                ");
+		sql.append(" WHERE 1 = 1                                                                                        ");
 		
 		if(Objects.nonNull(idEmpresa)) {
 			sql.append("  and :p_empresa = p.id_empresa  ");
@@ -76,6 +76,8 @@ public class NormativaPagamentosDao extends BaseDao{
 		
 		Query query = em.createNativeQuery(sql.toString());
 		
+		query.setParameter("p_tipo_rubrica", tipoRubrica ? "A" : "N");
+
 		if(Objects.nonNull(idCategoria)) {
 			query.setParameter("p_id_categoria", idCategoria);
 		}
