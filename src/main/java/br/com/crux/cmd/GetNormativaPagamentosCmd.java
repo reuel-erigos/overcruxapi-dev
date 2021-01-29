@@ -23,7 +23,7 @@ public class GetNormativaPagamentosCmd {
 	@Autowired private NormativaPagamentosTOBuilder toBuilder;
 
 	
-	public List<NormativaPagamentosTO> getAllFilter(Long idcategoria, Long idEmpresa, Long idPessoaFisica, Long idPrograma, Long idProjeto, Long dataInicio, Long dataFim, boolean tipoRubrica) {
+	public List<NormativaPagamentosTO> getAllFilter(Long idcategoria, Long idEmpresa, Long idPessoaFisica, Long idPrograma, Long idProjeto, Long dataInicio, Long dataFim, String tipoRubrica) {
 		Optional<List<NormativaPagamentosDTO>> entitys = Optional.empty();
 
 		LocalDate pDataInicio = Objects.nonNull(dataInicio) ? Java8DateUtil.getLocalDateTime(new Date(dataInicio)).toLocalDate() : null;

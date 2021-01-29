@@ -39,7 +39,7 @@ public class RelatorioNormativaPagamentosService {
 		                                            @RequestParam(name = "idprojeto", required = false) Long idProjeto,
 		                                            @RequestParam(name = "dataInicio", required = false) Long dataInicio,
 		                                            @RequestParam(name = "dataFim", required = false) Long dataFim,
-		                                            @RequestParam(name = "tipoRubrica", required = false) Boolean tipoRubrica
+		                                            @RequestParam(name = "tipoRubrica", required = false) String tipoRubrica
 		                                            ) {
 		return getCmd.getAllFilter(idcategoria, idEmpresa, idPessoaFisica, idPrograma, idProjeto, dataInicio, dataFim, tipoRubrica);
 	}

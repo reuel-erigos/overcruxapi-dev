@@ -18,7 +18,7 @@ import br.com.crux.to.relatorios.financeiro.NormativaPagamentosDTO;
 public class NormativaPagamentosDao extends BaseDao{
 	
 	
-	public Optional<List<NormativaPagamentosDTO>> getAllFilter(Long idCategoria, Long idEmpresa, Long idPessoaFisica, Long idPrograma, Long idProjeto, LocalDate dataInicio, LocalDate dataFim, boolean tipoRubrica){
+	public Optional<List<NormativaPagamentosDTO>> getAllFilter(Long idCategoria, Long idEmpresa, Long idPessoaFisica, Long idPrograma, Long idProjeto, LocalDate dataInicio, LocalDate dataFim, String tipoRubrica){
 		StringBuilder sql = new StringBuilder();
 		
 		sql.append(" select p.nm_programa_projeto,                                                                      ");
@@ -76,7 +76,7 @@ public class NormativaPagamentosDao extends BaseDao{
 		
 		Query query = em.createNativeQuery(sql.toString());
 		
-		query.setParameter("p_tipo_rubrica", tipoRubrica ? "A" : "N");
+		query.setParameter("p_tipo_rubrica", "A".toUpperCase().equals(tipoRubrica) ? "A" : "N");
 
 		if(Objects.nonNull(idCategoria)) {
 			query.setParameter("p_id_categoria", idCategoria);
