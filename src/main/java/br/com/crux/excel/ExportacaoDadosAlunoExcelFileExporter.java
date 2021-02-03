@@ -723,6 +723,10 @@ public class ExportacaoDadosAlunoExcelFileExporter {
                   if(coluna.getNome().equals("autorizoRecebimentoEmail")) {
                 	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getAutorizaEmail()).orElse(""));
                   }
+                  
+                  if(coluna.getNome().equals("foneRecado")) {
+                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getFoneRecado()).orElse(""));
+                  }                  
 			});		
     	}	
 	}
@@ -743,10 +747,14 @@ public class ExportacaoDadosAlunoExcelFileExporter {
 	        		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getUnidade().getNomeUnidade()).orElse(""));
 	        	  }
 	        	  
-	        	  if(coluna.getNome().equals("nivelTurma")) {
-	        		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getNivelTurma().getDescricao()).orElse(""));
+	        	  if(coluna.getNome().equals("programa")) {
+	        		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPrograma().getDescricao()).orElse(""));
 	        	  }
-            	  
+
+	        	  if(coluna.getNome().equals("projeto")) {
+	        		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getProjeto().getDescricao()).orElse(""));
+	        	  }
+	        	  
 	        	  if(coluna.getNome().equals("dataEntrada")) {
 	        		  if(Objects.nonNull(alunoTO.getDataEntrada())) {
 	        			  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Java8DateUtil.getLocalDateFormater(alunoTO.getDataEntrada().toLocalDate()));
@@ -769,10 +777,6 @@ public class ExportacaoDadosAlunoExcelFileExporter {
 	        	  
 	        	  if(coluna.getNome().equals("paisSaoCasados")) {
 	        		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPaisCasados()).orElse(""));
-	        	  }
-	        	  
-	        	  if(coluna.getNome().equals("alunoMatriculadoEscolaPublica")) {
-	        		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getMatriculadoEscPub()).orElse(""));
 	        	  }
 	        	  
 	        	  if(coluna.getNome().equals("alunoPublicoPrioritario")) {
@@ -807,6 +811,10 @@ public class ExportacaoDadosAlunoExcelFileExporter {
             		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getEscolaridade()).orElse(""));
             	  }
             	  
+	        	  if(coluna.getNome().equals("alunoMatriculadoEscolaPublica")) {
+	        		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getMatriculadoEscPub()).orElse(""));
+	        	  }
+	        	  
             	  if(coluna.getNome().equals("nivelEscolaridade")) {
             		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getNivelEscolaridade()).orElse(""));
             	  }
@@ -829,14 +837,6 @@ public class ExportacaoDadosAlunoExcelFileExporter {
             	  
             	  if(coluna.getNome().equals("identificacaoEscolaFrequentada")) {
             		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getEscola()).orElse(""));
-            	  }
-            	  
-            	  if(coluna.getNome().equals("nomeCursoEscolaRegular")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getCursoEscola()).orElse(""));
-            	  }
-            	  
-            	  if(coluna.getNome().equals("periodoCursoEscolaRegular")) {
-            		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getPeriodoEscola()).orElse(""));
             	  }
             	  
             	  if(coluna.getNome().equals("serieCursoEscolaRegular")) {
