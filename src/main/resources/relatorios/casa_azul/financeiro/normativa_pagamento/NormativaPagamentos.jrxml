@@ -93,7 +93,7 @@
 				<textElement textAlignment="Center">
 					<font size="18"/>
 				</textElement>
-				<text><![CDATA[Normativa Pagamentos]]></text>
+				<text><![CDATA[Relação Nominativa de Pagamentos]]></text>
 			</staticText>
 		</band>
 	</pageHeader>

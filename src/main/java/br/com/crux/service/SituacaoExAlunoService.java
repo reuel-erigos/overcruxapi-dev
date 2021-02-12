@@ -46,20 +46,20 @@ public class SituacaoExAlunoService {
 		return getCmd.getAllByCombo();
 	}
 	
-	@PostMapping
-	@Transactional
-	public void cadastrar(@RequestBody SituacaoExAlunoTO to) {
-		cadastrarCmd.cadastrar(to);
+	@Transactional	
+	@PostMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public SituacaoExAlunoTO cadastrar(@RequestBody SituacaoExAlunoTO to) {
+		return cadastrarCmd.cadastrar(to);
 	}
 
+	@Transactional
 	@PutMapping(path = "", consumes = MediaType.APPLICATION_JSON_VALUE)
-	@Transactional
-	public void alterar(@RequestBody SituacaoExAlunoTO to) {
-		alterarCmd.alterar(to);
+	public SituacaoExAlunoTO alterar(@RequestBody SituacaoExAlunoTO to) {
+		return alterarCmd.alterar(to);
 	}
 
-	@DeleteMapping(path = "/{id}")
 	@Transactional
+	@DeleteMapping(path = "/{id}")
 	public void excluir(@PathVariable(name = "id") Long id) {
 		excluirCmd.excluir(id);
 	}

@@ -21,18 +21,17 @@ public class GetFuncoesCmd {
 	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 	
 	
-	public List<FuncoesTO> getAll() {
+	public List<FuncoesTO> getAllByIdInstituicao(){
 		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
-		Optional<List<Funcoes>> entitys = repository.findByIdInstituicao(idInstituicao);
+		Optional<List<Funcoes>> entitys = repository.getAllByIdInstituicao(idInstituicao);
 		if(entitys.isPresent()) {
 			return toBuilder.buildAll(entitys.get());
 		}
 		return new ArrayList<FuncoesTO>();
-		
 	}
 	
 	public FuncoesTO getTOById(Long id) {
-		Funcoes funcoes = repository.findById(id).orElseThrow(() -> new NotFoundException("Entidade não encontrada"));
+		Funcoes funcoes = repository.findById(id).orElseThrow(() -> new NotFoundException("Função não encontrada."));
 		return toBuilder.buildTO(funcoes);
 	}
 	

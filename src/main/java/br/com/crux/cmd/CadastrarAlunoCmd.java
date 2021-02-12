@@ -9,6 +9,7 @@ import br.com.crux.builder.AlunoTOBuilder;
 import br.com.crux.dao.repository.AlunoRepository;
 import br.com.crux.entity.Aluno;
 import br.com.crux.rule.CamposObrigatoriosAlunoRule;
+import br.com.crux.rule.ValidarDuplicidadeCPFRule;
 import br.com.crux.to.AlunoTO;
 
 @Component
@@ -22,9 +23,12 @@ public class CadastrarAlunoCmd {
 	@Autowired private CadastrarVulnerabilidadesAlunoCmd cadastrarVulnerabilidadesAlunoCmd;
 	@Autowired private CadastrarEncaminhaAlunosCmd cadastrarEncaminhaAlunosCmd;
 	@Autowired private CadastrarBeneficioSocialPessoaFisicaCmd cadastrarBeneficiosSociaisPFCmd;
+	@Autowired private ValidarDuplicidadeCPFRule validarDuplicidadeCPFRule ;
+	
 	
 	public AlunoTO cadastrar(AlunoTO to) {
 		camposObrigatoriosRule.verificar(to);
+		validarDuplicidadeCPFRule.verificar(to.getPessoaFisica().getCpf(), to.getPessoaFisica().getId());
 		
 		to.setDataCadastro(LocalDateTime.now());
 		to.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());

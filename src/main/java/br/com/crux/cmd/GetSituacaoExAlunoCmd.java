@@ -3,6 +3,7 @@ package br.com.crux.cmd;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,13 +23,15 @@ public class GetSituacaoExAlunoCmd {
 	@Autowired private SituacaoExAlunoRepository repository;
 	@Autowired private SituacaoExAlunoTOBuilder toBuilder;
 	@Autowired private SituacaoExAlunoDAO situacaoExAlunoDAO;
+	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 
 	public List<SituacaoExAlunoTO> getAll() {
-		List<SituacaoExAluno> lista = repository.findAll();
-		if(lista.isEmpty()) {
-			return Collections.emptyList();
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+		Optional<List<SituacaoExAluno>> alunos = repository.getTodosAlunos(idInstituicao);
+		if(alunos.isPresent()) {
+			return toBuilder.buildTO(alunos.get());
 		}
-			return toBuilder.buildTO(lista);
+		return Collections.emptyList();
 	}
 
 	public SituacaoExAluno getById(Long id) {
@@ -41,7 +44,8 @@ public class GetSituacaoExAlunoCmd {
 	}
 	
 	public List<ComboSituacaoExAlunoTO> getAllByCombo() {
-		List<ComboSituacaoExAlunoDTO> situacao = situacaoExAlunoDAO.getAll();
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+		List<ComboSituacaoExAlunoDTO> situacao = situacaoExAlunoDAO.getAll(idInstituicao);
 		
 		return toBuilder.buildAllDTO(situacao);
 	}

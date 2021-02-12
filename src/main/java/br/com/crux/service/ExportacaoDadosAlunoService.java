@@ -35,11 +35,11 @@ public class ExportacaoDadosAlunoService {
 		                                             @RequestParam(name = "idResponsavel", required = false) Long idResponsavel,
 		                                             @RequestParam(name = "dataInicioEntradaInstituicao", required = false) Long dataInicioEntradaInstituicao,
 		                                             @RequestParam(name = "dataFimEntradaInstituicao", required = false) Long dataFimEntradaInstituicao,
-		                                             @RequestParam(name = "dataInicioSaidaInstituicao", required = false) Long dataInicioSaidaInstituicao,
-		                                             @RequestParam(name = "dataFimSaidaInstituicao", required = false) Long dataFimSaidaInstituicao
+		                                             @RequestParam(name = "dataInicioVigenciaInstituicao", required = false) Long dataInicioVigenciaInstituicao,
+		                                             @RequestParam(name = "dataFimVigenciaInstituicao", required = false) Long dataFimVigenciaInstituicao
 
 		                                             ) {
-		return getCmd.getAllFilter(cpf, idBeneficiario, idMae, idPai, idPrograma, idProjeto, idUnidade, idResponsavel, dataInicioEntradaInstituicao, dataFimEntradaInstituicao, dataInicioSaidaInstituicao, dataFimSaidaInstituicao);
+		return getCmd.getAllFilter(cpf, idBeneficiario, idMae, idPai, idPrograma, idProjeto, idUnidade, idResponsavel, dataInicioEntradaInstituicao, dataFimEntradaInstituicao, dataInicioVigenciaInstituicao, dataFimVigenciaInstituicao);
 	}
 	
 	

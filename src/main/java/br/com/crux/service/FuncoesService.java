@@ -28,12 +28,13 @@ public class FuncoesService {
 	@Autowired private AlterarFuncoesCmd alterarCmd;
 	@Autowired private ExcluirFuncoesCmd excluirCmd;
 
-	
-	@GetMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<FuncoesTO> getAll() {
-		return getCmd.getAll();
-	}
 
+	@GetMapping(path = "/instituicao", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<FuncoesTO> getAllByIdInstituicao() {
+		return getCmd.getAllByIdInstituicao();
+	}
+	
+	
 	@GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public FuncoesTO getById(@PathVariable(name = "id") Long id) {
 		return getCmd.getTOById(id);

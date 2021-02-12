@@ -13,6 +13,7 @@ import br.com.crux.entity.Aluno;
 import br.com.crux.exception.NotFoundException;
 import br.com.crux.infra.constantes.TipoRelatorioBeneficiario;
 import br.com.crux.rule.CamposObrigatoriosAlunoRule;
+import br.com.crux.rule.ValidarDuplicidadeCPFRule;
 import br.com.crux.to.AlunoTO;
 import br.com.crux.to.EncaminhaAlunosTO;
 import br.com.crux.to.VulnerabilidadesAlunoTO;
@@ -29,9 +30,12 @@ public class AlterarAlunoCmd {
 	@Autowired private AlterarVulnerabilidadesAlunoCmd alterarVulnerabilidadesAlunoCmd;
 	@Autowired private AlterarListaEncaminhamentoAlunosCmd alterarListaEncaminhamentoAlunosCmd;
 	@Autowired private AlterarListaBeneficioSocialPessoaFisicaCmd alterarListaBeneficioSocialPessoaFisicaCmd;
+	@Autowired private ValidarDuplicidadeCPFRule validarDuplicidadeCPFRule ;
 	
 	public AlunoTO alterar(AlunoTO alunoTO) {
 		camposObrigatoriosRule.verificar(alunoTO);
+		validarDuplicidadeCPFRule.verificar(alunoTO.getPessoaFisica().getCpf(), alunoTO.getPessoaFisica().getId());
+		
 		Aluno aluno = repository.findById(alunoTO.getId()).orElseThrow((() -> new NotFoundException("Aluno informado não existe.")));
 		
 		alunoTO.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());

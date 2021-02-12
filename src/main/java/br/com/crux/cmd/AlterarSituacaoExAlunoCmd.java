@@ -20,7 +20,7 @@ public class AlterarSituacaoExAlunoCmd {
 	@Autowired private CamposObrigatoriosSituacaoExAlunoRule camposObrigatoriosRule;
 	
 	
-	public void alterar(SituacaoExAlunoTO to) {
+	public SituacaoExAlunoTO alterar(SituacaoExAlunoTO to) {
 		Optional<SituacaoExAluno> entityOptional = repository.findById(to.getId());
 		
 		if(!entityOptional.isPresent()) {
@@ -28,12 +28,9 @@ public class AlterarSituacaoExAlunoCmd {
 		}
 		
 		camposObrigatoriosRule.verificar(to);
-		
 		SituacaoExAluno entity = entityOptional.get();
-		
 		entity = toBuilder.build(to);
-		
-		repository.save(entity);
+		return toBuilder.buildTO(repository.save(entity));
 		
 	}
 }

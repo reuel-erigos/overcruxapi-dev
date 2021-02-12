@@ -17,13 +17,9 @@ public class CadastrarSituacaoExAlunoCmd {
 	@Autowired private CamposObrigatoriosSituacaoExAlunoRule camposObrigatoriosRule;
 	
 	
-	public void cadastrar(SituacaoExAlunoTO to) {
-		
+	public SituacaoExAlunoTO cadastrar(SituacaoExAlunoTO to) {
 		camposObrigatoriosRule.verificar(to);
-		
 		SituacaoExAluno entity = toBuilder.build(to);
-		
-		repository.save(entity);
-		
+		return toBuilder.buildTO(repository.save(entity));
 	}
 }

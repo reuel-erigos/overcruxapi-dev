@@ -23,7 +23,7 @@ public class ExportacaoDadosAlunoDao extends BaseDao{
 	public Optional<List<ExportacaoDadosAlunoDTO>> getAllFilter(String cpf, Long idBeneficiario, Long idMae, Long idPai, Long idPrograma,
 														        Long idProjeto, Long idUnidade, Long idResponsavel, 
 														        LocalDate dataInicioEntradaInstituicao, LocalDate dataFimEntradaInstituicao, 
-														        LocalDate dataInicioSaidaInstituicao, LocalDate dataFimSaidaInstituicao,
+														        LocalDate dataInicioVigenciaInstituicao, LocalDate dataFimVigenciaInstituicao,
 														        Long idInstituicao){
 		StringBuilder sql = new StringBuilder();
 		
@@ -65,19 +65,14 @@ public class ExportacaoDadosAlunoDao extends BaseDao{
 		if(Objects.nonNull(dataInicioEntradaInstituicao)) {
 			sql.append("   AND DATE_TRUNC('DAY', a.dt_entrada) >= DATE_TRUNC('DAY', to_date( :p_dt_inicio_entrada ,'dd/mm/yyyy') )        ");
 		}
-		
 		if(Objects.nonNull(dataFimEntradaInstituicao)) {
-			sql.append("   AND DATE_TRUNC('DAY', a.dt_entrada) <= DATE_TRUNC('DAY', to_date( :p_dt_fim_entrada ,'dd/mm/yyyy') )        ");
+			sql.append("   AND DATE_TRUNC('DAY', a.dt_desligamento) <= DATE_TRUNC('DAY', to_date( :p_dt_fim_entrada ,'dd/mm/yyyy') )        ");
 		}
 		
-		
-		if(Objects.nonNull(dataInicioSaidaInstituicao)) {
-			sql.append("   AND DATE_TRUNC('DAY', a.dt_desligamento) >= DATE_TRUNC('DAY', to_date( :p_dt_inicio_saida ,'dd/mm/yyyy') )        ");
+		if(Objects.nonNull(dataInicioVigenciaInstituicao) && Objects.nonNull(dataFimVigenciaInstituicao)) {
+			sql.append("  and fn_entre_periodos (a.dt_entrada, a.dt_desligamento, :p_dt_inicio_vigencia, :p_dt_fim_vigencia) = 'V'          ");
 		}
-		
-		if(Objects.nonNull(dataFimSaidaInstituicao)) {
-			sql.append("   AND DATE_TRUNC('DAY', a.dt_desligamento) <= DATE_TRUNC('DAY', to_date( :p_dt_fim_saida ,'dd/mm/yyyy') )        ");
-		}
+
 		
 		if(Objects.nonNull(idBeneficiario)) {
 			sql.append("  and :p_id_aluno = a.id_aluno                            ");
@@ -121,14 +116,13 @@ public class ExportacaoDadosAlunoDao extends BaseDao{
 		if(Objects.nonNull(dataFimEntradaInstituicao)) {
 			query.setParameter("p_dt_fim_entrada", Java8DateUtil.getLocalDateFormater(dataFimEntradaInstituicao));
 		}
-		
-		
-		if(Objects.nonNull(dataInicioSaidaInstituicao)) {
-			query.setParameter("p_dt_inicio_saida", Java8DateUtil.getLocalDateFormater(dataInicioSaidaInstituicao));
+				
+		if(Objects.nonNull(dataInicioVigenciaInstituicao)) {
+			query.setParameter("p_dt_inicio_vigencia", Java8DateUtil.getLocalDateFormater(dataInicioVigenciaInstituicao));
 		}
 		
-		if(Objects.nonNull(dataFimSaidaInstituicao)) {
-			query.setParameter("p_dt_fim_saida", Java8DateUtil.getLocalDateFormater(dataFimSaidaInstituicao));
+		if(Objects.nonNull(dataFimVigenciaInstituicao)) {
+			query.setParameter("p_dt_fim_vigencia", Java8DateUtil.getLocalDateFormater(dataFimVigenciaInstituicao));
 		}
 		
 		if(Objects.nonNull(idBeneficiario)) {

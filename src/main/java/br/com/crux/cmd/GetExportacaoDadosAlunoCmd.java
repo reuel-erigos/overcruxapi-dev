@@ -28,7 +28,7 @@ public class GetExportacaoDadosAlunoCmd {
 	public List<ExportacaoDadosAlunoTO> getAllFilter(String cpf, Long idBeneficiario, Long idMae, Long idPai, 
 			                                         Long idPrograma, Long idProjeto, Long idUnidade, Long idResponsavel, 
                                                      Long dataInicioEntradaInstituicao, Long dataFimEntradaInstituicao,
-                                                     Long dataInicioSaidaInstituicao, Long dataFimSaidaInstituicao
+                                                     Long dataInicioVigenciaInstituicao, Long dataFimVigenciaInstituicao
             ) {
 		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
 
@@ -37,8 +37,8 @@ public class GetExportacaoDadosAlunoCmd {
 		LocalDate pDataInicioEntradaInstituicao  = Objects.nonNull(dataInicioEntradaInstituicao) ? Java8DateUtil.getLocalDateTime(new Date(dataInicioEntradaInstituicao)).toLocalDate() : null;
 		LocalDate pDataFimEntradaInstituicao     = Objects.nonNull(dataFimEntradaInstituicao) ? Java8DateUtil.getLocalDateTime(new Date(dataFimEntradaInstituicao)).toLocalDate() : null;
 
-		LocalDate pDataInicioSaidaInstituicao  = Objects.nonNull(dataInicioSaidaInstituicao) ? Java8DateUtil.getLocalDateTime(new Date(dataInicioSaidaInstituicao)).toLocalDate() : null;
-		LocalDate pDataFimSaidaInstituicao     = Objects.nonNull(dataFimSaidaInstituicao) ? Java8DateUtil.getLocalDateTime(new Date(dataFimSaidaInstituicao)).toLocalDate() : null;
+		LocalDate pDataInicioVigenciaInstituicao  = Objects.nonNull(dataInicioVigenciaInstituicao) ? Java8DateUtil.getLocalDateTime(new Date(dataInicioVigenciaInstituicao)).toLocalDate() : null;
+		LocalDate pDataFimVigenciaInstituicao     = Objects.nonNull(dataFimVigenciaInstituicao) ? Java8DateUtil.getLocalDateTime(new Date(dataFimVigenciaInstituicao)).toLocalDate() : null;
 		
 		cpf             = StringUtils.isEmpty(cpf) ? null : cpf;
 		idBeneficiario  = Objects.isNull(idBeneficiario) ? null : idBeneficiario;
@@ -53,7 +53,7 @@ public class GetExportacaoDadosAlunoCmd {
 				                   idPrograma, idProjeto, idUnidade, 
 				                   idResponsavel, 
 				                   pDataInicioEntradaInstituicao, pDataFimEntradaInstituicao,
-				                   pDataInicioSaidaInstituicao, pDataFimSaidaInstituicao,
+				                   pDataInicioVigenciaInstituicao, pDataFimVigenciaInstituicao,
 				                   idInstituicao);
 
 		if (entitys.isPresent()) {
