@@ -58,7 +58,7 @@ public class GetFuncionarioCmd {
 	}
 
 	public Funcionario getPorPessoa(Long idPessoa) {
-		return repository.getPorPessoa(idPessoa).orElseThrow(() -> new NotFoundException("Funcionário não encontrado."));
+		return repository.getPorPessoa(idPessoa).orElse(null);
 	}
 
 	public FuncionarioTO getPorPessoaFisica(Long idPessoa) {

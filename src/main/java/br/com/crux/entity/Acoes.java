@@ -80,6 +80,18 @@ public class Acoes implements Serializable {
 	
 	@Column(name="id_usuario_apl")
 	private Long usuarioAlteracao;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_atividade")
+	private Oficinas atividade;	
+	
+	@Column(name="id_instituicao")
+	private Long idInstituicao;
+	
+	@Column(name="st_local_execucao")
+	private String localExecucao;
+
+	
 
 	public Acoes() {
 	}
@@ -210,6 +222,30 @@ public class Acoes implements Serializable {
 
 	public void setUsuarioAlteracao(Long usuarioAlteracao) {
 		this.usuarioAlteracao = usuarioAlteracao;
+	}
+
+	public Oficinas getAtividade() {
+		return atividade;
+	}
+
+	public void setAtividade(Oficinas atividade) {
+		this.atividade = atividade;
+	}
+
+	public Long getIdInstituicao() {
+		return idInstituicao;
+	}
+
+	public void setIdInstituicao(Long idInstituicao) {
+		this.idInstituicao = idInstituicao;
+	}
+
+	public String getLocalExecucao() {
+		return localExecucao;
+	}
+
+	public void setLocalExecucao(String localExecucao) {
+		this.localExecucao = localExecucao;
 	}
 
 	

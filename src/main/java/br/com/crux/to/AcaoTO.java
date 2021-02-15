@@ -33,7 +33,6 @@ public class AcaoTO {
 	private String descricaoAvaliacaoAcao;
 	private String descricaoOcorrenciaAcao;
 	
-	private OficinasTO oficina;
 	private FuncionarioTO funcionarioPlanejamentoAcao;	
 	private FuncionarioTO funcionarioAprovaAcao;
 	private FuncionarioTO funcionarioExecutaAcao;	
@@ -41,6 +40,11 @@ public class AcaoTO {
 	private List<MateriaisAcoesTO> materiaisAcao = new ArrayList<MateriaisAcoesTO>();
 	
 	private Long usuarioAlteracao;
+	
+	private OficinasTO oficina;
+	private Long idInstituicao;
+	private String localExecucao;
+
 	
 	public AcaoTO() {
 	}
@@ -179,6 +183,22 @@ public class AcaoTO {
 
 	public void setMateriaisAcao(List<MateriaisAcoesTO> materiaisAcao) {
 		this.materiaisAcao = materiaisAcao;
+	}
+
+	public Long getIdInstituicao() {
+		return idInstituicao;
+	}
+
+	public void setIdInstituicao(Long idInstituicao) {
+		this.idInstituicao = idInstituicao;
+	}
+
+	public String getLocalExecucao() {
+		return localExecucao;
+	}
+
+	public void setLocalExecucao(String localExecucao) {
+		this.localExecucao = localExecucao;
 	}
 	
 	

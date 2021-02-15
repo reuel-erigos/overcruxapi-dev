@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.cmd.GetOficinasCmd;
+import br.com.crux.cmd.GetUnidadeLogadaCmd;
 import br.com.crux.dao.repository.MateriaisAcoesRepository;
 import br.com.crux.cmd.GetFuncionarioCmd;
 import br.com.crux.entity.Acoes;
@@ -26,6 +27,7 @@ public class AcaoTOBuilder {
 	@Autowired private GetFuncionarioCmd getFuncionarioCmd;
 	@Autowired private MateriaisAcoesTOBuilder materiaisAcoesTOBuilder;
 	@Autowired private MateriaisAcoesRepository materiaisAcoesRepository;
+	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 
 	public Acoes build(AcaoTO p) {
 		Acoes retorno = new Acoes();
@@ -72,6 +74,9 @@ public class AcaoTOBuilder {
 		});
 
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
+		
+		retorno.setIdInstituicao(getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId());
+		retorno.setLocalExecucao(p.getLocalExecucao());
 
 		return retorno;
 	}
@@ -111,6 +116,8 @@ public class AcaoTOBuilder {
 		}
 
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
+		retorno.setIdInstituicao(getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId());
+		retorno.setLocalExecucao(p.getLocalExecucao());
 
 		return retorno;
 	}
