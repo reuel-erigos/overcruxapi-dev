@@ -36,7 +36,7 @@ public class Arquivo implements Serializable {
 	private Long usuarioAlteracao;
 
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="id_arquivo_metadados")
+	@JoinColumn(name="id_arquivo_metadado")
 	private ArquivoMetadado metadados;
 
 	

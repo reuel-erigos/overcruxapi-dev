@@ -1,20 +1,47 @@
---NOVOS MODULOS
+-------------------------------------------------------------------------------
+ALTER TABLE unidades  DROP CONSTRAINT arquivo_unidade;
 
-INSERT INTO public.modulos (id_modulo, ds_modulo, nm_modulo, id_usuario_apl, modulo_pai) VALUES(nextval('sq_id_modulo'), 'Tipos Atividades', 'TIPOS_ATIVIDADES', 19, 199);
-INSERT INTO public.modulos (id_modulo, ds_modulo, nm_modulo, id_usuario_apl, modulo_pai) VALUES(nextval('sq_id_modulo'), 'Situações ex-alunos', 'SITUACOES_EX_ALUNOS', 19, 98);
-INSERT INTO public.modulos (id_modulo, ds_modulo, nm_modulo, id_usuario_apl, modulo_pai) VALUES(nextval('sq_id_modulo'), 'Motivos Desligamentos', 'MOTIVOS_DESLIGAMENTOS', 19, 199);
-INSERT INTO public.modulos (id_modulo, ds_modulo, nm_modulo, id_usuario_apl, modulo_pai) VALUES(nextval('sq_id_modulo'), 'Público Prioritário', 'TIPOS_PUBLICOS_PRIORITARIOS', 19, 199);
-INSERT INTO public.modulos (id_modulo, ds_modulo, nm_modulo, id_usuario_apl, modulo_pai) VALUES(nextval('sq_id_modulo'), 'Tabelas de Referência - Programas e Projetos', 'TB_REFERENCIA_PROGRAMAS_PROJETOS', 3, 159);
-INSERT INTO public.modulos(id_modulo, ds_modulo, nm_modulo, id_usuario_apl, modulo_pai)  VALUES(nextval('sq_id_modulo'), 'Empresas Parceiras', 'EMPRESAS_PARCEIRAS', 3, 159);
-INSERT INTO public.modulos(id_modulo, ds_modulo, nm_modulo, id_usuario_apl, modulo_pai)  VALUES(nextval('sq_id_modulo'), 'Empresas Clientes', 'EMPRESAS_CLIENTES', 3, 159);
-INSERT INTO public.modulos(id_modulo, ds_modulo, nm_modulo, id_usuario_apl, modulo_pai)  VALUES(nextval('sq_id_modulo'), 'Empresas Fornecedoras', 'EMPRESAS_FORNECEDORAS', 3, 190);
-
-
-
---Verifcar o id gerado no script anterior - TB_REFERENCIA_PROGRAMAS_PROJETOS.. esse id será o modulo pai nesse script, no caso de desenvolvimento o id foi 216.
-INSERT INTO public.modulos (id_modulo, ds_modulo, nm_modulo, id_usuario_apl, modulo_pai) VALUES(nextval('sq_id_modulo'), 'Tipos Doadores', 'TIPOS_DOADORES', 3, 216);
+update unidades
+   set id_arquivo_logomarca = ( select id_arquivo_metadado from arquivos a where a.id_arquivo = id_arquivo_logomarca );
+  
+ALTER TABLE unidades
+  ADD CONSTRAINT arquivo_unidade FOREIGN KEY (id_arquivo_logomarca)
+  REFERENCES arquivos_metadados (id_arquivo_metadado)
+  ON UPDATE NO ACTION
+  ON DELETE NO ACTION;
+  
+COMMIT;
 
 
---Não tinha no documento falando em qual menu ficaria.
-INSERT INTO public.modulos (id_modulo, ds_modulo, nm_modulo, id_usuario_apl, modulo_pai) VALUES(nextval('sq_id_modulo'), 'Doadores', 'DOADORES', 3, 159);
+-------------------------------------------------------------------------------
+ALTER TABLE instituicoes  DROP CONSTRAINT arquivo_instituicao_fk;
 
+update instituicoes
+   set id_arquivo_logomarca = ( select id_arquivo_metadado from arquivos a where a.id_arquivo = id_arquivo_logomarca );
+  
+ALTER TABLE instituicoes
+  ADD CONSTRAINT arquivo_instituicao_fk FOREIGN KEY (id_arquivo_logomarca)
+  REFERENCES arquivos_metadados (id_arquivo_metadado)
+  ON UPDATE NO ACTION
+  ON DELETE NO ACTION;
+  
+COMMIT;
+
+
+
+-------------------------------------------------------------------------------
+ALTER TABLE pessoas_fisicas  DROP CONSTRAINT arquivo_pessoa_fisica_fk;
+
+update pessoas_fisicas
+   set id_arquivo_foto = ( select id_arquivo_metadado from arquivos a where a.id_arquivo = id_arquivo_foto );
+  
+ALTER TABLE pessoas_fisicas
+  ADD CONSTRAINT arquivo_pessoa_fisica_fk FOREIGN KEY (id_arquivo_foto)
+  REFERENCES arquivos_metadados (id_arquivo_metadado)
+  ON UPDATE NO ACTION
+  ON DELETE NO ACTION;
+  
+COMMIT;
+
+
+-------------------------------------------------------------------------------
