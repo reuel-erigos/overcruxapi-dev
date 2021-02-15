@@ -3,9 +3,12 @@ package br.com.crux.entity;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -25,8 +28,9 @@ public class Instituicao {
 	@Column(name = "nm_instituicao") 
 	private String nome;
 
-	@Column(name = "id_arquivo_logomarca") 
-	private Long idArquivo;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="id_arquivo_logomarca")
+	private ArquivoMetadado metadados;
 
 	@Column(name = "id_usuario_apl") 
 	private Long usuarioAlteracao;
@@ -72,12 +76,12 @@ public class Instituicao {
 		this.nome = nome;
 	}
 
-	public Long getIdArquivo() {
-		return idArquivo;
+	public ArquivoMetadado getMetadados() {
+		return metadados;
 	}
 
-	public void setIdArquivo(Long idArquivo) {
-		this.idArquivo = idArquivo;
+	public void setArquivoMetadado(ArquivoMetadado metadados) {
+		this.metadados = metadados;
 	}
 
 	public Long getUsuarioAlteracao() {

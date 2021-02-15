@@ -19,7 +19,7 @@ public class GetUnidadePorIdCmd {
 	@Autowired UnidadeTOBuilder unidadeBuilder;
 	
 	
-	public Unidade getUnidade(Long idUnidade) {
+	public Unidade getUnidadeById(Long idUnidade) {
 		if(Objects.isNull(idUnidade)) {
 			throw new ParametroNaoInformadoException("A unidade não foi informada.");
 		}

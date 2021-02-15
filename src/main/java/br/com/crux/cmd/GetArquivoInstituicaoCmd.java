@@ -24,11 +24,11 @@ public class GetArquivoInstituicaoCmd {
 
 		Instituicao instituicao = getInstituicaoCmd.getById(idInstituicao);
 
-		if (instituicao.getIdArquivo() == null) {
+		if (instituicao.getMetadados() == null) {
 			return null;
 		}
 
-		Optional<Arquivo> arquivo = arquivoRepository.findById(instituicao.getIdArquivo());
+		Optional<Arquivo> arquivo = arquivoRepository.findByIdMetadados(instituicao.getMetadados().getId());
 		if (!arquivo.isPresent()) {
 			return null;
 		}

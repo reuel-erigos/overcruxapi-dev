@@ -18,14 +18,18 @@ public class InstituicaoTOBuilder {
 
 	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
 	@Autowired private GetFuncoesInstituicaoCmd getFuncoesInstituicaoCmd;
+	@Autowired private ArquivoMetadadosTOBuilder arquivoMetadadosTOBuilder;
 
 	public Instituicao build(InstituicaoTO to) {
 
 		Instituicao retorno = new Instituicao();
 		BeanUtils.copyProperties(to, retorno);
 
-		retorno.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado()
-				.getIdUsuario());
+		retorno.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
+		
+		if(Objects.nonNull(to.getMetadados())) {
+			retorno.setArquivoMetadado(arquivoMetadadosTOBuilder.build(to.getMetadados()));
+		}
 		return retorno;
 	}
 
@@ -40,13 +44,15 @@ public class InstituicaoTOBuilder {
 		
 		to.setFuncoesInstituicao(getFuncoesInstituicaoCmd.getFuncoesInstituicaoTOByInstituicao(instituicao));
 
+		if(Objects.nonNull(to.getMetadados())) {
+			to.setMetadados(arquivoMetadadosTOBuilder.buildTO(instituicao.getMetadados()));
+		}
+
 		return to;
 	}
 
 	public List<InstituicaoTO> buildAllTO(List<Instituicao> dtos) {
-		return dtos.stream()
-				.map(dto -> buildTO(dto))
-				.collect(Collectors.toList());
+		return dtos.stream().map(dto -> buildTO(dto)).collect(Collectors.toList());
 	}
 
 }

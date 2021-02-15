@@ -9,7 +9,7 @@ public class InstituicaoTO {
 
 	private Long id;
 	private String nome;
-	private Long idArquivo;
+	private ArquivoMetadadoTO metadados;
 	private Long usuarioAlteracao;
 	private Boolean mostraLista;
 	private String areaAtuacao;
@@ -39,12 +39,12 @@ public class InstituicaoTO {
 		this.nome = nome;
 	}
 
-	public Long getIdArquivo() {
-		return idArquivo;
+	public ArquivoMetadadoTO getMetadados() {
+		return metadados;
 	}
 
-	public void setIdArquivo(Long arquivo) {
-		this.idArquivo = arquivo;
+	public void setMetadados(ArquivoMetadadoTO metadados) {
+		this.metadados = metadados;
 	}
 
 	public Long getUsuarioAlteracao() {

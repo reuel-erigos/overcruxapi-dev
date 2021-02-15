@@ -71,9 +71,8 @@ public class PessoaFisicaTO {
 	private Double valorOutrosBenerficiosSoc;
 	private Double valorRenda;
 
-	private Long idArquivo;
+	private ArquivoMetadadoTO metadados;
 	private CondicoesMoradiaTO condicoesMoradia;
-
 	private GrausInstrucaoTO grausInstrucao;
 	private Long usuarioAlteracao;
 	
@@ -579,12 +578,13 @@ public class PessoaFisicaTO {
 		this.valorRenda = valorRenda;
 	}
 
-	public Long getIdArquivo() {
-		return idArquivo;
+
+	public ArquivoMetadadoTO getMetadados() {
+		return metadados;
 	}
 
-	public void setIdArquivo(Long idArquivo) {
-		this.idArquivo = idArquivo;
+	public void setMetadados(ArquivoMetadadoTO metadados) {
+		this.metadados = metadados;
 	}
 
 	public CondicoesMoradiaTO getCondicoesMoradia() {

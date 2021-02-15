@@ -50,8 +50,10 @@ public class Unidade{
 	@Column(name = "ds_estrutura_fisica_imovel")
 	private String descricaoEstruturaFisicaImovel;
 
-	@Column(name = "id_arquivo_logomarca")
-	private Long idArquivo;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="id_arquivo_logomarca")
+	private ArquivoMetadado arquivoMetadados;
+	
 
 	@Column(name = "id_usuario_apl")
 	private Long usuarioAlteracao;
@@ -204,12 +206,12 @@ public class Unidade{
 		this.descricaoEstruturaFisicaImovel = dsEstruturaFisicaImovel;
 	}
 
-	public Long getIdArquivo() {
-		return idArquivo;
+	public ArquivoMetadado getArquivoMetadados() {
+		return arquivoMetadados;
 	}
 
-	public void setIdArquivo(Long idArquivo) {
-		this.idArquivo = idArquivo;
+	public void setArquivoMetadados(ArquivoMetadado arquivoMetadados) {
+		this.arquivoMetadados = arquivoMetadados;
 	}
 
 	public Long getUsuarioAlteracao() {

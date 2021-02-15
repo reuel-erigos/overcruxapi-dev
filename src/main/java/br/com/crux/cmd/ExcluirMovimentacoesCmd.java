@@ -5,7 +5,6 @@ import java.util.Objects;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.dao.repository.FaturaRepository;
@@ -26,7 +25,6 @@ import br.com.crux.entity.RateiosPagamentos;
 import br.com.crux.entity.ReembolsosPagamentos;
 import br.com.crux.entity.TributosItensMovimentacoes;
 import br.com.crux.exception.ParametroNaoInformadoException;
-import br.com.crux.exception.TabaleReferenciaEncontradaException;
 import br.com.crux.exception.base.NegocioException;
 
 @Component

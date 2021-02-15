@@ -26,11 +26,11 @@ public class GetArquivoPessoaFisicaCmd {
 
 		PessoaFisica pessoa = pessoaFisicaRepository.findById(idPessoaFisica).orElseThrow(() -> new PessoaFisicaNaoEncontradaException("Pessoa não encontrada"));
 
-		if (pessoa.getIdArquivo() == null) {
+		if (pessoa.getMetadados() == null) {
 			return null;
 		}
 
-		Optional<Arquivo> arquivo = arquivoRepository.findById(pessoa.getIdArquivo());
+		Optional<Arquivo> arquivo = arquivoRepository.findByIdMetadados(pessoa.getMetadados().getId());
 		if (!arquivo.isPresent()) {
 			return null;
 		}

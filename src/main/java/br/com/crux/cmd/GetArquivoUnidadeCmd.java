@@ -22,13 +22,12 @@ public class GetArquivoUnidadeCmd {
 			throw new ParametroNaoInformadoException("Erro ao buscar o arquivo, parâmetro não informado no resource.");
 		}
 
-		Unidade unidade = getUnidadePorIdCmd.getUnidade(idUnidade);
-
-		if (unidade.getIdArquivo() == null) {
+		Unidade unidade = getUnidadePorIdCmd.getUnidadeById(idUnidade);
+		if (unidade.getArquivoMetadados() == null) {
 			return null;
 		}
 
-		Optional<Arquivo> arquivo = arquivoRepository.findById(unidade.getIdArquivo());
+		Optional<Arquivo> arquivo = arquivoRepository.findByIdMetadados(unidade.getArquivoMetadados().getId());
 		if (!arquivo.isPresent()) {
 			return null;
 		}

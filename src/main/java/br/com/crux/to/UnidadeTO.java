@@ -20,7 +20,7 @@ public class UnidadeTO {
 	private String telefone;
 	private String descricaoSituacaoImovel;
 	private String descricaoEstruturaFisicaImovel;
-	private Long arquivo;
+	private ArquivoMetadadoTO arquivoMetadados;
 	private Long usuarioAlteracao;
 	private String visao;
 	private String missao;
@@ -113,12 +113,12 @@ public class UnidadeTO {
 		this.descricaoEstruturaFisicaImovel = descricaoEstruturaFisicaImovel;
 	}
 
-	public Long getArquivo() {
-		return arquivo;
+	public ArquivoMetadadoTO getArquivoMetadados() {
+		return arquivoMetadados;
 	}
 
-	public void setArquivo(Long arquivo) {
-		this.arquivo = arquivo;
+	public void setArquivoMetadados(ArquivoMetadadoTO arquivoMetadados) {
+		this.arquivoMetadados = arquivoMetadados;
 	}
 
 	public Long getUsuarioAlteracao() {

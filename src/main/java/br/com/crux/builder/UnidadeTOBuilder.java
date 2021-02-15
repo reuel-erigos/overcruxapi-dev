@@ -5,6 +5,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -25,50 +26,25 @@ public class UnidadeTOBuilder {
 	@Autowired private GetEstruturaUnidadeCmd getEstruturaUnidadeCmd;
 	@Autowired private CertificadoUnidadeTOBuilder certificadoUnidadeTOBuilder;
 	@Autowired private GetCertificadoUnidadeCmd getCertificadoUnidadeCmd;
+	@Autowired private ArquivoMetadadosTOBuilder arquivoMetadadosTOBuilder;
 
 	public Unidade build(UnidadeTO to) {
 		Unidade unidade = new Unidade();
 		
-		unidade.setIdUnidade(to.getIdUnidade());
-		unidade.setSiglaUnidade(to.getSiglaUnidade());
-		unidade.setNomeUnidade(to.getNomeUnidade());
-		unidade.setEndereco(to.getEndereco());
-		unidade.setTelefone(to.getTelefone());
-		unidade.setDescricaoSituacaoImovel(to.getDescricaoSituacaoImovel());
-		unidade.setDescricaoEstruturaFisicaImovel(to.getDescricaoEstruturaFisicaImovel());
-		unidade.setUsuarioAlteracao(to.getUsuarioAlteracao());
-		unidade.setVisao(to.getVisao());
-		unidade.setMissao(to.getMissao());
-		unidade.setEmail(to.getEmail());
-		unidade.setCep(to.getCep());
-		unidade.setBairro(to.getBairro());
-		unidade.setUf(to.getUf());
-		unidade.setCelular(to.getCelular());
-		unidade.setTipoUnidade(to.getTipoUnidade());
+		BeanUtils.copyProperties(to, unidade);
+		
 		Optional.ofNullable(to.getClassificacaoSituacaoImovel()).ifPresent(classificador -> {
 			unidade.setClassificacaoSituacaoImovel(ClassificadorSituacaoImovel.getPorTipo(classificador));
 		});
 
-		unidade.setNomeFantasia(to.getNomeFantasia());
-		unidade.setCnpj(to.getCnpj());
-		unidade.setInscricaoEstadual(to.getInscricaoEstadual());
-		unidade.setInscricaoMunicipal(to.getInscricaoMunicipal());
-		unidade.setHomePage(to.getHomePage());
-		unidade.setCidade(to.getCidade());
-
 		if (Objects.nonNull(to.getInstituicao()) && Objects.nonNull(to.getInstituicao().getId())) {
-			
 			Instituicao instituicao = getInstituicaoCmd.getById(to.getInstituicao().getId());
 			unidade.setInstituicao(instituicao);
 		}
 
-		unidade.setIdArquivo(to.getArquivo());
-		
-		unidade.setNumeroCas(to.getNumeroCas());
-		unidade.setNumeroCdca(to.getNumeroCdca());
-		unidade.setDataVigenciaCdca(to.getDataVigenciaCdca());
-		unidade.setNumeroCnas(to.getNumeroCnas());
-		unidade.setDataVigenciaCas(to.getDataVigenciaCas());
+		if(Objects.nonNull(to.getArquivoMetadados()) && Objects.nonNull(to.getArquivoMetadados().getId())) {
+			unidade.setArquivoMetadados(arquivoMetadadosTOBuilder.build(to.getArquivoMetadados()));
+		}
 
 		return unidade;
 	}
@@ -80,22 +56,8 @@ public class UnidadeTOBuilder {
 			return to;
 		}
 
-		to.setIdUnidade(entity.getIdUnidade());
-		to.setSiglaUnidade(entity.getSiglaUnidade());
-		to.setNomeUnidade(entity.getNomeUnidade());
-		to.setEndereco(entity.getEndereco());
-		to.setTelefone(entity.getTelefone());
-		to.setDescricaoSituacaoImovel(entity.getDescricaoSituacaoImovel());
-		to.setDescricaoEstruturaFisicaImovel(entity.getDescricaoEstruturaFisicaImovel());
-		to.setUsuarioAlteracao(entity.getUsuarioAlteracao());
-		to.setVisao(entity.getVisao());
-		to.setMissao(entity.getMissao());
-		to.setEmail(entity.getEmail());
-		to.setCep(entity.getCep());
-		to.setBairro(entity.getBairro());
-		to.setUf(entity.getUf());
-		to.setCelular(entity.getCelular());
-		to.setTipoUnidade(entity.getTipoUnidade());
+		BeanUtils.copyProperties(entity, to);
+		
 		Optional.ofNullable(entity.getClassificacaoSituacaoImovel()).ifPresent(classificador -> {
 			to.setClassificacaoSituacaoImovel(classificador.getTipo());
 		});
@@ -106,18 +68,15 @@ public class UnidadeTOBuilder {
 		to.setInscricaoMunicipal(entity.getInscricaoMunicipal());
 		to.setHomePage(entity.getHomePage());
 		to.setCidade(entity.getCidade());
-		to.setArquivo(entity.getIdArquivo());
 
-		to.setInstituicao(instituicaoTOBuilder.buildTO(entity.getInstituicao()));
+		if(Objects.nonNull(entity.getArquivoMetadados()) && Objects.nonNull(entity.getArquivoMetadados().getId())) {
+			to.setArquivoMetadados(arquivoMetadadosTOBuilder.buildTO(entity.getArquivoMetadados()));
+		}
 		
+		to.setInstituicao(instituicaoTOBuilder.buildTO(entity.getInstituicao()));
 		to.setEstruturasUnidades(estruturaUnidadeTOBuilder.buildAll(getEstruturaUnidadeCmd.getByUnidade(entity)));
 		to.setCertificadosUnidade(certificadoUnidadeTOBuilder.buildAll(getCertificadoUnidadeCmd.getByUnidade(entity)));
 		
-		to.setNumeroCas(entity.getNumeroCas());
-		to.setNumeroCdca(entity.getNumeroCdca());
-		to.setDataVigenciaCdca(entity.getDataVigenciaCdca());
-		to.setNumeroCnas(entity.getNumeroCnas());
-		to.setDataVigenciaCas(entity.getDataVigenciaCas());
 
 		return to;
 	}

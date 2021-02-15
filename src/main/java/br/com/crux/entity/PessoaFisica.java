@@ -214,9 +214,11 @@ public class PessoaFisica {
 	@Column(name = "vl_renda")
 	private Double valorRenda;
 
-	@Column(name = "id_arquivo_foto")
-	private Long idArquivo;
 
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="id_arquivo_foto")
+	private ArquivoMetadado metadados;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_condicao_moradia")
 	private CondicoesMoradia condicoesMoradia;
@@ -767,12 +769,12 @@ public class PessoaFisica {
 		this.valorRenda = valorRenda;
 	}
 
-	public Long getIdArquivo() {
-		return idArquivo;
+	public ArquivoMetadado getMetadados() {
+		return metadados;
 	}
 
-	public void setIdArquivo(Long idArquivo) {
-		this.idArquivo = idArquivo;
+	public void setMetadados(ArquivoMetadado metadados) {
+		this.metadados = metadados;
 	}
 
 	public CondicoesMoradia getCondicoesMoradia() {

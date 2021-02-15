@@ -30,6 +30,7 @@ public class PessoaFisicaTOBuilder {
 	@Autowired private GetGrausInstrucaoCmd getGrausInstrucaoCmd;
 	@Autowired private GetCondicoesMoradiaCmd getCondicoesMoradiaCmd;
 	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
+	@Autowired private ArquivoMetadadosTOBuilder arquivoMetadadosTOBuilder;
 	
 	
 	public PessoaFisica build(PessoaFisicaTO p) {
@@ -107,8 +108,11 @@ public class PessoaFisicaTOBuilder {
 		retorno.setValorBolsaFamilia(p.getValorBolsaFamilia());
 		retorno.setValorOutrosBenerficiosSoc(p.getValorOutrosBenerficiosSoc());
 		retorno.setValorRenda(p.getValorRenda());
-		retorno.setIdArquivo(p.getIdArquivo());
-
+		
+		if(Objects.nonNull(p.getMetadados())) {
+			retorno.setMetadados(arquivoMetadadosTOBuilder.build(p.getMetadados()));
+		}
+		
 		Optional.ofNullable(p.getGrausInstrucao()).ifPresent(grau -> {
 			if (Objects.nonNull(grau.getId())) {
 				GrausInstrucao grauInstrucao = getGrausInstrucaoCmd.getById(grau.getId());
@@ -224,7 +228,11 @@ public class PessoaFisicaTOBuilder {
 		retorno.setValorBolsaFamilia(p.getValorBolsaFamilia());
 		retorno.setValorOutrosBenerficiosSoc(p.getValorOutrosBenerficiosSoc());
 		retorno.setValorRenda(p.getValorRenda());
-		retorno.setIdArquivo(p.getIdArquivo());
+		
+		if(Objects.nonNull(p.getMetadados())) {
+			retorno.setMetadados(arquivoMetadadosTOBuilder.buildTO(p.getMetadados()));
+		}
+		
 		retorno.setCondicoesMoradia(condicoesMoradiaTOBuilder.buildTO(p.getCondicoesMoradia()));
 		retorno.setGrausInstrucao(grausInstrucaoTOBuilder.buildTO(p.getGrausInstrucao()));
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
