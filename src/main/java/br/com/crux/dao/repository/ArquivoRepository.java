@@ -17,23 +17,8 @@ public interface ArquivoRepository extends JpaRepository<Arquivo, Long> {
 			+ " where pf.id = ?1")
 	public Optional<Arquivo> findByIdPessoaFisica(Long idPessoaFisica);
 	
-	
-	@Query(value = "SELECT a FROM Arquivo a                       "
-			+ " inner join ArquivoMetadado m on m = a.metadados   "
-			+ " inner join Unidade u on u.arquivoMetadados = m    "
-			+ " where u.id = ?1                                   ")
-	public Optional<Arquivo> findByIdUnidade(Long idUnidade);
-	
-	
-	@Query(value = "SELECT a FROM Arquivo a                       "
-			+ " inner join ArquivoMetadado m on m = a.metadados   "
-			+ " inner join Instituicao i on i.metadados = m       "
-			+ " where i.id = ?1                                   ")
-	public Optional<Arquivo> findByIdInstituicao(Long idInstituicao);
-	
 	@Query(value = "SELECT a FROM Arquivo a                            "
 				 + " inner join ArquivoMetadado am on am = a.metadados "
-				 + " inner join Instituicao i on i.metadados = am      "
 				 + " where am.id = ?1                                  ")
 	public Optional<Arquivo> findByIdMetadados(Long idMetadados);
 
