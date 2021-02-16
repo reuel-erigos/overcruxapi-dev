@@ -5,15 +5,19 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+import br.com.crux.cmd.GetUnidadeLogadaCmd;
 import br.com.crux.entity.ArquivoMetadado;
 import br.com.crux.infra.util.MD5Util;
 import br.com.crux.to.ArquivoMetadadoTO;
 
 @Component
 public class ArquivoMetadadosTOBuilder {
+	
+	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 
 	public ArquivoMetadadoTO buildTO(ArquivoMetadado p) {
 		ArquivoMetadadoTO retorno = new ArquivoMetadadoTO();
@@ -44,6 +48,7 @@ public class ArquivoMetadadosTOBuilder {
 		metadados.setNmArquivo(file.getOriginalFilename());
 		metadados.setNrTamanhoArquivo(file.getSize());
 		metadados.setDsTipoArquivo(file.getContentType());
+		metadados.setIdInstituicao(getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId());
 		
 		return metadados;
 	}

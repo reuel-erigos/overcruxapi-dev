@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import br.com.crux.cmd.GetUsuarioLogadoCmd;
 import br.com.crux.entity.Arquivo;
+import br.com.crux.entity.ArquivoMetadado;
 import br.com.crux.exception.UploadArquivoException;
 
 @Component
@@ -18,6 +19,7 @@ public class ArquivoBuilder {
 
 	public Arquivo build(MultipartFile file) {
 		Arquivo arquivo = new Arquivo();
+		arquivo.setMetadados(new ArquivoMetadado());
 		return build(file, arquivo);
 	}
 
@@ -31,7 +33,7 @@ public class ArquivoBuilder {
 
 			return arquivo;
 		} catch (IOException e) {
-			throw new UploadArquivoException("Erro ao recuperar os metadados do arquivo. " + e.getMessage());
+			throw new UploadArquivoException("Erro ao recuperar os metadados do arquivo. " + file.getName());
 		}
 	}
 

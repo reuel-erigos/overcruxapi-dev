@@ -20,8 +20,10 @@ public class GravarArquivoCmd {
 	@Autowired private ArquivoMetadadosRepository arquivoMetadadosRepository;
 	
 	public ArquivoMetadado gravar(Arquivo arquivo) {
-		arquivo = arquivoRepository.save(arquivo);
 		ArquivoMetadado metadado = arquivoMetadadosRepository.save(arquivo.getMetadados());
+		
+		arquivo.setMetadados(metadado);
+		arquivo = arquivoRepository.save(arquivo);
 		return metadado;
 	}
 	
