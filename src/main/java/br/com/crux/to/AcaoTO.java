@@ -38,6 +38,7 @@ public class AcaoTO {
 	private FuncionarioTO funcionarioExecutaAcao;	
 	
 	private List<MateriaisAcoesTO> materiaisAcao = new ArrayList<MateriaisAcoesTO>();
+	private List<AnexosAcaoPlanejamentoTO> anexosPlanejamento = new ArrayList<AnexosAcaoPlanejamentoTO>();
 	
 	private Long usuarioAlteracao;
 	
@@ -200,7 +201,13 @@ public class AcaoTO {
 	public void setLocalExecucao(String localExecucao) {
 		this.localExecucao = localExecucao;
 	}
-	
-	
 
+	public List<AnexosAcaoPlanejamentoTO> getAnexosPlanejamento() {
+		return anexosPlanejamento;
+	}
+
+	public void setAnexosPlanejamento(List<AnexosAcaoPlanejamentoTO> anexosPlanejamento) {
+		this.anexosPlanejamento = anexosPlanejamento;
+	}
+	
 }

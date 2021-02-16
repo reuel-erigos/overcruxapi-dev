@@ -87,8 +87,8 @@ public class Acoes implements Serializable {
 	@Column(name="st_local_execucao")
 	private String localExecucao;
 
-	
 
+	
 	public Acoes() {
 	}
 
@@ -235,6 +235,5 @@ public class Acoes implements Serializable {
 	public void setLocalExecucao(String localExecucao) {
 		this.localExecucao = localExecucao;
 	}
-
 	
 }

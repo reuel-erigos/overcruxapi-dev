@@ -5,14 +5,17 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.cmd.GetOficinasCmd;
 import br.com.crux.cmd.GetUnidadeLogadaCmd;
+import br.com.crux.dao.repository.AnexosAcaoPlanejamentoRepository;
 import br.com.crux.dao.repository.MateriaisAcoesRepository;
 import br.com.crux.cmd.GetFuncionarioCmd;
 import br.com.crux.entity.Acoes;
+import br.com.crux.entity.AnexosAcaoPlanejamento;
 import br.com.crux.entity.Oficinas;
 import br.com.crux.entity.Funcionario;
 import br.com.crux.entity.MateriaisAcoes;
@@ -28,23 +31,13 @@ public class AcaoTOBuilder {
 	@Autowired private MateriaisAcoesTOBuilder materiaisAcoesTOBuilder;
 	@Autowired private MateriaisAcoesRepository materiaisAcoesRepository;
 	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
+	@Autowired private AnexosAcaoPlanejamentoTOBuilder anexosAcaoPlanejamentoTOBuilder;
+	@Autowired private AnexosAcaoPlanejamentoRepository anexosAcaoPlanejamentoRepository;
 
 	public Acoes build(AcaoTO p) {
 		Acoes retorno = new Acoes();
 
-		retorno.setId(p.getId());
-		retorno.setDescricao(p.getDescricao());
-		
-		retorno.setDataInicio(p.getDataInicio());
-		retorno.setDataFim(p.getDataFim());
-		retorno.setDataPrevisaoInicio(p.getDataPrevisaoInicio());
-		retorno.setDataPrevisaoFim(p.getDataPrevisaoFim());
-		retorno.setDataAprovaAcao(p.getDataAprovaAcao());
-		
-		retorno.setDescricaoAvaliacaoAcao(p.getDescricaoAvaliacaoAcao());
-		retorno.setDescricaoMetodologiaAcao(p.getDescricaoMetodologiaAcao());
-		retorno.setDescricaoObjetivoAcao(p.getDescricaoObjetivoAcao());
-		retorno.setDescricaoOcorrenciaAcao(p.getDescricaoOcorrenciaAcao());
+		BeanUtils.copyProperties(p, retorno);
 		
 		Optional.ofNullable(p.getFuncionarioAprovaAcao()).ifPresent(func -> {
 			if(Objects.nonNull(func.getId())) {
@@ -67,16 +60,12 @@ public class AcaoTOBuilder {
 			}
 		});
 
-
 		Optional.ofNullable(p.getOficina()).ifPresent(atv -> {
 			Oficinas atividade = getAtividadeCmd.getById(atv.getId());
 			retorno.setOficina(atividade);
 		});
-
-		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
 		
 		retorno.setIdInstituicao(getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId());
-		retorno.setLocalExecucao(p.getLocalExecucao());
 
 		return retorno;
 	}
@@ -88,22 +77,9 @@ public class AcaoTOBuilder {
 			return retorno;
 		}
 
-		retorno.setId(p.getId());
-		retorno.setDescricao(p.getDescricao());
-		
-		retorno.setDataInicio(p.getDataInicio());
-		retorno.setDataFim(p.getDataFim());
-		retorno.setDataPrevisaoInicio(p.getDataPrevisaoInicio());
-		retorno.setDataPrevisaoFim(p.getDataPrevisaoFim());
-		retorno.setDataAprovaAcao(p.getDataAprovaAcao());
-		
-		retorno.setDescricaoAvaliacaoAcao(p.getDescricaoAvaliacaoAcao());
-		retorno.setDescricaoMetodologiaAcao(p.getDescricaoMetodologiaAcao());
-		retorno.setDescricaoObjetivoAcao(p.getDescricaoObjetivoAcao());
-		retorno.setDescricaoOcorrenciaAcao(p.getDescricaoOcorrenciaAcao());
+		BeanUtils.copyProperties(p, retorno);
 		
 		retorno.setOficina(atividadeBuilder.buildTO(p.getOficina()));
-		
 		retorno.setFuncionarioAprovaAcao(funcionarioTOBuilder.buildTO(p.getFuncionarioAprovaAcao()));
 		retorno.setFuncionarioExecutaAcao(funcionarioTOBuilder.buildTO(p.getFuncionarioExecutaAcao()));
 		retorno.setFuncionarioPlanejamentoAcao(funcionarioTOBuilder.buildTO(p.getFuncionarioPlanejamentoAcao()));
@@ -114,10 +90,14 @@ public class AcaoTOBuilder {
 				retorno.setMateriaisAcao(materiaisAcoesTOBuilder.buildAll(materiais.get()));
 			}
 		}
-
-		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
 		retorno.setIdInstituicao(getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId());
-		retorno.setLocalExecucao(p.getLocalExecucao());
+		
+		if(Objects.nonNull(p.getId())) {
+			Optional<List<AnexosAcaoPlanejamento>> anexos = anexosAcaoPlanejamentoRepository.findAllByIdAcao(p.getId());
+			if(anexos.isPresent()) {
+				retorno.setAnexosPlanejamento(anexosAcaoPlanejamentoTOBuilder.buildAllTO(anexos.get()));
+			}
+		}
 
 		return retorno;
 	}
