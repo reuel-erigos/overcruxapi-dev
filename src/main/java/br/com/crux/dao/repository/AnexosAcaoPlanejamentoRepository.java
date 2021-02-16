@@ -12,7 +12,7 @@ import br.com.crux.entity.AnexosAcaoPlanejamento;
 @Repository
 public interface AnexosAcaoPlanejamentoRepository extends JpaRepository<AnexosAcaoPlanejamento, Long>{
 	
-	@Query("select a from AnexosAcaoPlanejamento anexo "
+	@Query("select anexo from AnexosAcaoPlanejamento anexo "
 			+ " inner join Acoes acao on acao.id = anexo.idAcao "
 			+ " where acao.id = ?1")
 	public Optional<List<AnexosAcaoPlanejamento>> findAllByIdAcao(Long idAcao);
