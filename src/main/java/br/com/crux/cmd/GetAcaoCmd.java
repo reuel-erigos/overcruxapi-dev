@@ -50,9 +50,9 @@ public class GetAcaoCmd {
 		return new ArrayList<AcaoTO>();
 	}
 
-	public List<AcaoTO> getAll() {
-		Long idUnidade = getUnidadeLogadaCmd.get().getId();
-		Optional<List<Acoes>> entitys = repository.findByUnidade(idUnidade);
+	public List<AcaoTO> getAllByInstituicao() {
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+		Optional<List<Acoes>> entitys = repository.findByInstituicao(idInstituicao);
 		if (entitys.isPresent()) {
 			return toBuilder.buildAll(entitys.get());
 		}

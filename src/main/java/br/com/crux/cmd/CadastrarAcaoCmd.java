@@ -16,6 +16,7 @@ public class CadastrarAcaoCmd {
 	@Autowired private AcaoRepository repository;
 	@Autowired private AcaoTOBuilder acaoTOBuilder;
 	@Autowired private CadastrarMateriaisAcoesCmd cadastrarMateriaisAcoesCmd;
+	@Autowired private CadastrarAnexosAcaoPlanejamentoCmd cadastrarAnexosAcaoPlanejamentoCmd;
 
 	@Autowired private CamposObrigatoriosAcaoRule camposObrigatoriosRule;
 
@@ -27,6 +28,8 @@ public class CadastrarAcaoCmd {
 		entity = repository.save(entity);
 		
 		cadastrarMateriaisAcoesCmd.cadastrarAll(to.getMateriaisAcao(), entity.getId());
+		cadastrarAnexosAcaoPlanejamentoCmd.cadastrarAll(to.getAnexos(), entity.getId());
+		
 	}
 	
 }

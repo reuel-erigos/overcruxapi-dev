@@ -19,14 +19,17 @@ public class AlterarAcaoCmd {
 	@Autowired private CamposObrigatoriosAcaoRule camposObrigatoriosRule;
 	@Autowired private AcaoTOBuilder toBuilder;
 	@Autowired private AlterarMateriaisAcoesCmd alterarMateriaisAcoesCmd;  
-
+	@Autowired private AlterarAnexosAcaoPlanejamentoCmd alterarAnexosAcaoPlanejamentoCmd;
+	
 	public void alterar(AcaoTO to) {
 		camposObrigatoriosRule.verificar(to);
 		Acoes entity = repository.findById(to.getId()).orElseThrow(() -> new NotFoundException("Ação informada não existe."));
 		to.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 
 		entity = toBuilder.build(to);
+		
 		alterarMateriaisAcoesCmd.alterarAll(to.getMateriaisAcao(), entity.getId());
+		alterarAnexosAcaoPlanejamentoCmd.alterarAll(to.getAnexos(), entity.getId());
 		
 		repository.save(entity);
 	}

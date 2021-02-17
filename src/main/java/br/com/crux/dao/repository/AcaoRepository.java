@@ -51,7 +51,14 @@ public interface AcaoRepository extends JpaRepository<Acoes, Long>{
 	
 	@Query(value = "SELECT acao FROM Acoes acao "
 			+ " inner join Oficinas ofi on ofi = acao.oficina"
-			+ " inner join Unidade uni on ofi.unidade = uni"
+			+ " inner join Unidade uni on ofi.unidade = uni "
+			+ " inner join Instituicao instituicao on instituicao = uni.instituicao "
+			+ " where instituicao.id = ?1")
+	public Optional<List<Acoes>> findByInstituicao(Long idInstituicao);
+
+	@Query(value = "SELECT acao FROM Acoes acao "
+			+ " inner join Oficinas ofi on ofi = acao.oficina"
+			+ " inner join Unidade uni on ofi.unidade = uni "
 			+ " where uni.idUnidade = ?1")
 	public Optional<List<Acoes>> findByUnidade(Long idUnidade);
 

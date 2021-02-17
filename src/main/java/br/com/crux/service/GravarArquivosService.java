@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import br.com.crux.cmd.GravarAnexosAcaoCmd;
+import br.com.crux.cmd.GravarArquivoCmd;
 import br.com.crux.to.ArquivoMetadadoTO;
 
 @RestController
@@ -17,12 +17,14 @@ import br.com.crux.to.ArquivoMetadadoTO;
 public class GravarArquivosService {
 
 	@Autowired
-	private GravarAnexosAcaoCmd gravarAnexosAcaoCmd;
+	private GravarArquivoCmd gravarCmd;
 
 	
 	@Transactional
 	@PostMapping(path = "" )
 	public ArquivoMetadadoTO gravarAnexos(@RequestParam(name = "file") MultipartFile file) {
-		return gravarAnexosAcaoCmd.salvar(file);
+		return gravarCmd.salvar(file);
 	}
+	
+	
 }

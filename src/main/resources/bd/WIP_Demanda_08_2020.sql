@@ -80,3 +80,24 @@ CREATE SEQUENCE sq_id_anexo_acao_planejamento
 COMMIT;
 
 -------------------------------------------------------------------------------
+alter table arquivos alter column nm_arquivo drop not null;
+
+
+alter table arquivos drop column nm_arquivo;
+alter table arquivos drop column ds_tipo_arquivo;
+alter table arquivos drop column nr_tamanho_arquivo;
+alter table arquivos drop column hash;
+alter table arquivos drop column dt_criacao;
+alter table arquivos drop column hash;
+
+
+
+
+
+
+-------------------------------------------------------------------------------
+
+
+
+
+-------------------------------------------------------------------------------

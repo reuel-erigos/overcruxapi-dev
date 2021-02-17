@@ -30,8 +30,8 @@ public class AcaoService {
 	@Autowired private CadastrarAcaoCmd cadastrarCmd;
 
 	@GetMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<AcaoTO> getAll() {
-		return getCmd.getAll();
+	public List<AcaoTO> getAllByInstituicao() {
+		return getCmd.getAllByInstituicao();
 	}
 	
 	@GetMapping(path = "/filter", produces = MediaType.APPLICATION_JSON_VALUE)
