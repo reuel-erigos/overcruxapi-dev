@@ -2,6 +2,7 @@ package br.com.crux.builder;
 
 import java.io.IOException;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -10,6 +11,7 @@ import br.com.crux.cmd.GetUsuarioLogadoCmd;
 import br.com.crux.entity.Arquivo;
 import br.com.crux.entity.ArquivoMetadado;
 import br.com.crux.exception.UploadArquivoException;
+import br.com.crux.to.ArquivoTO;
 
 @Component
 public class ArquivoBuilder {
@@ -38,6 +40,14 @@ public class ArquivoBuilder {
 	}
 
 
+	public ArquivoTO buildTO(Arquivo arquivo) {
+		ArquivoTO retorno = new ArquivoTO();
+		
+		BeanUtils.copyProperties(arquivo, retorno);
+		
+		retorno.setMetadados(arquivoMetadadosTOBuilder.buildTO(arquivo.getMetadados()));
+		return retorno;
+	}
 
 
 }

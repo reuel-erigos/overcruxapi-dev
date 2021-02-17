@@ -14,8 +14,8 @@ import br.com.crux.exception.ParametroNaoInformadoException;
 @Component
 public class GetArquivoInstituicaoCmd {
 
-	@Autowired GetInstituicaoCmd getInstituicaoCmd;
-	@Autowired ArquivoRepository arquivoRepository;
+	@Autowired private GetInstituicaoCmd getInstituicaoCmd;
+	@Autowired private ArquivoRepository arquivoRepository;
 
 	public byte[] get(Long idInstituicao) {
 		if (Objects.isNull(idInstituicao)) {
