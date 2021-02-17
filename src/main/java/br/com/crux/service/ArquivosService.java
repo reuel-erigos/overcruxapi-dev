@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -64,7 +65,7 @@ public class ArquivosService {
 	}
 	
 	
-	@GetMapping(path = "/dados/{id}/nome/{nomeArquivo}")
+	@PostMapping(path = "/dados/{id}/nome/{nomeArquivo}",  produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
 	public byte[] getArquivo(@PathVariable("id") Long idArquivoMetadados, @PathVariable("nomeArquivo") String nomeArquivo) {
 		ArquivoTO arquivoTO = getCmd.getDados(idArquivoMetadados);
 		return arquivoTO.getBlob();
