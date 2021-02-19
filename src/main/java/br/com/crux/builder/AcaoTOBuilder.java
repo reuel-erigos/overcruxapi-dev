@@ -95,7 +95,7 @@ public class AcaoTOBuilder {
 		if(Objects.nonNull(p.getId())) {
 			Optional<List<AnexosAcaoPlanejamento>> anexos = anexosAcaoPlanejamentoRepository.findAllByIdAcao(p.getId());
 			if(anexos.isPresent()) {
-				retorno.setAnexosPlanejamento(anexosAcaoPlanejamentoTOBuilder.buildAllTO(anexos.get()));
+				retorno.setAnexos(anexosAcaoPlanejamentoTOBuilder.buildAllTO(anexos.get()));
 			}
 		}
 

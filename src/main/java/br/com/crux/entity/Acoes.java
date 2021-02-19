@@ -87,7 +87,8 @@ public class Acoes implements Serializable {
 	@Column(name="st_local_execucao")
 	private String localExecucao;
 
-
+	@Column(name = "id_grupo_acao")
+	private Long idGrupoAcao;
 	
 	public Acoes() {
 	}
@@ -235,5 +236,14 @@ public class Acoes implements Serializable {
 	public void setLocalExecucao(String localExecucao) {
 		this.localExecucao = localExecucao;
 	}
+
+	public Long getIdGrupoAcao() {
+		return idGrupoAcao;
+	}
+
+	public void setIdGrupoAcao(Long idGrupoAcao) {
+		this.idGrupoAcao = idGrupoAcao;
+	}
+	
 	
 }

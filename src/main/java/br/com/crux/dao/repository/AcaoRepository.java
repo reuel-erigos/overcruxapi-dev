@@ -76,6 +76,13 @@ public interface AcaoRepository extends JpaRepository<Acoes, Long>{
 			+ "   and turma.id = ?1 " )
 	public Optional<List<Acoes>> findByTurma(Long idTurma);
 	
+
 	
+	
+	@Query(value = "SELECT a FROM Acoes a      "
+				 + " where 1 =1                "
+				 + "   and a.idGrupoAcao = ?1  " )
+	public Optional<List<Acoes>> findAllByIdGrupo(Long idGrupoAcao);
+
 	
 }
