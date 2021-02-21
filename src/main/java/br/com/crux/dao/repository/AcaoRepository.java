@@ -52,7 +52,7 @@ public interface AcaoRepository extends JpaRepository<Acoes, Long>{
 	public Optional<List<Acoes>> findByAcao(Long idAcao);
 	
 	@Query(value = "SELECT acao FROM Acoes acao "
-			+ " inner join Instituicao instituicao on instituicao = acao.idInstituicao "
+			+ " inner join Instituicao instituicao on instituicao.id = acao.idInstituicao "
 			+ " where instituicao.id = ?1")
 	public Optional<List<Acoes>> findByInstituicao(Long idInstituicao);
 
