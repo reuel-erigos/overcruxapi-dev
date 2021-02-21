@@ -71,7 +71,7 @@ public interface AcaoRepository extends JpaRepository<Acoes, Long>{
 	public Optional<List<Acoes>> findByOficina(Long idOficina);	
 
 	
-	@Query(value = "SELECT a FROM Acoes a                             "
+	@Query(value = "SELECT acao FROM Acoes acao                       "
 			+ " inner join GrupoAcoes ga on ga.id = acao.idGrupoAcao  "
 			+ " inner join Oficinas oficina on oficina = ga.atividade "
 			+ " inner join Turmas turma on turma.id = oficina.idTurma "
@@ -82,9 +82,9 @@ public interface AcaoRepository extends JpaRepository<Acoes, Long>{
 
 	
 	
-	@Query(value = "SELECT a FROM Acoes a      "
-				 + " where 1 =1                "
-				 + "   and a.idGrupoAcao = ?1  " )
+	@Query(value = "SELECT acao FROM Acoes acao      "
+				 + " where 1 =1                      "
+				 + "   and acao.idGrupoAcao = ?1     " )
 	public Optional<List<Acoes>> findAllByIdGrupo(Long idGrupoAcao);
 
 	
