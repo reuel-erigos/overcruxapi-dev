@@ -56,27 +56,27 @@ public interface AcaoRepository extends JpaRepository<Acoes, Long>{
 			+ " where instituicao.id = ?1")
 	public Optional<List<Acoes>> findByInstituicao(Long idInstituicao);
 
-	@Query(value = "SELECT acao FROM Acoes acao "
+	@Query(value = "SELECT acao FROM Acoes acao                       "
 			+ " inner join GrupoAcoes ga on ga.id = acao.idGrupoAcao  "
 			+ " inner join Oficinas oficina on oficina = ga.atividade "
-			+ " inner join Unidade uni on ofi.unidade = uni "
-			+ " where uni.idUnidade = ?1")
+			+ " inner join Unidade uni on oficina.unidade = uni       "
+			+ " where uni.idUnidade = ?1                              ")
 	public Optional<List<Acoes>> findByUnidade(Long idUnidade);
 
 	
-	@Query(value = "SELECT acao FROM Acoes acao "
+	@Query(value = "SELECT acao FROM Acoes acao                       "
 			+ " inner join GrupoAcoes ga on ga.id = acao.idGrupoAcao  "
 			+ " inner join Oficinas oficina on oficina = ga.atividade "
-			+ " where oficina.id = ?1")
+			+ " where oficina.id = ?1                                 ")
 	public Optional<List<Acoes>> findByOficina(Long idOficina);	
 
 	
-	@Query(value = "SELECT a FROM Acoes a "
+	@Query(value = "SELECT a FROM Acoes a                             "
 			+ " inner join GrupoAcoes ga on ga.id = acao.idGrupoAcao  "
 			+ " inner join Oficinas oficina on oficina = ga.atividade "
-			+ " inner join Turmas turma on turma.id = oficina.idTurma"
-			+ " where 1 =1 "
-			+ "   and turma.id = ?1 " )
+			+ " inner join Turmas turma on turma.id = oficina.idTurma "
+			+ " where 1 =1                                            "
+			+ "   and turma.id = ?1                                   " )
 	public Optional<List<Acoes>> findByTurma(Long idTurma);
 	
 
