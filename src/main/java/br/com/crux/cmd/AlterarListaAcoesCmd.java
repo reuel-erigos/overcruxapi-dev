@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 import br.com.crux.builder.AcaoTOBuilder;
 import br.com.crux.dao.repository.AcaoRepository;
 import br.com.crux.entity.Acoes;
-import br.com.crux.exception.NotFoundException;
 import br.com.crux.rule.CamposObrigatoriosAcaoRule;
 import br.com.crux.to.AcaoTO;
 import br.com.crux.to.GrupoAcoesSimlesTO;
@@ -31,11 +30,10 @@ public class AlterarListaAcoesCmd {
 	
 	private void alterar(AcaoTO to) {
 		camposObrigatoriosRule.verificar(to);
-		Acoes entity = repository.findById(to.getId()).orElseThrow(() -> new NotFoundException("Ação informada não existe."));
-		to.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
-		to.setIdInstituicao(getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId());
 
-		entity = toBuilder.build(to);
+		Acoes entity = toBuilder.build(to);
+		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
+		entity.setIdInstituicao(getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId());
 		
 		alterarMateriaisAcoesCmd.alterarAll(to.getMateriaisAcao(), entity.getId());
 		alterarAnexosAcaoPlanejamentoCmd.alterarAll(to.getAnexos(), entity.getId());

@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.cmd.GetFuncionarioCmd;
-import br.com.crux.cmd.GetOficinasCmd;
 import br.com.crux.cmd.GetUnidadeLogadaCmd;
 import br.com.crux.dao.repository.AnexosAcaoPlanejamentoRepository;
 import br.com.crux.dao.repository.GrupoAcoesRepository;
@@ -20,15 +19,12 @@ import br.com.crux.entity.AnexosAcaoPlanejamento;
 import br.com.crux.entity.Funcionario;
 import br.com.crux.entity.GrupoAcoes;
 import br.com.crux.entity.MateriaisAcoes;
-import br.com.crux.entity.Oficinas;
 import br.com.crux.to.AcaoTO;
 
 @Component
 public class AcaoTOBuilder {
 
-	@Autowired private OficinasTOBuilder atividadeBuilder;
 	@Autowired private FuncionarioTOBuilder funcionarioTOBuilder;
-	@Autowired private GetOficinasCmd getAtividadeCmd;
 	@Autowired private GetFuncionarioCmd getFuncionarioCmd;
 	@Autowired private MateriaisAcoesTOBuilder materiaisAcoesTOBuilder;
 	@Autowired private MateriaisAcoesRepository materiaisAcoesRepository;
