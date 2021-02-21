@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
@@ -49,7 +48,7 @@ public class GrupoAcoes implements Serializable {
 	
 	// (A = APROVADA; R = REPROVADA
 	@Column(name="st_analise")
-	private String statusAnaliuse;
+	private String statusAnalise;
 	
 	@Convert(converter = SimNaoConverter.class)
 	@Column(name = "st_envio_analise")
@@ -61,7 +60,7 @@ public class GrupoAcoes implements Serializable {
 	@Column(name="id_usuario_apl")
 	private Long usuarioAlteracao;
 	
-	@OneToMany(mappedBy = "idGrupoAcao", targetEntity = Acoes.class, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "idGrupoAcao")
 	private List<Acoes> acoes;
 
 	public GrupoAcoes() {
@@ -107,12 +106,12 @@ public class GrupoAcoes implements Serializable {
 		this.dataAnalise = dataAnalise;
 	}
 
-	public String getStatusAnaliuse() {
-		return statusAnaliuse;
+	public String getStatusAnalise() {
+		return statusAnalise;
 	}
 
-	public void setStatusAnaliuse(String statusAnaliuse) {
-		this.statusAnaliuse = statusAnaliuse;
+	public void setStatusAnalise(String statusAnaliuse) {
+		this.statusAnalise = statusAnaliuse;
 	}
 
 	public Boolean getStatusEnvioAnalise() {

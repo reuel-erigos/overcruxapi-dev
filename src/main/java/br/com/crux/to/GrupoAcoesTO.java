@@ -18,7 +18,7 @@ public class GrupoAcoesTO {
 	private LocalDateTime dataAnalise;
 	
 	// (A = APROVADA; R = REPROVADA
-	private String statusAnaliuse;
+	private String statusAnalise;
 	private Boolean statusEnvioAnalise;
 	private String descricao;
 	private Long usuarioAlteracao;
@@ -69,12 +69,12 @@ public class GrupoAcoesTO {
 		this.dataAnalise = dataAnalise;
 	}
 
-	public String getStatusAnaliuse() {
-		return statusAnaliuse;
+	public String getStatusAnalise() {
+		return statusAnalise;
 	}
 
-	public void setStatusAnaliuse(String statusAnaliuse) {
-		this.statusAnaliuse = statusAnaliuse;
+	public void setStatusAnalise(String statusAnaliuse) {
+		this.statusAnalise = statusAnaliuse;
 	}
 
 	public Boolean getStatusEnvioAnalise() {

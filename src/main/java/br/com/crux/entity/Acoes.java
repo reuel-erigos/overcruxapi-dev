@@ -244,6 +244,6 @@ public class Acoes implements Serializable {
 	public void setIdGrupoAcao(Long idGrupoAcao) {
 		this.idGrupoAcao = idGrupoAcao;
 	}
-	
+
 	
 }

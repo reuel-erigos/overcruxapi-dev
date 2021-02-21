@@ -45,7 +45,8 @@ public class AcaoTO {
 	private OficinasTO oficina;
 	private Long idInstituicao;
 	private String localExecucao;
-	private Long idGrupoAcao;
+	
+	private GrupoAcoesSimlesTO grupoAcao;
 	
 	public AcaoTO() {
 	}
@@ -210,12 +211,13 @@ public class AcaoTO {
 		this.anexos= anexos;
 	}
 
-	public Long getIdGrupoAcao() {
-		return idGrupoAcao;
+	public GrupoAcoesSimlesTO getGrupoAcao() {
+		return grupoAcao;
 	}
 
-	public void setIdGrupoAcao(Long idGrupoAcao) {
-		this.idGrupoAcao = idGrupoAcao;
+	public void setGrupoAcao(GrupoAcoesSimlesTO grupoAcao) {
+		this.grupoAcao = grupoAcao;
 	}
+
 	
 }

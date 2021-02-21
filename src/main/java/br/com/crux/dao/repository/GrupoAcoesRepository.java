@@ -11,9 +11,11 @@ import br.com.crux.entity.GrupoAcoes;
 @Repository
 public interface GrupoAcoesRepository extends JpaRepository<GrupoAcoes, Long>{
 	
-	@Query(value = "SELECT ga FROM GrupoAcoes ga "
-			+ " where 1 = 1 "
-			+ "   and ga.numeroGrupo = ?1 ")
-	public Optional<GrupoAcoes> findByNumero(String numero);
+	@Query(value = "SELECT ga FROM GrupoAcoes ga                          "
+			+ " inner join Oficinas atividade on atividade = ga.atividade "
+			+ " where 1 = 1                                               "
+			+ "   and ga.numeroGrupo = ?1                                 "
+			+ "   and atividade.id   = ?2                                 ")
+	public Optional<GrupoAcoes> findByNumeroAndAtividade(String numero, Long idAtividade);
 	
 }

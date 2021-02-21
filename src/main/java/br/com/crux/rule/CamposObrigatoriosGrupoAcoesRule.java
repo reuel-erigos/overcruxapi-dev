@@ -16,6 +16,10 @@ public class CamposObrigatoriosGrupoAcoesRule {
 			throw new CamposObrigatoriosException("Período deve ser informado.");
 		}
 
+		if (to.getNumeroGrupo().length() != 6) {
+			throw new CamposObrigatoriosException("O período deve conter {6} dígitos.") ;
+		}
+		
 		if (Objects.isNull(to.getAtividade()) && Objects.isNull(to.getAtividade().getId())) {
 			throw new CamposObrigatoriosException("Atividade deve ser informada.");
 		}

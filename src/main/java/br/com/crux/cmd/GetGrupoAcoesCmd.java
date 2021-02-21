@@ -16,8 +16,8 @@ public class GetGrupoAcoesCmd {
 	@Autowired private GrupoAcoesRepository repository;
 	@Autowired private GrupoAcoesTOBuilder toBuilder;
 
-	public GrupoAcoesTO getByNumero(String numero) {
-		Optional<GrupoAcoes> entity = repository.findByNumero(numero);
+	public GrupoAcoesTO getByNumeroAndAtividade(String numero, Long idAtividade) {
+		Optional<GrupoAcoes> entity = repository.findByNumeroAndAtividade(numero, idAtividade);
 		if(entity.isPresent()) {
 			return toBuilder.buildTO(entity.get());
 		}

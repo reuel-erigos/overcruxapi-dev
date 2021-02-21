@@ -1,5 +1,7 @@
 package br.com.crux.service;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,9 +26,10 @@ public class GrupoAcoesService {
 	@Autowired private CadastrarGrupoAcoesCmd cadastrarCmd;
 
 	
-	@GetMapping(path = "/numero/{numero}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public GrupoAcoesTO getByNumero(@PathVariable(name = "numero") String numero) {
-		return getCmd.getByNumero(numero);
+	@GetMapping(path = "/numero/{numero}/atividade/{idAtividade}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public GrupoAcoesTO getByNumeroAndAtividade(@PathVariable(name = "numero") String numero,
+			                                    @PathVariable(name = "idAtividade") Long idAtividade) {
+		return getCmd.getByNumeroAndAtividade(numero,idAtividade);
 	}
 
 	@GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -34,11 +37,13 @@ public class GrupoAcoesService {
 		return getCmd.getByTOId(id);
 	}
 
+	@Transactional
 	@PostMapping(path = "", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public GrupoAcoesTO cadastrar(@RequestBody GrupoAcoesTO param) {
 		return cadastrarCmd.cadastrar(param);
 	}
 
+	@Transactional
 	@PutMapping(path = "", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public GrupoAcoesTO alterar(@RequestBody GrupoAcoesTO param) {
 		return alterarCmd.alterar(param);

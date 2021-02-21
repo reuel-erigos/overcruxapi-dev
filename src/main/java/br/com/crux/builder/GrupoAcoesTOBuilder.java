@@ -11,11 +11,10 @@ import org.springframework.stereotype.Component;
 
 import br.com.crux.cmd.GetFuncionarioCmd;
 import br.com.crux.cmd.GetOficinasCmd;
-import br.com.crux.dao.repository.AcaoRepository;
-import br.com.crux.entity.Acoes;
 import br.com.crux.entity.Funcionario;
 import br.com.crux.entity.GrupoAcoes;
 import br.com.crux.entity.Oficinas;
+import br.com.crux.to.GrupoAcoesSimlesTO;
 import br.com.crux.to.GrupoAcoesTO;
 
 @Component
@@ -25,7 +24,6 @@ public class GrupoAcoesTOBuilder {
 	@Autowired private FuncionarioTOBuilder funcionarioTOBuilder;
 	@Autowired private GetOficinasCmd getAtividadeCmd;
 	@Autowired private GetFuncionarioCmd getFuncionarioCmd;
-	@Autowired private AcaoRepository acaoRepository;
 	@Autowired private AcaoTOBuilder acaoTOBuilder;
 	
 	
@@ -66,15 +64,42 @@ public class GrupoAcoesTOBuilder {
 		retorno.setFuncionarioAnalise(funcionarioTOBuilder.buildTO(p.getFuncionarioAnalise()));
 		
 		if(Objects.nonNull(p.getId())) {
-			Optional<List<Acoes>> acoes = acaoRepository.findAllByIdGrupo(p.getId());
-			if(acoes.isPresent()) {
-				retorno.setAcoes(acaoTOBuilder.buildAll(acoes.get()));
+			if(!p.getAcoes().isEmpty()) {
+				retorno.setAcoes(acaoTOBuilder.buildAll(p.getAcoes()));
 			}
 		}
 
 		return retorno;
 	}
 
+	public GrupoAcoesTO buildSemAcao(GrupoAcoes p) {
+		GrupoAcoesTO retorno = new GrupoAcoesTO();
+
+		if (Objects.isNull(p)) {
+			return retorno;
+		}
+
+		BeanUtils.copyProperties(p, retorno);
+		
+		retorno.setAtividade(atividadeBuilder.buildTO(p.getAtividade()));
+		retorno.setFuncionarioAnalise(funcionarioTOBuilder.buildTO(p.getFuncionarioAnalise()));
+
+		return retorno;
+	}
+
+	
+
+	public GrupoAcoesSimlesTO buildSimplesTO(GrupoAcoes p) {
+		GrupoAcoesSimlesTO retorno = new GrupoAcoesSimlesTO();
+		
+		if (Objects.isNull(p)) {return retorno;}
+		
+		BeanUtils.copyProperties(p, retorno);
+		retorno.setAtividade(atividadeBuilder.buildTO(p.getAtividade()));
+
+		return retorno;
+	}
+	
 	public List<GrupoAcoesTO> buildAll(List<GrupoAcoes> dtos) {
 		return dtos.stream().map(dto -> buildTO(dto)).collect(Collectors.toList());
 	}

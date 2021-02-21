@@ -9,16 +9,18 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import br.com.crux.cmd.GetFuncionarioCmd;
 import br.com.crux.cmd.GetOficinasCmd;
 import br.com.crux.cmd.GetUnidadeLogadaCmd;
 import br.com.crux.dao.repository.AnexosAcaoPlanejamentoRepository;
+import br.com.crux.dao.repository.GrupoAcoesRepository;
 import br.com.crux.dao.repository.MateriaisAcoesRepository;
-import br.com.crux.cmd.GetFuncionarioCmd;
 import br.com.crux.entity.Acoes;
 import br.com.crux.entity.AnexosAcaoPlanejamento;
-import br.com.crux.entity.Oficinas;
 import br.com.crux.entity.Funcionario;
+import br.com.crux.entity.GrupoAcoes;
 import br.com.crux.entity.MateriaisAcoes;
+import br.com.crux.entity.Oficinas;
 import br.com.crux.to.AcaoTO;
 
 @Component
@@ -33,6 +35,10 @@ public class AcaoTOBuilder {
 	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 	@Autowired private AnexosAcaoPlanejamentoTOBuilder anexosAcaoPlanejamentoTOBuilder;
 	@Autowired private AnexosAcaoPlanejamentoRepository anexosAcaoPlanejamentoRepository;
+	@Autowired private GrupoAcoesRepository grupoAcoesRepository;
+	@Autowired private GrupoAcoesTOBuilder grupoAcoesTOBuilder;
+	
+	
 
 	public Acoes build(AcaoTO p) {
 		Acoes retorno = new Acoes();
@@ -66,6 +72,8 @@ public class AcaoTOBuilder {
 		});
 		
 		retorno.setIdInstituicao(getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId());
+		
+		retorno.setIdGrupoAcao(p.getGrupoAcao().getId());
 
 		return retorno;
 	}
@@ -98,7 +106,12 @@ public class AcaoTOBuilder {
 				retorno.setAnexos(anexosAcaoPlanejamentoTOBuilder.buildAllTO(anexos.get()));
 			}
 		}
-
+		
+		if(Objects.nonNull(p.getIdGrupoAcao())) {
+			Optional<GrupoAcoes> grupoAcao = grupoAcoesRepository.findById(p.getIdGrupoAcao());
+			retorno.setGrupoAcao(grupoAcoesTOBuilder.buildSimplesTO(grupoAcao.get()));
+		}
+		
 		return retorno;
 	}
 

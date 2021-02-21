@@ -12,17 +12,13 @@ import br.com.crux.to.AcaoTO;
 public class CamposObrigatoriosAcaoRule {
 
 	public void verificar(AcaoTO to) {
-		if (Objects.isNull(to.getDataInicio())) {
-			throw new CamposObrigatoriosException("Data de Início deve ser informada.");
+		if (Objects.isNull(to.getDataPrevisaoInicio())) {
+			throw new CamposObrigatoriosException("Data Previsão de Início deve ser informada.");
 		}
 
 		if (StringUtils.isEmpty(to.getDescricao())) {
 			throw new CamposObrigatoriosException("Descrição deve ser informada.");
 		}
-
-		if (Objects.isNull(to.getOficina()) && Objects.isNull(to.getOficina().getId())) {
-			throw new CamposObrigatoriosException("Atividade deve ser informada.");
-		}
-
+		
 	}
 }
