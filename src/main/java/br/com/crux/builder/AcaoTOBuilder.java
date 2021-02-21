@@ -65,14 +65,8 @@ public class AcaoTOBuilder {
 				retorno.setFuncionarioPlanejamentoAcao(funcionario);
 			}
 		});
-
-		Optional.ofNullable(p.getOficina()).ifPresent(atv -> {
-			Oficinas atividade = getAtividadeCmd.getById(atv.getId());
-			retorno.setOficina(atividade);
-		});
 		
 		retorno.setIdInstituicao(getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId());
-		
 		retorno.setIdGrupoAcao(p.getGrupoAcao().getId());
 
 		return retorno;
@@ -87,7 +81,6 @@ public class AcaoTOBuilder {
 
 		BeanUtils.copyProperties(p, retorno);
 		
-		retorno.setOficina(atividadeBuilder.buildTO(p.getOficina()));
 		retorno.setFuncionarioAprovaAcao(funcionarioTOBuilder.buildTO(p.getFuncionarioAprovaAcao()));
 		retorno.setFuncionarioExecutaAcao(funcionarioTOBuilder.buildTO(p.getFuncionarioExecutaAcao()));
 		retorno.setFuncionarioPlanejamentoAcao(funcionarioTOBuilder.buildTO(p.getFuncionarioPlanejamentoAcao()));
@@ -99,6 +92,7 @@ public class AcaoTOBuilder {
 			}
 		}
 		retorno.setIdInstituicao(getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId());
+		
 		
 		if(Objects.nonNull(p.getId())) {
 			Optional<List<AnexosAcaoPlanejamento>> anexos = anexosAcaoPlanejamentoRepository.findAllByIdAcao(p.getId());
