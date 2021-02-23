@@ -21,7 +21,7 @@ public interface ContasCentrosCustoRepository extends JpaRepository<ContasCentro
             + " inner join Instituicao i on i = u.instituicao " 
 		      + " where i.id = ?1  "
 		      + "   and pp.id = ?2 "
-		      + " order by cb.numeroBanco, cb.nomeBanco, cb.numeroAgencia, cb.numeroContaBancaria ")
+		      + " order by ccc.contasBancaria.numeroBanco, ccc.contasBancaria.nomeBanco, ccc.contasBancaria.numeroAgencia, ccc.contasBancaria.numeroContaBancaria ")
 	public Optional<List<ContasCentrosCusto>> findByParceriasPrograma(Long idInstituicao, Long idParceriasPrograma);
 
 	
@@ -32,7 +32,7 @@ public interface ContasCentrosCustoRepository extends JpaRepository<ContasCentro
             + " inner join Instituicao i on i = u.instituicao " 
 		      + " where i.id = ?1  "
 		      + "   and pp.id = ?2 "
-		      + " order by cb.numeroBanco, cb.nomeBanco, cb.numeroAgencia, cb.numeroContaBancaria ")
+		      + " order by ccc.contasBancaria.numeroBanco, ccc.contasBancaria.nomeBanco, ccc.contasBancaria.numeroAgencia, ccc.contasBancaria.numeroContaBancaria ")
 	public Optional<List<ContasCentrosCusto>> findByParceriasProjeto(Long idInstituicao, Long idParceriasProjeto);
 
 }
