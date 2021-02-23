@@ -14,7 +14,8 @@ import br.com.crux.entity.ContasCentrosCusto;
 public interface ContasCentrosCustoRepository extends JpaRepository<ContasCentrosCusto, Long> {
 
 	
-	@Query(value = "select distinct ccc from ContasCentrosCusto ccc "
+	@Query(value = "select distinct ccc , ccc.contasBancaria.numeroBanco, ccc.contasBancaria.nomeBanco, ccc.contasBancaria.numeroAgencia, ccc.contasBancaria.numeroContaBancaria "
+			+ " from ContasCentrosCusto ccc "
 			+ " inner join ParceriasPrograma pp on pp = ccc.parceriasPrograma "
 			+ " inner join ContasBancaria cb on cb = ccc.contasBancaria " 
             + " inner join Unidade u on u = cb.unidade "
@@ -25,7 +26,8 @@ public interface ContasCentrosCustoRepository extends JpaRepository<ContasCentro
 	public Optional<List<ContasCentrosCusto>> findByParceriasPrograma(Long idInstituicao, Long idParceriasPrograma);
 
 	
-	@Query(value = "select distinct ccc from ContasCentrosCusto ccc "
+	@Query(value = "select distinct ccc, ccc.contasBancaria.numeroBanco, ccc.contasBancaria.nomeBanco, ccc.contasBancaria.numeroAgencia, ccc.contasBancaria.numeroContaBancaria "
+			+ "  from ContasCentrosCusto ccc "
 			+ " inner join ParceriasProjeto pp on pp = ccc.parceriasProjeto "
 			+ " inner join ContasBancaria cb on cb = ccc.contasBancaria " 
             + " inner join Unidade u on u = cb.unidade "
