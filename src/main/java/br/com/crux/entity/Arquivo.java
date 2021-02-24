@@ -30,11 +30,6 @@ public class Arquivo implements Serializable {
 	@Column(name="blob")
 	private byte[] blob;
 
-
-	@JoinColumn(name="id_usuario_apl")
-	@Column(name="id_usuario_apl")
-	private Long usuarioAlteracao;
-
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_arquivo_metadado")
 	private ArquivoMetadado metadados;
@@ -57,14 +52,6 @@ public class Arquivo implements Serializable {
 
 	public void setBlob(byte[] blob) {
 		this.blob = blob;
-	}
-
-	public Long getUsuarioAlteracao() {
-		return usuarioAlteracao;
-	}
-
-	public void setUsuarioAlteracao(Long usuarioAlteracao) {
-		this.usuarioAlteracao = usuarioAlteracao;
 	}
 
 	public ArquivoMetadado getMetadados() {
