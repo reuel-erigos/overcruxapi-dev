@@ -14,27 +14,30 @@ import br.com.crux.entity.ContasCentrosCusto;
 public interface ContasCentrosCustoRepository extends JpaRepository<ContasCentrosCusto, Long> {
 
 	
-	@Query(value = "select distinct ccc , ccc.contasBancaria.numeroBanco, ccc.contasBancaria.nomeBanco, ccc.contasBancaria.numeroAgencia, ccc.contasBancaria.numeroContaBancaria "
-			+ " from ContasCentrosCusto ccc "
-			+ " inner join ParceriasPrograma pp on pp = ccc.parceriasPrograma "
-			+ " inner join ContasBancaria cb on cb = ccc.contasBancaria " 
-            + " inner join Unidade u on u = cb.unidade "
-            + " inner join Instituicao i on i = u.instituicao " 
-		      + " where i.id = ?1  "
-		      + "   and pp.id = ?2 "
-		      + " order by ccc.contasBancaria.numeroBanco, ccc.contasBancaria.nomeBanco, ccc.contasBancaria.numeroAgencia, ccc.contasBancaria.numeroContaBancaria ")
+
+	@Query(value = " select c.id_conta_centro_custo, c.id_conta_bancaria, c.id_usuario_apl, c.id_parceria_programa, c.id_parceria_projeto  "
+			+ "   from contas_centros_custo c                                                                                         "
+			+ "   inner join parcerias_programas pp on pp.id_parceria_programa = c.id_parceria_programa                               "
+			+ "   inner join contas_bancarias cb on cb.id_conta_bancaria = c.id_conta_bancaria                                        "
+			+ "   inner join unidades u on u.id_unidade = cb.id_unidade                                                               "
+			+ "   inner join instituicoes i on i.id_instituicao = u.id_instituicao                                                    "
+			+ "  where 1=1                                                                                                            "
+			+ "    and i.id_instituicao        = ?1                                                                                   "
+			+ "    and pp.id_parceria_programa = ?2                                                                                   "
+			+ "   order by cb.nr_banco, cb.nm_banco, cb.nr_agencia, cb.nr_conta_bancaria                                              ", nativeQuery = true)
 	public Optional<List<ContasCentrosCusto>> findByParceriasPrograma(Long idInstituicao, Long idParceriasPrograma);
 
 	
-	@Query(value = "select distinct ccc, ccc.contasBancaria.numeroBanco, ccc.contasBancaria.nomeBanco, ccc.contasBancaria.numeroAgencia, ccc.contasBancaria.numeroContaBancaria "
-			+ "  from ContasCentrosCusto ccc "
-			+ " inner join ParceriasProjeto pp on pp = ccc.parceriasProjeto "
-			+ " inner join ContasBancaria cb on cb = ccc.contasBancaria " 
-            + " inner join Unidade u on u = cb.unidade "
-            + " inner join Instituicao i on i = u.instituicao " 
-		      + " where i.id = ?1  "
-		      + "   and pp.id = ?2 "
-		      + " order by ccc.contasBancaria.numeroBanco, ccc.contasBancaria.nomeBanco, ccc.contasBancaria.numeroAgencia, ccc.contasBancaria.numeroContaBancaria ")
+	@Query(value = " select c.id_conta_centro_custo, c.id_conta_bancaria, c.id_usuario_apl, c.id_parceria_programa, c.id_parceria_projeto  "
+			+ "   from contas_centros_custo c                                                                                         "
+			+ "   inner join parcerias_projetos pp on pp.id_parceria_projeto = c.id_parceria_projeto                                  "
+			+ "   inner join contas_bancarias cb on cb.id_conta_bancaria = c.id_conta_bancaria                                        "
+			+ "   inner join unidades u on u.id_unidade = cb.id_unidade                                                               "
+			+ "   inner join instituicoes i on i.id_instituicao = u.id_instituicao                                                    "
+			+ "  where 1=1                                                                                                            "
+			+ "    and i.id_instituicao        = ?1                                                                                   "
+			+ "    and pp.id_parceria_projeto  = ?2                                                                                   "
+			+ "   order by cb.nr_banco, cb.nm_banco, cb.nr_agencia, cb.nr_conta_bancaria                                              ", nativeQuery = true)
 	public Optional<List<ContasCentrosCusto>> findByParceriasProjeto(Long idInstituicao, Long idParceriasProjeto);
 
 }
