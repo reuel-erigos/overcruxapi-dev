@@ -29,7 +29,6 @@ public class ArquivoBuilder {
 		Long idUsuarioLogado = getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario();
 		try {
 			arquivo.setBlob(file.getBytes());
-			arquivo.setUsuarioAlteracao(idUsuarioLogado);
 			arquivo.setMetadados(arquivoMetadadosTOBuilder.getMetadadosTO(file, arquivo.getMetadados()));
 			arquivo.getMetadados().setUsuarioAlteracao(idUsuarioLogado);
 
