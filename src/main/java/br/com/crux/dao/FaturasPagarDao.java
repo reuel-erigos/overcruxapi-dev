@@ -67,19 +67,19 @@ public class FaturasPagarDao extends BaseDao{
 		}  
 
 		if(Objects.nonNull(dataInicio)) {
-			sql.append("   AND p.dt_documento >= DATE_TRUNC('DAY', to_date( :p_dt_inicio ,'dd/mm/yyyy') )  ");
+			sql.append("   AND to_date( p.dt_documento, 'dd/mm/yyyy') >= DATE_TRUNC('DAY', to_date( :p_dt_inicio ,'dd/mm/yyyy') )  ");
 		}
 		
 		if(Objects.nonNull(dataFim)) {
-			sql.append("  and p.dt_documento <= DATE_TRUNC('DAY', to_date( :p_dt_fim ,'dd/mm/yyyy') )     ");
+			sql.append("  and to_date( p.dt_documento, 'dd/mm/yyyy') <= DATE_TRUNC('DAY', to_date( :p_dt_fim ,'dd/mm/yyyy') )     ");
 		}
 		
 		if(Objects.nonNull(dataInicioVenc)) {
-			sql.append("  AND p.dt_vencimento >= DATE_TRUNC('DAY', to_date( :p_dt_inicio_venc ,'dd/mm/yyyy') )     ");
+			sql.append("  AND to_date(p.dt_vencimento, 'dd/mm/yyyy') >= DATE_TRUNC('DAY', to_date( :p_dt_inicio_venc ,'dd/mm/yyyy') )     ");
 		}
 		
 		if(Objects.nonNull(dataFimVenc)) {
-			sql.append("  AND p.dt_vencimento <= DATE_TRUNC('DAY', to_date( :p_dt_fim_venc ,'dd/mm/yyyy') )   ");
+			sql.append("  AND to_date(p.dt_vencimento, 'dd/mm/yyyy') <= DATE_TRUNC('DAY', to_date( :p_dt_fim_venc ,'dd/mm/yyyy') )   ");
 		}
 		
 		sql.append(" order by p.nm_programa_projeto ");
