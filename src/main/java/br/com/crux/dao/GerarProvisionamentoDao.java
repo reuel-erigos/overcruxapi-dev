@@ -54,11 +54,7 @@ public class GerarProvisionamentoDao extends BaseDao {
 						if (retorno != 0) {
 							throw new ConciliacaoNaoGeradoException("Erro ao gerar a provisionamento, código erro banco: " + retorno);
 						}
-					} finally {
-						if(!connection.isClosed()) {
-							connection.close();
-						}
-					}
+					} finally {}
 				}
 			});
 			session.getTransaction().commit();

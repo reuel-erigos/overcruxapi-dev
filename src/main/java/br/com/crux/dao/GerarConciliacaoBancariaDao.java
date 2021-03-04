@@ -54,11 +54,7 @@ public class GerarConciliacaoBancariaDao extends BaseDao {
             		  if(retorno != 0) {
             			  throw new ConciliacaoNaoGeradoException("Erro ao gerar a conciliação bancária, código erro banco: " + retorno);
             		  }
-  				  } finally {
-  					  if(!connection.isClosed()) {
-  						  connection.close();
-  					  }
-				  }
+  				  } finally { }
                 }
             });
             session.getTransaction().commit();
