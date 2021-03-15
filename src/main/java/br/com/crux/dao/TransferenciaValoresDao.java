@@ -23,8 +23,8 @@ public class TransferenciaValoresDao extends BaseDao{
 		
 		
 		sql.append(" 	select mov.id_movimentacao,                                                                                                              "); 
-		sql.append("       contaorigem.nm_banco || ' - Agência: ' || contaorigem.nr_agencia || ' - Conta:' || contaorigem.nr_conta_bancaria as conta_origem,     ");
-		sql.append("       contadestino.nm_banco || ' - Agência: ' || contadestino.nr_agencia || ' - Conta:' || contadestino.nr_conta_bancaria as conta_destino, ");
+		sql.append("       contaorigem.nm_banco || ' - Agência: ' || contaorigem.nr_agencia || ' - Conta: ' || contaorigem.nr_conta_bancaria as conta_origem,     ");
+		sql.append("       contadestino.nm_banco || ' - Agência: ' || contadestino.nr_agencia || ' - Conta: ' || contadestino.nr_conta_bancaria as conta_destino, ");
 		sql.append("       mov.vl_movimentacao,                                                                                                                   ");
 		sql.append("       mov.dt_documento                                                                                                                      ");
 		sql.append("   from movimentacoes mov                                                                                                                    ");
