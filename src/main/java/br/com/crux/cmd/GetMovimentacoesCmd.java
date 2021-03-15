@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.builder.MovimentacoesTOBuilder;
+import br.com.crux.dao.TransferenciaValoresDao;
+import br.com.crux.dao.dto.TransferenciaValoresDTO;
 import br.com.crux.dao.repository.MovimentacoesRepository;
 import br.com.crux.entity.Movimentacoes;
 import br.com.crux.exception.NotFoundException;
@@ -25,6 +27,7 @@ public class GetMovimentacoesCmd {
 	@Autowired private MovimentacoesRepository repository;
 	@Autowired private MovimentacoesTOBuilder toBuilder;
 	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
+	@Autowired private TransferenciaValoresDao transferenciaValoresDao;
 
 	public List<MovimentacoesTO> getAllFilter(Long idEmpresa, Long idPrograma, Long idProjeto, String valor, 
 			                                  Long dataInicioDoc, Long dataFimDoc, Long dataVencimento,
@@ -57,7 +60,7 @@ public class GetMovimentacoesCmd {
 
 			if (Objects.nonNull(pDataInicioDoc) || Objects.nonNull(pDataFimDoc)) {
 				saldos = saldos.stream().filter(saldo -> {
-					return Objects.nonNull(saldo.getDataDocumento()) && Java8DateUtil.isVigente(saldo.getDataDocumento().toLocalDate(), pDataInicioDoc, pDataFimDoc);
+					return Objects.nonNull(saldo.getDataDocumento()) && Java8DateUtil.isVigente(saldo.getDataDocumento(), pDataInicioDoc, pDataFimDoc);
 				}).collect(Collectors.toList());
 			}
 			
@@ -85,13 +88,20 @@ public class GetMovimentacoesCmd {
 		return new ArrayList<MovimentacoesTO>();
 	}
 
-	public List<MovimentacoesTO> getAllDestino() {
+	public List<TransferenciaValoresDTO> getAllTransferenciaValores(Long idContaOrigem, Long idContaDestino, Double valor, Long data) {
 		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
-		Optional<List<Movimentacoes>> entitys = repository.getAllTipoMovimentoDestino(idInstituicao);
-		if (entitys.isPresent()) {
-			return toBuilder.buildAll(entitys.get());
+		
+		idContaOrigem    = Objects.isNull(idContaOrigem) ? null : idContaOrigem;
+		idContaDestino   = Objects.isNull(idContaDestino) ? null : idContaDestino;
+		valor            = Objects.isNull(valor) ? null : valor;
+		LocalDate pData  = Objects.nonNull(data) ? Java8DateUtil.getLocalDateTime(new Date(data)).toLocalDate() : null;
+		
+		Optional<List<TransferenciaValoresDTO>> entitys = transferenciaValoresDao.getAllFilter(idInstituicao, idContaOrigem, idContaDestino, pData, valor);
+		if (!entitys.isPresent()) {
+			return new ArrayList<TransferenciaValoresDTO>();
 		}
-		return new ArrayList<MovimentacoesTO>();
+		
+		return entitys.get();
 	}
 
 	public List<MovimentacoesTO> getAllOrigem() {

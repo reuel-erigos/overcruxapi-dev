@@ -19,6 +19,7 @@ import br.com.crux.cmd.AlterarMovimentacoesCmd;
 import br.com.crux.cmd.CadastrarMovimentacoesCmd;
 import br.com.crux.cmd.ExcluirMovimentacoesCmd;
 import br.com.crux.cmd.GetMovimentacoesCmd;
+import br.com.crux.dao.dto.TransferenciaValoresDTO;
 import br.com.crux.to.MovimentacoesTO;
 
 @RestController
@@ -53,9 +54,12 @@ public class MovimentacoesService {
 	}
 	
 	
-	@GetMapping("/destino")
-	public List<MovimentacoesTO> getAllDestino() {
-		return getCmd.getAllDestino();
+	@GetMapping(path = "/filter/transferenciavalores", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<TransferenciaValoresDTO> getAllTransferenciaValores(@RequestParam(name = "contaorigem", required = false) Long idContaOrigem,
+														    @RequestParam(name = "contadestico", required = false) Long idContaDestino,
+ 														    @RequestParam(name = "valor", required = false) Double valor,
+														    @RequestParam(name = "data", required = false) Long data) {
+		return getCmd.getAllTransferenciaValores(idContaOrigem, idContaDestino, valor, data);
 	}
 	
 	@GetMapping("/origem")
