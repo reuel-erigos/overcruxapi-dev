@@ -1,5 +1,6 @@
 package br.com.crux.to;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -11,7 +12,7 @@ public class MovimentacoesTO {
 	private LocalDateTime dataMovimentacao;
 	private String descricaoMovimentacao;
 	private String nrDocumento;
-	private LocalDateTime dataDocumento;
+	private LocalDate dataDocumento;
 	private Double valorMovimentacao;
 	private UnidadeTO unidade;
 	private DepartamentoTO departamento;
@@ -75,10 +76,10 @@ public class MovimentacoesTO {
 	public void setNrDocumento(String nrDocumento) {
 		this.nrDocumento = nrDocumento;
 	}
-	public LocalDateTime getDataDocumento() {
+	public LocalDate getDataDocumento() {
 		return dataDocumento;
 	}
-	public void setDataDocumento(LocalDateTime dataDocumento) {
+	public void setDataDocumento(LocalDate dataDocumento) {
 		this.dataDocumento = dataDocumento;
 	}
 	public Double getValorMovimentacao() {

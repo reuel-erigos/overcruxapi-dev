@@ -1,6 +1,7 @@
 package br.com.crux.entity;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -47,7 +48,7 @@ public class Movimentacoes implements Serializable {
 	private String nrDocumento;
 
 	@Column(name = "dt_documento")
-	private LocalDateTime dataDocumento;
+	private LocalDate dataDocumento;
 
 	@Column(name = "vl_movimentacao")
 	private Double valorMovimentacao;
@@ -71,13 +72,15 @@ public class Movimentacoes implements Serializable {
 	@JoinColumn(name = "id_conta_bancaria")
 	private ContasBancaria contaBancaria;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_conta_bancaria_destino")
+	private ContasBancaria contaBancariaDestino;
+	
+	
 	@Convert(converter = SimNaoConverter.class)
 	@Column(name = "st_registro_saldo")
 	private Boolean statusRegistroSaldo;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_conta_bancaria_destino")
-	private ContasBancaria contaBancariaDestino;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_doador")
@@ -139,11 +142,11 @@ public class Movimentacoes implements Serializable {
 		this.nrDocumento = nrDocumento;
 	}
 
-	public LocalDateTime getDataDocumento() {
+	public LocalDate getDataDocumento() {
 		return dataDocumento;
 	}
 
-	public void setDataDocumento(LocalDateTime dataDocumento) {
+	public void setDataDocumento(LocalDate dataDocumento) {
 		this.dataDocumento = dataDocumento;
 	}
 
