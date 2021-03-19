@@ -223,12 +223,12 @@ from vw_relatorio_declaracao_matricula]]>
 				<imageExpression><![CDATA[$P{P_PATH_ROOT} +"/header_relatorio_casa_azul.PNG"]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="230" y="102" width="120" height="15" uuid="3dc5097b-9300-4fd7-9af6-1cb83378874a">
+				<reportElement x="230" y="101" width="130" height="18" uuid="3dc5097b-9300-4fd7-9af6-1cb83378874a">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center">
-					<font isBold="true"/>
+					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[DECLARAÇÃO]]></text>
 			</staticText>
@@ -598,9 +598,12 @@ from vw_relatorio_declaracao_matricula]]>
 				<textFieldExpression><![CDATA[$F{enderecoAluno}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="8" y="59" width="71" height="14" uuid="f27b095c-a716-43d0-ae29-8f620dcb70f5">
+				<reportElement x="5" y="59" width="74" height="14" uuid="f27b095c-a716-43d0-ae29-8f620dcb70f5">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
+				<textElement>
+					<font size="9"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{cep}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">

@@ -214,7 +214,7 @@ from vw_relatorio_declaracao_passe_estudantil]]>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center">
-					<font size="12" isBold="true"/>
+					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Declaração de Passe Estudantil]]></text>
 			</staticText>
@@ -552,9 +552,12 @@ from vw_relatorio_declaracao_passe_estudantil]]>
 				<textFieldExpression><![CDATA[$F{enderecoAluno}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="8" y="62" width="71" height="14" uuid="f27b095c-a716-43d0-ae29-8f620dcb70f5">
+				<reportElement x="4" y="62" width="74" height="14" uuid="f27b095c-a716-43d0-ae29-8f620dcb70f5">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
+				<textElement>
+					<font size="9"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{cep}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
