@@ -244,7 +244,7 @@ from vw_relatorio_ficha_cadastral]]>
 				<imageExpression><![CDATA[$P{P_PATH_ROOT} +"/header_relatorio_casa_azul.PNG"]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="190" y="95" width="170" height="24" uuid="3dc5097b-9300-4fd7-9af6-1cb83378874a">
+				<reportElement x="0" y="94" width="595" height="24" uuid="3dc5097b-9300-4fd7-9af6-1cb83378874a">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
