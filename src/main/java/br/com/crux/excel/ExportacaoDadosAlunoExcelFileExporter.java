@@ -748,11 +748,19 @@ public class ExportacaoDadosAlunoExcelFileExporter {
 	        	  }
 	        	  
 	        	  if(coluna.getNome().equals("programa")) {
-	        		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPrograma().getDescricao()).orElse(""));
+	        		  if(Objects.nonNull(alunoTO.getPrograma())){
+	        			  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPrograma().getDescricao()).orElse(""));
+	        		  } else {
+	        			  dataRow.createCell(indexDados.getAndIncrement()).setCellValue("");
+	        		  }
 	        	  }
 
 	        	  if(coluna.getNome().equals("projeto")) {
-	        		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getProjeto().getDescricao()).orElse(""));
+	        		  if(Objects.nonNull(alunoTO.getProjeto())) {
+	        			  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getProjeto().getDescricao()).orElse(""));
+	        		  } else {
+	        			  dataRow.createCell(indexDados.getAndIncrement()).setCellValue("");
+	        		  }
 	        	  }
 	        	  
 	        	  if(coluna.getNome().equals("dataEntrada")) {
