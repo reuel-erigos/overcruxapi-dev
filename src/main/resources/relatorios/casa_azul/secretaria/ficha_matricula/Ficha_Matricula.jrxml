@@ -304,7 +304,7 @@ from vw_relatorio_ficha_cadastral]]>
 				<text><![CDATA[Cidade:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="66" y="54" width="350" height="15" uuid="3257f157-9739-4fc3-ac6c-90b5432955dd">
+				<reportElement x="66" y="54" width="338" height="15" uuid="3257f157-9739-4fc3-ac6c-90b5432955dd">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -316,14 +316,14 @@ from vw_relatorio_ficha_cadastral]]>
 				<textFieldExpression><![CDATA[$F{bairro}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="422" y="54" width="38" height="15" uuid="b590d407-add1-41dc-bb06-6fd9eda94c7c">
+				<reportElement x="408" y="54" width="38" height="15" uuid="b590d407-add1-41dc-bb06-6fd9eda94c7c">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Bottom"/>
 				<text><![CDATA[Cep:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="460" y="54" width="106" height="15" uuid="f2b938bc-b93e-4d6f-94aa-b11697dd322e">
+				<reportElement x="446" y="54" width="120" height="15" uuid="f2b938bc-b93e-4d6f-94aa-b11697dd322e">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
