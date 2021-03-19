@@ -16,7 +16,10 @@ public class PagamentosFaturaTO {
 	private Double valorMulta;
 	private Double valorJuros;
 	private Boolean statusRegistroSaldo;
+
 	private String descricao;
+	
+	private Double valorDesconto;
 	
 	private List<RateiosPagamentosTO> rateioPagamento;
 	private List<ReembolsosPagamentosTO> reembolsos;
@@ -105,5 +108,11 @@ public class PagamentosFaturaTO {
 	}
 	public void setReembolsos(List<ReembolsosPagamentosTO> reembolsos) {
 		this.reembolsos = reembolsos;
+	}
+	public Double getValorDesconto() {
+		return valorDesconto;
+	}
+	public void setValorDesconto(Double valorDesconto) {
+		this.valorDesconto = valorDesconto;
 	}
 }

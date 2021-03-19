@@ -20,6 +20,8 @@ public class ReembolsosPagamentosTO {
 	private Boolean statusPercentual;
 	private Double valor;
 	private Long usuarioAlteracao;
+
+	private String transacao;
 	
 	private ContasBancariaTO contaBancariaDestino;
 
@@ -89,6 +91,14 @@ public class ReembolsosPagamentosTO {
 
 	public void setUsuarioAlteracao(Long usuarioAlteracao) {
 		this.usuarioAlteracao = usuarioAlteracao;
+	}
+
+	public String getTransacao() {
+		return transacao;
+	}
+
+	public void setTransacao(String transacao) {
+		this.transacao = transacao;
 	}
 
 	public ContasBancariaTO getContaBancariaDestino() {

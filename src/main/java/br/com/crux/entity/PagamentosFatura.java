@@ -69,11 +69,20 @@ public class PagamentosFatura implements Serializable {
 
 	@Column(name = "ds_pagamento")
 	private String descricao;
+
+	@Column(name = "vl_desconto")
+	private Double valorDesconto;
 	
 	
-	
-	
-	public PagamentosFatura() {
+	public Double getValorDesconto() {
+		return valorDesconto;
+	}
+
+	public void setValorDesconto(Double valorDesconto) {
+		this.valorDesconto = valorDesconto;
+	}
+
+		public PagamentosFatura() {
 	}
 
 	public Long getId() {
