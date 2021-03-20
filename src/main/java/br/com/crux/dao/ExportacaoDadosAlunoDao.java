@@ -70,7 +70,7 @@ public class ExportacaoDadosAlunoDao extends BaseDao{
 		}
 		
 		if(Objects.nonNull(dataInicioVigenciaInstituicao) && Objects.nonNull(dataFimVigenciaInstituicao)) {
-			sql.append("  and fn_entre_periodos ( DATE_TRUNC('DAY', a.dt_entrada) , DATE_TRUNC('DAY', a.dt_desligamento) , :p_dt_inicio_vigencia, :p_dt_fim_vigencia) = 'V'          ");
+			sql.append("  and fn_entre_periodos ( DATE_TRUNC('DAY', a.dt_entrada) , DATE_TRUNC('DAY', a.dt_desligamento) , DATE_TRUNC('DAY', :p_dt_inicio_vigencia) , DATE_TRUNC('DAY',:p_dt_fim_vigencia ) ) = 'V'          ");
 		}
 
 		
