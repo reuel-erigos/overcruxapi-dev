@@ -18,6 +18,7 @@ import br.com.crux.cmd.CadastrarFamiliaresCmd;
 import br.com.crux.cmd.ExcluirFamiliaresCmd;
 import br.com.crux.cmd.GetFamiliaresCmd;
 import br.com.crux.cmd.GetResponsavelFamiliarVigenteCmd;
+import br.com.crux.to.ComboFamiliarTO;
 import br.com.crux.to.FamiliaresTO;
 import br.com.crux.to.ResponsaveisAlunoTO;
 
@@ -37,9 +38,9 @@ public class FamiliaresService {
 	private GetResponsavelFamiliarVigenteCmd getResponsavelFamiliarVigenteCmd;
 	
 	
-	@GetMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<FamiliaresTO> getAll() {
-		return getCmd.getAll();
+	@GetMapping(path = "/combo", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<ComboFamiliarTO> getAllCombo() {
+		return getCmd.getAllCombo();
 	}
 
 	@GetMapping(path = "/aluno/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

@@ -5,13 +5,16 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.cmd.GetResponsaveisAlunoCmd;
 import br.com.crux.cmd.GetVulnerabilidadesFamiliarCmd;
+import br.com.crux.dao.dto.ComboFamiliarDTO;
 import br.com.crux.entity.Familiares;
 import br.com.crux.enums.SituacaoParentesco;
+import br.com.crux.to.ComboFamiliarTO;
 import br.com.crux.to.FamiliarResponsavelTO;
 import br.com.crux.to.FamiliaresTO;
 
@@ -55,6 +58,15 @@ public class FamiliaresTOBuilder {
 			retorno.setResponsaveis(getResponsaveisAlunoCmd.getAllByFamiliar(p.getId()));
 			retorno.setVulnerabilidades(getVulnerabilidadesFamiliarCmd.getAllFamiliarTO(p.getId()));
 		}
+		
+		return retorno;
+	}
+	
+	
+	public ComboFamiliarTO buildComboTO(ComboFamiliarDTO dto) {
+		ComboFamiliarTO retorno = new ComboFamiliarTO();
+		
+		BeanUtils.copyProperties(dto, retorno);
 		
 		return retorno;
 	}
@@ -114,4 +126,9 @@ public class FamiliaresTOBuilder {
 		return dtos.stream().map(dto -> buildTO(dto)).collect(Collectors.toList());
 	}
 
+	
+	
+	public List<ComboFamiliarTO> buildAllDTO(List<ComboFamiliarDTO> dtos) {
+		return dtos.stream().map(dto -> buildComboTO(dto)).collect(Collectors.toList());
+	}
 }
