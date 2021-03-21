@@ -30,6 +30,8 @@ public class GerarConciliacaoBancariaDao extends BaseDao {
             session.doWork(new Work(){
               @Override
               public void execute(Connection connection) throws SQLException {
+            	  Date pDataInicio = null;
+            	  Date pDataFim    = null; 
             	  try {
             		  CallableStatement statement =null;
             		  
@@ -44,16 +46,19 @@ public class GerarConciliacaoBancariaDao extends BaseDao {
             			  statement.setNull(2, Types.INTEGER);
             		  }
             		  
-            		  Date pDataInicio = DataUtil.parseDate(dataInicio.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+            		  pDataInicio = DataUtil.parseDate(dataInicio.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
             		  statement.setTimestamp(3, new Timestamp(pDataInicio.getTime()));
             		  
-            		  Date pDataFim = DataUtil.parseDate(dataFim.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+            		  pDataFim = DataUtil.parseDate(dataFim.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
             		  statement.setTimestamp(4, new Timestamp(pDataFim.getTime()));
             		  
             		  int retorno = statement.executeUpdate();
             		  if(retorno != 0) {
             			  throw new ConciliacaoNaoGeradoException("Erro ao gerar a conciliação bancária, código erro banco: " + retorno);
             		  }
+            	  } catch (Exception e) {
+        			  throw new ConciliacaoNaoGeradoException("Erro ao gerar a conciliação bancária. Parametros idInstituicao: " + idInstituicao + " - idContaBancaria: "+ idContaBancaria + " - Data Inicio: " + pDataInicio + " - Data Fim: " + pDataFim + " - Erro: "+ e.getMessage());
+            		  
   				  } finally { }
                 }
             });
