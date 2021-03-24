@@ -28,13 +28,16 @@ public class SaldoContaBancariaDao extends BaseDao{
 		Query query = em.createNativeQuery(sql.toString());
 		
 		query.setParameter("p_di_conta_bancaria",  idContaBancaria);
+		
       	Date pDataInicio = DataUtil.parseDate(dataInicio.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
       	Date pDataFinal  = DataUtil.parseDate(dataFinal.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-		query.setParameter("p_dt_inicio", new Timestamp(pDataInicio.getTime()));
+      	
+      	
+		query.setParameter("p_dt_inicio", new Timestamp(DataUtil.adicionaDia(pDataInicio, -1).getTime()));
 		query.setParameter("p_dt_fim", new Timestamp(pDataFinal.getTime()));
 		
 		Object[] values = (Object[]) query.getSingleResult();
 		return new SaldoContaBancariaDTO(values);
 	}
-
+	
 }
