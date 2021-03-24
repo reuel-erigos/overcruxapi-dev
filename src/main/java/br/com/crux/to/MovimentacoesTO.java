@@ -1,6 +1,5 @@
 package br.com.crux.to;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
