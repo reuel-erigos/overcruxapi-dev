@@ -12,7 +12,7 @@ public class MovimentacoesTO {
 	private LocalDateTime dataMovimentacao;
 	private String descricaoMovimentacao;
 	private String nrDocumento;
-	private LocalDate dataDocumento;
+	private LocalDateTime dataDocumento;
 	private Double valorMovimentacao;
 	private UnidadeTO unidade;
 	private DepartamentoTO departamento;
@@ -76,10 +76,10 @@ public class MovimentacoesTO {
 	public void setNrDocumento(String nrDocumento) {
 		this.nrDocumento = nrDocumento;
 	}
-	public LocalDate getDataDocumento() {
+	public LocalDateTime getDataDocumento() {
 		return dataDocumento;
 	}
-	public void setDataDocumento(LocalDate dataDocumento) {
+	public void setDataDocumento(LocalDateTime dataDocumento) {
 		this.dataDocumento = dataDocumento;
 	}
 	public Double getValorMovimentacao() {

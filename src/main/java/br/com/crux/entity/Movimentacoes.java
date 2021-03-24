@@ -48,7 +48,7 @@ public class Movimentacoes implements Serializable {
 	private String nrDocumento;
 
 	@Column(name = "dt_documento")
-	private LocalDate dataDocumento;
+	private LocalDateTime dataDocumento;
 
 	@Column(name = "vl_movimentacao")
 	private Double valorMovimentacao;
@@ -142,11 +142,11 @@ public class Movimentacoes implements Serializable {
 		this.nrDocumento = nrDocumento;
 	}
 
-	public LocalDate getDataDocumento() {
+	public LocalDateTime getDataDocumento() {
 		return dataDocumento;
 	}
 
-	public void setDataDocumento(LocalDate dataDocumento) {
+	public void setDataDocumento(LocalDateTime dataDocumento) {
 		this.dataDocumento = dataDocumento;
 	}
 
