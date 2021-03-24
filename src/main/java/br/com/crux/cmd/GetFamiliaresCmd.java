@@ -8,9 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.builder.FamiliaresTOBuilder;
+import br.com.crux.dao.FamiliarDAO;
+import br.com.crux.dao.dto.ComboFamiliarDTO;
 import br.com.crux.dao.repository.FamiliaresRepository;
 import br.com.crux.entity.Familiares;
 import br.com.crux.exception.NotFoundException;
+import br.com.crux.to.ComboFamiliarTO;
 import br.com.crux.to.FamiliaresTO;
 
 @Component
@@ -19,6 +22,7 @@ public class GetFamiliaresCmd {
 	@Autowired private FamiliaresRepository repository;
 	@Autowired private FamiliaresTOBuilder toBuilder;
 	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
+	@Autowired private FamiliarDAO         familiarDAO;
 	
 	public List<FamiliaresTO> getFamiliaresPorAluno(Long idAluno) {
 		Optional<List<Familiares>> listaRetorno = repository.findByFamiliaresPorAluno(idAluno);
@@ -28,12 +32,13 @@ public class GetFamiliaresCmd {
 		return new ArrayList<FamiliaresTO>();
 	}
 	
-	public List<FamiliaresTO> getAll() {
-		Optional<List<Familiares>> listaRetorno = repository.findByUnidade(getUnidadeLogadaCmd.get().getId());
+	public List<ComboFamiliarTO> getAllCombo() {
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+		Optional<List<ComboFamiliarDTO>> listaRetorno = Optional.ofNullable(familiarDAO.getAllComboByInstituicao(idInstituicao));
 		if(listaRetorno.isPresent()) {
-			return toBuilder.buildAll(listaRetorno.get());
+			return toBuilder.buildAllDTO(listaRetorno.get());
 		}
-		return new ArrayList<FamiliaresTO>();
+		return new ArrayList<ComboFamiliarTO>();
 	}
 	
 	public FamiliaresTO getTOById(Long id) {
