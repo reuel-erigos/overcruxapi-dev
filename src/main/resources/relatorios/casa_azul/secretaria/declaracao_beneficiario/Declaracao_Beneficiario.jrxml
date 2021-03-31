@@ -428,7 +428,7 @@ from vw_relatorio_declaracao_matricula]]>
 				<text><![CDATA[Bairro:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="291" y="59" width="43" height="14" uuid="321c02e6-a0f1-4910-92cd-21df92000b46">
+				<reportElement x="355" y="59" width="43" height="14" uuid="321c02e6-a0f1-4910-92cd-21df92000b46">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -438,7 +438,7 @@ from vw_relatorio_declaracao_matricula]]>
 				<text><![CDATA[Cidade:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="88" y="59" width="25" height="14" uuid="e5bb029d-9616-4ad0-b995-50277ea357e6">
+				<reportElement x="143" y="59" width="25" height="14" uuid="e5bb029d-9616-4ad0-b995-50277ea357e6">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -598,7 +598,7 @@ from vw_relatorio_declaracao_matricula]]>
 				<textFieldExpression><![CDATA[$F{enderecoAluno}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="5" y="59" width="82" height="14" uuid="f27b095c-a716-43d0-ae29-8f620dcb70f5">
+				<reportElement x="45" y="59" width="95" height="14" uuid="f27b095c-a716-43d0-ae29-8f620dcb70f5">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
@@ -607,7 +607,7 @@ from vw_relatorio_declaracao_matricula]]>
 				<textFieldExpression><![CDATA[$F{cep}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="114" y="59" width="170" height="14" uuid="b0d1d05c-7438-4e60-949d-bb5183689703">
+				<reportElement x="170" y="59" width="176" height="14" uuid="b0d1d05c-7438-4e60-949d-bb5183689703">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{foneCelular} +" " + $F{foneResidencial} +" " + $F{foneComercial}]]></textFieldExpression>
@@ -631,7 +631,7 @@ from vw_relatorio_declaracao_matricula]]>
 				<textFieldExpression><![CDATA[$F{bairroAluno}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="337" y="59" width="248" height="14" uuid="25756b13-1a70-4acb-a291-1d490b3c6483">
+				<reportElement x="401" y="59" width="183" height="14" uuid="25756b13-1a70-4acb-a291-1d490b3c6483">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[new String("Brasília - DF")]]></textFieldExpression>
@@ -748,6 +748,16 @@ from vw_relatorio_declaracao_matricula]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{matriculaAluno}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="6" y="59" width="36" height="14" uuid="525b24d1-4f15-45c0-9ad8-0e93886153c9">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CEP:]]></text>
+			</staticText>
 		</band>
 	</detail>
 	<columnFooter>
