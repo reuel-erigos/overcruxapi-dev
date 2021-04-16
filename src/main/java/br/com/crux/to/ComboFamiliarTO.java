@@ -4,6 +4,7 @@ public class ComboFamiliarTO {
 	
 	private Long id;
 	private String nome;
+	private String nomeFamiliarAndNomeAluno;
 
 	public ComboFamiliarTO() {
 	}
@@ -22,6 +23,14 @@ public class ComboFamiliarTO {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getNomeFamiliarAndNomeAluno() {
+		return nomeFamiliarAndNomeAluno;
+	}
+
+	public void setNomeFamiliarAndNomeAluno(String nomeFamiliarAndNomeAluno) {
+		this.nomeFamiliarAndNomeAluno = nomeFamiliarAndNomeAluno;
 	}
 
 	
