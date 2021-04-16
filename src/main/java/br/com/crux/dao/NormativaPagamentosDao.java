@@ -56,14 +56,23 @@ public class NormativaPagamentosDao extends BaseDao{
 			sql.append("  and :p_projeto = p.id_projeto  ");
 		}
 
-		if(Objects.nonNull(idCategoria)) {
+/*
+  		if(Objects.nonNull(idCategoria)) {
 			sql.append(" and (p.id_movimentacao in (select c.id_movimentacao   ");
 			sql.append("	from vw_rateio_itens_movimentacoes_categorias c    ");
 			sql.append("	where c.id_categoria = :p_id_categoria)            ");
 			sql.append("	or :p_id_categoria is null)                        ");
 		}                                           
-		
+*/		
+  		if(Objects.nonNull(idCategoria)) {
+  			sql.append(" and (p.id_movimentacao in (select c.id_movimentacao	");
+  			sql.append("	from vw_categorias_itens_movimentacoes c    		");
+  			sql.append("	where c.id_categoria = :p_id_categoria            	");
+  			sql.append("	  and c.cd_tipo_categoria = :p_tipo_rubrica)      	");
+  			sql.append("	or :p_id_categoria is null)                    		");
+		}                                           
 
+  			
 		if(Objects.nonNull(dataInicio)) {
 			sql.append("   AND to_date( p.dt_documento, 'dd/mm/yyyy') >= DATE_TRUNC('DAY', to_date( :p_dt_inicio ,'dd/mm/yyyy') )  ");
 		}
