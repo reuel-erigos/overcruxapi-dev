@@ -29,7 +29,8 @@ public class NormativaPagamentosDao extends BaseDao{
 		sql.append("        p.vl_movimentacao,                                                                          ");
 		sql.append("        p.nr_doc_pagamento,                                                                         ");
 		sql.append("        p.dt_pagamento,                                                                             ");
-		sql.append("        fn_retorna_categorias_itens_movimentacoes(p.id_movimentacao, :p_tipo_rubrica ) nm_categoria,");
+//		sql.append("        fn_retorna_categorias_itens_movimentacoes(p.id_movimentacao, :p_tipo_rubrica ) nm_categoria,");
+		sql.append("        c.nm_categoria,");
 		sql.append("        p.vl_pagamento,                                                                             ");
 		sql.append("        p.dt_vencimento_proxima,                                                                    ");
 		sql.append("        p.id_empresa,                                                                               ");
@@ -38,7 +39,9 @@ public class NormativaPagamentosDao extends BaseDao{
 		sql.append("        p.id_projeto,                                                                               ");
 		sql.append("        p.id_movimentacao                                                                           ");
 		sql.append("   from vw_relatorio_relacao_nominativa_pagamentos p                                                ");
-		sql.append(" WHERE 1 = 1                                                                                        ");
+		sql.append("   inner join vw_categorias_itens_movimentacoes c on p.id_movimentacao = c.id_movimentacao          ");
+		sql.append(" WHERE c.cd_tipo_categoria = :p_tipo_rubrica                                                        ");
+	    
 		
 		if(Objects.nonNull(idEmpresa)) {
 			sql.append("  and :p_empresa = p.id_empresa  ");
@@ -67,8 +70,7 @@ public class NormativaPagamentosDao extends BaseDao{
   		if(Objects.nonNull(idCategoria)) {
   			sql.append(" and (p.id_movimentacao in (select c.id_movimentacao	");
   			sql.append("	from vw_categorias_itens_movimentacoes c    		");
-  			sql.append("	where c.id_categoria = :p_id_categoria            	");
-  			sql.append("	  and c.cd_tipo_categoria = :p_tipo_rubrica)      	");
+  			sql.append("	where c.id_categoria = :p_id_categoria)		      	");
   			sql.append("	or :p_id_categoria is null)                    		");
 		}                                           
 
