@@ -30,7 +30,7 @@ public class NormativaPagamentosDao extends BaseDao{
 		sql.append("        p.nr_doc_pagamento,                                                                         ");
 		sql.append("        p.dt_pagamento,                                                                             ");
 //		sql.append("        fn_retorna_categorias_itens_movimentacoes(p.id_movimentacao, :p_tipo_rubrica ) nm_categoria,");
-		sql.append("        c.nm_categoria,");
+		sql.append("        c.nm_categoria,																				");
 		sql.append("        p.vl_pagamento,                                                                             ");
 		sql.append("        p.dt_vencimento_proxima,                                                                    ");
 		sql.append("        p.id_empresa,                                                                               ");
