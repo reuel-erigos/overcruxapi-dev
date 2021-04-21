@@ -18,7 +18,10 @@ public class AlunoDao extends BaseDao{
 		StringBuilder sql = new StringBuilder();
 		
 		sql.append(" select a.id_aluno,                                                           ");
-		sql.append("        pf.nm_pessoa_fisica                                                   ");
+		sql.append("        pf.nm_pessoa_fisica,                                                  ");
+		sql.append("        a.nr_matricula_aluno,                                                 ");
+		sql.append("        a.dt_entrada,                                                         ");
+		sql.append("        a.dt_desligamento                                                     ");
 		sql.append("  from alunos a                                                               ");
 		sql.append(" inner join pessoas_fisicas pf on a.id_pessoa_fisica = pf.id_pessoa_fisica    ");
 		sql.append(" where 1=1                                                                    ");
