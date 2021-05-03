@@ -587,8 +587,13 @@ public class ExportacaoDadosAlunoExcelFileExporter {
                 	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getTipoSangue()).orElse(""));
                   }
                   
+                  
                   if(coluna.getNome().equals("cep")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getCep()).orElse(null));
+                	  if(Objects.nonNull(rv.getFamiliar().getPessoasFisica().getCep())) {
+                		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(rv.getFamiliar().getPessoasFisica().getCep()).orElse(null));
+                	  }else {
+                		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue("");
+                	  }
                   }
                   
                   if(coluna.getNome().equals("endereco")) {
@@ -685,7 +690,11 @@ public class ExportacaoDadosAlunoExcelFileExporter {
                   }
                   
                   if(coluna.getNome().equals("cep")) {
-                	  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getCep()).orElse(null));
+                	  if(Objects.nonNull(alunoTO.getPessoaFisica().getCep())) {
+                		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue(Optional.ofNullable(alunoTO.getPessoaFisica().getCep()).orElse(null));
+                	  }else {
+                		  dataRow.createCell(indexDados.getAndIncrement()).setCellValue("");
+                	  }
                   }
                   
                   if(coluna.getNome().equals("endereco")) {

@@ -148,8 +148,8 @@ public class AlunoTOBuilder {
 			return retorno;
 		}
 		
-		retorno.setId(p.getId());
-		retorno.setNome(p.getNome());
+		BeanUtils.copyProperties(p, retorno);
+		
 		return retorno;
 	}
 
