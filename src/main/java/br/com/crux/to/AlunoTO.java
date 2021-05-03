@@ -309,7 +309,7 @@ public class AlunoTO {
 		this.dataDeclaracaoMatricula = dataDeclaracaoMatricula;
 	}
 
-	public String participaApresentacaoExterna() {
+	public String getParticipaApresentacaoExterna() {
 		return participaApresentacaoExterna;
 	}
 
