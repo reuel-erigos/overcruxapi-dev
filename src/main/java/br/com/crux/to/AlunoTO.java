@@ -62,7 +62,7 @@ public class AlunoTO {
 	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
 	private LocalDateTime dataDeclaracaoMatricula;
 	
-	private Boolean participaApresentacaoExterna;
+	private String participaApresentacaoExterna;;
 	
 	
 	public AlunoTO() {
@@ -309,11 +309,11 @@ public class AlunoTO {
 		this.dataDeclaracaoMatricula = dataDeclaracaoMatricula;
 	}
 
-	public Boolean getParticipaApresentacaoExterna() {
+	public String participaApresentacaoExterna() {
 		return participaApresentacaoExterna;
 	}
 
-	public void setParticipaApresentacaoExterna(Boolean participaApresentacaoExterna) {
+	public void setParticipaApresentacaoExterna(String participaApresentacaoExterna) {
 		this.participaApresentacaoExterna = participaApresentacaoExterna;
 	}
 	
