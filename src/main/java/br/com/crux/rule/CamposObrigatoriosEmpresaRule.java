@@ -9,9 +9,9 @@ import br.com.crux.exception.CamposObrigatoriosException;
 public class CamposObrigatoriosEmpresaRule {
 
 	public void verificar(String codigo, String nomeRazaoSocial, String tipoEmpresa, String telefone, String endereco) {
-		if(StringUtils.isEmpty(codigo)) {
+/*		if(StringUtils.isEmpty(codigo)) {
 			throw new CamposObrigatoriosException("Código deve ser informado.");
-		}
+		}*/
 		if(StringUtils.isEmpty(nomeRazaoSocial)) {
 			throw new CamposObrigatoriosException("Nome razão social deve ser informado.");
 		}
