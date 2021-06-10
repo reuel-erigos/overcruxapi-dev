@@ -102,10 +102,7 @@ public class ExportacaoDadosAlunoExcelFileExporter {
 			});
 			
 	        
-	        for(int i = 0; i < listaCompletaDadosExportar.getListaDadosExportacao().size(); i++) {
-	        	AtomicInteger indexDados = new AtomicInteger(0);
-	        	Row dataRow = sheet.createRow(i + 1);
-	        	
+	        for(int i = 0; i < listaCompletaDadosExportar.getListaDadosExportacao().size(); i++) {       	
 	        	ExportacaoDadosAlunoTO dados = listaCompletaDadosExportar.getListaDadosExportacao().get(i);
 
 	        	List<ExportarDadosBeneficiarioDTO> dadosExportarBeneficiario = exportacaoDadosAlunoDao.getDadosExportarBeneficiario(dados.getIdAluno());
@@ -113,7 +110,11 @@ public class ExportacaoDadosAlunoExcelFileExporter {
 	        	List<GrupoDadosExportar> ga = grupoAluno.stream().collect(Collectors.toList());
 	        	List<GrupoDadosExportar> gf = grupoFamiliar.stream().collect(Collectors.toList());
 	        	
-	        	dadosExportarBeneficiario.stream().forEach( dadosTO -> {
+	        	AtomicInteger index = new AtomicInteger(i);
+	        	dadosExportarBeneficiario.forEach( dadosTO -> {
+		        	AtomicInteger indexDados = new AtomicInteger(0);
+		        	Row dataRow = sheet.createRow(index.get() + 1);
+		        	
 	        		//Dados do Aluno
 	          	  	preencherDadosPessoaisAluno(ga,indexDados, dataRow, dadosTO);
 	          	    preencherAdmissaoAluno(ga, indexDados, dataRow, dadosTO);

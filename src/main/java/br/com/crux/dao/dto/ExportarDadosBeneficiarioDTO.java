@@ -81,7 +81,7 @@ public class ExportarDadosBeneficiarioDTO {
     private String    beneficiosAluno                                  ; // varchar
     private String    descricaoRedeApSocRelevAluno                     ; // varchar(200)
     private String    descricaoRedeApoioSocialAluno                    ; // varchar(200)
-    private String    valorBeneficiosAluno                             ; // numeric
+    private Double    valorBeneficiosAluno                             ; // numeric
     private String    origemRendaAluno                                 ; // varchar
     private String    entidadeSocial                                   ; // varchar(100)
     private String    dataEncaminhamentoAluno                          ; // varchar(45)
@@ -263,7 +263,7 @@ public class ExportarDadosBeneficiarioDTO {
 		this.beneficiosAluno                                     = (String)  colunas [69 ];
 		this.descricaoRedeApSocRelevAluno                        = (String)  colunas [70 ];
 		this.descricaoRedeApoioSocialAluno                       = (String)  colunas [71 ];
-		this.valorBeneficiosAluno                                = (String)  colunas [72 ];
+		this.valorBeneficiosAluno                                = (colunas[72] != null)? ((BigDecimal)colunas[72]).doubleValue() : null;
 		this.origemRendaAluno                                    = (String)  colunas [73 ];
 		this.entidadeSocial                                      = (String)  colunas [74 ];
 		this.dataEncaminhamentoAluno                             = (String)  colunas [75 ];
@@ -933,11 +933,11 @@ public class ExportarDadosBeneficiarioDTO {
 		this.descricaoRedeApoioSocialAluno = descricaoRedeApoioSocialAluno;
 	}
 
-	public String getValorBeneficiosAluno() {
+	public Double getValorBeneficiosAluno() {
 		return valorBeneficiosAluno;
 	}
 
-	public void setValorBeneficiosAluno(String valorBeneficiosAluno) {
+	public void setValorBeneficiosAluno(Double valorBeneficiosAluno) {
 		this.valorBeneficiosAluno = valorBeneficiosAluno;
 	}
 
