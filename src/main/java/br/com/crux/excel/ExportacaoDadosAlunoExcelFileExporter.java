@@ -113,7 +113,7 @@ public class ExportacaoDadosAlunoExcelFileExporter {
 	        	AtomicInteger index = new AtomicInteger(i);
 	        	dadosExportarBeneficiario.forEach( dadosTO -> {
 		        	AtomicInteger indexDados = new AtomicInteger(0);
-		        	Row dataRow = sheet.createRow(index.get() + 1);
+		        	Row dataRow = sheet.createRow(index.getAndIncrement());
 		        	
 	        		//Dados do Aluno
 	          	  	preencherDadosPessoaisAluno(ga,indexDados, dataRow, dadosTO);
