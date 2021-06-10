@@ -49,13 +49,13 @@ public class ExportacaoDadosAlunoExcelFileExporter {
         return targetArray;
 	}
 	
-	private ByteArrayInputStream gerarFileExcel(ListaCompletaDadosExportar listaCompletaDadosExportar) {
+	private ByteArrayInputStream gerarFileExcel(ListaCompletaDadosExportar listaBeneficiariosExportar) {
 		
 		try(Workbook workbook = new XSSFWorkbook()){
 			Sheet sheet = workbook.createSheet("Aluno_Familiar");
 			
-			List<GrupoDadosExportar> grupoAluno    = listaCompletaDadosExportar.getExportarDados().getDados().stream().filter(p -> p.getEntidade().equals("aluno")).collect(Collectors.toList());
-			List<GrupoDadosExportar> grupoFamiliar = listaCompletaDadosExportar.getExportarDados().getDados().stream().filter(p -> p.getEntidade().equals("familiar")).collect(Collectors.toList());
+			List<GrupoDadosExportar> grupoAluno    = listaBeneficiariosExportar.getExportarDados().getDados().stream().filter(p -> p.getEntidade().equals("aluno")).collect(Collectors.toList());
+			List<GrupoDadosExportar> grupoFamiliar = listaBeneficiariosExportar.getExportarDados().getDados().stream().filter(p -> p.getEntidade().equals("familiar")).collect(Collectors.toList());
 			
 		
 			Row row = sheet.createRow(0);
@@ -101,9 +101,11 @@ public class ExportacaoDadosAlunoExcelFileExporter {
 			});
 			
 			
+			List<Long> idsAlunos = listaBeneficiariosExportar.getListaDadosExportacao().stream().map(d -> d.getIdAluno()).collect(Collectors.toList());
+			List<ExportarDadosBeneficiarioDTO> dadosExportarBeneficiario = exportacaoDadosAlunoDao.getDadosExportarBeneficiario(idsAlunos);
+			
 			AtomicInteger linha = new AtomicInteger(1);
-			listaCompletaDadosExportar.getListaDadosExportacao().forEach( registro -> {
-	        	List<ExportarDadosBeneficiarioDTO> dadosExportarBeneficiario = exportacaoDadosAlunoDao.getDadosExportarBeneficiario(registro.getIdAluno());
+			dadosExportarBeneficiario.forEach( registro -> {	        	
 	        	
 	        	List<GrupoDadosExportar> ga = grupoAluno.stream().collect(Collectors.toList());
 	        	List<GrupoDadosExportar> gf = grupoFamiliar.stream().collect(Collectors.toList());
