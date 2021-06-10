@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import br.com.crux.dao.base.BaseDao;
 import br.com.crux.dao.dto.ExportacaoDadosAlunoDTO;
+import br.com.crux.dao.dto.ExportarDadosBeneficiarioDTO;
 import br.com.crux.infra.util.Java8DateUtil;
 import br.com.crux.infra.util.NumeroUtil;
 
@@ -161,5 +162,189 @@ public class ExportacaoDadosAlunoDao extends BaseDao{
 	
 	
 
+	
+	
+	public List<ExportarDadosBeneficiarioDTO> getDadosExportarBeneficiario(Long idBeneficiario){
+		StringBuilder sql = new StringBuilder();
+		
+		sql.append("select nome_aluno                                           ,");
+		sql.append("	    dt_nascimento_aluno                                 ,");
+		sql.append("	    naturalidade_aluno                                  ,");
+		sql.append("	    uf_nascimento_aluno                                 ,");
+		sql.append("	    sexo_aluno                                          ,");
+		sql.append("	    raca_aluno                                          ,");
+		sql.append("	    nm_mae_aluno                                        ,");
+		sql.append("	    nm_pai_aluno                                        ,");
+		sql.append("	    estado_civil_aluno                                  ,");
+		sql.append("	    tipo_sangue_aluno                                   ,");
+		sql.append("	    nr_cep_aluno                                        ,");
+		sql.append("	    ds_endereco_aluno                                   ,");
+		sql.append("	    cidade_aluno                                        ,");
+		sql.append("	    ds_bairro_aluno                                     ,");
+		sql.append("	    uf_endereco_aluno                                   ,");
+		sql.append("	    ponto_referencia_aluno                              ,");
+		sql.append("	    fone_residencial_aluno                              ,");
+		sql.append("	    fone_celular_aluno                                  ,");
+		sql.append("	    email_aluno                                         ,");
+		sql.append("	    st_autoriza_email_aluno                             ,");
+		sql.append("	    fone_recado_aluno                                   ,");
+		sql.append("	    nr_matricula_aluno                                  ,");
+		sql.append("	    unidade_aluno                                       ,");
+		sql.append("	    programa_aluno                                      ,");
+		sql.append("	    projeto_aluno                                       ,");
+		sql.append("	    dt_entrada_aluno                                    ,");
+		sql.append("	    dt_desligamento_aluno                               ,");
+		sql.append("	    st_mora_pais_aluno                                  ,");
+		sql.append("	    st_pais_casados_aluno                               ,");
+		sql.append("	    publico_prioritario_aluno                           ,");
+		sql.append("	    busca_escola_aluno                                  ,");
+		sql.append("	    ds_desligamento_aluno                               ,");
+		sql.append("	    observacoes_aluno                                   ,");
+		sql.append("	    descricao_aluno                                     ,");
+		sql.append("	    matriculado_esc_pub_aluno                           ,");
+		sql.append("	    nivel_escolaridade_aluno                            ,");
+		sql.append("	    grau_inscrucao_aluno                                ,");
+		sql.append("	    tipo_escola_aluno                                   ,");
+		sql.append("	    ds_turno_aluno                                      ,");
+		sql.append("	    escola_aluno                                        ,");
+		sql.append("	    serie_escola_aluno                                  ,");
+		sql.append("	    ra_escola_aluno                                     ,");
+		sql.append("	    nr_cpf_aluno                                        ,");
+		sql.append("	    nis_aluno                                           ,");
+		sql.append("	    pis_pasep_aluno                                     ,");
+		sql.append("	    identidade_aluno                                    ,");
+		sql.append("	    orgao_expedidor_ci_aluno                            ,");
+		sql.append("	    uf_ci_aluno                                         ,");
+		sql.append("	    dt_emissao_ci_aluno                                 ,");
+		sql.append("	    titulo_eleitor_aluno                                ,");
+		sql.append("	    zona_titulo_aluno                                   ,");
+		sql.append("	    sessao_titulo_aluno                                 ,");
+		sql.append("	    certificado_reservista_aluno                        ,");
+		sql.append("	    regiao_militar_reservista_aluno                     ,");
+		sql.append("	    uf_reservista_aluno                                 ,");
+		sql.append("	    nr_cnh_aluno                                        ,");
+		sql.append("	    categoria_cnh_aluno                                 ,");
+		sql.append("	    dt_vencimento_cnh_aluno                             ,");
+		sql.append("	    carteira_trabalho_aluno                             ,");
+		sql.append("	    serie_carteira_trabalho_aluno                       ,");
+		sql.append("	    uf_carteira_trabalho_aluno                          ,");
+		sql.append("	    possui_deficiente_aluno                             ,");
+		sql.append("	    ds_deficiencia_aluno                                ,");
+		sql.append("	    ds_problema_saude_aluno                             ,");
+		sql.append("	    ds_medicamentos_controlados_aluno                   ,");
+		sql.append("	    condicao_moradia_aluno                              ,");
+		sql.append("	    ds_condicao_moradia_aluno                           ,");
+		sql.append("	    st_atendido_orgao_rede_aluno                        ,");
+		sql.append("	    ds_atendido_orgao_rede_aluno                        ,");
+		sql.append("	    beneficios_aluno                                    ,");
+		sql.append("	    ds_rede_ap_soc_relev_aluno                          ,");
+		sql.append("	    ds_rede_apoio_social_aluno                          ,");
+		sql.append("	    vl_beneficios_aluno                                 ,");
+		sql.append("	    origem_renda_aluno                                  ,");
+		sql.append("	    entidade_social                                     ,");
+		sql.append("	    data_encaminhamento_aluno                           ,");
+		sql.append("	    ds_encaminhamento_aluno                             ,");
+		sql.append("	    nome_familiar                                       ,");
+		sql.append("	    dt_nascimento_familiar                              ,");
+		sql.append("	    naturalidade_familiar                               ,");
+		sql.append("	    uf_nascimento_familiar                              ,");
+		sql.append("	    sexo_familiar                                       ,");
+		sql.append("	    raca_familiar                                       ,");
+		sql.append("	    nm_mae_familiar                                     ,");
+		sql.append("	    nm_pai_familiar                                     ,");
+		sql.append("	    estado_civil_familiar                               ,");
+		sql.append("	    tipo_sangue_familiar                                ,");
+		sql.append("	    nr_cep_familiar                                     ,");
+		sql.append("	    ds_endereco_familiar                                ,");
+		sql.append("	    cidade_familiar                                     ,");
+		sql.append("	    ds_bairro_familiar                                  ,");
+		sql.append("	    uf_endereco_familiar                                ,");
+		sql.append("	    ponto_referencia_familiar                           ,");
+		sql.append("	    fone_residencial_familiar                           ,");
+		sql.append("	    fone_celular_familiar                               ,");
+		sql.append("	    email_familiar                                      ,");
+		sql.append("	    st_autoriza_email_familiar                          ,");
+		sql.append("	    dt_cadastro_familiar                                ,");
+		sql.append("	    dt_desligamento_familiar                            ,");
+		sql.append("	    st_situacao_parentesco_familiar                     ,");
+		sql.append("	    ds_grau_parentesco_familiar                         ,");
+		sql.append("	    ds_desligamento_familiar                            ,");
+		sql.append("	    ds_outras_informacoes_familiar                      ,");
+		sql.append("	    dt_vinculacao_familiar                              ,");
+		sql.append("	    dt_desvinculacao_familiar                           ,");
+		sql.append("	    st_mesmo_ender_resp_familiar                        ,");
+		sql.append("	    st_transporta_aluno_familiar                        ,");
+		sql.append("	    st_tutela_aluno_familiar                            ,");
+		sql.append("	    st_resp_fin_aluno_familiar                          ,");
+		sql.append("	    ds_grau_parentesco_responsavel_familiar             ,");
+		sql.append("	    ds_desligamento_responsavl_familiar                 ,");
+		sql.append("	    descricao_familiar                                  ,");
+		sql.append("	    nivel_escolaridade_familiar                         ,");
+		sql.append("	    grau_inscrucao_familiar                             ,");
+		sql.append("	    nr_cpf_familiar                                     ,");
+		sql.append("	    nis_familiar                                        ,");
+		sql.append("	    pis_pasep_familiar                                  ,");
+		sql.append("	    identidade_familiar                                 ,");
+		sql.append("	    orgao_expedidor_ci_familiar                         ,");
+		sql.append("	    uf_ci_familiar                                      ,");
+		sql.append("	    dt_emissao_ci_familiar                              ,");
+		sql.append("	    titulo_eleitor_familiar                             ,");
+		sql.append("	    zona_titulo_familiar                                ,");
+		sql.append("	    sessao_titulo_familiar                              ,");
+		sql.append("	    certificado_reservista_familiar                     ,");
+		sql.append("	    regiao_militar_reservista_familiar                  ,");
+		sql.append("	    uf_reservista_familiar                              ,");
+		sql.append("	    nr_cnh_familiar                                     ,");
+		sql.append("	    categoria_cnh_familiar                              ,");
+		sql.append("	    dt_vencimento_cnh_familiar                          ,");
+		sql.append("	    carteira_trabalho_familiar                          ,");
+		sql.append("	    vserie_carteira_trabalho_familiar                   ,");
+		sql.append("	    uf_carteira_trabalho_familiar                       ,");
+		sql.append("	    ds_profissao_familiar                               ,");
+		sql.append("	    nm_empresa_trabalho_familiar                        ,");
+		sql.append("	    st_ben_bolsa_familia_familiar                       ,");
+		sql.append("	    vl_bolsa_familia_familiar                           ,");
+		sql.append("	    vl_renda_familiar                                   ,");
+		sql.append("	    fone_comercial_familiar                             ,");
+		sql.append("	    ds_situacao_trabalho_familiar                       ,");
+		sql.append("	    ds_motivo_nao_trab_familiar                         ,");
+		sql.append("	    tipo_escola_familiar                                ,");
+		sql.append("	    ds_turno_familiar                                   ,");
+		sql.append("	    escola_familiar                                     ,");
+		sql.append("	    ds_curso_escola_familiar                            ,");
+		sql.append("	    ds_periodo_escola_familiar                          ,");
+		sql.append("	    serie_escola_familiar                               ,");
+		sql.append("	    ra_escola_familiar                                  ,");
+		sql.append("	    possui_deficiente_familiar                          ,");
+		sql.append("	    ds_deficiencia_familiar                             ,");
+		sql.append("	    ds_problema_saude_familiar                          ,");
+		sql.append("	    ds_medicamentos_controlados_familiar                ,");
+		sql.append("	    condicao_moradia_familiar                           ,");
+		sql.append("	    ds_condicao_moradia_familiar                        ,");
+		sql.append("	    ds_atendido_orgao_rede_familiar                     ,");
+		sql.append("	    beneficios_familiar                                 ,");
+		sql.append("	    ds_rede_ap_soc_relev_familiar                       ,");
+		sql.append("	    ds_rede_apoio_social_familiar                       ,");
+		sql.append("	    vl_beneficios_familiar                              ,");
+		sql.append("	    origem_renda_familiar                               ,");
+		sql.append("	    id_pessoa_fisica                                    ,");
+		sql.append("	    id_aluno                                            ,");
+		sql.append("	    st_apr_externa_aluno                                 ");
+		sql.append("	from vw_exporta_dados_beneficiarios v                    ");
+		sql.append("	where  v.id_aluno = :p_idAluno                           ");
+		sql.append(" order by nome_aluno                                         ");
+		
+		
+		Query query = em.createNativeQuery(sql.toString());
+		query.setParameter("p_idAluno", idBeneficiario);
+		
+		@SuppressWarnings("unchecked")
+		List<Object[]> values = query.getResultList();
+		
+		List<ExportarDadosBeneficiarioDTO> retorno = new ArrayList<ExportarDadosBeneficiarioDTO>();
+		values.stream().forEach( colunas -> retorno.add(new ExportarDadosBeneficiarioDTO(colunas)));
+		
+		return retorno;		
+	}
 	
 }
