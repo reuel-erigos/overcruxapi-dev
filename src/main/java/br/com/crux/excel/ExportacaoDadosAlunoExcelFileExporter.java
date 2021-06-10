@@ -26,7 +26,6 @@ import br.com.crux.dao.dto.ExportarDadosBeneficiarioDTO;
 import br.com.crux.exception.ProvisionamentoNaoGeradoException;
 import br.com.crux.exception.base.NegocioException;
 import br.com.crux.infra.util.Java8DateUtil;
-import br.com.crux.to.ExportacaoDadosAlunoTO;
 import br.com.crux.to.exportacao.GrupoDadosExportar;
 import br.com.crux.to.exportacao.ListaCompletaDadosExportar;
 
@@ -101,19 +100,17 @@ public class ExportacaoDadosAlunoExcelFileExporter {
 				});				
 			});
 			
-	        
-	        for(int i = 0; i < listaCompletaDadosExportar.getListaDadosExportacao().size(); i++) {       	
-	        	ExportacaoDadosAlunoTO dados = listaCompletaDadosExportar.getListaDadosExportacao().get(i);
-
-	        	List<ExportarDadosBeneficiarioDTO> dadosExportarBeneficiario = exportacaoDadosAlunoDao.getDadosExportarBeneficiario(dados.getIdAluno());
+			
+			AtomicInteger linha = new AtomicInteger(1);
+			listaCompletaDadosExportar.getListaDadosExportacao().forEach( registro -> {
+	        	List<ExportarDadosBeneficiarioDTO> dadosExportarBeneficiario = exportacaoDadosAlunoDao.getDadosExportarBeneficiario(registro.getIdAluno());
 	        	
 	        	List<GrupoDadosExportar> ga = grupoAluno.stream().collect(Collectors.toList());
 	        	List<GrupoDadosExportar> gf = grupoFamiliar.stream().collect(Collectors.toList());
 	        	
-	        	AtomicInteger index = new AtomicInteger(i);
 	        	dadosExportarBeneficiario.forEach( dadosTO -> {
 		        	AtomicInteger indexDados = new AtomicInteger(0);
-		        	Row dataRow = sheet.createRow(index.getAndIncrement());
+		        	Row dataRow = sheet.createRow(linha.getAndIncrement());
 		        	
 	        		//Dados do Aluno
 	          	  	preencherDadosPessoaisAluno(ga,indexDados, dataRow, dadosTO);
@@ -132,7 +129,8 @@ public class ExportacaoDadosAlunoExcelFileExporter {
           	    	preencherOutrasInformacoesFamiliar(gf,indexDados, dataRow, dadosTO);
 	          	    
 	        	});
-	        }
+			});
+	        
 	        
 	        for (int i = 0; i < indexColuna.get(); i++) {
 	        	sheet.autoSizeColumn(i);
