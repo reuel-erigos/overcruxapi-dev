@@ -102,11 +102,11 @@ public class ExportacaoDadosAlunoExcelFileExporter {
 			
 			
 			List<Long> idsAlunos = listaBeneficiariosExportar.getListaDadosExportacao().stream().map(d -> d.getIdAluno()).collect(Collectors.toList());
-			List<ExportarDadosBeneficiarioDTO> dadosExportarBeneficiario = exportacaoDadosAlunoDao.getDadosExportarBeneficiario(idsAlunos);
 			
 			AtomicInteger linha = new AtomicInteger(1);
-			dadosExportarBeneficiario.forEach( registro -> {	        	
-	        	
+			idsAlunos.forEach( idAluno -> {	        	
+				List<ExportarDadosBeneficiarioDTO> dadosExportarBeneficiario = exportacaoDadosAlunoDao.getDadosExportarBeneficiario(idAluno);
+				
 	        	List<GrupoDadosExportar> ga = grupoAluno.stream().collect(Collectors.toList());
 	        	List<GrupoDadosExportar> gf = grupoFamiliar.stream().collect(Collectors.toList());
 	        	

@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import javax.persistence.Query;
 
@@ -165,7 +164,7 @@ public class ExportacaoDadosAlunoDao extends BaseDao{
 
 	
 	
-	public List<ExportarDadosBeneficiarioDTO> getDadosExportarBeneficiario(List<Long> listaIdsBeneficiario){
+	public List<ExportarDadosBeneficiarioDTO> getDadosExportarBeneficiario(Long idBeneficiario){
 		StringBuilder sql = new StringBuilder();
 		
 		sql.append("select nome_aluno                                           ,");
@@ -332,9 +331,12 @@ public class ExportacaoDadosAlunoDao extends BaseDao{
 		sql.append("	    id_aluno                                            ,");
 		sql.append("	    st_apr_externa_aluno                                 ");
 		sql.append("	from vw_exporta_dados_beneficiarios v                    ");
-		sql.append(" where v.id_aluno in (");
-		sql.append(String.join(", ", listaIdsBeneficiario.stream().map(String::valueOf).collect(Collectors.toList())));
-		sql.append(" )");
+		sql.append(" where v.id_aluno = " + idBeneficiario                        );
+		
+		//sql.append(" where v.id_aluno in (");
+		//sql.append(String.join(", ", listaIdsBeneficiario.stream().map(String::valueOf).collect(Collectors.toList())));
+		//sql.append(" )");
+		
 		sql.append(" order by nome_aluno                                         ");
 		
 		Query query = em.createNativeQuery(sql.toString());
