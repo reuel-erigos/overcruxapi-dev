@@ -8,6 +8,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import br.com.crux.cmd.GetCategoriasMovimentosCmd;
 import br.com.crux.cmd.GetContasBancariaCmd;
 import br.com.crux.cmd.GetDepartamentoCmd;
 import br.com.crux.cmd.GetDoadoresCmd;
@@ -50,7 +51,7 @@ public class MovimentacoesTOBuilder {
 	@Autowired private GetTributoMovimentacaoCmd getTributoMovimentacaoCmd;
 	@Autowired private PessoaFisicaTOBuilder pessoaFisicaTOBuilder;
 	@Autowired private GetPessoaFisicaCmd getPessoaFisicaCmd;
-	
+	@Autowired private GetCategoriasMovimentosCmd getCategoriasMovimentosCmd;
 	
 	public MovimentacoesTO buildTO(Movimentacoes m) {
 		MovimentacoesTO to = new MovimentacoesTO();
@@ -73,6 +74,7 @@ public class MovimentacoesTOBuilder {
 			to.setRateios(rateiosMovimentacoesTOBuilder.buildAllTO(getRateiosMovimentacoesCmd.getPorMovimentacoes(m)));
 			to.setRateiosUnidades(rateiosMovimentacoesUnidadesTOBuilder.buildAllTO(getRateiosMovimentacoesUnidadesCmd.getPorMovimentacoes(m)));
 			to.setTributos(getTributoMovimentacaoCmd.getAllTOByIdMovimentacao(m.getId()));
+			to.setCategoriasMovimentos(getCategoriasMovimentosCmd.getCategoriasMovimentosTOByMovimentacao(m));
 		}
 		
 		to.setContaBancaria(contasBancariaTOBuilder.buildTO(m.getContaBancaria()));

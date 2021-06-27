@@ -22,7 +22,7 @@ public class MovimentacoesTO {
 	private List<FaturaTO> faturas; 
 	private List<PagamentosFaturaTO> pagamentosFatura; 
 	private List<TributosMovimentacoesTO> tributos;
-	
+	private List<CategoriasMovimentosTO> categoriasMovimentos;
 	
 	private ContasBancariaTO contaBancaria;
 	private ContasBancariaTO contaBancariaDestino;
@@ -188,6 +188,14 @@ public class MovimentacoesTO {
 
 	public void setParceriasPrograma(List<ParceriasProgramaTO> parceriasPrograma) {
 		this.parceriasPrograma = parceriasPrograma;
+	}
+
+	public List<CategoriasMovimentosTO> getCategoriasMovimentos() {
+		return categoriasMovimentos;
+	}
+
+	public void setCategoriasMovimentos(List<CategoriasMovimentosTO> categoriasMovimentos) {
+		this.categoriasMovimentos = categoriasMovimentos;
 	}
 	
 }
