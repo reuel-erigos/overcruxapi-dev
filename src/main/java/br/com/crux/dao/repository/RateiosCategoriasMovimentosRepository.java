@@ -14,7 +14,7 @@ public interface RateiosCategoriasMovimentosRepository extends JpaRepository<Rat
 
 	@Query(value = "select rm from RateiosCategoriasMovimentos rm                       "
 			+ " inner join CategoriasMovimentos cm on cm.id = rm.idCategoriaMovimento   "
-			+ " inner join Movimentacoes m on m.id = cm.idMovimentacao                  "
+			+ " inner join Movimentacoes m on m.id = cm.idMovimento                     "
 			+ " where m.id = ?1                                                         ")
 	public Optional<List<RateiosCategoriasMovimentos>> findByIdMovimento(Long idMovimento);
 
