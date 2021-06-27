@@ -14,7 +14,7 @@ import br.com.crux.entity.CategoriasMovimentos;
 public interface CategoriasMovimentosRepository extends JpaRepository<CategoriasMovimentos, Long> {
 
 	@Query(value = "SELECT cm FROM CategoriasMovimentos cm              "
-			+ " inner join Movimentacoes m  on m.id = cm.idMovimentacao "
+			+ " inner join Movimentacoes m  on m.id = cm.idMovimento    "
 			+ " where m.id = :id                                        ")
 	public Optional<List<CategoriasMovimentos>> findByIdMovimentacao(Long id);
 
