@@ -74,9 +74,9 @@ public class MovimentacoesTOBuilder {
 			to.setRateios(rateiosMovimentacoesTOBuilder.buildAllTO(getRateiosMovimentacoesCmd.getPorMovimentacoes(m)));
 			to.setRateiosUnidades(rateiosMovimentacoesUnidadesTOBuilder.buildAllTO(getRateiosMovimentacoesUnidadesCmd.getPorMovimentacoes(m)));
 			to.setTributos(getTributoMovimentacaoCmd.getAllTOByIdMovimentacao(m.getId()));
-			to.setCategoriasMovimentos(getCategoriasMovimentosCmd.getCategoriasMovimentosTOByMovimentacao(m));
 		}
 		
+		to.setCategoriasMovimentos(getCategoriasMovimentosCmd.getCategoriasMovimentosTOByMovimentacao(m));
 		to.setContaBancaria(contasBancariaTOBuilder.buildTO(m.getContaBancaria()));
 		to.setContaBancariaDestino(contasBancariaTOBuilder.buildTO(m.getContaBancariaDestino()));
 		to.setDoador(doadoresTOBuilder.buildTO(m.getDoador()));
