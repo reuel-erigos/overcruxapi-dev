@@ -50,7 +50,8 @@ public class CategoriasMovimentosTOBuilder {
 
 		BeanUtils.copyProperties(to, entity);
 
-
+		entity.setIdMovimento(movimentacoes.getId());
+		
 		if (Objects.nonNull(to.getCategoriaOrigem()) && Objects.nonNull(to.getCategoriaOrigem().getId())) {
 			CategoriasContabeis retorno = getCategoriasContabeisCmd.getById(to.getCategoriaOrigem().getId());
 			entity.setCategoriaOrigem(retorno);

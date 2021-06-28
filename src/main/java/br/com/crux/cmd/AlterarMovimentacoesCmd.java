@@ -24,6 +24,7 @@ public class AlterarMovimentacoesCmd {
 	@Autowired private AlterarListaRateiosMovimentacoesCmd alterarListaRateiosMovimentacoesCmd;
 	@Autowired private AlterarListaRateiosMovimentacoesUnidadesCmd alterarListaRateiosMovimentacoesUnidadesCmd;
 	@Autowired private AlterarListaTributosMovimentacaoCmd alterarListaTributosMovimentacaoCmd;
+	@Autowired private AlterarListaCategoriasMovimentosCmd alterarListaCategoriasMovimentosCmd;
 	
 	public MovimentacoesTO alterar(MovimentacoesTO to) {
 		Movimentacoes entity = repository.findById(to.getId()).orElseThrow(() -> new NotFoundException("Movimento informado não existe."));
@@ -40,6 +41,8 @@ public class AlterarMovimentacoesCmd {
 			alterarListaFaturasCmd.alterarAll(to.getFaturas(), movimentacoes);
 			alterarListaPagamentosFaturaCmd.alterarAll(to.getPagamentosFatura(), movimentacoes);
 		}
+		
+		alterarListaCategoriasMovimentosCmd.alterarAll(to.getCategoriasMovimentos(), movimentacoes);
 
 		Optional<Movimentacoes> entitySalva = repository.findById(movimentacoes.getId());
 		return toBuilder.buildTO(entitySalva.get());
