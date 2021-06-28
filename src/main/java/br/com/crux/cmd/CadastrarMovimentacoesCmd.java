@@ -40,9 +40,9 @@ public class CadastrarMovimentacoesCmd {
 			cadastrarFaturasCmd.cadastrarLista(movimentacoes, to.getFaturas());
 			cadastrarPagamentosFaturaCmd.cadastrarLista(movimentacoes, to.getPagamentosFatura());
 			cadastrarTributosMovimentacaoCmd.cadastrarLista(movimentacoes, to.getTributos());
+			cadastrarCategoriasMovimentosCmd.cadastrarLista(movimentacoes, to.getCategoriasMovimentos());
 		}
 
-		cadastrarCategoriasMovimentosCmd.cadastrarLista(movimentacoes, to.getCategoriasMovimentos());
 		
 		Optional<Movimentacoes> entitySalva = repository.findById(movimentacoes.getId());
 		return toBuilder.buildTO(entitySalva.get());
