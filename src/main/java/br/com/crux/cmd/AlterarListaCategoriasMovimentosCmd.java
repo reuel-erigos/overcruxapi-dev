@@ -1,14 +1,17 @@
 package br.com.crux.cmd;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.builder.CategoriasMovimentosTOBuilder;
 import br.com.crux.dao.repository.CategoriasMovimentosRepository;
+import br.com.crux.dao.repository.RateiosCategoriasMovimentosRepository;
 import br.com.crux.entity.CategoriasMovimentos;
 import br.com.crux.entity.Movimentacoes;
+import br.com.crux.entity.RateiosCategoriasMovimentos;
 import br.com.crux.to.CategoriasMovimentosTO;
 
 @Component
@@ -19,6 +22,7 @@ public class AlterarListaCategoriasMovimentosCmd extends AbstractAlterarListaCmd
 	@Autowired private GetCategoriasMovimentosCmd getCmd;	
 	@Autowired private CadastrarCategoriasMovimentosCmd cadastrarCmd;
 	@Autowired private AlterarListaRateiosCategoriasMovimentosCmd alterarListaRateiosCmd;
+	@Autowired private RateiosCategoriasMovimentosRepository rateiosCategoriasMovimentosRepository ; 
 	
 
 	@Override
@@ -52,6 +56,11 @@ public class AlterarListaCategoriasMovimentosCmd extends AbstractAlterarListaCmd
 
 	@Override
 	protected void deletar(CategoriasMovimentos registro) {
+		Optional<List<RateiosCategoriasMovimentos>> rateios = rateiosCategoriasMovimentosRepository.findByIdCategoria(registro.getId());
+		if(rateios.isPresent()) {
+			rateiosCategoriasMovimentosRepository.deleteAll(rateios.get());
+		}
+		
 		repository.delete(registro);
 	}
 

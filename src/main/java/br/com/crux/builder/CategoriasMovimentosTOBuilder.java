@@ -57,8 +57,8 @@ public class CategoriasMovimentosTOBuilder {
 			entity.setCategoriaOrigem(retorno);
 		}
 
-		if (Objects.nonNull(to.getCategoriaDestino()) && Objects.nonNull(to.getCategoriaOrigem().getId())) {
-			CategoriasContabeis retorno = getCategoriasContabeisCmd.getById(to.getCategoriaOrigem().getId());
+		if (Objects.nonNull(to.getCategoriaDestino()) && Objects.nonNull(to.getCategoriaDestino().getId())) {
+			CategoriasContabeis retorno = getCategoriasContabeisCmd.getById(to.getCategoriaDestino().getId());
 			entity.setCategoriaDestino(retorno);
 		}
 		
