@@ -43,10 +43,7 @@ public class GetCategoriasContabeisCmd {
 		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
 
 		List<PlanosContas> entitys = planosContasRepository.findAllByInstituicao(idInstituicao).orElseGet(Collections::emptyList);
-		
-		if(!hasSintetica) {
-			entitys = entitys.stream().filter(e -> e.getSintetica() != true).collect(Collectors.toList());
-		}
+		entitys = entitys.stream().filter(e -> e.getSintetica().equals(hasSintetica)).collect(Collectors.toList());
 		
 		return planosContasTOBuilder.buildAll(entitys);
 	}
