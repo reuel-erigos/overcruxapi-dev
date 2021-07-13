@@ -6,6 +6,8 @@ public class PlanosContasTO {
 	private String planoConta;
 	private String codigoCategoriaContabil;
 	private Long idInstituicao;
+	private Boolean sintetica;
+	
 	
 	public Long getId() {
 		return id;
@@ -38,5 +40,14 @@ public class PlanosContasTO {
 	public void setIdInstituicao(Long idInstituicao) {
 		this.idInstituicao = idInstituicao;
 	}
+
+	public Boolean getSintetica() {
+		return sintetica;
+	}
+
+	public void setSintetica(Boolean sintetica) {
+		this.sintetica = sintetica;
+	}
+	
 	
 }
