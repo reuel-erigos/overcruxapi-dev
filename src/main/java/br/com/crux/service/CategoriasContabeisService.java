@@ -33,6 +33,12 @@ public class CategoriasContabeisService {
 	public List<CategoriasContabeisTO> getAll() {
 		return getCmd.getAllByInstituicaoLogada();
 	}
+	
+	
+	@GetMapping("/view/all")
+	public List<PlanosContasTO> getAllCategorias() {
+		return getCmd.getAllByInstituicaoLogadaComboSuperior();
+	}
 
 	@GetMapping("/view")
 	public List<PlanosContasTO> getAllCategorias(@RequestParam(name = "hasSintetica", required = false, defaultValue ="true") boolean hasSintetica) {
