@@ -72,7 +72,7 @@ public class ProvisionamentoExcelFileExporter {
 	        cell.setCellStyle(headerCellStyle);
 
 	        cell = row.createCell(6);
-	        cell.setCellValue("Categoria");
+	        cell.setCellValue("Conta Origem");
 	        cell.setCellStyle(headerCellStyle);
 	        
 	        cell = row.createCell(7);
@@ -84,7 +84,7 @@ public class ProvisionamentoExcelFileExporter {
 	        cell.setCellStyle(headerCellStyle);
 	        
 	        cell = row.createCell(9);
-	        cell.setCellValue("Descrição Fornecedor");
+	        cell.setCellValue("Conta Destino");
 	        cell.setCellStyle(headerCellStyle);
 	        
 	        cell = row.createCell(10);
