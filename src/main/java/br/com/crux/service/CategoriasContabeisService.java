@@ -45,6 +45,12 @@ public class CategoriasContabeisService {
 		return getCmd.getAllByInstituicaoLogadaComboSuperior(hasSintetica);
 	}
 
+
+	@GetMapping("/view/{id}")
+	public PlanosContasTO getViewById(@PathVariable(name = "id") Long id) {
+		return getCmd.getViewById(id);
+	}
+	
 	@GetMapping("/combo")
 	public List<CategoriasContabeisTO> getAllCombo() {
 		return getCmd.getAllCombo();

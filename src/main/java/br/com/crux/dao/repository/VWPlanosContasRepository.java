@@ -18,4 +18,10 @@ public interface VWPlanosContasRepository extends JpaRepository<PlanosContas, Lo
 			+ " order by vw.planoConta ")
 	public Optional<List<PlanosContas>> findAllByInstituicao(Long idInstituicao);
 
+	
+	@Query("select  vw from PlanosContas vw "
+			+ "where vw.id = :id "
+			+ " order by vw.planoConta ")
+	public Optional<PlanosContas> findById(Long id);
+
 }

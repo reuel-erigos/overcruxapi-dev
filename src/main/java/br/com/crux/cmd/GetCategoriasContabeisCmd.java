@@ -53,6 +53,14 @@ public class GetCategoriasContabeisCmd {
 		List<PlanosContas> entitys = planosContasRepository.findAllByInstituicao(idInstituicao).orElseGet(Collections::emptyList);
 		return planosContasTOBuilder.buildAll(entitys);
 	}
+	
+	public PlanosContasTO getViewById(Long id) {
+		Optional<PlanosContas> entity = planosContasRepository.findById(id);
+		if(entity.isPresent()) {
+			return planosContasTOBuilder.buildTO(entity.get());
+		}
+		return null;
+	}
 
 	public CategoriasContabeisTO getTOById(Long id) {
 		CategoriasContabeis to = repository.findById(id).orElseThrow(() -> new NotFoundException("Entidade não encontrada"));
