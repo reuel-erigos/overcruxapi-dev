@@ -25,11 +25,11 @@ public class GetMovimentacoesContabeisDao extends BaseDao {
 		sql.append("      mc.dt_movimentacao,                                                             ");
 		sql.append("      mc.vl_movimentacao,                                                             ");
 		sql.append("      mc.id_programa_1,                                                               ");
-		sql.append("      pg1.nm_programa nomePrograma01                                                  ");
+		sql.append("      pg1.nm_programa nomePrograma01,                                                 ");
 		sql.append("      mc.id_projeto_1,                                                                ");
-		sql.append("      pj1.nm_projeto nomeProjeto01                                                    ");
+		sql.append("      pj1.nm_projeto nomeProjeto01,                                                   ");
 		sql.append("      mc.id_categoria_origem_1,                                                       ");
-		sql.append("      co1.plano_conta contaOrigem01                                                   ");
+		sql.append("      co1.plano_conta contaOrigem01,                                                  ");
 		sql.append("      co1.cd_categoria_contabil cdContaOrigem01,                                      ");
 		sql.append("      mc.id_categoria_destino_1,                                                      ");
 		sql.append("      cd1.plano_conta contaDestinoPlanoConta01,                                       ");
