@@ -8,8 +8,10 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import br.com.crux.cmd.GetCategoriasContabeisCmd;
 import br.com.crux.cmd.GetUnidadeCmd;
 import br.com.crux.cmd.GetUsuarioLogadoCmd;
+import br.com.crux.entity.CategoriasContabeis;
 import br.com.crux.entity.ContasBancaria;
 import br.com.crux.entity.Unidade;
 import br.com.crux.to.BancoTO;
@@ -21,7 +23,9 @@ public class ContasBancariaTOBuilder {
 	@Autowired private UnidadeTOBuilder unidadeBuilder;
 	@Autowired private GetUnidadeCmd getUnidadeCmd;
 	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
-
+	@Autowired private GetCategoriasContabeisCmd getCategoriasContabeisCmd;
+	@Autowired private CategoriasContabeisTOBuilder categoriasContabeisTOBuilder;
+	
 	public ContasBancaria build(ContasBancariaTO to) {
 		ContasBancaria entity = new ContasBancaria();
 
@@ -35,6 +39,11 @@ public class ContasBancariaTOBuilder {
 		if (Objects.nonNull(to.getUnidade()) && Objects.nonNull(to.getUnidade().getIdUnidade())) {
 			Unidade unidade = getUnidadeCmd.getById(to.getUnidade().getIdUnidade());
 			entity.setUnidade(unidade);
+		}
+
+		if (Objects.nonNull(to.getCategoriasContabeis()) && Objects.nonNull(to.getCategoriasContabeis().getId())) {
+			CategoriasContabeis categoria = getCategoriasContabeisCmd.getById(to.getCategoriasContabeis().getId());
+			entity.setCategoriasContabeis(categoria);
 		}
 
 		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
@@ -52,6 +61,10 @@ public class ContasBancariaTOBuilder {
 		BeanUtils.copyProperties(entity, to);
 		to.setUnidade(unidadeBuilder.buildTO(entity.getUnidade()));
 		to.setBanco(new BancoTO(entity.getNomeBanco(), entity.getNumeroBanco()));
+		
+		if(Objects.nonNull(entity.getCategoriasContabeis())) {
+			to.setCategoriasContabeis(categoriasContabeisTOBuilder.buildTO(entity.getCategoriasContabeis()));
+		}
 
 		return to;
 	}

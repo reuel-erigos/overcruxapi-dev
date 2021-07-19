@@ -18,15 +18,11 @@ public class AlterarContasBancariaCmd {
 	@Autowired private CamposObrigatoriosContasBancariaRule rule;
 
 	public void alterar(ContasBancariaTO to) {
-		ContasBancaria entity = repository.findById(to.getId())
-				.orElseThrow(() -> new NotFoundException("Entidade informada não existe."));
+		ContasBancaria entity = repository.findById(to.getId()).orElseThrow(() -> new NotFoundException("Entidade informada não existe."));
 
 		rule.verificar(to);
-
 		entity = toBuilder.build(to);
-
 		repository.save(entity);
-
 	}
 
 }

@@ -70,6 +70,10 @@ public class ContasBancaria implements Serializable {
 	@Column(name = "id_conta_associada") 
 	private Long contaAssociada;
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_categoria") 
+	private CategoriasContabeis categoriasContabeis;
+	
 	
 	public ContasBancaria() {
 	}
@@ -187,7 +191,13 @@ public class ContasBancaria implements Serializable {
 		this.contaAssociada = contaAssociada;
 	}
 
-	
-	
+	public CategoriasContabeis getCategoriasContabeis() {
+		return categoriasContabeis;
+	}
+
+	public void setCategoriasContabeis(CategoriasContabeis categoriasContabeis) {
+		this.categoriasContabeis = categoriasContabeis;
+	}
+
 	
 }

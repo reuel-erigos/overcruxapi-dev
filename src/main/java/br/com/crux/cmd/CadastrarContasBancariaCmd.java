@@ -17,12 +17,8 @@ public class CadastrarContasBancariaCmd {
 	@Autowired private CamposObrigatoriosContasBancariaRule rule;
 
 	public void cadastrar(ContasBancariaTO to) {
-
 		rule.verificar(to);
-
 		ContasBancaria entity = toBuilder.build(to);
-
 		repository.save(entity);
-
 	}
 }
