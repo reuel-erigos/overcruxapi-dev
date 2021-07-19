@@ -24,7 +24,6 @@ public class GetMovimentacoesContabeisDao extends BaseDao {
 		sql.append(" select mc.id_movimentacao_contabil,                                                  ");
 		sql.append("      mc.dt_movimentacao,                                                             ");
 		sql.append("      mc.vl_movimentacao,                                                             ");
-		sql.append("      mc.ds_movimentacao,                                                             ");
 		sql.append("      mc.id_programa_1,                                                               ");
 		sql.append("      pg1.nm_programa,                                                                ");
 		sql.append("      mc.id_projeto_1,                                                                ");
