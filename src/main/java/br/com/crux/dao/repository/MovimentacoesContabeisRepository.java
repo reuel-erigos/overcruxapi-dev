@@ -14,7 +14,7 @@ public interface MovimentacoesContabeisRepository extends JpaRepository<Moviment
 
 	
 	@Query(value = "select m from MovimentacoesContabeis m         " 
-	             + " inner join Instituicao i on i = m.instituicao " 
+	             + " inner join Instituicao i on i.id = m.idInstituicao " 
 			      + " where i.id = ?1                              "
 			      + " order by m.dataMovimentacao                  ")
 	public Optional<List<MovimentacoesContabeis>> findByIdInstituicao(Long idInstituicao);
