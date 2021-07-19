@@ -110,7 +110,7 @@ public class MovimentacoesContabeisTOBuilder {
 		}
 		
 		if(Objects.nonNull(entity.getCategoriaOrigem02())) {
-			to.setCategoriaOrigem01(categoriasContabeisTOBuilder.buildTO(entity.getCategoriaOrigem02()));
+			to.setCategoriaOrigem02(categoriasContabeisTOBuilder.buildTO(entity.getCategoriaOrigem02()));
 		}
 
 		if(Objects.nonNull(entity.getCategoriaDestino02())) {
