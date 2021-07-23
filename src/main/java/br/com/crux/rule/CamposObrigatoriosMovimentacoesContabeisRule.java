@@ -26,12 +26,14 @@ public class CamposObrigatoriosMovimentacoesContabeisRule {
 			throw new CamposObrigatoriosException("A categoria de destino da movimentação 1 deve ser informada.");
 		}
 		
+		/*
 		if (Objects.isNull(to.getCategoriaOrigem02()) || Objects.isNull(to.getCategoriaOrigem02().getId())) {
 			throw new CamposObrigatoriosException("A categoria de origem da movimentação 2 deve ser informada.");
 		}
 		if (Objects.isNull(to.getCategoriaDestino02()) || Objects.isNull(to.getCategoriaDestino02().getId())) {
 			throw new CamposObrigatoriosException("A categoria de destino da movimentação 2 deve ser informada.");
 		}
+		*/
 
 	}
 }

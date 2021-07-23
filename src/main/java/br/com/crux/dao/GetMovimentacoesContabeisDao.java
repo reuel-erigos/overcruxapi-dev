@@ -61,12 +61,12 @@ public class GetMovimentacoesContabeisDao extends BaseDao {
 		
 		if(Objects.nonNull(idContaOrigem)) {
 			sql.append(" and mc.id_categoria_origem_1  = :p_categoria_origem");
-		    sql.append(" and mc.id_categoria_origem_2  = :p_categoria_origem");
+		    //sql.append(" and mc.id_categoria_origem_2  = :p_categoria_origem");
 		}
 		
 		if(Objects.nonNull(idContaDestino)) {
 			sql.append(" and mc.id_categoria_destino_1 = :p_categoria_destino");
-			sql.append(" and mc.id_categoria_destino_2 = :p_categoria_destino");
+			//sql.append(" and mc.id_categoria_destino_2 = :p_categoria_destino");
 		}
 		
 		if(Objects.nonNull(dataInicio)) {
