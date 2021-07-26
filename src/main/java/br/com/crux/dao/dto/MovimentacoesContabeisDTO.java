@@ -19,16 +19,6 @@ public class MovimentacoesContabeisDTO {
 	private Long idCategoriaDestino01;
 	private String planoContaDestino01;
 	private String codigoPlanoContaDestino01;	
-	private Long idPrograma02;
-	private String nomePrograma02;
-	private Long idProjeto02;
-	private String nomeProjeto02;
-	private Long idCategoriaOrigem02;
-	private String planoContaOrigem02;
-	private String codigoPlanoContaOrigem02;
-	private Long idCategoriaDestino02;
-	private String planoContaDestino02;
-	private String codigoPlanoContaDestino02;
 
 	
 	public MovimentacoesContabeisDTO() {
@@ -48,16 +38,6 @@ public class MovimentacoesContabeisDTO {
 		this.idCategoriaDestino01         = (colunas[10] != null)? ((BigDecimal)colunas[10]).longValue() : null;
 		this.planoContaDestino01          = (String) colunas[11];
 		this.codigoPlanoContaDestino01    = (String) colunas[12];		
-		this.idPrograma02                 = (colunas[13] != null)? ((BigDecimal)colunas[13]).longValue() : null;
-		this.nomePrograma02               = (String) colunas[14];
-		this.idProjeto02                  = (colunas[15] != null)? ((BigDecimal)colunas[15]).longValue() : null;
-		this.nomeProjeto02                = (String) colunas[16];
-		this.idCategoriaOrigem02          = (colunas[17] != null)? ((BigDecimal)colunas[17]).longValue() : null;
-		this.planoContaOrigem02           = (String) colunas[18];
-		this.codigoPlanoContaOrigem02     = (String) colunas[19];
-		this.idCategoriaDestino02         = (colunas[20] != null)? ((BigDecimal)colunas[20]).longValue() : null;
-		this.planoContaDestino02          = (String) colunas[21];
-		this.codigoPlanoContaDestino02    = (String) colunas[22];		
 	}
 
 	public Long getId() {
@@ -164,86 +144,5 @@ public class MovimentacoesContabeisDTO {
 		this.codigoPlanoContaDestino01 = codigoPlanoContaDestino01;
 	}
 
-	public Long getIdPrograma02() {
-		return idPrograma02;
-	}
-
-	public void setIdPrograma02(Long idPrograma02) {
-		this.idPrograma02 = idPrograma02;
-	}
-
-	public String getNomePrograma02() {
-		return nomePrograma02;
-	}
-
-	public void setNomePrograma02(String nomePrograma02) {
-		this.nomePrograma02 = nomePrograma02;
-	}
-
-	public Long getIdProjeto02() {
-		return idProjeto02;
-	}
-
-	public void setIdProjeto02(Long idProjeto02) {
-		this.idProjeto02 = idProjeto02;
-	}
-
-	public String getNomeProjeto02() {
-		return nomeProjeto02;
-	}
-
-	public void setNomeProjeto02(String nomeProjeto02) {
-		this.nomeProjeto02 = nomeProjeto02;
-	}
-
-	public Long getIdCategoriaOrigem02() {
-		return idCategoriaOrigem02;
-	}
-
-	public void setIdCategoriaOrigem02(Long idCategoriaOrigem02) {
-		this.idCategoriaOrigem02 = idCategoriaOrigem02;
-	}
-
-	public String getPlanoContaOrigem02() {
-		return planoContaOrigem02;
-	}
-
-	public void setPlanoContaOrigem02(String planoContaOrigem02) {
-		this.planoContaOrigem02 = planoContaOrigem02;
-	}
-
-	public String getCodigoPlanoContaOrigem02() {
-		return codigoPlanoContaOrigem02;
-	}
-
-	public void setCodigoPlanoContaOrigem02(String codigoPlanoContaOrigem02) {
-		this.codigoPlanoContaOrigem02 = codigoPlanoContaOrigem02;
-	}
-
-	public Long getIdCategoriaDestino02() {
-		return idCategoriaDestino02;
-	}
-
-	public void setIdCategoriaDestino02(Long idCategoriaDestino02) {
-		this.idCategoriaDestino02 = idCategoriaDestino02;
-	}
-
-	public String getPlanoContaDestino02() {
-		return planoContaDestino02;
-	}
-
-	public void setPlanoContaDestino02(String planoContaDestino02) {
-		this.planoContaDestino02 = planoContaDestino02;
-	}
-
-	public String getCodigoPlanoContaDestino02() {
-		return codigoPlanoContaDestino02;
-	}
-
-	public void setCodigoPlanoContaDestino02(String codigoPlanoContaDestino02) {
-		this.codigoPlanoContaDestino02 = codigoPlanoContaDestino02;
-	}
-
-	
 	
 }

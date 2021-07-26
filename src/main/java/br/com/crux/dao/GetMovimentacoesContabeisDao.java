@@ -33,26 +33,12 @@ public class GetMovimentacoesContabeisDao extends BaseDao {
 		sql.append("      co1.cd_categoria_contabil cdContaOrigem01,                                      ");
 		sql.append("      mc.id_categoria_destino_1,                                                      ");
 		sql.append("      cd1.plano_conta contaDestinoPlanoConta01,                                       ");
-		sql.append("      cd1.cd_categoria_contabil contaDestinoCodigoCatContb01,                         ");
-		sql.append("      mc.id_programa_2,                                                               ");
-		sql.append("      pg2.nm_programa nomePrograma02,                                                 ");
-		sql.append("      mc.id_projeto_2,                                                                ");
-		sql.append("      pj2.nm_projeto nomeProjeto02,                                                   ");
-		sql.append("      mc.id_categoria_origem_2,                                                       ");
-		sql.append("      co2.plano_conta contaOrigem02,                                                  ");
-		sql.append("      co2.cd_categoria_contabil cdContaOrigem02,                                      ");
-		sql.append("      mc.id_categoria_destino_2,                                                      ");
-		sql.append("      cd2.plano_conta contaDestinoPlanoConta02,                                       ");
-		sql.append("      cd2.cd_categoria_contabil contaDestinoCodigoCatContb02                          ");
+		sql.append("      cd1.cd_categoria_contabil contaDestinoCodigoCatContb01                          ");
 		sql.append(" from  movimentacoes_contabeis mc                                                     ");
 		sql.append("   inner join vw_planos_contas co1 on mc.id_categoria_origem_1  = co1.id_categoria    ");
 		sql.append("   inner join vw_planos_contas cd1 on mc.id_categoria_destino_1 = cd1.id_categoria    ");
-		sql.append("   inner join vw_planos_contas co2 on mc.id_categoria_origem_2  = co2.id_categoria    ");
-		sql.append("   inner join vw_planos_contas cd2 on mc.id_categoria_destino_2 = cd2.id_categoria    ");
 		sql.append("   left join programas pg1 on pg1.id_programa = mc.id_programa_1                      ");
 		sql.append("   left join projetos pj1 on pj1.id_projeto    = mc.id_projeto_1                      ");
-		sql.append("   left join programas pg2 on pg2.id_programa = mc.id_programa_2                      ");
-		sql.append("   left join projetos pj2 on pj2.id_projeto    = mc.id_projeto_2                      ");
 		sql.append(" where 1 = 1                                                                          ");
   
 		if(Objects.nonNull(valor)) {
@@ -61,12 +47,10 @@ public class GetMovimentacoesContabeisDao extends BaseDao {
 		
 		if(Objects.nonNull(idContaOrigem)) {
 			sql.append(" and mc.id_categoria_origem_1  = :p_categoria_origem");
-		    //sql.append(" and mc.id_categoria_origem_2  = :p_categoria_origem");
 		}
 		
 		if(Objects.nonNull(idContaDestino)) {
 			sql.append(" and mc.id_categoria_destino_1 = :p_categoria_destino");
-			//sql.append(" and mc.id_categoria_destino_2 = :p_categoria_destino");
 		}
 		
 		if(Objects.nonNull(dataInicio)) {
