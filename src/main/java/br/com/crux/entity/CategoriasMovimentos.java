@@ -1,6 +1,7 @@
 package br.com.crux.entity;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -45,6 +46,17 @@ public class CategoriasMovimentos implements Serializable {
 
 	@Column(name = "id_usuario_apl")
 	private Long usuarioAlteracao;
+	
+	@Column(name = "dt_movimentacao") 
+	private LocalDateTime dataMovimentacao;
+	
+	@ManyToOne(fetch = FetchType.LAZY) 
+	@JoinColumn(name = "id_programa") 
+	private Programa programa;
+	
+	@ManyToOne(fetch = FetchType.LAZY) 
+	@JoinColumn(name = "id_projeto") 
+	private Projeto projeto;
 	
 	public CategoriasMovimentos() {
 	}
@@ -103,6 +115,30 @@ public class CategoriasMovimentos implements Serializable {
 
 	public void setUsuarioAlteracao(Long usuarioAlteracao) {
 		this.usuarioAlteracao = usuarioAlteracao;
+	}
+
+	public LocalDateTime getDataMovimentacao() {
+		return dataMovimentacao;
+	}
+
+	public void setDataMovimentacao(LocalDateTime dataMovimentacao) {
+		this.dataMovimentacao = dataMovimentacao;
+	}
+
+	public Programa getPrograma() {
+		return programa;
+	}
+
+	public void setPrograma(Programa programa) {
+		this.programa = programa;
+	}
+
+	public Projeto getProjeto() {
+		return projeto;
+	}
+
+	public void setProjeto(Projeto projeto) {
+		this.projeto = projeto;
 	}
 	
 	

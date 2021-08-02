@@ -1,5 +1,6 @@
 package br.com.crux.to;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class CategoriasMovimentosTO {
@@ -11,6 +12,9 @@ public class CategoriasMovimentosTO {
 	private Double valor;
 	private String descricao;
 	private Long usuarioAlteracao;
+	private LocalDateTime dataMovimentacao;
+	private ProgramaTO programa;
+	private ProjetoTO projeto;
 	
 	private List<RateiosCategoriasMovimentosTO> rateioCategoriasMovimentos;
 
@@ -80,5 +84,30 @@ public class CategoriasMovimentosTO {
 	public void setRateioCategoriasMovimentos(List<RateiosCategoriasMovimentosTO> rateioCategoriasMovimentos) {
 		this.rateioCategoriasMovimentos = rateioCategoriasMovimentos;
 	}
+
+	public LocalDateTime getDataMovimentacao() {
+		return dataMovimentacao;
+	}
+
+	public void setDataMovimentacao(LocalDateTime dataMovimentacao) {
+		this.dataMovimentacao = dataMovimentacao;
+	}
+
+	public ProgramaTO getPrograma() {
+		return programa;
+	}
+
+	public void setPrograma(ProgramaTO programa) {
+		this.programa = programa;
+	}
+
+	public ProjetoTO getProjeto() {
+		return projeto;
+	}
+
+	public void setProjeto(ProjetoTO projeto) {
+		this.projeto = projeto;
+	}
+	
 	
 }

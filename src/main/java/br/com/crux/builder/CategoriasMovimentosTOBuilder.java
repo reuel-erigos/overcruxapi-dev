@@ -9,11 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.cmd.GetCategoriasContabeisCmd;
+import br.com.crux.cmd.GetProgramaCmd;
+import br.com.crux.cmd.GetProjetoCmd;
 import br.com.crux.cmd.GetRateiosCategoriasMovimentosCmd;
 import br.com.crux.cmd.GetUsuarioLogadoCmd;
 import br.com.crux.entity.CategoriasContabeis;
 import br.com.crux.entity.CategoriasMovimentos;
 import br.com.crux.entity.Movimentacoes;
+import br.com.crux.entity.Programa;
+import br.com.crux.entity.Projeto;
 import br.com.crux.to.CategoriasMovimentosTO;
 import br.com.crux.to.RateiosCategoriasMovimentosTO;
 
@@ -24,6 +28,11 @@ public class CategoriasMovimentosTOBuilder {
 	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
 	@Autowired private GetCategoriasContabeisCmd getCategoriasContabeisCmd;
 	@Autowired private GetRateiosCategoriasMovimentosCmd getRateiosCmd;
+	@Autowired private GetProjetoCmd getProjetoCmd;
+	@Autowired private GetProgramaCmd getProgramaCmd;	
+	@Autowired private ProgramaTOBuilder programaBuilder;
+	@Autowired private ProjetoTOBuilder projetoBuilder;
+
 	
 	public CategoriasMovimentosTO buildTO(CategoriasMovimentos entity) {
 		CategoriasMovimentosTO to = new CategoriasMovimentosTO();
@@ -32,6 +41,13 @@ public class CategoriasMovimentosTOBuilder {
 		
 		to.setCategoriaOrigem(categoriasContabeisTOBuilder.buildTOCombo(entity.getCategoriaOrigem()));
 		to.setCategoriaDestino(categoriasContabeisTOBuilder.buildTOCombo(entity.getCategoriaDestino()));
+		
+		if(Objects.nonNull(entity.getPrograma())) {
+			to.setPrograma(programaBuilder.buildTO(entity.getPrograma()));
+		}
+		if(Objects.nonNull(entity.getProjeto())) {
+			to.setProjeto(projetoBuilder.buildTO(entity.getProjeto()));
+		}
 		
 		List<RateiosCategoriasMovimentosTO> rateiosTO = getRateiosCmd.getTOByIdCategoria(entity.getId());
 		to.setRateioCategoriasMovimentos(rateiosTO);
@@ -60,6 +76,15 @@ public class CategoriasMovimentosTOBuilder {
 		if (Objects.nonNull(to.getCategoriaDestino()) && Objects.nonNull(to.getCategoriaDestino().getId())) {
 			CategoriasContabeis retorno = getCategoriasContabeisCmd.getById(to.getCategoriaDestino().getId());
 			entity.setCategoriaDestino(retorno);
+		}
+		
+		if (Objects.nonNull(to.getPrograma()) && Objects.nonNull(to.getPrograma().getId())) {
+			Programa registro = getProgramaCmd.getById(to.getPrograma().getId());
+			entity.setPrograma(registro);
+		}
+		if (Objects.nonNull(to.getProjeto()) && Objects.nonNull(to.getProjeto().getId())) {
+			Projeto registro = getProjetoCmd.getById(to.getProjeto().getId());
+			entity.setProjeto(registro);
 		}
 		
 		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
