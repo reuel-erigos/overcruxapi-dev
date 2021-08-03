@@ -49,18 +49,21 @@ public class AlterarListaCategoriasMovimentosCmd extends AbstractAlterarListaCmd
 	@Override
 	protected void cadastrar(CategoriasMovimentosTO to, Movimentacoes p) {
 		CategoriasMovimentos entitySalva = cadastrarCmd.cadastrar(to, p);
+		/*
 		to.getRateioCategoriasMovimentos().forEach(r -> r.setIdCategoriaMovimento(entitySalva.getId()));
 		
 		alterarListaRateiosCmd.alterarAll(to.getRateioCategoriasMovimentos(), entitySalva);
+		*/
 	}
 
 	@Override
 	protected void deletar(CategoriasMovimentos registro) {
+		/*
 		Optional<List<RateiosCategoriasMovimentos>> rateios = rateiosCategoriasMovimentosRepository.findByIdCategoria(registro.getId());
 		if(rateios.isPresent()) {
 			rateiosCategoriasMovimentosRepository.deleteAll(rateios.get());
 		}
-		
+		*/
 		repository.delete(registro);
 	}
 
