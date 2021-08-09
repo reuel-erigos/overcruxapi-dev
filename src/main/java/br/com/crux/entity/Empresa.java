@@ -5,9 +5,12 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -111,6 +114,10 @@ public class Empresa implements Serializable {
 	@Column(name = "id_instituicao")
 	private Long idInstituicao;
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_categoria") 
+	private CategoriasContabeis categoria;
+	
 	
 	public Empresa() {
 	}
@@ -306,5 +313,14 @@ public class Empresa implements Serializable {
 	public void setIdInstituicao(Long idInstituicao) {
 		this.idInstituicao = idInstituicao;
 	}
+
+	public CategoriasContabeis getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(CategoriasContabeis categoriaOrigem) {
+		this.categoria = categoriaOrigem;
+	}
+
 	
 }

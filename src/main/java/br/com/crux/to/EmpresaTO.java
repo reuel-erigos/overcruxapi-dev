@@ -30,6 +30,7 @@ public class EmpresaTO {
 	private String uf;
 	private Long usuarioAlteracao;
 	private Long idInstituicao;
+	private CategoriasContabeisTO categoria;
 	
 	
 	public EmpresaTO() {
@@ -226,4 +227,14 @@ public class EmpresaTO {
 	public void setIdInstituicao(Long idInstituicao) {
 		this.idInstituicao = idInstituicao;
 	}
+
+	public CategoriasContabeisTO getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(CategoriasContabeisTO categoriaOrigem) {
+		this.categoria = categoriaOrigem;
+	}
+	
+	
 }
