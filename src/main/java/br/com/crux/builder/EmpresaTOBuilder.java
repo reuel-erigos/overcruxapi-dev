@@ -73,6 +73,8 @@ public class EmpresaTOBuilder {
 		if (Objects.nonNull(p.getCategoria()) && Objects.nonNull(p.getCategoria().getId())) {
 			CategoriasContabeis categoria = getCategoriasContabeisCmd.getById(p.getCategoria().getId());
 			retorno.setCategoria(categoria);
+		} else {
+			retorno.setCategoria(null);
 		}
 
 		
