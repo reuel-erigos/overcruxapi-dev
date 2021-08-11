@@ -14,7 +14,7 @@ public interface CategoriasContabeisEmpresasRepository extends JpaRepository<Cat
 
 	@Query(value = "select cce from CategoriasContabeisEmpresas cce                     "
 			+ " inner join Empresa e on e.id = cce.idEmpresa                            "
-			+ " where cce.id = ?1                                                       ")
+			+ " where cce.idEmpresa = ?1                                                ")
 	public Optional<List<CategoriasContabeisEmpresas>> findByIdEmpresa(Long idEmpresa);
 	
 
