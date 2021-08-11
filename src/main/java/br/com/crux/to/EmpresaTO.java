@@ -1,5 +1,7 @@
 package br.com.crux.to;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
@@ -30,8 +32,8 @@ public class EmpresaTO {
 	private String uf;
 	private Long usuarioAlteracao;
 	private Long idInstituicao;
-	private CategoriasContabeisTO categoria;
 	
+	private List<CategoriasContabeisEmpresasTO> categoriasContabeis;
 	
 	public EmpresaTO() {
 	}
@@ -228,13 +230,13 @@ public class EmpresaTO {
 		this.idInstituicao = idInstituicao;
 	}
 
-	public CategoriasContabeisTO getCategoria() {
-		return categoria;
+	public List<CategoriasContabeisEmpresasTO> getCategoriasContabeis() {
+		return categoriasContabeis;
 	}
 
-	public void setCategoria(CategoriasContabeisTO categoriaOrigem) {
-		this.categoria = categoriaOrigem;
+	public void setCategoriasContabeis(List<CategoriasContabeisEmpresasTO> categoriasContabeis) {
+		this.categoriasContabeis = categoriasContabeis;
 	}
-	
+
 	
 }

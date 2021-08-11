@@ -17,6 +17,7 @@ public class CadastrarEmpresaCmd {
 	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
 	@Autowired private CamposObrigatoriosEmpresaRule camposObrigatoriosRule;
 	@Autowired private EmpresaTOBuilder empresaTOBuilder;
+	@Autowired private CadastrarCategoriasContabeisEmpresasCmd cadastrarCategoriasContabeisEmpresasCmd;
 	
 	public Empresa cadastrar(EmpresaTO to) {
 		camposObrigatoriosRule.verificar(to.getCodigo(), to.getNomeRazaoSocial(), to.getTipoEmpresa(), to.getTelefone(), to.getEndereco());
@@ -25,6 +26,9 @@ public class CadastrarEmpresaCmd {
 		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 		
 		Empresa empresaSalva = repository.save(entity);
+		
+		cadastrarCategoriasContabeisEmpresasCmd.cadastrarLista(empresaSalva, to.getCategoriasContabeis());
+		
 		return empresaSalva;
 		
 	}

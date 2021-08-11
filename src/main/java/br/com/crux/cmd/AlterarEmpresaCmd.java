@@ -18,17 +18,17 @@ public class AlterarEmpresaCmd {
 	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
 	@Autowired private CamposObrigatoriosEmpresaRule camposObrigatoriosRule;
 	@Autowired private EmpresaTOBuilder empresaTOBuilder;
+	@Autowired private AlterarListaCategoriasContabeisEmpresasCmd alterarListaCategoriasContabeisEmpresasCmd;
 	
 	public Empresa alterar(EmpresaTO to) {
 		camposObrigatoriosRule.verificar(to.getCodigo(), to.getNomeRazaoSocial(), to.getTipoEmpresa(), to.getTelefone(), to.getEndereco());
-		
-		
-		repository.findById(to.getId())
-		          .orElseThrow(() -> new NotFoundException("Empresa informada não existe."));
+		repository.findById(to.getId()).orElseThrow(() -> new NotFoundException("Empresa informada não existe."));
 		
 		Empresa entity = empresaTOBuilder.build(to);
 		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 		Empresa empresaSalva = repository.save(entity);
+		
+		alterarListaCategoriasContabeisEmpresasCmd.alterarAll(to.getCategoriasContabeis(), empresaSalva);
 		
 		return empresaSalva;
 		

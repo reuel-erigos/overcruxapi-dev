@@ -9,10 +9,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.crux.cmd.GetCategoriasContabeisCmd;
+import br.com.crux.cmd.GetCategoriasContabeisEmpresasCmd;
 import br.com.crux.cmd.GetUnidadeLogadaCmd;
 import br.com.crux.dao.dto.EmpresaDTO;
-import br.com.crux.entity.CategoriasContabeis;
 import br.com.crux.entity.Empresa;
 import br.com.crux.enums.CategoriaEmpresa;
 import br.com.crux.enums.TipoEmpresa;
@@ -23,9 +22,7 @@ import br.com.crux.to.EmpresaTO;
 public class EmpresaTOBuilder {
 	
 	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
-	@Autowired private GetCategoriasContabeisCmd getCategoriasContabeisCmd;
-	@Autowired private CategoriasContabeisTOBuilder categoriasContabeisTOBuilder;
-
+	@Autowired private GetCategoriasContabeisEmpresasCmd getCategoriasContabeisEmpresasCmd;
 	
 	public Empresa build(EmpresaTO p) {
 		Empresa retorno = new Empresa();
@@ -70,14 +67,6 @@ public class EmpresaTOBuilder {
 
 		retorno.setIdInstituicao(getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId());
 		
-		if (Objects.nonNull(p.getCategoria()) && Objects.nonNull(p.getCategoria().getId())) {
-			CategoriasContabeis categoria = getCategoriasContabeisCmd.getById(p.getCategoria().getId());
-			retorno.setCategoria(categoria);
-		} else {
-			retorno.setCategoria(null);
-		}
-
-		
 		return retorno;
 	}
 
@@ -117,9 +106,7 @@ public class EmpresaTOBuilder {
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
 		retorno.setIdInstituicao(p.getIdInstituicao());
 
-		if(Objects.nonNull(p.getCategoria())) {
-			retorno.setCategoria(categoriasContabeisTOBuilder.buildTO(p.getCategoria()));
-		}
+		retorno.setCategoriasContabeis(getCategoriasContabeisEmpresasCmd.getListaTOPorEmpresa(p));
 		
 		return retorno;
 	}
