@@ -55,24 +55,28 @@ public class ProvisionamentoExcelFileExporter {
 	        cell.setCellValue("Situação");
 	        cell.setCellStyle(headerCellStyle);
 	        
-	        cell = row.createCell(2);
-	        cell.setCellValue("Documento");
-	        cell.setCellStyle(headerCellStyle);
-	
 	        cell = row.createCell(3);
 	        cell.setCellValue("Data");
 	        cell.setCellStyle(headerCellStyle);
 	        
-	        cell = row.createCell(4);
-	        cell.setCellValue("Valor");
+	        cell = row.createCell(2);
+	        cell.setCellValue("Documento");
 	        cell.setCellStyle(headerCellStyle);
-	        
+	
 	        cell = row.createCell(5);
 	        cell.setCellValue("Complemento");
 	        cell.setCellStyle(headerCellStyle);
 
+	        cell = row.createCell(9);
+	        cell.setCellValue("Conta Destino (Débito)");
+	        cell.setCellStyle(headerCellStyle);
+	        
 	        cell = row.createCell(6);
-	        cell.setCellValue("Conta Origem");
+	        cell.setCellValue("Conta Origem (Crédito)");
+	        cell.setCellStyle(headerCellStyle);
+	        
+	        cell = row.createCell(4);
+	        cell.setCellValue("Valor");
 	        cell.setCellStyle(headerCellStyle);
 	        
 	        cell = row.createCell(7);
@@ -81,10 +85,6 @@ public class ProvisionamentoExcelFileExporter {
 
 	        cell = row.createCell(8);
 	        cell.setCellValue("Grupo Contas");
-	        cell.setCellStyle(headerCellStyle);
-	        
-	        cell = row.createCell(9);
-	        cell.setCellValue("Conta Destino");
 	        cell.setCellStyle(headerCellStyle);
 	        
 	        cell = row.createCell(10);
@@ -97,14 +97,14 @@ public class ProvisionamentoExcelFileExporter {
 	        	Row dataRow = sheet.createRow(i + 1);
 	        	dataRow.createCell(0).setCellValue(provisoes.get(i).getId());
 	        	dataRow.createCell(1).setCellValue(provisoes.get(i).getSituacao());
-	        	dataRow.createCell(2).setCellValue(provisoes.get(i).getNumeroDocumento());
 	        	dataRow.createCell(3).setCellValue(Java8DateUtil.getLocalDateFormater(provisoes.get(i).getData()));
-	        	dataRow.createCell(4).setCellValue(provisoes.get(i).getValor());
+	        	dataRow.createCell(2).setCellValue(provisoes.get(i).getNumeroDocumento());
 	        	dataRow.createCell(5).setCellValue(provisoes.get(i).getComplemento());
+	        	dataRow.createCell(9).setCellValue(provisoes.get(i).getDescricaoFornecedor());
 	        	dataRow.createCell(6).setCellValue(provisoes.get(i).getCategoria());
+	        	dataRow.createCell(4).setCellValue(provisoes.get(i).getValor());
 	        	dataRow.createCell(7).setCellValue(provisoes.get(i).getCentroCusto());
 	        	dataRow.createCell(8).setCellValue(provisoes.get(i).getGrupoContas());
-	        	dataRow.createCell(9).setCellValue(provisoes.get(i).getDescricaoFornecedor());
 	        	dataRow.createCell(10).setCellValue(provisoes.get(i).getNomeFornecedor());
 	        }
 	
