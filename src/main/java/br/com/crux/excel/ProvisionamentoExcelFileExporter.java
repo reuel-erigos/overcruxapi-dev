@@ -55,35 +55,35 @@ public class ProvisionamentoExcelFileExporter {
 	        cell.setCellValue("Situação");
 	        cell.setCellStyle(headerCellStyle);
 	        
-	        cell = row.createCell(3);
+	        cell = row.createCell(2);
 	        cell.setCellValue("Data");
 	        cell.setCellStyle(headerCellStyle);
 	        
-	        cell = row.createCell(2);
+	        cell = row.createCell(3);
 	        cell.setCellValue("Documento");
 	        cell.setCellStyle(headerCellStyle);
 	
-	        cell = row.createCell(5);
+	        cell = row.createCell(4);
 	        cell.setCellValue("Complemento");
 	        cell.setCellStyle(headerCellStyle);
 
-	        cell = row.createCell(9);
-	        cell.setCellValue("Conta Destino");
+	        cell = row.createCell(5);
+	        cell.setCellValue("Conta Destino (Débito)");
 	        cell.setCellStyle(headerCellStyle);
 	        
 	        cell = row.createCell(6);
-	        cell.setCellValue("Conta Origem");
-	        cell.setCellStyle(headerCellStyle);
-	        
-	        cell = row.createCell(4);
-	        cell.setCellValue("Valor");
+	        cell.setCellValue("Conta Origem (Crédito)");
 	        cell.setCellStyle(headerCellStyle);
 	        
 	        cell = row.createCell(7);
+	        cell.setCellValue("Valor");
+	        cell.setCellStyle(headerCellStyle);
+	        
+	        cell = row.createCell(8);
 	        cell.setCellValue("Centro Custo");
 	        cell.setCellStyle(headerCellStyle);
 
-	        cell = row.createCell(8);
+	        cell = row.createCell(9);
 	        cell.setCellValue("Grupo Contas");
 	        cell.setCellStyle(headerCellStyle);
 	        
