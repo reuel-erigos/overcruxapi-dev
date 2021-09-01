@@ -28,7 +28,7 @@
 		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports</artifactId>
-			<version>6.16.0</version>
+			<version>6.17.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.poi</groupId>
@@ -162,10 +162,7 @@
 					<target>1.8</target>
 					<fork>true</fork>
 					<argLine>-XX:MaxPermSize=500M</argLine>
-					<!-- 
-					<meminitial>512m</meminitial>
-      				<maxmem>512m</maxmem>
-      				 -->
+					<!-- <meminitial>512m</meminitial> <maxmem>512m</maxmem> -->
 				</configuration>
 			</plugin>
 
