@@ -1,0 +1,18 @@
+version: 0.2
+phases:
+  pre_build:
+    commands:
+      - echo Instalando dependencias
+  build:
+    commands:
+      - echo Build iniciado em `date`
+  post_build:
+    commands:
+      - echo Build finalizado em `date`
+      - mvn package
+artifacts:
+  files:
+    - overcruxapi.war
+    - Script/*
+    - appspec.yml    
+ 
