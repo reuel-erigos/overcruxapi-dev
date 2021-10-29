@@ -81,11 +81,11 @@ public class MovimentacaoContabilDao extends BaseDao{
 		}                                           
 		
 		if(Objects.nonNull(dataInicio)) {
-			sql.append("   AND to_date( cm.dt_movimentacao, 'dd/mm/yyyy') >= DATE_TRUNC('DAY', to_date( :p_dt_inicio ,'dd/mm/yyyy') )  ");
+			sql.append("   AND DATE_TRUNC('DAY', cm.dt_movimentacao) >= DATE_TRUNC('DAY', to_date( :p_dt_inicio ,'dd/mm/yyyy') )  ");
 		}
 		
 		if(Objects.nonNull(dataFim)) {
-			sql.append("   AND to_date( cm.dt_movimentacao, 'dd/mm/yyyy') <= DATE_TRUNC('DAY', to_date( :p_dt_fim ,'dd/mm/yyyy') )  ");
+			sql.append("   AND DATE_TRUNC('DAY', cm.dt_movimentacao) <= DATE_TRUNC('DAY', to_date( :p_dt_fim ,'dd/mm/yyyy') )  ");
 		}
 		
 		
