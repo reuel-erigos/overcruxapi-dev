@@ -28,7 +28,7 @@ public class MovimentacaoContabilDTO {
 	public MovimentacaoContabilDTO(Object[] colunas) {
 		this.nomeProgramaProjeto       = (colunas[0] != null) ? (String) colunas[0] : "";
 		this.numeroDocumento           = (colunas[1] != null) ? (String) colunas[1] : "";
-		this.dataDocumento             = (colunas[2] != null) ? DataUtil.formataData(new Date(((Timestamp) colunas[1]).getTime()), "dd/MM/yyyy") : "";
+		this.dataDocumento             = (colunas[2] != null) ? DataUtil.formataData(new Date(((Timestamp) colunas[2]).getTime()), "dd/MM/yyyy") : "";
 		this.descricaoCategoria        = (colunas[3] != null) ? (String) colunas[3] : ""; 
 		this.dataMovimentacao          = (colunas[4] != null) ? DataUtil.formataData(new Date(((Timestamp) colunas[4]).getTime()), "dd/MM/yyyy") : ""; 
 		this.valorCategoria            = (colunas[5] != null)? ((BigDecimal)colunas[5]).doubleValue() : null; 
