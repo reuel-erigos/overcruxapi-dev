@@ -2,17 +2,19 @@ package br.com.crux.to.relatorios.financeiro;
 
 public class MovimentacaoContabilTO {
 	
-	private String nomeProgramaProjeto;
-	private String descFornecedor;
-	private String numeroDocumento;
-	private String cnpjCpf;
-	private String dataDocumento;
-	private Double valorMovimentacao;
-	private String numeroDocumentoPagamento;
-	private String dataPagamento;
-	private String nomeCategoria;
-	private Double valorPagamento;
-	private String dataVencimentoProxima;
+	private String nomeProgramaProjeto  ;
+	private String numeroDocumento      ;
+	private String dataDocumento        ;
+	private String descricaoCategoria   ;
+	private String dataMovimentacao     ;
+	private Double valorCategoria       ;
+	private String contaDestino         ;
+	private String contaOrigem          ;
+	private Long   idMovimentacao       ;
+	private Long   idCategoriaOrigem    ;
+	private Long   idCategoriaDestino   ;
+	private Long   idPrograma           ;
+	private Long   idProjeto            ;
 	
 	public MovimentacaoContabilTO() {
 	}
@@ -25,28 +27,12 @@ public class MovimentacaoContabilTO {
 		this.nomeProgramaProjeto = nomeProgramaProjeto;
 	}
 
-	public String getDescFornecedor() {
-		return descFornecedor;
-	}
-
-	public void setDescFornecedor(String descFornecedor) {
-		this.descFornecedor = descFornecedor;
-	}
-
 	public String getNumeroDocumento() {
 		return numeroDocumento;
 	}
 
 	public void setNumeroDocumento(String numeroDocumento) {
 		this.numeroDocumento = numeroDocumento;
-	}
-
-	public String getCnpjCpf() {
-		return cnpjCpf;
-	}
-
-	public void setCnpjCpf(String cnpjCpf) {
-		this.cnpjCpf = cnpjCpf;
 	}
 
 	public String getDataDocumento() {
@@ -57,53 +43,86 @@ public class MovimentacaoContabilTO {
 		this.dataDocumento = dataDocumento;
 	}
 
-	public Double getValorMovimentacao() {
-		return valorMovimentacao;
+	public String getDescricaoCategoria() {
+		return descricaoCategoria;
 	}
 
-	public void setValorMovimentacao(Double valorMovimentacao) {
-		this.valorMovimentacao = valorMovimentacao;
+	public void setDescricaoCategoria(String descricaoCategoria) {
+		this.descricaoCategoria = descricaoCategoria;
 	}
 
-	public String getNumeroDocumentoPagamento() {
-		return numeroDocumentoPagamento;
+	public String getDataMovimentacao() {
+		return dataMovimentacao;
 	}
 
-	public void setNumeroDocumentoPagamento(String numeroDocumentoPagamento) {
-		this.numeroDocumentoPagamento = numeroDocumentoPagamento;
+	public void setDataMovimentacao(String dataMovimentacao) {
+		this.dataMovimentacao = dataMovimentacao;
 	}
 
-	public String getDataPagamento() {
-		return dataPagamento;
+	public Double getValorCategoria() {
+		return valorCategoria;
 	}
 
-	public void setDataPagamento(String dataPagamento) {
-		this.dataPagamento = dataPagamento;
+	public void setValorCategoria(Double valorCategoria) {
+		this.valorCategoria = valorCategoria;
 	}
 
-	public String getNomeCategoria() {
-		return nomeCategoria;
+	public String getContaDestino() {
+		return contaDestino;
 	}
 
-	public void setNomeCategoria(String nomeCategoria) {
-		this.nomeCategoria = nomeCategoria;
+	public void setContaDestino(String contaDestino) {
+		this.contaDestino = contaDestino;
 	}
 
-	public Double getValorPagamento() {
-		return valorPagamento;
+	public String getContaOrigem() {
+		return contaOrigem;
 	}
 
-	public void setValorPagamento(Double valorPagamento) {
-		this.valorPagamento = valorPagamento;
+	public void setContaOrigem(String contaOrigem) {
+		this.contaOrigem = contaOrigem;
 	}
 
-	public String getDataVencimentoProxima() {
-		return dataVencimentoProxima;
+	public Long getIdMovimentacao() {
+		return idMovimentacao;
 	}
 
-	public void setDataVencimentoProxima(String dataVencimentoProxima) {
-		this.dataVencimentoProxima = dataVencimentoProxima;
+	public void setIdMovimentacao(Long idMovimentacao) {
+		this.idMovimentacao = idMovimentacao;
 	}
+
+	public Long getIdCategoriaOrigem() {
+		return idCategoriaOrigem;
+	}
+
+	public void setIdCategoriaOrigem(Long idCategoriaOrigem) {
+		this.idCategoriaOrigem = idCategoriaOrigem;
+	}
+
+	public Long getIdCategoriaDestino() {
+		return idCategoriaDestino;
+	}
+
+	public void setIdCategoriaDestino(Long idCategoriaDestino) {
+		this.idCategoriaDestino = idCategoriaDestino;
+	}
+
+	public Long getIdPrograma() {
+		return idPrograma;
+	}
+
+	public void setIdPrograma(Long idPrograma) {
+		this.idPrograma = idPrograma;
+	}
+
+	public Long getIdProjeto() {
+		return idProjeto;
+	}
+
+	public void setIdProjeto(Long idProjeto) {
+		this.idProjeto = idProjeto;
+	}
+
 
 
 }
