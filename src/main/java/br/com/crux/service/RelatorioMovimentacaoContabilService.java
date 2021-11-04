@@ -1,8 +1,11 @@
 package br.com.crux.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,6 +33,13 @@ public class RelatorioMovimentacaoContabilService {
 		return gerarRelatorioCmd.gerar(dados, mimeType);
 	}
 	
+	
+	@GetMapping(path = "/saldocontacontabil", produces = MediaType.APPLICATION_JSON_VALUE)
+	public Double getSaldoContaContabil(@RequestParam(name = "idPlanoConta", required = true) Long idPlanoConta,
+			                            @RequestParam(name = "data", required = true) @DateTimeFormat(iso = ISO.DATE) LocalDate data
+		                               ) {
+		return getCmd.getSaldoContaContabil(idPlanoConta, data);
+	}	
 	
 	@GetMapping(path = "/filter", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<MovimentacaoContabilTO> getAllFilter(@RequestParam(name = "idcategoria", required = false) Long idcategoria,

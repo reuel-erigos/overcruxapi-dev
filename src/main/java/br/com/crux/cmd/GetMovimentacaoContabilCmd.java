@@ -23,6 +23,12 @@ public class GetMovimentacaoContabilCmd {
 	@Autowired private MovimentacaoContabilTOBuilder toBuilder;
 
 	
+	
+	public double getSaldoContaContabil(Long idPlanoConta, LocalDate data) {
+		
+		return 120.0;
+	}
+	
 	public List<MovimentacaoContabilTO> getAllFilter(Long idcategoria, Long idPrograma, Long idProjeto, Long dataInicio, Long dataFim) {
 		Optional<List<MovimentacaoContabilDTO>> entitys = Optional.empty();
 
