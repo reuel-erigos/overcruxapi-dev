@@ -1,7 +1,10 @@
 package br.com.crux.dao;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -11,11 +14,33 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.dao.base.BaseDao;
+import br.com.crux.dao.dto.SaldoContaBancariaDTO;
+import br.com.crux.infra.util.DataUtil;
 import br.com.crux.infra.util.Java8DateUtil;
 import br.com.crux.to.relatorios.financeiro.MovimentacaoContabilDTO;
 
 @Component
 public class MovimentacaoContabilDao extends BaseDao{
+	
+	
+	
+	public SaldoContaBancariaDTO getSaldoContaBancaria(Long idPlanoConta, LocalDate data) {
+		StringBuilder sql = new StringBuilder();
+		
+		sql.append(" select saldo                                                                                ");
+		sql.append("  from (select fn_retorna_saldo_categoria_contabil(:p_id_plano_conta, :p_data) saldo         ");
+		sql.append("        ) as saldocontacontabil                                                              ");
+		
+		Query query = em.createNativeQuery(sql.toString());
+		query.setParameter("p_id_plano_conta",  idPlanoConta);
+		
+      	Date pData = DataUtil.parseDate(data.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+		query.setParameter("p_data", new Timestamp(pData.getTime()));
+		
+		Object[] values = (Object[]) query.getSingleResult();
+		return new SaldoContaBancariaDTO(values);
+	}
+	
 	
 	
 	public Optional<List<MovimentacaoContabilDTO>> getAllFilter(Long idCategoria, Long idPrograma, Long idProjeto, LocalDate dataInicio, LocalDate dataFim){
