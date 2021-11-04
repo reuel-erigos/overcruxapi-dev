@@ -14,7 +14,7 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.dao.base.BaseDao;
-import br.com.crux.dao.dto.SaldoContaBancariaDTO;
+import br.com.crux.dao.dto.SaldoContaContabilDTO;
 import br.com.crux.infra.util.DataUtil;
 import br.com.crux.infra.util.Java8DateUtil;
 import br.com.crux.to.relatorios.financeiro.MovimentacaoContabilDTO;
@@ -24,7 +24,7 @@ public class MovimentacaoContabilDao extends BaseDao{
 	
 	
 	
-	public SaldoContaBancariaDTO getSaldoContaBancaria(Long idPlanoConta, LocalDate data) {
+	public SaldoContaContabilDTO getSaldoContaBancaria(Long idPlanoConta, LocalDate data) {
 		StringBuilder sql = new StringBuilder();
 		
 		sql.append(" select saldo                                                                                ");
@@ -38,7 +38,7 @@ public class MovimentacaoContabilDao extends BaseDao{
 		query.setParameter("p_data", new Timestamp(pData.getTime()));
 		
 		Object[] values = (Object[]) query.getSingleResult();
-		return new SaldoContaBancariaDTO(values);
+		return new SaldoContaContabilDTO(values);
 	}
 	
 	

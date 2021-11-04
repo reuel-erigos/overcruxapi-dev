@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import br.com.crux.builder.MovimentacaoContabilTOBuilder;
 import br.com.crux.dao.MovimentacaoContabilDao;
+import br.com.crux.dao.dto.SaldoContaContabilDTO;
 import br.com.crux.infra.util.Java8DateUtil;
 import br.com.crux.to.relatorios.financeiro.MovimentacaoContabilDTO;
 import br.com.crux.to.relatorios.financeiro.MovimentacaoContabilTO;
@@ -25,8 +26,10 @@ public class GetMovimentacaoContabilCmd {
 	
 	
 	public double getSaldoContaContabil(Long idPlanoConta, LocalDate data) {
+		Optional<SaldoContaContabilDTO> saldo = Optional.ofNullable(dao.getSaldoContaBancaria(idPlanoConta, data));
 		
-		return 120.0;
+		if(saldo.isPresent()) {return saldo.get().getSaldoContaContabil();}		
+		return 0;
 	}
 	
 	public List<MovimentacaoContabilTO> getAllFilter(Long idcategoria, Long idPrograma, Long idProjeto, Long dataInicio, Long dataFim) {
