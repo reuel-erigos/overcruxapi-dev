@@ -37,7 +37,7 @@ public class MovimentacaoContabilDao extends BaseDao{
       	Date pData = DataUtil.parseDate(data.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 		query.setParameter("p_data", new Timestamp(pData.getTime()));
 		
-		Object[] values = (Object[]) query.getSingleResult();
+		Object values = (Object) query.getSingleResult();
 		return new SaldoContaContabilDTO(values);
 	}
 	
