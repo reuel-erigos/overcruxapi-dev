@@ -3,6 +3,7 @@ package br.com.crux.excel;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.math.BigDecimal;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
@@ -21,7 +22,7 @@ import br.com.crux.exception.base.NegocioException;
 @Component
 public class MovimentacaoContabilExcelFileExporter {
 	
-	public byte[] gerar(String[][] dados, String[] nomesCelulasHeader) {
+	public byte[] gerar(Object[][] dados, String[] nomesCelulasHeader) {
 		ByteArrayInputStream stream = gerarFileExcel(dados, nomesCelulasHeader);
         byte[] targetArray = new byte[stream.available()];
         try {
@@ -32,7 +33,7 @@ public class MovimentacaoContabilExcelFileExporter {
         return targetArray;
 	}
 	
-	private ByteArrayInputStream gerarFileExcel(String[][] dados, String[] nomesCelulasHeader) {
+	private ByteArrayInputStream gerarFileExcel(Object[][] dados, String[] nomesCelulasHeader) {
 		
 		try(Workbook workbook = new XSSFWorkbook()){
 			Sheet sheet = workbook.createSheet("Relatório");
@@ -55,8 +56,12 @@ public class MovimentacaoContabilExcelFileExporter {
 	        	
 	        	// Percorre pelas colunas de cada linha
 	        	for (int j = 0; j < dados[i].length; j++) {
-	                String valor = dados[i][j];
-	                dataRow.createCell(j).setCellValue(valor);
+	        		Object valor = dados[i][j];
+	        		if(valor instanceof Double) {
+	        			dataRow.createCell(j).setCellValue(((Number) valor).doubleValue());
+	        		} else {
+	        			dataRow.createCell(j).setCellValue(((String) valor).toString());
+	        		}
 	            }
 	        }
 	

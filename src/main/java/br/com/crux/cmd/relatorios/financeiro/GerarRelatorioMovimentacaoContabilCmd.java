@@ -22,12 +22,19 @@ public class GerarRelatorioMovimentacaoContabilCmd {
 	@Autowired private GeradorRelatorio geradorRelatorio;
 	@Autowired private MovimentacaoContabilExcelFileExporter movimentacaoContabilExcelFileExporter;
 	
+	
+	public static void main(String[] args) {
+		System.out.println(String.valueOf(NumeroUtil.formataMoeda(12665.22)));
+	}
+	
+	
+	
 	private byte[] gerarRelatorioExcel(List<MovimentacaoContabilTO> dados)  {
 		try {
 			String[] nomesCelulasHeader = {"Programa/Projeto", "Numero Documento", "Data Documento", "Histórico Movimentação", 
 					                        "Data Movimentação", "Valor Movimentação", "Conta Destino","Conta Origem"};
 			
-			String[][] dadosExcel = new String[dados.size()][nomesCelulasHeader.length];
+			Object[][] dadosExcel = new Object[dados.size()][nomesCelulasHeader.length];
 			
 			for(int i = 0; i < dados.size(); i ++) {
 				dadosExcel[i][0] = dados.get(i).getNomeProgramaProjeto();
@@ -35,7 +42,8 @@ public class GerarRelatorioMovimentacaoContabilCmd {
 				dadosExcel[i][2] = dados.get(i).getDataDocumento();
 				dadosExcel[i][3] = dados.get(i).getDescricaoCategoria();
 				dadosExcel[i][4] = dados.get(i).getDataMovimentacao();
-				dadosExcel[i][5] = NumeroUtil.formataMoeda(dados.get(i).getValorCategoria());
+				//dadosExcel[i][5] = NumeroUtil.formataMoeda(dados.get(i).getValorCategoria());
+				dadosExcel[i][5] = dados.get(i).getValorCategoria();
 				dadosExcel[i][6] = dados.get(i).getContaDestino();
 				dadosExcel[i][7] = dados.get(i).getContaOrigem();
 			}
