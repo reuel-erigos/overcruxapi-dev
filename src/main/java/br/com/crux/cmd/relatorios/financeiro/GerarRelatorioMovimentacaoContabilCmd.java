@@ -42,7 +42,6 @@ public class GerarRelatorioMovimentacaoContabilCmd {
 				dadosExcel[i][2] = dados.get(i).getDataDocumento();
 				dadosExcel[i][3] = dados.get(i).getDescricaoCategoria();
 				dadosExcel[i][4] = dados.get(i).getDataMovimentacao();
-				//dadosExcel[i][5] = NumeroUtil.formataMoeda(dados.get(i).getValorCategoria());
 				dadosExcel[i][5] = dados.get(i).getValorCategoria();
 				dadosExcel[i][6] = dados.get(i).getContaDestino();
 				dadosExcel[i][7] = dados.get(i).getContaOrigem();
