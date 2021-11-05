@@ -23,14 +23,14 @@ import br.com.crux.to.relatorios.financeiro.MovimentacaoContabilTO;
 @RequestMapping(value = "movimentacaocontabil")
 public class RelatorioMovimentacaoContabilService {
 
-	@Autowired private GerarRelatorioMovimentacaoContabilCmd gerarRelatorioCmd;
+	@Autowired private GerarRelatorioMovimentacaoContabilCmd gerarRelatorioMovimentacaoContabilCmd;
 	@Autowired private GetMovimentacaoContabilCmd getCmd;
 	
 	
 	@PostMapping(path = "/mimetype/{mimetype}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
 	public byte[] gerar(@RequestBody List<MovimentacaoContabilTO> dados, 
 			            @PathVariable(name = "mimetype") String mimeType) {
-		return gerarRelatorioCmd.gerar(dados, mimeType);
+		return gerarRelatorioMovimentacaoContabilCmd.gerar(dados, mimeType);
 	}
 	
 	

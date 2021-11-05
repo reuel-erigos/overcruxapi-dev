@@ -38,6 +38,7 @@ public class GeradorRelatorio {
 	@Autowired
 	private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
 	
+	
 	/**
 	 * 
 	 * @param parametros
@@ -71,7 +72,7 @@ public class GeradorRelatorio {
 			break;
 		case XLS:
 			exporter = new JRXlsxExporter();
-			toReturn = gerarRelatorioPDF(parametros, dados, nomeRelatorio, exporter, pathCompleto);
+			toReturn = gerarRelatorioExcel(parametros, dados, nomeRelatorio, pathCompleto);
 			break;
 		default:
 			throw new Exception("Não é possível gerar o tipo de relatório informado (" + tipoRelatorio + "). Suportado apenas:[1-PDF, 2-XLS]");
@@ -101,8 +102,7 @@ public class GeradorRelatorio {
 	}
 	
 	
-	@SuppressWarnings("unused")
-	private byte[] gerarRelatorioExcel(Map<String, Object> parametros, List<String> dados, String nomeRelatorio, String pathCompleto) throws IOException, JRException {
+	private byte[] gerarRelatorioExcel(Map<String, Object> parametros, List<?> dados, String nomeRelatorio, String pathCompleto) throws IOException, JRException {
 		parametros.put("IS_IGNORE_PAGINATION", true);		
 		
 		final Resource fileResource = resourceLoader.getResource("classpath:relatorios" + File.separator + pathCompleto + File.separator +nomeRelatorio+".jasper");
@@ -120,6 +120,7 @@ public class GeradorRelatorio {
         reportConfigXLS.setForcePageBreaks(false);
         reportConfigXLS.setWrapText(false);
         reportConfigXLS.setCollapseRowSpan(true);
+        reportConfigXLS.setIgnoreGraphics(true);
         exporter.setConfiguration(reportConfigXLS);
         
         exporter.setExporterInput(new SimpleExporterInput(jasperPrint));        

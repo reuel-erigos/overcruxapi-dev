@@ -123,6 +123,17 @@ public class MovimentacaoContabilTO {
 		this.idProjeto = idProjeto;
 	}
 
+	@Override
+	public String toString() {
+		return "MovimentacaoContabilTO [nomeProgramaProjeto=" + nomeProgramaProjeto + ", numeroDocumento="
+				+ numeroDocumento + ", dataDocumento=" + dataDocumento + ", descricaoCategoria=" + descricaoCategoria
+				+ ", dataMovimentacao=" + dataMovimentacao + ", valorCategoria=" + valorCategoria + ", contaDestino="
+				+ contaDestino + ", contaOrigem=" + contaOrigem + ", idMovimentacao=" + idMovimentacao
+				+ ", idCategoriaOrigem=" + idCategoriaOrigem + ", idCategoriaDestino=" + idCategoriaDestino
+				+ ", idPrograma=" + idPrograma + ", idProjeto=" + idProjeto + "]";
+	}
 
+
+	
 
 }
