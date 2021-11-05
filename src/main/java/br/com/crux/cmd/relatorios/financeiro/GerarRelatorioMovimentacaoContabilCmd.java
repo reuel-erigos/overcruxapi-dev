@@ -12,7 +12,6 @@ import br.com.crux.exception.RelatorioException;
 import br.com.crux.exception.base.NegocioException;
 import br.com.crux.infra.relatorio.GeradorRelatorio;
 import br.com.crux.infra.relatorio.TipoRelatorio;
-import br.com.crux.infra.util.NumeroUtil;
 import br.com.crux.to.relatorios.financeiro.MovimentacaoContabilTO;
 
 
@@ -21,13 +20,6 @@ public class GerarRelatorioMovimentacaoContabilCmd {
 	
 	@Autowired private GeradorRelatorio geradorRelatorio;
 	@Autowired private RelatorioExcelFileExporter relatoriExcelFileExporter;
-	
-	
-	public static void main(String[] args) {
-		System.out.println(String.valueOf(NumeroUtil.formataMoeda(12665.22)));
-	}
-	
-	
 	
 	private byte[] gerarRelatorioExcel(List<MovimentacaoContabilTO> dados)  {
 		try {
