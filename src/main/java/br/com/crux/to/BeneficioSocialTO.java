@@ -38,8 +38,10 @@ public class BeneficioSocialTO {
 	public void setIdInstituicao(Long idInstituicao) {
 		this.idInstituicao = idInstituicao;
 	}
+	public Long getIdUsuarioApl(){ return  idUsuarioApl;}
+	public void setIdUsuarioApl(Long idUsuarioApl){
+		this.idUsuarioApl = idUsuarioApl;
+	}
 
-	
-	
-	
+
 }
