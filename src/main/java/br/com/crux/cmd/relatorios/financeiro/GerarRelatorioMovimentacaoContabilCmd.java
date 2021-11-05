@@ -7,7 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.crux.excel.MovimentacaoContabilExcelFileExporter;
+import br.com.crux.excel.RelatorioExcelFileExporter;
 import br.com.crux.exception.RelatorioException;
 import br.com.crux.exception.base.NegocioException;
 import br.com.crux.infra.relatorio.GeradorRelatorio;
@@ -20,7 +20,7 @@ import br.com.crux.to.relatorios.financeiro.MovimentacaoContabilTO;
 public class GerarRelatorioMovimentacaoContabilCmd {
 	
 	@Autowired private GeradorRelatorio geradorRelatorio;
-	@Autowired private MovimentacaoContabilExcelFileExporter movimentacaoContabilExcelFileExporter;
+	@Autowired private RelatorioExcelFileExporter relatoriExcelFileExporter;
 	
 	
 	public static void main(String[] args) {
@@ -47,7 +47,7 @@ public class GerarRelatorioMovimentacaoContabilCmd {
 				dadosExcel[i][7] = dados.get(i).getContaOrigem();
 			}
 			
-			return movimentacaoContabilExcelFileExporter.gerar(dadosExcel, nomesCelulasHeader);
+			return relatoriExcelFileExporter.gerar(dadosExcel, nomesCelulasHeader);
 			
 		} catch (RelatorioException e) {
 			throw new NegocioException(e.getMessage());

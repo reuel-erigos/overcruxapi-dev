@@ -19,7 +19,7 @@ import br.com.crux.exception.base.NegocioException;
 
 
 @Component
-public class MovimentacaoContabilExcelFileExporter {
+public class RelatorioExcelFileExporter {
 	
 	public byte[] gerar(Object[][] dados, String[] nomesCelulasHeader) {
 		ByteArrayInputStream stream = gerarFileExcel(dados, nomesCelulasHeader);
