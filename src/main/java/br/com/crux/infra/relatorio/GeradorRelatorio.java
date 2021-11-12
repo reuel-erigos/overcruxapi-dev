@@ -72,7 +72,7 @@ public class GeradorRelatorio {
 			break;
 		case XLS:
 			exporter = new JRXlsxExporter();
-			toReturn = gerarRelatorioExcel(parametros, dados, nomeRelatorio, pathCompleto);
+			toReturn = gerarRelatorioPDF(parametros, dados, nomeRelatorio, exporter, pathCompleto);
 			break;
 		default:
 			throw new Exception("Não é possível gerar o tipo de relatório informado (" + tipoRelatorio + "). Suportado apenas:[1-PDF, 2-XLS]");
