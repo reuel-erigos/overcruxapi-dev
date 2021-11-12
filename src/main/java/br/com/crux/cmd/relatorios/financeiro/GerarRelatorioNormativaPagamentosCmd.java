@@ -28,7 +28,7 @@ public class GerarRelatorioNormativaPagamentosCmd {
 		} catch (RelatorioException e) {
 			throw new NegocioException(e.getMessage());
 		} catch (Exception e) {
-			throw new NegocioException("Não foi possível gerar o relatório.");
+			throw new NegocioException("Não foi possível gerar o relatório." + e.getMessage());
 		}
 	}	
 }
