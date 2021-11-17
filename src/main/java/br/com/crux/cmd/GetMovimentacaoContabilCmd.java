@@ -16,6 +16,7 @@ import br.com.crux.dao.dto.SaldoContaContabilDTO;
 import br.com.crux.infra.util.Java8DateUtil;
 import br.com.crux.to.relatorios.financeiro.MovimentacaoContabilDTO;
 import br.com.crux.to.relatorios.financeiro.MovimentacaoContabilTO;
+import br.com.crux.to.relatorios.financeiro.SaldoContaContabilTO;
 
 @Component
 public class GetMovimentacaoContabilCmd {
@@ -25,11 +26,14 @@ public class GetMovimentacaoContabilCmd {
 
 	
 	
-	public double getSaldoContaContabil(Long idPlanoConta, LocalDate data) {
-		Optional<SaldoContaContabilDTO> saldo = Optional.ofNullable(dao.getSaldoContaBancaria(idPlanoConta, data));
+	public SaldoContaContabilTO getSaldoContaContabil(Long idPlanoConta, LocalDate dataInicio, LocalDate dataFim ) {
+		Optional<SaldoContaContabilDTO> saldo = Optional.ofNullable(dao.getSaldoContaBancaria(idPlanoConta, dataInicio,  dataFim ));
 		
-		if(saldo.isPresent()) {return saldo.get().getSaldoContaContabil();}		
-		return 0;
+		if(saldo.isPresent()) {
+			return new SaldoContaContabilTO(saldo.get().getSaldoDataInicioContaContabil(), saldo.get().getSaldoDataFimContaContabil()) ;
+		}
+		
+		return null;
 	}
 	
 	public List<MovimentacaoContabilTO> getAllFilter(Long idcategoria, Long idPrograma, Long idProjeto, Long dataInicio, Long dataFim) {

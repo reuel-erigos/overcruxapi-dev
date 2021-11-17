@@ -4,21 +4,40 @@ import java.math.BigDecimal;
 
 public class SaldoContaContabilDTO {
 	
-	private Double saldoContaContabil;
+	private Double saldoDataInicioContaContabil;
+	private Double saldoDataFimContaContabil;
 	
 	public SaldoContaContabilDTO() {
 	}
 	
 	public SaldoContaContabilDTO(Object colunas) {
-		this.saldoContaContabil  = (colunas != null)? ((BigDecimal)colunas).doubleValue() : null;
+		this.saldoDataInicioContaContabil  = (colunas != null)? ((BigDecimal)colunas).doubleValue() : null;
+		this.saldoDataFimContaContabil     = (colunas != null)? ((BigDecimal)colunas).doubleValue() : null;
+	}
+
+	
+	public Double getSaldoDataInicioContaContabil() {
+		return saldoDataInicioContaContabil;
+	}
+
+	public void setSaldoDataInicioContaContabil(Double saldoDataInicioContaContabil) {
+		this.saldoDataInicioContaContabil = saldoDataInicioContaContabil;
+	}
+
+	public Double getSaldoDataFimContaContabil() {
+		return saldoDataFimContaContabil;
+	}
+
+	public void setSaldoDataFimContaContabil(Double saldoDataFimContaContabil) {
+		this.saldoDataFimContaContabil = saldoDataFimContaContabil;
 	}
 
 	public Double getSaldoContaContabil() {
-		return saldoContaContabil;
+		return saldoDataFimContaContabil;
 	}
 
 	public void setSaldoContaContabil(Double saldoContaContabil) {
-		this.saldoContaContabil = saldoContaContabil;
+		this.saldoDataFimContaContabil = saldoContaContabil;
 	}
 
 

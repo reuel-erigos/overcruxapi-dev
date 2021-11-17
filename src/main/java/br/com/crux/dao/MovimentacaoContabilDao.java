@@ -24,18 +24,22 @@ public class MovimentacaoContabilDao extends BaseDao{
 	
 	
 	
-	public SaldoContaContabilDTO getSaldoContaBancaria(Long idPlanoConta, LocalDate data) {
+	public SaldoContaContabilDTO getSaldoContaBancaria(Long idPlanoConta, LocalDate dataInicio, LocalDate dataFim) {
 		StringBuilder sql = new StringBuilder();
 		
-		sql.append(" select saldo                                                                                ");
-		sql.append("  from (select fn_retorna_saldo_categoria_contabil(:p_id_plano_conta, :p_data) saldo         ");
-		sql.append("        ) as saldocontacontabil                                                              ");
+		sql.append(" select saldo_inicio, saldo_fim                                                                     ");
+		sql.append("  from (select fn_retorna_saldo_categoria_contabil(:p_id_plano_conta, :p_dt_inicio) saldo_inicio,   ");
+		sql.append("               fn_retorna_saldo_categoria_contabil(:p_id_plano_conta, :p_dt_fim) saldo_fim          ");
+		sql.append("        ) as saldos                                                                                 ");
 		
 		Query query = em.createNativeQuery(sql.toString());
 		query.setParameter("p_id_plano_conta",  idPlanoConta);
 		
-      	Date pData = DataUtil.parseDate(data.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-		query.setParameter("p_data", new Timestamp(pData.getTime()));
+      	Date pDataInicio = DataUtil.parseDate(dataInicio.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+      	Date pDataFinal  = DataUtil.parseDate(dataFim.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+      	
+		query.setParameter("p_dt_inicio", new Timestamp(DataUtil.adicionaDia(pDataInicio, -1).getTime()));
+		query.setParameter("p_dt_fim", new Timestamp(pDataFinal.getTime()));		
 		
 		Object values = (Object) query.getSingleResult();
 		return new SaldoContaContabilDTO(values);

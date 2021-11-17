@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.crux.cmd.GetMovimentacaoContabilCmd;
 import br.com.crux.cmd.relatorios.financeiro.GerarRelatorioMovimentacaoContabilCmd;
 import br.com.crux.to.relatorios.financeiro.MovimentacaoContabilTO;
+import br.com.crux.to.relatorios.financeiro.SaldoContaContabilTO;
 
 @RestController
 @RequestMapping(value = "movimentacaocontabil")
@@ -35,10 +36,11 @@ public class RelatorioMovimentacaoContabilService {
 	
 	
 	@GetMapping(path = "/saldocontacontabil", produces = MediaType.APPLICATION_JSON_VALUE)
-	public Double getSaldoContaContabil(@RequestParam(name = "idPlanoConta", required = true) Long idPlanoConta,
-			                            @RequestParam(name = "data", required = true) @DateTimeFormat(iso = ISO.DATE) LocalDate data
+	public SaldoContaContabilTO getSaldoContaContabil(@RequestParam(name = "idPlanoConta", required = true) Long idPlanoConta,
+			                            @RequestParam(name = "dataInicio", required = true) @DateTimeFormat(iso = ISO.DATE) LocalDate dataInicio,
+			                            @RequestParam(name = "dataFim", required = true) @DateTimeFormat(iso = ISO.DATE) LocalDate dataFim
 		                               ) {
-		return getCmd.getSaldoContaContabil(idPlanoConta, data);
+		return getCmd.getSaldoContaContabil(idPlanoConta, dataInicio, dataFim);
 	}	
 	
 	@GetMapping(path = "/filter", produces = MediaType.APPLICATION_JSON_VALUE)
