@@ -47,29 +47,34 @@ public class MovimentacaoContabilDao extends BaseDao{
 		StringBuilder sql = new StringBuilder();
 		
 		
-		sql.append("	SELECT Case coalesce(po.id_programa, 0)                                                           ");
-		sql.append("        	when 0 then pj.nm_projeto                                                                 ");
-		sql.append("	       else po.nm_programa                                                                        ");
-		sql.append("	      end as projeto_programa,                                                                    ");
-		sql.append("	      m.nr_documento,                                                                             ");
-		sql.append("	      m.dt_documento,                                                                             ");
-		sql.append("	      cm.ds_categoria_movimentacao,                                                               ");
-		sql.append("	      cm.dt_movimentacao,                                                                         ");
-		sql.append("	      cm.vl_categoria_movimentacao,                                                               ");
-		sql.append("	      pcd.plano_conta conta_destino,                                                              ");
-		sql.append("	      pco.plano_conta conta_origem,                                                               ");
-		sql.append("	      m.id_movimentacao,                                                                          ");
-		sql.append("	      cm.id_categoria_origem,                                                                     ");
-		sql.append("	      cm.id_categoria_destino,                                                                    ");
-		sql.append("	      cm.id_programa,                                                                             ");
-		sql.append("	      cm.id_projeto                                                                               ");
-		sql.append("     FROM movimentacoes m                                                                             ");
-		sql.append("       inner join categorias_movimentacoes cm on cm.id_movimentacao = m.id_movimentacao               ");
-		sql.append("       inner join vw_planos_contas pco ON pco.id_categoria = cm.id_categoria_origem                   ");
-		sql.append("       inner join vw_planos_contas pcd ON pcd.id_categoria = cm.id_categoria_destino                  ");
-		sql.append("       left join projetos pj on pj.id_projeto = cm.id_projeto                                         ");
-		sql.append("      left join programas po on po.id_programa = cm.id_programa                                       ");
-		sql.append(" where 1 = 1                                                                                          ");
+		sql.append("	SELECT Case coalesce(po.id_programa, 0)                 		                                          			");
+		sql.append("        	when 0 then pj.nm_projeto               		                                                  			");
+		sql.append("	       else po.nm_programa              		                                                          			");
+		sql.append("	      end as projeto_programa, 			                                                                   			");
+		sql.append("	      m.nr_documento,                                                                             					");
+		sql.append("	      m.dt_documento,                                                                             					");
+		sql.append("	      cm.ds_categoria_movimentacao,                                                         		      			");
+		sql.append("	      cm.dt_movimentacao,                                                          			               			");
+  		if(Objects.nonNull(idCategoria)) {
+ 			sql.append("	  fn_retorna_valor_categoria_contabil(cm.id_categoria_movimentacao, coalesce(:p_id_categoria, 0)) as vl_categoria_movimentacao, 	");
+  		}	
+        else {
+  			sql.append("	  cm.vl_categoria_movimentacao, 	");
+  		}                                           
+		sql.append("	      pcd.plano_conta conta_destino,                            					                                ");
+		sql.append("	      pco.plano_conta conta_origem,                                                 					            ");
+		sql.append("	      m.id_movimentacao,                                                                          					");
+		sql.append("	      cm.id_categoria_origem,                                                                     					");
+		sql.append("	      cm.id_categoria_destino,                                                                    					");
+		sql.append("	      cm.id_programa,                                                                             					");
+		sql.append("	      cm.id_projeto                                                                               					");
+		sql.append("     FROM movimentacoes m                                                                             					");
+		sql.append("       inner join categorias_movimentacoes cm on cm.id_movimentacao = m.id_movimentacao               					");
+		sql.append("       inner join vw_planos_contas pco ON pco.id_categoria = cm.id_categoria_origem                   					");
+		sql.append("       inner join vw_planos_contas pcd ON pcd.id_categoria = cm.id_categoria_destino                  					");
+		sql.append("       left join projetos pj on pj.id_projeto = cm.id_projeto                                         					");
+		sql.append("      left join programas po on po.id_programa = cm.id_programa                                       					");
+		sql.append(" where 1 = 1                                                                                          					");
 	
 		if(Objects.nonNull(idPrograma)) {
 			sql.append("  and :p_programa = cm.id_programa ");
