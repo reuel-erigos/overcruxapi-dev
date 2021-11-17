@@ -41,7 +41,7 @@ public class MovimentacaoContabilDao extends BaseDao{
 		query.setParameter("p_dt_inicio", new Timestamp(DataUtil.adicionaDia(pDataInicio, -1).getTime()));
 		query.setParameter("p_dt_fim", new Timestamp(pDataFinal.getTime()));		
 		
-		Object values = (Object) query.getSingleResult();
+		Object[] values = (Object[]) query.getSingleResult();
 		return new SaldoContaContabilDTO(values);
 	}
 	

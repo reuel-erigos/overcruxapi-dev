@@ -10,9 +10,9 @@ public class SaldoContaContabilDTO {
 	public SaldoContaContabilDTO() {
 	}
 	
-	public SaldoContaContabilDTO(Object colunas) {
-		this.saldoDataInicioContaContabil  = (colunas != null)? ((BigDecimal)colunas).doubleValue() : null;
-		this.saldoDataFimContaContabil     = (colunas != null)? ((BigDecimal)colunas).doubleValue() : null;
+	public SaldoContaContabilDTO(Object[] colunas) {
+		this.saldoDataInicioContaContabil     = (colunas[0] != null)? ((BigDecimal)colunas[0]).doubleValue() : null;
+		this.saldoDataFimContaContabil        = (colunas[1] != null)? ((BigDecimal)colunas[1]).doubleValue() : null;
 	}
 
 	
