@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.builder.MovimentacaoContabilTOBuilder;
+import br.com.crux.dao.AtualizarSaldoContaContabilDao;
 import br.com.crux.dao.MovimentacaoContabilDao;
 import br.com.crux.dao.dto.SaldoContaContabilDTO;
 import br.com.crux.infra.util.Java8DateUtil;
@@ -23,8 +24,13 @@ public class GetMovimentacaoContabilCmd {
 
 	@Autowired private MovimentacaoContabilDao       dao;
 	@Autowired private MovimentacaoContabilTOBuilder toBuilder;
-
+	@Autowired private AtualizarSaldoContaContabilDao atualizarSaldoContaContabilDao;
 	
+	
+	public void atualizarSaldoContaContabil(Long idPlanoConta, LocalDate dataInicio) {
+		atualizarSaldoContaContabilDao.atualizarSaldo(idPlanoConta, dataInicio);
+	}
+
 	
 	public SaldoContaContabilTO getSaldoContaContabil(Long idPlanoConta, LocalDate dataInicio, LocalDate dataFim ) {
 		Optional<SaldoContaContabilDTO> saldo = Optional.ofNullable(dao.getSaldoContaBancaria(idPlanoConta, dataInicio,  dataFim ));
