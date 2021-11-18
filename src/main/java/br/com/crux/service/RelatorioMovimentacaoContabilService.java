@@ -35,9 +35,9 @@ public class RelatorioMovimentacaoContabilService {
 		return gerarRelatorioMovimentacaoContabilCmd.gerar(dados, mimeType);
 	}
 	
-	@PutMapping(path = "/atualizarsaldocontacontabil")
-	public void atualizarSaldoContaContabil(@RequestParam(name = "idPlanoConta", required = true) Long idPlanoConta,
-			                                @RequestParam(name = "dataInicio", required = true) @DateTimeFormat(iso = ISO.DATE) LocalDate dataInicio
+	@PutMapping(path = "/atualizarsaldocontacontabil/{idPlanoConta}/{dataInicio}")
+	public void atualizarSaldoContaContabil(@PathVariable(name = "idPlanoConta") Long idPlanoConta,
+			                                @PathVariable(name = "dataInicio") @DateTimeFormat(iso = ISO.DATE) LocalDate dataInicio
 		                                   ) {
 		getCmd.atualizarSaldoContaContabil(idPlanoConta, dataInicio);
 	}	
