@@ -30,28 +30,18 @@ public class MovimentacaoContabilDao extends BaseDao{
 		StringBuilder sql = new StringBuilder();
 		
 		sql.append(" WITH RECURSIVE arvore AS (                                                                                            ");
-        sql.append("         SELECT DISTINCT cc.id_categoria, cc.id_categoria_superior,                                                    ");
-        sql.append("            cc.nm_categoria,                                                                                           ");
-        sql.append("            cc.nm_categoria::text AS nome,                                                                             ");
-        sql.append("            cc.cd_categoria_contabil::text AS cd_categoria_contabil,                                                   ");
-        sql.append("            cc.st_categoria_sintetica::text AS st_categoria_sintetica,                                                 ");
-        sql.append("            cc.id_instituicao                                                                                          ");
+        sql.append("         SELECT DISTINCT cc.id_categoria                                                                               ");
         sql.append("           FROM categorias_contabeis cc                                                                                ");
         sql.append("          WHERE 1=1                                                                                                    ");
         sql.append("            AND cc.id_categoria = :p_id_plano_conta                                                                    ");
         sql.append("        UNION ALL                                                                                                      ");
-        sql.append("         SELECT DISTINCT ci.id_categoria, ci.id_categoria_superior,                                                    ");
-        sql.append("             ci.nm_categoria,                                                                                          ");
-        sql.append("            (arvore_1.nome || ' > '::text) || ci.nm_categoria::text AS cd,                                             ");
-        sql.append("            (arvore_1.cd_categoria_contabil || '.'::text) || ci.cd_categoria_contabil::text AS cd_categoria_contabil,  ");
-        sql.append("            ci.st_categoria_sintetica,                                                                                 ");
-        sql.append("            ci.id_instituicao                                                                                          ");
+        sql.append("         SELECT DISTINCT ci.id_categoria                                                                               ");
         sql.append("           FROM categorias_contabeis ci                                                                                ");
         sql.append("             JOIN arvore arvore_1 ON ci.id_categoria_superior = arvore_1.id_categoria                                  ");
         sql.append("        )                                                                                                              ");
         sql.append("   SELECT arvore.id_categoria                                                                                          ");
         sql.append("     FROM arvore                                                                                                       ");
-        sql.append("    ORDER BY arvore.cd_categoria_contabil, arvore.nome                                                                 ");
+        sql.append("    ORDER BY 1                                                                                                         ");
 		
 		Query query = em.createNativeQuery(sql.toString());
 		query.setParameter("p_id_plano_conta",  idPlanoConta);
