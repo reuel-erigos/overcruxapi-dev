@@ -42,6 +42,10 @@ public class RelatorioMovimentacaoContabilService {
 		getCmd.atualizarSaldoContaContabil(idPlanoConta, dataInicio);
 	}	
 	
+	@GetMapping(path = "/contascontabeissubordinadas", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Integer> getContasContabeisSubordinadas(@PathVariable(name = "idPlanoConta", required = true) Long idPlanoConta) {
+		return getCmd.getContasContabeisSubordinadas(idPlanoConta);
+	}
 	
 	@GetMapping(path = "/saldocontacontabil", produces = MediaType.APPLICATION_JSON_VALUE)
 	public SaldoContaContabilTO getSaldoContaContabil(@RequestParam(name = "idPlanoConta", required = true) Long idPlanoConta,

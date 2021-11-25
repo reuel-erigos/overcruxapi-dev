@@ -1,5 +1,6 @@
 package br.com.crux.dao;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -8,6 +9,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.persistence.Query;
 
@@ -22,6 +25,22 @@ import br.com.crux.to.relatorios.financeiro.MovimentacaoContabilDTO;
 @Component
 public class MovimentacaoContabilDao extends BaseDao{
 	
+	
+	
+	public List<Integer> getContasContabeisSubordinadas(Long idPlanoConta) {
+		StringBuilder sql = new StringBuilder();
+		
+		sql.append(" select *                                                                                           ");
+		sql.append("   from (select fn_get_id_categoria_contas_contabeis_subordinadas(:p_id_plano_conta)) as contas     ");
+		
+		Query query = em.createNativeQuery(sql.toString());
+		query.setParameter("p_id_plano_conta",  idPlanoConta);
+		
+		Object[] values = (Object[]) query.getSingleResult();
+		
+		List<Integer> contas = Stream.of(values).map(p -> ((BigDecimal)p).intValue()).collect(Collectors.toList());
+		return contas;
+	}
 	
 	
 	public SaldoContaContabilDTO getSaldoContaBancaria(Long idPlanoConta, LocalDate dataInicio, LocalDate dataFim) {

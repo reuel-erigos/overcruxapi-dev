@@ -31,6 +31,10 @@ public class GetMovimentacaoContabilCmd {
 		atualizarSaldoContaContabilDao.atualizarSaldo(idPlanoConta, dataInicio);
 	}
 
+	public List<Integer> getContasContabeisSubordinadas(Long idPlanoConta) {
+		Optional<List<Integer>> contas = Optional.ofNullable(dao.getContasContabeisSubordinadas(idPlanoConta));
+		return contas.orElse(null);
+	}
 	
 	public SaldoContaContabilTO getSaldoContaContabil(Long idPlanoConta, LocalDate dataInicio, LocalDate dataFim ) {
 		Optional<SaldoContaContabilDTO> saldo = Optional.ofNullable(dao.getSaldoContaBancaria(idPlanoConta, dataInicio,  dataFim ));
