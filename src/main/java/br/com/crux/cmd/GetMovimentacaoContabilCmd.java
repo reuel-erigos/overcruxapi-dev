@@ -31,6 +31,14 @@ public class GetMovimentacaoContabilCmd {
 		atualizarSaldoContaContabilDao.atualizarSaldo(idPlanoConta, dataInicio);
 	}
 
+	public void atualizarSaldoContaContabilPrograma(Long idPlanoConta, LocalDate dataInicio, Long idPrograma) {
+		atualizarSaldoContaContabilDao.atualizarSaldoPrograma(idPlanoConta, dataInicio, idPrograma);
+	}
+	
+	public void atualizarSaldoContaContabilProjeto(Long idPlanoConta, LocalDate dataInicio, Long idProjeto) {
+		atualizarSaldoContaContabilDao.atualizarSaldoProjeto(idPlanoConta, dataInicio, idProjeto);
+	}
+	
 	public List<Integer> getContasContabeisSubordinadas(Long idPlanoConta) {
 		Optional<List<Integer>> contas = Optional.ofNullable(dao.getContasContabeisSubordinadas(idPlanoConta));
 		return contas.orElse(null);

@@ -42,6 +42,24 @@ public class RelatorioMovimentacaoContabilService {
 		getCmd.atualizarSaldoContaContabil(idPlanoConta, dataInicio);
 	}	
 	
+	@PutMapping(path = "/atualizarsaldocontacontabilprograma/{idPlanoConta}/{dataInicio}")
+	public void atualizarSaldoContaContabilPrograma(@PathVariable(name = "idPlanoConta") Long idPlanoConta,
+			                                        @PathVariable(name = "dataInicio") @DateTimeFormat(iso = ISO.DATE) LocalDate dataInicio,
+			                                        @PathVariable(name = "idPrograma") Long idPrograma
+		                                            ) {
+		getCmd.atualizarSaldoContaContabilPrograma(idPlanoConta, dataInicio, idPrograma);
+	}	
+	
+	@PutMapping(path = "/atualizarsaldocontacontabilprojeto/{idPlanoConta}/{dataInicio}")
+	public void atualizarSaldoContaContabilProjeto(@PathVariable(name = "idPlanoConta") Long idPlanoConta,
+			                                       @PathVariable(name = "dataInicio") @DateTimeFormat(iso = ISO.DATE) LocalDate dataInicio,
+			                                       @PathVariable(name = "idProjeto") Long idProjeto
+		                                   ) {
+		getCmd.atualizarSaldoContaContabilProjeto(idPlanoConta, dataInicio, idProjeto);
+	}	
+	
+	
+	
 	@GetMapping(path = "/contascontabeissubordinadas/{idPlanoConta}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Integer> getContasContabeisSubordinadas(@PathVariable(name = "idPlanoConta", required = true) Long idPlanoConta) {
 		return getCmd.getContasContabeisSubordinadas(idPlanoConta);

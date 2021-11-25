@@ -56,4 +56,72 @@ public class AtualizarSaldoContaContabilDao extends BaseDao {
 		}
 	}
 
+	public void atualizarSaldoPrograma(Long idPlanoConta, LocalDate dataInicio, Long idPrograma) {
+		Session session = null;
+		try {
+			session = getSession();
+			session.beginTransaction();
+
+			session.doWork(new Work() {
+				@Override
+				public void execute(Connection connection) throws SQLException {
+					try {
+						CallableStatement statement = null;
+						
+						String sqlString = "{call fn_atualiza_saldos_categorias_contabeis_programas(?,?,?,?)}";
+						
+						statement = connection.prepareCall(sqlString);
+						statement.setLong(1, idPrograma);
+						statement.setLong(2, idPlanoConta);
+						
+						Date pDataInicio = DataUtil.parseDate(dataInicio.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+						statement.setTimestamp(3, new Timestamp(pDataInicio.getTime()));
+						
+						statement.setLong(4, getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
+						
+					    statement.executeUpdate();
+					} finally {}
+				}
+			});
+			session.getTransaction().commit();
+
+		} finally {
+			closeEntityManager();
+		}
+	}
+	
+	public void atualizarSaldoProjeto(Long idPlanoConta, LocalDate dataInicio, Long idProjeto) {
+		Session session = null;
+		try {
+			session = getSession();
+			session.beginTransaction();
+
+			session.doWork(new Work() {
+				@Override
+				public void execute(Connection connection) throws SQLException {
+					try {
+						CallableStatement statement = null;
+						
+						String sqlString = "{call fn_atualiza_saldos_categorias_contabeis_projetos(?,?,?,?)}";
+						
+						statement = connection.prepareCall(sqlString);
+						statement.setLong(1, idProjeto);
+						statement.setLong(2, idPlanoConta);
+						
+						Date pDataInicio = DataUtil.parseDate(dataInicio.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+						statement.setTimestamp(3, new Timestamp(pDataInicio.getTime()));
+						
+						statement.setLong(4, getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
+						
+					    statement.executeUpdate();
+					} finally {}
+				}
+			});
+			session.getTransaction().commit();
+
+		} finally {
+			closeEntityManager();
+		}
+	}
+	
 }
