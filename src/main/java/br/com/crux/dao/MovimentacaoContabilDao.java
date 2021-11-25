@@ -36,9 +36,10 @@ public class MovimentacaoContabilDao extends BaseDao{
 		Query query = em.createNativeQuery(sql.toString());
 		query.setParameter("p_id_plano_conta",  idPlanoConta);
 		
-		Object[] values = (Object[]) query.getSingleResult();
+		@SuppressWarnings("unchecked")
+		List<Object> values = query.getResultList();;
 		
-		List<Integer> contas = Stream.of(values).map(p -> ((BigDecimal)p).intValue()).collect(Collectors.toList());
+		List<Integer> contas = values.stream().map(p -> ((BigDecimal)p).intValue()).collect(Collectors.toList());
 		return contas;
 	}
 	
