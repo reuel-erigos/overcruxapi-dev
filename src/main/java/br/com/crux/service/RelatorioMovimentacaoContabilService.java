@@ -42,7 +42,7 @@ public class RelatorioMovimentacaoContabilService {
 		getCmd.atualizarSaldoContaContabil(idPlanoConta, dataInicio);
 	}	
 	
-	@PutMapping(path = "/atualizarsaldocontacontabilprograma/{idPlanoConta}/{dataInicio}")
+	@PutMapping(path = "/atualizarsaldocontacontabilprograma/{idPlanoConta}/{dataInicio}/{idPrograma}")
 	public void atualizarSaldoContaContabilPrograma(@PathVariable(name = "idPlanoConta") Long idPlanoConta,
 			                                        @PathVariable(name = "dataInicio") @DateTimeFormat(iso = ISO.DATE) LocalDate dataInicio,
 			                                        @PathVariable(name = "idPrograma") Long idPrograma
@@ -50,7 +50,7 @@ public class RelatorioMovimentacaoContabilService {
 		getCmd.atualizarSaldoContaContabilPrograma(idPlanoConta, dataInicio, idPrograma);
 	}	
 	
-	@PutMapping(path = "/atualizarsaldocontacontabilprojeto/{idPlanoConta}/{dataInicio}")
+	@PutMapping(path = "/atualizarsaldocontacontabilprojeto/{idPlanoConta}/{dataInicio}/{idProjeto}")
 	public void atualizarSaldoContaContabilProjeto(@PathVariable(name = "idPlanoConta") Long idPlanoConta,
 			                                       @PathVariable(name = "dataInicio") @DateTimeFormat(iso = ISO.DATE) LocalDate dataInicio,
 			                                       @PathVariable(name = "idProjeto") Long idProjeto
