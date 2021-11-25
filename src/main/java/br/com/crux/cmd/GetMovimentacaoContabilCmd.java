@@ -46,6 +46,27 @@ public class GetMovimentacaoContabilCmd {
 		return null;
 	}
 	
+	public SaldoContaContabilTO getSaldoContaContabilPrograma(Long idPlanoConta, LocalDate dataInicio, LocalDate dataFim, Long idPrograma) {
+		Optional<SaldoContaContabilDTO> saldo = Optional.ofNullable(dao.getSaldoContaBancariaPrograma(idPlanoConta, dataInicio,  dataFim, idPrograma ));
+		
+		if(saldo.isPresent()) {
+			return new SaldoContaContabilTO(saldo.get().getSaldoDataInicioContaContabil(), saldo.get().getSaldoDataFimContaContabil()) ;
+		}
+		
+		return null;
+	}
+
+	public SaldoContaContabilTO getSaldoContaContabilProjeto(Long idPlanoConta, LocalDate dataInicio, LocalDate dataFim, Long idProjeto) {
+		Optional<SaldoContaContabilDTO> saldo = Optional.ofNullable(dao.getSaldoContaBancariaProjeto(idPlanoConta, dataInicio,  dataFim, idProjeto ));
+		
+		if(saldo.isPresent()) {
+			return new SaldoContaContabilTO(saldo.get().getSaldoDataInicioContaContabil(), saldo.get().getSaldoDataFimContaContabil()) ;
+		}
+		
+		return null;
+	}
+
+	
 	public List<MovimentacaoContabilTO> getAllFilter(Long idcategoria, Long idPrograma, Long idProjeto, Long dataInicio, Long dataFim) {
 		Optional<List<MovimentacaoContabilDTO>> entitys = Optional.empty();
 

@@ -76,6 +76,51 @@ public class MovimentacaoContabilDao extends BaseDao{
 	}
 	
 	
+	public SaldoContaContabilDTO getSaldoContaBancariaPrograma(Long idPlanoConta, LocalDate dataInicio, LocalDate dataFim, Long idPrograma) {
+		StringBuilder sql = new StringBuilder();
+		
+		sql.append(" select saldo_inicio, saldo_fim                                                                                              ");
+		sql.append("  from (select fn_retorna_saldo_programa_categoria_contabil(:p_id_programa, :p_id_plano_conta, :p_dt_inicio) saldo_inicio,   ");
+		sql.append("               fn_retorna_saldo_programa_categoria_contabil(:p_id_programa, :p_id_plano_conta, :p_dt_fim) saldo_fim          ");
+		sql.append("        ) as saldos                                                                                                          ");
+		
+		Query query = em.createNativeQuery(sql.toString());
+		query.setParameter("p_id_plano_conta",  idPlanoConta);
+		query.setParameter("p_id_programa",  idPrograma);
+		
+      	Date pDataInicio = DataUtil.parseDate(dataInicio.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+      	Date pDataFinal  = DataUtil.parseDate(dataFim.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+      	
+		query.setParameter("p_dt_inicio", new Timestamp(DataUtil.adicionaDia(pDataInicio, -1).getTime()));
+		query.setParameter("p_dt_fim", new Timestamp(pDataFinal.getTime()));		
+		
+		Object[] values = (Object[]) query.getSingleResult();
+		return new SaldoContaContabilDTO(values);
+	}
+	
+	
+	public SaldoContaContabilDTO getSaldoContaBancariaProjeto(Long idPlanoConta, LocalDate dataInicio, LocalDate dataFim, Long idProjeto) {
+		StringBuilder sql = new StringBuilder();
+		
+		sql.append(" select saldo_inicio, saldo_fim                                                                                            ");
+		sql.append("  from (select fn_retorna_saldo_projeto_categoria_contabil(:p_id_projeto, :p_id_plano_conta, :p_dt_inicio) saldo_inicio,   ");
+		sql.append("               fn_retorna_saldo_projeto_categoria_contabil(:p_id_projeto, :p_id_plano_conta, :p_dt_fim) saldo_fim          ");
+		sql.append("        ) as saldos                                                                                                        ");
+		
+		Query query = em.createNativeQuery(sql.toString());
+		query.setParameter("p_id_plano_conta",  idPlanoConta);
+		query.setParameter("p_id_projeto",  idProjeto);
+		
+      	Date pDataInicio = DataUtil.parseDate(dataInicio.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+      	Date pDataFinal  = DataUtil.parseDate(dataFim.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+      	
+		query.setParameter("p_dt_inicio", new Timestamp(DataUtil.adicionaDia(pDataInicio, -1).getTime()));
+		query.setParameter("p_dt_fim", new Timestamp(pDataFinal.getTime()));		
+		
+		Object[] values = (Object[]) query.getSingleResult();
+		return new SaldoContaContabilDTO(values);
+	}
+	
 	
 	public Optional<List<MovimentacaoContabilDTO>> getAllFilter(Long idCategoria, Long idPrograma, Long idProjeto, LocalDate dataInicio, LocalDate dataFim){
 		StringBuilder sql = new StringBuilder();

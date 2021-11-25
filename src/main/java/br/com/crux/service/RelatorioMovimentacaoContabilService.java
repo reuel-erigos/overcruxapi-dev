@@ -54,6 +54,25 @@ public class RelatorioMovimentacaoContabilService {
 		                               ) {
 		return getCmd.getSaldoContaContabil(idPlanoConta, dataInicio, dataFim);
 	}	
+
+	@GetMapping(path = "/saldocontacontabilprograma", produces = MediaType.APPLICATION_JSON_VALUE)
+	public SaldoContaContabilTO getSaldoContaContabilPrograma(@RequestParam(name = "idPlanoConta", required = true) Long idPlanoConta,
+			                            @RequestParam(name = "dataInicio", required = true) @DateTimeFormat(iso = ISO.DATE) LocalDate dataInicio,
+			                            @RequestParam(name = "dataFim", required = true) @DateTimeFormat(iso = ISO.DATE) LocalDate dataFim,
+			                            @RequestParam(name = "idPrograma", required = true) Long idPrograma
+		                               ) {
+		return getCmd.getSaldoContaContabilPrograma(idPlanoConta, dataInicio, dataFim, idPrograma);
+	}	
+
+	@GetMapping(path = "/saldocontacontabilprojeto", produces = MediaType.APPLICATION_JSON_VALUE)
+	public SaldoContaContabilTO getSaldoContaContabilProjeto(@RequestParam(name = "idPlanoConta", required = true) Long idPlanoConta,
+			                            @RequestParam(name = "dataInicio", required = true) @DateTimeFormat(iso = ISO.DATE) LocalDate dataInicio,
+			                            @RequestParam(name = "dataFim", required = true) @DateTimeFormat(iso = ISO.DATE) LocalDate dataFim,
+			                            @RequestParam(name = "idProjeto", required = true) Long idProjeto
+		                               ) {
+		return getCmd.getSaldoContaContabilProjeto(idPlanoConta, dataInicio, dataFim, idProjeto);
+	}	
+
 	
 	@GetMapping(path = "/filter", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<MovimentacaoContabilTO> getAllFilter(@RequestParam(name = "idcategoria", required = false) Long idcategoria,
