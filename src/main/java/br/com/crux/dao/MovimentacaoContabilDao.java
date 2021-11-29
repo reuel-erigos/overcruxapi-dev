@@ -203,6 +203,7 @@ public class MovimentacaoContabilDao extends BaseDao{
 		}                                           
   		
 		sql.append(" ) as saida                                                                                          		");
+		sql.append(" where 1 = 1                                                                                          		");
 
   		
 		if(Objects.nonNull(idPrograma)) {
