@@ -142,7 +142,8 @@ public class MovimentacaoContabilDao extends BaseDao{
 			sql.append("	      cm.id_categoria_origem,                                                                     	");
 			sql.append("	      cm.id_categoria_destino,                                                                    	");
 			sql.append("	      cm.id_programa,                                                                             	");
-			sql.append("	      cm.id_projeto                                                                               	");
+			sql.append("	      cm.id_projeto,                                                                               	");
+			sql.append("	      cm.id_categoria_movimentacao                                                                 	");
 			sql.append("     FROM movimentacoes m                                                                             	");
 			sql.append("       inner join categorias_movimentacoes cm on cm.id_movimentacao = m.id_movimentacao               	");
 			sql.append("       inner join vw_planos_contas pco ON pco.id_categoria = cm.id_categoria_origem                   	");
@@ -178,7 +179,8 @@ public class MovimentacaoContabilDao extends BaseDao{
 			sql.append("	      cm.id_categoria_origem,                                                                     	");
 			sql.append("	      cm.id_categoria_destino,                                                                    	");
 			sql.append("	      cm.id_programa,                                                                             	");
-			sql.append("	      cm.id_projeto                                                                               	");
+			sql.append("	      cm.id_projeto,                                                                               	");
+			sql.append("	      cm.id_categoria_movimentacao                                                                 	");
 			sql.append("     FROM movimentacoes m                                                                             	");
 			sql.append("       inner join categorias_movimentacoes cm on cm.id_movimentacao = m.id_movimentacao               	");
 			sql.append("       inner join vw_planos_contas pco ON pco.id_categoria = cm.id_categoria_origem                   	");
@@ -218,7 +220,8 @@ public class MovimentacaoContabilDao extends BaseDao{
 			sql.append("	      cm.id_categoria_origem,                                                                     	");
 			sql.append("	      cm.id_categoria_destino,                                                                    	");
 			sql.append("	      cm.id_programa,                                                                             	");
-			sql.append("	      cm.id_projeto                                                                               	");
+			sql.append("	      cm.id_projeto,                                                                               	");
+			sql.append("	      cm.id_categoria_movimentacao                                                                 	");
 			sql.append("     FROM movimentacoes m                                                                             	");
 			sql.append("       inner join categorias_movimentacoes cm on cm.id_movimentacao = m.id_movimentacao               	");
 			sql.append("       inner join vw_planos_contas pco ON pco.id_categoria = cm.id_categoria_origem                   	");
