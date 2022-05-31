@@ -64,6 +64,7 @@ public class AlunoTO {
 	
 	private String participaApresentacaoExterna;;
 	
+	private Boolean stAtivo;
 	
 	public AlunoTO() {
 	}
@@ -361,7 +362,16 @@ public class AlunoTO {
 	public void setBenefeciosSociaisPessoaFisica(List<BeneficioSocialPessoaFisicaTO> benefeciosSociaisPessoaFisica) {
 		this.benefeciosSociaisPessoaFisica = benefeciosSociaisPessoaFisica;
 
+	}
+
+	public Boolean getStAtivo() {
+		return stAtivo;
+	}
+
+	public void setStAtivo(Boolean stAtivo) {
+		this.stAtivo = stAtivo;
 	}	
 
+	
 	
 }

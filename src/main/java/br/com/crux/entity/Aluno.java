@@ -3,6 +3,7 @@ package br.com.crux.entity;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -14,6 +15,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import br.com.crux.infra.constantes.Constantes;
+import br.com.crux.infra.dao.SimNaoConverter;
 
 
 /**
@@ -134,6 +136,11 @@ public class Aluno {
 //	@Convert(converter = SimNaoConverter.class)
 	@Column(name = "st_apr_externa_pub")
 	private String participaApresentacaoExterna;
+
+	@Convert(converter = SimNaoConverter.class)
+	@Column(name = "st_ativo")
+	private Boolean stAtivo;
+
 	
 	public Aluno() {
 	}
@@ -403,4 +410,12 @@ public class Aluno {
 		this.descricaoSugestaoDesligamento = descricaoSugestaoDesligamento;
 	}
 
+	public Boolean getAtivo() {
+		return this.stAtivo;
+	}
+
+	public void setAtivo(Boolean stAtivo) {
+		this.stAtivo = stAtivo;
+	}	
+	
 }
