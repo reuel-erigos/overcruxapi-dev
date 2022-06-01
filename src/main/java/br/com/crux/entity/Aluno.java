@@ -411,11 +411,12 @@ public class Aluno {
 	}
 
 	public Boolean getAtivo() {
-		return this.stAtivo;
+		return stAtivo;
 	}
 
 	public void setAtivo(Boolean stAtivo) {
 		this.stAtivo = stAtivo;
 	}	
+
 	
 }
