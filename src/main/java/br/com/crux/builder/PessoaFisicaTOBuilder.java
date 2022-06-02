@@ -38,7 +38,7 @@ public class PessoaFisicaTOBuilder {
 
 		retorno.setId(p.getId());
 		retorno.setNome(p.getNome());
-		retorno.setNome(p.getNomeSocial());
+		retorno.setNomeSocial(p.getNomeSocial());
 		retorno.setOrgaoCi(p.getOrgaoCi());
 		retorno.setClassificadorMotivoNaoTrab(p.getClassificadorMotivoNaoTrab());
 		retorno.setDescricaoPessoaFisicaAtendidoOrgaoRede(p.getDescricaoPessoaFisicaAtendidoOrgaoRede());
@@ -171,7 +171,7 @@ public class PessoaFisicaTOBuilder {
 
 		retorno.setId(p.getId());
 		retorno.setNome(p.getNome());
-		retorno.setNome(p.getNomeSocial());
+		retorno.setNomeSocial(p.getNomeSocial());
 		retorno.setOrgaoCi(p.getOrgaoCi());
 		retorno.setClassificadorMotivoNaoTrab(p.getClassificadorMotivoNaoTrab());
 		retorno.setDescricaoPessoaFisicaAtendidoOrgaoRede(p.getDescricaoPessoaFisicaAtendidoOrgaoRede());
