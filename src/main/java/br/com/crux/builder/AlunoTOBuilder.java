@@ -93,6 +93,10 @@ public class AlunoTOBuilder {
 			retorno.setAtivo(stAtivo.equals("true") ? "S" : "N");
 		});
 		
+		Optional.ofNullable(p.getParticipaApresentacaoExterna()).ifPresent(ParticipaApresentacaoExterna -> {
+			retorno.setParticipaApresentacaoExterna(ParticipaApresentacaoExterna.equals("true") ? "S" : "N");
+		});
+		
 		
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
 
@@ -126,6 +130,8 @@ public class AlunoTOBuilder {
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
 		retorno.setStAtivo(p.getAtivo());
 
+		retorno.setParticipaApresentacaoExterna(p.getParticipaApresentacaoExterna());
+		
 		if(Objects.nonNull(p.getId())) {
 			retorno.setVulnerabilidades(getVulnerabilidadesAlunoCmd.getAllAlunoTO(p.getId()));
 		}
