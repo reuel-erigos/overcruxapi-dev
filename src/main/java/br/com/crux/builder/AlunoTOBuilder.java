@@ -124,6 +124,7 @@ public class AlunoTOBuilder {
 		retorno.setMotivoDesligamento(motivoDesligamentoTOBuilder.buildTO(p.getMotivoDesligamento()));
 		retorno.setTiposPublicoPrioritario(tiposPublicoPrioritarioTOBuilder.buildTO(p.getTiposPublicoPrioritario()));
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
+		retorno.setStAtivo(p.getAtivo());
 
 		if(Objects.nonNull(p.getId())) {
 			retorno.setVulnerabilidades(getVulnerabilidadesAlunoCmd.getAllAlunoTO(p.getId()));
