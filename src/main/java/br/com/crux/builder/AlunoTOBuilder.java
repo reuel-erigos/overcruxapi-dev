@@ -93,9 +93,9 @@ public class AlunoTOBuilder {
 			retorno.setAtivo(stAtivo.equals("true") ? "S" : "N");
 		});
 		
-		Optional.ofNullable(p.getParticipaApresentacaoExterna()).ifPresent(participaApresentacaoExterna -> {
-			retorno.setParticipaApresentacaoExterna(participaApresentacaoExterna.equals("true") ? "S" : "N");
-		});
+//		Optional.ofNullable(p.getParticipaApresentacaoExterna()).ifPresent(participaApresentacaoExterna -> {
+//			retorno.setParticipaApresentacaoExterna(participaApresentacaoExterna.equals("true") ? "S" : "N");
+//		});
 		
 		
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
