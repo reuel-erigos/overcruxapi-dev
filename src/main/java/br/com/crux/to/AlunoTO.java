@@ -64,7 +64,8 @@ public class AlunoTO {
 	
 	private String participaApresentacaoExterna;;
 	
-	private Boolean stAtivo;
+//	private Boolean stAtivo;
+	private String stAtivo;
 	
 	public AlunoTO() {
 	}
@@ -364,11 +365,13 @@ public class AlunoTO {
 
 	}
 
-	public Boolean getStAtivo() {
+//	public Boolean getStAtivo() {
+	public String getStAtivo() {
 		return stAtivo;
 	}
 
-	public void setStAtivo(Boolean stAtivo) {
+//	public void setStAtivo(Boolean stAtivo) {
+	public void setStAtivo(String stAtivo) {
 		this.stAtivo = stAtivo;
 	}	
 

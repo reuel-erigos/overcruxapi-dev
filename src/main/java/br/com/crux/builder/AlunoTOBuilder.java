@@ -2,6 +2,7 @@ package br.com.crux.builder;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
@@ -87,6 +88,11 @@ public class AlunoTOBuilder {
 			TiposPublicoPrioritario tiposPublicoPrioritario = getTiposPublicoPrioritarioCmd.getById(p.getTiposPublicoPrioritario().getId());
 			retorno.setTiposPublicoPrioritario(tiposPublicoPrioritario);
 		}
+
+		Optional.ofNullable(p.getStAtivo()).ifPresent(stAtivo -> {
+			retorno.setAtivo(stAtivo.equals("true") ? "S" : "N");
+		});
+		
 		
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
 

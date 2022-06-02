@@ -137,9 +137,10 @@ public class Aluno {
 	@Column(name = "st_apr_externa_pub")
 	private String participaApresentacaoExterna;
 
-	@Convert(converter = SimNaoConverter.class)
+//	@Convert(converter = SimNaoConverter.class)
 	@Column(name = "st_ativo")
-	private Boolean stAtivo;
+//	private Boolean stAtivo;
+	private String stAtivo;
 
 	
 	public Aluno() {
@@ -410,11 +411,13 @@ public class Aluno {
 		this.descricaoSugestaoDesligamento = descricaoSugestaoDesligamento;
 	}
 
-	public Boolean getAtivo() {
+//	public Boolean getAtivo() {
+	public String getAtivo() {
 		return stAtivo;
 	}
 
-	public void setAtivo(Boolean stAtivo) {
+//	public void setAtivo(Boolean stAtivo) {
+	public void setAtivo(String stAtivo) {
 		this.stAtivo = stAtivo;
 	}	
 
