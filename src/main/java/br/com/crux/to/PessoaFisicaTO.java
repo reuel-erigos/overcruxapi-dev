@@ -102,6 +102,8 @@ public class PessoaFisicaTO {
 	private String celular2;
 	private String foneRecado;	
 	private Boolean semCpf;
+
+	private String nomeSocial;
 	
 	public PessoaFisicaTO() {
 	}
@@ -208,6 +210,14 @@ public class PessoaFisicaTO {
 
 	public void setEscola(String escola) {
 		this.escola = escola;
+	}
+
+	public String getNomeSocial() {
+		return nomeSocial;
+	}
+
+	public void setNomeSocial(String nomeSocial) {
+		this.nomeSocial = nomeSocial;
 	}
 
 	public String getEscolaridade() {

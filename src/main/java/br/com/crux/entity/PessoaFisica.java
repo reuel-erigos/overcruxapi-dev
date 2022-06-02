@@ -289,6 +289,8 @@ public class PessoaFisica {
 	@Column(name = "nr_fone_recado")
 	private String foneRecado;
 	
+	@Column(name = "nm_social_pessoa_fisica")
+	private String nomeSocial;
 	
 	@Convert(converter = SimNaoConverter.class)
 	@Column(name = "st_sem_cpf")
@@ -311,6 +313,14 @@ public class PessoaFisica {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getNomeSocial() {
+		return nomeSocial;
+	}
+
+	public void setNomeSocial(String nomeSocial) {
+		this.nomeSocial = nomeSocial;
 	}
 
 	public String getOrgaoCi() {
