@@ -80,8 +80,9 @@ public class Aluno {
 	@Column(name="dt_alteracao_cadastro")
 	private LocalDateTime dataAlteracaoCadastro;
 	
+	@Convert(converter = SimNaoConverter.class)
 	@Column(name="st_mora_pais")
-	private String moraPais;
+	private Boolean moraPais;
 	
 	@Convert(converter = SimNaoConverter.class)
 	@Column(name="st_pais_casados")
@@ -260,11 +261,11 @@ public class Aluno {
 		this.dataAlteracaoCadastro = dataAlteracaoCadastro;
 	}
 
-	public String getMoraPais() {
+	public Boolean getMoraPais() {
 		return moraPais;
 	}
 
-	public void setMoraPais(String moraPais) {
+	public void setMoraPais(Boolean moraPais) {
 		this.moraPais = moraPais;
 	}
 
