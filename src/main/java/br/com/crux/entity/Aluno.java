@@ -133,9 +133,10 @@ public class Aluno {
 	@Column(name="dt_declaracao_matricula")
 	private LocalDateTime dataDeclaracaoMatricula;
 	
-//	@Convert(converter = SimNaoConverter.class)
+	@Convert(converter = SimNaoConverter.class)
 	@Column(name = "st_apr_externa_pub")
-	private String participaApresentacaoExterna;
+	private boolean participaApresentacaoExterna;
+//	private String participaApresentacaoExterna;
 
 	@Convert(converter = SimNaoConverter.class)
 	@Column(name = "st_ativo")
@@ -370,11 +371,11 @@ public class Aluno {
 		this.dataDeclaracaoMatricula = dataDeclaracaoMatricula;
 	}
 
-	public String getParticipaApresentacaoExterna() {
+	public Boolean getParticipaApresentacaoExterna() {
 		return participaApresentacaoExterna;
 	}
 
-	public void setParticipaApresentacaoExterna(String participaApresentacaoExterna) {
+	public void setParticipaApresentacaoExterna(Boolean participaApresentacaoExterna) {
 		this.participaApresentacaoExterna = participaApresentacaoExterna;
 	}
 	

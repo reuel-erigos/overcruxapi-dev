@@ -64,6 +64,8 @@ public class AlunoTOBuilder {
 		retorno.setPessoasFisica(pessoaFisicaBuilder.build(p.getPessoaFisica()));
 		retorno.setUnidade(unidadeBuilder.build(p.getUnidade()));
 
+		retorno.setParticipaApresentacaoExterna(p.getParticipaApresentacaoExterna());
+
 		retorno.setStAtivo(p.getStAtivo());
 		
 		if(Objects.nonNull(p.getNivelTurma()) && Objects.nonNull(p.getNivelTurma().getId())) {
