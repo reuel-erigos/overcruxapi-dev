@@ -296,6 +296,9 @@ public class PessoaFisica {
 	@Column(name = "st_sem_cpf")
 	private Boolean semCpf;
 
+	@Column(name = "qt_pessoas_residem_familia")
+	private Long qtPessoasResidemFamilia;
+	
 	public PessoaFisica() {
 	}
 
@@ -978,6 +981,15 @@ public class PessoaFisica {
 	public void setSemCpf(Boolean semCpf) {
 		this.semCpf = semCpf;
 	}
+
+	public Long getQtPessoasResidemFamilia() {
+		return qtPessoasResidemFamilia;
+	}
+
+	public void setQtPessoasResidemFamilia(Long qtPessoasResidemFamilia) {
+		this.qtPessoasResidemFamilia = qtPessoasResidemFamilia;
+	}
+	
 	
 	
 }

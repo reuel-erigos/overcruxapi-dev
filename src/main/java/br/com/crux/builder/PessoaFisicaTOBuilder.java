@@ -77,6 +77,8 @@ public class PessoaFisicaTOBuilder {
 		retorno.setCep(p.getCep());
 		retorno.setIdentidade(p.getIdentidade());
 		retorno.setCpf(p.getCpf());
+
+		retorno.setQtPessoasResidemFamilia(p.getQtPessoasResidemFamilia());
 		
 		if(StringUtils.isEmpty(p.getCpf())) {
 			p.setSemCpf(true);
@@ -261,6 +263,7 @@ public class PessoaFisicaTOBuilder {
 		retorno.setFoneRecado(p.getFoneRecado());
 		retorno.setSemCpf(p.getSemCpf());
 
+		retorno.setQtPessoasResidemFamilia(p.getQtPessoasResidemFamilia());		
 
 		return retorno;
 	}

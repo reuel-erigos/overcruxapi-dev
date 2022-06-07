@@ -104,6 +104,8 @@ public class PessoaFisicaTO {
 	private Boolean semCpf;
 
 	private String nomeSocial;
+
+	private Long qtPessoasResidemFamilia;
 	
 	public PessoaFisicaTO() {
 	}
@@ -786,6 +788,14 @@ public class PessoaFisicaTO {
 
 	public void setSemCpf(Boolean semCpf) {
 		this.semCpf = semCpf;
+	}
+
+	public Long getQtPessoasResidemFamilia() {
+		return qtPessoasResidemFamilia;
+	}
+
+	public void setQtPessoasResidemFamilia(Long qtPessoasResidemFamilia) {
+		this.qtPessoasResidemFamilia = qtPessoasResidemFamilia;
 	}	
 	
 	
