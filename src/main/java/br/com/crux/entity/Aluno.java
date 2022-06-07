@@ -145,6 +145,8 @@ public class Aluno {
 	private Boolean stAtivo;
 //	private String stAtivo;
 
+	@Column(name = "qt_pessoas_residem_familia")
+	private Long qtPessoasResidemFamilia;
 	
 	public Aluno() {
 	}
@@ -422,7 +424,17 @@ public class Aluno {
 	public void setStAtivo(Boolean stAtivo) {
 //	public void setAtivo(String stAtivo) {
 		this.stAtivo = stAtivo;
+	}
+
+	public Long getQtPessoasResidemFamilia() {
+		return qtPessoasResidemFamilia;
+	}
+
+	public void setQtPessoasResidemFamilia(Long qtPessoasResidemFamilia) {
+		this.qtPessoasResidemFamilia = qtPessoasResidemFamilia;
 	}	
 
+	
+	
 	
 }

@@ -72,6 +72,8 @@ public class AlunoTOBuilder {
 
 		retorno.setMoraPais(p.getMoraPais());
 
+		retorno.setQtPessoasResidemFamilia(p.getQtPessoasResidemFamilia());
+		
 		if(Objects.nonNull(p.getNivelTurma()) && Objects.nonNull(p.getNivelTurma().getId())) {
 			NiveisTurmas niveisTurmas = getNiveisTurmasCmd.getById(p.getNivelTurma().getId());
 			retorno.setNivelTurma(niveisTurmas);
@@ -136,7 +138,6 @@ public class AlunoTOBuilder {
 		retorno.setMotivoDesligamento(motivoDesligamentoTOBuilder.buildTO(p.getMotivoDesligamento()));
 		retorno.setTiposPublicoPrioritario(tiposPublicoPrioritarioTOBuilder.buildTO(p.getTiposPublicoPrioritario()));
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
-//		retorno.setstAtivo(p.getAtivo());
 
 		retorno.setParticipaApresentacaoExterna(p.getParticipaApresentacaoExterna());
 
@@ -146,6 +147,9 @@ public class AlunoTOBuilder {
 
 		retorno.setMoraPais(p.getMoraPais());
 
+		retorno.setQtPessoasResidemFamilia(p.getQtPessoasResidemFamilia());
+		
+		
 		if(Objects.nonNull(p.getId())) {
 			retorno.setVulnerabilidades(getVulnerabilidadesAlunoCmd.getAllAlunoTO(p.getId()));
 		}

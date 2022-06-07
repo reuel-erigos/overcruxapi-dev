@@ -66,6 +66,8 @@ public class AlunoTO {
 	
 	private Boolean stAtivo;
 //	private String stAtivo;
+
+	private Long qtPessoasResidemFamilia;	
 	
 	public AlunoTO() {
 	}
@@ -373,6 +375,14 @@ public class AlunoTO {
 	public void setStAtivo(Boolean stAtivo) {
 //	public void setStAtivo(String stAtivo) {
 		this.stAtivo = stAtivo;
+	}
+
+	public Long getQtPessoasResidemFamilia() {
+		return qtPessoasResidemFamilia;
+	}
+
+	public void setQtPessoasResidemFamilia(Long qtPessoasResidemFamilia) {
+		this.qtPessoasResidemFamilia = qtPessoasResidemFamilia;
 	}	
 
 	
