@@ -83,9 +83,10 @@ public class Aluno {
 	@Column(name="st_mora_pais")
 	private String moraPais;
 	
+	@Convert(converter = SimNaoConverter.class)
 	@Column(name="st_pais_casados")
-	private String paisCasados;
-	
+	private Boolean paisCasados;
+
 	@Column(name="st_matriculado_esc_pub")
 	private String matriculadoEscPub;
 		
@@ -135,7 +136,7 @@ public class Aluno {
 	
 	@Convert(converter = SimNaoConverter.class)
 	@Column(name = "st_apr_externa_pub")
-	private boolean participaApresentacaoExterna;
+	private Boolean participaApresentacaoExterna;
 //	private String participaApresentacaoExterna;
 
 	@Convert(converter = SimNaoConverter.class)
@@ -267,11 +268,11 @@ public class Aluno {
 		this.moraPais = moraPais;
 	}
 
-	public String getPaisCasados() {
+	public Boolean getPaisCasados() {
 		return paisCasados;
 	}
 
-	public void setPaisCasados(String paisCasados) {
+	public void setPaisCasados(Boolean paisCasados) {
 		this.paisCasados = paisCasados;
 	}
 
@@ -371,13 +372,13 @@ public class Aluno {
 		this.dataDeclaracaoMatricula = dataDeclaracaoMatricula;
 	}
 
-	public Boolean getParticipaApresentacaoExterna() {
-		return participaApresentacaoExterna;
-	}
-
-	public void setParticipaApresentacaoExterna(Boolean participaApresentacaoExterna) {
-		this.participaApresentacaoExterna = participaApresentacaoExterna;
-	}
+		public Boolean getParticipaApresentacaoExterna() {
+			return participaApresentacaoExterna;
+		}
+	
+		public void setParticipaApresentacaoExterna(Boolean participaApresentacaoExterna) {
+			this.participaApresentacaoExterna = participaApresentacaoExterna;
+		}
 	
 	public MotivoDesligamento getMotivoDesligamento() {
 		return motivoDesligamento;

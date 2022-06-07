@@ -68,6 +68,8 @@ public class AlunoTOBuilder {
 
 		retorno.setStAtivo(p.getStAtivo());
 		
+		retorno.setPaisCasados(p.getPaisCasados());
+
 		if(Objects.nonNull(p.getNivelTurma()) && Objects.nonNull(p.getNivelTurma().getId())) {
 			NiveisTurmas niveisTurmas = getNiveisTurmasCmd.getById(p.getNivelTurma().getId());
 			retorno.setNivelTurma(niveisTurmas);
@@ -138,6 +140,8 @@ public class AlunoTOBuilder {
 
 		retorno.setStAtivo(p.getStAtivo());
 		
+		retorno.setPaisCasados(p.getPaisCasados());
+
 		if(Objects.nonNull(p.getId())) {
 			retorno.setVulnerabilidades(getVulnerabilidadesAlunoCmd.getAllAlunoTO(p.getId()));
 		}

@@ -33,7 +33,7 @@ public class AlunoTO {
 	private UnidadeTO unidade;
 	
 	private String moraPais;
-	private String paisCasados;
+	private Boolean paisCasados;
 	private String matriculadoEscPub;
 	private String descBuscaEscola;
 	private String publicoPrioritario;
@@ -190,11 +190,11 @@ public class AlunoTO {
 		this.moraPais = moraPais;
 	}
 
-	public String getPaisCasados() {
+	public Boolean getPaisCasados() {
 		return paisCasados;
 	}
 
-	public void setPaisCasados(String paisCasados) {
+	public void setPaisCasados(Boolean paisCasados) {
 		this.paisCasados = paisCasados;
 	}
 
