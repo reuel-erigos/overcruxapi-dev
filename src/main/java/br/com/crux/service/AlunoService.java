@@ -40,9 +40,11 @@ public class AlunoService {
 	@GetMapping(path = "/filter", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<AlunoTO> getAllFilter(@RequestParam(name = "idAluno", required = false) Long idAluno,
                                       @RequestParam(name = "nomePessoaFisicaMae", required = false) String nomePessoaFisicaMae,
-                                      @RequestParam(name = "cpfPessoaFisicaAluno", required = false) String cpfPessoaFisicaAluno
+                                      @RequestParam(name = "cpfPessoaFisicaAluno", required = false) String cpfPessoaFisicaAluno,
+                                      @RequestParam(name = "dataInicioEntradaInstituicao", required = false) Long dataInicioEntradaInstituicao,
+                                      @RequestParam(name = "dataFimEntradaInstituicao", required = false) Long dataFimEntradaInstituicao
                                                      ) {
-		return getCmd.getAllFilter(idAluno, nomePessoaFisicaMae, cpfPessoaFisicaAluno);
+		return getCmd.getAllFilter(idAluno, nomePessoaFisicaMae, cpfPessoaFisicaAluno, dataInicioEntradaInstituicao, dataFimEntradaInstituicao);
 	}
 	
 	@GetMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)

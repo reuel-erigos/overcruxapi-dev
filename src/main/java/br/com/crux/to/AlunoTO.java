@@ -1,5 +1,7 @@
 package br.com.crux.to;
 
+import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -68,6 +70,16 @@ public class AlunoTO {
 //	private String stAtivo;
 	
 	public AlunoTO() {
+	}
+	
+	public AlunoTO(Object[] colunas) {
+		this.pessoaFisica = new PessoaFisicaTO();
+		this.pessoaFisica.setId(((BigDecimal)colunas[0]).longValue());
+		this.id = ((BigDecimal) colunas[1]).longValue();
+		this.matriculaAluno = (String) colunas[2];
+		this.pessoaFisica.setNome((String) colunas[3]);
+		this.dataEntrada = (colunas[4] != null)? ((Timestamp)colunas[4]).toLocalDateTime(): null;
+		this.dataDesligamento = (colunas[5] != null)? ((Timestamp)colunas[5]).toLocalDateTime() : null;
 	}
 
 	public Long getId() {

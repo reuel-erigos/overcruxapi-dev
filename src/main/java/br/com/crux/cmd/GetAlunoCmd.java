@@ -1,6 +1,8 @@
 package br.com.crux.cmd;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -15,6 +17,7 @@ import br.com.crux.dao.dto.ComboAlunoDTO;
 import br.com.crux.dao.repository.AlunoRepository;
 import br.com.crux.entity.Aluno;
 import br.com.crux.exception.NotFoundException;
+import br.com.crux.infra.util.Java8DateUtil;
 import br.com.crux.to.AlunoTO;
 import br.com.crux.to.ComboAlunoTO;
 
@@ -22,6 +25,7 @@ import br.com.crux.to.ComboAlunoTO;
 public class GetAlunoCmd {
 
 	@Autowired private AlunoRepository repository;
+	@Autowired private AlunoDao dao;
 	@Autowired private AlunoTOBuilder toBuilder;
 	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 	@Autowired private AlunoDao alunoDao;
@@ -33,20 +37,23 @@ public class GetAlunoCmd {
 		return toBuilder.buildAllDTO(alunos);
 	}
 
-	public List<AlunoTO> getAllFilter(Long idAluno, String nomePessoaFisicaMae, String cpfPessoaFisicaAluno) {
+	public List<AlunoTO> getAllFilter(Long idAluno, String nomePessoaFisicaMae, String cpfPessoaFisicaAluno,
+			Long dataInicioEntradaInstituicao, Long dataFimEntradaInstituicao) {
 		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
 
-		Optional<List<Aluno>> entitys = Optional.empty();
+		Optional<List<AlunoTO>> entitys = Optional.empty();
 
 		idAluno              = Objects.isNull(idAluno) ? null : idAluno;
 		nomePessoaFisicaMae  = StringUtils.isEmpty(nomePessoaFisicaMae) ? null : nomePessoaFisicaMae;
 		cpfPessoaFisicaAluno = StringUtils.isEmpty(cpfPessoaFisicaAluno) ? null : cpfPessoaFisicaAluno;
 		cpfPessoaFisicaAluno = StringUtils.isNotEmpty(cpfPessoaFisicaAluno) && cpfPessoaFisicaAluno.equals("000.000.000-00") ? "0" : cpfPessoaFisicaAluno;
-
-		entitys = repository.findByFilter(idInstituicao, idAluno, nomePessoaFisicaMae, cpfPessoaFisicaAluno);
+		
+		LocalDate pDataInicioEntradaInstituicao  = Objects.nonNull(dataInicioEntradaInstituicao) ? Java8DateUtil.getLocalDateTime(new Date(dataInicioEntradaInstituicao)).toLocalDate() : null;
+		LocalDate pDataFimEntradaInstituicao     = Objects.nonNull(dataFimEntradaInstituicao) ? Java8DateUtil.getLocalDateTime(new Date(dataFimEntradaInstituicao)).toLocalDate() : null;
+		
+		entitys = dao.getAllFilter(idInstituicao, idAluno, nomePessoaFisicaMae, cpfPessoaFisicaAluno, pDataInicioEntradaInstituicao, pDataFimEntradaInstituicao);
 		if (entitys.isPresent()) {
-			List<AlunoTO> alunos = toBuilder.buildAll(entitys.get());
-			return alunos;
+			return entitys.get();
 		}
 		return new ArrayList<AlunoTO>();
 	}
