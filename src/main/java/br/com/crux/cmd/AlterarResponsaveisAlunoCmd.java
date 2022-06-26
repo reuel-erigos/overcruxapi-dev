@@ -24,7 +24,7 @@ public class AlterarResponsaveisAlunoCmd {
 	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
 	@Autowired private GetResponsavelFamiliarVigenteCmd getResponsavelFamiliarVigenteCmd;
 	
-	private void alterar(ResponsaveisAlunoTO respondavelTO, FamiliaresTO familiarTO) {
+	public void alterar(ResponsaveisAlunoTO respondavelTO, FamiliaresTO familiarTO) {
 		camposObrigatoriosRule.verificar(respondavelTO);
 		respondavelTO.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 		ResponsaveisAluno entity = responsaveisAlunoTOBuilder.build(respondavelTO, familiarTO);

@@ -71,6 +71,8 @@ public class AlunoTO {
 	
 	private FamiliaresTO familiar;
 	
+	private ResponsaveisAlunoTO responsavelVigente;
+	
 	public AlunoTO() {
 	}
 	
@@ -392,8 +394,15 @@ public class AlunoTO {
 
 	public void setFamiliar(FamiliaresTO familiar) {
 		this.familiar = familiar;
+	}
+
+	public ResponsaveisAlunoTO getResponsavelVigente() {
+		return responsavelVigente;
+	}
+
+	public void setResponsavelVigente(ResponsaveisAlunoTO responsavelVigente) {
+		this.responsavelVigente = responsavelVigente;
 	}	
 
-	
 	
 }

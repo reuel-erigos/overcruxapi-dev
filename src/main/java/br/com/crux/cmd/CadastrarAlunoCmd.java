@@ -1,6 +1,9 @@
 package br.com.crux.cmd;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -11,6 +14,8 @@ import br.com.crux.entity.Aluno;
 import br.com.crux.rule.CamposObrigatoriosAlunoRule;
 import br.com.crux.rule.ValidarDuplicidadeCPFRule;
 import br.com.crux.to.AlunoTO;
+import br.com.crux.to.FamiliaresTO;
+import br.com.crux.to.ResponsaveisAlunoTO;
 
 @Component
 public class CadastrarAlunoCmd {
@@ -23,6 +28,8 @@ public class CadastrarAlunoCmd {
 	@Autowired private CadastrarVulnerabilidadesAlunoCmd cadastrarVulnerabilidadesAlunoCmd;
 	@Autowired private CadastrarEncaminhaAlunosCmd cadastrarEncaminhaAlunosCmd;
 	@Autowired private CadastrarBeneficioSocialPessoaFisicaCmd cadastrarBeneficiosSociaisPFCmd;
+	@Autowired private CadastrarFamiliaresCmd cadastrarFamiliaresCmd;
+	@Autowired private CadastrarResponsaveisAlunoCmd cadastrarResponsaveisAlunoCmd;
 	@Autowired private ValidarDuplicidadeCPFRule validarDuplicidadeCPFRule ;
 	
 	
@@ -44,6 +51,19 @@ public class CadastrarAlunoCmd {
 		cadastrarEncaminhaAlunosCmd.cadastrarLista(alunoTOSalvo, to.getEncaminhamentos());
 
 		cadastrarBeneficiosSociaisPFCmd.cadastrarLista(entity.getPessoasFisica(), to.getBenefeciosSociaisPessoaFisica());
+		
+		FamiliaresTO familiarCadastrado = new FamiliaresTO();
+		if(!Objects.isNull(to.getFamiliar())) {
+			to.getFamiliar().setAluno(new AlunoTO());
+			to.getFamiliar().getAluno().setId(alunoTOSalvo.getId());
+			familiarCadastrado = cadastrarFamiliaresCmd.cadastrar(to.getFamiliar());
+		}
+		if(!Objects.isNull(to.getResponsavelVigente())) {
+			List<ResponsaveisAlunoTO> listaResponsaveis = new ArrayList<ResponsaveisAlunoTO>();
+			listaResponsaveis.add(to.getResponsavelVigente());
+			cadastrarResponsaveisAlunoCmd.cadastrar(listaResponsaveis, familiarCadastrado);
+		}
+		
 		
 		return alunoTOSalvo;
 	}

@@ -2,6 +2,7 @@ package br.com.crux.cmd;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,8 @@ import br.com.crux.rule.CamposObrigatoriosAlunoRule;
 import br.com.crux.rule.ValidarDuplicidadeCPFRule;
 import br.com.crux.to.AlunoTO;
 import br.com.crux.to.EncaminhaAlunosTO;
+import br.com.crux.to.FamiliaresTO;
+import br.com.crux.to.ResponsaveisAlunoTO;
 import br.com.crux.to.VulnerabilidadesAlunoTO;
 import br.com.crux.to.relatorios.beneficiarios.DadosObservacaoRelatorio;
 
@@ -32,6 +35,8 @@ public class AlterarAlunoCmd {
 	@Autowired private AlterarListaBeneficioSocialPessoaFisicaCmd alterarListaBeneficioSocialPessoaFisicaCmd;
 	@Autowired private AlterarFamiliaresCmd alterarFamiliaresCmd;
 	@Autowired private CadastrarFamiliaresCmd cadastrarFamiliaresCmd;
+	@Autowired private CadastrarResponsaveisAlunoCmd cadastrarResponsaveisAlunoCmd;
+	@Autowired private AlterarResponsaveisAlunoCmd alterarResponsaveisAlunoCmd;
 	@Autowired private ValidarDuplicidadeCPFRule validarDuplicidadeCPFRule ;
 	
 	public AlunoTO alterar(AlunoTO alunoTO) {
@@ -55,15 +60,26 @@ public class AlterarAlunoCmd {
 		alterarListaEncaminhamentoAlunosCmd.alterarAll(alunoTO.getEncaminhamentos(), aluno);
 		alterarListaBeneficioSocialPessoaFisicaCmd.alterarAll(alunoTO.getBenefeciosSociaisPessoaFisica(), aluno.getPessoasFisica());
 		
-		if(alunoTO.getFamiliar() != null) {
+		FamiliaresTO familiarCadastrado = new FamiliaresTO();
+		if(!Objects.isNull(alunoTO.getFamiliar())) {
 			alunoTO.getFamiliar().setAluno(new AlunoTO());
 			alunoTO.getFamiliar().getAluno().setId(alunoTO.getId());
 			if(alunoTO.getFamiliar().getId() != null) {
-				alterarFamiliaresCmd.alterar(alunoTO.getFamiliar());
+				familiarCadastrado = alterarFamiliaresCmd.alterar(alunoTO.getFamiliar());
 			} else {
-				cadastrarFamiliaresCmd.cadastrar(alunoTO.getFamiliar());
+				familiarCadastrado = cadastrarFamiliaresCmd.cadastrar(alunoTO.getFamiliar());
 			}
 		}
+		if(!Objects.isNull(alunoTO.getResponsavelVigente())) {
+			if(alunoTO.getResponsavelVigente().getFamiliar().getId() != null) {
+				alterarResponsaveisAlunoCmd.alterar(alunoTO.getResponsavelVigente(), familiarCadastrado);
+			} else {
+				List<ResponsaveisAlunoTO> listaResponsaveis = new ArrayList<ResponsaveisAlunoTO>();
+				listaResponsaveis.add(alunoTO.getResponsavelVigente());
+				cadastrarResponsaveisAlunoCmd.cadastrar(listaResponsaveis, familiarCadastrado);
+			}
+		}
+		
 		
 		
 		Aluno alunoSalvo = repository.save(aluno);
