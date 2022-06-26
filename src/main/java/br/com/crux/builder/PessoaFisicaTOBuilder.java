@@ -236,7 +236,7 @@ public class PessoaFisicaTOBuilder {
 		if(Objects.nonNull(p.getMetadados())) {
 			retorno.setMetadados(arquivoMetadadosTOBuilder.buildTO(p.getMetadados()));
 		}
-		
+
 		retorno.setCondicoesMoradia(condicoesMoradiaTOBuilder.buildTO(p.getCondicoesMoradia()));
 		retorno.setGrausInstrucao(grausInstrucaoTOBuilder.buildTO(p.getGrausInstrucao()));
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());

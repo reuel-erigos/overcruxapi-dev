@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import br.com.crux.builder.AlunoTOBuilder;
 import br.com.crux.dao.repository.AlunoRepository;
 import br.com.crux.entity.Aluno;
+import br.com.crux.entity.PessoaFisica;
 import br.com.crux.exception.NotFoundException;
 import br.com.crux.infra.constantes.TipoRelatorioBeneficiario;
 import br.com.crux.rule.CamposObrigatoriosAlunoRule;
@@ -34,9 +35,10 @@ public class AlterarAlunoCmd {
 	@Autowired private AlterarListaEncaminhamentoAlunosCmd alterarListaEncaminhamentoAlunosCmd;
 	@Autowired private AlterarListaBeneficioSocialPessoaFisicaCmd alterarListaBeneficioSocialPessoaFisicaCmd;
 	@Autowired private AlterarFamiliaresCmd alterarFamiliaresCmd;
+	@Autowired private AlterarResponsaveisAlunoCmd alterarResponsaveisAlunoCmd;
 	@Autowired private CadastrarFamiliaresCmd cadastrarFamiliaresCmd;
 	@Autowired private CadastrarResponsaveisAlunoCmd cadastrarResponsaveisAlunoCmd;
-	@Autowired private AlterarResponsaveisAlunoCmd alterarResponsaveisAlunoCmd;
+	@Autowired private CadastrarBeneficioSocialPessoaFisicaCmd cadastrarBeneficiosSociaisPFCmd;
 	@Autowired private ValidarDuplicidadeCPFRule validarDuplicidadeCPFRule ;
 	
 	public AlunoTO alterar(AlunoTO alunoTO) {
@@ -65,9 +67,15 @@ public class AlterarAlunoCmd {
 			alunoTO.getFamiliar().setAluno(new AlunoTO());
 			alunoTO.getFamiliar().getAluno().setId(alunoTO.getId());
 			if(alunoTO.getFamiliar().getId() != null) {
+				PessoaFisica pessoaFisica = new PessoaFisica();
+				pessoaFisica.setId(alunoTO.getFamiliar().getPessoasFisica().getId());
 				familiarCadastrado = alterarFamiliaresCmd.alterar(alunoTO.getFamiliar());
+				alterarListaBeneficioSocialPessoaFisicaCmd.alterarAll(alunoTO.getFamiliar().getPessoasFisica().getBeneficiosSociaisPessoaFisica(), pessoaFisica);
 			} else {
+				PessoaFisica pessoaFisica = new PessoaFisica();
+				pessoaFisica.setId(familiarCadastrado.getPessoasFisica().getId());
 				familiarCadastrado = cadastrarFamiliaresCmd.cadastrar(alunoTO.getFamiliar());
+				cadastrarBeneficiosSociaisPFCmd.cadastrarLista(pessoaFisica, alunoTO.getFamiliar().getPessoasFisica().getBeneficiosSociaisPessoaFisica());
 			}
 		}
 		if(!Objects.isNull(alunoTO.getResponsavelVigente())) {
