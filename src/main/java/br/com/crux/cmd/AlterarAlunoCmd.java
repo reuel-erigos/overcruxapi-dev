@@ -30,6 +30,8 @@ public class AlterarAlunoCmd {
 	@Autowired private AlterarVulnerabilidadesAlunoCmd alterarVulnerabilidadesAlunoCmd;
 	@Autowired private AlterarListaEncaminhamentoAlunosCmd alterarListaEncaminhamentoAlunosCmd;
 	@Autowired private AlterarListaBeneficioSocialPessoaFisicaCmd alterarListaBeneficioSocialPessoaFisicaCmd;
+	@Autowired private AlterarFamiliaresCmd alterarFamiliaresCmd;
+	@Autowired private CadastrarFamiliaresCmd cadastrarFamiliaresCmd;
 	@Autowired private ValidarDuplicidadeCPFRule validarDuplicidadeCPFRule ;
 	
 	public AlunoTO alterar(AlunoTO alunoTO) {
@@ -52,6 +54,17 @@ public class AlterarAlunoCmd {
 		alterarVulnerabilidadesAlunoCmd.alterarAll(alunoTO.getVulnerabilidades(), alunoTO);
 		alterarListaEncaminhamentoAlunosCmd.alterarAll(alunoTO.getEncaminhamentos(), aluno);
 		alterarListaBeneficioSocialPessoaFisicaCmd.alterarAll(alunoTO.getBenefeciosSociaisPessoaFisica(), aluno.getPessoasFisica());
+		
+		if(alunoTO.getFamiliar() != null) {
+			alunoTO.getFamiliar().setAluno(new AlunoTO());
+			alunoTO.getFamiliar().getAluno().setId(alunoTO.getId());
+			if(alunoTO.getFamiliar().getId() != null) {
+				alterarFamiliaresCmd.alterar(alunoTO.getFamiliar());
+			} else {
+				cadastrarFamiliaresCmd.cadastrar(alunoTO.getFamiliar());
+			}
+		}
+		
 		
 		Aluno alunoSalvo = repository.save(aluno);
 		

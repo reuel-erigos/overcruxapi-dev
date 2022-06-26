@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import br.com.crux.entity.Familiares;
 import br.com.crux.infra.adapter.LocalDateTimeAdapter;
 
 
@@ -67,7 +68,8 @@ public class AlunoTO {
 	private Boolean  participaApresentacaoExterna;
 	
 	private Boolean stAtivo;
-//	private String stAtivo;
+	
+	private FamiliaresTO familiar;
 	
 	public AlunoTO() {
 	}
@@ -376,15 +378,20 @@ public class AlunoTO {
 		this.benefeciosSociaisPessoaFisica = benefeciosSociaisPessoaFisica;
 
 	}
-
 	public Boolean getStAtivo() {
-//	public String getStAtivo() {
 		return stAtivo;
 	}
 
 	public void setStAtivo(Boolean stAtivo) {
-//	public void setStAtivo(String stAtivo) {
 		this.stAtivo = stAtivo;
+	}
+
+	public FamiliaresTO getFamiliar() {
+		return familiar;
+	}
+
+	public void setFamiliar(FamiliaresTO familiar) {
+		this.familiar = familiar;
 	}	
 
 	
