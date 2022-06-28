@@ -52,18 +52,14 @@ public class CadastrarAlunoCmd {
 
 		cadastrarBeneficiosSociaisPFCmd.cadastrarLista(entity.getPessoasFisica(), to.getBenefeciosSociaisPessoaFisica());
 		
-		FamiliaresTO familiarCadastrado = new FamiliaresTO();
 		if(!Objects.isNull(to.getFamiliar())) {
-			to.getFamiliar().setAluno(new AlunoTO());
-			to.getFamiliar().getAluno().setId(alunoTOSalvo.getId());
-			familiarCadastrado = cadastrarFamiliaresCmd.cadastrar(to.getFamiliar());
-		}
-		if(!Objects.isNull(to.getResponsavelVigente())) {
+			to.getFamiliar().setAluno(alunoTOSalvo);
+			to.getFamiliar().setDataCadastro(LocalDateTime.now());
 			List<ResponsaveisAlunoTO> listaResponsaveis = new ArrayList<ResponsaveisAlunoTO>();
 			listaResponsaveis.add(to.getResponsavelVigente());
-			cadastrarResponsaveisAlunoCmd.cadastrar(listaResponsaveis, familiarCadastrado);
+			to.getFamiliar().setResponsaveis(listaResponsaveis);
+			cadastrarFamiliaresCmd.cadastrar(to.getFamiliar());
 		}
-		
 		
 		return alunoTOSalvo;
 	}
