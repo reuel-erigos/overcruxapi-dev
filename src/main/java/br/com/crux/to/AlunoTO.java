@@ -1,11 +1,14 @@
 package br.com.crux.to;
 
+import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import br.com.crux.entity.Familiares;
 import br.com.crux.infra.adapter.LocalDateTimeAdapter;
 
 
@@ -65,9 +68,22 @@ public class AlunoTO {
 	private Boolean  participaApresentacaoExterna;
 	
 	private Boolean stAtivo;
-//	private String stAtivo;
+	
+	private FamiliaresTO familiar;
+	
+	private ResponsaveisAlunoTO responsavelVigente;
 	
 	public AlunoTO() {
+	}
+	
+	public AlunoTO(Object[] colunas) {
+		this.pessoaFisica = new PessoaFisicaTO();
+		this.pessoaFisica.setId(((BigDecimal)colunas[0]).longValue());
+		this.id = ((BigDecimal) colunas[1]).longValue();
+		this.matriculaAluno = (String) colunas[2];
+		this.pessoaFisica.setNome((String) colunas[3]);
+		this.dataEntrada = (colunas[4] != null)? ((Timestamp)colunas[4]).toLocalDateTime(): null;
+		this.dataDesligamento = (colunas[5] != null)? ((Timestamp)colunas[5]).toLocalDateTime() : null;
 	}
 
 	public Long getId() {
@@ -364,17 +380,29 @@ public class AlunoTO {
 		this.benefeciosSociaisPessoaFisica = benefeciosSociaisPessoaFisica;
 
 	}
-
 	public Boolean getStAtivo() {
-//	public String getStAtivo() {
 		return stAtivo;
 	}
 
 	public void setStAtivo(Boolean stAtivo) {
-//	public void setStAtivo(String stAtivo) {
 		this.stAtivo = stAtivo;
+	}
+
+	public FamiliaresTO getFamiliar() {
+		return familiar;
+	}
+
+	public void setFamiliar(FamiliaresTO familiar) {
+		this.familiar = familiar;
+	}
+
+	public ResponsaveisAlunoTO getResponsavelVigente() {
+		return responsavelVigente;
+	}
+
+	public void setResponsavelVigente(ResponsaveisAlunoTO responsavelVigente) {
+		this.responsavelVigente = responsavelVigente;
 	}	
 
-	
 	
 }

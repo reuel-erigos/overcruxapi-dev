@@ -2,6 +2,7 @@ package br.com.crux.cmd;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +11,15 @@ import org.springframework.stereotype.Component;
 import br.com.crux.builder.AlunoTOBuilder;
 import br.com.crux.dao.repository.AlunoRepository;
 import br.com.crux.entity.Aluno;
+import br.com.crux.entity.PessoaFisica;
 import br.com.crux.exception.NotFoundException;
 import br.com.crux.infra.constantes.TipoRelatorioBeneficiario;
 import br.com.crux.rule.CamposObrigatoriosAlunoRule;
 import br.com.crux.rule.ValidarDuplicidadeCPFRule;
 import br.com.crux.to.AlunoTO;
 import br.com.crux.to.EncaminhaAlunosTO;
+import br.com.crux.to.FamiliaresTO;
+import br.com.crux.to.ResponsaveisAlunoTO;
 import br.com.crux.to.VulnerabilidadesAlunoTO;
 import br.com.crux.to.relatorios.beneficiarios.DadosObservacaoRelatorio;
 
@@ -30,6 +34,11 @@ public class AlterarAlunoCmd {
 	@Autowired private AlterarVulnerabilidadesAlunoCmd alterarVulnerabilidadesAlunoCmd;
 	@Autowired private AlterarListaEncaminhamentoAlunosCmd alterarListaEncaminhamentoAlunosCmd;
 	@Autowired private AlterarListaBeneficioSocialPessoaFisicaCmd alterarListaBeneficioSocialPessoaFisicaCmd;
+	@Autowired private AlterarFamiliaresCmd alterarFamiliaresCmd;
+	@Autowired private AlterarResponsaveisAlunoCmd alterarResponsaveisAlunoCmd;
+	@Autowired private CadastrarFamiliaresCmd cadastrarFamiliaresCmd;
+	@Autowired private CadastrarResponsaveisAlunoCmd cadastrarResponsaveisAlunoCmd;
+	@Autowired private CadastrarBeneficioSocialPessoaFisicaCmd cadastrarBeneficiosSociaisPFCmd;
 	@Autowired private ValidarDuplicidadeCPFRule validarDuplicidadeCPFRule ;
 	
 	public AlunoTO alterar(AlunoTO alunoTO) {
@@ -52,6 +61,34 @@ public class AlterarAlunoCmd {
 		alterarVulnerabilidadesAlunoCmd.alterarAll(alunoTO.getVulnerabilidades(), alunoTO);
 		alterarListaEncaminhamentoAlunosCmd.alterarAll(alunoTO.getEncaminhamentos(), aluno);
 		alterarListaBeneficioSocialPessoaFisicaCmd.alterarAll(alunoTO.getBenefeciosSociaisPessoaFisica(), aluno.getPessoasFisica());
+		
+		FamiliaresTO familiarCadastrado = new FamiliaresTO();
+		if(!Objects.isNull(alunoTO.getFamiliar())) {
+			alunoTO.getFamiliar().setAluno(new AlunoTO());
+			alunoTO.getFamiliar().getAluno().setId(alunoTO.getId());
+			if(alunoTO.getFamiliar().getId() != null) {
+				PessoaFisica pessoaFisica = new PessoaFisica();
+				pessoaFisica.setId(alunoTO.getFamiliar().getPessoasFisica().getId());
+				familiarCadastrado = alterarFamiliaresCmd.alterar(alunoTO.getFamiliar());
+				alterarListaBeneficioSocialPessoaFisicaCmd.alterarAll(alunoTO.getFamiliar().getPessoasFisica().getBeneficiosSociaisPessoaFisica(), pessoaFisica);
+			} else {
+				PessoaFisica pessoaFisica = new PessoaFisica();
+				pessoaFisica.setId(familiarCadastrado.getPessoasFisica().getId());
+				familiarCadastrado = cadastrarFamiliaresCmd.cadastrar(alunoTO.getFamiliar());
+				cadastrarBeneficiosSociaisPFCmd.cadastrarLista(pessoaFisica, alunoTO.getFamiliar().getPessoasFisica().getBeneficiosSociaisPessoaFisica());
+			}
+		}
+		if(!Objects.isNull(alunoTO.getResponsavelVigente())) {
+			if(alunoTO.getResponsavelVigente().getFamiliar().getId() != null) {
+				alterarResponsaveisAlunoCmd.alterar(alunoTO.getResponsavelVigente(), familiarCadastrado);
+			} else {
+				List<ResponsaveisAlunoTO> listaResponsaveis = new ArrayList<ResponsaveisAlunoTO>();
+				listaResponsaveis.add(alunoTO.getResponsavelVigente());
+				cadastrarResponsaveisAlunoCmd.cadastrar(listaResponsaveis, familiarCadastrado);
+			}
+		}
+		
+		
 		
 		Aluno alunoSalvo = repository.save(aluno);
 		

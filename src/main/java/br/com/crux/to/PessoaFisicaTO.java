@@ -1,6 +1,8 @@
 package br.com.crux.to;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
@@ -106,6 +108,8 @@ public class PessoaFisicaTO {
 	private String nomeSocial;
 
 	private Long qtPessoasResidemFamilia;
+	
+	private List<BeneficioSocialPessoaFisicaTO> beneficiosSociaisPessoaFisica;
 	
 	public PessoaFisicaTO() {
 	}
@@ -798,5 +802,16 @@ public class PessoaFisicaTO {
 		this.qtPessoasResidemFamilia = qtPessoasResidemFamilia;
 	}	
 	
-	
+	public List<BeneficioSocialPessoaFisicaTO> getBeneficiosSociaisPessoaFisica() {
+		if(beneficiosSociaisPessoaFisica== null) {
+			beneficiosSociaisPessoaFisica = new ArrayList<BeneficioSocialPessoaFisicaTO>();
+		}
+		return beneficiosSociaisPessoaFisica;
+	}
+
+	public void setBeneficiosSociaisPessoaFisica(List<BeneficioSocialPessoaFisicaTO> beneficiosSociaisPessoaFisica) {
+		this.beneficiosSociaisPessoaFisica = beneficiosSociaisPessoaFisica;
+
+	}
+
 }

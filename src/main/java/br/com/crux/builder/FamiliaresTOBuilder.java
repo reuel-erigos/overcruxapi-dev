@@ -9,6 +9,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import br.com.crux.cmd.GetBeneficioSocialPessoaFisicaCmd;
 import br.com.crux.cmd.GetResponsaveisAlunoCmd;
 import br.com.crux.cmd.GetVulnerabilidadesFamiliarCmd;
 import br.com.crux.dao.dto.ComboFamiliarDTO;
@@ -25,6 +26,7 @@ public class FamiliaresTOBuilder {
 	@Autowired private PessoaFisicaTOBuilder pessoaFisicaBuilder;
 	@Autowired private GetResponsaveisAlunoCmd getResponsaveisAlunoCmd;
 	@Autowired private GetVulnerabilidadesFamiliarCmd getVulnerabilidadesFamiliarCmd;
+	@Autowired private GetBeneficioSocialPessoaFisicaCmd getBeneficioSocialPessoaFisicaCmd;
 	
 	
 	public Familiares build(FamiliaresTO p) {
@@ -57,6 +59,9 @@ public class FamiliaresTOBuilder {
 		if(Objects.nonNull(p.getId())) {
 			retorno.setResponsaveis(getResponsaveisAlunoCmd.getAllByFamiliar(p.getId()));
 			retorno.setVulnerabilidades(getVulnerabilidadesFamiliarCmd.getAllFamiliarTO(p.getId()));
+		}
+		if(Objects.nonNull(p.getId())) {
+			retorno.getPessoasFisica().setBeneficiosSociaisPessoaFisica(getBeneficioSocialPessoaFisicaCmd.getAllPorPessoaFisicaTO(p.getPessoasFisica().getId()));
 		}
 		
 		return retorno;
@@ -117,6 +122,10 @@ public class FamiliaresTOBuilder {
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
 		retorno.setDataCadastro(p.getDataCadastro());
 		retorno.setDataDesligamento(p.getDataDesligamento());
+		if(Objects.nonNull(retorno.getPessoasFisica().getId())) {
+			retorno.getPessoasFisica().setBeneficiosSociaisPessoaFisica(getBeneficioSocialPessoaFisicaCmd.getAllPorPessoaFisicaTO(p.getPessoasFisica().getId()));
+		}
+
 
 		return retorno;
 	}

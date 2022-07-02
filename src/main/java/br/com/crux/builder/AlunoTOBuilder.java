@@ -61,10 +61,16 @@ public class AlunoTOBuilder {
 		retorno.setObservacoes(p.getObservacoes());
 		retorno.setDataDesligamento(p.getDataDesligamento());
 		retorno.setDescDesligamento(p.getDescDesligamento());
-		retorno.setPessoasFisica(pessoaFisicaBuilder.build(p.getPessoaFisica()));
-		retorno.setUnidade(unidadeBuilder.build(p.getUnidade()));
+		if(Objects.nonNull(p.getPessoaFisica())) {
+			retorno.setPessoasFisica(pessoaFisicaBuilder.build(p.getPessoaFisica()));
+		}
+		if(Objects.nonNull(p.getUnidade())) {
+			retorno.setUnidade(unidadeBuilder.build(p.getUnidade()));
+		}
 
-		retorno.setParticipaApresentacaoExterna(p.getParticipaApresentacaoExterna());
+		if(Objects.nonNull(p.getParticipaApresentacaoExterna())) {
+			retorno.setParticipaApresentacaoExterna(p.getParticipaApresentacaoExterna());
+		}
 
 		retorno.setStAtivo(p.getStAtivo());
 		

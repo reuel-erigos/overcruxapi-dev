@@ -1,5 +1,7 @@
 package br.com.crux.cmd;
 
+import java.util.Objects;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -31,9 +33,13 @@ public class AlterarFamiliaresCmd {
 		
 		familiar.setPessoasFisica(alterarPessoaFisicaCmd.alterar(familiarTO.getPessoasFisica()));
 		
-		alterarResponsaveisAlunoCmd.alterarAll(familiarTO.getResponsaveis(), familiarTO);
+		if(!Objects.isNull(familiarTO.getResponsaveis())) {
+			alterarResponsaveisAlunoCmd.alterarAll(familiarTO.getResponsaveis(), familiarTO);
+		}
 		
-		alterarVulnerabilidadesFamiliarCmd.alterarAll(familiarTO.getVulnerabilidades(), familiarTO);
+		if(!Objects.isNull(familiarTO.getVulnerabilidades())) {
+			alterarVulnerabilidadesFamiliarCmd.alterarAll(familiarTO.getVulnerabilidades(), familiarTO);
+		}
 		
 		Familiares familiarSalvo = repository.save(familiar);
 		return familiaresTOBuilder.buildTO(familiarSalvo);

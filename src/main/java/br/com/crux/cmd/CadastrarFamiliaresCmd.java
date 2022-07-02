@@ -1,5 +1,7 @@
 package br.com.crux.cmd;
 
+import java.util.Objects;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -32,7 +34,9 @@ public class CadastrarFamiliaresCmd {
 		FamiliaresTO familiarTOSalvo = familiaresTOBuilder.buildTO(repository.save(entity));
 		
 		cadastrarResponsaveisAlunoCmd.cadastrar(to.getResponsaveis(), familiarTOSalvo);
-		cadastrarVulnerabilidadesFamiliarCmd.cadastrar(to.getVulnerabilidades(), familiarTOSalvo);
+		if(!Objects.isNull(to.getVulnerabilidades())) {
+			cadastrarVulnerabilidadesFamiliarCmd.cadastrar(to.getVulnerabilidades(), familiarTOSalvo);
+		}
 		
 		return familiarTOSalvo;
 	}
