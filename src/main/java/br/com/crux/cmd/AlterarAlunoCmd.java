@@ -73,6 +73,7 @@ public class AlterarAlunoCmd {
 				alterarListaBeneficioSocialPessoaFisicaCmd.alterarAll(alunoTO.getFamiliar().getPessoasFisica().getBeneficiosSociaisPessoaFisica(), pessoaFisica);
 			} else {
 				alunoTO.getFamiliar().setDataCadastro(LocalDateTime.now());
+				alunoTO.getFamiliar().setAluno(alunoTO);
 				familiarCadastrado = cadastrarFamiliaresCmd.cadastrar(alunoTO.getFamiliar());
 				PessoaFisica pessoaFisica = new PessoaFisica();
 				pessoaFisica.setId(familiarCadastrado.getPessoasFisica().getId());
@@ -80,7 +81,7 @@ public class AlterarAlunoCmd {
 			}
 		}
 		if(!Objects.isNull(alunoTO.getResponsavelVigente())) {
-			if(alunoTO.getResponsavelVigente().getFamiliar().getId() != null) {
+			if(alunoTO.getResponsavelVigente().getFamiliar() != null && alunoTO.getResponsavelVigente().getFamiliar().getId() != null) {
 				alterarResponsaveisAlunoCmd.alterar(alunoTO.getResponsavelVigente(), familiarCadastrado);
 			} else {
 				List<ResponsaveisAlunoTO> listaResponsaveis = new ArrayList<ResponsaveisAlunoTO>();

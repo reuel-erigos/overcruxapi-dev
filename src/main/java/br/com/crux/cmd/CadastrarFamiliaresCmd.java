@@ -33,7 +33,9 @@ public class CadastrarFamiliaresCmd {
 		entity.setPessoasFisica(cadastrarPessoaFisicaCmd.cadastrar(to.getPessoasFisica()));
 		FamiliaresTO familiarTOSalvo = familiaresTOBuilder.buildTO(repository.save(entity));
 		
-		cadastrarResponsaveisAlunoCmd.cadastrar(to.getResponsaveis(), familiarTOSalvo);
+		if(!Objects.isNull(to.getResponsaveis())) {
+			cadastrarResponsaveisAlunoCmd.cadastrar(to.getResponsaveis(), familiarTOSalvo);
+		}
 		if(!Objects.isNull(to.getVulnerabilidades())) {
 			cadastrarVulnerabilidadesFamiliarCmd.cadastrar(to.getVulnerabilidades(), familiarTOSalvo);
 		}
