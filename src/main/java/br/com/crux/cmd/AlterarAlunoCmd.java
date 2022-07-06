@@ -72,9 +72,10 @@ public class AlterarAlunoCmd {
 				familiarCadastrado = alterarFamiliaresCmd.alterar(alunoTO.getFamiliar());
 				alterarListaBeneficioSocialPessoaFisicaCmd.alterarAll(alunoTO.getFamiliar().getPessoasFisica().getBeneficiosSociaisPessoaFisica(), pessoaFisica);
 			} else {
+				alunoTO.getFamiliar().setDataCadastro(LocalDateTime.now());
+				familiarCadastrado = cadastrarFamiliaresCmd.cadastrar(alunoTO.getFamiliar());
 				PessoaFisica pessoaFisica = new PessoaFisica();
 				pessoaFisica.setId(familiarCadastrado.getPessoasFisica().getId());
-				familiarCadastrado = cadastrarFamiliaresCmd.cadastrar(alunoTO.getFamiliar());
 				cadastrarBeneficiosSociaisPFCmd.cadastrarLista(pessoaFisica, alunoTO.getFamiliar().getPessoasFisica().getBeneficiosSociaisPessoaFisica());
 			}
 		}
