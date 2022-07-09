@@ -1,6 +1,7 @@
 package br.com.crux.to;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
@@ -26,7 +27,9 @@ public class AtividadesAlunoTO {
 	private AlunoTO aluno;
 	private OficinasTO atividade;
 	private Long usuarioAlteracao;
-
+	private List<UniformesAlunoTO> uniformes;
+	
+	
 	public AtividadesAlunoTO() {
 	}
 
@@ -102,5 +105,14 @@ public class AtividadesAlunoTO {
 		this.usuarioAlteracao = usuarioAlteracao;
 	}
 
+	public List<UniformesAlunoTO> getUniformes() {
+		return uniformes;
+	}
+
+	public void setUniformes(List<UniformesAlunoTO> uniformes) {
+		this.uniformes = uniformes;
+	}
+
+	
 
 }

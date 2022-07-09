@@ -20,7 +20,7 @@ public class GetUniformesAlunoCmd {
 	@Autowired private UniformesAlunoRepository repository;
 	@Autowired private UniformesAlunoTOBuilder toBuilder;
 	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
-	@Autowired private GetAlunoCmd getAlunoCmd;
+	@Autowired private GetUnidadeCmd getUnidadeCmd;
 
 	public List<UniformesAlunoTO> getAllAlunosMatriculadosTO(Long idAtividade) {
 		return toBuilder.buildAll(getAllFilter(null, idAtividade));
@@ -36,7 +36,7 @@ public class GetUniformesAlunoCmd {
 		if (Objects.isNull(idAluno)) {
 			idUnidade = getUnidadeLogadaCmd.get().getId();
 		} else {
-			idUnidade = getAlunoCmd.getTOById(idAluno).getUnidade().getIdUnidade();
+			idUnidade = getUnidadeCmd.getUnidadeAluno(idAluno).getIdUnidade();
 		}
 		Optional<List<UniformesAluno>> entitys = Optional.empty();
 

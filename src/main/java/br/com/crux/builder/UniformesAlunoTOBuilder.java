@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.entity.UniformesAluno;
+import br.com.crux.to.AtividadesAlunoTO;
 import br.com.crux.to.UniformesAlunoTO;
 
 @Component
@@ -37,6 +38,20 @@ public class UniformesAlunoTOBuilder {
 		retorno.setQtdUniformeEntregue(p.getQtdUniformeEntregue());
 		retorno.setAtividadesAluno(atividadesAlunoBuilder.buildTO(p.getAtividadesAluno()));
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
+		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
+
+		return retorno;
+	}
+	
+	public UniformesAlunoTO buildUniformeTO(UniformesAluno p) {
+		UniformesAlunoTO retorno = new UniformesAlunoTO();
+		
+		retorno.setId(p.getId());
+		retorno.setNomeUniforme(p.getNomeUniforme());
+		retorno.setDataUniformeEntregue(p.getDataUniformeEntregue());
+		retorno.setQtdUniformeEntregue(p.getQtdUniformeEntregue());
+		retorno.setAtividadesAluno(new AtividadesAlunoTO());
+		retorno.getAtividadesAluno().setId(p.getAtividadesAluno().getId());
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
 
 		return retorno;

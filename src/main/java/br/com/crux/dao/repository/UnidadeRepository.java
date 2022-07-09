@@ -66,4 +66,8 @@ public interface UnidadeRepository extends JpaRepository<Unidade, Long>{
 			+ " order by u.ordemExibicao ")
 	public Optional<List<Unidade>> getUnidadeByPrograma(Long idPrograma);
 
+	@Query(value = "SELECT a.unidade "
+		     + "  FROM Aluno a "
+		     + " where a.id = ?1 ")
+   public Optional<Unidade> findUnidadeAluno(Long idAluno);
 }
