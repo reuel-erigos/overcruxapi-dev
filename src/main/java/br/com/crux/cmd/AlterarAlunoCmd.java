@@ -94,7 +94,7 @@ public class AlterarAlunoCmd {
 		if(!Objects.isNull(alunoTO.getAtividades())) {
 			for (AtividadesAlunoTO atividadesAlunoTO : alunoTO.getAtividades()) {
 				atividadesAlunoTO.getUniformes().stream().forEach(item -> item.setAtividadesAluno(atividadesAlunoTO));
-				alterarUniformesAlunoCmd.alterarAll(atividadesAlunoTO.getUniformes(), atividadesAlunoTO.getId());
+				alterarUniformesAlunoCmd.alterarAll(atividadesAlunoTO.getUniformes(), atividadesAlunoTO.getAtividade().getId());
 			}
 		}
 		
