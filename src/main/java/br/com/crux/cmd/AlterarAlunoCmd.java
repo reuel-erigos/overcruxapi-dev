@@ -17,6 +17,7 @@ import br.com.crux.infra.constantes.TipoRelatorioBeneficiario;
 import br.com.crux.rule.CamposObrigatoriosAlunoRule;
 import br.com.crux.rule.ValidarDuplicidadeCPFRule;
 import br.com.crux.to.AlunoTO;
+import br.com.crux.to.AtividadesAlunoTO;
 import br.com.crux.to.EncaminhaAlunosTO;
 import br.com.crux.to.FamiliaresTO;
 import br.com.crux.to.ResponsaveisAlunoTO;
@@ -39,6 +40,7 @@ public class AlterarAlunoCmd {
 	@Autowired private CadastrarFamiliaresCmd cadastrarFamiliaresCmd;
 	@Autowired private CadastrarResponsaveisAlunoCmd cadastrarResponsaveisAlunoCmd;
 	@Autowired private CadastrarBeneficioSocialPessoaFisicaCmd cadastrarBeneficiosSociaisPFCmd;
+	@Autowired private AlterarUniformesAlunoCmd alterarUniformesAlunoCmd;
 	@Autowired private ValidarDuplicidadeCPFRule validarDuplicidadeCPFRule ;
 	
 	public AlunoTO alterar(AlunoTO alunoTO) {
@@ -87,6 +89,12 @@ public class AlterarAlunoCmd {
 				List<ResponsaveisAlunoTO> listaResponsaveis = new ArrayList<ResponsaveisAlunoTO>();
 				listaResponsaveis.add(alunoTO.getResponsavelVigente());
 				cadastrarResponsaveisAlunoCmd.cadastrar(listaResponsaveis, familiarCadastrado);
+			}
+		}
+		if(!Objects.isNull(alunoTO.getAtividades())) {
+			for (AtividadesAlunoTO atividadesAlunoTO : alunoTO.getAtividades()) {
+				atividadesAlunoTO.getUniformes().stream().forEach(item -> item.setAtividadesAluno(atividadesAlunoTO));
+				alterarUniformesAlunoCmd.alterarAll(atividadesAlunoTO.getUniformes(), atividadesAlunoTO.getId());
 			}
 		}
 		
