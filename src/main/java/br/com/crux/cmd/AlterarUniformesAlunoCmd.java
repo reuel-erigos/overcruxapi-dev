@@ -36,7 +36,7 @@ public class AlterarUniformesAlunoCmd {
 		repository.save(entity);
 	}	
 	
-	public void alterarAll(List<UniformesAlunoTO> vulnerabilidadesTO, Long idAtividade) {
+	public void alterarAll(List<UniformesAlunoTO> uniformeTO, Long idAtividade) {
 		//Lista de uniformes do aluno.
 		List<UniformesAluno> uniformesEntregues = getUniformesAlunoCmd.getAllAlunosMatriculados(idAtividade);
 		
@@ -48,7 +48,7 @@ public class AlterarUniformesAlunoCmd {
 		
 		//Remove da lista todos os registros que não contém no Banco de Dados
 		uniformesEntregues.removeIf(registro -> {
-														if(!contemNaLista.test(uniformesAlunoTOBuilder.buildTO(registro), vulnerabilidadesTO)){
+														if(!contemNaLista.test(uniformesAlunoTOBuilder.buildTO(registro), uniformeTO)){
 															repository.delete(registro); 
 															return true;
 														}
@@ -57,7 +57,7 @@ public class AlterarUniformesAlunoCmd {
 		                                );
 		
 		//Adiciona os novos registros
-		List<UniformesAlunoTO> novos = vulnerabilidadesTO.stream()
+		List<UniformesAlunoTO> novos = uniformeTO.stream()
 				                                         .filter(registro -> Objects.isNull(registro.getId()))
 				                                         .collect(Collectors.toList());
 		
@@ -66,7 +66,7 @@ public class AlterarUniformesAlunoCmd {
 		}
 
 		//Atualiza os registros 
-		vulnerabilidadesTO.stream()
+		uniformeTO.stream()
 		                  .filter(registro -> Objects.nonNull(registro.getId()))
 		                  .forEach( registro -> {
 			if(contemNaLista.test(registro, uniformesAlunoTOBuilder.buildAll(uniformesEntregues))){
