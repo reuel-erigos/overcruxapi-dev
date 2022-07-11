@@ -80,6 +80,11 @@ public class AtividadesAlunoService {
 		return getCmd.getByAlunoEAtividadeEPeriodo(idAluno, idAtividade, data);
 	}
 	
+	@GetMapping(path = "/aluno/uniforme/{idAluno}/matriculado/instituicao", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<AtividadesAlunoTO> getByAlunoUniformes(@PathVariable(name = "idAluno") Long idAluno) {
+		return getCmd.getByAlunoUniformes(idAluno);
+	}
+	
 
 	@PostMapping(path = "", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public AtividadesAlunoTO cadastrar(@RequestBody AtividadesAlunoTO param) {

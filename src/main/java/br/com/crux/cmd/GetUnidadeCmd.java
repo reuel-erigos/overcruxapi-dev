@@ -12,7 +12,9 @@ import org.springframework.stereotype.Component;
 
 import br.com.crux.builder.AcessoUnidadeTOBuilder;
 import br.com.crux.builder.UnidadeTOBuilder;
+import br.com.crux.dao.repository.AlunoRepository;
 import br.com.crux.dao.repository.UnidadeRepository;
+import br.com.crux.entity.Aluno;
 import br.com.crux.entity.Unidade;
 import br.com.crux.enums.ClassificadorSituacaoImovel;
 import br.com.crux.enums.TipoUnidade;
@@ -28,6 +30,7 @@ public class GetUnidadeCmd {
 
 	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
 	@Autowired private UnidadeRepository unidadeRepository;
+	@Autowired private AlunoRepository alunoRepository;
 	@Autowired private UnidadeTOBuilder unidadeBuilder;
 	@Autowired private CarregarUnidadeLogadaCmd carregarUnidadeLogadaCmd;
 	@Autowired private AcessoUnidadeTOBuilder unidadeTOBuilder;
@@ -137,4 +140,13 @@ public class GetUnidadeCmd {
 	
 	}
 	
+	public UnidadeTO getUnidadeAluno(Long idAluno) {
+		Optional<Unidade> unidadesOptional = unidadeRepository.findUnidadeAluno(idAluno);
+		if(!unidadesOptional.isPresent()) {
+			return null;
+		}
+		UnidadeTO unidadeTO = new UnidadeTO();
+		unidadeTO.setIdUnidade(unidadesOptional.get().getIdUnidade());
+		return unidadeTO;
+	}
 }

@@ -8,7 +8,6 @@ import java.util.List;
 
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-import br.com.crux.entity.Familiares;
 import br.com.crux.infra.adapter.LocalDateTimeAdapter;
 
 
@@ -72,6 +71,8 @@ public class AlunoTO {
 	private FamiliaresTO familiar;
 	
 	private ResponsaveisAlunoTO responsavelVigente;
+	
+	private List<AtividadesAlunoTO> atividades;
 	
 	public AlunoTO() {
 	}
@@ -402,7 +403,15 @@ public class AlunoTO {
 
 	public void setResponsavelVigente(ResponsaveisAlunoTO responsavelVigente) {
 		this.responsavelVigente = responsavelVigente;
-	}	
+	}
 
+	public List<AtividadesAlunoTO> getAtividades() {
+		return atividades;
+	}
+
+	public void setAtividades(List<AtividadesAlunoTO> atividades) {
+		this.atividades = atividades;
+	}	
+	
 	
 }

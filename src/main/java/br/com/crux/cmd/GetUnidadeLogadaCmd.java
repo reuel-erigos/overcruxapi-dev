@@ -36,6 +36,13 @@ public class GetUnidadeLogadaCmd {
 		return unidadeTOBuilder.buildTOComUnidadeLogada(unidade);
 	}
 	
+	public UnidadeTO getUnidadeTOSimplificado() {
+		 Long idUnidade = getUsuarioLogadoCmd.getUsuarioLogado().getUnidadeLogada().getId();
+		 
+		 Unidade unidade = unidadeRepository.findById(idUnidade).orElseThrow(() -> new NegocioException("Não foi possível recuperar a unidade logada"));
+		
+		return unidadeTOBuilder.buildTOComUnidadeLogadaSimplificada(unidade);
+	}
 
 
 }

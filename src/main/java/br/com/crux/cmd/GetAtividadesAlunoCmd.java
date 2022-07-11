@@ -13,11 +13,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.builder.AtividadesAlunoTOBuilder;
+import br.com.crux.builder.UniformesAlunoTOBuilder;
 import br.com.crux.dao.repository.AtividadesAlunoRepository;
 import br.com.crux.entity.AtividadesAluno;
+import br.com.crux.entity.UniformesAluno;
 import br.com.crux.exception.NotFoundException;
 import br.com.crux.infra.util.Java8DateUtil;
 import br.com.crux.to.AtividadesAlunoTO;
+import br.com.crux.to.UniformesAlunoTO;
 
 @Component
 public class GetAtividadesAlunoCmd {
@@ -26,6 +29,8 @@ public class GetAtividadesAlunoCmd {
 	@Autowired private AtividadesAlunoTOBuilder toBuilder;
 	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 	@Autowired private GetAlunoCmd getAlunoCmd;
+	@Autowired private GetUniformesAlunoCmd getUniformesAlunoCmd;
+	@Autowired private UniformesAlunoTOBuilder uniformesAlunoTOBuilder;
 
 	
 	public List<AtividadesAlunoTO> getAllAlunosMatriculadosNaAtividade(Long idAtividade) {
@@ -92,6 +97,26 @@ public class GetAtividadesAlunoCmd {
 		return toBuilder.buildAll(entitys.get());
 	}
 
+	public List<AtividadesAlunoTO> getByAlunoUniformes(Long idAluno) {
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTOSimplificado().getInstituicao().getId();
+		Optional<List<AtividadesAluno>> entitys = repository.findByAlunoAndInstituicao(idAluno, idInstituicao);
+		if (!entitys.isPresent()) {
+			return Collections.emptyList();
+		} else {
+			List<AtividadesAlunoTO> listTO = entitys.get().stream().map(item -> {
+				AtividadesAlunoTO to = toBuilder.buildTOAtividadeUniforme(item);
+				List<UniformesAluno> listaUniforme = getUniformesAlunoCmd.getAllFilter(idAluno, item.getAtividade().getId());
+				to.setUniformes(listaUniforme.stream().map(uniforme -> {
+					UniformesAlunoTO uniformesAlunoTO = uniformesAlunoTOBuilder.buildUniformeTO(uniforme);
+					return uniformesAlunoTO;
+				}).collect(Collectors.toList()));
+				return to;
+			}).collect(Collectors.toList());
+			return listTO;
+		}
+	}
+
+	
 	public List<AtividadesAlunoTO> getByAtividade(Long id) {
 		Optional<List<AtividadesAluno>> entitys = repository.findByAtividade(id);
 		if (!entitys.isPresent()) {

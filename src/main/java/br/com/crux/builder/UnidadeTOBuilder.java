@@ -15,6 +15,7 @@ import br.com.crux.cmd.GetInstituicaoCmd;
 import br.com.crux.entity.Instituicao;
 import br.com.crux.entity.Unidade;
 import br.com.crux.enums.ClassificadorSituacaoImovel;
+import br.com.crux.to.InstituicaoTO;
 import br.com.crux.to.UnidadeTO;
 
 @Component
@@ -80,6 +81,31 @@ public class UnidadeTOBuilder {
 
 		return to;
 	}
+	
+	public UnidadeTO buildTOSimplificado(Unidade entity) {
+		UnidadeTO to = new UnidadeTO();
+
+		if (Objects.isNull(entity)) {
+			return to;
+		}
+
+		BeanUtils.copyProperties(entity, to);
+		
+		Optional.ofNullable(entity.getClassificacaoSituacaoImovel()).ifPresent(classificador -> {
+			to.setClassificacaoSituacaoImovel(classificador.getTipo());
+		});
+
+		to.setNomeFantasia(entity.getNomeFantasia());
+		to.setCnpj(entity.getCnpj());
+		to.setInscricaoEstadual(entity.getInscricaoEstadual());
+		to.setInscricaoMunicipal(entity.getInscricaoMunicipal());
+		to.setHomePage(entity.getHomePage());
+		to.setCidade(entity.getCidade());
+		to.setInstituicao(new InstituicaoTO());
+		to.getInstituicao().setId(entity.getInstituicao().getId());
+		return to;
+	}
+
 
 	public List<UnidadeTO> buildAllTO(List<Unidade> dtos) {
 		return dtos.stream().map(dto -> buildTO(dto)).collect(Collectors.toList());
@@ -91,6 +117,13 @@ public class UnidadeTOBuilder {
 	
 	public UnidadeTO buildTOComUnidadeLogada(Unidade unidade) {
 		UnidadeTO unidadeTO = buildTO(unidade);
+		unidadeTO.setUnidadeLogada(Boolean.TRUE);
+		return unidadeTO;
+		
+	}
+	
+	public UnidadeTO buildTOComUnidadeLogadaSimplificada(Unidade unidade) {
+		UnidadeTO unidadeTO = buildTOSimplificado(unidade);
 		unidadeTO.setUnidadeLogada(Boolean.TRUE);
 		return unidadeTO;
 		
