@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.crux.cmd.GetPessoaFisicaCmd;
@@ -41,5 +42,10 @@ public class PessoaFisicaService {
 	@GetMapping(path = "/fornecedor_colaborador", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<FornecedorColaboradorTO> getAllFornecedoresColaboradores() {
 		return getCmd.getAllFornecedoresColaboradores();
+	}
+	
+	@GetMapping(path = "/cpf", produces = MediaType.APPLICATION_JSON_VALUE)
+	public PessoaFisicaTO getByCpf(@RequestParam(name = "cpf") String cpf) {
+		return getCmd.getTOByCpf(cpf);
 	}
 }

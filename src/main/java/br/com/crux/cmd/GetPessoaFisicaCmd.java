@@ -56,6 +56,16 @@ public class GetPessoaFisicaCmd {
 		PessoaFisica entity = repository.findById(id).orElseThrow(() -> new NotFoundException("Pessoa física não encontrado."));
 		return toBuilder.buildTO(entity);
 	}
+	
+	public PessoaFisicaTO getTOByCpf(String cpf) {
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+		cpf = cpf.replace(".", "").replace("-", "");
+		PessoaFisica entity = repository.findByCpfAndInstituicao(cpf, idInstituicao).orElseGet(null);
+		if(entity != null) {
+			return toBuilder.buildTO(entity);
+		} 
+		return null;
+	}
 
 	public PessoaFisica getById(Long id) {
 		return repository.findById(id).orElseGet(null);
