@@ -2,6 +2,7 @@ package br.com.crux.cmd;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -60,9 +61,9 @@ public class GetPessoaFisicaCmd {
 	public PessoaFisicaTO getTOByCpf(String cpf) {
 		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
 		cpf = cpf.replace(".", "").replace("-", "");
-		PessoaFisica entity = repository.findByCpfAndInstituicao(cpf, idInstituicao).orElseGet(null);
-		if(entity != null) {
-			return toBuilder.buildTO(entity);
+		Optional<PessoaFisica> optional = repository.findByCpfAndInstituicao(cpf, idInstituicao);
+		if(optional.isPresent()) {
+			return toBuilder.buildTO(optional.get());
 		} 
 		return null;
 	}
