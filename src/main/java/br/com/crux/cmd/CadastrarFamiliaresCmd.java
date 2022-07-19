@@ -20,6 +20,7 @@ public class CadastrarFamiliaresCmd {
 	@Autowired private CamposObrigatoriosFamiliaresRule camposObrigatoriosRule;
 	@Autowired private FamiliaresTOBuilder familiaresTOBuilder;
 	@Autowired private CadastrarPessoaFisicaCmd cadastrarPessoaFisicaCmd;
+	@Autowired private AlterarPessoaFisicaCmd alterarResponsaveisAlunoCmd;
 	
 	@Autowired private CadastrarResponsaveisAlunoCmd cadastrarResponsaveisAlunoCmd;
 	@Autowired private CadastrarVulnerabilidadesFamiliarCmd cadastrarVulnerabilidadesFamiliarCmd;
@@ -30,7 +31,11 @@ public class CadastrarFamiliaresCmd {
 		to.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 		Familiares entity = familiaresTOBuilder.build(to);
 		
-		entity.setPessoasFisica(cadastrarPessoaFisicaCmd.cadastrar(to.getPessoasFisica()));
+		if(to.getPessoasFisica().getId() == null) {
+			entity.setPessoasFisica(cadastrarPessoaFisicaCmd.cadastrar(to.getPessoasFisica()));
+		} else {
+			entity.setPessoasFisica(alterarResponsaveisAlunoCmd.alterar(to.getPessoasFisica()));
+		}
 		FamiliaresTO familiarTOSalvo = familiaresTOBuilder.buildTO(repository.save(entity));
 		
 		if(!Objects.isNull(to.getResponsaveis())) {

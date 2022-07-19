@@ -85,6 +85,7 @@ public class AlunoTO {
 		this.pessoaFisica.setNome((String) colunas[3]);
 		this.dataEntrada = (colunas[4] != null)? ((Timestamp)colunas[4]).toLocalDateTime(): null;
 		this.dataDesligamento = (colunas[5] != null)? ((Timestamp)colunas[5]).toLocalDateTime() : null;
+		this.stAtivo = (colunas[6] != null && colunas[6].equals("S"))? true : false;
 	}
 
 	public Long getId() {
