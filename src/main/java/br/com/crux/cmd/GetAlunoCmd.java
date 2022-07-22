@@ -9,17 +9,23 @@ import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.crux.builder.AlunoTOBuilder;
 import br.com.crux.dao.AlunoDao;
 import br.com.crux.dao.dto.ComboAlunoDTO;
 import br.com.crux.dao.repository.AlunoRepository;
+import br.com.crux.dao.spec.AlunoSpec;
 import br.com.crux.entity.Aluno;
 import br.com.crux.exception.NotFoundException;
 import br.com.crux.infra.util.Java8DateUtil;
 import br.com.crux.to.AlunoTO;
 import br.com.crux.to.ComboAlunoTO;
+import br.com.crux.to.filtro.FiltroAlunoTO;
 
 @Component
 public class GetAlunoCmd {
@@ -28,11 +34,10 @@ public class GetAlunoCmd {
 	@Autowired private AlunoDao dao;
 	@Autowired private AlunoTOBuilder toBuilder;
 	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
-	@Autowired private AlunoDao alunoDao;
 	
 	public List<ComboAlunoTO> getAllAlunosByCombo() {
 		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
-		List<ComboAlunoDTO> alunos = alunoDao.getAllByInstituicao(idInstituicao);
+		List<ComboAlunoDTO> alunos = dao.getAllByInstituicao(idInstituicao);
 		
 		return toBuilder.buildAllDTO(alunos);
 	}
@@ -56,6 +61,15 @@ public class GetAlunoCmd {
 			return entitys.get();
 		}
 		return new ArrayList<AlunoTO>();
+	}
+	
+	@Transactional(readOnly = true)
+	public Page<AlunoTO> listFilteredAndPaged(FiltroAlunoTO filtro, Pageable pageable) {
+		Page<Aluno> pageData = repository.findAll(AlunoSpec.findByCriteria(filtro), pageable);
+		final List<AlunoTO> listTO = new ArrayList<AlunoTO>();
+		pageData.getContent().forEach(tipoMeta -> listTO.add(toBuilder.toDTOList(tipoMeta)));
+		final Page<AlunoTO> pageDataTO = new PageImpl<AlunoTO>(listTO, pageable, pageData.getTotalElements());
+		return pageDataTO;
 	}
 
 	public List<AlunoTO> getAll() {

@@ -26,6 +26,7 @@ import br.com.crux.entity.Projeto;
 import br.com.crux.entity.TiposPublicoPrioritario;
 import br.com.crux.to.AlunoTO;
 import br.com.crux.to.ComboAlunoTO;
+import br.com.crux.to.PessoaFisicaTO;
 
 @Component
 public class AlunoTOBuilder {
@@ -195,5 +196,24 @@ public class AlunoTOBuilder {
 		return dtos.stream().map(dto -> buildComboTO(dto)).collect(Collectors.toList());
 	}
 
+	public AlunoTO toDTOList(Aluno p) {
+		AlunoTO retorno = new AlunoTO();
+		
+		if(Objects.isNull(p)) {
+			return retorno;
+		}
+		
+		retorno.setId(p.getId());
+		retorno.setMatriculaAluno(p.getMatriculaAluno());
+		retorno.setDataEntrada(p.getDataEntrada());
+		retorno.setDataDesligamento(p.getDataDesligamento());
+		retorno.setStAtivo(p.getStAtivo());
+		retorno.setPessoaFisica(new PessoaFisicaTO());
+		retorno.getPessoaFisica().setId(p.getPessoasFisica().getId());
+		retorno.getPessoaFisica().setNome(p.getPessoasFisica().getNome());
+		
+		
+		return retorno;
+	}
 	
 }
