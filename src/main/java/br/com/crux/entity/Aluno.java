@@ -48,6 +48,9 @@ public class Aluno {
 	@Column(name="st_atendido_orgao_rede")
 	private String atendidoOrgaoRede;
 
+	@Column(name="dt_encaminhamento")
+	private LocalDateTime dataEncaminhamento;
+	
 	@Column(name="dt_entrada")
 	private LocalDateTime dataEntrada;
 	
@@ -422,7 +425,14 @@ public class Aluno {
 	public void setStAtivo(Boolean stAtivo) {
 //	public void setAtivo(String stAtivo) {
 		this.stAtivo = stAtivo;
+	}
+
+	public LocalDateTime getDataEncaminhamento() {
+		return dataEncaminhamento;
+	}
+
+	public void setDataEncaminhamento(LocalDateTime dataEncaminhamento) {
+		this.dataEncaminhamento = dataEncaminhamento;
 	}	
 
-	
 }
