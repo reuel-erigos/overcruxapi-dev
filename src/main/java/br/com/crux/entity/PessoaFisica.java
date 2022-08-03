@@ -214,7 +214,18 @@ public class PessoaFisica {
 	@Column(name = "vl_renda")
 	private Double valorRenda;
 
+	@Column(name = "vl_renda_ctps")
+	private Double valorRendaCtps;
 
+	@Column(name = "vl_renda_autonomo")
+	private Double valorRendaAutonomo;
+	
+	@Column(name = "vl_renda_pensao_alimenticia")
+	private Double valorRendaPensaoAlimenticia;
+	
+	@Column(name = "vl_renda_aposentadoria")
+	private Double valorRendaAposentadoria;
+	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_arquivo_foto")
 	private ArquivoMetadado metadados;
@@ -298,6 +309,12 @@ public class PessoaFisica {
 
 	@Column(name = "qt_pessoas_residem_familia")
 	private Long qtPessoasResidemFamilia;
+	
+	@Column(name = "ds_complemento_endereco")
+	private String complementoEndereco;
+	
+	@Column(name = "nr_fone_celular_3")
+	private String celular3;
 	
 	public PessoaFisica() {
 	}
@@ -989,7 +1006,53 @@ public class PessoaFisica {
 	public void setQtPessoasResidemFamilia(Long qtPessoasResidemFamilia) {
 		this.qtPessoasResidemFamilia = qtPessoasResidemFamilia;
 	}
-	
-	
+
+	public Double getValorRendaCtps() {
+		return valorRendaCtps;
+	}
+
+	public void setValorRendaCtps(Double valorRendaCtps) {
+		this.valorRendaCtps = valorRendaCtps;
+	}
+
+	public Double getValorRendaAutonomo() {
+		return valorRendaAutonomo;
+	}
+
+	public void setValorRendaAutonomo(Double valorRendaAutonomo) {
+		this.valorRendaAutonomo = valorRendaAutonomo;
+	}
+
+	public Double getValorRendaPensaoAlimenticia() {
+		return valorRendaPensaoAlimenticia;
+	}
+
+	public void setValorRendaPensaoAlimenticia(Double valorRendaPensaoAlimenticia) {
+		this.valorRendaPensaoAlimenticia = valorRendaPensaoAlimenticia;
+	}
+
+	public Double getValorRendaAposentadoria() {
+		return valorRendaAposentadoria;
+	}
+
+	public void setValorRendaAposentadoria(Double valorRendaAposentadoria) {
+		this.valorRendaAposentadoria = valorRendaAposentadoria;
+	}
+
+	public String getComplementoEndereco() {
+		return complementoEndereco;
+	}
+
+	public void setComplementoEndereco(String complementoEndereco) {
+		this.complementoEndereco = complementoEndereco;
+	}
+
+	public String getCelular3() {
+		return celular3;
+	}
+
+	public void setCelular3(String celular3) {
+		this.celular3 = celular3;
+	}
 	
 }

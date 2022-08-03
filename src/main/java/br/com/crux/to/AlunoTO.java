@@ -29,7 +29,9 @@ public class AlunoTO {
 	private LocalDateTime dataCadastro;
 	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
 	private LocalDateTime dataAlteracaoCadastro;
-
+	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
+	private LocalDateTime dataEncaminhamento;
+	
 	private String descDesligamento;
 	private PessoaFisicaTO pessoaFisica;
 	private UnidadeTO unidade;
@@ -412,6 +414,14 @@ public class AlunoTO {
 
 	public void setAtividades(List<AtividadesAlunoTO> atividades) {
 		this.atividades = atividades;
+	}
+
+	public LocalDateTime getDataEncaminhamento() {
+		return dataEncaminhamento;
+	}
+
+	public void setDataEncaminhamento(LocalDateTime dataEncaminhamento) {
+		this.dataEncaminhamento = dataEncaminhamento;
 	}	
 	
 	

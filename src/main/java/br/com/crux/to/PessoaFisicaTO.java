@@ -72,6 +72,10 @@ public class PessoaFisicaTO {
 	private Double valorBolsaFamilia;
 	private Double valorOutrosBenerficiosSoc;
 	private Double valorRenda;
+	private Double valorRendaCtps;
+	private Double valorRendaAutonomo;
+	private Double valorRendaPensaoAlimenticia;
+	private Double valorRendaAposentadoria;
 
 	private ArquivoMetadadoTO metadados;
 	private CondicoesMoradiaTO condicoesMoradia;
@@ -102,14 +106,17 @@ public class PessoaFisicaTO {
 	private String emailProfissional;
 	private String origemRendaFamiliar;
 	private String celular2;
+	private String celular3;
 	private String foneRecado;	
 	private Boolean semCpf;
 
 	private String nomeSocial;
+	private String complementoEndereco;
 
 	private Long qtPessoasResidemFamilia;
 	
 	private List<BeneficioSocialPessoaFisicaTO> beneficiosSociaisPessoaFisica;
+	
 	
 	public PessoaFisicaTO() {
 	}
@@ -811,7 +818,55 @@ public class PessoaFisicaTO {
 
 	public void setBeneficiosSociaisPessoaFisica(List<BeneficioSocialPessoaFisicaTO> beneficiosSociaisPessoaFisica) {
 		this.beneficiosSociaisPessoaFisica = beneficiosSociaisPessoaFisica;
-
 	}
+
+	public Double getValorRendaCtps() {
+		return valorRendaCtps;
+	}
+
+	public void setValorRendaCtps(Double valorRendaCtps) {
+		this.valorRendaCtps = valorRendaCtps;
+	}
+
+	public Double getValorRendaAutonomo() {
+		return valorRendaAutonomo;
+	}
+
+	public void setValorRendaAutonomo(Double valorRendaAutonomo) {
+		this.valorRendaAutonomo = valorRendaAutonomo;
+	}
+
+	public Double getValorRendaPensaoAlimenticia() {
+		return valorRendaPensaoAlimenticia;
+	}
+
+	public void setValorRendaPensaoAlimenticia(Double valorRendaPensaoAlimenticia) {
+		this.valorRendaPensaoAlimenticia = valorRendaPensaoAlimenticia;
+	}
+
+	public Double getValorRendaAposentadoria() {
+		return valorRendaAposentadoria;
+	}
+
+	public void setValorRendaAposentadoria(Double valorRendaAposentadoria) {
+		this.valorRendaAposentadoria = valorRendaAposentadoria;
+	}
+
+	public String getCelular3() {
+		return celular3;
+	}
+
+	public void setCelular3(String celular3) {
+		this.celular3 = celular3;
+	}
+
+	public String getComplementoEndereco() {
+		return complementoEndereco;
+	}
+
+	public void setComplementoEndereco(String complementoEndereco) {
+		this.complementoEndereco = complementoEndereco;
+	}
+	
 
 }
