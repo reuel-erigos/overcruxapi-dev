@@ -16,6 +16,7 @@ import br.com.crux.cmd.GetUnidadeLogadaCmd;
 import br.com.crux.dao.dto.FornecedorColaboradorDTO;
 import br.com.crux.dao.dto.PessoaFisicaDTO;
 import br.com.crux.entity.CondicoesMoradia;
+import br.com.crux.entity.Escola;
 import br.com.crux.entity.GrausInstrucao;
 import br.com.crux.entity.PessoaFisica;
 import br.com.crux.to.ComboPessoaFisicaTO;
@@ -27,6 +28,7 @@ public class PessoaFisicaTOBuilder {
 
 	@Autowired private GrausInstrucaoTOBuilder grausInstrucaoTOBuilder;
 	@Autowired private CondicoesMoradiaTOBuilder condicoesMoradiaTOBuilder;
+	@Autowired private EscolaTOBuilder escolaTOBuilder;
 	@Autowired private GetGrausInstrucaoCmd getGrausInstrucaoCmd;
 	@Autowired private GetCondicoesMoradiaCmd getCondicoesMoradiaCmd;
 	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
@@ -50,7 +52,10 @@ public class PessoaFisicaTOBuilder {
 		retorno.setCursoEscola(p.getCursoEscola());
 		retorno.setEmail(p.getEmail());
 		retorno.setEndereco(p.getEndereco());
-		retorno.setEscola(p.getEscola());
+		if(p.getEscola() != null) {
+			retorno.setEscola(new Escola());
+			retorno.getEscola().setId(p.getEscola().getId());
+		}
 		retorno.setEscolaridade(p.getEscolaridade());
 		retorno.setEstadoCivil(p.getEstadoCivil());
 		retorno.setFormaIngressoEntidade(p.getFormaIngressoEntidade());
@@ -64,11 +69,8 @@ public class PessoaFisicaTOBuilder {
 		retorno.setProfissao(p.getProfissao());
 		retorno.setRedeApSocRelev(p.getRedeApSocRelev());
 		retorno.setRedeApoioSocial(p.getRedeApoioSocial());
-		retorno.setRegiaoEscola(p.getRegiaoEscola());
-		retorno.setSerieEscola(p.getSerieEscola());
 		retorno.setSexo(p.getSexo());
 		retorno.setSituacaoTrabalho(p.getSituacaoTrabalho());
-		retorno.setTipoEscola(p.getTipoEscola());
 		retorno.setTurno(p.getTurno());
 		retorno.setDataNascimento(p.getDataNascimento());
 		retorno.setNomeEmpresaTrabalho(p.getNomeEmpresaTrabalho());
@@ -183,7 +185,9 @@ public class PessoaFisicaTOBuilder {
 		retorno.setCursoEscola(p.getCursoEscola());
 		retorno.setEmail(p.getEmail());
 		retorno.setEndereco(p.getEndereco());
-		retorno.setEscola(p.getEscola());
+		if(p.getEscola() != null) {
+			retorno.setEscola(escolaTOBuilder.buildTO(p.getEscola()));
+		}
 		retorno.setEscolaridade(p.getEscolaridade());
 		retorno.setEstadoCivil(p.getEstadoCivil());
 		retorno.setFormaIngressoEntidade(p.getFormaIngressoEntidade());
@@ -197,11 +201,8 @@ public class PessoaFisicaTOBuilder {
 		retorno.setProfissao(p.getProfissao());
 		retorno.setRedeApSocRelev(p.getRedeApSocRelev());
 		retorno.setRedeApoioSocial(p.getRedeApoioSocial());
-		retorno.setRegiaoEscola(p.getRegiaoEscola());
-		retorno.setSerieEscola(p.getSerieEscola());
 		retorno.setSexo(p.getSexo());
 		retorno.setSituacaoTrabalho(p.getSituacaoTrabalho());
-		retorno.setTipoEscola(p.getTipoEscola());
 		retorno.setTurno(p.getTurno());
 		retorno.setDataNascimento(p.getDataNascimento());
 		retorno.setNomeEmpresaTrabalho(p.getNomeEmpresaTrabalho());
