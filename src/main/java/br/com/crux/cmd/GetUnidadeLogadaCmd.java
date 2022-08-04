@@ -13,36 +13,43 @@ import br.com.crux.to.UnidadeTO;
 
 @Component
 public class GetUnidadeLogadaCmd {
+
+	@Autowired
+	private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
 	
-	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd; 
-	@Autowired private UnidadeRepository unidadeRepository; 
-	@Autowired private UnidadeTOBuilder unidadeTOBuilder; 
+	@Autowired
+	private UnidadeRepository unidadeRepository;
+	
+	@Autowired
+	private UnidadeTOBuilder unidadeTOBuilder;
 
 	public AcessoUnidadeTO get() {
 		AcessoUnidadeTO unidadeLogada = getUsuarioLogadoCmd.getUsuarioLogado().getUnidadeLogada();
-		
-		if(unidadeLogada == null) {
+
+		if (unidadeLogada == null) {
 			throw new NotFoundException("Não é possível recuperar a unidade logada.");
 		}
-		
+
 		return unidadeLogada;
 	}
 
 	public UnidadeTO getUnidadeTO() {
-		 Long idUnidade = getUsuarioLogadoCmd.getUsuarioLogado().getUnidadeLogada().getId();
-		 
-		 Unidade unidade = unidadeRepository.findById(idUnidade).orElseThrow(() -> new NegocioException("Não foi possível recuperar a unidade logada"));
-		
+		Long idUnidade = getUsuarioLogadoCmd.getUsuarioLogado().getUnidadeLogada().getId();
+
+		Unidade unidade = unidadeRepository.findById(idUnidade)
+				.orElseThrow(() -> new NegocioException("Não foi possível recuperar a unidade logada"));
+
 		return unidadeTOBuilder.buildTOComUnidadeLogada(unidade);
 	}
-	
+
 	public UnidadeTO getUnidadeTOSimplificado() {
-		 Long idUnidade = getUsuarioLogadoCmd.getUsuarioLogado().getUnidadeLogada().getId();
-		 
-		 Unidade unidade = unidadeRepository.findById(idUnidade).orElseThrow(() -> new NegocioException("Não foi possível recuperar a unidade logada"));
-		
+
+		Long idUnidade = getUsuarioLogadoCmd.getUsuarioLogado().getUnidadeLogada().getId();
+
+		Unidade unidade = unidadeRepository.findById(idUnidade)
+				.orElseThrow(() -> new NegocioException("Não foi possível recuperar a unidade logada"));
+
 		return unidadeTOBuilder.buildTOComUnidadeLogadaSimplificada(unidade);
 	}
-
 
 }

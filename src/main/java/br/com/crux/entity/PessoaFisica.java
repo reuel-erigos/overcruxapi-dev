@@ -71,8 +71,9 @@ public class PessoaFisica {
 	@Column(name = "ds_endereco")
 	private String endereco;
 
-	@Column(name = "ds_escola")
-	private String escola;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="id_escola")
+	private Escola escola;
 
 	@Column(name = "ds_escolaridade")
 	private String escolaridade;
@@ -113,20 +114,11 @@ public class PessoaFisica {
 	@Column(name = "ds_rede_apoio_social")
 	private String redeApoioSocial;
 
-	@Column(name = "ds_regiao_escola")
-	private String regiaoEscola;
-
-	@Column(name = "ds_serie_escola")
-	private String serieEscola;
-
 	@Column(name = "ds_sexo")
 	private String sexo;
 
 	@Column(name = "ds_situacao_trabalho")
 	private String situacaoTrabalho;
-
-	@Column(name = "ds_tipo_escola")
-	private String tipoEscola;
 
 	@Column(name = "ds_turno")
 	private String turno;
@@ -417,11 +409,11 @@ public class PessoaFisica {
 		this.endereco = endereco;
 	}
 
-	public String getEscola() {
+	public Escola getEscola() {
 		return escola;
 	}
 
-	public void setEscola(String escola) {
+	public void setEscola(Escola escola) {
 		this.escola = escola;
 	}
 
@@ -529,22 +521,6 @@ public class PessoaFisica {
 		this.redeApoioSocial = redeApoioSocial;
 	}
 
-	public String getRegiaoEscola() {
-		return regiaoEscola;
-	}
-
-	public void setRegiaoEscola(String regiaoEscola) {
-		this.regiaoEscola = regiaoEscola;
-	}
-
-	public String getSerieEscola() {
-		return serieEscola;
-	}
-
-	public void setSerieEscola(String serieEscola) {
-		this.serieEscola = serieEscola;
-	}
-
 	public String getSexo() {
 		return sexo;
 	}
@@ -559,14 +535,6 @@ public class PessoaFisica {
 
 	public void setSituacaoTrabalho(String situacaoTrabalho) {
 		this.situacaoTrabalho = situacaoTrabalho;
-	}
-
-	public String getTipoEscola() {
-		return tipoEscola;
-	}
-
-	public void setTipoEscola(String tipoEscola) {
-		this.tipoEscola = tipoEscola;
 	}
 
 	public String getTurno() {

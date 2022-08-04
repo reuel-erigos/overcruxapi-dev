@@ -23,7 +23,7 @@ public class PessoaFisicaTO {
 	private String cursoEscola;
 	private String email;
 	private String endereco;
-	private String escola;
+	private EscolaTO escola;
 	private String escolaridade;
 	private String estadoCivil;
 	private String formaIngressoEntidade;
@@ -37,11 +37,9 @@ public class PessoaFisicaTO {
 	private String profissao;
 	private String redeApSocRelev;
 	private String redeApoioSocial;
-	private String regiaoEscola;
 	private String serieEscola;
 	private String sexo;
 	private String situacaoTrabalho;
-	private String tipoEscola;
 	private String turno;
 	private LocalDateTime dataNascimento;
 	private String nomeEmpresaTrabalho;
@@ -217,11 +215,11 @@ public class PessoaFisicaTO {
 		this.endereco = endereco;
 	}
 
-	public String getEscola() {
+	public EscolaTO getEscola() {
 		return escola;
 	}
 
-	public void setEscola(String escola) {
+	public void setEscola(EscolaTO escola) {
 		this.escola = escola;
 	}
 
@@ -337,14 +335,6 @@ public class PessoaFisicaTO {
 		this.redeApoioSocial = redeApoioSocial;
 	}
 
-	public String getRegiaoEscola() {
-		return regiaoEscola;
-	}
-
-	public void setRegiaoEscola(String regiaoEscola) {
-		this.regiaoEscola = regiaoEscola;
-	}
-
 	public String getSerieEscola() {
 		return serieEscola;
 	}
@@ -367,14 +357,6 @@ public class PessoaFisicaTO {
 
 	public void setSituacaoTrabalho(String situacaoTrabalho) {
 		this.situacaoTrabalho = situacaoTrabalho;
-	}
-
-	public String getTipoEscola() {
-		return tipoEscola;
-	}
-
-	public void setTipoEscola(String tipoEscola) {
-		this.tipoEscola = tipoEscola;
 	}
 
 	public String getTurno() {
