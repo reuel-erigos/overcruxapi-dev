@@ -208,12 +208,6 @@ public class PessoaFisica {
 	@Column(name = "vl_bolsa_familia")
 	private Double valorBolsaFamilia;
 
-	@Column(name = "vl_outros_benerficios_soc")
-	private Double valorOutrosBenerficiosSoc;
-
-	@Column(name = "vl_renda")
-	private Double valorRenda;
-
 	@Column(name = "vl_renda_ctps")
 	private Double valorRendaCtps;
 
@@ -781,22 +775,6 @@ public class PessoaFisica {
 
 	public void setValorBolsaFamilia(Double valorBolsaFamilia) {
 		this.valorBolsaFamilia = valorBolsaFamilia;
-	}
-
-	public Double getValorOutrosBenerficiosSoc() {
-		return valorOutrosBenerficiosSoc;
-	}
-
-	public void setValorOutrosBenerficiosSoc(Double valorOutrosBenerficiosSoc) {
-		this.valorOutrosBenerficiosSoc = valorOutrosBenerficiosSoc;
-	}
-
-	public Double getValorRenda() {
-		return valorRenda;
-	}
-
-	public void setValorRenda(Double valorRenda) {
-		this.valorRenda = valorRenda;
 	}
 
 	public ArquivoMetadado getMetadados() {

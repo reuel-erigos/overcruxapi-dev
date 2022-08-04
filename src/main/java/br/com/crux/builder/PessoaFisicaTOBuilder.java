@@ -109,8 +109,6 @@ public class PessoaFisicaTOBuilder {
 		retorno.setObservacoes(p.getObservacoes());
 		retorno.setValorAluguel(p.getValorAluguel());
 		retorno.setValorBolsaFamilia(p.getValorBolsaFamilia());
-		retorno.setValorOutrosBenerficiosSoc(p.getValorOutrosBenerficiosSoc());
-		retorno.setValorRenda(p.getValorRenda());
 		
 		if(Objects.nonNull(p.getMetadados())) {
 			retorno.setMetadados(arquivoMetadadosTOBuilder.build(p.getMetadados()));
@@ -230,8 +228,6 @@ public class PessoaFisicaTOBuilder {
 		retorno.setObservacoes(p.getObservacoes());
 		retorno.setValorAluguel(p.getValorAluguel());
 		retorno.setValorBolsaFamilia(p.getValorBolsaFamilia());
-		retorno.setValorOutrosBenerficiosSoc(p.getValorOutrosBenerficiosSoc());
-		retorno.setValorRenda(p.getValorRenda());
 		
 		if(Objects.nonNull(p.getMetadados())) {
 			retorno.setMetadados(arquivoMetadadosTOBuilder.buildTO(p.getMetadados()));
@@ -318,5 +314,5 @@ public class PessoaFisicaTOBuilder {
 	public List<ComboPessoaFisicaTO> buildAllComboDTO(List<PessoaFisicaDTO> dtos) {
 		return dtos.stream().map(dto -> buildComboTO(dto)).collect(Collectors.toList());
 	}
-
+	
 }
