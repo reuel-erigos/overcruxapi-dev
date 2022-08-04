@@ -1,5 +1,6 @@
 package br.com.crux.builder;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -15,9 +16,11 @@ import br.com.crux.cmd.GetVulnerabilidadesFamiliarCmd;
 import br.com.crux.dao.dto.ComboFamiliarDTO;
 import br.com.crux.entity.Familiares;
 import br.com.crux.enums.SituacaoParentesco;
+import br.com.crux.to.BeneficioSocialPessoaFisicaTO;
 import br.com.crux.to.ComboFamiliarTO;
 import br.com.crux.to.FamiliarResponsavelTO;
 import br.com.crux.to.FamiliaresTO;
+import br.com.crux.to.PessoaFisicaTO;
 
 @Component
 public class FamiliaresTOBuilder {
@@ -64,6 +67,7 @@ public class FamiliaresTOBuilder {
 			retorno.getPessoasFisica().setBeneficiosSociaisPessoaFisica(getBeneficioSocialPessoaFisicaCmd.getAllPorPessoaFisicaTO(p.getPessoasFisica().getId()));
 		}
 		
+		retorno.getPessoasFisica().setValorRenda(calcularValorTotal(retorno.getPessoasFisica()));
 		return retorno;
 	}
 	
@@ -125,7 +129,7 @@ public class FamiliaresTOBuilder {
 		if(Objects.nonNull(retorno.getPessoasFisica().getId())) {
 			retorno.getPessoasFisica().setBeneficiosSociaisPessoaFisica(getBeneficioSocialPessoaFisicaCmd.getAllPorPessoaFisicaTO(p.getPessoasFisica().getId()));
 		}
-
+		retorno.getPessoasFisica().setValorRenda(calcularValorTotal(retorno.getPessoasFisica()));
 
 		return retorno;
 	}
@@ -139,5 +143,21 @@ public class FamiliaresTOBuilder {
 	
 	public List<ComboFamiliarTO> buildAllDTO(List<ComboFamiliarDTO> dtos) {
 		return dtos.stream().map(dto -> buildComboTO(dto)).collect(Collectors.toList());
+	}
+	
+	private Double calcularValorTotal(PessoaFisicaTO p) {
+		Double rendaAposentadoria = p.getValorRendaAposentadoria() != null ? p.getValorRendaAposentadoria() : 0;
+		Double rendaAutonomo = p.getValorRendaAutonomo() != null ? p.getValorRendaAutonomo() : 0;
+		Double rendaCtps = p.getValorRendaCtps() != null ? p.getValorRendaCtps() : 0;
+		Double rendaPensaoAlimenticia = p.getValorRendaPensaoAlimenticia() != null ? p.getValorRendaPensaoAlimenticia() : 0;
+		Double valorTotal = rendaAposentadoria + rendaAutonomo + rendaCtps + rendaPensaoAlimenticia;
+		if(p.getBeneficiosSociaisPessoaFisica() != null) {
+			for (BeneficioSocialPessoaFisicaTO beneficio : p.getBeneficiosSociaisPessoaFisica()) {
+				if(beneficio.getDataInicio().isBefore(LocalDateTime.now()) && (beneficio.getDataFim() == null || beneficio.getDataInicio().isAfter(LocalDateTime.now()))) {
+					valorTotal = valorTotal + beneficio.getValor();
+				}
+			}
+		}
+		return valorTotal;
 	}
 }
