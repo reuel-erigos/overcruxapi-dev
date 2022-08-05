@@ -75,6 +75,10 @@ public class PessoaFisica {
 	@JoinColumn(name="id_escola")
 	private Escola escola;
 
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="id_serie_escolar")
+	private SerieEscolar serieEscolar;
+	
 	@Column(name = "ds_escolaridade")
 	private String escolaridade;
 
@@ -999,6 +1003,14 @@ public class PessoaFisica {
 
 	public void setCelular3(String celular3) {
 		this.celular3 = celular3;
+	}
+
+	public SerieEscolar getSerieEscolar() {
+		return serieEscolar;
+	}
+
+	public void setSerieEscolar(SerieEscolar serieEscolar) {
+		this.serieEscolar = serieEscolar;
 	}
 	
 }
