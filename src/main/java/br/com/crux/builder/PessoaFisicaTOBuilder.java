@@ -19,6 +19,7 @@ import br.com.crux.entity.CondicoesMoradia;
 import br.com.crux.entity.Escola;
 import br.com.crux.entity.GrausInstrucao;
 import br.com.crux.entity.PessoaFisica;
+import br.com.crux.entity.SerieEscolar;
 import br.com.crux.to.ComboPessoaFisicaTO;
 import br.com.crux.to.FornecedorColaboradorTO;
 import br.com.crux.to.PessoaFisicaTO;
@@ -29,6 +30,7 @@ public class PessoaFisicaTOBuilder {
 	@Autowired private GrausInstrucaoTOBuilder grausInstrucaoTOBuilder;
 	@Autowired private CondicoesMoradiaTOBuilder condicoesMoradiaTOBuilder;
 	@Autowired private EscolaTOBuilder escolaTOBuilder;
+	@Autowired private SerieEscolarTOBuilder serieEscolarTOBuilder;
 	@Autowired private GetGrausInstrucaoCmd getGrausInstrucaoCmd;
 	@Autowired private GetCondicoesMoradiaCmd getCondicoesMoradiaCmd;
 	@Autowired private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
@@ -55,6 +57,10 @@ public class PessoaFisicaTOBuilder {
 		if(p.getEscola() != null) {
 			retorno.setEscola(new Escola());
 			retorno.getEscola().setId(p.getEscola().getId());
+		}
+		if(p.getSerieEscolar() != null) {
+			retorno.setSerieEscolar(new SerieEscolar());
+			retorno.getSerieEscolar().setId(p.getSerieEscolar().getId());
 		}
 		retorno.setEscolaridade(p.getEscolaridade());
 		retorno.setEstadoCivil(p.getEstadoCivil());
@@ -187,6 +193,9 @@ public class PessoaFisicaTOBuilder {
 		retorno.setEndereco(p.getEndereco());
 		if(p.getEscola() != null) {
 			retorno.setEscola(escolaTOBuilder.buildTO(p.getEscola()));
+		}
+		if(p.getSerieEscolar() != null) {
+			retorno.setSerieEscolar(serieEscolarTOBuilder.buildTO(p.getSerieEscolar()));
 		}
 		retorno.setEscolaridade(p.getEscolaridade());
 		retorno.setEstadoCivil(p.getEstadoCivil());

@@ -24,6 +24,7 @@ public class PessoaFisicaTO {
 	private String email;
 	private String endereco;
 	private EscolaTO escola;
+	private SerieEscolarTO serieEscolar;
 	private String escolaridade;
 	private String estadoCivil;
 	private String formaIngressoEntidade;
@@ -37,7 +38,6 @@ public class PessoaFisicaTO {
 	private String profissao;
 	private String redeApSocRelev;
 	private String redeApoioSocial;
-	private String serieEscola;
 	private String sexo;
 	private String situacaoTrabalho;
 	private String turno;
@@ -333,14 +333,6 @@ public class PessoaFisicaTO {
 
 	public void setRedeApoioSocial(String redeApoioSocial) {
 		this.redeApoioSocial = redeApoioSocial;
-	}
-
-	public String getSerieEscola() {
-		return serieEscola;
-	}
-
-	public void setSerieEscola(String serieEscola) {
-		this.serieEscola = serieEscola;
 	}
 
 	public String getSexo() {
@@ -849,6 +841,14 @@ public class PessoaFisicaTO {
 	public void setComplementoEndereco(String complementoEndereco) {
 		this.complementoEndereco = complementoEndereco;
 	}
-	
 
+	public SerieEscolarTO getSerieEscolar() {
+		return serieEscolar;
+	}
+
+	public void setSerieEscolar(SerieEscolarTO serieEscolar) {
+		this.serieEscolar = serieEscolar;
+	}
+	
+	
 }
