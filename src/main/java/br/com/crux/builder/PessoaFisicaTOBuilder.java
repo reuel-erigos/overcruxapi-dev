@@ -117,6 +117,11 @@ public class PessoaFisicaTOBuilder {
 		retorno.setObservacoes(p.getObservacoes());
 		retorno.setValorAluguel(p.getValorAluguel());
 		retorno.setValorBolsaFamilia(p.getValorBolsaFamilia());
+		retorno.setValorRendaAposentadoria(p.getValorRendaAposentadoria());
+		retorno.setValorRendaAutonomo(p.getValorRendaAutonomo());
+		retorno.setValorRendaCtps(p.getValorRendaCtps());
+		retorno.setValorRendaPensaoAlimenticia(p.getValorRendaPensaoAlimenticia());
+		
 		
 		if(Objects.nonNull(p.getMetadados())) {
 			retorno.setMetadados(arquivoMetadadosTOBuilder.build(p.getMetadados()));
@@ -164,6 +169,7 @@ public class PessoaFisicaTOBuilder {
 		retorno.setIdInstituicao(getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId());
 		retorno.setEmailProfissional(p.getEmailProfissional());
 		retorno.setCelular2(p.getCelular2());
+		retorno.setCelular3(p.getCelular3());
 		retorno.setFoneRecado(p.getFoneRecado());
 		retorno.setSemCpf(p.getSemCpf());
 		
@@ -266,8 +272,14 @@ public class PessoaFisicaTOBuilder {
 		retorno.setIdInstituicao(p.getIdInstituicao());
 		retorno.setEmailProfissional(p.getEmailProfissional());
 		retorno.setCelular2(p.getCelular2());
+		retorno.setCelular3(p.getCelular3());
 		retorno.setFoneRecado(p.getFoneRecado());
 		retorno.setSemCpf(p.getSemCpf());
+		
+		retorno.setValorRendaAposentadoria(p.getValorRendaAposentadoria());
+		retorno.setValorRendaAutonomo(p.getValorRendaAutonomo());
+		retorno.setValorRendaCtps(p.getValorRendaCtps());
+		retorno.setValorRendaPensaoAlimenticia(p.getValorRendaPensaoAlimenticia());
 
 		retorno.setQtPessoasResidemFamilia(p.getQtPessoasResidemFamilia());		
 
