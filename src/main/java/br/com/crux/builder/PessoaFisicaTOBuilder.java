@@ -54,6 +54,7 @@ public class PessoaFisicaTOBuilder {
 		retorno.setCursoEscola(p.getCursoEscola());
 		retorno.setEmail(p.getEmail());
 		retorno.setEndereco(p.getEndereco());
+		retorno.setComplementoEndereco(p.getComplementoEndereco());
 		if(p.getEscola() != null) {
 			retorno.setEscola(new Escola());
 			retorno.getEscola().setId(p.getEscola().getId());
@@ -197,6 +198,7 @@ public class PessoaFisicaTOBuilder {
 		retorno.setCursoEscola(p.getCursoEscola());
 		retorno.setEmail(p.getEmail());
 		retorno.setEndereco(p.getEndereco());
+		retorno.setComplementoEndereco(p.getComplementoEndereco());
 		if(p.getEscola() != null) {
 			retorno.setEscola(escolaTOBuilder.buildTO(p.getEscola()));
 		}
