@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<!-- Created with Jaspersoft Studio version 6.18.1.final using JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Ficha_Matricula" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isTitleNewPage="true" uuid="834ad189-7b77-460b-af4d-f3e68c98ad0b">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
@@ -267,7 +267,7 @@ from vw_relatorio_ficha_cadastral]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
+				<textElement verticalAlignment="Middle">
 					<font isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
@@ -277,14 +277,14 @@ from vw_relatorio_ficha_cadastral]]>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Bottom"/>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Nome:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="17" y="37" width="49" height="15" uuid="e1475713-4252-4f0e-9e7c-02f882dd70cd">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Bottom"/>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Endereço:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
@@ -297,7 +297,7 @@ from vw_relatorio_ficha_cadastral]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
+				<textElement verticalAlignment="Middle">
 					<font isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{endereco}]]></textFieldExpression>
@@ -306,7 +306,7 @@ from vw_relatorio_ficha_cadastral]]>
 				<reportElement x="17" y="54" width="49" height="15" uuid="259ecb7e-05d7-4a63-ad98-9c46c70a7383">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Bottom"/>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Cidade:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
@@ -319,7 +319,7 @@ from vw_relatorio_ficha_cadastral]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
+				<textElement verticalAlignment="Middle">
 					<font isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{bairro}]]></textFieldExpression>
@@ -328,7 +328,7 @@ from vw_relatorio_ficha_cadastral]]>
 				<reportElement x="408" y="54" width="38" height="15" uuid="b590d407-add1-41dc-bb06-6fd9eda94c7c">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Bottom"/>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Cep:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
@@ -341,7 +341,7 @@ from vw_relatorio_ficha_cadastral]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
+				<textElement verticalAlignment="Middle">
 					<font isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cep}]]></textFieldExpression>
@@ -350,7 +350,7 @@ from vw_relatorio_ficha_cadastral]]>
 				<reportElement x="17" y="71" width="49" height="15" uuid="688c6aef-e48d-4353-84f8-4e6754d34794">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Bottom"/>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Telefone:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
@@ -363,7 +363,7 @@ from vw_relatorio_ficha_cadastral]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
+				<textElement verticalAlignment="Middle">
 					<font isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{telefoneResidencial}]]></textFieldExpression>
@@ -372,7 +372,7 @@ from vw_relatorio_ficha_cadastral]]>
 				<reportElement x="202" y="71" width="49" height="15" uuid="1730477e-397f-4bbd-a789-8c56358bf7d2">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Bottom"/>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Celular:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
@@ -385,7 +385,7 @@ from vw_relatorio_ficha_cadastral]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
+				<textElement verticalAlignment="Middle">
 					<font isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{foneCelular}]]></textFieldExpression>
@@ -394,7 +394,7 @@ from vw_relatorio_ficha_cadastral]]>
 				<reportElement x="387" y="71" width="49" height="15" uuid="2247a3e2-756a-4fd3-be0c-3cea6170bcd5">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Bottom"/>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Tel Com:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
@@ -407,7 +407,7 @@ from vw_relatorio_ficha_cadastral]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
+				<textElement verticalAlignment="Middle">
 					<font isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{telefoneComercial}]]></textFieldExpression>
@@ -416,7 +416,7 @@ from vw_relatorio_ficha_cadastral]]>
 				<reportElement x="17" y="89" width="49" height="15" uuid="a7cd5a37-343b-4826-9016-dd7d79b92c79">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Bottom"/>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Sexo:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
@@ -429,7 +429,7 @@ from vw_relatorio_ficha_cadastral]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
+				<textElement verticalAlignment="Middle">
 					<font isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{sexo}]]></textFieldExpression>
@@ -438,7 +438,7 @@ from vw_relatorio_ficha_cadastral]]>
 				<reportElement x="149" y="89" width="106" height="15" uuid="0e17e372-ba7b-4bb2-aaf7-d57a1af35483">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Bottom"/>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Data de Nascimento:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
@@ -451,7 +451,7 @@ from vw_relatorio_ficha_cadastral]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
+				<textElement verticalAlignment="Middle">
 					<font isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{dataNascimento}]]></textFieldExpression>
@@ -460,7 +460,7 @@ from vw_relatorio_ficha_cadastral]]>
 				<reportElement x="348" y="89" width="88" height="15" uuid="83e90b5b-ff0c-4c2a-9330-fc6a10a22961">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Bottom"/>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Naturalidade:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
@@ -473,7 +473,7 @@ from vw_relatorio_ficha_cadastral]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
+				<textElement verticalAlignment="Middle">
 					<font isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{naturalidade}]]></textFieldExpression>
@@ -482,7 +482,7 @@ from vw_relatorio_ficha_cadastral]]>
 				<reportElement x="17" y="106" width="93" height="15" uuid="2342a9ad-3128-4c86-a6e7-e03cd7fef43e">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Bottom"/>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Nome do Pai:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
@@ -495,7 +495,7 @@ from vw_relatorio_ficha_cadastral]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
+				<textElement verticalAlignment="Middle">
 					<font isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nomePai}]]></textFieldExpression>
@@ -504,7 +504,7 @@ from vw_relatorio_ficha_cadastral]]>
 				<reportElement x="16" y="123" width="94" height="15" uuid="fa116cab-a7c0-4d94-86c3-153e2d1f0cba">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Bottom"/>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Nome da Mãe:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
@@ -517,7 +517,7 @@ from vw_relatorio_ficha_cadastral]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
+				<textElement verticalAlignment="Middle">
 					<font isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nomeMae}]]></textFieldExpression>
@@ -527,7 +527,7 @@ from vw_relatorio_ficha_cadastral]]>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Bottom"/>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Encaminhado por:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
@@ -540,7 +540,7 @@ from vw_relatorio_ficha_cadastral]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
+				<textElement verticalAlignment="Middle">
 					<font isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{encaminhado}]]></textFieldExpression>
@@ -549,7 +549,7 @@ from vw_relatorio_ficha_cadastral]]>
 				<reportElement x="16" y="159" width="94" height="15" uuid="c1975721-201b-433d-bc1c-77ad51afafa7">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Bottom"/>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Público Prioritário:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
@@ -562,7 +562,7 @@ from vw_relatorio_ficha_cadastral]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
+				<textElement verticalAlignment="Middle">
 					<font isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{descPublicoPrioritario}]]></textFieldExpression>
@@ -571,7 +571,7 @@ from vw_relatorio_ficha_cadastral]]>
 				<reportElement x="17" y="177" width="94" height="15" uuid="41353de4-1b15-4096-a342-cd3705a35268">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Bottom"/>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Data de Matrícula:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
@@ -584,7 +584,7 @@ from vw_relatorio_ficha_cadastral]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
+				<textElement verticalAlignment="Middle">
 					<font isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{dataMatricula}]]></textFieldExpression>
@@ -593,7 +593,7 @@ from vw_relatorio_ficha_cadastral]]>
 				<reportElement x="242" y="177" width="49" height="15" uuid="87175cb8-d478-49a4-befa-1fd6e074203f">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Bottom"/>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Turno:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
@@ -606,16 +606,16 @@ from vw_relatorio_ficha_cadastral]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
+				<textElement verticalAlignment="Middle">
 					<font isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{turno}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="16" y="195" width="94" height="15" uuid="f9d2c39b-6961-4079-80c9-921523fa58ad">
+				<reportElement x="17" y="195" width="94" height="15" uuid="f9d2c39b-6961-4079-80c9-921523fa58ad">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Bottom"/>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Atividade:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
@@ -628,7 +628,7 @@ from vw_relatorio_ficha_cadastral]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
+				<textElement verticalAlignment="Middle">
 					<font isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{atividade}]]></textFieldExpression>
@@ -637,7 +637,7 @@ from vw_relatorio_ficha_cadastral]]>
 				<reportElement x="17" y="213" width="93" height="15" uuid="d43c0c84-d4a6-4572-b10d-97ac11046406">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Bottom"/>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Escola:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
@@ -650,7 +650,7 @@ from vw_relatorio_ficha_cadastral]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
+				<textElement verticalAlignment="Middle">
 					<font isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{escola}]]></textFieldExpression>
@@ -659,7 +659,7 @@ from vw_relatorio_ficha_cadastral]]>
 				<reportElement x="381" y="213" width="65" height="15" uuid="386a80bb-489a-4135-91e3-4301079a0555">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Bottom"/>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Série/Turma:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
@@ -672,7 +672,7 @@ from vw_relatorio_ficha_cadastral]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
+				<textElement verticalAlignment="Middle">
 					<font isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{serie}]]></textFieldExpression>
@@ -681,7 +681,7 @@ from vw_relatorio_ficha_cadastral]]>
 				<reportElement x="17" y="231" width="115" height="15" uuid="793b67a2-48b2-4035-ab44-10f915cc1c1b">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Bottom"/>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Problemas de Saúde:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
@@ -694,7 +694,7 @@ from vw_relatorio_ficha_cadastral]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
+				<textElement verticalAlignment="Middle">
 					<font isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{temProblemaSaude}]]></textFieldExpression>
@@ -703,7 +703,7 @@ from vw_relatorio_ficha_cadastral]]>
 				<reportElement x="174" y="231" width="32" height="15" uuid="71183371-f257-430e-8bf6-7d55d138c6f6">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Bottom"/>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Quais?]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
@@ -716,7 +716,7 @@ from vw_relatorio_ficha_cadastral]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
+				<textElement verticalAlignment="Middle">
 					<font isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{descProblemaSaude}]]></textFieldExpression>
@@ -725,7 +725,7 @@ from vw_relatorio_ficha_cadastral]]>
 				<reportElement x="17" y="249" width="115" height="15" uuid="77e6b226-d634-4953-a9b0-086c14a9289f">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Bottom"/>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Toma medicamentos:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
@@ -738,7 +738,7 @@ from vw_relatorio_ficha_cadastral]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
+				<textElement verticalAlignment="Middle">
 					<font isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{tomaMedicamentosControlados}]]></textFieldExpression>
@@ -747,7 +747,7 @@ from vw_relatorio_ficha_cadastral]]>
 				<reportElement x="174" y="249" width="32" height="15" uuid="c58a4f29-baeb-44d2-83d5-02baca075035">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Bottom"/>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Quais?]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
@@ -769,7 +769,7 @@ from vw_relatorio_ficha_cadastral]]>
 				<reportElement x="16" y="267" width="116" height="15" uuid="bc844aca-eaf1-4f3a-b43f-081e1820cb47">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Bottom"/>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Mora com os pais:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
@@ -782,7 +782,7 @@ from vw_relatorio_ficha_cadastral]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
+				<textElement verticalAlignment="Middle">
 					<font isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{moraComPais}]]></textFieldExpression>
@@ -791,7 +791,7 @@ from vw_relatorio_ficha_cadastral]]>
 				<reportElement x="174" y="267" width="108" height="15" uuid="db29ea8e-4313-4cc3-a367-8608a544e56f">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Bottom"/>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Os pais são casados?]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
@@ -804,7 +804,7 @@ from vw_relatorio_ficha_cadastral]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
+				<textElement verticalAlignment="Middle">
 					<font isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{paisCasados}]]></textFieldExpression>
@@ -813,7 +813,7 @@ from vw_relatorio_ficha_cadastral]]>
 				<reportElement x="16" y="285" width="99" height="15" uuid="1a832885-6241-43e9-9022-5fd141c62ab0">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Bottom"/>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Renda Familiar:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
@@ -826,7 +826,7 @@ from vw_relatorio_ficha_cadastral]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement textAlignment="Left" verticalAlignment="Bottom">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{rendaFamiliar}]]></textFieldExpression>
@@ -836,7 +836,7 @@ from vw_relatorio_ficha_cadastral]]>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Bottom"/>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Proveniente:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
@@ -849,7 +849,7 @@ from vw_relatorio_ficha_cadastral]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
+				<textElement verticalAlignment="Middle">
 					<font isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{fonteRendaFamiliar}]]></textFieldExpression>
@@ -858,7 +858,7 @@ from vw_relatorio_ficha_cadastral]]>
 				<reportElement x="16" y="303" width="68" height="15" uuid="9511513c-abcb-47b8-af07-2334d87a6c04">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Bottom"/>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Observação:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
@@ -871,7 +871,7 @@ from vw_relatorio_ficha_cadastral]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
+				<textElement verticalAlignment="Middle">
 					<font isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{observacoes}]]></textFieldExpression>
@@ -880,7 +880,7 @@ from vw_relatorio_ficha_cadastral]]>
 				<reportElement x="16" y="321" width="130" height="15" uuid="5217fc43-af8e-4cd8-a942-51e864239977">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Bottom"/>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Quem pegaria a criança:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
@@ -893,7 +893,7 @@ from vw_relatorio_ficha_cadastral]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
+				<textElement verticalAlignment="Middle">
 					<font isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{descBuscaEscola}]]></textFieldExpression>
@@ -902,7 +902,7 @@ from vw_relatorio_ficha_cadastral]]>
 				<reportElement x="16" y="339" width="434" height="15" uuid="3f9b2873-7032-4abe-95c3-4baeca08cd6f">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Bottom"/>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[O beneficiário poderá participar de apresentações externas e publicidade em geral ?]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
@@ -915,7 +915,7 @@ from vw_relatorio_ficha_cadastral]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
+				<textElement verticalAlignment="Middle">
 					<font isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{apresentacaoExterna}]]></textFieldExpression>
@@ -924,7 +924,7 @@ from vw_relatorio_ficha_cadastral]]>
 				<reportElement x="17" y="357" width="68" height="15" uuid="45d3989f-04d2-40bc-827f-5c0e29bf8138">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Bottom"/>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Responsável:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
@@ -937,7 +937,7 @@ from vw_relatorio_ficha_cadastral]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
+				<textElement verticalAlignment="Middle">
 					<font isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nomeResponsavel}]]></textFieldExpression>
@@ -946,7 +946,7 @@ from vw_relatorio_ficha_cadastral]]>
 				<reportElement x="17" y="375" width="128" height="15" uuid="3e53ea54-e776-4c5e-9f47-bc1bd85899b4">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Bottom"/>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Data de Nasc. do Resp.:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
@@ -959,7 +959,7 @@ from vw_relatorio_ficha_cadastral]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
+				<textElement verticalAlignment="Middle">
 					<font isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{dataNascimentoResponsavel}]]></textFieldExpression>
@@ -968,7 +968,7 @@ from vw_relatorio_ficha_cadastral]]>
 				<reportElement x="248" y="375" width="19" height="15" uuid="6ffeab06-2384-4260-829f-472d2cf8d577">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Bottom"/>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Rg:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
@@ -981,7 +981,7 @@ from vw_relatorio_ficha_cadastral]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
+				<textElement verticalAlignment="Middle">
 					<font isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{rgResponsavel}]]></textFieldExpression>
@@ -990,7 +990,7 @@ from vw_relatorio_ficha_cadastral]]>
 				<reportElement x="377" y="375" width="75" height="15" uuid="2ff88f39-6a99-41bb-a74c-20ad4b92c360">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Bottom"/>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[CPF nº (Resp):]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
@@ -1003,7 +1003,7 @@ from vw_relatorio_ficha_cadastral]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
+				<textElement verticalAlignment="Middle">
 					<font isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cpfResponsavel}]]></textFieldExpression>
@@ -1012,11 +1012,11 @@ from vw_relatorio_ficha_cadastral]]>
 				<reportElement x="17" y="393" width="83" height="15" uuid="10a9d0ad-2295-4991-99ab-0a69333588e8">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Bottom"/>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Telefone Resp:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="102" y="393" width="238" height="15" uuid="a3fe646c-f570-4e03-aa93-efea9773ebd8">
+				<reportElement x="102" y="393" width="464" height="15" uuid="a3fe646c-f570-4e03-aa93-efea9773ebd8">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -1025,20 +1025,20 @@ from vw_relatorio_ficha_cadastral]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
+				<textElement verticalAlignment="Middle">
 					<font isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{foneCelularResponsavel} + "  "+ $F{foneResidencialResponsavel} + "  "+$F{foneComercialResponsavel}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="343" y="393" width="108" height="15" uuid="9691f6b5-d1f3-4b9e-b8c3-19ccfa48f7af">
+				<reportElement x="16" y="412" width="108" height="15" uuid="9691f6b5-d1f3-4b9e-b8c3-19ccfa48f7af">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Bottom"/>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Grau de Parentesco:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="453" y="393" width="106" height="15" uuid="79ef4114-9966-471e-8b32-e3489b2ad05e">
+				<reportElement x="126" y="412" width="438" height="15" uuid="79ef4114-9966-471e-8b32-e3489b2ad05e">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -1047,20 +1047,20 @@ from vw_relatorio_ficha_cadastral]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
+				<textElement verticalAlignment="Middle">
 					<font isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nomeGrauParentesco}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="17" y="411" width="83" height="15" uuid="8fedb156-53e6-4998-ae71-cc0d0cfc7c08">
+				<reportElement x="17" y="430" width="83" height="15" uuid="8fedb156-53e6-4998-ae71-cc0d0cfc7c08">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Bottom"/>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[NIS do Aluno:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="102" y="411" width="99" height="15" uuid="ade55033-70f7-43a8-8e35-442b43f7d8fe">
+				<reportElement x="102" y="430" width="99" height="15" uuid="ade55033-70f7-43a8-8e35-442b43f7d8fe">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -1069,20 +1069,20 @@ from vw_relatorio_ficha_cadastral]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
+				<textElement verticalAlignment="Middle">
 					<font isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nisAluno}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="209" y="411" width="96" height="15" uuid="e9c17893-457b-4695-a09f-984e9ed708ea">
+				<reportElement x="209" y="430" width="96" height="15" uuid="e9c17893-457b-4695-a09f-984e9ed708ea">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Bottom"/>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[NIS do Resp:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="306" y="411" width="130" height="15" uuid="1e8a805e-169a-4f9a-b454-f6a347e103d7">
+				<reportElement x="305" y="430" width="130" height="15" uuid="1e8a805e-169a-4f9a-b454-f6a347e103d7">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -1091,7 +1091,7 @@ from vw_relatorio_ficha_cadastral]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
+				<textElement verticalAlignment="Middle">
 					<font isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nisResponsavel}]]></textFieldExpression>
@@ -1111,7 +1111,7 @@ from vw_relatorio_ficha_cadastral]]>
 				<reportElement x="18" y="565" width="113" height="15" uuid="9abbdf35-2e02-4ad9-94ea-57a2edc743e4">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Bottom"/>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Resp. pela Matrícula:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
@@ -1124,7 +1124,7 @@ from vw_relatorio_ficha_cadastral]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement>
+				<textElement verticalAlignment="Middle">
 					<font isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{P_NOME_USUARIO_LOGADO}]]></textFieldExpression>
@@ -1133,7 +1133,7 @@ from vw_relatorio_ficha_cadastral]]>
 				<reportElement x="370" y="565" width="32" height="15" uuid="fbc57bf7-9411-44ea-ab80-7b63c10a8a55">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Bottom"/>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Data:]]></text>
 			</staticText>
 			<textField pattern="&apos;Brasília, &apos; d &apos;de&apos; MMMM yyyy" isBlankWhenNull="true">
@@ -1146,7 +1146,7 @@ from vw_relatorio_ficha_cadastral]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement>
+				<textElement verticalAlignment="Middle">
 					<font isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new Date()]]></textFieldExpression>
