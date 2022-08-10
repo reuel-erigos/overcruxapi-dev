@@ -55,11 +55,11 @@ public class PessoaFisicaTOBuilder {
 		retorno.setEmail(p.getEmail());
 		retorno.setEndereco(p.getEndereco());
 		retorno.setComplementoEndereco(p.getComplementoEndereco());
-		if(p.getEscola() != null) {
+		if(p.getEscola() != null && p.getEscola().getId() != null) {
 			retorno.setEscola(new Escola());
 			retorno.getEscola().setId(p.getEscola().getId());
 		}
-		if(p.getSerieEscolar() != null) {
+		if(p.getSerieEscolar() != null && p.getSerieEscolar().getId() != null) {
 			retorno.setSerieEscolar(new SerieEscolar());
 			retorno.getSerieEscolar().setId(p.getSerieEscolar().getId());
 		}
