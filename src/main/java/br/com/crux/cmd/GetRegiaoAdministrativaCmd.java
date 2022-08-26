@@ -7,8 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import br.com.crux.builder.RegiaoAdministrativaTOBuilder;
 import br.com.crux.dao.repository.RegiaoAdministrativaRepository;
@@ -50,6 +53,14 @@ public class GetRegiaoAdministrativaCmd {
 		pageData.getContent().forEach(regiao -> listTO.add(toBuilder.buildTO(regiao)));
 		final Page<RegiaoAdministrativaTO> pageDataTO = new PageImpl<RegiaoAdministrativaTO>(listTO, pageable, pageData.getTotalElements());
 		return pageDataTO;
+	}
+
+	public List<RegiaoAdministrativaTO> getAllCombo() {
+		List<RegiaoAdministrativa> entitys = repository.findAll(Sort.by(Direction.ASC, "nome"));
+		if (!CollectionUtils.isEmpty(entitys)) {
+			return toBuilder.buildAllCombo(entitys);
+		}
+		return new ArrayList<RegiaoAdministrativaTO>();
 	}
 
 

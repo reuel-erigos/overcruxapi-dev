@@ -9,8 +9,10 @@ import org.springframework.stereotype.Component;
 
 import br.com.crux.entity.Escola;
 import br.com.crux.entity.Instituicao;
+import br.com.crux.entity.UsuariosSistema;
 import br.com.crux.to.EscolaTO;
 import br.com.crux.to.InstituicaoTO;
+import br.com.crux.to.UsuariosSistemaTO;
 
 @Component
 public class EscolaTOBuilder {
@@ -39,6 +41,10 @@ public class EscolaTOBuilder {
 		if(p.getInstituicao() != null) {
 			retorno.setInstituicao(new Instituicao());
 			retorno.getInstituicao().setId(p.getInstituicao().getId());
+		}
+		if(p.getUsuarioSistema() != null) {
+			retorno.setUsuarioSistema(new UsuariosSistema());
+			retorno.getUsuarioSistema().setIdUsuario(p.getUsuarioSistema().getId());
 		}
 		if(p.getRegiaoAdministrativa() != null) {
 			retorno.setRegiaoAdministrativa(regiaoAdministrativaTOBuilder.build(p.getRegiaoAdministrativa()));
@@ -74,6 +80,10 @@ public class EscolaTOBuilder {
 		if(p.getInstituicao() != null) {
 			retorno.setInstituicao(new InstituicaoTO());
 			retorno.getInstituicao().setId(p.getInstituicao().getId());
+		}
+		if(p.getUsuarioSistema() != null) {
+			retorno.setUsuarioSistema(new UsuariosSistemaTO());
+			retorno.getUsuarioSistema().setId(p.getUsuarioSistema().getIdUsuario());
 		}
 		if(p.getRegiaoAdministrativa() != null) {
 			retorno.setRegiaoAdministrativa(regiaoAdministrativaTOBuilder.buildTO(p.getRegiaoAdministrativa()));

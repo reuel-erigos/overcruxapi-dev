@@ -75,5 +75,10 @@ public class RegiaoAdministrativaService {
 	public void excluir(@PathVariable(name = "id") Long id) {
 		excluirCmd.excluir(id);
 	}
+	
+	@GetMapping("/combo")
+	public List<RegiaoAdministrativaTO> getAllCombo() {
+		return getCmd.getAllCombo();
+	}
 
 }

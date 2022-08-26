@@ -8,17 +8,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import br.com.crux.builder.EscolaTOBuilder;
 import br.com.crux.dao.repository.EscolaRepository;
 import br.com.crux.dao.spec.EscolaSpec;
 import br.com.crux.entity.Escola;
-import br.com.crux.entity.Escola;
 import br.com.crux.exception.NotFoundException;
 import br.com.crux.to.EscolaTO;
-import br.com.crux.to.EscolaTO;
-import br.com.crux.to.filtro.FiltroEscolaTO;
 import br.com.crux.to.filtro.FiltroEscolaTO;
 
 @Component

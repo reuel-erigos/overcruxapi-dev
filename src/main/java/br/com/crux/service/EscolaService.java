@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.crux.cmd.AlterarEscolaCmd;
+import br.com.crux.cmd.CadastrarEscolaCmd;
+import br.com.crux.cmd.ExcluirEscolaCmd;
 import br.com.crux.cmd.GetEscolaCmd;
-import br.com.crux.to.EscolaTO;
 import br.com.crux.to.EscolaTO;
 import br.com.crux.to.filtro.FiltroEscolaTO;
 
@@ -30,6 +32,15 @@ public class EscolaService {
 	
 	@Autowired
 	private GetEscolaCmd getCmd;
+	
+	@Autowired
+	private ExcluirEscolaCmd  excluirCmd;
+
+	@Autowired
+	private AlterarEscolaCmd alterarCmd;
+	
+	@Autowired
+	private CadastrarEscolaCmd cadastrarCmd;
 	
 	@GetMapping(path = "/dados/combo/{tipo}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<EscolaTO> getAllAlunosByCombo(@PathVariable(name = "tipo") String tipo) {
@@ -50,21 +61,21 @@ public class EscolaService {
 		return getCmd.getTOById(id);
 	}
 	
-//	@PostMapping(path = "", consumes = MediaType.APPLICATION_JSON_VALUE)
-//	@Transactional
-//	public void cadastrar(@RequestBody EscolaTO param) {
-//		cadastrarCmd.cadastrar(param);
-//	}
-//	
-//	@PutMapping(path = "", consumes = MediaType.APPLICATION_JSON_VALUE)
-//	@Transactional
-//	public void alterar(@RequestBody EscolaTO param) {
-//		alterarCmd.alterar(param);
-//	}
-//	
-//	@DeleteMapping(path = "/{id}")
-//	public void excluir(@PathVariable(name = "id") Long id) {
-//		excluirCmd.excluir(id);
-//	}
+	@PostMapping(path = "", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@Transactional
+	public void cadastrar(@RequestBody EscolaTO param) {
+		cadastrarCmd.cadastrar(param);
+	}
+	
+	@PutMapping(path = "", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@Transactional
+	public void alterar(@RequestBody EscolaTO param) {
+		alterarCmd.alterar(param);
+	}
+	
+	@DeleteMapping(path = "/{id}")
+	public void excluir(@PathVariable(name = "id") Long id) {
+		excluirCmd.excluir(id);
+	}
 	
 }
