@@ -13,6 +13,7 @@ import br.com.crux.dao.repository.UnidadeRepository;
 import br.com.crux.entity.Arquivo;
 import br.com.crux.entity.ArquivoMetadado;
 import br.com.crux.entity.Unidade;
+import br.com.crux.enums.TipoArquivoMetadado;
 
 @Component
 public class GravarArquivoUnidadeCmd {
@@ -35,6 +36,7 @@ public class GravarArquivoUnidadeCmd {
 		}
 		
 		arquivo = arquivoRepository.save(arquivo);
+		arquivo.getMetadados().setTipo(TipoArquivoMetadado.LOGOMARCA_UNIDADE.getCodigo());
 		ArquivoMetadado metadado = arquivoMetadadosRepository.save(arquivo.getMetadados());
 
 		unidade.setArquivoMetadados(metadado);
