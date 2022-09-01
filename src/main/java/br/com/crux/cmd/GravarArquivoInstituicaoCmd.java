@@ -13,6 +13,7 @@ import br.com.crux.dao.repository.InstituicaoRepository;
 import br.com.crux.entity.Arquivo;
 import br.com.crux.entity.ArquivoMetadado;
 import br.com.crux.entity.Instituicao;
+import br.com.crux.enums.TipoArquivoMetadado;
 
 @Component
 public class GravarArquivoInstituicaoCmd {
@@ -24,7 +25,7 @@ public class GravarArquivoInstituicaoCmd {
 	@Autowired private ArquivoMetadadosRepository arquivoMetadadosRepository;
 	
 
-	public void gravar(MultipartFile file, Long idInstituicao) {
+	public void gravar(MultipartFile file, Long idInstituicao, String tipo) {
 		Instituicao instituicao = getInstituicaoCmd.getById(idInstituicao);
 		
 		Arquivo arquivo = null;		
@@ -36,6 +37,11 @@ public class GravarArquivoInstituicaoCmd {
 		}
 		
 		arquivo = arquivoRepository.save(arquivo);
+		if(tipo == null) {
+			arquivo.getMetadados().setTipo(TipoArquivoMetadado.LOGOMARCA_INSTITUICAO.getCodigo());
+		} else {
+			arquivo.getMetadados().setTipo(tipo);
+		}
 		ArquivoMetadado metadado = arquivoMetadadosRepository.save(arquivo.getMetadados());
 
 		instituicao.setArquivoMetadado(metadado);
