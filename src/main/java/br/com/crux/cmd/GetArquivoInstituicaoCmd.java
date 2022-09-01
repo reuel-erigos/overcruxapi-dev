@@ -58,4 +58,17 @@ public class GetArquivoInstituicaoCmd {
 		final Page<ArquivoMetadadoTO> pageDataTO = new PageImpl<ArquivoMetadadoTO>(listTO, pageable, pageData.getTotalElements());
 		return pageDataTO;
 	}
+
+	public byte[] getIdArquivo(Long id) {
+		if (Objects.isNull(id)) {
+			throw new ParametroNaoInformadoException("Erro ao buscar o arquivo, parâmetro não informado no resource.");
+		}
+
+		Optional<Arquivo> arquivo = arquivoRepository.findByIdMetadados(id);
+		if (!arquivo.isPresent()) {
+			return null;
+		}
+
+		return arquivo.get().getBlob();
+	}
 }

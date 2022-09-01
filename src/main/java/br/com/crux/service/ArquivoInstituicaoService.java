@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,8 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.com.crux.cmd.ArquivoCmd;
-import br.com.crux.cmd.GetUnidadeLogadaCmd;
+import br.com.crux.cmd.ExcluirArquivoInstituicaoCmd;
+import br.com.crux.cmd.GetArquivoCmd;
 import br.com.crux.to.ArquivoMetadadoTO;
+import br.com.crux.to.ArquivoTO;
 import br.com.crux.to.filtro.FiltroArquivoTO;
 
 @RestController
@@ -30,8 +33,11 @@ public class ArquivoInstituicaoService {
 	@Autowired
 	private ArquivoCmd arquivoCmd;
 	
+	@Autowired
+	private GetArquivoCmd getArquivoCmd;
+	
 	@Autowired 
-	private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
+	private ExcluirArquivoInstituicaoCmd excluirArquivoInstituicaoCmd;
 
 
 	@PostMapping("/paged/filtro")
@@ -70,12 +76,26 @@ public class ArquivoInstituicaoService {
 	public byte[] getPorUnidade(@PathVariable(name = "id") Long id) {
 		return arquivoCmd.getArquivoPorInstituicao(id);
 	}
+	
+	@GetMapping(path = "/byte/arquivo/{id}")
+	public byte[] getBytePorIdArquivo(@PathVariable(name = "id") Long id) {
+		return arquivoCmd.getArquivoPorIdArquivo(id);
+	}
+	
+	@GetMapping(path = "/id/{id}")
+	public ArquivoTO getPorId(@PathVariable(name = "id") Long id) {
+		return getArquivoCmd.getDados(id);
+	}
 
 	@PostMapping(path = "/instituicao/tipo/{tipo}")
 	public void gravarComIdInstituicao(@PathVariable(name = "tipo") String tipo,
 			@RequestParam(name = "file") MultipartFile file) {
 		arquivoCmd.salvarComIdInstituicao(file, tipo);
 	}
-
+	
+	@DeleteMapping(path = "/{id}")
+	public void excluir(@PathVariable(name = "id") Long id) {
+		excluirArquivoInstituicaoCmd.excluirPorIdMetadado(id);
+	}
 
 }

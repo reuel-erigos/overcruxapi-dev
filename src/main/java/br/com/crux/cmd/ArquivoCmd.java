@@ -61,6 +61,10 @@ public class ArquivoCmd {
 	public Page<ArquivoMetadadoTO> listFilteredAndPaged(FiltroArquivoTO filtro, Pageable pageable) {
 		return getArquivoInstituicaoCmd.listFilteredAndPaged(filtro, pageable);
 	}
+
+	public byte[] getArquivoPorIdArquivo(Long id) {
+		return getArquivoInstituicaoCmd.getIdArquivo(id);
+	}
 	
 
 }
