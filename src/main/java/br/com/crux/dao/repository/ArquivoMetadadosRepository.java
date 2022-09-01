@@ -9,5 +9,5 @@ import br.com.crux.entity.ArquivoMetadado;
 @Repository
 public interface ArquivoMetadadosRepository extends JpaRepository<ArquivoMetadado, Long>, JpaSpecificationExecutor<ArquivoMetadado> {
 
-
+	ArquivoMetadado findByIdInstituicaoAndTipo(Long idInstituicao, String tipo);
 }

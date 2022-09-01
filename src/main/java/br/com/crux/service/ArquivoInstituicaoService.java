@@ -19,9 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.com.crux.cmd.ArquivoCmd;
-import br.com.crux.to.AlunoTO;
+import br.com.crux.cmd.GetUnidadeLogadaCmd;
 import br.com.crux.to.ArquivoMetadadoTO;
-import br.com.crux.to.filtro.FiltroAlunoTO;
 import br.com.crux.to.filtro.FiltroArquivoTO;
 
 @RestController
@@ -30,6 +29,10 @@ public class ArquivoInstituicaoService {
 
 	@Autowired
 	private ArquivoCmd arquivoCmd;
+	
+	@Autowired 
+	private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
+
 
 	@PostMapping("/paged/filtro")
 	public Page<ArquivoMetadadoTO> filterPagedPost(@RequestBody FiltroArquivoTO filtro,
@@ -48,14 +51,14 @@ public class ArquivoInstituicaoService {
 	@PostMapping(path = "/instituicao/{id}")
 	public void gravarComIdInstituicao(@PathVariable(name = "id") Long id,
 			@RequestParam(name = "file") MultipartFile file) {
-		arquivoCmd.salvarComIdInstituicao(file, id, null);
+		arquivoCmd.salvarComIdInstituicao(file, id);
 	}
 
 	@PutMapping(path = "/instituicao/{id}")
 	@Transactional
 	public void alterarComIdInstituicao(@PathVariable(name = "id") Long id,
 			@RequestParam(name = "file") MultipartFile file) {
-		arquivoCmd.alterarArquivoInstituicao(file, id, null);
+		arquivoCmd.alterarArquivoInstituicao(file, id);
 	}
 
 	@PutMapping(path = "")
@@ -68,17 +71,11 @@ public class ArquivoInstituicaoService {
 		return arquivoCmd.getArquivoPorInstituicao(id);
 	}
 
-	@PostMapping(path = "/instituicao/{id}/{tipo}")
-	public void gravarComIdInstituicao(@PathVariable(name = "id") Long id, @PathVariable(name = "tipo") String tipo,
+	@PostMapping(path = "/instituicao/tipo/{tipo}")
+	public void gravarComIdInstituicao(@PathVariable(name = "tipo") String tipo,
 			@RequestParam(name = "file") MultipartFile file) {
-		arquivoCmd.salvarComIdInstituicao(file, id, tipo);
+		arquivoCmd.salvarComIdInstituicao(file, tipo);
 	}
 
-	@PutMapping(path = "/instituicao/{id}/{tipo}")
-	@Transactional
-	public void alterarComIdInstituicao(@PathVariable(name = "id") Long id, @PathVariable(name = "tipo") String tipo,
-			@RequestParam(name = "file") MultipartFile file) {
-		arquivoCmd.alterarArquivoInstituicao(file, id, tipo);
-	}
 
 }
