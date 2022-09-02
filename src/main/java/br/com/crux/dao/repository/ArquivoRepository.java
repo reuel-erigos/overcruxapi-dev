@@ -21,6 +21,11 @@ public interface ArquivoRepository extends JpaRepository<Arquivo, Long> {
 				 + " inner join ArquivoMetadado am on am = a.metadados "
 				 + " where am.id = ?1                                  ")
 	public Optional<Arquivo> findByIdMetadados(Long idMetadados);
+	
+	@Query(value = "SELECT a FROM Arquivo a                            "
+			 + " inner join ArquivoMetadado am on am = a.metadados "
+			 + " where am.idInstituicao = ?1 and am.tipo = ?2          ")
+	public Optional<Arquivo> findByInstituicaoTipo(Long idInstituicao, String tipo);
 
 
 }

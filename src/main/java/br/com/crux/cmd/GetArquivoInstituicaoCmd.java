@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import br.com.crux.builder.ArquivoMetadadosTOBuilder;
 import br.com.crux.dao.repository.ArquivoMetadadosRepository;
@@ -71,4 +72,18 @@ public class GetArquivoInstituicaoCmd {
 
 		return arquivo.get().getBlob();
 	}
+	
+	public byte[] getInstituicaoTipo(Long idInstituicao, String tipo) {
+		if (Objects.isNull(idInstituicao) || StringUtils.isEmpty(tipo)) {
+			throw new ParametroNaoInformadoException("Erro ao buscar o arquivo, parâmetro não informado no resource.");
+		}
+
+		Optional<Arquivo> arquivo = arquivoRepository.findByInstituicaoTipo(idInstituicao, tipo);
+		if (!arquivo.isPresent()) {
+			return null;
+		}
+
+		return arquivo.get().getBlob();
+	}
+
 }

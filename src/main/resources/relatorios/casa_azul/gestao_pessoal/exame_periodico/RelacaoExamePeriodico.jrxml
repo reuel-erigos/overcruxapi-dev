@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<!-- Created with Jaspersoft Studio version 6.18.1.final using JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelacaoExamePeriodico" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" isTitleNewPage="true" uuid="834ad189-7b77-460b-af4d-f3e68c98ad0b">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="S3Manager-DEV"/>
@@ -8,8 +8,10 @@
 	<parameter name="P_PATH_ROOT" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["C:/desenvolvimento/apps/jaspersoftstudio_workspace/S3Manager"]]></defaultValueExpression>
 	</parameter>
+	<parameter name="P_RODAPE" class="java.io.InputStream"/>
+	<parameter name="P_CABECALHO" class="java.io.InputStream"/>
 	<queryString language="SQL">
-		<![CDATA[  select id_pessoa_fisica as "idPessoaFisica",
+		<![CDATA[select id_pessoa_fisica as "idPessoaFisica",
          id_unidade as "idUnidade",
          cd_unidade as "codigoUnidade",
          nm_unidade as "nomeUnidade",
@@ -51,11 +53,11 @@
 	</background>
 	<pageHeader>
 		<band height="145" splitType="Stretch">
-			<image scaleImage="FillFrame" hAlign="Center">
+			<image scaleImage="FillFrame" hAlign="Center" onErrorType="Blank">
 				<reportElement x="-20" y="-20" width="595" height="140" uuid="fe3627a4-7863-4119-8553-36897ac034c1">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
-				<imageExpression><![CDATA[$P{P_PATH_ROOT} +"/header_relatorio_casa_azul.PNG"]]></imageExpression>
+				<imageExpression><![CDATA[$P{P_CABECALHO}]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement mode="Transparent" x="-21" y="120" width="596" height="25" backcolor="#D1CDCD" uuid="e9414093-c702-4481-9354-025d55840a67">
@@ -146,12 +148,12 @@
 	<columnFooter>
 		<band height="80">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
-			<image scaleImage="FillFrame" hAlign="Center" vAlign="Bottom">
+			<image scaleImage="FillFrame" hAlign="Center" vAlign="Bottom" onErrorType="Blank">
 				<reportElement x="-20" y="25" width="595" height="54" uuid="d7d0c8df-d5ac-446c-8d57-a0ec46b96ffe">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
-				<imageExpression><![CDATA[$P{P_PATH_ROOT} + "/rodape_relatorio_casa_azul.PNG"]]></imageExpression>
+				<imageExpression><![CDATA[$P{P_RODAPE}]]></imageExpression>
 			</image>
 			<textField>
 				<reportElement x="456" y="7" width="68" height="14" uuid="5f02d6b3-815b-4af5-afe4-26db2a3a44d6">

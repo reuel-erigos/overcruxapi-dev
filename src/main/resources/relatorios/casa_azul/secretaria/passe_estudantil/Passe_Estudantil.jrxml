@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<!-- Created with Jaspersoft Studio version 6.18.1.final using JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PasseEstudantil" pageWidth="595" pageHeight="842" whenNoDataType="BlankPage" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isTitleNewPage="true" isSummaryNewPage="true" uuid="834ad189-7b77-460b-af4d-f3e68c98ad0b">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="S3Manager-DEV"/>
@@ -9,6 +9,8 @@
 		<defaultValueExpression><![CDATA["C:/desenvolvimento/apps/jaspersoftstudio_workspace/S3Manager"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="P_NOME_USUARIO_LOGADO" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="P_RODAPE" class="java.io.InputStream"/>
+	<parameter name="P_CABECALHO" class="java.io.InputStream"/>
 	<queryString language="SQL">
 		<![CDATA[select                                              
 id_aluno                                as "idAluno"                      ,   
@@ -202,11 +204,11 @@ from vw_relatorio_declaracao_passe_estudantil]]>
 	</background>
 	<pageHeader>
 		<band height="120" splitType="Stretch">
-			<image scaleImage="FillFrame" hAlign="Center">
+			<image scaleImage="FillFrame" hAlign="Center" onErrorType="Blank">
 				<reportElement x="2" y="2" width="590" height="95" uuid="fe3627a4-7863-4119-8553-36897ac034c1">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
-				<imageExpression><![CDATA[$P{P_PATH_ROOT} +"/header_relatorio_casa_azul.PNG"]]></imageExpression>
+				<imageExpression><![CDATA[$P{P_CABECALHO}]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="145" y="99" width="286" height="20" uuid="3dc5097b-9300-4fd7-9af6-1cb83378874a">
@@ -760,12 +762,12 @@ from vw_relatorio_declaracao_passe_estudantil]]>
 	</detail>
 	<columnFooter>
 		<band height="60">
-			<image scaleImage="FillFrame" hAlign="Center" vAlign="Bottom">
+			<image scaleImage="FillFrame" hAlign="Center" vAlign="Bottom" onErrorType="Blank">
 				<reportElement x="1" y="4" width="592" height="54" uuid="d7d0c8df-d5ac-446c-8d57-a0ec46b96ffe">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
-				<imageExpression><![CDATA[$P{P_PATH_ROOT} + "/rodape_relatorio_casa_azul.PNG"]]></imageExpression>
+				<imageExpression><![CDATA[$P{P_RODAPE}]]></imageExpression>
 			</image>
 		</band>
 	</columnFooter>
