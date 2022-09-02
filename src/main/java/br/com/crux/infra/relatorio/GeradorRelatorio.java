@@ -1,5 +1,6 @@
 package br.com.crux.infra.relatorio;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -16,7 +17,10 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
 
+import br.com.crux.cmd.GetArquivoInstituicaoCmd;
+import br.com.crux.cmd.GetUnidadeLogadaCmd;
 import br.com.crux.cmd.GetUsuarioLogadoCmd;
+import br.com.crux.enums.TipoArquivoMetadado;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -37,6 +41,10 @@ public class GeradorRelatorio {
 	private ResourceLoader resourceLoader;
 	@Autowired
 	private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
+	@Autowired
+	private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
+	@Autowired
+	private GetArquivoInstituicaoCmd getArquivoInstituicaoCmd;
 	
 	
 	/**
@@ -53,6 +61,10 @@ public class GeradorRelatorio {
 	 */
 	@SuppressWarnings({ "rawtypes" })
 	public byte[] gerar(Map<String, Object> parametros, List<?> dados, String nomeRelatorio, String[] path, String mimeType) throws Exception {
+		byte[] cabecalho = getArquivoInstituicaoCmd.getInstituicaoTipo(getUnidadeLogadaCmd.getUnidadeTOSimplificado().getInstituicao().getId(), TipoArquivoMetadado.CABECALHO_RELATORIO.getCodigo());
+		byte[] rodape = getArquivoInstituicaoCmd.getInstituicaoTipo(getUnidadeLogadaCmd.getUnidadeTOSimplificado().getInstituicao().getId(), TipoArquivoMetadado.RODAPE_RELATORIO.getCodigo());
+		
+		
 		TipoRelatorio tipoRelatorio = TipoRelatorio.getPorTipo(mimeType);	
 		
 		String pathCompleto = String.join(File.separator, path);
@@ -61,6 +73,16 @@ public class GeradorRelatorio {
 		parametros.put("P_PATH_ROOT", "relatorios"+File.separator+path[0]);
 		parametros.put("P_NOME_USUARIO_LOGADO", getUsuarioLogadoCmd.getUsuarioLogado().getNomeUsuario());
 		parametros.put("REPORT_LOCALE", new Locale("pt","BR"));
+		if(cabecalho != null) { 
+			parametros.put("P_CABECALHO", new ByteArrayInputStream(cabecalho));
+		} else {
+			parametros.put("P_CABECALHO", null);
+		}
+		if(rodape != null) { 
+			parametros.put("P_RODAPE", new ByteArrayInputStream(rodape));
+		} else {
+			parametros.put("P_RODAPE", null);
+		}
 		parametros.put("REPORT_TIME_ZONE", TimeZone.getTimeZone("America/Sao_Paulo"));
 		
 		byte[] toReturn = null;

@@ -2,6 +2,7 @@ package br.com.crux.dao.spec;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -15,6 +16,7 @@ import org.springframework.util.StringUtils;
 
 import br.com.crux.entity.Aluno;
 import br.com.crux.entity.PessoaFisica;
+import br.com.crux.entity.Unidade;
 import br.com.crux.to.filtro.FiltroAlunoTO;
 
 @Component
@@ -40,11 +42,15 @@ public class AlunoSpec{
 					Join<Aluno, PessoaFisica> join = root.join("pessoasFisica");
 					predicates.add(cb.equal(join.get("cpf"), criteria.getCpf().toUpperCase()));
 				}
-				if(criteria.getDataInicioEntradaInstituicao() != null) {
+				if(Objects.nonNull(criteria.getDataInicioEntradaInstituicao())) {
 					predicates.add(cb.greaterThanOrEqualTo(root.get("dataEntrada"), criteria.getDataInicioEntradaInstituicao()));
 				}
-				if(criteria.getDataFimEntradaInstituicao() != null) {
+				if(Objects.nonNull(criteria.getDataFimEntradaInstituicao())) {
 					predicates.add(cb.lessThanOrEqualTo(root.get("dataDesligamento"), criteria.getDataFimEntradaInstituicao()));
+				}
+				if(Objects.nonNull(criteria.getIdUnidade())) {
+					Join<Aluno, Unidade> join = root.join("unidade");
+					predicates.add(cb.equal(join.get("idUnidade"), criteria.getIdUnidade()));
 				}
 				return cb.and(predicates.toArray(new Predicate[] {}));
 			}

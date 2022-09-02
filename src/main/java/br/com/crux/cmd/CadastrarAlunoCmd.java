@@ -14,7 +14,6 @@ import br.com.crux.entity.Aluno;
 import br.com.crux.rule.CamposObrigatoriosAlunoRule;
 import br.com.crux.rule.ValidarDuplicidadeCPFRule;
 import br.com.crux.to.AlunoTO;
-import br.com.crux.to.FamiliaresTO;
 import br.com.crux.to.ResponsaveisAlunoTO;
 
 @Component
@@ -29,7 +28,6 @@ public class CadastrarAlunoCmd {
 	@Autowired private CadastrarEncaminhaAlunosCmd cadastrarEncaminhaAlunosCmd;
 	@Autowired private CadastrarBeneficioSocialPessoaFisicaCmd cadastrarBeneficiosSociaisPFCmd;
 	@Autowired private CadastrarFamiliaresCmd cadastrarFamiliaresCmd;
-	@Autowired private CadastrarResponsaveisAlunoCmd cadastrarResponsaveisAlunoCmd;
 	@Autowired private ValidarDuplicidadeCPFRule validarDuplicidadeCPFRule ;
 	
 	

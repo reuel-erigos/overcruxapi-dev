@@ -19,57 +19,55 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.crux.cmd.AlterarEscolaCmd;
-import br.com.crux.cmd.CadastrarEscolaCmd;
-import br.com.crux.cmd.ExcluirEscolaCmd;
-import br.com.crux.cmd.GetEscolaCmd;
-import br.com.crux.to.EscolaTO;
-import br.com.crux.to.filtro.FiltroEscolaTO;
+import br.com.crux.cmd.AlterarRegiaoAdministrativaCmd;
+import br.com.crux.cmd.CadastrarRegiaoAdministrativaCmd;
+import br.com.crux.cmd.ExcluirRegiaoAdministrativaCmd;
+import br.com.crux.cmd.GetRegiaoAdministrativaCmd;
+import br.com.crux.to.RegiaoAdministrativaTO;
+import br.com.crux.to.filtro.FiltroRegiaoAdministrativaTO;
 
 @RestController
-@RequestMapping(value = "escola")
-public class EscolaService {
+@RequestMapping(value = "regiaoadministrativa")
+public class RegiaoAdministrativaService {
 	
 	@Autowired
-	private GetEscolaCmd getCmd;
-	
+	private GetRegiaoAdministrativaCmd getCmd;
 	@Autowired
-	private ExcluirEscolaCmd  excluirCmd;
-
+	private ExcluirRegiaoAdministrativaCmd  excluirCmd;
 	@Autowired
-	private AlterarEscolaCmd alterarCmd;
-	
+	private AlterarRegiaoAdministrativaCmd alterarCmd;
 	@Autowired
-	private CadastrarEscolaCmd cadastrarCmd;
-	
-	@GetMapping(path = "/dados/combo/{tipo}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<EscolaTO> getAllAlunosByCombo(@PathVariable(name = "tipo") String tipo) {
-		return getCmd.getAllEscolasByCombo(tipo);
-	}
+	private CadastrarRegiaoAdministrativaCmd cadastrarCmd;
 	
 	@PostMapping("/paged/filtro")
-	public Page<EscolaTO> filterPagedPost(@RequestBody FiltroEscolaTO filtro,
+	public Page<RegiaoAdministrativaTO> filterPagedPost(@RequestBody FiltroRegiaoAdministrativaTO filtro,
 			@RequestHeader("page") int page, @RequestHeader("pageSize") int pageSize) {
 
 		final Pageable pageable = PageRequest.of(page, pageSize, Direction.ASC, "nome");
-		final Page<EscolaTO> pageData = getCmd.listFilteredAndPaged(filtro, pageable);
+		final Page<RegiaoAdministrativaTO> pageData = getCmd.listFilteredAndPaged(filtro, pageable);
 		return pageData;
 	}
 
+	
+	@GetMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<RegiaoAdministrativaTO> getAll() {
+		return getCmd.getAll();
+	}
+	
 	@GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public EscolaTO getById(@PathVariable(name = "id") Long id) {
+	public RegiaoAdministrativaTO getById(@PathVariable(name = "id") Long id) {
 		return getCmd.getTOById(id);
 	}
 	
 	@PostMapping(path = "", consumes = MediaType.APPLICATION_JSON_VALUE)
 	@Transactional
-	public void cadastrar(@RequestBody EscolaTO param) {
+	public void cadastrar(@RequestBody RegiaoAdministrativaTO param) {
 		cadastrarCmd.cadastrar(param);
 	}
 	
 	@PutMapping(path = "", consumes = MediaType.APPLICATION_JSON_VALUE)
 	@Transactional
-	public void alterar(@RequestBody EscolaTO param) {
+	public void alterar(@RequestBody RegiaoAdministrativaTO param) {
 		alterarCmd.alterar(param);
 	}
 	
@@ -78,4 +76,9 @@ public class EscolaService {
 		excluirCmd.excluir(id);
 	}
 	
+	@GetMapping("/combo")
+	public List<RegiaoAdministrativaTO> getAllCombo() {
+		return getCmd.getAllCombo();
+	}
+
 }

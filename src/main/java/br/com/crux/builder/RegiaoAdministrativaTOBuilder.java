@@ -38,4 +38,9 @@ public class RegiaoAdministrativaTOBuilder {
 				.collect(Collectors.toList());
 	}
 
+	public List<RegiaoAdministrativaTO> buildAllCombo(List<RegiaoAdministrativa> dtos) {
+		return dtos.stream()
+				.map(dto -> buildTO(dto))
+				.collect(Collectors.toList());
+	}
 }

@@ -23,8 +23,8 @@ public class RegiaoAdministrativa implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sq_id_ra")
-	@SequenceGenerator(name = "sq_id_ra", sequenceName = "sq_id_ra", schema = Constantes.SCHEMA_PUBLIC, initialValue = 1, allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sq_id_regiao_adm")
+	@SequenceGenerator(name = "sq_id_regiao_adm", sequenceName = "sq_id_regiao_adm", schema = Constantes.SCHEMA_PUBLIC, initialValue = 1, allocationSize = 1)
 	@Column(name="id_ra", unique=true, nullable=false, precision=10)
 	private Long id;
 

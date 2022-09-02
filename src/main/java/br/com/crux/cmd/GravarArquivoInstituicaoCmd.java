@@ -13,6 +13,8 @@ import br.com.crux.dao.repository.InstituicaoRepository;
 import br.com.crux.entity.Arquivo;
 import br.com.crux.entity.ArquivoMetadado;
 import br.com.crux.entity.Instituicao;
+import br.com.crux.enums.TipoArquivoMetadado;
+import br.com.crux.exception.base.NegocioException;
 
 @Component
 public class GravarArquivoInstituicaoCmd {
@@ -36,9 +38,23 @@ public class GravarArquivoInstituicaoCmd {
 		}
 		
 		arquivo = arquivoRepository.save(arquivo);
+		arquivo.getMetadados().setTipo(TipoArquivoMetadado.LOGOMARCA_INSTITUICAO.getCodigo());
 		ArquivoMetadado metadado = arquivoMetadadosRepository.save(arquivo.getMetadados());
 
 		instituicao.setArquivoMetadado(metadado);
 		repository.save(instituicao);
 	}
+	
+	public void gravar(MultipartFile file, String tipo) {
+		Arquivo arquivo = arquivoBuilder.build(file);
+		ArquivoMetadado recuperado =  arquivoMetadadosRepository.findByIdInstituicaoAndTipo(arquivo.getMetadados().getIdInstituicao(), tipo);
+		if(recuperado != null) {
+			throw new NegocioException("Imagem já cadastrada para o tipo informado.");
+		}
+		arquivo.getMetadados().setTipo(tipo);
+		ArquivoMetadado metadado = arquivoMetadadosRepository.save(arquivo.getMetadados());
+		arquivo.setMetadados(metadado);
+		arquivo = arquivoRepository.save(arquivo);
+	}
+
 }

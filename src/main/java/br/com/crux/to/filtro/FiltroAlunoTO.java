@@ -20,6 +20,7 @@ public class FiltroAlunoTO {
 	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
 	private LocalDateTime dataFimEntradaInstituicao;
 	
+	private Long idUnidade;
 
 	public String getBeneficiario() {
 		return beneficiario;
@@ -59,6 +60,14 @@ public class FiltroAlunoTO {
 
 	public void setDataFimEntradaInstituicao(LocalDateTime dataFimEntradaInstituicao) {
 		this.dataFimEntradaInstituicao = dataFimEntradaInstituicao;
+	}
+
+	public Long getIdUnidade() {
+		return idUnidade;
+	}
+
+	public void setIdUnidade(Long idUnidade) {
+		this.idUnidade = idUnidade;
 	}
 	
 	

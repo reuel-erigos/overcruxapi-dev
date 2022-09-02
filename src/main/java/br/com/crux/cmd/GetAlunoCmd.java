@@ -65,6 +65,7 @@ public class GetAlunoCmd {
 	
 	@Transactional(readOnly = true)
 	public Page<AlunoTO> listFilteredAndPaged(FiltroAlunoTO filtro, Pageable pageable) {
+		filtro.setIdUnidade(getUnidadeLogadaCmd.getUnidadeTOSimplificado().getIdUnidade());
 		Page<Aluno> pageData = repository.findAll(AlunoSpec.findByCriteria(filtro), pageable);
 		final List<AlunoTO> listTO = new ArrayList<AlunoTO>();
 		pageData.getContent().forEach(tipoMeta -> listTO.add(toBuilder.toDTOList(tipoMeta)));
