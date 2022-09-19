@@ -23,7 +23,6 @@ public class ResponsaveisAlunoTOBuilder {
 
 		retorno.setId(p.getId());
 		retorno.setDescDesligamento(p.getDescDesligamento());
-		retorno.setDescGrauParentesco(p.getDescGrauParentesco());
 		retorno.setDataDesvinculacao(p.getDataDesvinculacao());
 		retorno.setDataVinculacao(p.getDataVinculacao());
 		retorno.setMesmoEnderResponsavel(p.getMesmoEnderResponsavel());
@@ -46,7 +45,6 @@ public class ResponsaveisAlunoTOBuilder {
 		
 		retorno.setId(p.getId());
 		retorno.setDescDesligamento(p.getDescDesligamento());
-		retorno.setDescGrauParentesco(p.getDescGrauParentesco());
 		retorno.setDataDesvinculacao(p.getDataDesvinculacao());
 		retorno.setDataVinculacao(p.getDataVinculacao());
 		retorno.setMesmoEnderResponsavel(p.getMesmoEnderResponsavel());

@@ -35,9 +35,6 @@ public class ResponsaveisAluno  {
 	@Column(name="ds_desligamento")
 	private String descDesligamento;
 
-	@Column(name="ds_grau_parentesco")
-	private String descGrauParentesco;
-
 	@Column(name="dt_desvinculacao")
 	private LocalDateTime dataDesvinculacao;
 
@@ -70,8 +67,6 @@ public class ResponsaveisAluno  {
 	@Convert(converter = SimNaoConverter.class)
 	private Boolean responsavelFinanceiroPeloAluno;
 	
-	
-
 	public ResponsaveisAluno() {
 	}
 
@@ -89,14 +84,6 @@ public class ResponsaveisAluno  {
 
 	public void setDescDesligamento(String descDesligamento) {
 		this.descDesligamento = descDesligamento;
-	}
-
-	public String getDescGrauParentesco() {
-		return descGrauParentesco;
-	}
-
-	public void setDescGrauParentesco(String descGrauParentesco) {
-		this.descGrauParentesco = descGrauParentesco;
 	}
 
 	public LocalDateTime getDataDesvinculacao() {

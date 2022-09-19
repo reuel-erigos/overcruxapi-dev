@@ -10,7 +10,6 @@ public class ResponsaveisAlunoTO {
 
 	private Long id;
 	private String descDesligamento;
-	private String descGrauParentesco;
 
 	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class) private LocalDateTime dataDesvinculacao;
 	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class) private LocalDateTime dataVinculacao;
@@ -43,14 +42,6 @@ public class ResponsaveisAlunoTO {
 
 	public void setDescDesligamento(String descDesligamento) {
 		this.descDesligamento = descDesligamento;
-	}
-
-	public String getDescGrauParentesco() {
-		return descGrauParentesco;
-	}
-
-	public void setDescGrauParentesco(String descGrauParentesco) {
-		this.descGrauParentesco = descGrauParentesco;
 	}
 
 	public LocalDateTime getDataDesvinculacao() {

@@ -31,6 +31,8 @@ public class FamiliarResponsavelTO {
 	private Boolean tutelaAluno;
 	private Boolean responsavelFinanceiroPeloAluno;
 	
+	private GrausParentescoTO grauParentesco;
+	
 	public FamiliarResponsavelTO() {
 	}
 
@@ -136,6 +138,14 @@ public class FamiliarResponsavelTO {
 
 	public void setResponsavelFinanceiroPeloAluno(Boolean responsavelFinanceiroPeloAluno) {
 		this.responsavelFinanceiroPeloAluno = responsavelFinanceiroPeloAluno;
+	}
+
+	public GrausParentescoTO getGrauParentesco() {
+		return grauParentesco;
+	}
+
+	public void setGrauParentesco(GrausParentescoTO grauParentesco) {
+		this.grauParentesco = grauParentesco;
 	}
 
 	
