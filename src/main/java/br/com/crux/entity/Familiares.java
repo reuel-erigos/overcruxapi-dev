@@ -37,9 +37,6 @@ public class Familiares {
 	@Column(name="dt_cadastro")
 	private LocalDateTime dataCadastro;
 
-	@Column(name="ds_grau_parentesco")
-	private String descGrauParentesco;
-
 	//Classificador da situação do grau de parentesco (E = ESTREMECIDO; I = INTERROMPIDO; X = INEXISTENTE)
 	@Column(name="st_situacao_parentesco")
 	@Type(type = "br.com.crux.infra.dao.GenericEnumUserType", 
@@ -67,6 +64,9 @@ public class Familiares {
 	@Column(name="id_usuario_apl")
 	private Long usuarioAlteracao;
 
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="id_grau_parentesco")
+	private GrausParentesco grauParentesco;
 	
 	public Familiares() {
 	}
@@ -85,14 +85,6 @@ public class Familiares {
 
 	public void setDataCadastro(LocalDateTime dataCadastro) {
 		this.dataCadastro = dataCadastro;
-	}
-
-	public String getDescGrauParentesco() {
-		return descGrauParentesco;
-	}
-
-	public void setDescGrauParentesco(String descGrauParentesco) {
-		this.descGrauParentesco = descGrauParentesco;
 	}
 
 	public SituacaoParentesco getSituacaoParentesco() {
@@ -151,5 +143,12 @@ public class Familiares {
 		this.usuarioAlteracao = usuariosSistema;
 	}
 
-	
+	public GrausParentesco getGrauParentesco() {
+		return grauParentesco;
+	}
+
+	public void setGrauParentesco(GrausParentesco grauParentesco) {
+		this.grauParentesco = grauParentesco;
+	}
+
 }

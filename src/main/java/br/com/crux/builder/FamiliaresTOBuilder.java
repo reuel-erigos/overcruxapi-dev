@@ -27,16 +27,17 @@ public class FamiliaresTOBuilder {
 
 	@Autowired private AlunoTOBuilder alunoBuilder;
 	@Autowired private PessoaFisicaTOBuilder pessoaFisicaBuilder;
+	@Autowired private GrausParentescoTOBuilder grausParentescoTOBuilder;
 	@Autowired private GetResponsaveisAlunoCmd getResponsaveisAlunoCmd;
 	@Autowired private GetVulnerabilidadesFamiliarCmd getVulnerabilidadesFamiliarCmd;
 	@Autowired private GetBeneficioSocialPessoaFisicaCmd getBeneficioSocialPessoaFisicaCmd;
+	
 	
 	
 	public Familiares build(FamiliaresTO p) {
 		Familiares retorno = new Familiares();
 
 		retorno.setId(p.getId());
-		retorno.setDescGrauParentesco(p.getDescGrauParentesco());
 		
 		if( StringUtils.isNoneEmpty(p.getSituacaoParentesco())) {
 			SituacaoParentesco porTipo = SituacaoParentesco.getPorTipo(p.getSituacaoParentesco());
@@ -50,6 +51,9 @@ public class FamiliaresTOBuilder {
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
 		retorno.setDataCadastro(p.getDataCadastro());
 		retorno.setDataDesligamento(p.getDataDesligamento());
+		if(Objects.nonNull(p.getGrauParentesco()) && Objects.nonNull(p.getGrauParentesco().getId())) {
+			retorno.setGrauParentesco(grausParentescoTOBuilder.build(p.getGrauParentesco()));
+		}
 		
 		return retorno;
 	}
@@ -65,6 +69,10 @@ public class FamiliaresTOBuilder {
 		}
 		if(Objects.nonNull(p.getId())) {
 			retorno.getPessoasFisica().setBeneficiosSociaisPessoaFisica(getBeneficioSocialPessoaFisicaCmd.getAllPorPessoaFisicaTO(p.getPessoasFisica().getId()));
+		}
+		
+		if(Objects.nonNull(p.getGrauParentesco()) && Objects.nonNull(p.getGrauParentesco().getId())) {
+			retorno.setGrauParentesco(grausParentescoTOBuilder.buildTO(p.getGrauParentesco()));
 		}
 		
 		retorno.getPessoasFisica().setValorRenda(calcularValorTotal(retorno.getPessoasFisica()));
@@ -89,11 +97,14 @@ public class FamiliaresTOBuilder {
 		}
 		
 		retorno.setId(p.getId());
-		retorno.setDescGrauParentesco(p.getDescGrauParentesco());
 		
 		if(Objects.nonNull(p.getSituacaoParentesco())) {
 			SituacaoParentesco porTipo = SituacaoParentesco.getPorTipo(p.getSituacaoParentesco().getTipo());
 			retorno.setSituacaoParentesco(porTipo.getTipo());
+		}
+		
+		if(!Objects.isNull(p.getGrauParentesco()) && !Objects.isNull(p.getGrauParentesco().getId())) {
+			retorno.setGrauParentesco(grausParentescoTOBuilder.buildTO(p.getGrauParentesco()));
 		}
 		
 		retorno.setDescOutrasInformacoes(p.getDescOutrasInformacoes());
@@ -112,7 +123,6 @@ public class FamiliaresTOBuilder {
 		FamiliarResponsavelTO retorno = new FamiliarResponsavelTO();
 		
 		retorno.setId(p.getId());
-		retorno.setDescGrauParentesco(p.getDescGrauParentesco());
 		
 		if(Objects.nonNull(p.getSituacaoParentesco())) {
 			SituacaoParentesco porTipo = SituacaoParentesco.getPorTipo(p.getSituacaoParentesco().getTipo());
@@ -128,6 +138,9 @@ public class FamiliaresTOBuilder {
 		retorno.setDataDesligamento(p.getDataDesligamento());
 		if(Objects.nonNull(retorno.getPessoasFisica().getId())) {
 			retorno.getPessoasFisica().setBeneficiosSociaisPessoaFisica(getBeneficioSocialPessoaFisicaCmd.getAllPorPessoaFisicaTO(p.getPessoasFisica().getId()));
+		}
+		if(!Objects.isNull(p.getGrauParentesco()) && !Objects.isNull(p.getGrauParentesco().getId())) {
+			retorno.setGrauParentesco(grausParentescoTOBuilder.buildTO(p.getGrauParentesco()));
 		}
 		retorno.getPessoasFisica().setValorRenda(calcularValorTotal(retorno.getPessoasFisica()));
 

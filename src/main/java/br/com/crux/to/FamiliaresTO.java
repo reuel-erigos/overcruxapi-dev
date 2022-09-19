@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import br.com.crux.entity.GrausParentesco;
 import br.com.crux.infra.adapter.LocalDateTimeAdapter;
 
 
@@ -15,7 +16,6 @@ import br.com.crux.infra.adapter.LocalDateTimeAdapter;
 public class FamiliaresTO {
 
 	private Long               id;
-	private String             descGrauParentesco;
 	private String             situacaoParentesco;
 	private String             descOutrasInformacoes;
 	private String             descDesligamento;
@@ -31,6 +31,8 @@ public class FamiliaresTO {
 
 	private List<ResponsaveisAlunoTO> responsaveis;
 	private List<VulnerabilidadesFamiliarTO> vulnerabilidades;
+	
+	private GrausParentescoTO grauParentesco;
 	
 	
 	public FamiliaresTO() {
@@ -50,14 +52,6 @@ public class FamiliaresTO {
 
 	public void setDataCadastro(LocalDateTime dataCadastro) {
 		this.dataCadastro = dataCadastro;
-	}
-
-	public String getDescGrauParentesco() {
-		return descGrauParentesco;
-	}
-
-	public void setDescGrauParentesco(String descGrauParentesco) {
-		this.descGrauParentesco = descGrauParentesco;
 	}
 
 	public String getSituacaoParentesco() {
@@ -132,7 +126,14 @@ public class FamiliaresTO {
 	public void setVulnerabilidades(List<VulnerabilidadesFamiliarTO> vulnerabilidades) {
 		this.vulnerabilidades = vulnerabilidades;
 	}
-	
+
+	public GrausParentescoTO getGrauParentesco() {
+		return grauParentesco;
+	}
+
+	public void setGrauParentesco(GrausParentescoTO grauParentesco) {
+		this.grauParentesco = grauParentesco;
+	}
 	
 	
 }
