@@ -48,14 +48,16 @@ public class FichaMatriculaDTO {
 	private String     nisResponsavel;
 	private String     temProblemaSaude;
 	private String     tomaMedicamentosControlados;
-	
-	
+	private String     matricula;
+	private String     telefoneRecado;
+	private String     foneCelular2;
+	private String     foneCelular3;
+	private String     email;
+	private String     emailResponsavel;
 
 	public FichaMatriculaDTO() {
 	}
 	
-	
-
 	public FichaMatriculaDTO(Object[] colunas) {
 		this.idPessoaFisica                  = (colunas[0] != null)? ((BigDecimal)colunas[0]).longValue() : null;    
 		this.nome                            = (String) colunas[1];
@@ -99,7 +101,12 @@ public class FichaMatriculaDTO {
 		this.nisResponsavel                  = (String) colunas[39];
 		this.temProblemaSaude                = (String) colunas[40];
 		this.tomaMedicamentosControlados     = (String) colunas[41];
-
+		this.matricula					     = (String) colunas[42];
+		this.telefoneRecado			         = (String) colunas[43];
+		this.foneCelular2			         = (String) colunas[44];
+		this.foneCelular3			         = (String) colunas[45];
+		this.email			         		 = (String) colunas[46];
+		this.emailResponsavel			     = (String) colunas[47];
 	}
 
 	public Long getIdPessoaFisica() {
@@ -436,6 +443,54 @@ public class FichaMatriculaDTO {
 
 	public void setTomaMedicamentosControlados(String tomaMedicamentosControlados) {
 		this.tomaMedicamentosControlados = tomaMedicamentosControlados;
+	}
+
+	public String getMatricula() {
+		return matricula;
+	}
+
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
+	}
+
+	public String getTelefoneRecado() {
+		return telefoneRecado;
+	}
+
+	public void setTelefoneRecado(String telefoneRecado) {
+		this.telefoneRecado = telefoneRecado;
+	}
+
+	public String getFoneCelular2() {
+		return foneCelular2;
+	}
+
+	public void setFoneCelular2(String foneCelular2) {
+		this.foneCelular2 = foneCelular2;
+	}
+
+	public String getFoneCelular3() {
+		return foneCelular3;
+	}
+
+	public void setFoneCelular3(String foneCelular3) {
+		this.foneCelular3 = foneCelular3;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getEmailResponsavel() {
+		return emailResponsavel;
+	}
+
+	public void setEmailResponsavel(String emailResponsavel) {
+		this.emailResponsavel = emailResponsavel;
 	}
 }
 

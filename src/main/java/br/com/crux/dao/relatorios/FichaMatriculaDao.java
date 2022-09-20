@@ -60,7 +60,13 @@ public class FichaMatriculaDao extends BaseDao{
 		sql.append("       nr_nis                        , ");
 		sql.append("       nis_responsavel               , ");
 		sql.append("       st_problema_saude             , ");
-		sql.append("       st_medicamentos_controlados     ");
+		sql.append("       st_medicamentos_controlados   , ");
+		sql.append("       nr_matricula_aluno            , ");
+		sql.append("       nr_fone_recado_aluno          , ");
+		sql.append("       nr_fone_celular_2_aluno       , ");
+		sql.append("       nr_fone_celular_3_aluno       , ");
+		sql.append("       ds_email_aluno                , ");
+		sql.append("       ds_email_responsavel            ");
 		sql.append("  from vw_relatorio_ficha_cadastral    ");
 		sql.append(" where id_pessoa_fisica in (");
 		sql.append(String.join(", ", listaIdsPessoaFisica.stream().map(String::valueOf).collect(Collectors.toList())));
