@@ -138,4 +138,20 @@ public class TurmasTOBuilder {
 		return dtos.stream().map(this::buildTO).collect(Collectors.toList());
 	}
 
+	public List<TurmasTO> buildAllCombo(List<Turmas> dtos) {
+		return dtos.stream().map(this::buildComboTO).collect(Collectors.toList());
+	}
+	
+	public TurmasTO buildComboTO(Turmas param) { 
+		TurmasTO retorno = new TurmasTO();
+
+		if (Objects.isNull(param)) {
+			return retorno;
+		}
+
+		retorno.setId(param.getId());
+		retorno.setDescricao(param.getDescricao());
+		return retorno;
+	}
+
 }

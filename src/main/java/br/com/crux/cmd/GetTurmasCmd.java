@@ -59,5 +59,15 @@ public class GetTurmasCmd {
 	public Turmas getById(Long id) {
 		return repository.findById(id).orElseGet(null);
 	}
+
+	public List<TurmasTO> getAllCombo() {
+		Long idUnidade = getUnidadeLogadaCmd.getUnidadeTO().getIdUnidade();
+		Optional<List<Turmas>> entitys = repository.findAllByIdUnidade(idUnidade);
+		if (entitys.isPresent()) {
+			return toBuilder.buildAllCombo(entitys.get());
+		}
+		return new ArrayList<TurmasTO>();
+	}
+	
 			
 }

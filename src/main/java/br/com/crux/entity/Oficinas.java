@@ -92,6 +92,10 @@ public class Oficinas implements Serializable {
 
 	@Column(name = "id_turma")
 	private Long idTurma;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="id_turma", updatable = false, insertable = false)
+	private Turmas turma;
 
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_tipo_atividade")

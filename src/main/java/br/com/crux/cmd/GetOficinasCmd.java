@@ -92,5 +92,15 @@ public class GetOficinasCmd {
 		Long idPresente = Optional.ofNullable(id).orElseThrow(() -> new ParametroNaoInformadoException("Parâmetro ID ausente."));
 		return repository.findById(idPresente).orElseThrow(()-> new NotFoundException("Atividade não encontrada."));
 	}
-			
+		
+	
+	public List<OficinasTO> getAllCombo() {
+		Long idUnidade = getUnidadeLogadaCmd.getUnidadeTO().getIdUnidade();
+		Optional<List<Oficinas>> entitys = repository.findByIdUnidade(idUnidade);
+		if (entitys.isPresent()) {
+			return toBuilder.buildAllCombo(entitys.get());
+		}
+		return new ArrayList<OficinasTO>();
+	}
+
 }

@@ -6,13 +6,19 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.crux.builder.AlunosTurmaTOBuilder;
 import br.com.crux.dao.repository.AlunosTurmaRepository;
+import br.com.crux.dao.spec.AlunoTurmaSpec;
 import br.com.crux.entity.AlunosTurma;
 import br.com.crux.exception.NotFoundException;
 import br.com.crux.to.AlunosTurmaTO;
+import br.com.crux.to.filtro.FiltroAlunoTurmaTO;
 
 @Component
 public class GetAlunosTurmaCmd {
@@ -44,5 +50,13 @@ public class GetAlunosTurmaCmd {
 		return repository.findById(id).orElseGet(null);
 	}
 
-
+	@Transactional(readOnly = true)
+	public Page<AlunosTurmaTO> listFilteredAndPaged(FiltroAlunoTurmaTO filtro, Pageable pageable) {
+		filtro.setIdInstituicao(getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId());
+		Page<AlunosTurma> pageData = repository.findAll(AlunoTurmaSpec.findByCriteria(filtro), pageable);
+		final List<AlunosTurmaTO> listTO = new ArrayList<AlunosTurmaTO>();
+		pageData.getContent().forEach(item -> listTO.add(toBuilder.toDTOList(item)));
+		final Page<AlunosTurmaTO> pageDataTO = new PageImpl<AlunosTurmaTO>(listTO, pageable, pageData.getTotalElements());
+		return pageDataTO;
+	}
 }
