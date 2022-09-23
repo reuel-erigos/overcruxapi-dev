@@ -176,4 +176,20 @@ public class OficinasTOBuilder {
 				.collect(Collectors.toList());
 	}
 
+	public List<OficinasTO> buildAllCombo(List<Oficinas> dtos) {
+		return dtos.stream().map(this::buildComboTO).collect(Collectors.toList());
+	}
+	
+	public OficinasTO buildComboTO(Oficinas param) { 
+		OficinasTO retorno = new OficinasTO();
+
+		if (Objects.isNull(param)) {
+			return retorno;
+		}
+
+		retorno.setId(param.getId());
+		retorno.setDescricao(param.getDescricao());
+		retorno.setIdTurma(param.getIdTurma());
+		return retorno;
+	}
 }

@@ -156,4 +156,5 @@ public class GetAtividadesAlunoCmd {
 
 		return toBuilder.buildAll(entitys.get());
 	}
+
 }

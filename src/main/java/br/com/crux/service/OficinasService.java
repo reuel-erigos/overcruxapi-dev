@@ -73,4 +73,8 @@ public class OficinasService {
 		excluirCmd.excluir(id);
 	}
 
+	@GetMapping(path = "/combo", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<OficinasTO> getAllCombo() {
+		return getCmd.getAllCombo();
+	}
 }

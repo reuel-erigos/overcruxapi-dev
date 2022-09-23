@@ -66,4 +66,8 @@ public class TurmasService {
 		excluirCmd.excluir(id);
 	}
 
+	@GetMapping(path = "/combo", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<TurmasTO> getAllCombo() {
+		return getCmd.getAllCombo();
+	}
 }

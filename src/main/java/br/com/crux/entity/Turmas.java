@@ -1,6 +1,7 @@
 package br.com.crux.entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -67,7 +69,9 @@ public class Turmas  {
 	@JoinColumn(name="id_unidade")
 	private Unidade unidade;
 
-
+	@OneToMany(fetch=FetchType.LAZY, mappedBy = "turma")
+	private List<Oficinas> atividades;
+	
 	//M = MATUTINO, V = VESPERTINO, N = NOTURNO, O = OUTRO
 	@Column(name = "cs_turno")
 	private String turno;
@@ -220,6 +224,13 @@ public class Turmas  {
 		this.usuarioAlteracao = usuarioAlteracao;
 	}
 
-	
+	public List<Oficinas> getAtividades() {
+		return atividades;
+	}
+
+	public void setAtividades(List<Oficinas> atividades) {
+		this.atividades = atividades;
+	}
+
 	
 }
