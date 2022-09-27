@@ -37,13 +37,13 @@ public class CadastrarAlunosTurmaCmd {
 		
 		List<AtividadesAlunoTO> atividadesTO = new ArrayList<AtividadesAlunoTO>();
 		
-		if(Objects.nonNull(to.getTurma().getOficinas())) {
-			to.getTurma().getOficinas().stream().forEach(oficinaTO -> {
+		if(Objects.nonNull(to.getOficinas())) {
+			to.getOficinas().stream().forEach(oficinaTO -> {
 				AtividadesAlunoTO atividadeTO = new AtividadesAlunoTO();
 				
 				atividadeTO.setId(null);
 				atividadeTO.setAluno(to.getAluno());
-				atividadeTO.setAtividade(oficinaTO);
+				atividadeTO.setAtividade(oficinaTO.getAtividade());
 				atividadeTO.setDataAlteracaoAtividade(LocalDateTime.now());
 				atividadeTO.setDataCadastroAtividade(LocalDateTime.now());
 				atividadeTO.setDataDesvinculacao(to.getDataDesvinculacao());
