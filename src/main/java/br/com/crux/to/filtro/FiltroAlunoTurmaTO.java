@@ -11,6 +11,8 @@ public class FiltroAlunoTurmaTO {
 	private Long idTurma;
 	
 	private Long idInstituicao;
+	
+	private Long idUnidade;
 
 	public String getBeneficiario() {
 		return beneficiario;
@@ -50,6 +52,14 @@ public class FiltroAlunoTurmaTO {
 
 	public void setIdInstituicao(Long idInstituicao) {
 		this.idInstituicao = idInstituicao;
+	}
+
+	public Long getIdUnidade() {
+		return idUnidade;
+	}
+
+	public void setIdUnidade(Long idUnidade) {
+		this.idUnidade = idUnidade;
 	}
 
 }

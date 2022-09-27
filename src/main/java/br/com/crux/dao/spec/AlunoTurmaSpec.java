@@ -53,11 +53,10 @@ public class AlunoTurmaSpec{
 					Join<Turmas, Oficinas> joinOficinas = join.join("atividades");
 					predicates.add(cb.equal(joinOficinas.get("id"), criteria.getIdOficina()));
 				}
-				if(Objects.nonNull(criteria.getIdInstituicao())) {
-					Join<AlunosTurma, Turmas> join = root.join("turma");
-					Join<Turmas, Unidade> joinUnidade = join.join("unidade");
-					Join<Unidade, Instituicao> joinInstituicao = joinUnidade.join("instituicao");
-					predicates.add(cb.equal(joinInstituicao.get("id"), criteria.getIdInstituicao()));
+				if(Objects.nonNull(criteria.getIdUnidade())) {
+					Join<AlunosTurma, Aluno> join = root.join("aluno");
+					Join<Aluno, Unidade> joinUnidade = join.join("unidade");
+					predicates.add(cb.equal(joinUnidade.get("idUnidade"), criteria.getIdUnidade()));
 				}
 				return cb.and(predicates.toArray(new Predicate[] {}));
 			}
