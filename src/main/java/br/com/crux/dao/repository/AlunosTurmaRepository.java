@@ -29,4 +29,6 @@ public interface AlunosTurmaRepository extends JpaRepository<AlunosTurma, Long>,
 			+ " order by t.descricao, aluno.pessoasFisica.nome, t.dataInicioTurma ")
 	public Optional<List<AlunosTurma>> filter(Long idTurma, Long idAluno, Long idAtividade, Long idInstituicao);
 	
+	public List<AlunosTurma> findByAlunoId(Long idAluno);
+	
 }

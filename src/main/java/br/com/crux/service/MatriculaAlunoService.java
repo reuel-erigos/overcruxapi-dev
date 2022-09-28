@@ -79,4 +79,8 @@ public class MatriculaAlunoService {
 		return pageData;
 	}
 
+	@GetMapping(path = "/aluno/{idAluno}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<AlunosTurmaTO> getByAluno(@PathVariable(name = "idAluno") Long idAluno) {
+		return getCmd.getTOByAluno(idAluno);
+	}
 }

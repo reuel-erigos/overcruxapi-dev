@@ -76,6 +76,8 @@ public class AlunoTO {
 	
 	private List<AtividadesAlunoTO> atividades;
 	
+	private List<AlunosTurmaTO> matriculas;
+	
 	public AlunoTO() {
 	}
 	
@@ -422,7 +424,14 @@ public class AlunoTO {
 
 	public void setDataEncaminhamento(LocalDateTime dataEncaminhamento) {
 		this.dataEncaminhamento = dataEncaminhamento;
+	}
+
+	public List<AlunosTurmaTO> getMatriculas() {
+		return matriculas;
+	}
+
+	public void setMatriculas(List<AlunosTurmaTO> matriculas) {
+		this.matriculas = matriculas;
 	}	
-	
 	
 }

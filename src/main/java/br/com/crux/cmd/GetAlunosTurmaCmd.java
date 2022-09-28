@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import br.com.crux.builder.AlunosTurmaTOBuilder;
 import br.com.crux.dao.repository.AlunosTurmaRepository;
@@ -52,11 +53,21 @@ public class GetAlunosTurmaCmd {
 
 	@Transactional(readOnly = true)
 	public Page<AlunosTurmaTO> listFilteredAndPaged(FiltroAlunoTurmaTO filtro, Pageable pageable) {
-		filtro.setIdInstituicao(getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId());
+		filtro.setIdUnidade(getUnidadeLogadaCmd.getUnidadeTO().getIdUnidade());
 		Page<AlunosTurma> pageData = repository.findAll(AlunoTurmaSpec.findByCriteria(filtro), pageable);
 		final List<AlunosTurmaTO> listTO = new ArrayList<AlunosTurmaTO>();
 		pageData.getContent().forEach(item -> listTO.add(toBuilder.toDTOList(item)));
 		final Page<AlunosTurmaTO> pageDataTO = new PageImpl<AlunosTurmaTO>(listTO, pageable, pageData.getTotalElements());
 		return pageDataTO;
+	}
+
+
+
+	public List<AlunosTurmaTO> getTOByAluno(Long idAluno) {
+		List<AlunosTurma> list = repository.findByAlunoId(idAluno);
+		if(!CollectionUtils.isEmpty(list)) {
+			return toBuilder.buildAll(list);
+		}
+		return null;
 	}
 }

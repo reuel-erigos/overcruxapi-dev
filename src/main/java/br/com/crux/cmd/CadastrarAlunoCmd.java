@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 
 import br.com.crux.builder.AlunoTOBuilder;
 import br.com.crux.dao.repository.AlunoRepository;
@@ -28,6 +29,7 @@ public class CadastrarAlunoCmd {
 	@Autowired private CadastrarEncaminhaAlunosCmd cadastrarEncaminhaAlunosCmd;
 	@Autowired private CadastrarBeneficioSocialPessoaFisicaCmd cadastrarBeneficiosSociaisPFCmd;
 	@Autowired private CadastrarFamiliaresCmd cadastrarFamiliaresCmd;
+	@Autowired private CadastrarAlunosTurmaCmd cadastrarAlunosTurmaCmd;
 	@Autowired private ValidarDuplicidadeCPFRule validarDuplicidadeCPFRule ;
 	
 	
@@ -49,6 +51,14 @@ public class CadastrarAlunoCmd {
 		cadastrarEncaminhaAlunosCmd.cadastrarLista(alunoTOSalvo, to.getEncaminhamentos());
 
 		cadastrarBeneficiosSociaisPFCmd.cadastrarLista(entity.getPessoasFisica(), to.getBenefeciosSociaisPessoaFisica());
+		
+		if(!CollectionUtils.isEmpty(to.getMatriculas())) {
+			to.getMatriculas().stream().forEach(matricula -> {
+				matricula.setAluno(alunoTOSalvo);
+				cadastrarAlunosTurmaCmd.cadastrar(matricula);
+			});
+			
+		}
 		
 		if(!Objects.isNull(to.getFamiliar())) {
 			to.getFamiliar().setAluno(alunoTOSalvo);
