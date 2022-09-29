@@ -7,10 +7,14 @@ import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 
 import br.com.crux.builder.AlunoTOBuilder;
+import br.com.crux.builder.AtividadesAlunoTOBuilder;
 import br.com.crux.dao.repository.AlunoRepository;
 import br.com.crux.entity.Aluno;
+import br.com.crux.entity.AtividadesAluno;
+import br.com.crux.entity.Oficinas;
 import br.com.crux.entity.PessoaFisica;
 import br.com.crux.exception.NotFoundException;
 import br.com.crux.infra.constantes.TipoRelatorioBeneficiario;
@@ -31,6 +35,7 @@ public class AlterarAlunoCmd {
 	@Autowired private AlunoRepository repository;
 	@Autowired private CamposObrigatoriosAlunoRule camposObrigatoriosRule;
 	@Autowired private AlunoTOBuilder alunoTOBuilder;
+	@Autowired private AtividadesAlunoTOBuilder atividadesAlunoTOBuilder;
 	@Autowired private AlterarPessoaFisicaCmd alterarPessoaFisicaCmd;
 	@Autowired private AlterarVulnerabilidadesAlunoCmd alterarVulnerabilidadesAlunoCmd;
 	@Autowired private AlterarListaEncaminhamentoAlunosCmd alterarListaEncaminhamentoAlunosCmd;
@@ -40,8 +45,10 @@ public class AlterarAlunoCmd {
 	@Autowired private CadastrarFamiliaresCmd cadastrarFamiliaresCmd;
 	@Autowired private CadastrarResponsaveisAlunoCmd cadastrarResponsaveisAlunoCmd;
 	@Autowired private CadastrarBeneficioSocialPessoaFisicaCmd cadastrarBeneficiosSociaisPFCmd;
+	@Autowired private CadastrarAlunosTurmaCmd cadastrarAlunosTurmaCmd;
+	@Autowired private CadastrarAtividadesAlunoCmd cadastrarAtividadesAlunoCmd;
 	@Autowired private AlterarUniformesAlunoCmd alterarUniformesAlunoCmd;
-	@Autowired private ValidarDuplicidadeCPFRule validarDuplicidadeCPFRule ;
+	@Autowired private ValidarDuplicidadeCPFRule validarDuplicidadeCPFRule;
 	
 	public AlunoTO alterar(AlunoTO alunoTO) {
 		camposObrigatoriosRule.verificar(alunoTO);
@@ -101,8 +108,26 @@ public class AlterarAlunoCmd {
 		
 		
 		Aluno alunoSalvo = repository.save(aluno);
+		AlunoTO alunoSalvoTO = alunoTOBuilder.buildTO(alunoSalvo);
 		
-		return alunoTOBuilder.buildTO(alunoSalvo);
+		if(!CollectionUtils.isEmpty(alunoTO.getMatriculas())) {
+			alunoTO.getMatriculas().stream().forEach(matricula -> {
+				if(matricula.getId() == null) {
+					matricula.setAluno(alunoSalvoTO);
+					cadastrarAlunosTurmaCmd.cadastrar(matricula);
+				} else {
+					matricula.getOficinas().forEach(oficinaTO -> {
+						if(oficinaTO.getId() == null) {
+							oficinaTO.setAluno(alunoSalvoTO);
+							cadastrarAtividadesAlunoCmd.cadastrar(oficinaTO);
+						}
+					});
+				}
+			});
+			
+		}
+		
+		return alunoSalvoTO;
 	}
 	
 	
