@@ -19,6 +19,7 @@ import br.com.crux.cmd.CadastrarProjetoCmd;
 import br.com.crux.cmd.ExcluirProjetoCmd;
 import br.com.crux.cmd.GetProjetoCmd;
 import br.com.crux.to.ComboProjetoTO;
+import br.com.crux.to.ProgramaTO;
 import br.com.crux.to.ProjetoTO;
 
 @RestController
@@ -30,6 +31,11 @@ public class ProjetoService {
 	@Autowired private AlterarProjetoCmd alterarCmd;
 	@Autowired private CadastrarProjetoCmd cadastrarCmd;
 	
+	
+	@GetMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<ProjetoTO> getAll() {
+		return getCmd.getAll();
+	}
 	
 	@GetMapping(path = "/dados/combo", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<ComboProjetoTO> getAllCombo() {
