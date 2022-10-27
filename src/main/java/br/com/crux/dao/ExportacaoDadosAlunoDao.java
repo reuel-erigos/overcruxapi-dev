@@ -1,6 +1,6 @@
 package br.com.crux.dao;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -15,20 +15,18 @@ import br.com.crux.dao.base.BaseDao;
 import br.com.crux.dao.dto.ExportacaoDadosAlunoDTO;
 import br.com.crux.dao.dto.ExportarDadosBeneficiarioDTO;
 import br.com.crux.infra.util.Java8DateUtil;
-import br.com.crux.infra.util.NumeroUtil;
 
 @Component
 public class ExportacaoDadosAlunoDao extends BaseDao{
 	
 	
-	public Optional<List<ExportacaoDadosAlunoDTO>> getAllFilter(String cpf, Long idBeneficiario, Long idMae, Long idPai, Long idPrograma,
-														        Long idProjeto, Long idUnidade, Long idResponsavel, 
-														        LocalDate dataInicioEntradaInstituicao, LocalDate dataFimEntradaInstituicao, 
-														        LocalDate dataInicioVigenciaInstituicao, LocalDate dataFimVigenciaInstituicao,
-														        Long idInstituicao){
+	public Optional<List<ExportacaoDadosAlunoDTO>> getAllFilter(String cpf, String beneficiario, String nomeMae, String nomePai, Long idPrograma,
+														        Long idProjeto, Long idUnidade, LocalDateTime dataInicioEntradaInstituicao, LocalDateTime dataFimEntradaInstituicao, 
+														        LocalDateTime dataInicioVigenciaInstituicao, LocalDateTime dataFimVigenciaInstituicao,
+														        Long idInstituicao, Boolean ativo){
 		StringBuilder sql = new StringBuilder();
 		
-		sql.append(" select p.id_pessoa_fisica,                                                                             ");
+		sql.append(" select distinct(p.id_pessoa_fisica),                                                                             ");
 		sql.append("        a.id_aluno,                                                                                     ");
 		sql.append("        a.nr_matricula_aluno,                                                                           ");
 		sql.append("        p.nm_pessoa_fisica,                                                                             ");
@@ -46,8 +44,6 @@ public class ExportacaoDadosAlunoDao extends BaseDao{
         sql.append("        a.dt_desligamento                                                                               ");
 		sql.append("    from pessoas_fisicas p                                                                              ");
 		sql.append("      inner join alunos a on p.id_pessoa_fisica = a.id_pessoa_fisica                                    ");
-		sql.append("      left join pessoas_fisicas pfm on pfm.id_pessoa_fisica = a.id_pessoa_fisica                        ");
-		sql.append("      left join pessoas_fisicas pfp on pfp.id_pessoa_fisica = a.id_pessoa_fisica                        ");
 		sql.append("      left join programas poa on poa.id_programa = a.id_programa                                        ");
 		sql.append("      left join projetos pra on pra.id_projeto = a.id_projeto                                           ");
 		sql.append("      left join alunos_turma at on at.id_aluno = a.id_aluno                                             ");
@@ -75,16 +71,16 @@ public class ExportacaoDadosAlunoDao extends BaseDao{
 		}
 
 		
-		if(Objects.nonNull(idBeneficiario)) {
-			sql.append("  and :p_id_aluno = a.id_aluno                            ");
+		if(StringUtils.isNotEmpty(beneficiario)) {
+			sql.append("  and upper(p.nm_pessoa_fisica) like upper(:p_aluno)                             ");
 		}
 		
-		if(Objects.nonNull(idMae)) {
-			sql.append("  and :p_id_pessoa_fisica_mae = pfm.id_pessoa_fisica               ");
+		if(StringUtils.isNotEmpty(nomeMae)) {
+			sql.append("  and upper(p.nm_mae) like upper(:p_pessoa_fisica_mae)                             ");
 		}
 		
-		if(Objects.nonNull(idPai)) {
-			sql.append("  and :p_id_pessoa_fisica_pai = pfp.id_pessoa_fisica               ");
+		if(StringUtils.isNotEmpty(nomePai)) {
+			sql.append("  and upper(p.nm_pai) like upper(:p_pessoa_fisica_pai)                             ");
 		}
 		
 		if(Objects.nonNull(idPrograma)) {
@@ -98,7 +94,10 @@ public class ExportacaoDadosAlunoDao extends BaseDao{
 		if(Objects.nonNull(idUnidade)) {
 			sql.append("  and :p_id_unidade = u.id_unidade  ");
 		}
-		
+
+		if(Objects.nonNull(ativo)) {
+			sql.append("  and :p_ativo = a.st_ativo  ");
+		}
 		
 		sql.append(" order by p.nm_pessoa_fisica, p.nm_mae  ");
 		
@@ -107,35 +106,32 @@ public class ExportacaoDadosAlunoDao extends BaseDao{
 		query.setParameter("idInstituicao", idInstituicao);
 		
 		if(StringUtils.isNotEmpty(cpf)) {
-			query.setParameter("p_nr_cpf", NumeroUtil.extrairNumerosMatches(cpf));
+			query.setParameter("p_nr_cpf", cpf.replace(".", "").replace("-", ""));
 		}
 		
 		if(Objects.nonNull(dataInicioEntradaInstituicao)) {
-			query.setParameter("p_dt_inicio_entrada", Java8DateUtil.getLocalDateFormater(dataInicioEntradaInstituicao));
+			query.setParameter("p_dt_inicio_entrada", Java8DateUtil.getLocalDateFormater(dataInicioEntradaInstituicao.toLocalDate()));
 		}
 		
 		if(Objects.nonNull(dataFimEntradaInstituicao)) {
-			query.setParameter("p_dt_fim_entrada", Java8DateUtil.getLocalDateFormater(dataFimEntradaInstituicao));
+			query.setParameter("p_dt_fim_entrada", Java8DateUtil.getLocalDateFormater(dataFimEntradaInstituicao.toLocalDate()));
 		}
 				
-		if(Objects.nonNull(dataInicioVigenciaInstituicao)) {
-			query.setParameter("p_dt_inicio_vigencia", Java8DateUtil.getLocalDateFormater(dataInicioVigenciaInstituicao));
+		if(Objects.nonNull(dataInicioVigenciaInstituicao) && Objects.nonNull(dataFimVigenciaInstituicao)) {
+			query.setParameter("p_dt_inicio_vigencia", Java8DateUtil.getLocalDateFormater(dataInicioVigenciaInstituicao.toLocalDate()));
+			query.setParameter("p_dt_fim_vigencia", Java8DateUtil.getLocalDateFormater(dataFimVigenciaInstituicao.toLocalDate()));
 		}
 		
-		if(Objects.nonNull(dataFimVigenciaInstituicao)) {
-			query.setParameter("p_dt_fim_vigencia", Java8DateUtil.getLocalDateFormater(dataFimVigenciaInstituicao));
+		if(StringUtils.isNotEmpty(beneficiario)) {
+			query.setParameter("p_aluno", beneficiario+"%");
 		}
 		
-		if(Objects.nonNull(idBeneficiario)) {
-			query.setParameter("p_id_aluno", idBeneficiario);
-		}
-		
-		if(Objects.nonNull(idMae)) {
-			query.setParameter("p_id_pessoa_fisica_mae", idMae);
+		if(StringUtils.isNotEmpty(nomeMae)) {
+			query.setParameter("p_pessoa_fisica_mae", nomeMae+"%");
 		}
 
-		if(Objects.nonNull(idPai)) {
-			query.setParameter("p_id_pessoa_fisica_pai", idPai);
+		if(StringUtils.isNotEmpty(nomePai)) {
+			query.setParameter("p_pessoa_fisica_pai", nomePai+"%");
 		}
 		
 		if(Objects.nonNull(idPrograma)) {
@@ -148,6 +144,14 @@ public class ExportacaoDadosAlunoDao extends BaseDao{
 
 		if(Objects.nonNull(idUnidade)) {
 			query.setParameter("p_id_unidade", idUnidade);
+		}
+		
+		if(Objects.nonNull(ativo)) {
+			if(ativo) {
+				query.setParameter("p_ativo", "S");
+			} else {
+				query.setParameter("p_ativo", "N");
+			}
 		}
 
 		

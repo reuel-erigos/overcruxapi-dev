@@ -16,6 +16,7 @@ import br.com.crux.dao.ExportacaoDadosAlunoDao;
 import br.com.crux.dao.dto.ExportacaoDadosAlunoDTO;
 import br.com.crux.infra.util.Java8DateUtil;
 import br.com.crux.to.ExportacaoDadosAlunoTO;
+import br.com.crux.to.filtro.FiltroExportacaoTO;
 
 @Component
 public class GetExportacaoDadosAlunoCmd {
@@ -48,13 +49,13 @@ public class GetExportacaoDadosAlunoCmd {
 		idProjeto       = Objects.isNull(idProjeto) ? null : idProjeto;
 		idUnidade       = Objects.isNull(idUnidade) ? null : idUnidade;
 		idResponsavel   = Objects.isNull(idResponsavel) ? null : idResponsavel;		
-
-		entitys = dao.getAllFilter(cpf, idBeneficiario, idMae, idPai, 
-				                   idPrograma, idProjeto, idUnidade, 
-				                   idResponsavel, 
-				                   pDataInicioEntradaInstituicao, pDataFimEntradaInstituicao,
-				                   pDataInicioVigenciaInstituicao, pDataFimVigenciaInstituicao,
-				                   idInstituicao);
+//
+//		entitys = dao.getAllFilter(cpf, idBeneficiario, idMae, idPai, 
+//				                   idPrograma, idProjeto, idUnidade, 
+//				                   idResponsavel, 
+//				                   pDataInicioEntradaInstituicao, pDataFimEntradaInstituicao,
+//				                   pDataInicioVigenciaInstituicao, pDataFimVigenciaInstituicao,
+//				                   idInstituicao);
 
 		if (entitys.isPresent()) {
 			List<ExportacaoDadosAlunoTO> saldos = toBuilder.buildAllDTO(entitys.get());
@@ -63,6 +64,26 @@ public class GetExportacaoDadosAlunoCmd {
 
 		return new ArrayList<ExportacaoDadosAlunoTO>();
 		
+	}
+
+
+	public List<ExportacaoDadosAlunoTO> getAllFilter(FiltroExportacaoTO filtro) {
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTOSimplificado().getInstituicao().getId();
+
+		Optional<List<ExportacaoDadosAlunoDTO>> entitys = Optional.empty();
+
+		entitys = dao.getAllFilter(filtro.getCpfAluno(), filtro.getBeneficiario(), filtro.getMaeAluno(), filtro.getPaiAluno(), 
+				filtro.getPrograma(), filtro.getProjeto(), filtro.getUnidade(),
+				                   filtro.getDataInicioEntradaInstituicao(), filtro.getDataFimEntradaInstituicao(),
+				                   filtro.getDataInicioVigenciaInstituicao(), filtro.getDataFimVigenciaInstituicao(),
+				                   idInstituicao, filtro.getAtivo());
+
+		if (entitys.isPresent()) {
+			List<ExportacaoDadosAlunoTO> saldos = toBuilder.buildAllDTO(entitys.get());
+			return saldos;
+		}
+
+		return new ArrayList<ExportacaoDadosAlunoTO>();
 	}
 	
 	
