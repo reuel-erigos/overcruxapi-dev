@@ -50,7 +50,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>5.2.9.Final</version> <!-- Necessário informar a versão por causa da Classe GenericEnumUserType -->
+			<version>5.3.20.Final</version> <!-- Necessário informar a versão por causa da Classe GenericEnumUserType -->
 		</dependency>
 
 		<dependency>
