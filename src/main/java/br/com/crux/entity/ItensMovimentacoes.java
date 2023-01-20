@@ -72,7 +72,10 @@ public class ItensMovimentacoes implements Serializable {
 	@JoinColumn(name = "id_pedido_material")
 	private PedidosMateriais pedidosMateriais;
 
-
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="id_projeto")
+	private Projeto projeto;
+	
 	public ItensMovimentacoes() {
 	}
 
@@ -178,6 +181,14 @@ public class ItensMovimentacoes implements Serializable {
 
 	public void setCategoriaAdicional(CategoriasContabeis categoriaAdicional) {
 		this.categoriaAdicional = categoriaAdicional;
+	}
+
+	public Projeto getProjeto() {
+		return projeto;
+	}
+
+	public void setProjeto(Projeto projeto) {
+		this.projeto = projeto;
 	}
 
 }

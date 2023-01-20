@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import br.com.crux.cmd.GetCategoriasContabeisCmd;
 import br.com.crux.cmd.GetMaterialCmd;
 import br.com.crux.cmd.GetPedidosMateriaisCmd;
+import br.com.crux.cmd.GetProjetoCmd;
 import br.com.crux.cmd.GetTributosItensMovimentacaoCmd;
 import br.com.crux.cmd.GetUsuarioLogadoCmd;
 import br.com.crux.entity.CategoriasContabeis;
@@ -18,6 +19,7 @@ import br.com.crux.entity.ItensMovimentacoes;
 import br.com.crux.entity.Material;
 import br.com.crux.entity.Movimentacoes;
 import br.com.crux.entity.PedidosMateriais;
+import br.com.crux.entity.Projeto;
 import br.com.crux.to.ItensMovimentacoesTO;
 
 @Component
@@ -27,12 +29,14 @@ public class ItensMovimentacoesTOBuilder {
 	@Autowired private DepartamentoTOBuilder departamentoTOBuilder;
 	@Autowired private MaterialTOBuilder materialTOBuilder;
 	@Autowired private PedidosMateriaisTOBuilder pedidosMateriaisTOBuilder;
+	@Autowired private ProjetoTOBuilder projetoTOBuilder;
 	@Autowired private GetPedidosMateriaisCmd getPedidosMateriaisCmd;
 	@Autowired private UnidadeTOBuilder unidadeTOBuilder;
 	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
 	@Autowired private GetCategoriasContabeisCmd getCategoriasContabeisCmd;
 	@Autowired private GetMaterialCmd getMaterialCmd;
-	@Autowired private GetTributosItensMovimentacaoCmd getTributosItensMovimentacaoCmd ;
+	@Autowired private GetTributosItensMovimentacaoCmd getTributosItensMovimentacaoCmd;
+	@Autowired private GetProjetoCmd getProjetoCmd;
 
 	public ItensMovimentacoesTO buildTO(ItensMovimentacoes entity) {
 		ItensMovimentacoesTO to = new ItensMovimentacoesTO();
@@ -50,6 +54,7 @@ public class ItensMovimentacoesTOBuilder {
 		to.setMaterial(materialTOBuilder.buildTOCombo(entity.getMaterial()));
 		to.setPedidosMateriais(pedidosMateriaisTOBuilder.buildTOCombo(entity.getPedidosMateriais()));
 		to.setUnidade(unidadeTOBuilder.buildTOCombo(entity.getUnidade()));
+		to.setProjeto(projetoTOBuilder.buildTOEnxuto(entity.getProjeto()));
 		to.setTributos(getTributosItensMovimentacaoCmd.getAllTOByIdItemMovimentacao(entity.getId()));
 		
 		return to;
@@ -85,6 +90,13 @@ public class ItensMovimentacoesTOBuilder {
 			PedidosMateriais retorno = getPedidosMateriaisCmd.getById(to.getPedidosMateriais().getId());
 			entity.setPedidosMateriais(retorno);
 		}
+		
+		if (Objects.nonNull(to.getProjeto()) && Objects.nonNull(to.getProjeto().getId())) {
+			Projeto retorno = getProjetoCmd.getById(to.getProjeto().getId());
+			entity.setProjeto(retorno);
+		}
+		
+		to.setProjeto(projetoTOBuilder.buildTOEnxuto(entity.getProjeto()));
 		
 		entity.setIdMovimentacao(movimentacao.getId());
 		entity.setUnidade(movimentacao.getUnidade());

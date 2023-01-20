@@ -16,6 +16,7 @@ public class ItensMovimentacoesTO {
 	private Double valorTotalItem;
 	private Double valorUnitarioItem;
 	private PedidosMateriaisTO pedidosMateriais;
+	private ProjetoTO projeto;
 
 	private List<TributosItensMovimentacoesTO> tributos;
 	
@@ -124,5 +125,12 @@ public class ItensMovimentacoesTO {
 		this.categoriaAdicional = categoriaAdicional;
 	}
 
-	
+	public ProjetoTO getProjeto() {
+		return projeto;
+	}
+
+	public void setProjeto(ProjetoTO projeto) {
+		this.projeto = projeto;
+	}
+
 }
