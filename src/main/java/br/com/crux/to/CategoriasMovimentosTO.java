@@ -15,6 +15,8 @@ public class CategoriasMovimentosTO {
 	private LocalDateTime dataMovimentacao;
 	private ProgramaTO programa;
 	private ProjetoTO projeto;
+	private PedidosMateriaisTO pedidosMateriais;
+	private CategoriasContabeisTO categoriaAdicional;
 	
 	private List<RateiosCategoriasMovimentosTO> rateioCategoriasMovimentos;
 
@@ -108,6 +110,21 @@ public class CategoriasMovimentosTO {
 	public void setProjeto(ProjetoTO projeto) {
 		this.projeto = projeto;
 	}
-	
+
+	public PedidosMateriaisTO getPedidosMateriais() {
+		return pedidosMateriais;
+	}
+
+	public void setPedidosMateriais(PedidosMateriaisTO pedidosMateriais) {
+		this.pedidosMateriais = pedidosMateriais;
+	}
+
+	public CategoriasContabeisTO getCategoriaAdicional() {
+		return categoriaAdicional;
+	}
+
+	public void setCategoriaAdicional(CategoriasContabeisTO categoriaAdicional) {
+		this.categoriaAdicional = categoriaAdicional;
+	}
 	
 }

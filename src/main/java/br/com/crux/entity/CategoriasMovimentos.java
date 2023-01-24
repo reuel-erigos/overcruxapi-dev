@@ -58,6 +58,14 @@ public class CategoriasMovimentos implements Serializable {
 	@JoinColumn(name = "id_projeto") 
 	private Projeto projeto;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_pedido_material")
+	private PedidosMateriais pedidosMateriais;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_categoria_adicional")
+	private CategoriasContabeis categoriaAdicional;
+	
 	public CategoriasMovimentos() {
 	}
 
@@ -140,6 +148,21 @@ public class CategoriasMovimentos implements Serializable {
 	public void setProjeto(Projeto projeto) {
 		this.projeto = projeto;
 	}
-	
+
+	public PedidosMateriais getPedidosMateriais() {
+		return pedidosMateriais;
+	}
+
+	public void setPedidosMateriais(PedidosMateriais pedidosMateriais) {
+		this.pedidosMateriais = pedidosMateriais;
+	}
+
+	public CategoriasContabeis getCategoriaAdicional() {
+		return categoriaAdicional;
+	}
+
+	public void setCategoriaAdicional(CategoriasContabeis categoriaAdicional) {
+		this.categoriaAdicional = categoriaAdicional;
+	}
 	
 }

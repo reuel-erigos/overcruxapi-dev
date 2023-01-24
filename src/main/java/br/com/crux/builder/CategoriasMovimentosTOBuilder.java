@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.cmd.GetCategoriasContabeisCmd;
+import br.com.crux.cmd.GetPedidosMateriaisCmd;
 import br.com.crux.cmd.GetProgramaCmd;
 import br.com.crux.cmd.GetProjetoCmd;
 import br.com.crux.cmd.GetRateiosCategoriasMovimentosCmd;
@@ -16,6 +17,7 @@ import br.com.crux.cmd.GetUsuarioLogadoCmd;
 import br.com.crux.entity.CategoriasContabeis;
 import br.com.crux.entity.CategoriasMovimentos;
 import br.com.crux.entity.Movimentacoes;
+import br.com.crux.entity.PedidosMateriais;
 import br.com.crux.entity.Programa;
 import br.com.crux.entity.Projeto;
 import br.com.crux.to.CategoriasMovimentosTO;
@@ -32,6 +34,8 @@ public class CategoriasMovimentosTOBuilder {
 	@Autowired private GetProgramaCmd getProgramaCmd;	
 	@Autowired private ProgramaTOBuilder programaBuilder;
 	@Autowired private ProjetoTOBuilder projetoBuilder;
+	@Autowired private PedidosMateriaisTOBuilder pedidosMateriaisBuilder;
+	@Autowired private GetPedidosMateriaisCmd getPedidosMateriaisCmd;
 
 	
 	public CategoriasMovimentosTO buildTO(CategoriasMovimentos entity) {
@@ -47,6 +51,12 @@ public class CategoriasMovimentosTOBuilder {
 		}
 		if(Objects.nonNull(entity.getProjeto())) {
 			to.setProjeto(projetoBuilder.buildTO(entity.getProjeto()));
+		}
+		if(Objects.nonNull(entity.getPedidosMateriais())) {
+			to.setPedidosMateriais(pedidosMateriaisBuilder.buildTO(entity.getPedidosMateriais()));
+		}
+		if(Objects.nonNull(entity.getCategoriaAdicional())) {
+			to.setCategoriaAdicional(categoriasContabeisTOBuilder.buildTOCombo(entity.getCategoriaAdicional()));
 		}
 		
 		List<RateiosCategoriasMovimentosTO> rateiosTO = getRateiosCmd.getTOByIdCategoria(entity.getId());
@@ -86,7 +96,15 @@ public class CategoriasMovimentosTOBuilder {
 			Projeto registro = getProjetoCmd.getById(to.getProjeto().getId());
 			entity.setProjeto(registro);
 		}
-		
+		if (Objects.nonNull(to.getPedidosMateriais()) && Objects.nonNull(to.getPedidosMateriais().getId())) {
+			PedidosMateriais retorno = getPedidosMateriaisCmd.getById(to.getPedidosMateriais().getId());
+			entity.setPedidosMateriais(retorno);
+		}
+		if (Objects.nonNull(to.getCategoriaAdicional()) && Objects.nonNull(to.getCategoriaAdicional().getId())) {
+			CategoriasContabeis retorno = getCategoriasContabeisCmd.getById(to.getCategoriaAdicional().getId());
+			entity.setCategoriaAdicional(retorno);
+		}
+
 		entity.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 
 		return entity;

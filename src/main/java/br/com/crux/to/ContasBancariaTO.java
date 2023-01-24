@@ -16,6 +16,7 @@ public class ContasBancariaTO {
 	private String emailTitular;
 	private Long contaAssociada;
 	private CategoriasContabeisTO categoriasContabeis;
+	private String descricaoCompleta;
 	
 	public Long getId() {
 		return id;
@@ -121,5 +122,12 @@ public class ContasBancariaTO {
 		this.categoriasContabeis = categoriasContabeis;
 	}
 
-	
+	public String getDescricaoCompleta() {
+		return descricaoCompleta;
+	}
+
+	public void setDescricaoCompleta(String descricaoCompleta) {
+		this.descricaoCompleta = descricaoCompleta;
+	}
+
 }
