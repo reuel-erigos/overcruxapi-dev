@@ -2,6 +2,7 @@ package br.com.crux.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -33,6 +35,10 @@ public class Fatura implements Serializable {
 
 	@Column(name = "id_movimentacao")
 	private Long idMovimentacao;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_movimentacao", insertable = false, updatable = false)
+	private Movimentacoes movimentacao;
 
 	@Column(name = "dt_vencimento")
 	private LocalDateTime dataVencimento;
@@ -55,6 +61,9 @@ public class Fatura implements Serializable {
 	
 	@Column(name = "ds_fatura")
 	private String descricao;
+	
+	@OneToMany(mappedBy = "fatura", fetch = FetchType.LAZY)
+	private Set<PagamentosFatura> pagamentosFatura;
 	
 	
 	public Fatura() {
@@ -130,6 +139,22 @@ public class Fatura implements Serializable {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public Movimentacoes getMovimentacao() {
+		return movimentacao;
+	}
+
+	public void setMovimentacao(Movimentacoes movimentacao) {
+		this.movimentacao = movimentacao;
+	}
+
+	public Set<PagamentosFatura> getPagamentosFatura() {
+		return pagamentosFatura;
+	}
+
+	public void setPagamentosFatura(Set<PagamentosFatura> pagamentosFatura) {
+		this.pagamentosFatura = pagamentosFatura;
 	}
 	
 

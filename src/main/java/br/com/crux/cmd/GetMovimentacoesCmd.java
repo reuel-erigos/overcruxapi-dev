@@ -10,16 +10,21 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import br.com.crux.builder.MovimentacoesTOBuilder;
 import br.com.crux.dao.TransferenciaValoresDao;
 import br.com.crux.dao.dto.TransferenciaValoresDTO;
 import br.com.crux.dao.repository.MovimentacoesRepository;
+import br.com.crux.dao.spec.MovimentacoesSpec;
 import br.com.crux.entity.Movimentacoes;
 import br.com.crux.exception.NotFoundException;
 import br.com.crux.infra.util.Java8DateUtil;
 import br.com.crux.to.MovimentacoesTO;
+import br.com.crux.to.filtro.FiltroMovimentacoesTO;
 
 @Component
 public class GetMovimentacoesCmd {
@@ -120,6 +125,15 @@ public class GetMovimentacoesCmd {
 
 	public Movimentacoes getById(Long id) {
 		return repository.findById(id).orElseGet(null);
+	}
+
+	public Page<MovimentacoesTO> listFilteredAndPaged(FiltroMovimentacoesTO filtro, Pageable pageable) {
+		filtro.setIdUnidade(getUnidadeLogadaCmd.getUnidadeTOSimplificado().getIdUnidade());
+		Page<Movimentacoes> pageData = repository.findAll(MovimentacoesSpec.findByCriteria(filtro), pageable);
+		final List<MovimentacoesTO> listTO = new ArrayList<MovimentacoesTO>();
+		pageData.getContent().forEach(item -> listTO.add(toBuilder.toDTOList(item)));
+		final Page<MovimentacoesTO> pageDataTO = new PageImpl<MovimentacoesTO>(listTO, pageable, pageData.getTotalElements());
+		return pageDataTO;
 	}
 
 	

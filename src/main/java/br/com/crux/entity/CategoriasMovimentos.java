@@ -31,6 +31,10 @@ public class CategoriasMovimentos implements Serializable {
 	private Long idMovimento;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_movimentacao", insertable = false, updatable = false)
+	private Movimentacoes movimentacao;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_categoria_origem")
 	private CategoriasContabeis categoriaOrigem;
 
@@ -164,5 +168,14 @@ public class CategoriasMovimentos implements Serializable {
 	public void setCategoriaAdicional(CategoriasContabeis categoriaAdicional) {
 		this.categoriaAdicional = categoriaAdicional;
 	}
+
+	public Movimentacoes getMovimentacao() {
+		return movimentacao;
+	}
+
+	public void setMovimentacao(Movimentacoes movimentacao) {
+		this.movimentacao = movimentacao;
+	}
+	
 	
 }
