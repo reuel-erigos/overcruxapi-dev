@@ -53,8 +53,8 @@ public class MovimentacoesSpec{
 					predicates.add(cb.equal(join.get("id"), criteria.getEmpresa().getId()));
 				}
 				if(Objects.nonNull(criteria.getProjeto()) && Objects.nonNull(criteria.getProjeto().getId())) {
-					Join<Movimentacoes, RateiosMovimentacoes> join = root.join("rateios");
-					Join<RateiosMovimentacoes, Projeto> projeto = join.join("projeto");
+					Join<Movimentacoes, CategoriasMovimentos> join = root.join("categorias");
+					Join<CategoriasMovimentos, Projeto> projeto = join.join("projeto");
 					predicates.add(cb.equal(projeto.get("id"), criteria.getProjeto().getId()));
 				}
 				if(Objects.nonNull(criteria.getDataInicioPag())) {
@@ -66,11 +66,6 @@ public class MovimentacoesSpec{
 					Join<Movimentacoes, Fatura> join = root.join("faturas");
 					Join<Fatura, PagamentosFatura> joinPagamentoFatura = join.join("pagamentosFatura");
 					predicates.add(cb.lessThanOrEqualTo(joinPagamentoFatura.get("dataPagamento"), criteria.getDataFimPag()));
-				}
-				if(Objects.nonNull(criteria.getDataInicioPag()) && Objects.nonNull(criteria.getProjeto().getId())) {
-					Join<Movimentacoes, RateiosMovimentacoes> join = root.join("rateios");
-					Join<RateiosMovimentacoes, Projeto> projeto = join.join("projeto");
-					predicates.add(cb.equal(projeto.get("id"), criteria.getProjeto().getId()));
 				}
 				if(Objects.nonNull(criteria.getValorCategoria())) {
 					Join<Movimentacoes, CategoriasMovimentos> join = root.join("categorias");
