@@ -2,6 +2,7 @@ package br.com.crux.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Convert;
@@ -12,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -52,7 +54,6 @@ public class Movimentacoes implements Serializable {
 	@Column(name = "vl_movimentacao")
 	private Double valorMovimentacao;
 
-
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_unidade")
 	private Unidade unidade;
@@ -75,20 +76,26 @@ public class Movimentacoes implements Serializable {
 	@JoinColumn(name = "id_conta_bancaria_destino")
 	private ContasBancaria contaBancariaDestino;
 	
-	
 	@Convert(converter = SimNaoConverter.class)
 	@Column(name = "st_registro_saldo")
 	private Boolean statusRegistroSaldo;
-	
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_doador")
 	private Doadores doador;
 	
-	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_pessoa_fisica")
 	private PessoaFisica fornecedorColaborador;
+	
+	@OneToMany(mappedBy = "movimentacao", fetch = FetchType.LAZY)
+	private Set<RateiosMovimentacoes> rateios;
+	
+	@OneToMany(mappedBy = "movimentacao", fetch = FetchType.LAZY)
+	private Set<Fatura> faturas;
+	
+	@OneToMany(mappedBy = "movimentacao", fetch = FetchType.LAZY)
+	private Set<CategoriasMovimentos> categorias;
 	
 	public Movimentacoes() {
 	}
@@ -229,5 +236,28 @@ public class Movimentacoes implements Serializable {
 		this.fornecedorColaborador = fornecedorColaborador;
 	}
 
-	
+	public Set<RateiosMovimentacoes> getRateios() {
+		return rateios;
+	}
+
+	public void setRateios(Set<RateiosMovimentacoes> rateios) {
+		this.rateios = rateios;
+	}
+
+	public Set<Fatura> getFaturas() {
+		return faturas;
+	}
+
+	public void setFaturas(Set<Fatura> faturas) {
+		this.faturas = faturas;
+	}
+
+	public Set<CategoriasMovimentos> getCategorias() {
+		return categorias;
+	}
+
+	public void setCategorias(Set<CategoriasMovimentos> categorias) {
+		this.categorias = categorias;
+	}
+
 }

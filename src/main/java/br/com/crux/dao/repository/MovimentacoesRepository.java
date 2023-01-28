@@ -4,13 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import br.com.crux.entity.Movimentacoes;
 
 @Repository
-public interface MovimentacoesRepository extends JpaRepository<Movimentacoes, Long> {
+public interface MovimentacoesRepository extends JpaRepository<Movimentacoes, Long>, JpaSpecificationExecutor<Movimentacoes> {
 
 	@Query(value = "select distinct m                                                           "
 			+ "       from Movimentacoes m                                                      "

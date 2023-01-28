@@ -31,6 +31,10 @@ public class RateiosMovimentacoes implements Serializable {
 
 	@Column(name = "id_movimentacao")
 	private Long idMovimentacao;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_movimentacao", insertable = false, updatable = false)
+	private Movimentacoes movimentacao;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_programa") 
@@ -109,5 +113,14 @@ public class RateiosMovimentacoes implements Serializable {
 	public void setUsuarioAlteracao(Long usuarioAlteracao) {
 		this.usuarioAlteracao = usuarioAlteracao;
 	}
+
+	public Movimentacoes getMovimentacao() {
+		return movimentacao;
+	}
+
+	public void setMovimentacao(Movimentacoes movimentacao) {
+		this.movimentacao = movimentacao;
+	}
+	
 	
 }
