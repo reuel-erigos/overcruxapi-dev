@@ -90,6 +90,7 @@ public class MovimentacoesSpec{
 					Join<Movimentacoes, Unidade> join = root.join("unidade");
 					predicates.add(cb.equal(join.get("idUnidade"), criteria.getIdUnidade()));
 				}
+				predicates.add(cb.notEqual(root.get("stTipoMovimentacao"), "T"));
 				query.distinct(true);
 				return cb.and(predicates.toArray(new Predicate[] {}));
 			}

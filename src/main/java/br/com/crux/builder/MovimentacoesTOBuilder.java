@@ -1,9 +1,9 @@
 package br.com.crux.builder;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
@@ -24,17 +24,22 @@ import br.com.crux.cmd.GetRateiosMovimentacoesUnidadesCmd;
 import br.com.crux.cmd.GetTributoMovimentacaoCmd;
 import br.com.crux.cmd.GetUnidadeCmd;
 import br.com.crux.cmd.GetUsuarioLogadoCmd;
+import br.com.crux.dao.repository.FaturaRepository;
+import br.com.crux.dao.repository.PagamentosFaturaRepository;
 import br.com.crux.entity.Doadores;
+import br.com.crux.entity.Fatura;
 import br.com.crux.entity.Movimentacoes;
+import br.com.crux.entity.PagamentosFatura;
 import br.com.crux.entity.PessoaFisica;
 import br.com.crux.to.CategoriasContabeisTO;
 import br.com.crux.to.CategoriasMovimentosTO;
 import br.com.crux.to.EmpresaTO;
+import br.com.crux.to.FaturaTO;
 import br.com.crux.to.MovimentacoesTO;
+import br.com.crux.to.PagamentosFaturaTO;
 import br.com.crux.to.PessoaFisicaTO;
 import br.com.crux.to.ProgramaTO;
 import br.com.crux.to.ProjetoTO;
-import br.com.crux.to.RateiosMovimentacoesTO;
 
 @Component
 public class MovimentacoesTOBuilder {
@@ -61,6 +66,8 @@ public class MovimentacoesTOBuilder {
 	@Autowired private PessoaFisicaTOBuilder pessoaFisicaTOBuilder;
 	@Autowired private GetPessoaFisicaCmd getPessoaFisicaCmd;
 	@Autowired private GetCategoriasMovimentosCmd getCategoriasMovimentosCmd;
+	@Autowired private PagamentosFaturaRepository pagamentosFaturarepository;
+	@Autowired private FaturaRepository faturaRepository;
 	
 	public MovimentacoesTO buildTO(Movimentacoes m) {
 		MovimentacoesTO to = new MovimentacoesTO();
@@ -155,24 +162,6 @@ public class MovimentacoesTOBuilder {
 			to.getFornecedorColaborador().setNome(entity.getFornecedorColaborador().getNome());
 			to.getFornecedorColaborador().setCpf(entity.getFornecedorColaborador().getCpf());
 		}
-		if(Objects.nonNull(entity.getRateios())) {
-			to.setRateios(entity.getRateios().stream().map(item -> {
-				RateiosMovimentacoesTO rateioTO = new RateiosMovimentacoesTO();
-				rateioTO.setId(item.getId());
-				if(Objects.nonNull(item.getPrograma())) {
-					rateioTO.setPrograma(new ProgramaTO());
-					rateioTO.getPrograma().setId(item.getPrograma().getId());
-					rateioTO.getPrograma().setNome(item.getPrograma().getNome());
-				}
-				if(Objects.nonNull(item.getProjeto())) {
-					rateioTO.setProjeto(new ProjetoTO());
-					rateioTO.getProjeto().setId(item.getProjeto().getId());
-					rateioTO.getProjeto().setNome(item.getProjeto().getNome());
-				}
-				rateioTO.setValorRateio(item.getValorRateio());
-				return rateioTO;
-			}).collect(Collectors.toList()));
-		}
 		if(Objects.nonNull(entity.getCategorias())) {
 			to.setCategoriasMovimentos(entity.getCategorias().stream().map(item -> {
 				CategoriasMovimentosTO categoriasTO = new CategoriasMovimentosTO();
@@ -207,9 +196,32 @@ public class MovimentacoesTOBuilder {
 				}
 				return categoriasTO;
 			}).collect(Collectors.toList()));
+		} else {
+			to.setCategoriasMovimentos(new ArrayList<CategoriasMovimentosTO>());
 		}
-		to.setPagamentosFatura(getPagamentosFaturaCmd.getPagamentoFaturaTOByMovimentacao(entity));
-		to.setFaturas(getFaturaCmd.getFaturaTOByMovimentacao(entity));
+		Optional<List<PagamentosFatura>> listaPagamentosFatura = pagamentosFaturarepository.findByIdMovimentacao(entity.getId());
+		if(listaPagamentosFatura.isPresent()) {
+			to.setPagamentosFatura(listaPagamentosFatura.get().stream().map(item -> {
+				PagamentosFaturaTO pagamentosFaturaTO = new PagamentosFaturaTO();
+				pagamentosFaturaTO.setId(item.getId());
+				pagamentosFaturaTO.setDataPagamento(item.getDataPagamento());
+				pagamentosFaturaTO.setNumeroDocPagamento(item.getNumeroDocPagamento());
+				return pagamentosFaturaTO;
+			}).collect(Collectors.toList()));
+		} else {
+			to.setPagamentosFatura(new ArrayList<PagamentosFaturaTO>());
+		}
+		Optional<List<Fatura>> listaFatura = faturaRepository.findByIdMovimentacao(entity.getId());
+		if(listaFatura.isPresent()) {
+			to.setFaturas(listaFatura.get().stream().map(item -> {
+				FaturaTO faturaTO = new FaturaTO();
+				faturaTO.setId(item.getId());
+				faturaTO.setDataVencimento(item.getDataVencimento());
+				return faturaTO;
+			}).collect(Collectors.toList()));
+		} else {
+			to.setFaturas(new ArrayList<FaturaTO>());
+		}
 		to.setNrDocumento(entity.getNrDocumento());
 		to.setDataDocumento(entity.getDataDocumento());
 		to.setValorMovimentacao(entity.getValorMovimentacao());
