@@ -17,20 +17,21 @@ import br.com.crux.to.relatorios.financeiro.NormativaPagamentosDTO;
 @Component
 public class NormativaPagamentosDao extends BaseDao{
 	
-	
 	public Optional<List<NormativaPagamentosDTO>> getAllFilter(Long idCategoria, Long idEmpresa, Long idPessoaFisica, Long idPrograma, Long idProjeto, LocalDate dataInicio, LocalDate dataFim, String tipoRubrica){
 		StringBuilder sql = new StringBuilder();
 		
-		sql.append(" select p.nm_programa_projeto,                                                                      ");
+//		sql.append(" select p.nm_programa_projeto,                                                                      ");
+		sql.append(" select p.nm_projeto nm_programa_projeto,                                                                      ");
 		sql.append("        p.ds_fornecedor,                                                                            ");
 		sql.append("        p.nr_documento,                                                                             ");
 		sql.append("        p.cnpj_cpf,                                                                                 ");
 		sql.append("        p.dt_documento,                                                                             ");
-		sql.append("        c.vl_total_item vl_movimentacao,                                   							");
+//		sql.append("        c.vl_total_item vl_movimentacao,                                   							");
+		sql.append("        p.vl_movimentacao,                                   							");
 		sql.append("        p.nr_doc_pagamento,                                                                         ");
 		sql.append("        p.dt_pagamento,                                                                             ");
-//		sql.append("        fn_retorna_categorias_itens_movimentacoes(p.id_movimentacao, :p_tipo_rubrica ) nm_categoria,");
-		sql.append("        c.nm_categoria,																				");
+//		sql.append("        c.nm_categoria,																				");
+		sql.append("        p.nm_categoria,																				");
 		sql.append("        p.vl_pagamento,                                                                             ");
 		sql.append("        p.dt_vencimento_proxima,                                                                    ");
 		sql.append("        p.id_empresa,                                                                               ");
@@ -38,9 +39,11 @@ public class NormativaPagamentosDao extends BaseDao{
 		sql.append("        p.id_programa,                                                                              ");
 		sql.append("        p.id_projeto,                                                                               ");
 		sql.append("        p.id_movimentacao                                                                           ");
-		sql.append("   from vw_relatorio_relacao_nominativa_pagamentos p                                                ");
-		sql.append("   inner join vw_categorias_itens_movimentacoes c on p.id_movimentacao = c.id_movimentacao          ");
-		sql.append(" WHERE c.cd_tipo_categoria = :p_tipo_rubrica                                                        ");
+//		sql.append("   from vw_relatorio_relacao_nominativa_pagamentos p                                                ");
+		sql.append("   from vw_relacao_nominativa_pagamentos p                                                ");
+//		sql.append("   inner join vw_categorias_itens_movimentacoes c on p.id_movimentacao = c.id_movimentacao          ");
+//		sql.append(" WHERE c.cd_tipo_categoria = :p_tipo_rubrica                                                        ");
+		sql.append(" WHERE p.cd_tipo_categoria = :p_tipo_rubrica                                                        ");
 //		sql.append("   and (c.id_categoria = :p_id_categoria or :p_id_categoria is null)                                                        ");
 	    
 	
@@ -71,7 +74,8 @@ public class NormativaPagamentosDao extends BaseDao{
 */		
   		if(Objects.nonNull(idCategoria)) {
 			sql.append(" and (c.id_categoria in (select ci.id_categoria   ");
-			sql.append("	from vw_categorias_itens_movimentacoes ci    ");
+//			sql.append("	from vw_categorias_itens_movimentacoes ci    ");
+			sql.append("	from vw_categorias_relacao_nominativa_pagamentos ci    ");
 			sql.append("	where ci.id_categoria = :p_id_categoria))            ");
 		}                                           
   			
