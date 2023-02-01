@@ -243,15 +243,15 @@ public class MovimentacaoContabilDao extends BaseDao{
 		}
 		
 		if(Objects.nonNull(dataInicio)) {
-			sql.append("   AND DATE_TRUNC('DAY', dt_documento) >= DATE_TRUNC('DAY', to_date( :p_dt_inicio ,'dd/mm/yyyy') )  ");
+			sql.append("   AND DATE_TRUNC('DAY', dt_movimentacao) >= DATE_TRUNC('DAY', to_date( :p_dt_inicio ,'dd/mm/yyyy') )  ");
 		}
 		
 		if(Objects.nonNull(dataFim)) {
-			sql.append("   AND DATE_TRUNC('DAY', dt_documento) <= DATE_TRUNC('DAY', to_date( :p_dt_fim ,'dd/mm/yyyy') )  ");
+			sql.append("   AND DATE_TRUNC('DAY', dt_movimentacao) <= DATE_TRUNC('DAY', to_date( :p_dt_fim ,'dd/mm/yyyy') )  ");
 		}
 		
 		
-		sql.append(" order by dt_documento, conta_destino, conta_origem, vl_categoria_movimentacao ");
+		sql.append(" order by dt_documento desc, conta_destino, conta_origem, vl_categoria_movimentacao ");
 		
 		
 		Query query = em.createNativeQuery(sql.toString());
