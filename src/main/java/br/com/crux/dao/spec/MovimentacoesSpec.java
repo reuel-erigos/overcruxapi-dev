@@ -18,6 +18,7 @@ import br.com.crux.entity.CategoriasContabeis;
 import br.com.crux.entity.CategoriasMovimentos;
 import br.com.crux.entity.Empresa;
 import br.com.crux.entity.Fatura;
+import br.com.crux.entity.Instituicao;
 import br.com.crux.entity.Movimentacoes;
 import br.com.crux.entity.PagamentosFatura;
 import br.com.crux.entity.Projeto;
@@ -89,6 +90,11 @@ public class MovimentacoesSpec{
 				if(Objects.nonNull(criteria.getIdUnidade())) {
 					Join<Movimentacoes, Unidade> join = root.join("unidade");
 					predicates.add(cb.equal(join.get("idUnidade"), criteria.getIdUnidade()));
+				}
+				if(Objects.nonNull(criteria.getIdInstituicao())) {
+					Join<Movimentacoes, Unidade> join = root.join("unidade");
+					Join<Unidade, Instituicao> joinInstituicao = join.join("instituicao");
+					predicates.add(cb.equal(joinInstituicao.get("id"), criteria.getIdInstituicao()));
 				}
 				predicates.add(cb.notEqual(root.get("stTipoMovimentacao"), "T"));
 				query.distinct(true);

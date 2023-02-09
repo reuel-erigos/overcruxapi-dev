@@ -53,6 +53,8 @@ public class FiltroMovimentacoesTO {
 	private LocalDateTime dataFimPag;
 	
 	private Long idUnidade;
+	
+	private Long idInstituicao;
 
 	public EmpresaDTO getEmpresa() {
 		return empresa;
@@ -189,6 +191,13 @@ public class FiltroMovimentacoesTO {
 	public void setValorCategoria(BigDecimal valorCategoria) {
 		this.valorCategoria = valorCategoria;
 	}
-	
 
+	public Long getIdInstituicao() {
+		return idInstituicao;
+	}
+
+	public void setIdInstituicao(Long idInstituicao) {
+		this.idInstituicao = idInstituicao;
+	}
+	
 }
