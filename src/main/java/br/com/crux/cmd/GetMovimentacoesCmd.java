@@ -128,7 +128,7 @@ public class GetMovimentacoesCmd {
 	}
 
 	public Page<MovimentacoesTO> listFilteredAndPaged(FiltroMovimentacoesTO filtro, Pageable pageable) {
-		filtro.setIdUnidade(getUnidadeLogadaCmd.getUnidadeTOSimplificado().getIdUnidade());
+	//	filtro.setIdUnidade(getUnidadeLogadaCmd.getUnidadeTOSimplificado().getIdUnidade());
 		Page<Movimentacoes> pageData = repository.findAll(MovimentacoesSpec.findByCriteria(filtro), pageable);
 		final List<MovimentacoesTO> listTO = new ArrayList<MovimentacoesTO>();
 		pageData.getContent().forEach(item -> listTO.add(toBuilder.toDTOList(item)));

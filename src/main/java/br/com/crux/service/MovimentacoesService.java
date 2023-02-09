@@ -1,5 +1,7 @@
 package br.com.crux.service;
 
+import org.springframework.data.domain.Sort;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,10 +100,12 @@ public class MovimentacoesService {
 	public Page<MovimentacoesTO> filterPagedPost(@RequestBody FiltroMovimentacoesTO filtro,
 			@RequestHeader("page") int page, @RequestHeader("pageSize") int pageSize) {
 
-		final Pageable pageable = PageRequest.of(page, pageSize);
+		final Sort sort = Sort.by(Sort.Order.desc("dataDocumento"));
+		final Pageable pageable = PageRequest.of(page, pageSize, sort);
 		final Page<MovimentacoesTO> pageData = getCmd.listFilteredAndPaged(filtro, pageable);
 		return pageData;
 	}
 
+	
 
 }
