@@ -10,6 +10,7 @@ public class CategoriasContabeisTO {
 	private String codigoCategoriaContabil;
 	private Long idInstituicao;
 	private Boolean sintetica;
+	private String meta;
 					
 	public Long getId() {
 		return id;
@@ -75,4 +76,13 @@ public class CategoriasContabeisTO {
 		this.sintetica = sintetico;
 	}
 
+	public String getMeta() {
+		return meta;
+	}
+
+	public void setMeta(String meta) {
+		this.meta = meta;
+	}
+
+	
 }

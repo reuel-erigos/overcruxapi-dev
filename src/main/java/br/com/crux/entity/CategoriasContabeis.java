@@ -46,6 +46,8 @@ public class CategoriasContabeis  {
 	@Column(name="cd_categoria_contabil")
 	private String codigoCategoriaContabil;
 	
+	@Column(name="nm_meta")
+	private String meta;
 	
 	@Column(name="id_instituicao", nullable = true)
 	private Long idInstituicao;
@@ -126,5 +128,12 @@ public class CategoriasContabeis  {
 		this.sintetica = sintetica;
 	}
 
-	
+	public String getMeta() {
+		return meta;
+	}
+
+	public void setMeta(String meta) {
+		this.meta = meta;
+	}
+
 }

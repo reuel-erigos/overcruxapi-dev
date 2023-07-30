@@ -11,6 +11,7 @@ public class CategoriasMovimentosTO {
 	private CategoriasContabeisTO categoriaDestino;
 	private Double valor;
 	private String descricao;
+	private String tipoMovimentacao;
 	private Long usuarioAlteracao;
 	private LocalDateTime dataMovimentacao;
 	private ProgramaTO programa;
@@ -126,5 +127,14 @@ public class CategoriasMovimentosTO {
 	public void setCategoriaAdicional(CategoriasContabeisTO categoriaAdicional) {
 		this.categoriaAdicional = categoriaAdicional;
 	}
+
+	public String getTipoMovimentacao() {
+		return tipoMovimentacao;
+	}
+
+	public void setTipoMovimentacao(String tipoMovimentacao) {
+		this.tipoMovimentacao = tipoMovimentacao;
+	}
+	
 	
 }

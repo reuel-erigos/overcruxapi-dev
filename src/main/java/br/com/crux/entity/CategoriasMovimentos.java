@@ -70,6 +70,9 @@ public class CategoriasMovimentos implements Serializable {
 	@JoinColumn(name = "id_categoria_adicional")
 	private CategoriasContabeis categoriaAdicional;
 	
+	@Column(name = "cs_tipo_movimentacao")
+	private String tipoMovimentacao;
+	
 	public CategoriasMovimentos() {
 	}
 
@@ -175,6 +178,14 @@ public class CategoriasMovimentos implements Serializable {
 
 	public void setMovimentacao(Movimentacoes movimentacao) {
 		this.movimentacao = movimentacao;
+	}
+
+	public String getTipoMovimentacao() {
+		return tipoMovimentacao;
+	}
+
+	public void setTipoMovimentacao(String tipoMovimentacao) {
+		this.tipoMovimentacao = tipoMovimentacao;
 	}
 	
 	
