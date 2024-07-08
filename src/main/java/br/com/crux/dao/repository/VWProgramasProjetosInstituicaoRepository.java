@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import br.com.crux.entity.view.ProgramasProjetosInstituicao;
 
 @Repository
-public interface VWProgramasProjetosInstituicaoRepository extends JpaRepository<ProgramasProjetosInstituicao, String>{
+public interface VWProgramasProjetosInstituicaoRepository extends JpaRepository<ProgramasProjetosInstituicao, Long>{
 
 	@Query("SELECT vw FROM ProgramasProjetosInstituicao vw "
 			+ " WHERE vw.idInstituicao = ?1")
