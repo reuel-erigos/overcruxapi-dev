@@ -96,6 +96,8 @@ public class GrupoAcoesTOBuilder {
 		
 		BeanUtils.copyProperties(p, retorno);
 		retorno.setAtividade(atividadeBuilder.buildTO(p.getAtividade()));
+		retorno.setStatusAnalise(p.getStatusAnalise());
+		retorno.setStatusEnvioAnalise(p.getStatusEnvioAnalise());
 
 		return retorno;
 	}
