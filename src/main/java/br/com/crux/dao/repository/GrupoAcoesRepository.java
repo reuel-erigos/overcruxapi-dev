@@ -17,5 +17,11 @@ public interface GrupoAcoesRepository extends JpaRepository<GrupoAcoes, Long>{
 			+ "   and ga.numeroGrupo = ?1                                 "
 			+ "   and atividade.id   = ?2                                 ")
 	public Optional<GrupoAcoes> findByNumeroAndAtividade(String numero, Long idAtividade);
-	
+
+	@Query(value = "SELECT ga "
+			+ " FROM GrupoAcoes ga "
+			+ " 	 INNER JOIN Acoes acao on acao.idGrupoAcao = ga.id "
+			+ " WHERE 1 = 1 "
+			+ "       AND acao.id = ?1 ")
+	public Optional<GrupoAcoes> findByAcaoId(Long idAcao);
 }
