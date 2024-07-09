@@ -51,7 +51,7 @@ public interface AcaoRepository extends JpaRepository<Acoes, Long>{
 			+ " LEFT OUTER JOIN GrupoAcoes ga ON ga.id = acao.idGrupoAcao  "
 			+ " LEFT OUTER JOIN Oficinas oficina ON oficina = ga.atividade "
 			+ " LEFT OUTER JOIN Turmas turma ON turma.id = oficina.idTurma "
-			+ " LEFT OUTER JOIN Unidade uni ON turma.unidade = uni "
+			+ " LEFT OUTER JOIN Unidade uni ON oficina.unidade = uni "
 			+ " WHERE 1 = 1 "
 			+ "   AND instituicao.id = ?1 "
 			+ "   AND (?2 IS NULL OR uni.idUnidade = ?2) "
