@@ -42,6 +42,33 @@ public interface AcaoRepository extends JpaRepository<Acoes, Long>{
 			                                          Long idTurma,
 					                                  Long idOficina, 
 					                                  Long idAcao);
+
+
+
+	@Query(value = "SELECT acao "
+			+ " FROM Acoes acao "
+			+ " INNER JOIN Instituicao instituicao on instituicao.id = acao.idInstituicao "
+			+ " LEFT OUTER JOIN GrupoAcoes ga ON ga.id = acao.idGrupoAcao  "
+			+ " LEFT OUTER JOIN Oficinas oficina ON oficina = ga.atividade "
+			+ " LEFT OUTER JOIN Turmas turma ON turma.id = oficina.idTurma "
+			+ " LEFT OUTER JOIN Unidade uni ON turma.unidade = uni "
+			+ " WHERE 1 = 1 "
+			+ "   AND instituicao.id = ?1 "
+			+ "   AND (?2 IS NULL OR uni.idUnidade = ?2) "
+			+ "   AND (?3 IS NULL OR turma.id = ?3) "
+			+ "   AND (?4 IS NULL OR oficina.id = ?4) "
+			+ "   AND (?5 IS NULL OR acao.id =  ?5) "
+			+ "   AND (?6 IS NULL OR "
+			+ " 	   (?6 = 'A' AND ga.statusAnalise = 'A') OR "
+			+ " 	   (?6 = 'R' AND ga.statusAnalise = 'R') OR "
+			+ " 	   (?6 = 'E' AND ga.statusEnvioAnalise = true  AND ga.statusAnalise IS NULL) OR "
+			+ " 	   (?6 = 'N' AND ga.statusEnvioAnalise = false AND ga.statusAnalise IS NULL)) ")
+	public Optional<List<Acoes>> findByFilters(Long idInstiuicao,
+											   Long idUnidade,
+											   Long idTurma,
+											   Long idOficina,
+											   Long idAcao,
+											   String statusAnalise);
 	
 	
 	

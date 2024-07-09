@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -24,24 +25,19 @@ public class GetAcaoCmd {
 	@Autowired
 	private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 
-	public List<AcaoTO> getAllFilter(Long idUnidade, Long idTurma, Long idOficina, Long idAcao) {
+	public List<AcaoTO> getAllFilter(Long idUnidade, Long idTurma, Long idOficina, Long idAcao, String statusAnalise) {
 
 		Optional<List<Acoes>> entitys = Optional.empty();
 
-		idUnidade = Objects.isNull(idUnidade) ? null : idUnidade;
-		idTurma   = Objects.isNull(idTurma) ? null : idTurma;
-		idOficina = Objects.isNull(idOficina) ? null : idOficina;
-		idAcao    = Objects.isNull(idAcao) ? null : idAcao;
+		idUnidade     = Objects.isNull(idUnidade) ? null : idUnidade;
+		idTurma       = Objects.isNull(idTurma) ? null : idTurma;
+		idOficina     = Objects.isNull(idOficina) ? null : idOficina;
+		idAcao        = Objects.isNull(idAcao) ? null : idAcao;
+		statusAnalise = StringUtils.isBlank(statusAnalise) ? null : statusAnalise;
 
-		if (Objects.isNull(idUnidade) && Objects.isNull(idTurma) && Objects.isNull(idOficina) && Objects.isNull(idAcao)) {
-			entitys = repository.findByUnidade(getUnidadeLogadaCmd.get().getId());
-			
-		} else if(Objects.isNull(idTurma) && Objects.nonNull(idOficina)) {
-			entitys = repository.findByFilterSemTurma(idUnidade, idOficina, idAcao);
-			
-		} else {
-			entitys = repository.findByFilterComTurma(idUnidade, idTurma, idOficina, idAcao);
-		}
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+		
+		entitys = repository.findByFilters(idInstituicao, idUnidade, idTurma, idOficina, idAcao, statusAnalise);
 		
 		if (entitys.isPresent()) {
 			return toBuilder.buildAll(entitys.get());
