@@ -22,7 +22,7 @@ import br.com.crux.infra.dao.SimNaoConverter;
 
 
 @Entity
-@Table(name="grupos_atividades")
+@Table(name="grupos_acoes")
 public class GrupoAcoes implements Serializable {
 	private static final long serialVersionUID = 1L;
 
