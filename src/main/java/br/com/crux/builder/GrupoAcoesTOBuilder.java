@@ -5,13 +5,13 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import br.com.crux.cmd.GetUsuarioSistemaCmd;
+import br.com.crux.cmd.*;
 import br.com.crux.entity.UsuariosSistema;
+import br.com.crux.to.UsuariosSistemaTO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.crux.cmd.GetOficinasCmd;
 import br.com.crux.entity.GrupoAcoes;
 import br.com.crux.entity.Oficinas;
 import br.com.crux.to.GrupoAcoesSimlesTO;
@@ -25,19 +25,32 @@ public class GrupoAcoesTOBuilder {
 	@Autowired private GetOficinasCmd getAtividadeCmd;
 	@Autowired private GetUsuarioSistemaCmd getUsuarioSistemaCmd;
 	@Autowired private AcaoTOBuilder acaoTOBuilder;
-	
-	
+	@Autowired private GetGrupoAcoesCmd getGrupoAcoesCmd;
+	@Autowired private GetUsuarioLogadoCmd getUsuarioLogadoCmd;
+
+
 	public GrupoAcoes build(GrupoAcoesTO p) {
 		GrupoAcoes retorno = new GrupoAcoes();
 
 		BeanUtils.copyProperties(p, retorno);
-		
-		Optional.ofNullable(p.getUsuarioAnalise()).ifPresent(usu -> {
-			if(Objects.nonNull(usu.getId())) {
-				UsuariosSistema usuario = getUsuarioSistemaCmd.getById(usu.getId());
-				retorno.setUsuarioAnalise(usuario);
-			}
-		});
+
+		String statusAtual = Optional.ofNullable(p.getId())
+				.map(id -> getGrupoAcoesCmd.getById(id))
+				.map(GrupoAcoes::getStatusAnalise)
+				.orElse(null);
+
+		String statusAlterado = p.getStatusAnalise();
+		if (isStatusChanged(statusAtual, statusAlterado))
+		{
+			Long idUsuarioLogado = getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario();
+			UsuariosSistema usuario = getUsuarioSistemaCmd.getById(idUsuarioLogado);
+			retorno.setUsuarioAnalise(usuario);
+		} else
+		{
+			Optional.ofNullable(p.getUsuarioAnalise())
+					.map(UsuariosSistemaTO::getId)
+					.ifPresent(id -> retorno.setUsuarioAnalise(usuariosSistemaTOBuilder.build(p.getUsuarioAnalise())));
+		}
 
 		Optional.ofNullable(p.getAtividade()).ifPresent(atv -> {
 			Oficinas atividade = getAtividadeCmd.getById(atv.getId());
@@ -51,6 +64,11 @@ public class GrupoAcoesTOBuilder {
 		return retorno;
 	}
 
+	private boolean isStatusChanged(String statusAtual, String statusAlterado)
+	{
+		return statusAlterado != null && (statusAtual == null || !statusAlterado.equals(statusAtual));
+	}
+
 	public GrupoAcoesTO buildTO(GrupoAcoes p) {
 		GrupoAcoesTO retorno = new GrupoAcoesTO();
 
@@ -61,8 +79,10 @@ public class GrupoAcoesTOBuilder {
 		BeanUtils.copyProperties(p, retorno);
 		
 		retorno.setAtividade(atividadeBuilder.buildTO(p.getAtividade()));
-		retorno.setUsuarioAnalise(usuariosSistemaTOBuilder.buildTO(p.getUsuarioAnalise()));
-		
+
+		Optional.ofNullable(p.getUsuarioAnalise())
+				.ifPresent(usuario -> retorno.setUsuarioAnalise(usuariosSistemaTOBuilder.buildTO(usuario)));
+
 		if(Objects.nonNull(p.getId())) {
 			if(!p.getAcoes().isEmpty()) {
 				retorno.setAcoes(acaoTOBuilder.buildAll(p.getAcoes()));
