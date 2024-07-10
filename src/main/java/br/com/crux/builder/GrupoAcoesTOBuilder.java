@@ -5,13 +5,13 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import br.com.crux.cmd.GetUsuarioSistemaCmd;
+import br.com.crux.entity.UsuariosSistema;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.crux.cmd.GetFuncionarioCmd;
 import br.com.crux.cmd.GetOficinasCmd;
-import br.com.crux.entity.Funcionario;
 import br.com.crux.entity.GrupoAcoes;
 import br.com.crux.entity.Oficinas;
 import br.com.crux.to.GrupoAcoesSimlesTO;
@@ -21,9 +21,9 @@ import br.com.crux.to.GrupoAcoesTO;
 public class GrupoAcoesTOBuilder {
 
 	@Autowired private OficinasTOBuilder atividadeBuilder;
-	@Autowired private FuncionarioTOBuilder funcionarioTOBuilder;
+	@Autowired private UsuariosSistemaTOBuilder usuariosSistemaTOBuilder;
 	@Autowired private GetOficinasCmd getAtividadeCmd;
-	@Autowired private GetFuncionarioCmd getFuncionarioCmd;
+	@Autowired private GetUsuarioSistemaCmd getUsuarioSistemaCmd;
 	@Autowired private AcaoTOBuilder acaoTOBuilder;
 	
 	
@@ -32,10 +32,10 @@ public class GrupoAcoesTOBuilder {
 
 		BeanUtils.copyProperties(p, retorno);
 		
-		Optional.ofNullable(p.getFuncionarioAnalise()).ifPresent(func -> {
-			if(Objects.nonNull(func.getId())) {
-				Funcionario funcionario = getFuncionarioCmd.getById(func.getId());
-				retorno.setFuncionarioAnalise(funcionario);
+		Optional.ofNullable(p.getUsuarioAnalise()).ifPresent(usu -> {
+			if(Objects.nonNull(usu.getId())) {
+				UsuariosSistema usuario = getUsuarioSistemaCmd.getById(usu.getId());
+				retorno.setUsuarioAnalise(usuario);
 			}
 		});
 
@@ -61,7 +61,7 @@ public class GrupoAcoesTOBuilder {
 		BeanUtils.copyProperties(p, retorno);
 		
 		retorno.setAtividade(atividadeBuilder.buildTO(p.getAtividade()));
-		retorno.setFuncionarioAnalise(funcionarioTOBuilder.buildTO(p.getFuncionarioAnalise()));
+		retorno.setUsuarioAnalise(usuariosSistemaTOBuilder.buildTO(p.getUsuarioAnalise()));
 		
 		if(Objects.nonNull(p.getId())) {
 			if(!p.getAcoes().isEmpty()) {
@@ -82,7 +82,7 @@ public class GrupoAcoesTOBuilder {
 		BeanUtils.copyProperties(p, retorno);
 		
 		retorno.setAtividade(atividadeBuilder.buildTO(p.getAtividade()));
-		retorno.setFuncionarioAnalise(funcionarioTOBuilder.buildTO(p.getFuncionarioAnalise()));
+		retorno.setUsuarioAnalise(usuariosSistemaTOBuilder.buildTO(p.getUsuarioAnalise()));
 
 		return retorno;
 	}

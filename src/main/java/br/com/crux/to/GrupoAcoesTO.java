@@ -9,10 +9,10 @@ import br.com.crux.infra.adapter.LocalDateTimeAdapter;
 
 public class GrupoAcoesTO {
 
-	private Long id;
-	private String numeroGrupo;	
-	private OficinasTO atividade;
-	private FuncionarioTO funcionarioAnalise;		
+	private Long              id;
+	private String            numeroGrupo;
+	private OficinasTO        atividade;
+	private UsuariosSistemaTO usuarioAnalise;
 	
 	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
 	private LocalDateTime dataAnalise;
@@ -53,12 +53,12 @@ public class GrupoAcoesTO {
 		this.atividade = atividade;
 	}
 
-	public FuncionarioTO getFuncionarioAnalise() {
-		return funcionarioAnalise;
+	public UsuariosSistemaTO getUsuarioAnalise() {
+		return usuarioAnalise;
 	}
 
-	public void setFuncionarioAnalise(FuncionarioTO funcionarioAnalise) {
-		this.funcionarioAnalise = funcionarioAnalise;
+	public void setUsuarioAnalise(UsuariosSistemaTO usuarioAnalise) {
+		this.usuarioAnalise = usuarioAnalise;
 	}
 
 	public LocalDateTime getDataAnalise() {
