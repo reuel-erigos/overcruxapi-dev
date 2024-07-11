@@ -1,5 +1,6 @@
 package br.com.crux.builder;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -7,6 +8,7 @@ import java.util.stream.Collectors;
 
 import br.com.crux.cmd.*;
 import br.com.crux.entity.UsuariosSistema;
+import br.com.crux.to.AcaoTO;
 import br.com.crux.to.UsuariosSistemaTO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,6 +88,7 @@ public class GrupoAcoesTOBuilder {
 		if(Objects.nonNull(p.getId())) {
 			if(!p.getAcoes().isEmpty()) {
 				retorno.setAcoes(acaoTOBuilder.buildAll(p.getAcoes()));
+				retorno.getAcoes().sort(Comparator.comparing(AcaoTO::getDataPrevisaoInicio));
 			}
 		}
 

@@ -112,7 +112,7 @@ public interface AcaoRepository extends JpaRepository<Acoes, Long>{
 	@Query(value = "SELECT acao FROM Acoes acao      "
 				 + " where 1 =1                      "
 				 + "   and acao.idGrupoAcao = ?1     " )
-	public Optional<List<Acoes>> findAllByIdGrupo(Long idGrupoAcao);
+	public Optional<List<Acoes>> findByGrupoAcoesId(Long grupoAcoesId);
 
 	
 }
