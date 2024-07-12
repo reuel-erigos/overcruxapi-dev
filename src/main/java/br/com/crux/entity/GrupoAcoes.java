@@ -40,8 +40,8 @@ public class GrupoAcoes implements Serializable {
 	private Oficinas atividade;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_funcionario_analise")
-	private Funcionario funcionarioAnalise;		
+	@JoinColumn(name = "id_usuario_analise")
+	private UsuariosSistema usuarioAnalise;
 	
 	@Column(name="dt_analise")
 	private LocalDateTime dataAnalise;
@@ -90,12 +90,12 @@ public class GrupoAcoes implements Serializable {
 		this.atividade = atividade;
 	}
 
-	public Funcionario getFuncionarioAnalise() {
-		return funcionarioAnalise;
+	public UsuariosSistema getUsuarioAnalise() {
+		return usuarioAnalise;
 	}
 
-	public void setFuncionarioAnalise(Funcionario funcionarioAnalise) {
-		this.funcionarioAnalise = funcionarioAnalise;
+	public void setUsuarioAnalise(UsuariosSistema usuarioAnalise) {
+		this.usuarioAnalise = usuarioAnalise;
 	}
 
 	public LocalDateTime getDataAnalise() {

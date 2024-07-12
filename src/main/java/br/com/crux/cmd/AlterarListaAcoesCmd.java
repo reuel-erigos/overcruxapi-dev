@@ -45,7 +45,7 @@ public class AlterarListaAcoesCmd {
 	public void alterarAll(List<AcaoTO> listaTO, Long idGrupoAcao) {
 		
 		//Lista os registros no banco de dados
-		List<Acoes> entitys = repository.findAllByIdGrupo(idGrupoAcao).orElse(new ArrayList<Acoes>());
+		List<Acoes> entitys = repository.findByGrupoAcoesId(idGrupoAcao).orElse(new ArrayList<Acoes>());
 		
 		
 		BiPredicate<AcaoTO, List<AcaoTO>> contemNaLista  = (parte, lista) -> lista.stream()

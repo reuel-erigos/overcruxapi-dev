@@ -9,6 +9,8 @@ public class GrupoAcoesSimlesTO implements Serializable{
 	private String numeroGrupo;	
 	private OficinasTO atividade;
 	private String descricao;
+	private String statusAnalise;
+	private Boolean statusEnvioAnalise;
 	
 	public GrupoAcoesSimlesTO() {
 	}
@@ -50,5 +52,20 @@ public class GrupoAcoesSimlesTO implements Serializable{
 		this.descricao = descricao;
 	}
 
+	public String getStatusAnalise() {
+		return statusAnalise;
+	}
+
+	public void setStatusAnalise(String statusAnalise) {
+		this.statusAnalise = statusAnalise;
+	}
+
+	public Boolean getStatusEnvioAnalise() {
+		return statusEnvioAnalise;
+	}
+
+	public void setStatusEnvioAnalise(Boolean statusEnvioAnalise) {
+		this.statusEnvioAnalise = statusEnvioAnalise;
+	}
 
 }

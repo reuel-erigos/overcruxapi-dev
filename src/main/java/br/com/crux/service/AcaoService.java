@@ -32,8 +32,9 @@ public class AcaoService {
 	public List<AcaoTO> getAllFilter(@RequestParam(name = "unidade", required = false) Long idUnidade,
                                      @RequestParam(name = "turma", required = false) Long idTurma,
                                      @RequestParam(name = "oficina", required = false) Long idOficina,
-                                     @RequestParam(name = "acao", required = false) Long idAcao) {
-		return getCmd.getAllFilter(idUnidade, idTurma, idOficina, idAcao);
+                                     @RequestParam(name = "acao", required = false) Long idAcao,
+									 @RequestParam(name = "statusAnalise", required = false) String statusAnalise) {
+		return getCmd.getAllFilter(idUnidade, idTurma, idOficina, idAcao, statusAnalise);
 	}
 	
 
