@@ -11,11 +11,20 @@ import java.util.Optional;
 @Repository
 public interface TiposContratosRepository extends JpaRepository<TiposContratos, Long>{
 
-	@Query(value = "SELECT t FROM TiposContratos t                      "
+	@Query(value = "SELECT t FROM TiposContratos t "
 			+ " INNER JOIN Instituicao ins on ins.id = t.idInstituicao "
-			+ " WHERE ins.id = :idInstituicao                          "
-			+ " ORDER BY t.descricao                                   ")
+			+ " WHERE ins.id = :idInstituicao "
+			+ " ORDER BY t.descricao ")
 	public Optional<List<TiposContratos>> findByIdInstituicao(Long idInstituicao);
+
+	//find by descricao
+
+	@Query(value = "SELECT t FROM TiposContratos t "
+			+ " INNER JOIN Instituicao ins on ins.id = t.idInstituicao "
+			+ " WHERE ins.id = :idInstituicao "
+			+ " AND lower(t.descricao) like :descricao "
+			+ " ORDER BY t.descricao ")
+	public Optional<List<TiposContratos>> findByIdInstituicaoAndDescricao(Long idInstituicao, String descricao);
 
 }
 

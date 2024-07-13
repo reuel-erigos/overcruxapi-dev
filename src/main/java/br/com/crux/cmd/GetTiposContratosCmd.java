@@ -32,7 +32,7 @@ public class GetTiposContratosCmd
         {
             return toBuilder.buildAll(lista.get());
         }
-        return new ArrayList<TiposContratosTO>();
+        return new ArrayList<>();
     }
 
     public TiposContratos getById(Long id)
@@ -45,5 +45,18 @@ public class GetTiposContratosCmd
         TiposContratos entity = repository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Tipo de contrato informado não existe."));
         return toBuilder.buildTO(entity);
+    }
+
+    public List<TiposContratosTO> getTOByDescricao(String descricao)
+    {
+        if (descricao != null)
+            descricao = descricao.toLowerCase().trim();
+
+        Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+        Optional<List<TiposContratos>> lista = repository.findByIdInstituicaoAndDescricao(idInstituicao, "%" + descricao + "%");
+        if (lista.isPresent())
+            return toBuilder.buildAll(lista.get());
+
+        return new ArrayList<>();
     }
 }
