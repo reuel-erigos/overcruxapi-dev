@@ -1,10 +1,10 @@
 package br.com.crux.cmd;
 
-import br.com.crux.builder.TiposContratosTOBuilder;
-import br.com.crux.dao.repository.TiposContratosRepository;
-import br.com.crux.entity.TiposContratos;
+import br.com.crux.builder.TipoContratoTOBuilder;
+import br.com.crux.dao.repository.TipoContratoRepository;
+import br.com.crux.entity.TipoContrato;
 import br.com.crux.exception.NotFoundException;
-import br.com.crux.to.TiposContratosTO;
+import br.com.crux.to.TipoContratoTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,21 +13,21 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
-public class GetTiposContratosCmd
+public class GetTipoContratoCmd
 {
 
     @Autowired
-    private TiposContratosRepository repository;
+    private TipoContratoRepository repository;
     @Autowired
-    private GetUnidadeLogadaCmd      getUnidadeLogadaCmd;
+    private GetUnidadeLogadaCmd    getUnidadeLogadaCmd;
     @Autowired
-    private TiposContratosTOBuilder  toBuilder;
+    private TipoContratoTOBuilder  toBuilder;
 
-    public List<TiposContratosTO> getAllTO()
+    public List<TipoContratoTO> getAllTO()
     {
         Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
 
-        Optional<List<TiposContratos>> lista = repository.findByIdInstituicao(idInstituicao);
+        Optional<List<TipoContrato>> lista = repository.findByIdInstituicao(idInstituicao);
         if (lista.isPresent())
         {
             return toBuilder.buildAll(lista.get());
@@ -35,25 +35,25 @@ public class GetTiposContratosCmd
         return new ArrayList<>();
     }
 
-    public TiposContratos getById(Long id)
+    public TipoContrato getById(Long id)
     {
         return repository.findById(id).orElse(null);
     }
 
-    public TiposContratosTO getTOById(Long id)
+    public TipoContratoTO getTOById(Long id)
     {
-        TiposContratos entity = repository.findById(id)
+        TipoContrato entity = repository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Tipo de contrato informado não existe."));
         return toBuilder.buildTO(entity);
     }
 
-    public List<TiposContratosTO> getTOByDescricao(String descricao)
+    public List<TipoContratoTO> getTOByDescricao(String descricao)
     {
         if (descricao != null)
             descricao = descricao.toLowerCase().trim();
 
         Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
-        Optional<List<TiposContratos>> lista = repository.findByIdInstituicaoAndDescricao(idInstituicao, "%" + descricao + "%");
+        Optional<List<TipoContrato>> lista = repository.findByIdInstituicaoAndDescricao(idInstituicao, "%" + descricao + "%");
         if (lista.isPresent())
             return toBuilder.buildAll(lista.get());
 

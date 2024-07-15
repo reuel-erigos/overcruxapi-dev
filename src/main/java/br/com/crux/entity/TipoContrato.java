@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "tipos_contratos")
-public class TiposContratos implements Serializable
+public class TipoContrato implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
@@ -26,7 +26,7 @@ public class TiposContratos implements Serializable
     @Column(name = "id_usuario_apl")
     private Long usuarioAlteracao;
 
-    public TiposContratos()
+    public TipoContrato()
     {
     }
 

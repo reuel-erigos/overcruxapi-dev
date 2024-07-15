@@ -1,11 +1,10 @@
 package br.com.crux.service;
 
-import br.com.crux.cmd.AlterarTiposContratosCmd;
-import br.com.crux.cmd.CadastrarTiposContratosCmd;
-import br.com.crux.cmd.ExcluirTiposContratosCmd;
-import br.com.crux.cmd.GetTiposContratosCmd;
-import br.com.crux.to.GrupoAcoesTO;
-import br.com.crux.to.TiposContratosTO;
+import br.com.crux.cmd.AlterarTipoContratoCmd;
+import br.com.crux.cmd.CadastrarTipoContratoCmd;
+import br.com.crux.cmd.ExcluirTipoContratoCmd;
+import br.com.crux.cmd.GetTipoContratoCmd;
+import br.com.crux.to.TipoContratoTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,47 +13,47 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "tiposcontratos")
-public class TiposContratosService
+@RequestMapping(value = "tipocontrato")
+public class TipoContratoService
 {
 
     @Autowired
-    private GetTiposContratosCmd       getCmd;
+    private GetTipoContratoCmd       getCmd;
     @Autowired
-    private CadastrarTiposContratosCmd cadastrarCmd;
+    private CadastrarTipoContratoCmd cadastrarCmd;
     @Autowired
-    private AlterarTiposContratosCmd   alterarCmd;
+    private AlterarTipoContratoCmd   alterarCmd;
     @Autowired
-    private ExcluirTiposContratosCmd   excluirCmd;
+    private ExcluirTipoContratoCmd   excluirCmd;
 
     @GetMapping
-    public List<TiposContratosTO> getAll()
+    public List<TipoContratoTO> getAll()
     {
         return getCmd.getAllTO();
     }
 
     @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public TiposContratosTO getById(@PathVariable(name = "id") Long id)
+    public TipoContratoTO getById(@PathVariable(name = "id") Long id)
     {
         return getCmd.getTOById(id);
     }
 
     @GetMapping(path = "/filter", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<TiposContratosTO> findByFilters(@RequestParam(name = "descricao", required = false) String descricao)
+    public List<TipoContratoTO> findByFilters(@RequestParam(name = "descricao", required = false) String descricao)
     {
         return getCmd.getTOByDescricao(descricao);
     }
 
     @PostMapping
     @Transactional
-    public void cadastrar(@RequestBody TiposContratosTO to)
+    public void cadastrar(@RequestBody TipoContratoTO to)
     {
         cadastrarCmd.cadastrar(to);
     }
 
     @PutMapping(path = "", consumes = MediaType.APPLICATION_JSON_VALUE)
     @Transactional
-    public void alterar(@RequestBody TiposContratosTO to)
+    public void alterar(@RequestBody TipoContratoTO to)
     {
         alterarCmd.alterar(to);
     }

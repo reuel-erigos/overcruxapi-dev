@@ -1,6 +1,6 @@
 package br.com.crux.cmd;
 
-import br.com.crux.dao.repository.TiposContratosRepository;
+import br.com.crux.dao.repository.TipoContratoRepository;
 import br.com.crux.exception.ParametroNaoInformadoException;
 import br.com.crux.exception.TabaleReferenciaEncontradaException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +10,11 @@ import org.springframework.stereotype.Component;
 import java.util.Objects;
 
 @Component
-public class ExcluirTiposContratosCmd
+public class ExcluirTipoContratoCmd
 {
 
     @Autowired
-    private TiposContratosRepository repository;
+    private TipoContratoRepository repository;
 
     public void excluir(Long id)
     {

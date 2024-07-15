@@ -1,13 +1,13 @@
 package br.com.crux.to;
 
-public class TiposContratosTO
+public class TipoContratoTO
 {
     private Long   id;
     private String descricao;
     private Long   idInstituicao;
     private Long   usuarioAlteracao;
 
-    public TiposContratosTO()
+    public TipoContratoTO()
     {
     }
 

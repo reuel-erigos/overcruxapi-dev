@@ -2,8 +2,8 @@ package br.com.crux.builder;
 
 import br.com.crux.cmd.GetUnidadeLogadaCmd;
 import br.com.crux.cmd.GetUsuarioLogadoCmd;
-import br.com.crux.entity.TiposContratos;
-import br.com.crux.to.TiposContratosTO;
+import br.com.crux.entity.TipoContrato;
+import br.com.crux.to.TipoContratoTO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,7 +13,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Component
-public class TiposContratosTOBuilder
+public class TipoContratoTOBuilder
 {
 
     @Autowired
@@ -21,9 +21,9 @@ public class TiposContratosTOBuilder
     @Autowired
     private GetUnidadeLogadaCmd getUnidadeLogadaCmd;
 
-    public TiposContratosTO buildTO(TiposContratos entity)
+    public TipoContratoTO buildTO(TipoContrato entity)
     {
-        TiposContratosTO to = new TiposContratosTO();
+        TipoContratoTO to = new TipoContratoTO();
 
         if (Objects.isNull(entity))
         {
@@ -40,14 +40,14 @@ public class TiposContratosTOBuilder
         return to;
     }
 
-    public List<TiposContratosTO> buildAll(List<TiposContratos> lista)
+    public List<TipoContratoTO> buildAll(List<TipoContrato> lista)
     {
         return lista.stream().map(this::buildTO).collect(Collectors.toList());
     }
 
-    public TiposContratos build(TiposContratosTO to)
+    public TipoContrato build(TipoContratoTO to)
     {
-        TiposContratos entity = new TiposContratos();
+        TipoContrato entity = new TipoContrato();
 
         BeanUtils.copyProperties(to, entity);
 
