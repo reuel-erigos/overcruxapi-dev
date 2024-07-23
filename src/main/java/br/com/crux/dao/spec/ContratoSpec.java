@@ -1,14 +1,15 @@
 package br.com.crux.dao.spec;
 
 import br.com.crux.entity.Contrato;
+import br.com.crux.infra.util.Java8DateUtil;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -16,7 +17,7 @@ public class ContratoSpec
 {
 
     public static Specification<Contrato> findByCriteria(Long idInstituicao, Long idEmpresa, Long idPrograma, Long idProjeto,
-            LocalDateTime dataInicioVigencia, LocalDateTime dataFimVigencia, String numeroContrato, Double valorContrato)
+            Long dataInicioVigencia, Long dataFimVigencia, String numeroContrato, Double valorContrato)
     {
         return (root, query, cb) ->
         {
@@ -37,10 +38,11 @@ public class ContratoSpec
             }
 
             if (dataInicioVigencia != null)
-                predicates.add(cb.equal(root.get("dataInicioVigencia"), dataInicioVigencia));
+                predicates.add(
+                        cb.equal(root.get("dataInicioVigencia"), Java8DateUtil.getLocalDateTime(new Date(dataInicioVigencia))));
 
             if (dataFimVigencia != null)
-                predicates.add(cb.equal(root.get("dataFimVigencia"), dataFimVigencia));
+                predicates.add(cb.equal(root.get("dataFimVigencia"), Java8DateUtil.getLocalDateTime(new Date(dataFimVigencia))));
 
             if (!StringUtils.isEmpty(numeroContrato))
                 predicates.add(cb.like(root.get("numeroContrato"), "%" + numeroContrato + "%"));

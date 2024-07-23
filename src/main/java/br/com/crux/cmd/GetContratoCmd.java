@@ -10,7 +10,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -48,8 +47,8 @@ public class GetContratoCmd
         return toBuilder.buildTO(entity);
     }
 
-    public List<ContratoTO> findByFilters(Long idEmpresa, Long idPrograma, Long idProjeto, LocalDateTime dataInicioVigencia,
-            LocalDateTime dataFimVigencia, String numeroContrato, Double valorContrato)
+    public List<ContratoTO> findByFilters(Long idEmpresa, Long idPrograma, Long idProjeto, Long dataInicioVigencia,
+            Long dataFimVigencia, String numeroContrato, Double valorContrato)
     {
         idEmpresa = Objects.isNull(idEmpresa) ? null : idEmpresa;
         idPrograma = Objects.isNull(idPrograma) ? null : idPrograma;
