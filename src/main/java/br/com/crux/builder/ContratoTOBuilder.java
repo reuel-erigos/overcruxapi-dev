@@ -35,6 +35,8 @@ public class ContratoTOBuilder
     private ProgramaContratoTOBuilder programaContratoTOBuilder;
     @Autowired
     private ProjetoContratoTOBuilder  projetoContratoTOBuilder;
+    @Autowired
+    private ObjetivoContratoTOBuilder objetivoContratoTOBuilder;
 
     public ContratoTO buildTO(Contrato entity)
     {
@@ -47,6 +49,12 @@ public class ContratoTOBuilder
 
         to.setTipoContrato(tipoContratoTOBuilder.buildTO(entity.getTipoContrato()));
         to.setEmpresa(empresaTOBuilder.buildTO(entity.getEmpresa()));
+
+        if (entity.getDataInicioVigencia() != null)
+            to.setDataInicioVigencia(entity.getDataInicioVigencia().toLocalDate());
+
+        if (entity.getDataFimVigencia() != null)
+            to.setDataFimVigencia(entity.getDataFimVigencia().toLocalDate());
 
         if (entity.getProgramasContrato() != null)
         {
@@ -63,6 +71,15 @@ public class ContratoTOBuilder
             {
                 p.setContrato(entity);
                 return projetoContratoTOBuilder.buildTO(p);
+            }).collect(Collectors.toList()));
+        }
+
+        if (entity.getObjetivosContrato() != null)
+        {
+            to.setObjetivosContrato(entity.getObjetivosContrato().stream().map(o ->
+            {
+                o.setContrato(entity);
+                return objetivoContratoTOBuilder.buildTO(o);
             }).collect(Collectors.toList()));
         }
 
@@ -87,6 +104,11 @@ public class ContratoTOBuilder
         entity.setTipoContrato(getTipoContratoCmd.getById(to.getTipoContrato().getId()));
         entity.setEmpresa(getEmpresaCmd.getById(to.getEmpresa().getId()));
 
+        if (to.getDataInicioVigencia() != null)
+            entity.setDataInicioVigencia(to.getDataInicioVigencia().atStartOfDay());
+        if (to.getDataFimVigencia() != null)
+            entity.setDataFimVigencia(to.getDataFimVigencia().atStartOfDay());
+
         if (to.getProgramasContrato() != null)
         {
             entity.setProgramasContrato(to.getProgramasContrato().stream().map(p ->
@@ -102,6 +124,15 @@ public class ContratoTOBuilder
             {
                 p.setContrato(to);
                 return projetoContratoTOBuilder.build(p);
+            }).collect(Collectors.toList()));
+        }
+
+        if (to.getObjetivosContrato() != null)
+        {
+            entity.setObjetivosContrato(to.getObjetivosContrato().stream().map(o ->
+            {
+                o.setContrato(to);
+                return objetivoContratoTOBuilder.build(o);
             }).collect(Collectors.toList()));
         }
 

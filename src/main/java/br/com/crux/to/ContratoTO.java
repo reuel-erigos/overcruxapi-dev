@@ -1,10 +1,11 @@
 package br.com.crux.to;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 public class ContratoTO
 {
+
     private Long                     id;
     private TipoContratoTO           tipoContrato;
     private String                   numeroContrato;
@@ -13,14 +14,15 @@ public class ContratoTO
     private String                   numeroProcessoTecnico;
     private String                   numeroProcessoGestao;
     private String                   numeroProcessoPagamento;
-    private LocalDateTime            dataInicioVigencia;
-    private LocalDateTime            dataFimVigencia;
+    private LocalDate                dataInicioVigencia;
+    private LocalDate                dataFimVigencia;
     private Double                   valorContrato;
     private EmpresaTO                empresa;
     private Long                     idInstituicao;
     private Long                     usuarioAlteracao;
     private List<ProgramaContratoTO> programasContrato;
     private List<ProjetoContratoTO>  projetosContrato;
+    private List<ObjetivoContratoTO> objetivosContrato;
 
     public ContratoTO()
     {
@@ -106,22 +108,22 @@ public class ContratoTO
         this.numeroProcessoPagamento = numeroProcessoPagamento;
     }
 
-    public LocalDateTime getDataInicioVigencia()
+    public LocalDate getDataInicioVigencia()
     {
         return dataInicioVigencia;
     }
 
-    public void setDataInicioVigencia(LocalDateTime dataInicioVigencia)
+    public void setDataInicioVigencia(LocalDate dataInicioVigencia)
     {
         this.dataInicioVigencia = dataInicioVigencia;
     }
 
-    public LocalDateTime getDataFimVigencia()
+    public LocalDate getDataFimVigencia()
     {
         return dataFimVigencia;
     }
 
-    public void setDataFimVigencia(LocalDateTime dataFimVigencia)
+    public void setDataFimVigencia(LocalDate dataFimVigencia)
     {
         this.dataFimVigencia = dataFimVigencia;
     }
@@ -184,6 +186,16 @@ public class ContratoTO
     public void setProjetosContrato(List<ProjetoContratoTO> projetosContrato)
     {
         this.projetosContrato = projetosContrato;
+    }
+
+    public List<ObjetivoContratoTO> getObjetivosContrato()
+    {
+        return objetivosContrato;
+    }
+
+    public void setObjetivosContrato(List<ObjetivoContratoTO> objetivosContrato)
+    {
+        this.objetivosContrato = objetivosContrato;
     }
 
 }

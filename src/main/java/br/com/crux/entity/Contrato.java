@@ -2,7 +2,17 @@ package br.com.crux.entity;
 
 import br.com.crux.infra.constantes.Constantes;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -11,6 +21,7 @@ import java.util.List;
 @Table(name = "contratos")
 public class Contrato implements Serializable
 {
+
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -65,6 +76,9 @@ public class Contrato implements Serializable
 
     @OneToMany(mappedBy = "contrato")
     private List<ProjetoContrato> projetosContrato;
+
+    @OneToMany(mappedBy = "contrato")
+    private List<ObjetivoContrato> objetivosContrato;
 
     public Contrato()
     {
@@ -228,6 +242,16 @@ public class Contrato implements Serializable
     public void setProjetosContrato(List<ProjetoContrato> projetosContrato)
     {
         this.projetosContrato = projetosContrato;
+    }
+
+    public List<ObjetivoContrato> getObjetivosContrato()
+    {
+        return objetivosContrato;
+    }
+
+    public void setObjetivosContrato(List<ObjetivoContrato> objetivosContrato)
+    {
+        this.objetivosContrato = objetivosContrato;
     }
 
 }

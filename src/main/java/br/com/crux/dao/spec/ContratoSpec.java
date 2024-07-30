@@ -38,11 +38,12 @@ public class ContratoSpec
             }
 
             if (dataInicioVigencia != null)
-                predicates.add(
-                        cb.equal(root.get("dataInicioVigencia"), Java8DateUtil.getLocalDateTime(new Date(dataInicioVigencia))));
+                predicates.add(cb.equal(root.get("dataInicioVigencia"),
+                        Java8DateUtil.getLocalDateTimeZeroTiming(new Date(dataInicioVigencia))));
 
             if (dataFimVigencia != null)
-                predicates.add(cb.equal(root.get("dataFimVigencia"), Java8DateUtil.getLocalDateTime(new Date(dataFimVigencia))));
+                predicates.add(cb.equal(root.get("dataFimVigencia"),
+                        Java8DateUtil.getLocalDateTimeZeroTiming(new Date(dataFimVigencia))));
 
             if (!StringUtils.isEmpty(numeroContrato))
                 predicates.add(cb.like(root.get("numeroContrato"), "%" + numeroContrato + "%"));
