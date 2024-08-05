@@ -9,5 +9,7 @@ import org.springframework.stereotype.Repository;
 public interface IndicadorMetaRepository extends JpaRepository<IndicadorMeta, Long>, JpaSpecificationExecutor<IndicadorMeta>
 {
 
+    public void deleteByMetaObjetivoId(Long id);
+
 }
 

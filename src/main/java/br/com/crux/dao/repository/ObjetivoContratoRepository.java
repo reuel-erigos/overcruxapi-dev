@@ -7,8 +7,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ObjetivoContratoRepository
-        extends JpaRepository<ObjetivoContrato, Long>, JpaSpecificationExecutor<ObjetivoContrato>
-{
+        extends JpaRepository<ObjetivoContrato, Long>, JpaSpecificationExecutor<ObjetivoContrato> {
+
+    public void deleteByContratoId(Long id);
 
 }
 

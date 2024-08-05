@@ -1,8 +1,10 @@
 package br.com.crux.cmd;
 
-import br.com.crux.dao.repository.ContratoRepository;
-import br.com.crux.dao.repository.ProgramaContratoRepository;
-import br.com.crux.dao.repository.ProjetoContratoRepository;
+import br.com.crux.dao.repository.*;
+import br.com.crux.entity.Contrato;
+import br.com.crux.entity.IndicadorMeta;
+import br.com.crux.entity.MetaObjetivo;
+import br.com.crux.entity.ObjetivoContrato;
 import br.com.crux.exception.ParametroNaoInformadoException;
 import br.com.crux.exception.TabaleReferenciaEncontradaException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,19 +23,26 @@ public class ExcluirContratoCmd
     private ProgramaContratoRepository programaContratoRepository;
     @Autowired
     private ProjetoContratoRepository  projetoContratoRepository;
+    @Autowired
+    private ObjetivoContratoRepository objetivoContratoRepository;
+    @Autowired
+    private MetaObjetivoRepository     metaObjetivoRepository;
+    @Autowired
+    private IndicadorMetaRepository    indicadorMetaRepository;
 
     public void excluir(Long id)
     {
         if (Objects.isNull(id))
             throw new ParametroNaoInformadoException("Erro ao excluir. Parâmetro ausente.");
 
-        repository.findById(id)
+        Contrato contrato = repository.findById(id)
                 .orElseThrow(() -> new ParametroNaoInformadoException("Erro ao excluir. Registro não encontrado."));
 
         try
         {
             programaContratoRepository.deleteByContratoId(id);
             projetoContratoRepository.deleteByContratoId(id);
+            excluirObjetivos(id, contrato);
             repository.deleteById(id);
         } catch (Exception e)
         {
@@ -45,5 +54,15 @@ public class ExcluirContratoCmd
             }
             throw new RuntimeException(e.getMessage(), e);
         }
+    }
+
+    private void excluirObjetivos(Long id, Contrato contrato) {
+        for (ObjetivoContrato o : contrato.getObjetivosContrato()) {
+            for (MetaObjetivo m : o.getMetasObjetivo()) {
+                indicadorMetaRepository.deleteByMetaObjetivoId(m.getId());
+            }
+            metaObjetivoRepository.deleteByObjetivoContratoId(o.getId());
+        }
+        objetivoContratoRepository.deleteByContratoId(id);
     }
 }
