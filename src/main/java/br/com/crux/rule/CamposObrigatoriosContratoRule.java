@@ -22,5 +22,11 @@ public class CamposObrigatoriosContratoRule
 
         if (to.getEmpresa() == null)
             throw new CamposObrigatoriosException("Operação não realizada. O campo empresa deve ser informado.");
+
+        if (to.getDataInicioVigencia() == null)
+            throw new CamposObrigatoriosException("Operação não realizada. O campo data de início deve ser informado.");
+
+        if (StringUtils.isBlank(to.getDescricaoObjetoContrato()))
+            throw new CamposObrigatoriosException("Operação não realizada. O campo descrição do objeto do contrato deve ser informado.");
     }
 }

@@ -64,4 +64,15 @@ public class GetContratoCmd
         return toBuilder.buildAll(lista);
     }
 
+    public List<ContratoTO> getAllCombo()
+    {
+        Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+        Optional<List<Contrato>> lista = repository.findByIdInstituicao(idInstituicao);
+        if (lista.isPresent())
+        {
+            return toBuilder.buildAllCombo(lista.get());
+        }
+        return new ArrayList<>();
+    }
+
 }

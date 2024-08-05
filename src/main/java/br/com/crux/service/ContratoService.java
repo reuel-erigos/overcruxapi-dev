@@ -5,6 +5,7 @@ import br.com.crux.cmd.CadastrarContratoCmd;
 import br.com.crux.cmd.ExcluirContratoCmd;
 import br.com.crux.cmd.GetContratoCmd;
 import br.com.crux.to.ContratoTO;
+import br.com.crux.to.TurmasTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;
@@ -77,6 +78,11 @@ public class ContratoService
     public void excluir(@PathVariable(name = "id") Long id)
     {
         excluirCmd.excluir(id);
+    }
+
+    @GetMapping(path = "/combo", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<ContratoTO> getAllCombo() {
+        return getCmd.getAllCombo();
     }
 
 }

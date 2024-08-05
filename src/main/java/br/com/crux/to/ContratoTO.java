@@ -1,12 +1,14 @@
 package br.com.crux.to;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class ContratoTO
 {
 
     private Long                     id;
+    private String                   descricao;
     private TipoContratoTO           tipoContrato;
     private String                   numeroContrato;
     private String                   descricaoObjetoContrato;
@@ -14,8 +16,8 @@ public class ContratoTO
     private String                   numeroProcessoTecnico;
     private String                   numeroProcessoGestao;
     private String                   numeroProcessoPagamento;
-    private LocalDate                dataInicioVigencia;
-    private LocalDate                dataFimVigencia;
+    private LocalDateTime            dataInicioVigencia;
+    private LocalDateTime            dataFimVigencia;
     private Double                   valorContrato;
     private EmpresaTO                empresa;
     private Long                     idInstituicao;
@@ -108,22 +110,22 @@ public class ContratoTO
         this.numeroProcessoPagamento = numeroProcessoPagamento;
     }
 
-    public LocalDate getDataInicioVigencia()
+    public LocalDateTime getDataInicioVigencia()
     {
         return dataInicioVigencia;
     }
 
-    public void setDataInicioVigencia(LocalDate dataInicioVigencia)
+    public void setDataInicioVigencia(LocalDateTime dataInicioVigencia)
     {
         this.dataInicioVigencia = dataInicioVigencia;
     }
 
-    public LocalDate getDataFimVigencia()
+    public LocalDateTime getDataFimVigencia()
     {
         return dataFimVigencia;
     }
 
-    public void setDataFimVigencia(LocalDate dataFimVigencia)
+    public void setDataFimVigencia(LocalDateTime dataFimVigencia)
     {
         this.dataFimVigencia = dataFimVigencia;
     }
@@ -196,6 +198,16 @@ public class ContratoTO
     public void setObjetivosContrato(List<ObjetivoContratoTO> objetivosContrato)
     {
         this.objetivosContrato = objetivosContrato;
+    }
+
+    public String getDescricao()
+    {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao)
+    {
+        this.descricao = descricao;
     }
 
 }

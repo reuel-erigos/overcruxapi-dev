@@ -5,11 +5,13 @@ import br.com.crux.cmd.GetTipoContratoCmd;
 import br.com.crux.cmd.GetUnidadeLogadaCmd;
 import br.com.crux.cmd.GetUsuarioLogadoCmd;
 import br.com.crux.entity.Contrato;
+import br.com.crux.infra.util.Java8DateUtil;
 import br.com.crux.to.ContratoTO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -51,10 +53,10 @@ public class ContratoTOBuilder
         to.setEmpresa(empresaTOBuilder.buildTO(entity.getEmpresa()));
 
         if (entity.getDataInicioVigencia() != null)
-            to.setDataInicioVigencia(entity.getDataInicioVigencia().toLocalDate());
+            to.setDataInicioVigencia(entity.getDataInicioVigencia());
 
         if (entity.getDataFimVigencia() != null)
-            to.setDataFimVigencia(entity.getDataFimVigencia().toLocalDate());
+            to.setDataFimVigencia(entity.getDataFimVigencia());
 
         if (entity.getProgramasContrato() != null)
         {
@@ -83,6 +85,15 @@ public class ContratoTOBuilder
             }).collect(Collectors.toList()));
         }
 
+        String descricao = to.getTipoContrato().getDescricao() + " - " + to.getNumeroContrato();
+        descricao += ", " + to.getEmpresa().getNomeRazaoSocial();
+        descricao += ", Início " + Java8DateUtil.getLocalDateFormater(to.getDataInicioVigencia().toLocalDate());
+
+        if (to.getDataFimVigencia() != null)
+            descricao += ", Fim " + Java8DateUtil.getLocalDateFormater(to.getDataFimVigencia().toLocalDate());
+
+        to.setDescricao(descricao);
+
         return to;
     }
 
@@ -103,11 +114,6 @@ public class ContratoTOBuilder
 
         entity.setTipoContrato(getTipoContratoCmd.getById(to.getTipoContrato().getId()));
         entity.setEmpresa(getEmpresaCmd.getById(to.getEmpresa().getId()));
-
-        if (to.getDataInicioVigencia() != null)
-            entity.setDataInicioVigencia(to.getDataInicioVigencia().atStartOfDay());
-        if (to.getDataFimVigencia() != null)
-            entity.setDataFimVigencia(to.getDataFimVigencia().atStartOfDay());
 
         if (to.getProgramasContrato() != null)
         {
@@ -137,6 +143,32 @@ public class ContratoTOBuilder
         }
 
         return entity;
+    }
+
+    public List<ContratoTO> buildAllCombo(List<Contrato> dtos)
+    {
+        return dtos.stream().map(this::buildComboTO).collect(Collectors.toList());
+    }
+
+    public ContratoTO buildComboTO(Contrato param)
+    {
+        ContratoTO retorno = new ContratoTO();
+
+        if (Objects.isNull(param))
+        {
+            return retorno;
+        }
+
+        retorno.setId(param.getId());
+        String descricao = param.getTipoContrato().getDescricao() + " - " + param.getNumeroContrato();
+        descricao += ", " + param.getEmpresa().getNomeRazaoSocial();
+        descricao += ", Início " + Java8DateUtil.getLocalDateFormater(param.getDataInicioVigencia().toLocalDate());
+
+        if (param.getDataFimVigencia() != null)
+            descricao += ", Fim " + Java8DateUtil.getLocalDateFormater(param.getDataFimVigencia().toLocalDate());
+
+        retorno.setDescricao(descricao);
+        return retorno;
     }
 
 }
