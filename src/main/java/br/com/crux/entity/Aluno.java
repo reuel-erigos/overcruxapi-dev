@@ -1,6 +1,7 @@
 package br.com.crux.entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Convert;
@@ -11,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -145,8 +147,11 @@ public class Aluno {
 
 	@Convert(converter = SimNaoConverter.class)
 	@Column(name = "st_ativo")
-	private Boolean stAtivo;
+	private Boolean                stAtivo;
 //	private String stAtivo;
+
+	@OneToMany(mappedBy = "aluno")
+	private List<AlunoContrato> alunosContrato;
 
 	
 	public Aluno() {
@@ -434,5 +439,13 @@ public class Aluno {
 	public void setDataEncaminhamento(LocalDateTime dataEncaminhamento) {
 		this.dataEncaminhamento = dataEncaminhamento;
 	}	
+
+	public List<AlunoContrato> getAlunosContrato() {
+		return alunosContrato;
+	}
+
+	public void setAlunosContrato(List<AlunoContrato> contratosAluno) {
+		this.alunosContrato = contratosAluno;
+	}
 
 }

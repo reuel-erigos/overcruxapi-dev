@@ -1,10 +1,11 @@
 package br.com.crux.cmd;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+import java.util.stream.Collectors;
 
+import br.com.crux.dao.repository.AlunoContratoRepository;
+import br.com.crux.to.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
@@ -20,12 +21,6 @@ import br.com.crux.exception.NotFoundException;
 import br.com.crux.infra.constantes.TipoRelatorioBeneficiario;
 import br.com.crux.rule.CamposObrigatoriosAlunoRule;
 import br.com.crux.rule.ValidarDuplicidadeCPFRule;
-import br.com.crux.to.AlunoTO;
-import br.com.crux.to.AtividadesAlunoTO;
-import br.com.crux.to.EncaminhaAlunosTO;
-import br.com.crux.to.FamiliaresTO;
-import br.com.crux.to.ResponsaveisAlunoTO;
-import br.com.crux.to.VulnerabilidadesAlunoTO;
 import br.com.crux.to.relatorios.beneficiarios.DadosObservacaoRelatorio;
 
 @Component
@@ -49,12 +44,23 @@ public class AlterarAlunoCmd {
 	@Autowired private CadastrarAtividadesAlunoCmd cadastrarAtividadesAlunoCmd;
 	@Autowired private AlterarUniformesAlunoCmd alterarUniformesAlunoCmd;
 	@Autowired private ValidarDuplicidadeCPFRule validarDuplicidadeCPFRule;
+	@Autowired private AlunoContratoRepository repositoryAlunoContrato;
 	
 	public AlunoTO alterar(AlunoTO alunoTO) {
 		camposObrigatoriosRule.verificar(alunoTO);
 		validarDuplicidadeCPFRule.verificar(alunoTO.getPessoaFisica().getCpf(), alunoTO.getPessoaFisica().getId());
 		
 		Aluno aluno = repository.findById(alunoTO.getId()).orElseThrow((() -> new NotFoundException("Aluno informado não existe.")));
+
+		Set<Long> updatedContratoIds = alunoTO.getAlunosContrato().stream().map(AlunoContratoTO::getId).collect(Collectors.toSet());
+		aluno.getAlunosContrato().removeIf(p ->
+		{
+			if (!updatedContratoIds.contains(p.getId())) {
+				repositoryAlunoContrato.deleteById(p.getId());
+				return true;
+			}
+			return false;
+		});
 		
 		alunoTO.setUsuarioAlteracao(getUsuarioLogadoCmd.getUsuarioLogado().getIdUsuario());
 		aluno = alunoTOBuilder.build(alunoTO);
@@ -104,9 +110,9 @@ public class AlterarAlunoCmd {
 				alterarUniformesAlunoCmd.alterarAll(atividadesAlunoTO.getUniformes(), atividadesAlunoTO.getAtividade().getId());
 			}
 		}
-		
-		
-		
+
+		aluno.getAlunosContrato().forEach(c -> repositoryAlunoContrato.save(c));
+
 		Aluno alunoSalvo = repository.save(aluno);
 		AlunoTO alunoSalvoTO = alunoTOBuilder.buildTO(alunoSalvo);
 		
@@ -126,7 +132,7 @@ public class AlterarAlunoCmd {
 			});
 			
 		}
-		
+
 		return alunoSalvoTO;
 	}
 	

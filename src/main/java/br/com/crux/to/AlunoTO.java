@@ -77,6 +77,8 @@ public class AlunoTO {
 	private List<AtividadesAlunoTO> atividades;
 	
 	private List<AlunosTurmaTO> matriculas;
+
+	private List<AlunoContratoTO> alunosContrato;
 	
 	public AlunoTO() {
 	}
@@ -433,5 +435,15 @@ public class AlunoTO {
 	public void setMatriculas(List<AlunosTurmaTO> matriculas) {
 		this.matriculas = matriculas;
 	}	
-	
+
+	public List<AlunoContratoTO> getAlunosContrato()
+	{
+		return alunosContrato;
+	}
+
+	public void setAlunosContrato(List<AlunoContratoTO> alunosContrato)
+	{
+		this.alunosContrato = alunosContrato;
+	}
+
 }

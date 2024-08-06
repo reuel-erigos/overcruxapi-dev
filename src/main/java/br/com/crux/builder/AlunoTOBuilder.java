@@ -1,10 +1,12 @@
 package br.com.crux.builder;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import br.com.crux.entity.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,12 +20,6 @@ import br.com.crux.cmd.GetProjetoCmd;
 import br.com.crux.cmd.GetTiposPublicoPrioritarioCmd;
 import br.com.crux.cmd.GetVulnerabilidadesAlunoCmd;
 import br.com.crux.dao.dto.ComboAlunoDTO;
-import br.com.crux.entity.Aluno;
-import br.com.crux.entity.MotivoDesligamento;
-import br.com.crux.entity.NiveisTurmas;
-import br.com.crux.entity.Programa;
-import br.com.crux.entity.Projeto;
-import br.com.crux.entity.TiposPublicoPrioritario;
 import br.com.crux.to.AlunoTO;
 import br.com.crux.to.ComboAlunoTO;
 import br.com.crux.to.PessoaFisicaTO;
@@ -46,12 +42,13 @@ public class AlunoTOBuilder {
 	@Autowired private GetBeneficioSocialPessoaFisicaCmd getBeneficioSocialPessoaFisicaCmd;
 	@Autowired private ProgramaTOBuilder programaTOBuilder;
 	@Autowired private ProjetoTOBuilder projetoTOBuilder;
+	@Autowired private AlunoContratoTOBuilder alunoContratoTOBuilder;
 
 	public Aluno build(AlunoTO p) {
 		Aluno retorno = new Aluno();
 
 		BeanUtils.copyProperties(p, retorno);
-		
+
 		retorno.setId(p.getId());
 		retorno.setDescProblemaSaude(p.getDescProblemaSaude());
 		retorno.setDescMedicamentosControlados(p.getDescMedicamentosControlados());
@@ -74,7 +71,7 @@ public class AlunoTOBuilder {
 		}
 
 		retorno.setStAtivo(p.getStAtivo());
-		
+
 		retorno.setPaisCasados(p.getPaisCasados());
 
 		retorno.setMoraPais(p.getMoraPais());
@@ -83,7 +80,7 @@ public class AlunoTOBuilder {
 			NiveisTurmas niveisTurmas = getNiveisTurmasCmd.getById(p.getNivelTurma().getId());
 			retorno.setNivelTurma(niveisTurmas);
 		}
-		
+
 		if(Objects.nonNull(p.getPrograma()) && Objects.nonNull(p.getPrograma().getId())) {
 			Programa programa = getProgramaCmd.getById(p.getPrograma().getId());
 			retorno.setPrograma(programa);
@@ -93,12 +90,12 @@ public class AlunoTOBuilder {
 			Projeto projeto= getProjetoCmd.getById(p.getProjeto().getId());
 			retorno.setProjeto(projeto);
 		}
-		
+
 		if(Objects.nonNull(p.getMotivoDesligamento()) && Objects.nonNull(p.getMotivoDesligamento().getId())) {
 			MotivoDesligamento motivoDesligamento = getMotivoDesligamentoCmd.getById(p.getMotivoDesligamento().getId());
 			retorno.setMotivoDesligamento(motivoDesligamento);
 		}
-		
+
 		if(Objects.nonNull(p.getTiposPublicoPrioritario()) && Objects.nonNull(p.getTiposPublicoPrioritario().getId())) {
 			TiposPublicoPrioritario tiposPublicoPrioritario = getTiposPublicoPrioritarioCmd.getById(p.getTiposPublicoPrioritario().getId());
 			retorno.setTiposPublicoPrioritario(tiposPublicoPrioritario);
@@ -107,26 +104,39 @@ public class AlunoTOBuilder {
 //		Optional.ofNullable(p.getStAtivo()).ifPresent(stAtivo -> {
 //			retorno.setAtivo(stAtivo.equals("true") ? "S" : "N");
 //		});
-		
+
 //		Optional.ofNullable(p.getParticipaApresentacaoExterna()).ifPresent(participaApresentacaoExterna -> {
 //			retorno.setParticipaApresentacaoExterna(participaApresentacaoExterna.equals("true") ? "S" : "N");
 //		});
-		
-		
+
+
 		retorno.setUsuarioAlteracao(p.getUsuarioAlteracao());
 
-		return retorno;
+        try {
+            if (p.getAlunosContrato() != null && !p.getAlunosContrato().isEmpty()) {
+                List<AlunoContrato> contratos = p.getAlunosContrato().stream().map(c ->
+                {
+                    c.setAluno(p);
+                    return alunoContratoTOBuilder.build(c);
+                }).collect(Collectors.toList());
+                retorno.setAlunosContrato(contratos);
+            }
+        } catch (Exception e) {
+            //throw new RuntimeException(e);
+        }
+
+        return retorno;
 	}
 
 	public AlunoTO buildTO(Aluno p) {
 		AlunoTO retorno = new AlunoTO();
-		
+
 		if(Objects.isNull(p)) {
 			return retorno;
 		}
-		
+
 		BeanUtils.copyProperties(p, retorno);
-		
+
 		retorno.setId(p.getId());
 		retorno.setDescProblemaSaude(p.getDescProblemaSaude());
 		retorno.setDescMedicamentosControlados(p.getDescMedicamentosControlados());
@@ -148,7 +158,7 @@ public class AlunoTOBuilder {
 		retorno.setParticipaApresentacaoExterna(p.getParticipaApresentacaoExterna());
 
 		retorno.setStAtivo(p.getStAtivo());
-		
+
 		retorno.setPaisCasados(p.getPaisCasados());
 
 		retorno.setMoraPais(p.getMoraPais());
@@ -156,15 +166,15 @@ public class AlunoTOBuilder {
 		if(Objects.nonNull(p.getId())) {
 			retorno.setVulnerabilidades(getVulnerabilidadesAlunoCmd.getAllAlunoTO(p.getId()));
 		}
-		
+
 		if(Objects.nonNull(p.getId())) {
 			retorno.setEncaminhamentos(encaminhaAlunosCmd.getAll(p.getId(), null));
 		}
-		
+
 		if(Objects.nonNull(p.getId()) && Objects.nonNull(p.getPessoasFisica())) {
 			retorno.setBenefeciosSociaisPessoaFisica(getBeneficioSocialPessoaFisicaCmd.getAllPorPessoaFisicaTO(p.getPessoasFisica().getId()));
 		}
-		
+
 		if(Objects.nonNull(p.getPrograma())) {
 			retorno.setPrograma(programaTOBuilder.buildTO(p.getPrograma()));
 		}
@@ -172,18 +182,24 @@ public class AlunoTOBuilder {
 			retorno.setProjeto(projetoTOBuilder.buildTO(p.getProjeto()));
 		}
 
+		if (p.getAlunosContrato() != null && !p.getAlunosContrato().isEmpty()) {
+			retorno.setAlunosContrato(new ArrayList<>());
+			for (AlunoContrato ac : p.getAlunosContrato())
+				retorno.getAlunosContrato().add(alunoContratoTOBuilder.buildTO(ac));
+		}
+
 		return retorno;
 	}
 
 	public ComboAlunoTO buildComboTO(ComboAlunoDTO p) {
 		ComboAlunoTO retorno = new ComboAlunoTO();
-		
+
 		if(Objects.isNull(p)) {
 			return retorno;
 		}
-		
+
 		BeanUtils.copyProperties(p, retorno);
-		
+
 		return retorno;
 	}
 
@@ -198,11 +214,11 @@ public class AlunoTOBuilder {
 
 	public AlunoTO toDTOList(Aluno p) {
 		AlunoTO retorno = new AlunoTO();
-		
+
 		if(Objects.isNull(p)) {
 			return retorno;
 		}
-		
+
 		retorno.setId(p.getId());
 		retorno.setMatriculaAluno(p.getMatriculaAluno());
 		retorno.setDataEntrada(p.getDataEntrada());
@@ -211,9 +227,9 @@ public class AlunoTOBuilder {
 		retorno.setPessoaFisica(new PessoaFisicaTO());
 		retorno.getPessoaFisica().setId(p.getPessoasFisica().getId());
 		retorno.getPessoaFisica().setNome(p.getPessoasFisica().getNome());
-		
-		
+
+
 		return retorno;
 	}
-	
+
 }
