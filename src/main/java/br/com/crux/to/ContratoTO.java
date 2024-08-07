@@ -25,6 +25,7 @@ public class ContratoTO
     private List<ProgramaContratoTO> programasContrato;
     private List<ProjetoContratoTO>  projetosContrato;
     private List<ObjetivoContratoTO> objetivosContrato;
+    private Long                     qtdAtendimentoPrevistos;
 
     public ContratoTO()
     {
@@ -208,6 +209,16 @@ public class ContratoTO
     public void setDescricao(String descricao)
     {
         this.descricao = descricao;
+    }
+
+    public Long getQtdAtendimentoPrevistos()
+    {
+        return qtdAtendimentoPrevistos;
+    }
+
+    public void setQtdAtendimentoPrevistos(Long qtdAtendimentoPrevistos)
+    {
+        this.qtdAtendimentoPrevistos = qtdAtendimentoPrevistos;
     }
 
 }
