@@ -80,6 +80,9 @@ public class Contrato implements Serializable
     @OneToMany(mappedBy = "contrato")
     private List<ObjetivoContrato> objetivosContrato;
 
+    @Column(name = "qtd_atendimento_previstos")
+    private Long qtdAtendimentoPrevistos;
+
     public Contrato()
     {
     }
@@ -252,6 +255,14 @@ public class Contrato implements Serializable
     public void setObjetivosContrato(List<ObjetivoContrato> objetivosContrato)
     {
         this.objetivosContrato = objetivosContrato;
+    }
+
+    public Long getQtdAtendimentoPrevistos() {
+        return qtdAtendimentoPrevistos;
+    }
+
+    public void setQtdAtendimentoPrevistos(Long qtdAtendimentoPrevistos) {
+        this.qtdAtendimentoPrevistos = qtdAtendimentoPrevistos;
     }
 
 }
