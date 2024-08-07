@@ -34,11 +34,21 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long>, JpaSpecific
 			+ " where uni.idUnidade = ?1")
 	public Optional<List<Aluno>> findByUnidade(Long idUnidade);
 
+	@Query(value = "SELECT a FROM Aluno a                                                       "
+			+ " INNER JOIN PessoaFisica pf on a.pessoasFisica = pf                              "
+			+ " INNER JOIN Instituicao inst on inst.id = pf.idInstituicao                       "
+			+ "   WHERE 1 = 1                                                                     "
+			+ "     AND inst.id = ?1                                                            "
+			+ " ORDER BY pf.nome ASC                                                            ")
+	public Optional<List<Aluno>> findByInstituicao(Long idInstituicao);
 
 	@Query(value = "SELECT a FROM Aluno a "
-			+ " inner join PessoaFisica pf on a.pessoasFisica = pf"
-			+ " where Upper(pf.nome) like %?1%")
-	public Optional<List<Aluno>> findAlunosByNome(String nome);
+			+ " inner join PessoaFisica pf on a.pessoasFisica = pf "
+			+ " INNER JOIN Instituicao inst ON inst.id = pf.idInstituicao "
+			+ " where Upper(pf.nome) like %?1% "
+			+ " AND inst.id = ?2 "
+			+ " ORDER BY pf.nome asc")
+	public Optional<List<Aluno>> findAlunosByNome(String nome, Long idInstituicao);
 	
 	
 	

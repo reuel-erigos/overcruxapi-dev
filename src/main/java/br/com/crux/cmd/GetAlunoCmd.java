@@ -65,7 +65,7 @@ public class GetAlunoCmd {
 	
 	@Transactional(readOnly = true)
 	public Page<AlunoTO> listFilteredAndPaged(FiltroAlunoTO filtro, Pageable pageable) {
-		filtro.setIdUnidade(getUnidadeLogadaCmd.getUnidadeTOSimplificado().getIdUnidade());
+		filtro.setIdInstituicao(getUnidadeLogadaCmd.getUnidadeTOSimplificado().getInstituicao().getId());
 		Page<Aluno> pageData = repository.findAll(AlunoSpec.findByCriteria(filtro), pageable);
 		final List<AlunoTO> listTO = new ArrayList<AlunoTO>();
 		pageData.getContent().forEach(tipoMeta -> listTO.add(toBuilder.toDTOList(tipoMeta)));
@@ -74,8 +74,8 @@ public class GetAlunoCmd {
 	}
 
 	public List<AlunoTO> getAll() {
-		Long idUnidade = getUnidadeLogadaCmd.get().getId();
-		Optional<List<Aluno>> entitys = repository.findByUnidade(idUnidade);
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+		Optional<List<Aluno>> entitys = repository.findByInstituicao(idInstituicao);
 		if (entitys.isPresent()) {
 			return toBuilder.buildAll(entitys.get());
 		}
@@ -92,7 +92,8 @@ public class GetAlunoCmd {
 	}
 
 	public List<AlunoTO> getAlunosByNome(String nome) {
-		Optional<List<Aluno>> entitys = repository.findAlunosByNome(nome.toUpperCase());
+		Long idInstituicao = getUnidadeLogadaCmd.getUnidadeTO().getInstituicao().getId();
+		Optional<List<Aluno>> entitys = repository.findAlunosByNome(nome.toUpperCase(), idInstituicao);
 		if (entitys.isPresent()) {
 			return toBuilder.buildAll(entitys.get());
 		}

@@ -52,6 +52,11 @@ public class AlunoSpec{
 					Join<Aluno, Unidade> join = root.join("unidade");
 					predicates.add(cb.equal(join.get("idUnidade"), criteria.getIdUnidade()));
 				}
+				if (Objects.nonNull(criteria.getIdInstituicao()))
+				{
+					Join<Aluno, PessoaFisica> join = root.join("pessoasFisica");
+					predicates.add(cb.equal(join.get("idInstituicao"), criteria.getIdInstituicao()));
+				}
 				return cb.and(predicates.toArray(new Predicate[] {}));
 			}
 		};

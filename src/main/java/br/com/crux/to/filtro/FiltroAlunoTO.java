@@ -22,6 +22,8 @@ public class FiltroAlunoTO {
 	
 	private Long idUnidade;
 
+	private Long idInstituicao;
+
 	public String getBeneficiario() {
 		return beneficiario;
 	}
@@ -69,6 +71,13 @@ public class FiltroAlunoTO {
 	public void setIdUnidade(Long idUnidade) {
 		this.idUnidade = idUnidade;
 	}
-	
+
+	public Long getIdInstituicao() {
+		return idInstituicao;
+	}
+
+	public void setIdInstituicao(Long idInstituicao) {
+		this.idInstituicao = idInstituicao;
+	}
 	
 }
